@@ -1,0 +1,360 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  
+
+  <head>
+    
+    <title>twisted.protocols.basic.LineOnlyReceiver</title>
+    <meta name="generator" content="pydoctor 22.2.1"> 
+        
+    </meta>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=0.75" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+    <link rel="stylesheet" type="text/css" href="extra.css" />
+</head>
+
+  <body>
+
+    <div id="banner">    
+    <div>
+        <a href="/">Home</a>
+        &gt; twisted-22.1.0 <!-- This is a placeholder -->
+        
+        <!-- (<a href=""&gt;show all versions</a&gt;) -->
+    </div>
+</div>
+
+    <nav class="navbar navbar-default">
+  
+  <div class="container">
+
+    <div class="navbar-header">
+      
+      <div class="navlinks">
+          <span class="navbar-brand">
+            twisted <a href="index.html">API Documentation</a>
+          </span>
+
+          <a href="moduleIndex.html">
+            Modules
+          </a>
+
+          <a href="classIndex.html">
+            Classes
+          </a>
+
+          <a href="nameIndex.html">
+            Names
+          </a>
+      </div>
+
+    </div>
+  </div>
+</nav>
+
+    
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="class"><code><code><a href="index.html" class="internal-link">twisted</a></code><wbr></wbr>.<code><a href="twisted.protocols.html" class="internal-link" title="twisted.protocols">protocols</a></code><wbr></wbr>.<code><a href="twisted.protocols.basic.html" class="internal-link" title="twisted.protocols.basic">basic</a></code><wbr></wbr>.<code><a href="twisted.protocols.basic.LineOnlyReceiver.html" class="internal-link" title="twisted.protocols.basic.LineOnlyReceiver">LineOnlyReceiver</a></code></code></h1>
+        <div id="showPrivate">
+          <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+        </div>
+      </div>
+
+      <div class="categoryHeader">
+        class documentation
+      </div>
+
+      <div class="extrasDocstring">
+        <p><code><span class="py-keyword">class</span> <span class="py-defname">LineOnlyReceiver</span>(<a href="twisted.internet.protocol.Protocol.html" class="internal-link" title="twisted.internet.protocol.Protocol">protocol.Protocol</a>): <a href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/protocols/basic.py#L406" class="sourceLink">(source)</a></code></p><p>Known subclasses: <code><a href="twisted.mail.pop3.AdvancedPOP3Client.html" class="internal-link">twisted.mail.pop3.AdvancedPOP3Client</a></code>, <code><a href="twisted.mail.pop3.POP3.html" class="internal-link">twisted.mail.pop3.POP3</a></code>, <code><a href="twisted.mail.pop3.POP3Client.html" class="internal-link">twisted.mail.pop3.POP3Client</a></code>, <code><a href="twisted.mail.smtp.SMTP.html" class="internal-link">twisted.mail.smtp.SMTP</a></code>, <code><a href="twisted.protocols.ident.IdentClient.html" class="internal-link">twisted.protocols.ident.IdentClient</a></code>, <code><a href="twisted.protocols.ident.IdentServer.html" class="internal-link">twisted.protocols.ident.IdentServer</a></code>, <code><a href="twisted.protocols.test.test_basic.LineOnlyTester.html" class="internal-link">twisted.protocols.test.test_basic.LineOnlyTester</a></code></p>
+        <p><a href="classIndex.html#twisted.protocols.basic.LineOnlyReceiver">View In Hierarchy</a></p>
+      </div>
+
+      <div class="moduleDocstring">
+        <div><p>A protocol that receives only lines.</p>
+<p>This is purely a speed optimisation over LineReceiver, for the cases that raw mode is known to be unnecessary.</p>
+</div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id5495">
+  
+  
+  <tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#dataReceived" class="internal-link" title="twisted.protocols.basic.LineOnlyReceiver.dataReceived">data​Received</a></code></td>
+    <td>Translates bytes into lines, and calls lineReceived.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#lineLengthExceeded" class="internal-link" title="twisted.protocols.basic.LineOnlyReceiver.lineLengthExceeded">line​Length​Exceeded</a></code></td>
+    <td>Called when the maximum line length has been reached. Override if it needs to be dealt with in some special way.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#lineReceived" class="internal-link" title="twisted.protocols.basic.LineOnlyReceiver.lineReceived">line​Received</a></code></td>
+    <td>Override this for when each line is received.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#sendLine" class="internal-link" title="twisted.protocols.basic.LineOnlyReceiver.sendLine">send​Line</a></code></td>
+    <td>Sends a line to the other end of the connection.</td>
+  </tr><tr class="constant">
+    
+    <td>Constant</td>
+    <td><code><a href="#MAX_LENGTH" class="internal-link" title="twisted.protocols.basic.LineOnlyReceiver.MAX_LENGTH">MAX​_LENGTH</a></code></td>
+    <td>The maximum length of a line to allow (If a sent line is longer than this, the connection is dropped). Default is 16384.</td>
+  </tr><tr class="classvariable">
+    
+    <td>Class Variable</td>
+    <td><code><a href="#delimiter" class="internal-link" title="twisted.protocols.basic.LineOnlyReceiver.delimiter">delimiter</a></code></td>
+    <td>The line-ending delimiter to use. By default this is <tt class="rst-docutils literal"><span class="pre">b'\r\n'</span></tt>.</td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#_buffer" class="internal-link" title="twisted.protocols.basic.LineOnlyReceiver._buffer">​_buffer</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+        
+          <p class="inheritedFrom">
+            Inherited from <code><a href="twisted.internet.protocol.Protocol.html" class="internal-link" title="twisted.internet.protocol.Protocol">Protocol</a></code>:
+          </p>
+          <table class="children sortable" id="id5496">
+  
+  
+  <tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="twisted.internet.protocol.Protocol.html#connectionLost" class="internal-link" title="twisted.internet.protocol.Protocol.connectionLost">connection​Lost</a></code></td>
+    <td>Called when the connection is shut down.</td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="twisted.internet.protocol.Protocol.html#logPrefix" class="internal-link" title="twisted.internet.protocol.Protocol.logPrefix">log​Prefix</a></code></td>
+    <td>Return a prefix matching the class name, to identify log messages related to this protocol instance.</td>
+  </tr><tr class="baseclassvariable">
+    
+    <td>Class Variable</td>
+    <td><code><a href="twisted.internet.protocol.Protocol.html#factory" class="internal-link" title="twisted.internet.protocol.Protocol.factory">factory</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+          
+          <p class="inheritedFrom">
+            Inherited from <code><a href="twisted.internet.protocol.BaseProtocol.html" class="internal-link" title="twisted.internet.protocol.BaseProtocol">BaseProtocol</a></code> (via <code><a href="twisted.internet.protocol.Protocol.html" class="internal-link" title="twisted.internet.protocol.Protocol">Protocol</a></code>):
+          </p>
+          <table class="children sortable" id="id5497">
+  
+  
+  <tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="twisted.internet.protocol.BaseProtocol.html#connectionMade" class="internal-link" title="twisted.internet.protocol.BaseProtocol.connectionMade">connection​Made</a></code></td>
+    <td>Called when a connection is made.</td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="twisted.internet.protocol.BaseProtocol.html#makeConnection" class="internal-link" title="twisted.internet.protocol.BaseProtocol.makeConnection">make​Connection</a></code></td>
+    <td>Make a connection to a transport and a server.</td>
+  </tr><tr class="baseinstancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="twisted.internet.protocol.BaseProtocol.html#connected" class="internal-link" title="twisted.internet.protocol.BaseProtocol.connected">connected</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="baseinstancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="twisted.internet.protocol.BaseProtocol.html#transport" class="internal-link" title="twisted.internet.protocol.BaseProtocol.transport">transport</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+          
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="basemethod">
+  
+  
+  <a name="twisted.protocols.basic.LineOnlyReceiver.dataReceived">
+    
+  </a>
+  <a name="dataReceived">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">dataReceived</span>(self, data):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/protocols/basic.py#L424">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <code><a href="twisted.internet.interfaces.IProtocol.html#dataReceived" class="internal-link" title="twisted.internet.interfaces.IProtocol.dataReceived">twisted.internet.interfaces.IProtocol</a></code></div><div class="interfaceinfo">overrides <code><a href="twisted.internet.protocol.Protocol.html#dataReceived" class="internal-link">twisted.internet.protocol.Protocol.dataReceived</a></code></div>
+    
+    <div>Translates bytes into lines, and calls lineReceived.</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.protocols.basic.LineOnlyReceiver.lineLengthExceeded">
+    
+  </a>
+  <a name="lineLengthExceeded">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">lineLengthExceeded</span>(self, line):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/protocols/basic.py#L462">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="twisted.mail.pop3.AdvancedPOP3Client.html" class="internal-link">twisted.mail.pop3.AdvancedPOP3Client</a></code>, <code><a href="twisted.mail.smtp.SMTP.html" class="internal-link">twisted.mail.smtp.SMTP</a></code></div>
+    
+    <div>Called when the maximum line length has been reached. Override if it needs to be dealt with in some special way.</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.protocols.basic.LineOnlyReceiver.lineReceived">
+    
+  </a>
+  <a name="lineReceived">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">lineReceived</span>(self, line):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/protocols/basic.py#L444">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="twisted.mail.pop3.AdvancedPOP3Client.html" class="internal-link">twisted.mail.pop3.AdvancedPOP3Client</a></code>, <code><a href="twisted.mail.pop3.POP3.html" class="internal-link">twisted.mail.pop3.POP3</a></code>, <code><a href="twisted.mail.pop3.POP3Client.html" class="internal-link">twisted.mail.pop3.POP3Client</a></code>, <code><a href="twisted.mail.smtp.SMTP.html" class="internal-link">twisted.mail.smtp.SMTP</a></code>, <code><a href="twisted.protocols.ident.IdentClient.html" class="internal-link">twisted.protocols.ident.IdentClient</a></code>, <code><a href="twisted.protocols.ident.IdentServer.html" class="internal-link">twisted.protocols.ident.IdentServer</a></code>, <code><a href="twisted.protocols.test.test_basic.LineOnlyTester.html" class="internal-link">twisted.protocols.test.test_basic.LineOnlyTester</a></code></div>
+    
+    <div>Override this for when each line is received.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">line:</span><tt class="rst-docutils literal">bytes</tt></td><td class="fieldArgDesc">The line which was received with the delimiter removed.</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.protocols.basic.LineOnlyReceiver.sendLine">
+    
+  </a>
+  <a name="sendLine">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">sendLine</span>(self, line):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/protocols/basic.py#L453">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Sends a line to the other end of the connection.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">line:</span><tt class="rst-docutils literal">bytes</tt></td><td class="fieldArgDesc">The line to send, not including the delimiter.</td></tr></table></div>
+  </div>
+</div><div class="baseconstant">
+  
+  
+  <a name="twisted.protocols.basic.LineOnlyReceiver.MAX_LENGTH">
+    
+  </a>
+  <a name="MAX_LENGTH">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">MAX_LENGTH</span>: <code><a href="https://docs.python.org/3/library/functions.html#int" class="intersphinx-link">int</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/protocols/basic.py#L415">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="twisted.protocols.test.test_basic.LineOnlyTester.html" class="internal-link">twisted.protocols.test.test_basic.LineOnlyTester</a></code></div>
+    
+    <div>The maximum length of a line to allow (If a sent line is longer than this, the connection is dropped). Default is 16384.</div>
+    <table class="valueTable"><tr class="fieldStart"><td class="fieldName">Value</td></tr><tr><td><pre class="constant-value"><code>16384</code></pre></td></tr></table>
+  </div>
+</div><div class="baseclassvariable">
+  
+  
+  <a name="twisted.protocols.basic.LineOnlyReceiver.delimiter">
+    
+  </a>
+  <a name="delimiter">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">delimiter</span>: <code><a href="https://docs.python.org/3/library/stdtypes.html#bytes" class="intersphinx-link">bytes</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/protocols/basic.py#L413">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="twisted.protocols.test.test_basic.LineOnlyTester.html" class="internal-link">twisted.protocols.test.test_basic.LineOnlyTester</a></code></div>
+    
+    <div>The line-ending delimiter to use. By default this is <tt class="rst-docutils literal"><span class="pre">b'\r\n'</span></tt>.</div>
+    
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  
+  <a name="twisted.protocols.basic.LineOnlyReceiver._buffer">
+    
+  </a>
+  <a name="_buffer">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_buffer</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/protocols/basic.py#L420">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div>
+
+      </div>
+    </div>
+
+    <footer class="navbar navbar-default">
+  
+  <div class="container">
+    <a href="index.html">API Documentation</a> for twisted,
+  generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
+    22.2.1 at 2022-02-23 21:40:09.
+  </div>
+</footer>
+
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+  </body>
+</html>
