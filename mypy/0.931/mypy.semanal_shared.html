@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  
+
+  <head>
+    
+    <title>mypy.semanal_shared</title>
+    <meta name="generator" content="pydoctor 22.2.1"> 
+        
+    </meta>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=0.75" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+    <link rel="stylesheet" type="text/css" href="extra.css" />
+</head>
+
+  <body>
+
+    <div id="banner">    
+    <div>
+        <a href="/">Home</a>
+        &gt; mypy-0.931 <!-- This is a placeholder -->
+        
+        <!-- (<a href=""&gt;show all versions</a&gt;) -->
+    </div>
+</div>
+
+    <nav class="navbar navbar-default">
+  
+  <div class="container">
+
+    <div class="navbar-header">
+      
+      <div class="navlinks">
+          <span class="navbar-brand">
+            mypy <a href="index.html">API Documentation</a>
+          </span>
+
+          <a href="moduleIndex.html">
+            Modules
+          </a>
+
+          <a href="classIndex.html">
+            Classes
+          </a>
+
+          <a href="nameIndex.html">
+            Names
+          </a>
+      </div>
+
+    </div>
+  </div>
+</nav>
+
+    
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="module"><code><code><a href="index.html" class="internal-link">mypy</a></code><wbr></wbr>.<code><a href="mypy.semanal_shared.html" class="internal-link" title="mypy.semanal_shared">semanal_shared</a></code></code></h1>
+        <div id="showPrivate">
+          <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+        </div>
+      </div>
+
+      <div class="categoryHeader">
+        module documentation
+      </div>
+
+      <div class="extrasDocstring">
+        <a href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.931//mypy/semanal_shared.py" class="sourceLink">(source)</a>
+        <p></p>
+      </div>
+
+      <div class="moduleDocstring">
+        <div>Shared definitions used by different parts of semantic analysis.</div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id532">
+  
+  
+  <tr class="class">
+    
+    <td>Class</td>
+    <td><code><a href="mypy.semanal_shared.SemanticAnalyzerCoreInterface.html" class="internal-link" title="mypy.semanal_shared.SemanticAnalyzerCoreInterface">​Semantic​Analyzer​Core​Interface</a></code></td>
+    <td>A core abstract interface to generic semantic analyzer functionality.</td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><code><a href="mypy.semanal_shared.SemanticAnalyzerInterface.html" class="internal-link" title="mypy.semanal_shared.SemanticAnalyzerInterface">​Semantic​Analyzer​Interface</a></code></td>
+    <td>A limited abstract interface to some generic semantic analyzer pass 2 functionality.</td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#calculate_tuple_fallback" class="internal-link" title="mypy.semanal_shared.calculate_tuple_fallback">calculate​_tuple​_fallback</a></code></td>
+    <td>Calculate a precise item type for the fallback of a tuple type.</td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#create_indirect_imported_name" class="internal-link" title="mypy.semanal_shared.create_indirect_imported_name">create​_indirect​_imported​_name</a></code></td>
+    <td>Create symbol table entry for a name imported from another module.</td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#set_callable_name" class="internal-link" title="mypy.semanal_shared.set_callable_name">set​_callable​_name</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="constant">
+    
+    <td>Constant</td>
+    <td><code><a href="#PRIORITY_FALLBACKS" class="internal-link" title="mypy.semanal_shared.PRIORITY_FALLBACKS">PRIORITY​_FALLBACKS</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+        
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="basefunction">
+  
+  
+  <a name="mypy.semanal_shared.calculate_tuple_fallback">
+    
+  </a>
+  <a name="calculate_tuple_fallback">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">calculate_tuple_fallback</span>(typ):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.931//mypy/semanal_shared.py#L220">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Calculate a precise item type for the fallback of a tuple type.</p>
+<p>This must be called only after the main semantic analysis pass, since joins aren't available before that.</p>
+<p>Note that there is an apparent chicken and egg problem with respect to verifying type arguments against bounds. Verifying bounds might require fallbacks, but we might use the bounds to calculate the fallbacks. In practice this is not a problem, since the worst that can happen is that we have invalid type argument values, and these can happen in later stages as well (they will generate errors, but we don't prevent their existence).</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">typ:</span><code><a href="mypy.types.TupleType.html" class="internal-link" title="mypy.types.TupleType">TupleType</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="mypy.semanal_shared.create_indirect_imported_name">
+    
+  </a>
+  <a name="create_indirect_imported_name">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">create_indirect_imported_name</span>(file_node, module, relative, imported_name):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.931//mypy/semanal_shared.py#L182">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Create symbol table entry for a name imported from another module.</p>
+<p>These entries act as indirect references.</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">file​_node:</span><code><a href="mypy.nodes.MypyFile.html" class="internal-link" title="mypy.nodes.MypyFile">MypyFile</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">module:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">relative:</span><code><a href="https://docs.python.org/3/library/functions.html#int" class="intersphinx-link">int</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">imported​_name:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">Optional</a>[<wbr></wbr><a href="mypy.nodes.SymbolTableNode.html" class="internal-link" title="mypy.nodes.SymbolTableNode">SymbolTableNode</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="mypy.semanal_shared.set_callable_name">
+    
+  </a>
+  <a name="set_callable_name">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">set_callable_name</span>(sig, fdef):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.931//mypy/semanal_shared.py#L203">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">sig:</span><code><a href="mypy.types.Type.html" class="internal-link" title="mypy.types.Type">Type</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">fdef:</span><code><a href="mypy.nodes.FuncDef.html" class="internal-link" title="mypy.nodes.FuncDef">FuncDef</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="mypy.types.ProperType.html" class="internal-link" title="mypy.types.ProperType">ProperType</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="baseconstant">
+  
+  
+  <a name="mypy.semanal_shared.PRIORITY_FALLBACKS">
+    
+  </a>
+  <a name="PRIORITY_FALLBACKS">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">PRIORITY_FALLBACKS</span>: <code><a href="https://docs.python.org/3/library/functions.html#int" class="intersphinx-link">int</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.931//mypy/semanal_shared.py#L25">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    <table class="valueTable"><tr class="fieldStart"><td class="fieldName">Value</td></tr><tr><td><pre class="constant-value"><code>1</code></pre></td></tr></table>
+  </div>
+</div>
+
+      </div>
+    </div>
+
+    <footer class="navbar navbar-default">
+  
+  <div class="container">
+    <a href="index.html">API Documentation</a> for mypy,
+  generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
+    22.2.1 at 2022-02-23 21:36:04.
+  </div>
+</footer>
+
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+  </body>
+</html>
