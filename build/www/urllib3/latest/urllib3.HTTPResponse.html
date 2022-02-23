@@ -1,0 +1,1503 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  
+
+  <head>
+    
+    <title>urllib3.HTTPResponse</title>
+    <meta name="generator" content="pydoctor 22.2.0"> 
+        
+    </meta>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=0.75" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+    <link rel="stylesheet" type="text/css" href="extra.css" />
+</head>
+
+  <body>
+
+    
+
+    <nav class="navbar navbar-default">
+  
+  <div class="container">
+
+    <div class="navbar-header">
+      
+      <div class="navlinks">
+          <span class="navbar-brand">
+            urllib3 <a href="index.html">API Documentation</a>
+          </span>
+
+          <a href="moduleIndex.html">
+            Modules
+          </a>
+
+          <a href="classIndex.html">
+            Classes
+          </a>
+
+          <a href="nameIndex.html">
+            Names
+          </a>
+      </div>
+
+    </div>
+  </div>
+</nav>
+
+    
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="class"><code><code><a href="index.html" class="internal-link">urllib3</a></code><wbr></wbr>.<code><a href="urllib3.HTTPResponse.html" class="internal-link" title="urllib3.HTTPResponse">HTTPResponse</a></code></code></h1>
+        <div id="showPrivate">
+          <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+        </div>
+      </div>
+
+      <div class="categoryHeader">
+        class documentation
+      </div>
+
+      <div class="extrasDocstring">
+        <p><code><span class="py-keyword">class</span> <span class="py-defname">HTTPResponse</span>(io.IOBase):</code></p>
+        <p><a href="classIndex.html#urllib3.HTTPResponse">View In Hierarchy</a></p>
+      </div>
+
+      <div class="moduleDocstring">
+        <div><p>HTTP Response container.</p>
+<p>Backwards-compatible with <code>http.client.HTTPResponse</code> but the response <tt class="rst-docutils literal">body</tt> is
+loaded and decoded on-demand when the <tt class="rst-docutils literal">data</tt> property is accessed.  This
+class is also compatible with the Python standard library's <code>io</code>
+module, and can hence be treated as a readable object in the context of that
+framework.</p>
+<p>Extra parameters for behaviour not present in <code>http.client.HTTPResponse</code>:</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">preload​_content</span></td><td class="fieldArgDesc">If True, the response's body will be preloaded during construction.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">decode​_content</span></td><td class="fieldArgDesc">If True, will attempt to decode the body based on the
+'content-encoding' header.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">original​_response</span></td><td class="fieldArgDesc">When this HTTPResponse wrapper is generated from an <code>http.client.HTTPResponse</code>
+object, it's convenient to include the original for debug purposes. It's
+otherwise unused.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">retries</span></td><td class="fieldArgDesc">The retries contains the last <code>~urllib3.util.retry.Retry</code> that
+was used during the request.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">enforce​_content​_length</span></td><td class="fieldArgDesc">Enforce content length checking. Body returned by server must match
+value of Content-Length header, if present. Otherwise, raise error.</td></tr></table></div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id3201">
+  
+  
+  <tr class="classmethod">
+    
+    <td>Class Method</td>
+    <td><code><a href="#from_httplib" class="internal-link" title="urllib3.HTTPResponse.from_httplib">from​_httplib</a></code></td>
+    <td>Given an <code>http.client.HTTPResponse</code> instance <tt class="rst-docutils literal">r</tt>, return a corresponding <code><a href="urllib3.HTTPResponse.html" class="internal-link" title="urllib3.HTTPResponse">urllib3.response.HTTPResponse</a></code> object.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__init__" class="internal-link" title="urllib3.HTTPResponse.__init__">__init__</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__iter__" class="internal-link" title="urllib3.HTTPResponse.__iter__">__iter__</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#close" class="internal-link" title="urllib3.HTTPResponse.close">close</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#drain_conn" class="internal-link" title="urllib3.HTTPResponse.drain_conn">drain​_conn</a></code></td>
+    <td>Read and discard any remaining HTTP response data in the response connection.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#fileno" class="internal-link" title="urllib3.HTTPResponse.fileno">fileno</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#flush" class="internal-link" title="urllib3.HTTPResponse.flush">flush</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#get_redirect_location" class="internal-link" title="urllib3.HTTPResponse.get_redirect_location">get​_redirect​_location</a></code></td>
+    <td>Should we redirect and where to?</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#getheader" class="internal-link" title="urllib3.HTTPResponse.getheader">getheader</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#getheaders" class="internal-link" title="urllib3.HTTPResponse.getheaders">getheaders</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#geturl" class="internal-link" title="urllib3.HTTPResponse.geturl">geturl</a></code></td>
+    <td>Returns the URL that was the source of this response. If the request that generated this response redirected, this method will return the final redirect location.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#info" class="internal-link" title="urllib3.HTTPResponse.info">info</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#isclosed" class="internal-link" title="urllib3.HTTPResponse.isclosed">isclosed</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#read" class="internal-link" title="urllib3.HTTPResponse.read">read</a></code></td>
+    <td>Similar to <code>http.client.HTTPResponse.read</code>, but with two additional parameters: <tt class="rst-docutils literal">decode_content</tt> and <tt class="rst-docutils literal">cache_content</tt>.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#read_chunked" class="internal-link" title="urllib3.HTTPResponse.read_chunked">read​_chunked</a></code></td>
+    <td>Similar to <code><a href="#read" class="internal-link" title="urllib3.HTTPResponse.read">HTTPResponse.read</a></code>, but with an additional parameter: <tt class="rst-docutils literal">decode_content</tt>.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#readable" class="internal-link" title="urllib3.HTTPResponse.readable">readable</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#readinto" class="internal-link" title="urllib3.HTTPResponse.readinto">readinto</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#release_conn" class="internal-link" title="urllib3.HTTPResponse.release_conn">release​_conn</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#stream" class="internal-link" title="urllib3.HTTPResponse.stream">stream</a></code></td>
+    <td>A generator wrapper for the read() method. A call will block until <tt class="rst-docutils literal">amt</tt> bytes have been read from the connection or until the connection is closed.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#supports_chunked_reads" class="internal-link" title="urllib3.HTTPResponse.supports_chunked_reads">supports​_chunked​_reads</a></code></td>
+    <td><span class="undocumented">No summary</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#tell" class="internal-link" title="urllib3.HTTPResponse.tell">tell</a></code></td>
+    <td>Obtain the number of bytes pulled over the wire so far. May differ from the amount of content returned by <tt class="rst-docutils literal">urllib3.response.HTTPResponse.read</tt> if bytes are encoded on the wire (e.g, compressed).</td>
+  </tr><tr class="constant">
+    
+    <td>Constant</td>
+    <td><code><a href="#CONTENT_DECODERS" class="internal-link" title="urllib3.HTTPResponse.CONTENT_DECODERS">CONTENT​_DECODERS</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="constant">
+    
+    <td>Constant</td>
+    <td><code><a href="#DECODER_ERROR_CLASSES" class="internal-link" title="urllib3.HTTPResponse.DECODER_ERROR_CLASSES">DECODER​_ERROR​_CLASSES</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="constant">
+    
+    <td>Constant</td>
+    <td><code><a href="#REDIRECT_STATUSES" class="internal-link" title="urllib3.HTTPResponse.REDIRECT_STATUSES">REDIRECT​_STATUSES</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#auto_close" class="internal-link" title="urllib3.HTTPResponse.auto_close">auto​_close</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#chunk_left" class="internal-link" title="urllib3.HTTPResponse.chunk_left">chunk​_left</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#chunked" class="internal-link" title="urllib3.HTTPResponse.chunked">chunked</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#decode_content" class="internal-link" title="urllib3.HTTPResponse.decode_content">decode​_content</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#enforce_content_length" class="internal-link" title="urllib3.HTTPResponse.enforce_content_length">enforce​_content​_length</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#headers" class="internal-link" title="urllib3.HTTPResponse.headers">headers</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#length_remaining" class="internal-link" title="urllib3.HTTPResponse.length_remaining">length​_remaining</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#msg" class="internal-link" title="urllib3.HTTPResponse.msg">msg</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#reason" class="internal-link" title="urllib3.HTTPResponse.reason">reason</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#retries" class="internal-link" title="urllib3.HTTPResponse.retries">retries</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#status" class="internal-link" title="urllib3.HTTPResponse.status">status</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#strict" class="internal-link" title="urllib3.HTTPResponse.strict">strict</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#version" class="internal-link" title="urllib3.HTTPResponse.version">version</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="property">
+    
+    <td>Property</td>
+    <td><code><a href="#closed" class="internal-link" title="urllib3.HTTPResponse.closed">closed</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="property">
+    
+    <td>Property</td>
+    <td><code><a href="#connection" class="internal-link" title="urllib3.HTTPResponse.connection">connection</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="property">
+    
+    <td>Property</td>
+    <td><code><a href="#data" class="internal-link" title="urllib3.HTTPResponse.data">data</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_decode" class="internal-link" title="urllib3.HTTPResponse._decode">​_decode</a></code></td>
+    <td>Decode the data passed in and potentially flush the decoder.</td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_error_catcher" class="internal-link" title="urllib3.HTTPResponse._error_catcher">​_error​_catcher</a></code></td>
+    <td>Catch low-level python exceptions, instead re-raising urllib3 variants, so that low-level exceptions are not leaked in the high-level api.</td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_flush_decoder" class="internal-link" title="urllib3.HTTPResponse._flush_decoder">​_flush​_decoder</a></code></td>
+    <td>Flushes the decoder. Should only be called if the decoder is actually being used.</td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_handle_chunk" class="internal-link" title="urllib3.HTTPResponse._handle_chunk">​_handle​_chunk</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_init_decoder" class="internal-link" title="urllib3.HTTPResponse._init_decoder">​_init​_decoder</a></code></td>
+    <td>Set-up the _decoder attribute if necessary.</td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_init_length" class="internal-link" title="urllib3.HTTPResponse._init_length">​_init​_length</a></code></td>
+    <td>Set initial length value for Response content if available.</td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_update_chunk_length" class="internal-link" title="urllib3.HTTPResponse._update_chunk_length">​_update​_chunk​_length</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#_body" class="internal-link" title="urllib3.HTTPResponse._body">​_body</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#_connection" class="internal-link" title="urllib3.HTTPResponse._connection">​_connection</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#_decoder" class="internal-link" title="urllib3.HTTPResponse._decoder">​_decoder</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#_fp" class="internal-link" title="urllib3.HTTPResponse._fp">​_fp</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#_fp_bytes_read" class="internal-link" title="urllib3.HTTPResponse._fp_bytes_read">​_fp​_bytes​_read</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#_original_response" class="internal-link" title="urllib3.HTTPResponse._original_response">​_original​_response</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#_pool" class="internal-link" title="urllib3.HTTPResponse._pool">​_pool</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#_request_url" class="internal-link" title="urllib3.HTTPResponse._request_url">​_request​_url</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+        
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="baseclassmethod">
+  
+  
+  <a name="urllib3.HTTPResponse.from_httplib">
+    
+  </a>
+  <a name="from_httplib">
+    
+  </a>
+  <div class="functionHeader">
+    @classmethod<br />
+    <span class="py-keyword">def</span> <span class="py-defname">from_httplib</span>(ResponseCls, r, **response_kw):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Given an <code>http.client.HTTPResponse</code> instance <tt class="rst-docutils literal">r</tt>, return a
+corresponding <code><a href="urllib3.HTTPResponse.html" class="internal-link" title="urllib3.HTTPResponse">urllib3.response.HTTPResponse</a></code> object.</p>
+<p>Remaining parameters are passed to the HTTPResponse constructor, along
+with <tt class="rst-docutils literal">original_response=r</tt>.</p>
+</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="urllib3.HTTPResponse.__init__">
+    
+  </a>
+  <a name="__init__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__init__</span>(self, body=<span class="rst-variable-quote">'</span><span class="rst-variable-string"></span><span class="rst-variable-quote">'</span>, headers=None, status=0, version=0, reason=None, strict=0, preload_content=True, decode_content=True, original_response=None, pool=None, connection=None, msg=None, retries=None, enforce_content_length=False, request_method=None, request_url=None, auto_close=True):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="urllib3.HTTPResponse.__iter__">
+    
+  </a>
+  <a name="__iter__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__iter__</span>(self):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="urllib3.HTTPResponse.close">
+    
+  </a>
+  <a name="close">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">close</span>(self):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="urllib3.HTTPResponse.drain_conn">
+    
+  </a>
+  <a name="drain_conn">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">drain_conn</span>(self):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Read and discard any remaining HTTP response data in the response connection.</p>
+<p>Unread data in the HTTPResponse connection blocks the connection from being released back to the pool.</p>
+</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="urllib3.HTTPResponse.fileno">
+    
+  </a>
+  <a name="fileno">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">fileno</span>(self):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="urllib3.HTTPResponse.flush">
+    
+  </a>
+  <a name="flush">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">flush</span>(self):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="urllib3.HTTPResponse.get_redirect_location">
+    
+  </a>
+  <a name="get_redirect_location">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">get_redirect_location</span>(self):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Should we redirect and where to?<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td colspan="2">Truthy redirect location string if we got a redirect status
+code and valid location. <tt class="rst-docutils literal">None</tt> if redirect status and no
+location. <tt class="rst-docutils literal">False</tt> if not a redirect status code.</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="urllib3.HTTPResponse.getheader">
+    
+  </a>
+  <a name="getheader">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">getheader</span>(self, name, default=None):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="urllib3.HTTPResponse.getheaders">
+    
+  </a>
+  <a name="getheaders">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">getheaders</span>(self):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="urllib3.HTTPResponse.geturl">
+    
+  </a>
+  <a name="geturl">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">geturl</span>(self):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Returns the URL that was the source of this response.
+If the request that generated this response redirected, this method
+will return the final redirect location.</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="urllib3.HTTPResponse.info">
+    
+  </a>
+  <a name="info">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">info</span>(self):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="urllib3.HTTPResponse.isclosed">
+    
+  </a>
+  <a name="isclosed">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">isclosed</span>(self):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="urllib3.HTTPResponse.read">
+    
+  </a>
+  <a name="read">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">read</span>(self, amt=None, decode_content=None, cache_content=False):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Similar to <code>http.client.HTTPResponse.read</code>, but with two additional
+parameters: <tt class="rst-docutils literal">decode_content</tt> and <tt class="rst-docutils literal">cache_content</tt>.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">amt</span></td><td class="fieldArgDesc">How much of the content to read. If specified, caching is skipped
+because it doesn't make sense to cache partial content as the full
+response.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">decode​_content</span></td><td class="fieldArgDesc">If True, will attempt to decode the body based on the
+'content-encoding' header.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">cache​_content</span></td><td class="fieldArgDesc">If True, will save the returned data such that the same result is
+returned despite of the state of the underlying file object. This
+is useful if you want the <tt class="rst-docutils literal">.data</tt> property to continue working
+after having <tt class="rst-docutils literal">.read()</tt> the file object. (Overridden if <tt class="rst-docutils literal">amt</tt> is
+set.)</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="urllib3.HTTPResponse.read_chunked">
+    
+  </a>
+  <a name="read_chunked">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">read_chunked</span>(self, amt=None, decode_content=None):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Similar to <code><a href="#read" class="internal-link" title="urllib3.HTTPResponse.read">HTTPResponse.read</a></code>, but with an additional
+parameter: <tt class="rst-docutils literal">decode_content</tt>.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">amt</span></td><td class="fieldArgDesc">How much of the content to read. If specified, caching is skipped
+because it doesn't make sense to cache partial content as the full
+response.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">decode​_content</span></td><td class="fieldArgDesc">If True, will attempt to decode the body based on the
+'content-encoding' header.</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="urllib3.HTTPResponse.readable">
+    
+  </a>
+  <a name="readable">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">readable</span>(self):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="urllib3.HTTPResponse.readinto">
+    
+  </a>
+  <a name="readinto">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">readinto</span>(self, b):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="urllib3.HTTPResponse.release_conn">
+    
+  </a>
+  <a name="release_conn">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">release_conn</span>(self):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="urllib3.HTTPResponse.stream">
+    
+  </a>
+  <a name="stream">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">stream</span>(self, amt=2**16, decode_content=None):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>A generator wrapper for the read() method. A call will block until
+<tt class="rst-docutils literal">amt</tt> bytes have been read from the connection or until the
+connection is closed.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">amt</span></td><td class="fieldArgDesc">How much of the content to read. The generator will return up to
+much data per iteration, but may return less. This is particularly
+likely when using compressed data. However, the empty string will
+never be returned.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">decode​_content</span></td><td class="fieldArgDesc">If True, will attempt to decode the body based on the
+'content-encoding' header.</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="urllib3.HTTPResponse.supports_chunked_reads">
+    
+  </a>
+  <a name="supports_chunked_reads">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">supports_chunked_reads</span>(self):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Checks if the underlying file-like object looks like a
+<code>http.client.HTTPResponse</code> object. We do this by testing for
+the fp attribute. If it is present we assume it returns raw chunks as
+processed by read_chunked().</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="urllib3.HTTPResponse.tell">
+    
+  </a>
+  <a name="tell">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">tell</span>(self):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Obtain the number of bytes pulled over the wire so far. May differ from
+the amount of content returned by <tt class="rst-docutils literal">urllib3.response.HTTPResponse.read</tt>
+if bytes are encoded on the wire (e.g, compressed).</div>
+  </div>
+</div><div class="baseconstant">
+  
+  
+  <a name="urllib3.HTTPResponse.CONTENT_DECODERS">
+    
+  </a>
+  <a name="CONTENT_DECODERS">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">CONTENT_DECODERS</span>: <code>list[<wbr></wbr>str]</code> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    <table class="valueTable"><tr class="fieldStart"><td class="fieldName">Value</td></tr><tr><td><pre class="constant-value"><code>[<wbr></wbr><span class="rst-variable-quote">'</span><span class="rst-variable-string">gzip</span><span class="rst-variable-quote">'</span>, <wbr></wbr><span class="rst-variable-quote">'</span><span class="rst-variable-string">deflate</span><span class="rst-variable-quote">'</span>]</code></pre></td></tr></table>
+  </div>
+</div><div class="baseconstant">
+  
+  
+  <a name="urllib3.HTTPResponse.DECODER_ERROR_CLASSES">
+    
+  </a>
+  <a name="DECODER_ERROR_CLASSES">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">DECODER_ERROR_CLASSES</span> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    <table class="valueTable"><tr class="fieldStart"><td class="fieldName">Value</td></tr><tr><td><pre class="constant-value"><code>(<wbr></wbr>IOError, <wbr></wbr>zlib.error)</code></pre></td></tr></table>
+  </div>
+</div><div class="baseconstant">
+  
+  
+  <a name="urllib3.HTTPResponse.REDIRECT_STATUSES">
+    
+  </a>
+  <a name="REDIRECT_STATUSES">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">REDIRECT_STATUSES</span>: <code>list[<wbr></wbr>int]</code> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    <table class="valueTable"><tr class="fieldStart"><td class="fieldName">Value</td></tr><tr><td><pre class="constant-value"><code>[<wbr></wbr>301, <wbr></wbr>302, <wbr></wbr>303, <wbr></wbr>307, <wbr></wbr>308]</code></pre></td></tr></table>
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="urllib3.HTTPResponse.auto_close">
+    
+  </a>
+  <a name="auto_close">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">auto_close</span> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="urllib3.HTTPResponse.chunk_left">
+    
+  </a>
+  <a name="chunk_left">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">chunk_left</span> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="urllib3.HTTPResponse.chunked">
+    
+  </a>
+  <a name="chunked">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">chunked</span>: <code>bool</code> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="urllib3.HTTPResponse.decode_content">
+    
+  </a>
+  <a name="decode_content">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">decode_content</span> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="urllib3.HTTPResponse.enforce_content_length">
+    
+  </a>
+  <a name="enforce_content_length">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">enforce_content_length</span> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="urllib3.HTTPResponse.headers">
+    
+  </a>
+  <a name="headers">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">headers</span> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="urllib3.HTTPResponse.length_remaining">
+    
+  </a>
+  <a name="length_remaining">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">length_remaining</span> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="urllib3.HTTPResponse.msg">
+    
+  </a>
+  <a name="msg">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">msg</span> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="urllib3.HTTPResponse.reason">
+    
+  </a>
+  <a name="reason">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">reason</span> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="urllib3.HTTPResponse.retries">
+    
+  </a>
+  <a name="retries">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">retries</span> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="urllib3.HTTPResponse.status">
+    
+  </a>
+  <a name="status">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">status</span> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="urllib3.HTTPResponse.strict">
+    
+  </a>
+  <a name="strict">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">strict</span> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="urllib3.HTTPResponse.version">
+    
+  </a>
+  <a name="version">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">version</span> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseproperty">
+  
+  
+  <a name="urllib3.HTTPResponse.closed">
+    
+  </a>
+  <a name="closed">
+    
+  </a>
+  <div class="functionHeader">
+    @property<br />
+    <span class="py-defname">closed</span> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseproperty">
+  
+  
+  <a name="urllib3.HTTPResponse.connection">
+    
+  </a>
+  <a name="connection">
+    
+  </a>
+  <div class="functionHeader">
+    @property<br />
+    <span class="py-defname">connection</span> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseproperty">
+  
+  
+  <a name="urllib3.HTTPResponse.data">
+    
+  </a>
+  <a name="data">
+    
+  </a>
+  <div class="functionHeader">
+    @property<br />
+    <span class="py-defname">data</span> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="urllib3.HTTPResponse._decode">
+    
+  </a>
+  <a name="_decode">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_decode</span>(self, data, decode_content, flush_decoder):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Decode the data passed in and potentially flush the decoder.</div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="urllib3.HTTPResponse._error_catcher">
+    
+  </a>
+  <a name="_error_catcher">
+    
+  </a>
+  <div class="functionHeader">
+    @contextmanager<br />
+    <span class="py-keyword">def</span> <span class="py-defname">_error_catcher</span>(self):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Catch low-level python exceptions, instead re-raising urllib3
+variants, so that low-level exceptions are not leaked in the
+high-level api.</p>
+<p>On exit, release the connection back to the pool.</p>
+</div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="urllib3.HTTPResponse._flush_decoder">
+    
+  </a>
+  <a name="_flush_decoder">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_flush_decoder</span>(self):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Flushes the decoder. Should only be called if the decoder is actually
+being used.</div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="urllib3.HTTPResponse._handle_chunk">
+    
+  </a>
+  <a name="_handle_chunk">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_handle_chunk</span>(self, amt):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="urllib3.HTTPResponse._init_decoder">
+    
+  </a>
+  <a name="_init_decoder">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_init_decoder</span>(self):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Set-up the _decoder attribute if necessary.</div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="urllib3.HTTPResponse._init_length">
+    
+  </a>
+  <a name="_init_length">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_init_length</span>(self, request_method):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Set initial length value for Response content if available.</div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="urllib3.HTTPResponse._update_chunk_length">
+    
+  </a>
+  <a name="_update_chunk_length">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_update_chunk_length</span>(self):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  
+  <a name="urllib3.HTTPResponse._body">
+    
+  </a>
+  <a name="_body">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_body</span> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  
+  <a name="urllib3.HTTPResponse._connection">
+    
+  </a>
+  <a name="_connection">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_connection</span> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  
+  <a name="urllib3.HTTPResponse._decoder">
+    
+  </a>
+  <a name="_decoder">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_decoder</span> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  
+  <a name="urllib3.HTTPResponse._fp">
+    
+  </a>
+  <a name="_fp">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_fp</span> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  
+  <a name="urllib3.HTTPResponse._fp_bytes_read">
+    
+  </a>
+  <a name="_fp_bytes_read">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_fp_bytes_read</span>: <code>int</code> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  
+  <a name="urllib3.HTTPResponse._original_response">
+    
+  </a>
+  <a name="_original_response">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_original_response</span> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  
+  <a name="urllib3.HTTPResponse._pool">
+    
+  </a>
+  <a name="_pool">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_pool</span> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  
+  <a name="urllib3.HTTPResponse._request_url">
+    
+  </a>
+  <a name="_request_url">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_request_url</span> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div>
+
+      </div>
+    </div>
+
+    <footer class="navbar navbar-default">
+  
+  <div class="container">
+    <a href="index.html">API Documentation</a> for urllib3,
+  generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
+    22.2.0 at 2022-02-23 05:06:37.
+  </div>
+</footer>
+
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+  </body>
+</html>
