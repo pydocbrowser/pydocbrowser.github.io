@@ -6,12 +6,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@master
-      
       - name: Wait for other workflows
         uses: softprops/turnstyle@v1
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+
+      - uses: actions/checkout@v2
+        with:
+          ref: main
 
       - name: Set up Python 3.8
         uses: actions/setup-python@v2
@@ -29,8 +31,27 @@ jobs:
           curl https://raw.githubusercontent.com/tristanlatr/pydocbrowser/main/README.md > README.md
 
       - name: Build
-        run: python -m pydocbrowser
+        run: |
+            set +e
+            python -m pydocbrowser
 
+            # Exit code 21 means it stopped generating docs because of the build timeout
+            if [[ $? -eq 21 ]]; then
+              # Send signal to build docs, again to complete
+              curl -XPOST -u "${{secrets.GH_USERNAME}}:${{secrets.GH_TOKEN}}" \
+                -H "Accept: application/vnd.github.everest-preview+json" \
+                -H "Content-Type: application/json" \
+                https://api.github.com/repos/pydocbrowser/pydocbrowser.github.io/actions/workflows/20465935/dispatches \
+                --data '{"ref": "main"}'
+              exit 0
+            elif [[ $? -eq 0 ]]; then
+              exit 0
+            else
+              exit 1
+            fi
+
+        shell: bash
+      
       - name: Publish main
         uses: peaceiris/actions-gh-pages@v3
         with:
