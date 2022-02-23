@@ -1,0 +1,544 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  
+
+  <head>
+    
+    <title>sqlalchemy.orm.loading</title>
+    <meta name="generator" content="pydoctor 22.2.0"> 
+        
+    </meta>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=0.75" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+    <link rel="stylesheet" type="text/css" href="extra.css" />
+</head>
+
+  <body>
+
+    
+
+    <nav class="navbar navbar-default">
+  
+  <div class="container">
+
+    <div class="navbar-header">
+      
+      <div class="navlinks">
+          <span class="navbar-brand">
+            sqlalchemy <a href="index.html">API Documentation</a>
+          </span>
+
+          <a href="moduleIndex.html">
+            Modules
+          </a>
+
+          <a href="classIndex.html">
+            Classes
+          </a>
+
+          <a href="nameIndex.html">
+            Names
+          </a>
+      </div>
+
+    </div>
+  </div>
+</nav>
+
+    
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="module"><code><code><a href="index.html" class="internal-link">sqlalchemy</a></code><wbr></wbr>.<code><a href="sqlalchemy.orm.html" class="internal-link" title="sqlalchemy.orm">orm</a></code><wbr></wbr>.<code><a href="sqlalchemy.orm.loading.html" class="internal-link" title="sqlalchemy.orm.loading">loading</a></code></code></h1>
+        <div id="showPrivate">
+          <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+        </div>
+      </div>
+
+      <div class="categoryHeader">
+        module documentation
+      </div>
+
+      <div class="extrasDocstring">
+        
+        <p></p>
+      </div>
+
+      <div class="moduleDocstring">
+        <div><p>private module containing functions used to convert database
+rows into object instances and associated state.</p>
+<p>the functions here are called primarily by Query, Mapper,
+as well as some of the attribute loading strategies.</p>
+</div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id16967">
+  
+  
+  <tr class="class">
+    
+    <td>Class</td>
+    <td><code><a href="sqlalchemy.orm.loading.PostLoad.html" class="internal-link" title="sqlalchemy.orm.loading.PostLoad">​Post​Load</a></code></td>
+    <td>Track loaders and states for "post load" operations.</td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#get_from_identity" class="internal-link" title="sqlalchemy.orm.loading.get_from_identity">get​_from​_identity</a></code></td>
+    <td>Look up the given key in the given session's identity map, check the object for expired state if found.</td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#instances" class="internal-link" title="sqlalchemy.orm.loading.instances">instances</a></code></td>
+    <td>Return a <code>.Result</code> given an ORM query context.</td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#load_on_ident" class="internal-link" title="sqlalchemy.orm.loading.load_on_ident">load​_on​_ident</a></code></td>
+    <td>Load the given identity key from the database.</td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#load_on_pk_identity" class="internal-link" title="sqlalchemy.orm.loading.load_on_pk_identity">load​_on​_pk​_identity</a></code></td>
+    <td>Load the given primary key identity from the database.</td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#load_scalar_attributes" class="internal-link" title="sqlalchemy.orm.loading.load_scalar_attributes">load​_scalar​_attributes</a></code></td>
+    <td>initiate a column-based attribute refresh operation.</td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#merge_frozen_result" class="internal-link" title="sqlalchemy.orm.loading.merge_frozen_result">merge​_frozen​_result</a></code></td>
+    <td>Merge a <code>_engine.FrozenResult</code> back into a <code>_orm.Session</code>, returning a new <code>_engine.Result</code> object with <a href="#system-message-1"><span class="rst-problematic" id="rst-problematic-1">:term:`persistent`</span></a> objects.</td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#merge_result" class="internal-link" title="sqlalchemy.orm.loading.merge_result">merge​_result</a></code></td>
+    <td>Merge a result into the given <code>.Query</code> object's Session.</td>
+  </tr><tr class="function private">
+    
+    <td>Function</td>
+    <td><code><a href="#_decorate_polymorphic_switch" class="internal-link" title="sqlalchemy.orm.loading._decorate_polymorphic_switch">​_decorate​_polymorphic​_switch</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="function private">
+    
+    <td>Function</td>
+    <td><code><a href="#_instance_processor" class="internal-link" title="sqlalchemy.orm.loading._instance_processor">​_instance​_processor</a></code></td>
+    <td>Produce a mapper level row processor callable which processes rows into mapped instances.</td>
+  </tr><tr class="function private">
+    
+    <td>Function</td>
+    <td><code><a href="#_load_subclass_via_in" class="internal-link" title="sqlalchemy.orm.loading._load_subclass_via_in">​_load​_subclass​_via​_in</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="function private">
+    
+    <td>Function</td>
+    <td><code><a href="#_populate_full" class="internal-link" title="sqlalchemy.orm.loading._populate_full">​_populate​_full</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="function private">
+    
+    <td>Function</td>
+    <td><code><a href="#_populate_partial" class="internal-link" title="sqlalchemy.orm.loading._populate_partial">​_populate​_partial</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="function private">
+    
+    <td>Function</td>
+    <td><code><a href="#_set_get_options" class="internal-link" title="sqlalchemy.orm.loading._set_get_options">​_set​_get​_options</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="function private">
+    
+    <td>Function</td>
+    <td><code><a href="#_setup_entity_query" class="internal-link" title="sqlalchemy.orm.loading._setup_entity_query">​_setup​_entity​_query</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="function private">
+    
+    <td>Function</td>
+    <td><code><a href="#_validate_version_id" class="internal-link" title="sqlalchemy.orm.loading._validate_version_id">​_validate​_version​_id</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="function private">
+    
+    <td>Function</td>
+    <td><code><a href="#_warn_for_runid_changed" class="internal-link" title="sqlalchemy.orm.loading._warn_for_runid_changed">​_warn​_for​_runid​_changed</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable private">
+    
+    <td>Variable</td>
+    <td><code><a href="#_new_runid" class="internal-link" title="sqlalchemy.orm.loading._new_runid">​_new​_runid</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+        
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="basefunction">
+  
+  
+  <a name="sqlalchemy.orm.loading.get_from_identity">
+    
+  </a>
+  <a name="get_from_identity">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">get_from_identity</span>(session, mapper, key, passive):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Look up the given key in the given session's identity map,
+check the object for expired state if found.</div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="sqlalchemy.orm.loading.instances">
+    
+  </a>
+  <a name="instances">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">instances</span>(cursor, context):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Return a <code>.Result</code> given an ORM query context.</p>
+<div class="rst-versionchanged">
+<span class="rst-versionmodified rst-changed">Changed in version 1.4: </span><span>The instances() function now uses
+<code>.Result</code> objects and has an all new interface.</span></div>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">cursor</span></td><td class="fieldArgDesc">a <code>.CursorResult</code>, generated by a statement
+which came from <code>.ORMCompileState</code></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">context</span></td><td class="fieldArgDesc">a <code>.QueryContext</code> object</td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td colspan="2">a <code>.Result</code> object representing ORM results</td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="sqlalchemy.orm.loading.load_on_ident">
+    
+  </a>
+  <a name="load_on_ident">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">load_on_ident</span>(session, statement, key, load_options=None, refresh_state=None, with_for_update=None, only_load_props=None, no_autoflush=False, bind_arguments=<a href="sqlalchemy.util._collections.html#EMPTY_DICT" class="internal-link" title="sqlalchemy.util._collections.EMPTY_DICT">util.EMPTY_DICT</a>, execution_options=<a href="sqlalchemy.util._collections.html#EMPTY_DICT" class="internal-link" title="sqlalchemy.util._collections.EMPTY_DICT">util.EMPTY_DICT</a>):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Load the given identity key from the database.</div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="sqlalchemy.orm.loading.load_on_pk_identity">
+    
+  </a>
+  <a name="load_on_pk_identity">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">load_on_pk_identity</span>(session, statement, primary_key_identity, load_options=None, refresh_state=None, with_for_update=None, only_load_props=None, identity_token=None, no_autoflush=False, bind_arguments=<a href="sqlalchemy.util._collections.html#EMPTY_DICT" class="internal-link" title="sqlalchemy.util._collections.EMPTY_DICT">util.EMPTY_DICT</a>, execution_options=<a href="sqlalchemy.util._collections.html#EMPTY_DICT" class="internal-link" title="sqlalchemy.util._collections.EMPTY_DICT">util.EMPTY_DICT</a>):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Load the given primary key identity from the database.</div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="sqlalchemy.orm.loading.load_scalar_attributes">
+    
+  </a>
+  <a name="load_scalar_attributes">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">load_scalar_attributes</span>(mapper, state, attribute_names, passive):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>initiate a column-based attribute refresh operation.</div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="sqlalchemy.orm.loading.merge_frozen_result">
+    
+  </a>
+  <a name="merge_frozen_result">
+    
+  </a>
+  <div class="functionHeader">
+    @util.preload_module(<wbr></wbr><span class="rst-variable-quote">'</span><span class="rst-variable-string">sqlalchemy.orm.context</span><span class="rst-variable-quote">'</span>)<br />
+    <span class="py-keyword">def</span> <span class="py-defname">merge_frozen_result</span>(session, statement, frozen_result, load=True):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Merge a <code>_engine.FrozenResult</code> back into a <code>_orm.Session</code>,
+returning a new <code>_engine.Result</code> object with <a href="#system-message-1"><span class="rst-problematic" id="rst-problematic-1">:term:`persistent`</span></a>
+objects.</p>
+<p>See the section <a href="#system-message-2"><span class="rst-problematic" id="rst-problematic-2">:ref:`do_orm_execute_re_executing`</span></a> for an example.</p>
+<div class="rst-admonition seealso">
+<p class="rst-first rst-admonition-title">See Also</p>
+<p><a href="#system-message-3"><span class="rst-problematic" id="rst-problematic-3">:ref:`do_orm_execute_re_executing`</span></a></p>
+<p><code>_engine.Result.freeze</code></p>
+<p class="rst-last"><code>_engine.FrozenResult</code></p>
+</div>
+</div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="sqlalchemy.orm.loading.merge_result">
+    
+  </a>
+  <a name="merge_result">
+    
+  </a>
+  <div class="functionHeader">
+    @<a href="sqlalchemy.util.deprecations.html#deprecated_20" class="internal-link" title="sqlalchemy.util.deprecations.deprecated_20">util.deprecated_20</a>(<wbr></wbr><span class="rst-variable-quote">'</span><span class="rst-variable-string">:func:`_orm.merge_result`</span><span class="rst-variable-quote">'</span>, <wbr></wbr>alternative=<span class="rst-variable-quote">'</span><span class="rst-variable-string">The function as well as the method on :class:`_orm.Query` is superseded by the :func:`_orm.merge_frozen_result` function.</span><span class="rst-variable-quote">'</span>, <wbr></wbr>becomes_legacy=True)<br />@util.preload_module(<wbr></wbr><span class="rst-variable-quote">'</span><span class="rst-variable-string">sqlalchemy.orm.context</span><span class="rst-variable-quote">'</span>)<br />
+    <span class="py-keyword">def</span> <span class="py-defname">merge_result</span>(query, iterator, load=True):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Merge a result into the given <code>.Query</code> object's Session.</p>
+<p>See <code>_orm.Query.merge_result</code> for top-level documentation on this
+function.</p>
+</div>
+  </div>
+</div><div class="basefunction private">
+  
+  
+  <a name="sqlalchemy.orm.loading._decorate_polymorphic_switch">
+    
+  </a>
+  <a name="_decorate_polymorphic_switch">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_decorate_polymorphic_switch</span>(instance_fn, context, query_entity, mapper, result, path, polymorphic_discriminator, adapter, ensure_no_pk):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basefunction private">
+  
+  
+  <a name="sqlalchemy.orm.loading._instance_processor">
+    
+  </a>
+  <a name="_instance_processor">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_instance_processor</span>(query_entity, mapper, context, result, path, adapter, only_load_props=None, refresh_state=None, polymorphic_discriminator=None, _polymorphic_from=None):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Produce a mapper level row processor callable
+which processes rows into mapped instances.</div>
+  </div>
+</div><div class="basefunction private">
+  
+  
+  <a name="sqlalchemy.orm.loading._load_subclass_via_in">
+    
+  </a>
+  <a name="_load_subclass_via_in">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_load_subclass_via_in</span>(context, path, entity):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basefunction private">
+  
+  
+  <a name="sqlalchemy.orm.loading._populate_full">
+    
+  </a>
+  <a name="_populate_full">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_populate_full</span>(context, row, state, dict_, isnew, load_path, loaded_instance, populate_existing, populators):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basefunction private">
+  
+  
+  <a name="sqlalchemy.orm.loading._populate_partial">
+    
+  </a>
+  <a name="_populate_partial">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_populate_partial</span>(context, row, state, dict_, isnew, load_path, unloaded, populators):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basefunction private">
+  
+  
+  <a name="sqlalchemy.orm.loading._set_get_options">
+    
+  </a>
+  <a name="_set_get_options">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_set_get_options</span>(compile_opt, load_opt, populate_existing=None, version_check=None, only_load_props=None, refresh_state=None, identity_token=None):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basefunction private">
+  
+  
+  <a name="sqlalchemy.orm.loading._setup_entity_query">
+    
+  </a>
+  <a name="_setup_entity_query">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_setup_entity_query</span>(compile_state, mapper, query_entity, path, adapter, column_collection, with_polymorphic=None, only_load_props=None, polymorphic_discriminator=None, **kw):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basefunction private">
+  
+  
+  <a name="sqlalchemy.orm.loading._validate_version_id">
+    
+  </a>
+  <a name="_validate_version_id">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_validate_version_id</span>(mapper, state, dict_, row, getter):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basefunction private">
+  
+  
+  <a name="sqlalchemy.orm.loading._warn_for_runid_changed">
+    
+  </a>
+  <a name="_warn_for_runid_changed">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_warn_for_runid_changed</span>(state):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basevariable private">
+  
+  
+  <a name="sqlalchemy.orm.loading._new_runid">
+    
+  </a>
+  <a name="_new_runid">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_new_runid</span> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div>
+
+      </div>
+    </div>
+
+    <footer class="navbar navbar-default">
+  
+  <div class="container">
+    <a href="index.html">API Documentation</a> for sqlalchemy,
+  generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
+    22.2.0 at 2022-02-23 04:41:59.
+  </div>
+</footer>
+
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+  </body>
+</html>

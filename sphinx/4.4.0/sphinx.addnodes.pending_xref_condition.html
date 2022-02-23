@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  
+
+  <head>
+    
+    <title>sphinx.addnodes.pending_xref_condition</title>
+    <meta name="generator" content="pydoctor 22.2.0"> 
+        
+    </meta>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=0.75" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+    <link rel="stylesheet" type="text/css" href="extra.css" />
+</head>
+
+  <body>
+
+    
+
+    <nav class="navbar navbar-default">
+  
+  <div class="container">
+
+    <div class="navbar-header">
+      
+      <div class="navlinks">
+          <span class="navbar-brand">
+            sphinx <a href="index.html">API Documentation</a>
+          </span>
+
+          <a href="moduleIndex.html">
+            Modules
+          </a>
+
+          <a href="classIndex.html">
+            Classes
+          </a>
+
+          <a href="nameIndex.html">
+            Names
+          </a>
+      </div>
+
+    </div>
+  </div>
+</nav>
+
+    
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="class"><code><code><a href="index.html" class="internal-link">sphinx</a></code><wbr></wbr>.<code><a href="sphinx.addnodes.html" class="internal-link" title="sphinx.addnodes">addnodes</a></code><wbr></wbr>.<code><a href="sphinx.addnodes.pending_xref_condition.html" class="internal-link" title="sphinx.addnodes.pending_xref_condition">pending_xref_condition</a></code></code></h1>
+        <div id="showPrivate">
+          <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+        </div>
+      </div>
+
+      <div class="categoryHeader">
+        class documentation
+      </div>
+
+      <div class="extrasDocstring">
+        <p><code><span class="py-keyword">class</span> <span class="py-defname">pending_xref_condition</span>(nodes.Inline, nodes.TextElement):</code></p>
+        <p><a href="classIndex.html#sphinx.addnodes.pending_xref_condition">View In Hierarchy</a></p>
+      </div>
+
+      <div class="moduleDocstring">
+        <div><p>Node for cross-references that are used to choose appropriate
+content of the reference by conditions on the resolving phase.</p>
+<p>When the <code><a href="sphinx.addnodes.pending_xref.html" class="internal-link" title="sphinx.addnodes.pending_xref">pending_xref</a></code> node contains one or more
+<strong>pending_xref_condition</strong> nodes, the cross-reference resolver
+should choose the content of the reference using defined conditions
+in <tt class="rst-docutils literal">condition</tt> attribute of each pending_xref_condition nodes:</p>
+<pre class="rst-literal-block">
+&lt;pending_xref refdomain="py" reftarget="io.StringIO ...&gt;
+    &lt;pending_xref_condition condition="resolved"&gt;
+        &lt;literal&gt;
+            StringIO
+    &lt;pending_xref_condition condition="*"&gt;
+        &lt;literal&gt;
+            io.StringIO
+</pre>
+<p>After the processing of cross-reference resolver, one of the content node
+under pending_xref_condition node is chosen by its condition and to be
+removed all of pending_xref_condition nodes:</p>
+<pre class="rst-literal-block">
+# When resolved the cross-reference successfully
+&lt;reference&gt;
+    &lt;literal&gt;
+        StringIO
+
+# When resolution is failed
+&lt;reference&gt;
+    &lt;literal&gt;
+        io.StringIO
+</pre>
+<div class="rst-admonition note">
+<p class="rst-first rst-admonition-title">Note</p>
+<p class="rst-last">This node is only allowed to be placed under pending_xref node.
+It is not allows to place it under other nodes.  In addition,
+pending_xref node must contain only pending_xref_condition
+nodes if it contains one or more pending_xref_condition nodes.</p>
+</div>
+<p>The pending_xref_condition node should have <strong>condition</strong> attribute.
+Domains can be store their individual conditions into the attribute to
+filter contents on resolving phase.  As a reserved condition name,
+<tt class="rst-docutils literal"><span class="pre">condition="*"</span></tt> is used for the fallback of resolution failure.
+Additionally, as a recommended condition name, <tt class="rst-docutils literal"><span class="pre">condition="resolved"</span></tt>
+is used for the representation of resolstion success in the intersphinx
+module.</p>
+<div class="rst-versionadded">
+<span class="rst-versionmodified rst-added">New in version 4.0.</span></div>
+</div>
+      </div>
+
+      <div id="splitTables">
+        
+        
+
+          
+      </div>
+
+      <div id="childList">
+
+        
+
+      </div>
+    </div>
+
+    <footer class="navbar navbar-default">
+  
+  <div class="container">
+    <a href="index.html">API Documentation</a> for sphinx,
+  generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
+    22.2.0 at 2022-02-23 04:40:29.
+  </div>
+</footer>
+
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+  </body>
+</html>

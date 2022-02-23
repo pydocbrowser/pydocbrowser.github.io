@@ -1,0 +1,1008 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  
+
+  <head>
+    
+    <title>sphinx.domains.Domain</title>
+    <meta name="generator" content="pydoctor 22.2.0"> 
+        
+    </meta>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=0.75" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+    <link rel="stylesheet" type="text/css" href="extra.css" />
+</head>
+
+  <body>
+
+    
+
+    <nav class="navbar navbar-default">
+  
+  <div class="container">
+
+    <div class="navbar-header">
+      
+      <div class="navlinks">
+          <span class="navbar-brand">
+            sphinx <a href="index.html">API Documentation</a>
+          </span>
+
+          <a href="moduleIndex.html">
+            Modules
+          </a>
+
+          <a href="classIndex.html">
+            Classes
+          </a>
+
+          <a href="nameIndex.html">
+            Names
+          </a>
+      </div>
+
+    </div>
+  </div>
+</nav>
+
+    
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="class"><code><code><a href="index.html" class="internal-link">sphinx</a></code><wbr></wbr>.<code><a href="sphinx.domains.html" class="internal-link" title="sphinx.domains">domains</a></code><wbr></wbr>.<code><a href="sphinx.domains.Domain.html" class="internal-link" title="sphinx.domains.Domain">Domain</a></code></code></h1>
+        <div id="showPrivate">
+          <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+        </div>
+      </div>
+
+      <div class="categoryHeader">
+        class documentation
+      </div>
+
+      <div class="extrasDocstring">
+        <p><code><span class="py-keyword">class</span> <span class="py-defname">Domain</span>:</code></p><p>Known subclasses: <code><a href="sphinx.domains.c.CDomain.html" class="internal-link">sphinx.domains.c.CDomain</a></code>, <code><a href="sphinx.domains.changeset.ChangeSetDomain.html" class="internal-link">sphinx.domains.changeset.ChangeSetDomain</a></code>, <code><a href="sphinx.domains.citation.CitationDomain.html" class="internal-link">sphinx.domains.citation.CitationDomain</a></code>, <code><a href="sphinx.domains.cpp.CPPDomain.html" class="internal-link">sphinx.domains.cpp.CPPDomain</a></code>, <code><a href="sphinx.domains.index.IndexDomain.html" class="internal-link">sphinx.domains.index.IndexDomain</a></code>, <code><a href="sphinx.domains.javascript.JavaScriptDomain.html" class="internal-link">sphinx.domains.javascript.JavaScriptDomain</a></code>, <code><a href="sphinx.domains.math.MathDomain.html" class="internal-link">sphinx.domains.math.MathDomain</a></code>, <code><a href="sphinx.domains.python.PythonDomain.html" class="internal-link">sphinx.domains.python.PythonDomain</a></code>, <code><a href="sphinx.domains.rst.ReSTDomain.html" class="internal-link">sphinx.domains.rst.ReSTDomain</a></code>, <code><a href="sphinx.domains.std.StandardDomain.html" class="internal-link">sphinx.domains.std.StandardDomain</a></code>, <code><a href="sphinx.ext.duration.DurationDomain.html" class="internal-link">sphinx.ext.duration.DurationDomain</a></code>, <code><a href="sphinx.ext.todo.TodoDomain.html" class="internal-link">sphinx.ext.todo.TodoDomain</a></code></p>
+        <p><a href="classIndex.html#sphinx.domains.Domain">View In Hierarchy</a></p>
+      </div>
+
+      <div class="moduleDocstring">
+        <div><p>A Domain is meant to be a group of "object" description directives for
+objects of a similar nature, and corresponding roles to create references to
+them.  Examples would be Python modules, classes, functions etc., elements
+of a templating language, Sphinx roles and directives, etc.</p>
+<p>Each domain has a separate storage for information about existing objects
+and how to reference them in <code>self.data</code>, which must be a dictionary.  It
+also must implement several functions that expose the object information in
+a uniform way to parts of Sphinx that allow the user to reference or search
+for objects in a domain-agnostic way.</p>
+<p>About <code>self.data</code>: since all object and cross-referencing information is
+stored on a BuildEnvironment instance, the <code>domain.data</code> object is also
+stored in the <code>env.domaindata</code> dict under the key <code><a href="sphinx.domains.Index.html#name" class="internal-link" title="sphinx.domains.Index.name">domain.name</a></code>.  Before the
+build process starts, every active domain is instantiated and given the
+environment object; the <code>domaindata</code> dict must then either be nonexistent or
+a dictionary whose 'version' key is equal to the domain class'
+<code><a href="#data_version" class="internal-link" title="sphinx.domains.Domain.data_version">data_version</a></code> attribute.  Otherwise, <code>OSError</code> is raised and the
+pickled environment is discarded.</p>
+</div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id13335">
+  
+  
+  <tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__init__" class="internal-link" title="sphinx.domains.Domain.__init__">__init__</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#add_object_type" class="internal-link" title="sphinx.domains.Domain.add_object_type">add​_object​_type</a></code></td>
+    <td>Add an object type.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#check_consistency" class="internal-link" title="sphinx.domains.Domain.check_consistency">check​_consistency</a></code></td>
+    <td>Do consistency checks (<strong>experimental</strong>).</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#clear_doc" class="internal-link" title="sphinx.domains.Domain.clear_doc">clear​_doc</a></code></td>
+    <td>Remove traces of a document in the domain-specific inventories.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#directive" class="internal-link" title="sphinx.domains.Domain.directive">directive</a></code></td>
+    <td>Return a directive adapter class that always gives the registered directive its full name ('domain:name') as <tt class="rst-docutils literal">self.name</tt>.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#get_enumerable_node_type" class="internal-link" title="sphinx.domains.Domain.get_enumerable_node_type">get​_enumerable​_node​_type</a></code></td>
+    <td>Get type of enumerable nodes (experimental).</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#get_full_qualified_name" class="internal-link" title="sphinx.domains.Domain.get_full_qualified_name">get​_full​_qualified​_name</a></code></td>
+    <td>Return full qualified name for given node.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#get_objects" class="internal-link" title="sphinx.domains.Domain.get_objects">get​_objects</a></code></td>
+    <td>Return an iterable of "object descriptions".</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#get_type_name" class="internal-link" title="sphinx.domains.Domain.get_type_name">get​_type​_name</a></code></td>
+    <td>Return full name for given ObjType.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#merge_domaindata" class="internal-link" title="sphinx.domains.Domain.merge_domaindata">merge​_domaindata</a></code></td>
+    <td>Merge in data regarding <em>docnames</em> from a different domaindata inventory (coming from a subprocess in parallel builds).</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#process_doc" class="internal-link" title="sphinx.domains.Domain.process_doc">process​_doc</a></code></td>
+    <td>Process a document after it is read by the environment.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#process_field_xref" class="internal-link" title="sphinx.domains.Domain.process_field_xref">process​_field​_xref</a></code></td>
+    <td>Process a pending xref created in a doc field. For example, attach information about the current scope.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#resolve_any_xref" class="internal-link" title="sphinx.domains.Domain.resolve_any_xref">resolve​_any​_xref</a></code></td>
+    <td>Resolve the pending_xref <em>node</em> with the given <em>target</em>.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#resolve_xref" class="internal-link" title="sphinx.domains.Domain.resolve_xref">resolve​_xref</a></code></td>
+    <td>Resolve the pending_xref <em>node</em> with the given <em>typ</em> and <em>target</em>.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#role" class="internal-link" title="sphinx.domains.Domain.role">role</a></code></td>
+    <td>Return a role adapter function that always gives the registered role its full name ('domain:name') as the first argument.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#setup" class="internal-link" title="sphinx.domains.Domain.setup">setup</a></code></td>
+    <td>Set up domain object.</td>
+  </tr><tr class="classvariable">
+    
+    <td>Class Variable</td>
+    <td><code><a href="#dangling_warnings" class="internal-link" title="sphinx.domains.Domain.dangling_warnings">dangling​_warnings</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="classvariable">
+    
+    <td>Class Variable</td>
+    <td><code><a href="#data_version" class="internal-link" title="sphinx.domains.Domain.data_version">data​_version</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="classvariable">
+    
+    <td>Class Variable</td>
+    <td><code><a href="#enumerable_nodes" class="internal-link" title="sphinx.domains.Domain.enumerable_nodes">enumerable​_nodes</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="classvariable">
+    
+    <td>Class Variable</td>
+    <td><code><a href="#initial_data" class="internal-link" title="sphinx.domains.Domain.initial_data">initial​_data</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="classvariable">
+    
+    <td>Class Variable</td>
+    <td><code><a href="#label" class="internal-link" title="sphinx.domains.Domain.label">label</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="classvariable">
+    
+    <td>Class Variable</td>
+    <td><code><a href="#name" class="internal-link" title="sphinx.domains.Domain.name">name</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#data" class="internal-link" title="sphinx.domains.Domain.data">data</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#directives" class="internal-link" title="sphinx.domains.Domain.directives">directives</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#env" class="internal-link" title="sphinx.domains.Domain.env">env</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#indices" class="internal-link" title="sphinx.domains.Domain.indices">indices</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#object_types" class="internal-link" title="sphinx.domains.Domain.object_types">object​_types</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#objtypes_for_role" class="internal-link" title="sphinx.domains.Domain.objtypes_for_role">objtypes​_for​_role</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#role_for_objtype" class="internal-link" title="sphinx.domains.Domain.role_for_objtype">role​_for​_objtype</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#roles" class="internal-link" title="sphinx.domains.Domain.roles">roles</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#_directive_cache" class="internal-link" title="sphinx.domains.Domain._directive_cache">​_directive​_cache</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#_role2type" class="internal-link" title="sphinx.domains.Domain._role2type">​_role2type</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#_role_cache" class="internal-link" title="sphinx.domains.Domain._role_cache">​_role​_cache</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#_type2role" class="internal-link" title="sphinx.domains.Domain._type2role">​_type2role</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+        
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="basemethod">
+  
+  
+  <a name="sphinx.domains.Domain.__init__">
+    
+  </a>
+  <a name="__init__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__init__</span>(self, env):
+    
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="sphinx.domains.std.StandardDomain.html" class="internal-link">sphinx.domains.std.StandardDomain</a></code></div>
+    
+    <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">env:</span><code><a href="sphinx.environment.BuildEnvironment.html" class="internal-link" title="sphinx.environment.BuildEnvironment">BuildEnvironment</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sphinx.domains.Domain.add_object_type">
+    
+  </a>
+  <a name="add_object_type">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">add_object_type</span>(self, name, objtype):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Add an object type.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">name:</span><code>str</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">objtype:</span><code><a href="sphinx.domains.ObjType.html" class="internal-link" title="sphinx.domains.ObjType">ObjType</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sphinx.domains.Domain.check_consistency">
+    
+  </a>
+  <a name="check_consistency">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">check_consistency</span>(self):
+    
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="sphinx.domains.citation.CitationDomain.html" class="internal-link">sphinx.domains.citation.CitationDomain</a></code></div>
+    
+    <div>Do consistency checks (<strong>experimental</strong>).</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sphinx.domains.Domain.clear_doc">
+    
+  </a>
+  <a name="clear_doc">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">clear_doc</span>(self, docname):
+    
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="sphinx.domains.c.CDomain.html" class="internal-link">sphinx.domains.c.CDomain</a></code>, <code><a href="sphinx.domains.changeset.ChangeSetDomain.html" class="internal-link">sphinx.domains.changeset.ChangeSetDomain</a></code>, <code><a href="sphinx.domains.citation.CitationDomain.html" class="internal-link">sphinx.domains.citation.CitationDomain</a></code>, <code><a href="sphinx.domains.cpp.CPPDomain.html" class="internal-link">sphinx.domains.cpp.CPPDomain</a></code>, <code><a href="sphinx.domains.index.IndexDomain.html" class="internal-link">sphinx.domains.index.IndexDomain</a></code>, <code><a href="sphinx.domains.javascript.JavaScriptDomain.html" class="internal-link">sphinx.domains.javascript.JavaScriptDomain</a></code>, <code><a href="sphinx.domains.math.MathDomain.html" class="internal-link">sphinx.domains.math.MathDomain</a></code>, <code><a href="sphinx.domains.python.PythonDomain.html" class="internal-link">sphinx.domains.python.PythonDomain</a></code>, <code><a href="sphinx.domains.rst.ReSTDomain.html" class="internal-link">sphinx.domains.rst.ReSTDomain</a></code>, <code><a href="sphinx.domains.std.StandardDomain.html" class="internal-link">sphinx.domains.std.StandardDomain</a></code>, <code><a href="sphinx.ext.duration.DurationDomain.html" class="internal-link">sphinx.ext.duration.DurationDomain</a></code>, <code><a href="sphinx.ext.todo.TodoDomain.html" class="internal-link">sphinx.ext.todo.TodoDomain</a></code></div>
+    
+    <div>Remove traces of a document in the domain-specific inventories.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">docname:</span><code>str</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sphinx.domains.Domain.directive">
+    
+  </a>
+  <a name="directive">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">directive</span>(self, name):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Return a directive adapter class that always gives the registered
+directive its full name ('domain:name') as <tt class="rst-docutils literal">self.name</tt>.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">name:</span><code>str</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code>Optional[<wbr></wbr>Callable]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sphinx.domains.Domain.get_enumerable_node_type">
+    
+  </a>
+  <a name="get_enumerable_node_type">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">get_enumerable_node_type</span>(self, node):
+    
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="sphinx.domains.std.StandardDomain.html" class="internal-link">sphinx.domains.std.StandardDomain</a></code></div>
+    
+    <div>Get type of enumerable nodes (experimental).<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">node:</span><code>Node</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code>Optional[<wbr></wbr>str]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sphinx.domains.Domain.get_full_qualified_name">
+    
+  </a>
+  <a name="get_full_qualified_name">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">get_full_qualified_name</span>(self, node):
+    
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="sphinx.domains.cpp.CPPDomain.html" class="internal-link">sphinx.domains.cpp.CPPDomain</a></code>, <code><a href="sphinx.domains.javascript.JavaScriptDomain.html" class="internal-link">sphinx.domains.javascript.JavaScriptDomain</a></code>, <code><a href="sphinx.domains.python.PythonDomain.html" class="internal-link">sphinx.domains.python.PythonDomain</a></code>, <code><a href="sphinx.domains.std.StandardDomain.html" class="internal-link">sphinx.domains.std.StandardDomain</a></code></div>
+    
+    <div>Return full qualified name for given node.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">node:</span><code>Element</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code>Optional[<wbr></wbr>str]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sphinx.domains.Domain.get_objects">
+    
+  </a>
+  <a name="get_objects">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">get_objects</span>(self):
+    
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="sphinx.domains.c.CDomain.html" class="internal-link">sphinx.domains.c.CDomain</a></code>, <code><a href="sphinx.domains.cpp.CPPDomain.html" class="internal-link">sphinx.domains.cpp.CPPDomain</a></code>, <code><a href="sphinx.domains.javascript.JavaScriptDomain.html" class="internal-link">sphinx.domains.javascript.JavaScriptDomain</a></code>, <code><a href="sphinx.domains.math.MathDomain.html" class="internal-link">sphinx.domains.math.MathDomain</a></code>, <code><a href="sphinx.domains.python.PythonDomain.html" class="internal-link">sphinx.domains.python.PythonDomain</a></code>, <code><a href="sphinx.domains.rst.ReSTDomain.html" class="internal-link">sphinx.domains.rst.ReSTDomain</a></code>, <code><a href="sphinx.domains.std.StandardDomain.html" class="internal-link">sphinx.domains.std.StandardDomain</a></code></div>
+    
+    <div><p>Return an iterable of "object descriptions".</p>
+<p>Object descriptions are tuples with six items:</p>
+<dl class="rst-docutils">
+<dt><tt class="rst-docutils literal">name</tt></dt>
+<dd>Fully qualified name.</dd>
+<dt><tt class="rst-docutils literal">dispname</tt></dt>
+<dd>Name to display when searching/linking.</dd>
+<dt><tt class="rst-docutils literal">type</tt></dt>
+<dd>Object type, a key in <tt class="rst-docutils literal">self.object_types</tt>.</dd>
+<dt><tt class="rst-docutils literal">docname</tt></dt>
+<dd>The document where it is to be found.</dd>
+<dt><tt class="rst-docutils literal">anchor</tt></dt>
+<dd>The anchor name for the object.</dd>
+<dt><tt class="rst-docutils literal">priority</tt></dt>
+<dd><p class="rst-first">How "important" the object is (determines placement in search
+results). One of:</p>
+<dl class="rst-last rst-docutils">
+<dt><tt class="rst-docutils literal">1</tt></dt>
+<dd>Default priority (placed before full-text matches).</dd>
+<dt><tt class="rst-docutils literal">0</tt></dt>
+<dd>Object is important (placed before default-priority objects).</dd>
+<dt><tt class="rst-docutils literal">2</tt></dt>
+<dd>Object is unimportant (placed after full-text matches).</dd>
+<dt><tt class="rst-docutils literal"><span class="pre">-1</span></tt></dt>
+<dd>Object should not show up in search at all.</dd>
+</dl>
+</dd>
+</dl>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code>Iterable[<wbr></wbr>Tuple[<wbr></wbr>str, <wbr></wbr>str, <wbr></wbr>str, <wbr></wbr>str, <wbr></wbr>str, <wbr></wbr>int]]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sphinx.domains.Domain.get_type_name">
+    
+  </a>
+  <a name="get_type_name">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">get_type_name</span>(self, type, primary=False):
+    
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="sphinx.domains.std.StandardDomain.html" class="internal-link">sphinx.domains.std.StandardDomain</a></code></div>
+    
+    <div>Return full name for given ObjType.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">type:</span><code><a href="sphinx.domains.ObjType.html" class="internal-link" title="sphinx.domains.ObjType">ObjType</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">primary:</span><code>bool</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code>str</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sphinx.domains.Domain.merge_domaindata">
+    
+  </a>
+  <a name="merge_domaindata">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">merge_domaindata</span>(self, docnames, otherdata):
+    
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="sphinx.domains.c.CDomain.html" class="internal-link">sphinx.domains.c.CDomain</a></code>, <code><a href="sphinx.domains.changeset.ChangeSetDomain.html" class="internal-link">sphinx.domains.changeset.ChangeSetDomain</a></code>, <code><a href="sphinx.domains.citation.CitationDomain.html" class="internal-link">sphinx.domains.citation.CitationDomain</a></code>, <code><a href="sphinx.domains.cpp.CPPDomain.html" class="internal-link">sphinx.domains.cpp.CPPDomain</a></code>, <code><a href="sphinx.domains.index.IndexDomain.html" class="internal-link">sphinx.domains.index.IndexDomain</a></code>, <code><a href="sphinx.domains.javascript.JavaScriptDomain.html" class="internal-link">sphinx.domains.javascript.JavaScriptDomain</a></code>, <code><a href="sphinx.domains.math.MathDomain.html" class="internal-link">sphinx.domains.math.MathDomain</a></code>, <code><a href="sphinx.domains.python.PythonDomain.html" class="internal-link">sphinx.domains.python.PythonDomain</a></code>, <code><a href="sphinx.domains.rst.ReSTDomain.html" class="internal-link">sphinx.domains.rst.ReSTDomain</a></code>, <code><a href="sphinx.domains.std.StandardDomain.html" class="internal-link">sphinx.domains.std.StandardDomain</a></code>, <code><a href="sphinx.ext.duration.DurationDomain.html" class="internal-link">sphinx.ext.duration.DurationDomain</a></code>, <code><a href="sphinx.ext.todo.TodoDomain.html" class="internal-link">sphinx.ext.todo.TodoDomain</a></code></div>
+    
+    <div>Merge in data regarding <em>docnames</em> from a different domaindata
+inventory (coming from a subprocess in parallel builds).<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">docnames:</span><code>List[<wbr></wbr>str]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">otherdata:</span><code>Dict</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sphinx.domains.Domain.process_doc">
+    
+  </a>
+  <a name="process_doc">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">process_doc</span>(self, env, docname, document):
+    
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="sphinx.domains.c.CDomain.html" class="internal-link">sphinx.domains.c.CDomain</a></code>, <code><a href="sphinx.domains.changeset.ChangeSetDomain.html" class="internal-link">sphinx.domains.changeset.ChangeSetDomain</a></code>, <code><a href="sphinx.domains.cpp.CPPDomain.html" class="internal-link">sphinx.domains.cpp.CPPDomain</a></code>, <code><a href="sphinx.domains.index.IndexDomain.html" class="internal-link">sphinx.domains.index.IndexDomain</a></code>, <code><a href="sphinx.domains.math.MathDomain.html" class="internal-link">sphinx.domains.math.MathDomain</a></code>, <code><a href="sphinx.domains.std.StandardDomain.html" class="internal-link">sphinx.domains.std.StandardDomain</a></code>, <code><a href="sphinx.ext.todo.TodoDomain.html" class="internal-link">sphinx.ext.todo.TodoDomain</a></code></div>
+    
+    <div>Process a document after it is read by the environment.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">env:</span><code><a href="sphinx.environment.BuildEnvironment.html" class="internal-link" title="sphinx.environment.BuildEnvironment">BuildEnvironment</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">docname:</span><code>str</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">document:</span><code>nodes.document</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sphinx.domains.Domain.process_field_xref">
+    
+  </a>
+  <a name="process_field_xref">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">process_field_xref</span>(self, pnode):
+    
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="sphinx.domains.c.CDomain.html" class="internal-link">sphinx.domains.c.CDomain</a></code>, <code><a href="sphinx.domains.cpp.CPPDomain.html" class="internal-link">sphinx.domains.cpp.CPPDomain</a></code></div>
+    
+    <div>Process a pending xref created in a doc field.
+For example, attach information about the current scope.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">pnode:</span><code><a href="sphinx.addnodes.pending_xref.html" class="internal-link" title="sphinx.addnodes.pending_xref">pending_xref</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sphinx.domains.Domain.resolve_any_xref">
+    
+  </a>
+  <a name="resolve_any_xref">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">resolve_any_xref</span>(self, env, fromdocname, builder, target, node, contnode):
+    
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="sphinx.domains.c.CDomain.html" class="internal-link">sphinx.domains.c.CDomain</a></code>, <code><a href="sphinx.domains.citation.CitationDomain.html" class="internal-link">sphinx.domains.citation.CitationDomain</a></code>, <code><a href="sphinx.domains.cpp.CPPDomain.html" class="internal-link">sphinx.domains.cpp.CPPDomain</a></code>, <code><a href="sphinx.domains.javascript.JavaScriptDomain.html" class="internal-link">sphinx.domains.javascript.JavaScriptDomain</a></code>, <code><a href="sphinx.domains.math.MathDomain.html" class="internal-link">sphinx.domains.math.MathDomain</a></code>, <code><a href="sphinx.domains.python.PythonDomain.html" class="internal-link">sphinx.domains.python.PythonDomain</a></code>, <code><a href="sphinx.domains.rst.ReSTDomain.html" class="internal-link">sphinx.domains.rst.ReSTDomain</a></code>, <code><a href="sphinx.domains.std.StandardDomain.html" class="internal-link">sphinx.domains.std.StandardDomain</a></code></div>
+    
+    <div><p>Resolve the pending_xref <em>node</em> with the given <em>target</em>.</p>
+<p>The reference comes from an "any" or similar role, which means that we
+don't know the type.  Otherwise, the arguments are the same as for
+<code><a href="#resolve_xref" class="internal-link" title="sphinx.domains.Domain.resolve_xref">resolve_xref</a></code>.</p>
+<p>The method must return a list (potentially empty) of tuples
+<tt class="rst-docutils literal">('domain:role', newnode)</tt>, where <tt class="rst-docutils literal">'domain:role'</tt> is the name of a
+role that could have created the same reference, e.g. <tt class="rst-docutils literal">'py:func'</tt>.
+<tt class="rst-docutils literal">newnode</tt> is what <code><a href="#resolve_xref" class="internal-link" title="sphinx.domains.Domain.resolve_xref">resolve_xref</a></code> would return.</p>
+<div class="rst-versionadded">
+<span class="rst-versionmodified rst-added">New in version 1.3.</span></div>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">env:</span><code><a href="sphinx.environment.BuildEnvironment.html" class="internal-link" title="sphinx.environment.BuildEnvironment">BuildEnvironment</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">fromdocname:</span><code>str</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">builder:</span><code><a href="sphinx.builders.Builder.html" class="internal-link" title="sphinx.builders.Builder">Builder</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">target:</span><code>str</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">node:</span><code><a href="sphinx.addnodes.pending_xref.html" class="internal-link" title="sphinx.addnodes.pending_xref">pending_xref</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">contnode:</span><code>Element</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code>List[<wbr></wbr>Tuple[<wbr></wbr>str, <wbr></wbr>Element]]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sphinx.domains.Domain.resolve_xref">
+    
+  </a>
+  <a name="resolve_xref">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">resolve_xref</span>(self, env, fromdocname, builder, typ, target, node, contnode):
+    
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="sphinx.domains.c.CDomain.html" class="internal-link">sphinx.domains.c.CDomain</a></code>, <code><a href="sphinx.domains.citation.CitationDomain.html" class="internal-link">sphinx.domains.citation.CitationDomain</a></code>, <code><a href="sphinx.domains.cpp.CPPDomain.html" class="internal-link">sphinx.domains.cpp.CPPDomain</a></code>, <code><a href="sphinx.domains.javascript.JavaScriptDomain.html" class="internal-link">sphinx.domains.javascript.JavaScriptDomain</a></code>, <code><a href="sphinx.domains.math.MathDomain.html" class="internal-link">sphinx.domains.math.MathDomain</a></code>, <code><a href="sphinx.domains.python.PythonDomain.html" class="internal-link">sphinx.domains.python.PythonDomain</a></code>, <code><a href="sphinx.domains.rst.ReSTDomain.html" class="internal-link">sphinx.domains.rst.ReSTDomain</a></code>, <code><a href="sphinx.domains.std.StandardDomain.html" class="internal-link">sphinx.domains.std.StandardDomain</a></code></div>
+    
+    <div><p>Resolve the pending_xref <em>node</em> with the given <em>typ</em> and <em>target</em>.</p>
+<p>This method should return a new node, to replace the xref node,
+containing the <em>contnode</em> which is the markup content of the
+cross-reference.</p>
+<p>If no resolution can be found, None can be returned; the xref node will
+then given to the <a href="#system-message-1"><span class="rst-problematic" id="rst-problematic-1">:event:`missing-reference`</span></a> event, and if that yields no
+resolution, replaced by <em>contnode</em>.</p>
+<p>The method can also raise <code>sphinx.environment.NoUri</code> to suppress
+the <a href="#system-message-2"><span class="rst-problematic" id="rst-problematic-2">:event:`missing-reference`</span></a> event being emitted.</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">env:</span><code><a href="sphinx.environment.BuildEnvironment.html" class="internal-link" title="sphinx.environment.BuildEnvironment">BuildEnvironment</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">fromdocname:</span><code>str</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">builder:</span><code><a href="sphinx.builders.Builder.html" class="internal-link" title="sphinx.builders.Builder">Builder</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">typ:</span><code>str</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">target:</span><code>str</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">node:</span><code><a href="sphinx.addnodes.pending_xref.html" class="internal-link" title="sphinx.addnodes.pending_xref">pending_xref</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">contnode:</span><code>Element</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code>Optional[<wbr></wbr>Element]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sphinx.domains.Domain.role">
+    
+  </a>
+  <a name="role">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">role</span>(self, name):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Return a role adapter function that always gives the registered
+role its full name ('domain:name') as the first argument.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">name:</span><code>str</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code>Optional[<wbr></wbr><a href="sphinx.util.typing.html#RoleFunction" class="internal-link" title="sphinx.util.typing.RoleFunction">RoleFunction</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sphinx.domains.Domain.setup">
+    
+  </a>
+  <a name="setup">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">setup</span>(self):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Set up domain object.</div>
+  </div>
+</div><div class="baseclassvariable">
+  
+  
+  <a name="sphinx.domains.Domain.dangling_warnings">
+    
+  </a>
+  <a name="dangling_warnings">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">dangling_warnings</span>: <code>Dict[<wbr></wbr>str, <wbr></wbr>str]</code> =
+    
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="sphinx.domains.citation.CitationDomain.html" class="internal-link">sphinx.domains.citation.CitationDomain</a></code>, <code><a href="sphinx.domains.math.MathDomain.html" class="internal-link">sphinx.domains.math.MathDomain</a></code>, <code><a href="sphinx.domains.std.StandardDomain.html" class="internal-link">sphinx.domains.std.StandardDomain</a></code></div>
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseclassvariable">
+  
+  
+  <a name="sphinx.domains.Domain.data_version">
+    
+  </a>
+  <a name="data_version">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">data_version</span>: <code>int</code> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseclassvariable">
+  
+  
+  <a name="sphinx.domains.Domain.enumerable_nodes">
+    
+  </a>
+  <a name="enumerable_nodes">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">enumerable_nodes</span>: <code>Dict[<wbr></wbr>Type[<wbr></wbr>Node], <wbr></wbr>Tuple[<wbr></wbr>str, <wbr></wbr>Callable]]</code> =
+    
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="sphinx.domains.math.MathDomain.html" class="internal-link">sphinx.domains.math.MathDomain</a></code>, <code><a href="sphinx.domains.std.StandardDomain.html" class="internal-link">sphinx.domains.std.StandardDomain</a></code></div>
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseclassvariable">
+  
+  
+  <a name="sphinx.domains.Domain.initial_data">
+    
+  </a>
+  <a name="initial_data">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">initial_data</span>: <code>Dict</code> =
+    
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="sphinx.domains.c.CDomain.html" class="internal-link">sphinx.domains.c.CDomain</a></code>, <code><a href="sphinx.domains.changeset.ChangeSetDomain.html" class="internal-link">sphinx.domains.changeset.ChangeSetDomain</a></code>, <code><a href="sphinx.domains.cpp.CPPDomain.html" class="internal-link">sphinx.domains.cpp.CPPDomain</a></code>, <code><a href="sphinx.domains.javascript.JavaScriptDomain.html" class="internal-link">sphinx.domains.javascript.JavaScriptDomain</a></code>, <code><a href="sphinx.domains.math.MathDomain.html" class="internal-link">sphinx.domains.math.MathDomain</a></code>, <code><a href="sphinx.domains.python.PythonDomain.html" class="internal-link">sphinx.domains.python.PythonDomain</a></code>, <code><a href="sphinx.domains.rst.ReSTDomain.html" class="internal-link">sphinx.domains.rst.ReSTDomain</a></code>, <code><a href="sphinx.domains.std.StandardDomain.html" class="internal-link">sphinx.domains.std.StandardDomain</a></code></div>
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseclassvariable">
+  
+  
+  <a name="sphinx.domains.Domain.label">
+    
+  </a>
+  <a name="label">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">label</span>: <code>str</code> =
+    
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="sphinx.domains.c.CDomain.html" class="internal-link">sphinx.domains.c.CDomain</a></code>, <code><a href="sphinx.domains.changeset.ChangeSetDomain.html" class="internal-link">sphinx.domains.changeset.ChangeSetDomain</a></code>, <code><a href="sphinx.domains.citation.CitationDomain.html" class="internal-link">sphinx.domains.citation.CitationDomain</a></code>, <code><a href="sphinx.domains.cpp.CPPDomain.html" class="internal-link">sphinx.domains.cpp.CPPDomain</a></code>, <code><a href="sphinx.domains.index.IndexDomain.html" class="internal-link">sphinx.domains.index.IndexDomain</a></code>, <code><a href="sphinx.domains.javascript.JavaScriptDomain.html" class="internal-link">sphinx.domains.javascript.JavaScriptDomain</a></code>, <code><a href="sphinx.domains.math.MathDomain.html" class="internal-link">sphinx.domains.math.MathDomain</a></code>, <code><a href="sphinx.domains.python.PythonDomain.html" class="internal-link">sphinx.domains.python.PythonDomain</a></code>, <code><a href="sphinx.domains.rst.ReSTDomain.html" class="internal-link">sphinx.domains.rst.ReSTDomain</a></code>, <code><a href="sphinx.domains.std.StandardDomain.html" class="internal-link">sphinx.domains.std.StandardDomain</a></code>, <code><a href="sphinx.ext.todo.TodoDomain.html" class="internal-link">sphinx.ext.todo.TodoDomain</a></code></div>
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseclassvariable">
+  
+  
+  <a name="sphinx.domains.Domain.name">
+    
+  </a>
+  <a name="name">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">name</span>: <code>str</code> =
+    
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="sphinx.domains.c.CDomain.html" class="internal-link">sphinx.domains.c.CDomain</a></code>, <code><a href="sphinx.domains.changeset.ChangeSetDomain.html" class="internal-link">sphinx.domains.changeset.ChangeSetDomain</a></code>, <code><a href="sphinx.domains.citation.CitationDomain.html" class="internal-link">sphinx.domains.citation.CitationDomain</a></code>, <code><a href="sphinx.domains.cpp.CPPDomain.html" class="internal-link">sphinx.domains.cpp.CPPDomain</a></code>, <code><a href="sphinx.domains.index.IndexDomain.html" class="internal-link">sphinx.domains.index.IndexDomain</a></code>, <code><a href="sphinx.domains.javascript.JavaScriptDomain.html" class="internal-link">sphinx.domains.javascript.JavaScriptDomain</a></code>, <code><a href="sphinx.domains.math.MathDomain.html" class="internal-link">sphinx.domains.math.MathDomain</a></code>, <code><a href="sphinx.domains.python.PythonDomain.html" class="internal-link">sphinx.domains.python.PythonDomain</a></code>, <code><a href="sphinx.domains.rst.ReSTDomain.html" class="internal-link">sphinx.domains.rst.ReSTDomain</a></code>, <code><a href="sphinx.domains.std.StandardDomain.html" class="internal-link">sphinx.domains.std.StandardDomain</a></code>, <code><a href="sphinx.ext.duration.DurationDomain.html" class="internal-link">sphinx.ext.duration.DurationDomain</a></code>, <code><a href="sphinx.ext.todo.TodoDomain.html" class="internal-link">sphinx.ext.todo.TodoDomain</a></code></div>
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="sphinx.domains.Domain.data">
+    
+  </a>
+  <a name="data">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">data</span> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="sphinx.domains.Domain.directives">
+    
+  </a>
+  <a name="directives">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">directives</span> =
+    
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="sphinx.domains.c.CDomain.html" class="internal-link">sphinx.domains.c.CDomain</a></code>, <code><a href="sphinx.domains.cpp.CPPDomain.html" class="internal-link">sphinx.domains.cpp.CPPDomain</a></code>, <code><a href="sphinx.domains.javascript.JavaScriptDomain.html" class="internal-link">sphinx.domains.javascript.JavaScriptDomain</a></code>, <code><a href="sphinx.domains.python.PythonDomain.html" class="internal-link">sphinx.domains.python.PythonDomain</a></code>, <code><a href="sphinx.domains.rst.ReSTDomain.html" class="internal-link">sphinx.domains.rst.ReSTDomain</a></code>, <code><a href="sphinx.domains.std.StandardDomain.html" class="internal-link">sphinx.domains.std.StandardDomain</a></code></div>
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="sphinx.domains.Domain.env">
+    
+  </a>
+  <a name="env">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">env</span>: <code><a href="sphinx.environment.BuildEnvironment.html" class="internal-link" title="sphinx.environment.BuildEnvironment">BuildEnvironment</a></code> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="sphinx.domains.Domain.indices">
+    
+  </a>
+  <a name="indices">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">indices</span> =
+    
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="sphinx.domains.python.PythonDomain.html" class="internal-link">sphinx.domains.python.PythonDomain</a></code></div>
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="sphinx.domains.Domain.object_types">
+    
+  </a>
+  <a name="object_types">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">object_types</span> =
+    
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="sphinx.domains.c.CDomain.html" class="internal-link">sphinx.domains.c.CDomain</a></code>, <code><a href="sphinx.domains.cpp.CPPDomain.html" class="internal-link">sphinx.domains.cpp.CPPDomain</a></code>, <code><a href="sphinx.domains.javascript.JavaScriptDomain.html" class="internal-link">sphinx.domains.javascript.JavaScriptDomain</a></code>, <code><a href="sphinx.domains.python.PythonDomain.html" class="internal-link">sphinx.domains.python.PythonDomain</a></code>, <code><a href="sphinx.domains.rst.ReSTDomain.html" class="internal-link">sphinx.domains.rst.ReSTDomain</a></code>, <code><a href="sphinx.domains.std.StandardDomain.html" class="internal-link">sphinx.domains.std.StandardDomain</a></code></div>
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="sphinx.domains.Domain.objtypes_for_role">
+    
+  </a>
+  <a name="objtypes_for_role">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">objtypes_for_role</span>: <code>Callable[<wbr></wbr>[<wbr></wbr>str], <wbr></wbr>List[<wbr></wbr>str]]</code> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="sphinx.domains.Domain.role_for_objtype">
+    
+  </a>
+  <a name="role_for_objtype">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">role_for_objtype</span>: <code>Callable[<wbr></wbr>[<wbr></wbr>str], <wbr></wbr>str]</code> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="sphinx.domains.Domain.roles">
+    
+  </a>
+  <a name="roles">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">roles</span> =
+    
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="sphinx.domains.c.CDomain.html" class="internal-link">sphinx.domains.c.CDomain</a></code>, <code><a href="sphinx.domains.cpp.CPPDomain.html" class="internal-link">sphinx.domains.cpp.CPPDomain</a></code>, <code><a href="sphinx.domains.javascript.JavaScriptDomain.html" class="internal-link">sphinx.domains.javascript.JavaScriptDomain</a></code>, <code><a href="sphinx.domains.math.MathDomain.html" class="internal-link">sphinx.domains.math.MathDomain</a></code>, <code><a href="sphinx.domains.python.PythonDomain.html" class="internal-link">sphinx.domains.python.PythonDomain</a></code>, <code><a href="sphinx.domains.rst.ReSTDomain.html" class="internal-link">sphinx.domains.rst.ReSTDomain</a></code>, <code><a href="sphinx.domains.std.StandardDomain.html" class="internal-link">sphinx.domains.std.StandardDomain</a></code></div>
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  
+  <a name="sphinx.domains.Domain._directive_cache">
+    
+  </a>
+  <a name="_directive_cache">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_directive_cache</span>: <code>Dict[<wbr></wbr>str, <wbr></wbr>Callable]</code> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  
+  <a name="sphinx.domains.Domain._role2type">
+    
+  </a>
+  <a name="_role2type">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_role2type</span>: <code>Dict[<wbr></wbr>str, <wbr></wbr>List[<wbr></wbr>str]]</code> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  
+  <a name="sphinx.domains.Domain._role_cache">
+    
+  </a>
+  <a name="_role_cache">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_role_cache</span>: <code>Dict[<wbr></wbr>str, <wbr></wbr>Callable]</code> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  
+  <a name="sphinx.domains.Domain._type2role">
+    
+  </a>
+  <a name="_type2role">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_type2role</span>: <code>Dict[<wbr></wbr>str, <wbr></wbr>str]</code> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div>
+
+      </div>
+    </div>
+
+    <footer class="navbar navbar-default">
+  
+  <div class="container">
+    <a href="index.html">API Documentation</a> for sphinx,
+  generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
+    22.2.0 at 2022-02-23 04:40:29.
+  </div>
+</footer>
+
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+  </body>
+</html>

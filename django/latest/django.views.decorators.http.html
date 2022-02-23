@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  
+
+  <head>
+    
+    <title>django.views.decorators.http</title>
+    <meta name="generator" content="pydoctor 22.2.0"> 
+        
+    </meta>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=0.75" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+    <link rel="stylesheet" type="text/css" href="extra.css" />
+</head>
+
+  <body>
+
+    
+
+    <nav class="navbar navbar-default">
+  
+  <div class="container">
+
+    <div class="navbar-header">
+      
+      <div class="navlinks">
+          <span class="navbar-brand">
+            django <a href="index.html">API Documentation</a>
+          </span>
+
+          <a href="moduleIndex.html">
+            Modules
+          </a>
+
+          <a href="classIndex.html">
+            Classes
+          </a>
+
+          <a href="nameIndex.html">
+            Names
+          </a>
+      </div>
+
+    </div>
+  </div>
+</nav>
+
+    
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="module"><code><code><a href="index.html" class="internal-link">django</a></code><wbr></wbr>.<code><a href="django.views.html" class="internal-link" title="django.views">views</a></code><wbr></wbr>.<code><a href="django.views.decorators.html" class="internal-link" title="django.views.decorators">decorators</a></code><wbr></wbr>.<code><a href="django.views.decorators.http.html" class="internal-link" title="django.views.decorators.http">http</a></code></code></h1>
+        <div id="showPrivate">
+          <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+        </div>
+      </div>
+
+      <div class="categoryHeader">
+        module documentation
+      </div>
+
+      <div class="extrasDocstring">
+        
+        <p></p>
+      </div>
+
+      <div class="moduleDocstring">
+        <div>Decorators for views based on HTTP headers.</div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id5914">
+  
+  
+  <tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#condition" class="internal-link" title="django.views.decorators.http.condition">condition</a></code></td>
+    <td>Decorator to support conditional retrieval (or change) for a view function.</td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#etag" class="internal-link" title="django.views.decorators.http.etag">etag</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#last_modified" class="internal-link" title="django.views.decorators.http.last_modified">last​_modified</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#require_http_methods" class="internal-link" title="django.views.decorators.http.require_http_methods">require​_http​_methods</a></code></td>
+    <td>Decorator to make a view only accept particular request methods.  Usage:</td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><code><a href="#conditional_page" class="internal-link" title="django.views.decorators.http.conditional_page">conditional​_page</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><code><a href="#require_GET" class="internal-link" title="django.views.decorators.http.require_GET">require_​GET</a></code></td>
+    <td>Decorator to require that a view only accepts the GET method.</td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><code><a href="#require_POST" class="internal-link" title="django.views.decorators.http.require_POST">require_​POST</a></code></td>
+    <td>Decorator to require that a view only accepts the POST method.</td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><code><a href="#require_safe" class="internal-link" title="django.views.decorators.http.require_safe">require​_safe</a></code></td>
+    <td>Decorator to require that a view only accepts safe methods: GET and HEAD.</td>
+  </tr>
+</table>
+        
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="basefunction">
+  
+  
+  <a name="django.views.decorators.http.condition">
+    
+  </a>
+  <a name="condition">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">condition</span>(etag_func=None, last_modified_func=None):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Decorator to support conditional retrieval (or change) for a view
+function.</p>
+<p>The parameters are callables to compute the ETag and last modified time for
+the requested resource, respectively. The callables are passed the same
+parameters as the view itself. The ETag function should return a string (or
+None if the resource doesn't exist), while the last_modified function
+should return a datetime object (or None if the resource doesn't exist).</p>
+<p>The ETag function should return a complete ETag, including quotes (e.g.
+'"etag"'), since that's the only way to distinguish between weak and strong
+ETags. If an unquoted ETag is returned (e.g. 'etag'), it will be converted
+to a strong ETag by adding quotes.</p>
+<p>This decorator will either pass control to the wrapped view function or
+return an HTTP 304 response (unmodified) or 412 response (precondition
+failed), depending upon the request method. In either case, the decorator
+will add the generated ETag and Last-Modified headers to the response if
+the headers aren't already set and if the request's method is safe.</p>
+</div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="django.views.decorators.http.etag">
+    
+  </a>
+  <a name="etag">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">etag</span>(etag_func):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="django.views.decorators.http.last_modified">
+    
+  </a>
+  <a name="last_modified">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">last_modified</span>(last_modified_func):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="django.views.decorators.http.require_http_methods">
+    
+  </a>
+  <a name="require_http_methods">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">require_http_methods</span>(request_method_list):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Decorator to make a view only accept particular request methods.  Usage:</p>
+<pre class="rst-literal-block">
+@require_http_methods(["GET", "POST"])
+def my_view(request):
+    # I can assume now that only GET or POST requests make it this far
+    # ...
+</pre>
+<p>Note that request methods should be in uppercase.</p>
+</div>
+  </div>
+</div><div class="basevariable">
+  
+  
+  <a name="django.views.decorators.http.conditional_page">
+    
+  </a>
+  <a name="conditional_page">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">conditional_page</span> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="basevariable">
+  
+  
+  <a name="django.views.decorators.http.require_GET">
+    
+  </a>
+  <a name="require_GET">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">require_GET</span> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div>Decorator to require that a view only accepts the GET method.</div>
+    
+  </div>
+</div><div class="basevariable">
+  
+  
+  <a name="django.views.decorators.http.require_POST">
+    
+  </a>
+  <a name="require_POST">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">require_POST</span> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div>Decorator to require that a view only accepts the POST method.</div>
+    
+  </div>
+</div><div class="basevariable">
+  
+  
+  <a name="django.views.decorators.http.require_safe">
+    
+  </a>
+  <a name="require_safe">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">require_safe</span> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div>Decorator to require that a view only accepts safe methods: GET and HEAD.</div>
+    
+  </div>
+</div>
+
+      </div>
+    </div>
+
+    <footer class="navbar navbar-default">
+  
+  <div class="container">
+    <a href="index.html">API Documentation</a> for django,
+  generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
+    22.2.0 at 2022-02-23 04:30:39.
+  </div>
+</footer>
+
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+  </body>
+</html>

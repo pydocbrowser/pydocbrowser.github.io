@@ -1,0 +1,395 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  
+
+  <head>
+    
+    <title>sqlalchemy.engine.row.RowMapping</title>
+    <meta name="generator" content="pydoctor 22.2.0"> 
+        
+    </meta>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=0.75" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+    <link rel="stylesheet" type="text/css" href="extra.css" />
+</head>
+
+  <body>
+
+    
+
+    <nav class="navbar navbar-default">
+  
+  <div class="container">
+
+    <div class="navbar-header">
+      
+      <div class="navlinks">
+          <span class="navbar-brand">
+            sqlalchemy <a href="index.html">API Documentation</a>
+          </span>
+
+          <a href="moduleIndex.html">
+            Modules
+          </a>
+
+          <a href="classIndex.html">
+            Classes
+          </a>
+
+          <a href="nameIndex.html">
+            Names
+          </a>
+      </div>
+
+    </div>
+  </div>
+</nav>
+
+    
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="class"><code><code><a href="index.html" class="internal-link">sqlalchemy</a></code><wbr></wbr>.<code><a href="sqlalchemy.engine.html" class="internal-link" title="sqlalchemy.engine">engine</a></code><wbr></wbr>.<code><a href="sqlalchemy.engine.row.html" class="internal-link" title="sqlalchemy.engine.row">row</a></code><wbr></wbr>.<code><a href="sqlalchemy.engine.row.RowMapping.html" class="internal-link" title="sqlalchemy.engine.row.RowMapping">RowMapping</a></code></code></h1>
+        <div id="showPrivate">
+          <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+        </div>
+      </div>
+
+      <div class="categoryHeader">
+        class documentation
+      </div>
+
+      <div class="extrasDocstring">
+        <p><code><span class="py-keyword">class</span> <span class="py-defname">RowMapping</span>(<a href="sqlalchemy.engine.row.BaseRow.html" class="internal-link" title="sqlalchemy.engine.row.BaseRow">BaseRow</a>, collections_abc.Mapping):</code></p>
+        <p><a href="classIndex.html#sqlalchemy.engine.row.RowMapping">View In Hierarchy</a></p>
+      </div>
+
+      <div class="moduleDocstring">
+        <div><p>A <tt class="rst-docutils literal">Mapping</tt> that maps column names and objects to <code>.Row</code> values.</p>
+<p>The <code>.RowMapping</code> is available from a <code>.Row</code> via the
+<code>.Row._mapping</code> attribute, as well as from the iterable interface
+provided by the <code>.MappingResult</code> object returned by the
+<code>_engine.Result.mappings</code> method.</p>
+<p><code>.RowMapping</code> supplies Python mapping (i.e. dictionary) access to
+the  contents of the row.   This includes support for testing of
+containment of specific keys (string column names or objects), as well
+as iteration of keys, values, and items:</p>
+<pre class="rst-literal-block">
+for row in result:
+    if 'a' in row._mapping:
+        print("Column 'a': %s" % row._mapping['a'])
+
+    print("Column b: %s" % row._mapping[table.c.b])
+</pre>
+<div class="rst-versionadded">
+<span class="rst-versionmodified rst-added">New in version 1.4: </span><span>The <code>.RowMapping</code> object replaces the
+mapping-like access previously provided by a database result row,
+which now seeks to behave mostly like a named tuple.</span></div>
+</div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id16301">
+  
+  
+  <tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__contains__" class="internal-link" title="sqlalchemy.engine.row.RowMapping.__contains__">__contains__</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__iter__" class="internal-link" title="sqlalchemy.engine.row.RowMapping.__iter__">__iter__</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__len__" class="internal-link" title="sqlalchemy.engine.row.RowMapping.__len__">__len__</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__repr__" class="internal-link" title="sqlalchemy.engine.row.RowMapping.__repr__">__repr__</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#items" class="internal-link" title="sqlalchemy.engine.row.RowMapping.items">items</a></code></td>
+    <td>Return a view of key/value tuples for the elements in the underlying <code>.Row</code>.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#keys" class="internal-link" title="sqlalchemy.engine.row.RowMapping.keys">keys</a></code></td>
+    <td>Return a view of 'keys' for string column names represented by the underlying <code>.Row</code>.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#values" class="internal-link" title="sqlalchemy.engine.row.RowMapping.values">values</a></code></td>
+    <td>Return a view of values for the values represented in the underlying <code>.Row</code>.</td>
+  </tr><tr class="classvariable">
+    
+    <td>Class Variable</td>
+    <td><code><a href="#__slots__" class="internal-link" title="sqlalchemy.engine.row.RowMapping.__slots__">__slots__</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_values_impl" class="internal-link" title="sqlalchemy.engine.row.RowMapping._values_impl">​_values​_impl</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+        
+          <p class="inheritedFrom">
+            Inherited from <code><a href="sqlalchemy.engine.row.BaseRow.html" class="internal-link" title="sqlalchemy.engine.row.BaseRow">BaseRow</a></code>:
+          </p>
+          <table class="children sortable" id="id16302">
+  
+  
+  <tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="sqlalchemy.engine.row.BaseRow.html#__getattr__" class="internal-link" title="sqlalchemy.engine.row.BaseRow.__getattr__">__getattr__</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="sqlalchemy.engine.row.BaseRow.html#__hash__" class="internal-link" title="sqlalchemy.engine.row.BaseRow.__hash__">__hash__</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="sqlalchemy.engine.row.BaseRow.html#__init__" class="internal-link" title="sqlalchemy.engine.row.BaseRow.__init__">__init__</a></code></td>
+    <td>Row objects are constructed by CursorResult objects.</td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="sqlalchemy.engine.row.BaseRow.html#__reduce__" class="internal-link" title="sqlalchemy.engine.row.BaseRow.__reduce__">__reduce__</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod private">
+    
+    <td>Method</td>
+    <td><code><a href="sqlalchemy.engine.row.BaseRow.html#_filter_on_values" class="internal-link" title="sqlalchemy.engine.row.BaseRow._filter_on_values">​_filter​_on​_values</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod private">
+    
+    <td>Method</td>
+    <td><code><a href="sqlalchemy.engine.row.BaseRow.html#_get_by_int_impl" class="internal-link" title="sqlalchemy.engine.row.BaseRow._get_by_int_impl">​_get​_by​_int​_impl</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod private">
+    
+    <td>Method</td>
+    <td><code><a href="sqlalchemy.engine.row.BaseRow.html#_get_by_key_impl" class="internal-link" title="sqlalchemy.engine.row.BaseRow._get_by_key_impl">​_get​_by​_key​_impl</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod private">
+    
+    <td>Method</td>
+    <td><code><a href="sqlalchemy.engine.row.BaseRow.html#_get_by_key_impl_mapping" class="internal-link" title="sqlalchemy.engine.row.BaseRow._get_by_key_impl_mapping">​_get​_by​_key​_impl​_mapping</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+          
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="basemethod">
+  
+  
+  <a name="sqlalchemy.engine.row.RowMapping.__contains__">
+    
+  </a>
+  <a name="__contains__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__contains__</span>(self, key):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.engine.row.RowMapping.__iter__">
+    
+  </a>
+  <a name="__iter__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__iter__</span>(self):
+    
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overrides <code><a href="sqlalchemy.engine.row.BaseRow.html#__iter__" class="internal-link">sqlalchemy.engine.row.BaseRow.__iter__</a></code></div>
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.engine.row.RowMapping.__len__">
+    
+  </a>
+  <a name="__len__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__len__</span>(self):
+    
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overrides <code><a href="sqlalchemy.engine.row.BaseRow.html#__len__" class="internal-link">sqlalchemy.engine.row.BaseRow.__len__</a></code></div>
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.engine.row.RowMapping.__repr__">
+    
+  </a>
+  <a name="__repr__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__repr__</span>(self):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.engine.row.RowMapping.items">
+    
+  </a>
+  <a name="items">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">items</span>(self):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Return a view of key/value tuples for the elements in the
+underlying <code>.Row</code>.</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.engine.row.RowMapping.keys">
+    
+  </a>
+  <a name="keys">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">keys</span>(self):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Return a view of 'keys' for string column names represented
+by the underlying <code>.Row</code>.</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.engine.row.RowMapping.values">
+    
+  </a>
+  <a name="values">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">values</span>(self):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Return a view of values for the values represented in the
+underlying <code>.Row</code>.</div>
+  </div>
+</div><div class="baseclassvariable">
+  
+  
+  <a name="sqlalchemy.engine.row.RowMapping.__slots__">
+    
+  </a>
+  <a name="__slots__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">__slots__</span>: <code>tuple</code> =
+    
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">overrides <code><a href="sqlalchemy.engine.row.BaseRow.html#__slots__" class="internal-link">sqlalchemy.engine.row.BaseRow.__slots__</a></code></div>
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="sqlalchemy.engine.row.RowMapping._values_impl">
+    
+  </a>
+  <a name="_values_impl">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_values_impl</span>(self):
+    
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overrides <code><a href="sqlalchemy.engine.row.BaseRow.html#_values_impl" class="internal-link">sqlalchemy.engine.row.BaseRow._values_impl</a></code></div>
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div>
+
+      </div>
+    </div>
+
+    <footer class="navbar navbar-default">
+  
+  <div class="container">
+    <a href="index.html">API Documentation</a> for sqlalchemy,
+  generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
+    22.2.0 at 2022-02-23 04:41:59.
+  </div>
+</footer>
+
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+  </body>
+</html>

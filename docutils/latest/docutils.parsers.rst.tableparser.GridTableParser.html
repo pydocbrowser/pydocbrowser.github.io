@@ -1,0 +1,654 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  
+
+  <head>
+    
+    <title>docutils.parsers.rst.tableparser.GridTableParser</title>
+    <meta name="generator" content="pydoctor 22.2.0"> 
+        
+    </meta>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=0.75" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+    <link rel="stylesheet" type="text/css" href="extra.css" />
+</head>
+
+  <body>
+
+    
+
+    <nav class="navbar navbar-default">
+  
+  <div class="container">
+
+    <div class="navbar-header">
+      
+      <div class="navlinks">
+          <span class="navbar-brand">
+            docutils <a href="index.html">API Documentation</a>
+          </span>
+
+          <a href="moduleIndex.html">
+            Modules
+          </a>
+
+          <a href="classIndex.html">
+            Classes
+          </a>
+
+          <a href="nameIndex.html">
+            Names
+          </a>
+      </div>
+
+    </div>
+  </div>
+</nav>
+
+    
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="class"><code><code><a href="index.html" class="internal-link">docutils</a></code><wbr></wbr>.<code><a href="docutils.parsers.html" class="internal-link" title="docutils.parsers">parsers</a></code><wbr></wbr>.<code><a href="docutils.parsers.rst.html" class="internal-link" title="docutils.parsers.rst">rst</a></code><wbr></wbr>.<code><a href="docutils.parsers.rst.tableparser.html" class="internal-link" title="docutils.parsers.rst.tableparser">tableparser</a></code><wbr></wbr>.<code><a href="docutils.parsers.rst.tableparser.GridTableParser.html" class="internal-link" title="docutils.parsers.rst.tableparser.GridTableParser">GridTableParser</a></code></code></h1>
+        <div id="showPrivate">
+          <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+        </div>
+      </div>
+
+      <div class="categoryHeader">
+        class documentation
+      </div>
+
+      <div class="extrasDocstring">
+        <p><code><span class="py-keyword">class</span> <span class="py-defname">GridTableParser</span>(<a href="docutils.parsers.rst.tableparser.TableParser.html" class="internal-link" title="docutils.parsers.rst.tableparser.TableParser">TableParser</a>):</code></p>
+        <p><a href="classIndex.html#docutils.parsers.rst.tableparser.GridTableParser">View In Hierarchy</a></p>
+      </div>
+
+      <div class="moduleDocstring">
+        <div><p>Parse a grid table using <code><a href="docutils.parsers.rst.tableparser.TableParser.html#parse" class="internal-link" title="docutils.parsers.rst.tableparser.TableParser.parse">parse()</a></code>.</p>
+<p>Here's an example of a grid table:</p>
+<pre class="rst-literal-block">
++------------------------+------------+----------+----------+
+| Header row, column 1   | Header 2   | Header 3 | Header 4 |
++========================+============+==========+==========+
+| body row 1, column 1   | column 2   | column 3 | column 4 |
++------------------------+------------+----------+----------+
+| body row 2             | Cells may span columns.          |
++------------------------+------------+---------------------+
+| body row 3             | Cells may  | - Table cells       |
++------------------------+ span rows. | - contain           |
+| body row 4             |            | - body elements.    |
++------------------------+------------+---------------------+
+</pre>
+<p>Intersections use '+', row separators use '-' (except for one optional
+head/body row separator, which uses '='), and column separators use '|'.</p>
+<p>Passing the above table to the <code><a href="docutils.parsers.rst.tableparser.TableParser.html#parse" class="internal-link" title="docutils.parsers.rst.tableparser.TableParser.parse">parse()</a></code> method will result in the
+following data structure:</p>
+<pre class="rst-literal-block">
+([24, 12, 10, 10],
+ [[(0, 0, 1, ['Header row, column 1']),
+   (0, 0, 1, ['Header 2']),
+   (0, 0, 1, ['Header 3']),
+   (0, 0, 1, ['Header 4'])]],
+ [[(0, 0, 3, ['body row 1, column 1']),
+   (0, 0, 3, ['column 2']),
+   (0, 0, 3, ['column 3']),
+   (0, 0, 3, ['column 4'])],
+  [(0, 0, 5, ['body row 2']),
+   (0, 2, 5, ['Cells may span columns.']),
+   None,
+   None],
+  [(0, 0, 7, ['body row 3']),
+   (1, 0, 7, ['Cells may', 'span rows.', '']),
+   (1, 1, 7, ['- Table cells', '- contain', '- body elements.']),
+   None],
+  [(0, 0, 9, ['body row 4']), None, None, None]])
+</pre>
+<p>The first item is a list containing column widths (colspecs). The second
+item is a list of head rows, and the third is a list of body rows. Each
+row contains a list of cells. Each cell is either None (for a cell unused
+because of another cell's span), or a tuple. A cell tuple contains four
+items: the number of extra rows used by the cell in a vertical span
+(morerows); the number of extra columns used by the cell in a horizontal
+span (morecols); the line offset of the first line of the cell contents;
+and the cell contents, a list of lines of text.</p>
+</div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id6812">
+  
+  
+  <tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#check_parse_complete" class="internal-link" title="docutils.parsers.rst.tableparser.GridTableParser.check_parse_complete">check​_parse​_complete</a></code></td>
+    <td>Each text column should have been completely seen.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#mark_done" class="internal-link" title="docutils.parsers.rst.tableparser.GridTableParser.mark_done">mark​_done</a></code></td>
+    <td>For keeping track of how much of each text column has been seen.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#parse_table" class="internal-link" title="docutils.parsers.rst.tableparser.GridTableParser.parse_table">parse​_table</a></code></td>
+    <td><span class="undocumented">No summary</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#scan_cell" class="internal-link" title="docutils.parsers.rst.tableparser.GridTableParser.scan_cell">scan​_cell</a></code></td>
+    <td>Starting at the top-left corner, start tracing out a cell.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#scan_down" class="internal-link" title="docutils.parsers.rst.tableparser.GridTableParser.scan_down">scan​_down</a></code></td>
+    <td>Look for the bottom-right corner of the cell, making note of all row boundaries.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#scan_left" class="internal-link" title="docutils.parsers.rst.tableparser.GridTableParser.scan_left">scan​_left</a></code></td>
+    <td>Noting column boundaries, look for the bottom-left corner of the cell. It must line up with the starting point.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#scan_right" class="internal-link" title="docutils.parsers.rst.tableparser.GridTableParser.scan_right">scan​_right</a></code></td>
+    <td>Look for the top-right corner of the cell, and make note of all column boundaries ('+').</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#scan_up" class="internal-link" title="docutils.parsers.rst.tableparser.GridTableParser.scan_up">scan​_up</a></code></td>
+    <td>Noting row boundaries, see if we can return to the starting point.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#setup" class="internal-link" title="docutils.parsers.rst.tableparser.GridTableParser.setup">setup</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#structure_from_cells" class="internal-link" title="docutils.parsers.rst.tableparser.GridTableParser.structure_from_cells">structure​_from​_cells</a></code></td>
+    <td>From the data collected by <code><a href="#scan_cell" class="internal-link" title="docutils.parsers.rst.tableparser.GridTableParser.scan_cell">scan_cell()</a></code>, convert to the final data structure.</td>
+  </tr><tr class="classvariable">
+    
+    <td>Class Variable</td>
+    <td><code><a href="#head_body_separator_pat" class="internal-link" title="docutils.parsers.rst.tableparser.GridTableParser.head_body_separator_pat">head​_body​_separator​_pat</a></code></td>
+    <td>Matches the row separator between head rows and body rows.</td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#block" class="internal-link" title="docutils.parsers.rst.tableparser.GridTableParser.block">block</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#bottom" class="internal-link" title="docutils.parsers.rst.tableparser.GridTableParser.bottom">bottom</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#cells" class="internal-link" title="docutils.parsers.rst.tableparser.GridTableParser.cells">cells</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#colseps" class="internal-link" title="docutils.parsers.rst.tableparser.GridTableParser.colseps">colseps</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#done" class="internal-link" title="docutils.parsers.rst.tableparser.GridTableParser.done">done</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#head_body_sep" class="internal-link" title="docutils.parsers.rst.tableparser.GridTableParser.head_body_sep">head​_body​_sep</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#right" class="internal-link" title="docutils.parsers.rst.tableparser.GridTableParser.right">right</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#rowseps" class="internal-link" title="docutils.parsers.rst.tableparser.GridTableParser.rowseps">rowseps</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+        
+          <p class="inheritedFrom">
+            Inherited from <code><a href="docutils.parsers.rst.tableparser.TableParser.html" class="internal-link" title="docutils.parsers.rst.tableparser.TableParser">TableParser</a></code>:
+          </p>
+          <table class="children sortable" id="id6813">
+  
+  
+  <tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.parsers.rst.tableparser.TableParser.html#find_head_body_sep" class="internal-link" title="docutils.parsers.rst.tableparser.TableParser.find_head_body_sep">find​_head​_body​_sep</a></code></td>
+    <td>Look for a head/body row separator line; store the line index.</td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.parsers.rst.tableparser.TableParser.html#parse" class="internal-link" title="docutils.parsers.rst.tableparser.TableParser.parse">parse</a></code></td>
+    <td>Analyze the text <code>block</code> and return a table data structure.</td>
+  </tr><tr class="baseclassvariable">
+    
+    <td>Class Variable</td>
+    <td><code><a href="docutils.parsers.rst.tableparser.TableParser.html#double_width_pad_char" class="internal-link" title="docutils.parsers.rst.tableparser.TableParser.double_width_pad_char">double​_width​_pad​_char</a></code></td>
+    <td>Padding character for East Asian double-width text.</td>
+  </tr>
+</table>
+          
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="basemethod">
+  
+  
+  <a name="docutils.parsers.rst.tableparser.GridTableParser.check_parse_complete">
+    
+  </a>
+  <a name="check_parse_complete">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">check_parse_complete</span>(self):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Each text column should have been completely seen.</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="docutils.parsers.rst.tableparser.GridTableParser.mark_done">
+    
+  </a>
+  <a name="mark_done">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">mark_done</span>(self, top, left, bottom, right):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>For keeping track of how much of each text column has been seen.</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="docutils.parsers.rst.tableparser.GridTableParser.parse_table">
+    
+  </a>
+  <a name="parse_table">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">parse_table</span>(self):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Start with a queue of upper-left corners, containing the upper-left
+corner of the table itself. Trace out one rectangular cell, remember
+it, and add its upper-right and lower-left corners to the queue of
+potential upper-left corners of further cells. Process the queue in
+top-to-bottom order, keeping track of how much of each text column has
+been seen.</p>
+<p>We'll end up knowing all the row and column boundaries, cell positions
+and their dimensions.</p>
+</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="docutils.parsers.rst.tableparser.GridTableParser.scan_cell">
+    
+  </a>
+  <a name="scan_cell">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">scan_cell</span>(self, top, left):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Starting at the top-left corner, start tracing out a cell.</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="docutils.parsers.rst.tableparser.GridTableParser.scan_down">
+    
+  </a>
+  <a name="scan_down">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">scan_down</span>(self, top, left, right):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Look for the bottom-right corner of the cell, making note of all row
+boundaries.</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="docutils.parsers.rst.tableparser.GridTableParser.scan_left">
+    
+  </a>
+  <a name="scan_left">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">scan_left</span>(self, top, left, bottom, right):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Noting column boundaries, look for the bottom-left corner of the cell.
+It must line up with the starting point.</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="docutils.parsers.rst.tableparser.GridTableParser.scan_right">
+    
+  </a>
+  <a name="scan_right">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">scan_right</span>(self, top, left):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Look for the top-right corner of the cell, and make note of all column
+boundaries ('+').</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="docutils.parsers.rst.tableparser.GridTableParser.scan_up">
+    
+  </a>
+  <a name="scan_up">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">scan_up</span>(self, top, left, bottom, right):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Noting row boundaries, see if we can return to the starting point.</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="docutils.parsers.rst.tableparser.GridTableParser.setup">
+    
+  </a>
+  <a name="setup">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">setup</span>(self, block):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="docutils.parsers.rst.tableparser.GridTableParser.structure_from_cells">
+    
+  </a>
+  <a name="structure_from_cells">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">structure_from_cells</span>(self):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>From the data collected by <code><a href="#scan_cell" class="internal-link" title="docutils.parsers.rst.tableparser.GridTableParser.scan_cell">scan_cell()</a></code>, convert to the final data
+structure.</div>
+  </div>
+</div><div class="baseclassvariable">
+  
+  
+  <a name="docutils.parsers.rst.tableparser.GridTableParser.head_body_separator_pat">
+    
+  </a>
+  <a name="head_body_separator_pat">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">head_body_separator_pat</span> =
+    
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">overrides <code><a href="docutils.parsers.rst.tableparser.TableParser.html#head_body_separator_pat" class="internal-link">docutils.parsers.rst.tableparser.TableParser.head_body_separator_pat</a></code></div>
+    
+    <div>Matches the row separator between head rows and body rows.</div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="docutils.parsers.rst.tableparser.GridTableParser.block">
+    
+  </a>
+  <a name="block">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">block</span> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="docutils.parsers.rst.tableparser.GridTableParser.bottom">
+    
+  </a>
+  <a name="bottom">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">bottom</span> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="docutils.parsers.rst.tableparser.GridTableParser.cells">
+    
+  </a>
+  <a name="cells">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">cells</span>: <code>list</code> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="docutils.parsers.rst.tableparser.GridTableParser.colseps">
+    
+  </a>
+  <a name="colseps">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">colseps</span>: <code>dict</code> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="docutils.parsers.rst.tableparser.GridTableParser.done">
+    
+  </a>
+  <a name="done">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">done</span> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="docutils.parsers.rst.tableparser.GridTableParser.head_body_sep">
+    
+  </a>
+  <a name="head_body_sep">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">head_body_sep</span> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="docutils.parsers.rst.tableparser.GridTableParser.right">
+    
+  </a>
+  <a name="right">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">right</span> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="docutils.parsers.rst.tableparser.GridTableParser.rowseps">
+    
+  </a>
+  <a name="rowseps">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">rowseps</span>: <code>dict</code> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div>
+
+      </div>
+    </div>
+
+    <footer class="navbar navbar-default">
+  
+  <div class="container">
+    <a href="index.html">API Documentation</a> for docutils,
+  generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
+    22.2.0 at 2022-02-23 04:34:36.
+  </div>
+</footer>
+
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+  </body>
+</html>

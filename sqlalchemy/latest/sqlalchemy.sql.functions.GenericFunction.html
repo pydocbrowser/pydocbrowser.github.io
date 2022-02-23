@@ -1,0 +1,415 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  
+
+  <head>
+    
+    <title>sqlalchemy.sql.functions.GenericFunction</title>
+    <meta name="generator" content="pydoctor 22.2.0"> 
+        
+    </meta>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=0.75" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+    <link rel="stylesheet" type="text/css" href="extra.css" />
+</head>
+
+  <body>
+
+    
+
+    <nav class="navbar navbar-default">
+  
+  <div class="container">
+
+    <div class="navbar-header">
+      
+      <div class="navlinks">
+          <span class="navbar-brand">
+            sqlalchemy <a href="index.html">API Documentation</a>
+          </span>
+
+          <a href="moduleIndex.html">
+            Modules
+          </a>
+
+          <a href="classIndex.html">
+            Classes
+          </a>
+
+          <a href="nameIndex.html">
+            Names
+          </a>
+      </div>
+
+    </div>
+  </div>
+</nav>
+
+    
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="class"><code><code><a href="index.html" class="internal-link">sqlalchemy</a></code><wbr></wbr>.<code><a href="sqlalchemy.sql.html" class="internal-link" title="sqlalchemy.sql">sql</a></code><wbr></wbr>.<code><a href="sqlalchemy.sql.functions.html" class="internal-link" title="sqlalchemy.sql.functions">functions</a></code><wbr></wbr>.<code><a href="sqlalchemy.sql.functions.GenericFunction.html" class="internal-link" title="sqlalchemy.sql.functions.GenericFunction">GenericFunction</a></code></code></h1>
+        <div id="showPrivate">
+          <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+        </div>
+      </div>
+
+      <div class="categoryHeader">
+        class documentation
+      </div>
+
+      <div class="extrasDocstring">
+        <p><code><span class="py-keyword">class</span> <span class="py-defname">GenericFunction</span>(util.with_metaclass(_GenericMeta, Function)):</code></p><p>Known subclasses: <code><a href="sqlalchemy.dialects.postgresql.hstore.hstore.html" class="internal-link">sqlalchemy.dialects.postgresql.hstore.hstore</a></code>, <code><a href="sqlalchemy.sql.functions.AnsiFunction.html" class="internal-link">sqlalchemy.sql.functions.AnsiFunction</a></code>, <code><a href="sqlalchemy.sql.functions.array_agg.html" class="internal-link">sqlalchemy.sql.functions.array_agg</a></code>, <code><a href="sqlalchemy.sql.functions.char_length.html" class="internal-link">sqlalchemy.sql.functions.char_length</a></code>, <code><a href="sqlalchemy.sql.functions.concat.html" class="internal-link">sqlalchemy.sql.functions.concat</a></code>, <code><a href="sqlalchemy.sql.functions.count.html" class="internal-link">sqlalchemy.sql.functions.count</a></code>, <code><a href="sqlalchemy.sql.functions.cube.html" class="internal-link">sqlalchemy.sql.functions.cube</a></code>, <code><a href="sqlalchemy.sql.functions.cume_dist.html" class="internal-link">sqlalchemy.sql.functions.cume_dist</a></code>, <code><a href="sqlalchemy.sql.functions.dense_rank.html" class="internal-link">sqlalchemy.sql.functions.dense_rank</a></code>, <code><a href="sqlalchemy.sql.functions.grouping_sets.html" class="internal-link">sqlalchemy.sql.functions.grouping_sets</a></code>, <code><a href="sqlalchemy.sql.functions.next_value.html" class="internal-link">sqlalchemy.sql.functions.next_value</a></code>, <code><a href="sqlalchemy.sql.functions.now.html" class="internal-link">sqlalchemy.sql.functions.now</a></code>, <code><a href="sqlalchemy.sql.functions.OrderedSetAgg.html" class="internal-link">sqlalchemy.sql.functions.OrderedSetAgg</a></code>, <code><a href="sqlalchemy.sql.functions.percent_rank.html" class="internal-link">sqlalchemy.sql.functions.percent_rank</a></code>, <code><a href="sqlalchemy.sql.functions.random.html" class="internal-link">sqlalchemy.sql.functions.random</a></code>, <code><a href="sqlalchemy.sql.functions.rank.html" class="internal-link">sqlalchemy.sql.functions.rank</a></code>, <code><a href="sqlalchemy.sql.functions.ReturnTypeFromArgs.html" class="internal-link">sqlalchemy.sql.functions.ReturnTypeFromArgs</a></code>, <code><a href="sqlalchemy.sql.functions.rollup.html" class="internal-link">sqlalchemy.sql.functions.rollup</a></code>, <code><a href="sqlalchemy.dialects.postgresql.hstore._HStoreArrayFunction.html" class="internal-link">sqlalchemy.dialects.postgresql.hstore._HStoreArrayFunction</a></code>, <code><a href="sqlalchemy.dialects.postgresql.hstore._HStoreDefinedFunction.html" class="internal-link">sqlalchemy.dialects.postgresql.hstore._HStoreDefinedFunction</a></code>, <code><a href="sqlalchemy.dialects.postgresql.hstore._HStoreDeleteFunction.html" class="internal-link">sqlalchemy.dialects.postgresql.hstore._HStoreDeleteFunction</a></code>, <code><a href="sqlalchemy.dialects.postgresql.hstore._HStoreKeysFunction.html" class="internal-link">sqlalchemy.dialects.postgresql.hstore._HStoreKeysFunction</a></code>, <code><a href="sqlalchemy.dialects.postgresql.hstore._HStoreMatrixFunction.html" class="internal-link">sqlalchemy.dialects.postgresql.hstore._HStoreMatrixFunction</a></code>, <code><a href="sqlalchemy.dialects.postgresql.hstore._HStoreSliceFunction.html" class="internal-link">sqlalchemy.dialects.postgresql.hstore._HStoreSliceFunction</a></code>, <code><a href="sqlalchemy.dialects.postgresql.hstore._HStoreValsFunction.html" class="internal-link">sqlalchemy.dialects.postgresql.hstore._HStoreValsFunction</a></code></p>
+        <p><a href="classIndex.html#sqlalchemy.sql.functions.GenericFunction">View In Hierarchy</a></p>
+      </div>
+
+      <div class="moduleDocstring">
+        <div><p>Define a 'generic' function.</p>
+<p>A generic function is a pre-established <code>.Function</code>
+class that is instantiated automatically when called
+by name from the <code>.func</code> attribute.    Note that
+calling any name from <code>.func</code> has the effect that
+a new <code>.Function</code> instance is created automatically,
+given that name.  The primary use case for defining
+a <code>.GenericFunction</code> class is so that a function
+of a particular name may be given a fixed return type.
+It can also include custom argument parsing schemes as well
+as additional methods.</p>
+<p>Subclasses of <code>.GenericFunction</code> are automatically
+registered under the name of the class.  For
+example, a user-defined function <tt class="rst-docutils literal">as_utc()</tt> would
+be available immediately:</p>
+<pre class="rst-literal-block">
+from sqlalchemy.sql.functions import GenericFunction
+from sqlalchemy.types import DateTime
+
+class as_utc(GenericFunction):
+    type = DateTime
+    inherit_cache = True
+
+print(select(func.as_utc()))
+</pre>
+<p>User-defined generic functions can be organized into
+packages by specifying the "package" attribute when defining
+<code>.GenericFunction</code>.   Third party libraries
+containing many functions may want to use this in order
+to avoid name conflicts with other systems.   For example,
+if our <tt class="rst-docutils literal">as_utc()</tt> function were part of a package
+"time":</p>
+<pre class="rst-literal-block">
+class as_utc(GenericFunction):
+    type = DateTime
+    package = "time"
+    inherit_cache = True
+</pre>
+<p>The above function would be available from <code>.func</code>
+using the package name <tt class="rst-docutils literal">time</tt>:</p>
+<pre class="rst-literal-block">
+print(select(func.time.as_utc()))
+</pre>
+<p>A final option is to allow the function to be accessed
+from one name in <code>.func</code> but to render as a different name.
+The <tt class="rst-docutils literal">identifier</tt> attribute will override the name used to
+access the function as loaded from <code>.func</code>, but will retain
+the usage of <tt class="rst-docutils literal">name</tt> as the rendered name:</p>
+<pre class="rst-literal-block">
+class GeoBuffer(GenericFunction):
+    type = Geometry
+    package = "geo"
+    name = "ST_Buffer"
+    identifier = "buffer"
+    inherit_cache = True
+</pre>
+<p>The above function will render as follows:</p>
+<pre class="rst-literal-block">
+&gt;&gt;&gt; print(func.geo.buffer())
+ST_Buffer()
+</pre>
+<p>The name will be rendered as is, however without quoting unless the name
+contains special characters that require quoting.  To force quoting
+on or off for the name, use the <code>.sqlalchemy.sql.quoted_name</code>
+construct:</p>
+<pre class="rst-literal-block">
+from sqlalchemy.sql import quoted_name
+
+class GeoBuffer(GenericFunction):
+    type = Geometry
+    package = "geo"
+    name = quoted_name("ST_Buffer", True)
+    identifier = "buffer"
+    inherit_cache = True
+</pre>
+<p>The above function will render as:</p>
+<pre class="rst-literal-block">
+&gt;&gt;&gt; print(func.geo.buffer())
+"ST_Buffer"()
+</pre>
+<div class="rst-versionadded">
+<span class="rst-versionmodified rst-added">New in version 1.3.13: </span><span>The <code>.quoted_name</code> construct is now
+recognized for quoting when used with the "name" attribute of the
+object, so that quoting can be forced on or off for the function
+name.</span></div>
+</div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id19879">
+  
+  
+  <tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__init__" class="internal-link" title="sqlalchemy.sql.functions.GenericFunction.__init__">__init__</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="classvariable">
+    
+    <td>Class Variable</td>
+    <td><code><a href="#coerce_arguments" class="internal-link" title="sqlalchemy.sql.functions.GenericFunction.coerce_arguments">coerce​_arguments</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="classvariable">
+    
+    <td>Class Variable</td>
+    <td><code><a href="#inherit_cache" class="internal-link" title="sqlalchemy.sql.functions.GenericFunction.inherit_cache">inherit​_cache</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#clause_expr" class="internal-link" title="sqlalchemy.sql.functions.GenericFunction.clause_expr">clause​_expr</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#packagenames" class="internal-link" title="sqlalchemy.sql.functions.GenericFunction.packagenames">packagenames</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#type" class="internal-link" title="sqlalchemy.sql.functions.GenericFunction.type">type</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="classvariable private">
+    
+    <td>Class Variable</td>
+    <td><code><a href="#_register" class="internal-link" title="sqlalchemy.sql.functions.GenericFunction._register">​_register</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#_bind" class="internal-link" title="sqlalchemy.sql.functions.GenericFunction._bind">​_bind</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#_has_args" class="internal-link" title="sqlalchemy.sql.functions.GenericFunction._has_args">​_has​_args</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+        
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="basemethod">
+  
+  
+  <a name="sqlalchemy.sql.functions.GenericFunction.__init__">
+    
+  </a>
+  <a name="__init__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__init__</span>(self, *args, **kwargs):
+    
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="sqlalchemy.sql.functions.AnsiFunction.html" class="internal-link">sqlalchemy.sql.functions.AnsiFunction</a></code>, <code><a href="sqlalchemy.sql.functions.array_agg.html" class="internal-link">sqlalchemy.sql.functions.array_agg</a></code>, <code><a href="sqlalchemy.sql.functions.char_length.html" class="internal-link">sqlalchemy.sql.functions.char_length</a></code>, <code><a href="sqlalchemy.sql.functions.count.html" class="internal-link">sqlalchemy.sql.functions.count</a></code>, <code><a href="sqlalchemy.sql.functions.next_value.html" class="internal-link">sqlalchemy.sql.functions.next_value</a></code>, <code><a href="sqlalchemy.sql.functions.ReturnTypeFromArgs.html" class="internal-link">sqlalchemy.sql.functions.ReturnTypeFromArgs</a></code></div>
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="baseclassvariable">
+  
+  
+  <a name="sqlalchemy.sql.functions.GenericFunction.coerce_arguments">
+    
+  </a>
+  <a name="coerce_arguments">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">coerce_arguments</span>: <code>bool</code> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseclassvariable">
+  
+  
+  <a name="sqlalchemy.sql.functions.GenericFunction.inherit_cache">
+    
+  </a>
+  <a name="inherit_cache">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">inherit_cache</span>: <code>bool</code> =
+    
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="sqlalchemy.dialects.postgresql.hstore.hstore.html" class="internal-link">sqlalchemy.dialects.postgresql.hstore.hstore</a></code>, <code><a href="sqlalchemy.sql.functions.AnsiFunction.html" class="internal-link">sqlalchemy.sql.functions.AnsiFunction</a></code>, <code><a href="sqlalchemy.sql.functions.array_agg.html" class="internal-link">sqlalchemy.sql.functions.array_agg</a></code>, <code><a href="sqlalchemy.sql.functions.char_length.html" class="internal-link">sqlalchemy.sql.functions.char_length</a></code>, <code><a href="sqlalchemy.sql.functions.concat.html" class="internal-link">sqlalchemy.sql.functions.concat</a></code>, <code><a href="sqlalchemy.sql.functions.count.html" class="internal-link">sqlalchemy.sql.functions.count</a></code>, <code><a href="sqlalchemy.sql.functions.cube.html" class="internal-link">sqlalchemy.sql.functions.cube</a></code>, <code><a href="sqlalchemy.sql.functions.cume_dist.html" class="internal-link">sqlalchemy.sql.functions.cume_dist</a></code>, <code><a href="sqlalchemy.sql.functions.dense_rank.html" class="internal-link">sqlalchemy.sql.functions.dense_rank</a></code>, <code><a href="sqlalchemy.sql.functions.grouping_sets.html" class="internal-link">sqlalchemy.sql.functions.grouping_sets</a></code>, <code><a href="sqlalchemy.sql.functions.now.html" class="internal-link">sqlalchemy.sql.functions.now</a></code>, <code><a href="sqlalchemy.sql.functions.OrderedSetAgg.html" class="internal-link">sqlalchemy.sql.functions.OrderedSetAgg</a></code>, <code><a href="sqlalchemy.sql.functions.percent_rank.html" class="internal-link">sqlalchemy.sql.functions.percent_rank</a></code>, <code><a href="sqlalchemy.sql.functions.random.html" class="internal-link">sqlalchemy.sql.functions.random</a></code>, <code><a href="sqlalchemy.sql.functions.rank.html" class="internal-link">sqlalchemy.sql.functions.rank</a></code>, <code><a href="sqlalchemy.sql.functions.ReturnTypeFromArgs.html" class="internal-link">sqlalchemy.sql.functions.ReturnTypeFromArgs</a></code>, <code><a href="sqlalchemy.sql.functions.rollup.html" class="internal-link">sqlalchemy.sql.functions.rollup</a></code>, <code><a href="sqlalchemy.dialects.postgresql.hstore._HStoreArrayFunction.html" class="internal-link">sqlalchemy.dialects.postgresql.hstore._HStoreArrayFunction</a></code>, <code><a href="sqlalchemy.dialects.postgresql.hstore._HStoreDefinedFunction.html" class="internal-link">sqlalchemy.dialects.postgresql.hstore._HStoreDefinedFunction</a></code>, <code><a href="sqlalchemy.dialects.postgresql.hstore._HStoreDeleteFunction.html" class="internal-link">sqlalchemy.dialects.postgresql.hstore._HStoreDeleteFunction</a></code>, <code><a href="sqlalchemy.dialects.postgresql.hstore._HStoreKeysFunction.html" class="internal-link">sqlalchemy.dialects.postgresql.hstore._HStoreKeysFunction</a></code>, <code><a href="sqlalchemy.dialects.postgresql.hstore._HStoreMatrixFunction.html" class="internal-link">sqlalchemy.dialects.postgresql.hstore._HStoreMatrixFunction</a></code>, <code><a href="sqlalchemy.dialects.postgresql.hstore._HStoreSliceFunction.html" class="internal-link">sqlalchemy.dialects.postgresql.hstore._HStoreSliceFunction</a></code>, <code><a href="sqlalchemy.dialects.postgresql.hstore._HStoreValsFunction.html" class="internal-link">sqlalchemy.dialects.postgresql.hstore._HStoreValsFunction</a></code></div>
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="sqlalchemy.sql.functions.GenericFunction.clause_expr">
+    
+  </a>
+  <a name="clause_expr">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">clause_expr</span> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="sqlalchemy.sql.functions.GenericFunction.packagenames">
+    
+  </a>
+  <a name="packagenames">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">packagenames</span>: <code>tuple</code> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="sqlalchemy.sql.functions.GenericFunction.type">
+    
+  </a>
+  <a name="type">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">type</span> =
+    
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="sqlalchemy.sql.functions.cume_dist.html" class="internal-link">sqlalchemy.sql.functions.cume_dist</a></code>, <code><a href="sqlalchemy.sql.functions.dense_rank.html" class="internal-link">sqlalchemy.sql.functions.dense_rank</a></code>, <code><a href="sqlalchemy.sql.functions.next_value.html" class="internal-link">sqlalchemy.sql.functions.next_value</a></code>, <code><a href="sqlalchemy.sql.functions.percent_rank.html" class="internal-link">sqlalchemy.sql.functions.percent_rank</a></code>, <code><a href="sqlalchemy.sql.functions.rank.html" class="internal-link">sqlalchemy.sql.functions.rank</a></code>, <code><a href="sqlalchemy.dialects.postgresql.hstore._HStoreArrayFunction.html" class="internal-link">sqlalchemy.dialects.postgresql.hstore._HStoreArrayFunction</a></code>, <code><a href="sqlalchemy.dialects.postgresql.hstore._HStoreKeysFunction.html" class="internal-link">sqlalchemy.dialects.postgresql.hstore._HStoreKeysFunction</a></code>, <code><a href="sqlalchemy.dialects.postgresql.hstore._HStoreMatrixFunction.html" class="internal-link">sqlalchemy.dialects.postgresql.hstore._HStoreMatrixFunction</a></code>, <code><a href="sqlalchemy.dialects.postgresql.hstore._HStoreValsFunction.html" class="internal-link">sqlalchemy.dialects.postgresql.hstore._HStoreValsFunction</a></code></div>
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseclassvariable private">
+  
+  
+  <a name="sqlalchemy.sql.functions.GenericFunction._register">
+    
+  </a>
+  <a name="_register">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_register</span>: <code>bool</code> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  
+  <a name="sqlalchemy.sql.functions.GenericFunction._bind">
+    
+  </a>
+  <a name="_bind">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_bind</span> =
+    
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="sqlalchemy.sql.functions.next_value.html" class="internal-link">sqlalchemy.sql.functions.next_value</a></code></div>
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  
+  <a name="sqlalchemy.sql.functions.GenericFunction._has_args">
+    
+  </a>
+  <a name="_has_args">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_has_args</span> =
+    
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="sqlalchemy.sql.functions.coalesce.html" class="internal-link">sqlalchemy.sql.functions.coalesce</a></code>, <code><a href="sqlalchemy.sql.functions.cube.html" class="internal-link">sqlalchemy.sql.functions.cube</a></code>, <code><a href="sqlalchemy.sql.functions.grouping_sets.html" class="internal-link">sqlalchemy.sql.functions.grouping_sets</a></code>, <code><a href="sqlalchemy.sql.functions.random.html" class="internal-link">sqlalchemy.sql.functions.random</a></code>, <code><a href="sqlalchemy.sql.functions.rollup.html" class="internal-link">sqlalchemy.sql.functions.rollup</a></code></div>
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div>
+
+      </div>
+    </div>
+
+    <footer class="navbar navbar-default">
+  
+  <div class="container">
+    <a href="index.html">API Documentation</a> for sqlalchemy,
+  generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
+    22.2.0 at 2022-02-23 04:41:59.
+  </div>
+</footer>
+
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+  </body>
+</html>

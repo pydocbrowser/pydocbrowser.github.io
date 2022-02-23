@@ -1,0 +1,393 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  
+
+  <head>
+    
+    <title>sqlalchemy.testing.plugin.reinvent_fixtures_py2k</title>
+    <meta name="generator" content="pydoctor 22.2.0"> 
+        
+    </meta>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=0.75" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+    <link rel="stylesheet" type="text/css" href="extra.css" />
+</head>
+
+  <body>
+
+    
+
+    <nav class="navbar navbar-default">
+  
+  <div class="container">
+
+    <div class="navbar-header">
+      
+      <div class="navlinks">
+          <span class="navbar-brand">
+            sqlalchemy <a href="index.html">API Documentation</a>
+          </span>
+
+          <a href="moduleIndex.html">
+            Modules
+          </a>
+
+          <a href="classIndex.html">
+            Classes
+          </a>
+
+          <a href="nameIndex.html">
+            Names
+          </a>
+      </div>
+
+    </div>
+  </div>
+</nav>
+
+    
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="module"><code><code><a href="index.html" class="internal-link">sqlalchemy</a></code><wbr></wbr>.<code><a href="sqlalchemy.testing.html" class="internal-link" title="sqlalchemy.testing">testing</a></code><wbr></wbr>.<code><a href="sqlalchemy.testing.plugin.html" class="internal-link" title="sqlalchemy.testing.plugin">plugin</a></code><wbr></wbr>.<code><a href="sqlalchemy.testing.plugin.reinvent_fixtures_py2k.html" class="internal-link" title="sqlalchemy.testing.plugin.reinvent_fixtures_py2k">reinvent_fixtures_py2k</a></code></code></h1>
+        <div id="showPrivate">
+          <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+        </div>
+      </div>
+
+      <div class="categoryHeader">
+        module documentation
+      </div>
+
+      <div class="extrasDocstring">
+        
+        <p></p>
+      </div>
+
+      <div class="moduleDocstring">
+        <div><p>invent a quick version of pytest autouse fixtures as pytest's unacceptably slow
+collection/high memory use in pytest 4.6.11, which is the highest version that
+works in py2k.</p>
+<p>by "too-slow" we mean the test suite can't even manage to be collected for a
+single process in less than 70 seconds or so and memory use seems to be very
+high as well.   for two or four workers the job just times out after ten
+minutes.</p>
+<p>so instead we have invented a very limited form of these fixtures, as our
+current use of "autouse" fixtures are limited to those in fixtures.py.</p>
+<p>assumptions for these fixtures:</p>
+<ol class="rst-arabic simple">
+<li>we are only using "function" or "class" scope</li>
+<li>the functions must be associated with a test class</li>
+<li>the fixture functions cannot themselves use pytest fixtures</li>
+<li>the fixture functions must use yield, not return</li>
+</ol>
+<p>When py2k support is removed and we can stay on a modern pytest version, this
+can all be removed.</p>
+</div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id20920">
+  
+  
+  <tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#add_fixture" class="internal-link" title="sqlalchemy.testing.plugin.reinvent_fixtures_py2k.add_fixture">add​_fixture</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#run_class_fixture_setup" class="internal-link" title="sqlalchemy.testing.plugin.reinvent_fixtures_py2k.run_class_fixture_setup">run​_class​_fixture​_setup</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#run_class_fixture_teardown" class="internal-link" title="sqlalchemy.testing.plugin.reinvent_fixtures_py2k.run_class_fixture_teardown">run​_class​_fixture​_teardown</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#run_fn_fixture_setup" class="internal-link" title="sqlalchemy.testing.plugin.reinvent_fixtures_py2k.run_fn_fixture_setup">run​_fn​_fixture​_setup</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#run_fn_fixture_teardown" class="internal-link" title="sqlalchemy.testing.plugin.reinvent_fixtures_py2k.run_fn_fixture_teardown">run​_fn​_fixture​_teardown</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#scan_for_fixtures_to_use_for_class" class="internal-link" title="sqlalchemy.testing.plugin.reinvent_fixtures_py2k.scan_for_fixtures_to_use_for_class">scan​_for​_fixtures​_to​_use​_for​_class</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable private">
+    
+    <td>Variable</td>
+    <td><code><a href="#_py2k_class_fixtures" class="internal-link" title="sqlalchemy.testing.plugin.reinvent_fixtures_py2k._py2k_class_fixtures">​_py2k​_class​_fixtures</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable private">
+    
+    <td>Variable</td>
+    <td><code><a href="#_py2k_cls_fixture_stack" class="internal-link" title="sqlalchemy.testing.plugin.reinvent_fixtures_py2k._py2k_cls_fixture_stack">​_py2k​_cls​_fixture​_stack</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable private">
+    
+    <td>Variable</td>
+    <td><code><a href="#_py2k_fixture_fn_names" class="internal-link" title="sqlalchemy.testing.plugin.reinvent_fixtures_py2k._py2k_fixture_fn_names">​_py2k​_fixture​_fn​_names</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable private">
+    
+    <td>Variable</td>
+    <td><code><a href="#_py2k_fn_fixture_stack" class="internal-link" title="sqlalchemy.testing.plugin.reinvent_fixtures_py2k._py2k_fn_fixture_stack">​_py2k​_fn​_fixture​_stack</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable private">
+    
+    <td>Variable</td>
+    <td><code><a href="#_py2k_function_fixtures" class="internal-link" title="sqlalchemy.testing.plugin.reinvent_fixtures_py2k._py2k_function_fixtures">​_py2k​_function​_fixtures</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+        
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="basefunction">
+  
+  
+  <a name="sqlalchemy.testing.plugin.reinvent_fixtures_py2k.add_fixture">
+    
+  </a>
+  <a name="add_fixture">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">add_fixture</span>(fn, fixture):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="sqlalchemy.testing.plugin.reinvent_fixtures_py2k.run_class_fixture_setup">
+    
+  </a>
+  <a name="run_class_fixture_setup">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">run_class_fixture_setup</span>(request):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="sqlalchemy.testing.plugin.reinvent_fixtures_py2k.run_class_fixture_teardown">
+    
+  </a>
+  <a name="run_class_fixture_teardown">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">run_class_fixture_teardown</span>(request):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="sqlalchemy.testing.plugin.reinvent_fixtures_py2k.run_fn_fixture_setup">
+    
+  </a>
+  <a name="run_fn_fixture_setup">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">run_fn_fixture_setup</span>(request):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="sqlalchemy.testing.plugin.reinvent_fixtures_py2k.run_fn_fixture_teardown">
+    
+  </a>
+  <a name="run_fn_fixture_teardown">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">run_fn_fixture_teardown</span>(request):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="sqlalchemy.testing.plugin.reinvent_fixtures_py2k.scan_for_fixtures_to_use_for_class">
+    
+  </a>
+  <a name="scan_for_fixtures_to_use_for_class">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">scan_for_fixtures_to_use_for_class</span>(item):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basevariable private">
+  
+  
+  <a name="sqlalchemy.testing.plugin.reinvent_fixtures_py2k._py2k_class_fixtures">
+    
+  </a>
+  <a name="_py2k_class_fixtures">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_py2k_class_fixtures</span> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="basevariable private">
+  
+  
+  <a name="sqlalchemy.testing.plugin.reinvent_fixtures_py2k._py2k_cls_fixture_stack">
+    
+  </a>
+  <a name="_py2k_cls_fixture_stack">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_py2k_cls_fixture_stack</span>: <code>list</code> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="basevariable private">
+  
+  
+  <a name="sqlalchemy.testing.plugin.reinvent_fixtures_py2k._py2k_fixture_fn_names">
+    
+  </a>
+  <a name="_py2k_fixture_fn_names">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_py2k_fixture_fn_names</span> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="basevariable private">
+  
+  
+  <a name="sqlalchemy.testing.plugin.reinvent_fixtures_py2k._py2k_fn_fixture_stack">
+    
+  </a>
+  <a name="_py2k_fn_fixture_stack">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_py2k_fn_fixture_stack</span>: <code>list</code> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="basevariable private">
+  
+  
+  <a name="sqlalchemy.testing.plugin.reinvent_fixtures_py2k._py2k_function_fixtures">
+    
+  </a>
+  <a name="_py2k_function_fixtures">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_py2k_function_fixtures</span> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div>
+
+      </div>
+    </div>
+
+    <footer class="navbar navbar-default">
+  
+  <div class="container">
+    <a href="index.html">API Documentation</a> for sqlalchemy,
+  generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
+    22.2.0 at 2022-02-23 04:41:59.
+  </div>
+</footer>
+
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+  </body>
+</html>

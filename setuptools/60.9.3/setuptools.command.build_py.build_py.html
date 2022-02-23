@@ -1,0 +1,649 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  
+
+  <head>
+    
+    <title>setuptools.command.build_py.build_py</title>
+    <meta name="generator" content="pydoctor 22.2.0"> 
+        
+    </meta>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=0.75" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+    <link rel="stylesheet" type="text/css" href="extra.css" />
+</head>
+
+  <body>
+
+    
+
+    <nav class="navbar navbar-default">
+  
+  <div class="container">
+
+    <div class="navbar-header">
+      
+      <div class="navlinks">
+          <span class="navbar-brand">
+            setuptools <a href="index.html">API Documentation</a>
+          </span>
+
+          <a href="moduleIndex.html">
+            Modules
+          </a>
+
+          <a href="classIndex.html">
+            Classes
+          </a>
+
+          <a href="nameIndex.html">
+            Names
+          </a>
+      </div>
+
+    </div>
+  </div>
+</nav>
+
+    
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="class"><code><code><a href="index.html" class="internal-link">setuptools</a></code><wbr></wbr>.<code><a href="setuptools.command.html" class="internal-link" title="setuptools.command">command</a></code><wbr></wbr>.<code><a href="setuptools.command.build_py.html" class="internal-link" title="setuptools.command.build_py">build_py</a></code><wbr></wbr>.<code><a href="setuptools.command.build_py.build_py.html" class="internal-link" title="setuptools.command.build_py.build_py">build_py</a></code></code></h1>
+        <div id="showPrivate">
+          <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+        </div>
+      </div>
+
+      <div class="categoryHeader">
+        class documentation
+      </div>
+
+      <div class="extrasDocstring">
+        <p><code><span class="py-keyword">class</span> <span class="py-defname">build_py</span>(orig.build_py):</code></p>
+        <p><a href="classIndex.html#setuptools.command.build_py.build_py">View In Hierarchy</a></p>
+      </div>
+
+      <div class="moduleDocstring">
+        <div><p>Enhanced 'build_py' command that includes data files with packages</p>
+<p>The data files are specified via a 'package_data' argument to 'setup()'.
+See 'setuptools.dist.Distribution' for more details.</p>
+<p>Also, this version of the 'build_py' command allows you to specify both
+'py_modules' and 'packages' in the same setup operation.</p>
+</div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id12321">
+  
+  
+  <tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__getattr__" class="internal-link" title="setuptools.command.build_py.build_py.__getattr__">__getattr__</a></code></td>
+    <td>lazily compute data files</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#analyze_manifest" class="internal-link" title="setuptools.command.build_py.build_py.analyze_manifest">analyze​_manifest</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#build_module" class="internal-link" title="setuptools.command.build_py.build_py.build_module">build​_module</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#build_package_data" class="internal-link" title="setuptools.command.build_py.build_py.build_package_data">build​_package​_data</a></code></td>
+    <td>Copy data files into build directory</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#check_package" class="internal-link" title="setuptools.command.build_py.build_py.check_package">check​_package</a></code></td>
+    <td>Check namespace packages' __init__ for declare_namespace</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#exclude_data_files" class="internal-link" title="setuptools.command.build_py.build_py.exclude_data_files">exclude​_data​_files</a></code></td>
+    <td>Filter filenames for package's data files in 'src_dir'</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#finalize_options" class="internal-link" title="setuptools.command.build_py.build_py.finalize_options">finalize​_options</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#find_data_files" class="internal-link" title="setuptools.command.build_py.build_py.find_data_files">find​_data​_files</a></code></td>
+    <td>Return filenames for package's data files in 'src_dir'</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#get_data_files" class="internal-link" title="setuptools.command.build_py.build_py.get_data_files">get​_data​_files</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#get_data_files_without_manifest" class="internal-link" title="setuptools.command.build_py.build_py.get_data_files_without_manifest">get​_data​_files​_without​_manifest</a></code></td>
+    <td>Generate list of <tt class="rst-docutils literal">(package,src_dir,build_dir,filenames)</tt> tuples, but without triggering any attempt to analyze or build the manifest.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#get_package_dir" class="internal-link" title="setuptools.command.build_py.build_py.get_package_dir">get​_package​_dir</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#initialize_options" class="internal-link" title="setuptools.command.build_py.build_py.initialize_options">initialize​_options</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#run" class="internal-link" title="setuptools.command.build_py.build_py.run">run</a></code></td>
+    <td>Build modules, packages, and copy data files to build directory</td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#data_files" class="internal-link" title="setuptools.command.build_py.build_py.data_files">data​_files</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#exclude_package_data" class="internal-link" title="setuptools.command.build_py.build_py.exclude_package_data">exclude​_package​_data</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#manifest_files" class="internal-link" title="setuptools.command.build_py.build_py.manifest_files">manifest​_files</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#package_data" class="internal-link" title="setuptools.command.build_py.build_py.package_data">package​_data</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#packages_checked" class="internal-link" title="setuptools.command.build_py.build_py.packages_checked">packages​_checked</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="staticmethod private">
+    
+    <td>Static Method</td>
+    <td><code><a href="#_get_platform_patterns" class="internal-link" title="setuptools.command.build_py.build_py._get_platform_patterns">​_get​_platform​_patterns</a></code></td>
+    <td><span class="undocumented">No summary</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_get_data_files" class="internal-link" title="setuptools.command.build_py.build_py._get_data_files">​_get​_data​_files</a></code></td>
+    <td>Generate list of '(package,src_dir,build_dir,filenames)' tuples</td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_get_pkg_data_files" class="internal-link" title="setuptools.command.build_py.build_py._get_pkg_data_files">​_get​_pkg​_data​_files</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#__updated_files" class="internal-link" title="setuptools.command.build_py.build_py.__updated_files">__updated​_files</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+        
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="basemethod">
+  
+  
+  <a name="setuptools.command.build_py.build_py.__getattr__">
+    
+  </a>
+  <a name="__getattr__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__getattr__</span>(self, attr):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>lazily compute data files</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="setuptools.command.build_py.build_py.analyze_manifest">
+    
+  </a>
+  <a name="analyze_manifest">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">analyze_manifest</span>(self):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="setuptools.command.build_py.build_py.build_module">
+    
+  </a>
+  <a name="build_module">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">build_module</span>(self, module, module_file, package):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="setuptools.command.build_py.build_py.build_package_data">
+    
+  </a>
+  <a name="build_package_data">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">build_package_data</span>(self):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Copy data files into build directory</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="setuptools.command.build_py.build_py.check_package">
+    
+  </a>
+  <a name="check_package">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">check_package</span>(self, package, package_dir):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Check namespace packages' __init__ for declare_namespace</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="setuptools.command.build_py.build_py.exclude_data_files">
+    
+  </a>
+  <a name="exclude_data_files">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">exclude_data_files</span>(self, package, src_dir, files):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Filter filenames for package's data files in 'src_dir'</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="setuptools.command.build_py.build_py.finalize_options">
+    
+  </a>
+  <a name="finalize_options">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">finalize_options</span>(self):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="setuptools.command.build_py.build_py.find_data_files">
+    
+  </a>
+  <a name="find_data_files">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">find_data_files</span>(self, package, src_dir):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Return filenames for package's data files in 'src_dir'</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="setuptools.command.build_py.build_py.get_data_files">
+    
+  </a>
+  <a name="get_data_files">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">get_data_files</span>(self):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="setuptools.command.build_py.build_py.get_data_files_without_manifest">
+    
+  </a>
+  <a name="get_data_files_without_manifest">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">get_data_files_without_manifest</span>(self):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Generate list of <tt class="rst-docutils literal">(package,src_dir,build_dir,filenames)</tt> tuples,
+but without triggering any attempt to analyze or build the manifest.</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="setuptools.command.build_py.build_py.get_package_dir">
+    
+  </a>
+  <a name="get_package_dir">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">get_package_dir</span>(self, package):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="setuptools.command.build_py.build_py.initialize_options">
+    
+  </a>
+  <a name="initialize_options">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">initialize_options</span>(self):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="setuptools.command.build_py.build_py.run">
+    
+  </a>
+  <a name="run">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">run</span>(self):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Build modules, packages, and copy data files to build directory</div>
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="setuptools.command.build_py.build_py.data_files">
+    
+  </a>
+  <a name="data_files">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">data_files</span> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="setuptools.command.build_py.build_py.exclude_package_data">
+    
+  </a>
+  <a name="exclude_package_data">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">exclude_package_data</span> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="setuptools.command.build_py.build_py.manifest_files">
+    
+  </a>
+  <a name="manifest_files">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">manifest_files</span>: <code>dict</code> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="setuptools.command.build_py.build_py.package_data">
+    
+  </a>
+  <a name="package_data">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">package_data</span> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="setuptools.command.build_py.build_py.packages_checked">
+    
+  </a>
+  <a name="packages_checked">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">packages_checked</span>: <code>dict</code> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="basestaticmethod private">
+  
+  
+  <a name="setuptools.command.build_py.build_py._get_platform_patterns">
+    
+  </a>
+  <a name="_get_platform_patterns">
+    
+  </a>
+  <div class="functionHeader">
+    @staticmethod<br />
+    <span class="py-keyword">def</span> <span class="py-defname">_get_platform_patterns</span>(spec, package, src_dir):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>yield platform-specific path patterns (suitable for glob
+or fn_match) from a glob-based spec (such as
+self.package_data or self.exclude_package_data)
+matching package in src_dir.</div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="setuptools.command.build_py.build_py._get_data_files">
+    
+  </a>
+  <a name="_get_data_files">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_get_data_files</span>(self):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Generate list of '(package,src_dir,build_dir,filenames)' tuples</div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="setuptools.command.build_py.build_py._get_pkg_data_files">
+    
+  </a>
+  <a name="_get_pkg_data_files">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_get_pkg_data_files</span>(self, package):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  
+  <a name="setuptools.command.build_py.build_py.__updated_files">
+    
+  </a>
+  <a name="__updated_files">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">__updated_files</span>: <code>list</code> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div>
+
+      </div>
+    </div>
+
+    <footer class="navbar navbar-default">
+  
+  <div class="container">
+    <a href="index.html">API Documentation</a> for setuptools,
+  generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
+    22.2.0 at 2022-02-23 04:39:29.
+  </div>
+</footer>
+
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+  </body>
+</html>
