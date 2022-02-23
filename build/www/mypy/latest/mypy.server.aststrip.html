@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  
+
+  <head>
+    
+    <title>mypy.server.aststrip</title>
+    <meta name="generator" content="pydoctor 22.2.0"> 
+        
+    </meta>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=0.75" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+    <link rel="stylesheet" type="text/css" href="extra.css" />
+</head>
+
+  <body>
+
+    <div id="banner" class="container">    
+    <div>
+        <a href="https://pydocbrowser.github.io/">Home</a>
+        &gt; mypy-0.931 
+        <!-- This is an important placeholder and will be 
+            replaced by project name and version on building docs -->
+        
+        <!-- (<a href=""&gt;show all versions</a&gt;) -->
+    </div>
+</div>
+
+    <nav class="navbar navbar-default">
+  
+  <div class="container">
+
+    <div class="navbar-header">
+      
+      <div class="navlinks">
+          <span class="navbar-brand">
+            mypy <a href="index.html">API Documentation</a>
+          </span>
+
+          <a href="moduleIndex.html">
+            Modules
+          </a>
+
+          <a href="classIndex.html">
+            Classes
+          </a>
+
+          <a href="nameIndex.html">
+            Names
+          </a>
+      </div>
+
+    </div>
+  </div>
+</nav>
+
+    
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="module"><code><code><a href="index.html" class="internal-link">mypy</a></code><wbr></wbr>.<code><a href="mypy.server.html" class="internal-link" title="mypy.server">server</a></code><wbr></wbr>.<code><a href="mypy.server.aststrip.html" class="internal-link" title="mypy.server.aststrip">aststrip</a></code></code></h1>
+        <div id="showPrivate">
+          <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+        </div>
+      </div>
+
+      <div class="categoryHeader">
+        module documentation
+      </div>
+
+      <div class="extrasDocstring">
+        <a href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.931//mypy/server/aststrip.py" class="sourceLink">(source)</a>
+        <p></p>
+      </div>
+
+      <div class="moduleDocstring">
+        <div><p>Strip/reset AST in-place to match state after semantic analyzer pre-analysis.</p>
+<p>Fine-grained incremental mode reruns semantic analysis main pass
+and type checking for <em>existing</em> AST nodes (targets) when changes are
+propagated using fine-grained dependencies.  AST nodes attributes are
+sometimes changed during semantic analysis main pass, and running
+semantic analysis again on those nodes would produce incorrect
+results, since this pass isn't idempotent. This pass resets AST
+nodes to reflect the state after semantic pre-analysis, so that we
+can rerun semantic analysis.
+(The above is in contrast to behavior with modules that have source code
+changes, for which we re-parse the entire module and reconstruct a fresh
+AST. No stripping is required in this case. Both modes of operation should
+have the same outcome.)
+Notes:
+* This is currently pretty fragile, as we must carefully undo whatever</p>
+<blockquote>
+changes can be made in semantic analysis main pass, including changes
+to symbol tables.</blockquote>
+<ul>
+<li><p class="rst-first">We reuse existing AST nodes because it makes it relatively straightforward
+to reprocess only a single target within a module efficiently. If there
+was a way to parse a single target within a file, in time proportional to
+the size of the target, we'd rather create fresh AST nodes than strip them.
+(This is possible only in Python 3.8+)</p>
+</li>
+<li><p class="rst-first">Currently we don't actually reset all changes, but only those known to affect
+non-idempotent semantic analysis behavior.
+TODO: It would be more principled and less fragile to reset everything</p>
+<blockquote>
+<p>changed in semantic analysis main pass and later.</p>
+</blockquote>
+</li>
+<li><p class="rst-first">Reprocessing may recreate AST nodes (such as Var nodes, and TypeInfo nodes
+created with assignment statements) that will get different identities from
+the original AST. Thus running an AST merge is necessary after stripping,
+even though some identities are preserved.</p>
+</li>
+</ul>
+</div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id12294">
+  
+  
+  <tr class="class">
+    
+    <td>Class</td>
+    <td><code><a href="mypy.server.aststrip.NodeStripVisitor.html" class="internal-link" title="mypy.server.aststrip.NodeStripVisitor">​Node​Strip​Visitor</a></code></td>
+    <td><span class="undocumented">No class docstring; 0/4 instance variable, 3/21 methods documented</span></td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#strip_target" class="internal-link" title="mypy.server.aststrip.strip_target">strip​_target</a></code></td>
+    <td>Reset a fine-grained incremental target to state before semantic analysis.</td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><code><a href="#SavedAttributes" class="internal-link" title="mypy.server.aststrip.SavedAttributes">​Saved​Attributes</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+        
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="basefunction">
+  
+  
+  <a name="mypy.server.aststrip.strip_target">
+    
+  </a>
+  <a name="strip_target">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">strip_target</span>(node, saved_attrs):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.931//mypy/server/aststrip.py#L52">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Reset a fine-grained incremental target to state before semantic analysis.</p>
+<p>All TypeInfos are killed. Therefore we need to preserve the variables
+defined as attributes on self. This is done by patches (callbacks)
+returned from this function that re-add these variables when called.</p>
+<dl class="rst-docutils">
+<dt>Args:</dt>
+<dd><p class="rst-first">node: node to strip
+saved_attrs: collect attributes here that may need to be re-added to</p>
+<blockquote class="rst-last">
+classes afterwards if stripping a class body (this dict is mutated)</blockquote>
+</dd>
+</dl>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">node:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Union" class="intersphinx-link">Union</a>[<wbr></wbr><a href="mypy.nodes.MypyFile.html" class="internal-link" title="mypy.nodes.MypyFile">MypyFile</a>, <wbr></wbr><a href="mypy.nodes.FuncDef.html" class="internal-link" title="mypy.nodes.FuncDef">FuncDef</a>, <wbr></wbr><a href="mypy.nodes.OverloadedFuncDef.html" class="internal-link" title="mypy.nodes.OverloadedFuncDef">OverloadedFuncDef</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">saved​_attrs:</span><code><a href="#SavedAttributes" class="internal-link" title="mypy.server.aststrip.SavedAttributes">SavedAttributes</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basevariable">
+  
+  
+  <a name="mypy.server.aststrip.SavedAttributes">
+    
+  </a>
+  <a name="SavedAttributes">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">SavedAttributes</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.931//mypy/server/aststrip.py#L49">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div>
+
+      </div>
+    </div>
+
+    <footer class="navbar navbar-default">
+  
+  <div class="container">
+    <a href="index.html">API Documentation</a> for mypy,
+  generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
+    22.2.0 at 2022-02-23 08:16:30.
+  </div>
+</footer>
+
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+  </body>
+</html>

@@ -1,0 +1,747 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  
+
+  <head>
+    
+    <title>django.db.migrations.loader.MigrationLoader</title>
+    <meta name="generator" content="pydoctor 22.2.0"> 
+        
+    </meta>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=0.75" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+    <link rel="stylesheet" type="text/css" href="extra.css" />
+</head>
+
+  <body>
+
+    <div id="banner" class="container">    
+    <div>
+        <a href="https://pydocbrowser.github.io/">Home</a>
+        &gt; django-4.0.2 
+        <!-- This is an important placeholder and will be 
+            replaced by project name and version on building docs -->
+        
+        <!-- (<a href=""&gt;show all versions</a&gt;) -->
+    </div>
+</div>
+
+    <nav class="navbar navbar-default">
+  
+  <div class="container">
+
+    <div class="navbar-header">
+      
+      <div class="navlinks">
+          <span class="navbar-brand">
+            django <a href="index.html">API Documentation</a>
+          </span>
+
+          <a href="moduleIndex.html">
+            Modules
+          </a>
+
+          <a href="classIndex.html">
+            Classes
+          </a>
+
+          <a href="nameIndex.html">
+            Names
+          </a>
+      </div>
+
+    </div>
+  </div>
+</nav>
+
+    
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="class"><code><code><a href="index.html" class="internal-link">django</a></code><wbr></wbr>.<code><a href="django.db.html" class="internal-link" title="django.db">db</a></code><wbr></wbr>.<code><a href="django.db.migrations.html" class="internal-link" title="django.db.migrations">migrations</a></code><wbr></wbr>.<code><a href="django.db.migrations.loader.html" class="internal-link" title="django.db.migrations.loader">loader</a></code><wbr></wbr>.<code><a href="django.db.migrations.loader.MigrationLoader.html" class="internal-link" title="django.db.migrations.loader.MigrationLoader">MigrationLoader</a></code></code></h1>
+        <div id="showPrivate">
+          <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+        </div>
+      </div>
+
+      <div class="categoryHeader">
+        class documentation
+      </div>
+
+      <div class="extrasDocstring">
+        <p><code><span class="py-keyword">class</span> <span class="py-defname">MigrationLoader</span>: <a href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/django-4.0.2//django/db/migrations/loader.py#L18" class="sourceLink">(source)</a></code></p>
+        <p><a href="classIndex.html#django.db.migrations.loader.MigrationLoader">View In Hierarchy</a></p>
+      </div>
+
+      <div class="moduleDocstring">
+        <div><p>Load migration files from disk and their status from the database.</p>
+<p>Migration files are expected to live in the "migrations" directory of
+an app. Their names are entirely unimportant from a code perspective,
+but will probably follow the 1234_name.py convention.</p>
+<p>On initialization, this class will scan those directories, and open and
+read the Python files, looking for a class called Migration, which should
+inherit from django.db.migrations.Migration. See
+django.db.migrations.migration for what that looks like.</p>
+<p>Some migrations will be marked as "replacing" another set of migrations.
+These are loaded into a separate set of migrations away from the main ones.
+If all the migrations they replace are either unapplied or missing from
+disk, then they are injected into the main set, replacing the named migrations.
+Any dependency pointers to the replaced migrations are re-pointed to the
+new migration.</p>
+<p>This does mean that this class MUST also talk to the database as well as
+to disk, but this is probably fine. We're already not just operating
+in memory.</p>
+</div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id3872">
+  
+  
+  <tr class="classmethod">
+    
+    <td>Class Method</td>
+    <td><code><a href="#migrations_module" class="internal-link" title="django.db.migrations.loader.MigrationLoader.migrations_module">migrations​_module</a></code></td>
+    <td>Return the path to the migrations module for the specified app_label and a boolean indicating if the module is specified in settings.MIGRATION_MODULE.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__init__" class="internal-link" title="django.db.migrations.loader.MigrationLoader.__init__">__init__</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#add_external_dependencies" class="internal-link" title="django.db.migrations.loader.MigrationLoader.add_external_dependencies">add​_external​_dependencies</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#add_internal_dependencies" class="internal-link" title="django.db.migrations.loader.MigrationLoader.add_internal_dependencies">add​_internal​_dependencies</a></code></td>
+    <td>Internal dependencies need to be added first to ensure <code>__first__</code> dependencies find the correct root node.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#build_graph" class="internal-link" title="django.db.migrations.loader.MigrationLoader.build_graph">build​_graph</a></code></td>
+    <td>Build a migration dependency graph using both the disk and database. You'll need to rebuild the graph if you apply migrations. This isn't usually a problem as generally migration stuff runs in a one-shot process.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#check_consistent_history" class="internal-link" title="django.db.migrations.loader.MigrationLoader.check_consistent_history">check​_consistent​_history</a></code></td>
+    <td>Raise InconsistentMigrationHistory if any applied migrations have unapplied dependencies.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#check_key" class="internal-link" title="django.db.migrations.loader.MigrationLoader.check_key">check​_key</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#collect_sql" class="internal-link" title="django.db.migrations.loader.MigrationLoader.collect_sql">collect​_sql</a></code></td>
+    <td>Take a migration plan and return a list of collected SQL statements that represent the best-efforts version of that plan.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#detect_conflicts" class="internal-link" title="django.db.migrations.loader.MigrationLoader.detect_conflicts">detect​_conflicts</a></code></td>
+    <td>Look through the loaded graph and detect any conflicts - apps with more than one leaf migration. Return a dict of the app labels that conflict with the migration names that conflict.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#get_migration" class="internal-link" title="django.db.migrations.loader.MigrationLoader.get_migration">get​_migration</a></code></td>
+    <td>Return the named migration or raise NodeNotFoundError.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#get_migration_by_prefix" class="internal-link" title="django.db.migrations.loader.MigrationLoader.get_migration_by_prefix">get​_migration​_by​_prefix</a></code></td>
+    <td>Return the migration(s) which match the given app label and name_prefix.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#load_disk" class="internal-link" title="django.db.migrations.loader.MigrationLoader.load_disk">load​_disk</a></code></td>
+    <td>Load the migrations from all INSTALLED_APPS from disk.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#project_state" class="internal-link" title="django.db.migrations.loader.MigrationLoader.project_state">project​_state</a></code></td>
+    <td>Return a ProjectState object representing the most recent state that the loaded migrations represent.</td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#applied_migrations" class="internal-link" title="django.db.migrations.loader.MigrationLoader.applied_migrations">applied​_migrations</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#connection" class="internal-link" title="django.db.migrations.loader.MigrationLoader.connection">connection</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#disk_migrations" class="internal-link" title="django.db.migrations.loader.MigrationLoader.disk_migrations">disk​_migrations</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#graph" class="internal-link" title="django.db.migrations.loader.MigrationLoader.graph">graph</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#ignore_no_migrations" class="internal-link" title="django.db.migrations.loader.MigrationLoader.ignore_no_migrations">ignore​_no​_migrations</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#migrated_apps" class="internal-link" title="django.db.migrations.loader.MigrationLoader.migrated_apps">migrated​_apps</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#replace_migrations" class="internal-link" title="django.db.migrations.loader.MigrationLoader.replace_migrations">replace​_migrations</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#replacements" class="internal-link" title="django.db.migrations.loader.MigrationLoader.replacements">replacements</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#unmigrated_apps" class="internal-link" title="django.db.migrations.loader.MigrationLoader.unmigrated_apps">unmigrated​_apps</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+        
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="baseclassmethod">
+  
+  
+  <a name="django.db.migrations.loader.MigrationLoader.migrations_module">
+    
+  </a>
+  <a name="migrations_module">
+    
+  </a>
+  <div class="functionHeader">
+    @<a href="https://docs.python.org/3/library/functions.html#classmethod" class="intersphinx-link">classmethod</a><br />
+    <span class="py-keyword">def</span> <span class="py-defname">migrations_module</span>(cls, app_label):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/django-4.0.2//django/db/migrations/loader.py#L55">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Return the path to the migrations module for the specified app_label
+and a boolean indicating if the module is specified in
+settings.MIGRATION_MODULE.</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="django.db.migrations.loader.MigrationLoader.__init__">
+    
+  </a>
+  <a name="__init__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__init__</span>(self, connection, load=<a href="https://docs.python.org/3/library/constants.html#True" class="intersphinx-link">True</a>, ignore_no_migrations=<a href="https://docs.python.org/3/library/constants.html#False" class="intersphinx-link">False</a>, replace_migrations=<a href="https://docs.python.org/3/library/constants.html#True" class="intersphinx-link">True</a>):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/django-4.0.2//django/db/migrations/loader.py#L43">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="django.db.migrations.loader.MigrationLoader.add_external_dependencies">
+    
+  </a>
+  <a name="add_external_dependencies">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">add_external_dependencies</span>(self, key, migration):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/django-4.0.2//django/db/migrations/loader.py#L197">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="django.db.migrations.loader.MigrationLoader.add_internal_dependencies">
+    
+  </a>
+  <a name="add_internal_dependencies">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">add_internal_dependencies</span>(self, key, migration):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/django-4.0.2//django/db/migrations/loader.py#L187">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Internal dependencies need to be added first to ensure <code>__first__</code>
+dependencies find the correct root node.</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="django.db.migrations.loader.MigrationLoader.build_graph">
+    
+  </a>
+  <a name="build_graph">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">build_graph</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/django-4.0.2//django/db/migrations/loader.py#L210">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Build a migration dependency graph using both the disk and database.
+You'll need to rebuild the graph if you apply migrations. This isn't
+usually a problem as generally migration stuff runs in a one-shot process.</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="django.db.migrations.loader.MigrationLoader.check_consistent_history">
+    
+  </a>
+  <a name="check_consistent_history">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">check_consistent_history</span>(self, connection):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/django-4.0.2//django/db/migrations/loader.py#L291">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Raise InconsistentMigrationHistory if any applied migrations have
+unapplied dependencies.</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="django.db.migrations.loader.MigrationLoader.check_key">
+    
+  </a>
+  <a name="check_key">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">check_key</span>(self, key, current_app):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/django-4.0.2//django/db/migrations/loader.py#L159">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="django.db.migrations.loader.MigrationLoader.collect_sql">
+    
+  </a>
+  <a name="collect_sql">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">collect_sql</span>(self, plan):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/django-4.0.2//django/db/migrations/loader.py#L340">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Take a migration plan and return a list of collected SQL statements
+that represent the best-efforts version of that plan.</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="django.db.migrations.loader.MigrationLoader.detect_conflicts">
+    
+  </a>
+  <a name="detect_conflicts">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">detect_conflicts</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/django-4.0.2//django/db/migrations/loader.py#L317">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Look through the loaded graph and detect any conflicts - apps
+with more than one leaf migration. Return a dict of the app labels
+that conflict with the migration names that conflict.</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="django.db.migrations.loader.MigrationLoader.get_migration">
+    
+  </a>
+  <a name="get_migration">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">get_migration</span>(self, app_label, name_prefix):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/django-4.0.2//django/db/migrations/loader.py#L134">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Return the named migration or raise NodeNotFoundError.</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="django.db.migrations.loader.MigrationLoader.get_migration_by_prefix">
+    
+  </a>
+  <a name="get_migration_by_prefix">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">get_migration_by_prefix</span>(self, app_label, name_prefix):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/django-4.0.2//django/db/migrations/loader.py#L138">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Return the migration(s) which match the given app label and name_prefix.</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="django.db.migrations.loader.MigrationLoader.load_disk">
+    
+  </a>
+  <a name="load_disk">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">load_disk</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/django-4.0.2//django/db/migrations/loader.py#L68">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Load the migrations from all INSTALLED_APPS from disk.</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="django.db.migrations.loader.MigrationLoader.project_state">
+    
+  </a>
+  <a name="project_state">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">project_state</span>(self, nodes=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, at_end=<a href="https://docs.python.org/3/library/constants.html#True" class="intersphinx-link">True</a>):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/django-4.0.2//django/db/migrations/loader.py#L331">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Return a ProjectState object representing the most recent state
+that the loaded migrations represent.</p>
+<p>See graph.make_state() for the meaning of "nodes" and "at_end".</p>
+</div>
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="django.db.migrations.loader.MigrationLoader.applied_migrations">
+    
+  </a>
+  <a name="applied_migrations">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">applied_migrations</span>: <code><a href="https://docs.python.org/3/library/stdtypes.html#dict" class="intersphinx-link">dict</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/django-4.0.2//django/db/migrations/loader.py#L49">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="django.db.migrations.loader.MigrationLoader.connection">
+    
+  </a>
+  <a name="connection">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">connection</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/django-4.0.2//django/db/migrations/loader.py#L47">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="django.db.migrations.loader.MigrationLoader.disk_migrations">
+    
+  </a>
+  <a name="disk_migrations">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">disk_migrations</span>: <code><a href="https://docs.python.org/3/library/stdtypes.html#dict" class="intersphinx-link">dict</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/django-4.0.2//django/db/migrations/loader.py#L48">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="django.db.migrations.loader.MigrationLoader.graph">
+    
+  </a>
+  <a name="graph">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">graph</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/django-4.0.2//django/db/migrations/loader.py#L226">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="django.db.migrations.loader.MigrationLoader.ignore_no_migrations">
+    
+  </a>
+  <a name="ignore_no_migrations">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">ignore_no_migrations</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/django-4.0.2//django/db/migrations/loader.py#L50">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="django.db.migrations.loader.MigrationLoader.migrated_apps">
+    
+  </a>
+  <a name="migrated_apps">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">migrated_apps</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/django-4.0.2//django/db/migrations/loader.py#L72">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="django.db.migrations.loader.MigrationLoader.replace_migrations">
+    
+  </a>
+  <a name="replace_migrations">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">replace_migrations</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/django-4.0.2//django/db/migrations/loader.py#L51">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="django.db.migrations.loader.MigrationLoader.replacements">
+    
+  </a>
+  <a name="replacements">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">replacements</span>: <code><a href="https://docs.python.org/3/library/stdtypes.html#dict" class="intersphinx-link">dict</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/django-4.0.2//django/db/migrations/loader.py#L227">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="django.db.migrations.loader.MigrationLoader.unmigrated_apps">
+    
+  </a>
+  <a name="unmigrated_apps">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">unmigrated_apps</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/django-4.0.2//django/db/migrations/loader.py#L71">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div>
+
+      </div>
+    </div>
+
+    <footer class="navbar navbar-default">
+  
+  <div class="container">
+    <a href="index.html">API Documentation</a> for django,
+  generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
+    22.2.0 at 2022-02-23 08:05:35.
+  </div>
+</footer>
+
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+  </body>
+</html>

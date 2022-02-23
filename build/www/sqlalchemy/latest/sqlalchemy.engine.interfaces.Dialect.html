@@ -1,0 +1,2169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  
+
+  <head>
+    
+    <title>sqlalchemy.engine.interfaces.Dialect</title>
+    <meta name="generator" content="pydoctor 22.2.0"> 
+        
+    </meta>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=0.75" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+    <link rel="stylesheet" type="text/css" href="extra.css" />
+</head>
+
+  <body>
+
+    <div id="banner" class="container">    
+    <div>
+        <a href="https://pydocbrowser.github.io/">Home</a>
+        &gt; sqlalchemy-1.4.31 
+        <!-- This is an important placeholder and will be 
+            replaced by project name and version on building docs -->
+        
+        <!-- (<a href=""&gt;show all versions</a&gt;) -->
+    </div>
+</div>
+
+    <nav class="navbar navbar-default">
+  
+  <div class="container">
+
+    <div class="navbar-header">
+      
+      <div class="navlinks">
+          <span class="navbar-brand">
+            sqlalchemy <a href="index.html">API Documentation</a>
+          </span>
+
+          <a href="moduleIndex.html">
+            Modules
+          </a>
+
+          <a href="classIndex.html">
+            Classes
+          </a>
+
+          <a href="nameIndex.html">
+            Names
+          </a>
+      </div>
+
+    </div>
+  </div>
+</nav>
+
+    
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="class"><code><code><a href="index.html" class="internal-link">sqlalchemy</a></code><wbr></wbr>.<code><a href="sqlalchemy.engine.html" class="internal-link" title="sqlalchemy.engine">engine</a></code><wbr></wbr>.<code><a href="sqlalchemy.engine.interfaces.html" class="internal-link" title="sqlalchemy.engine.interfaces">interfaces</a></code><wbr></wbr>.<code><a href="sqlalchemy.engine.interfaces.Dialect.html" class="internal-link" title="sqlalchemy.engine.interfaces.Dialect">Dialect</a></code></code></h1>
+        <div id="showPrivate">
+          <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+        </div>
+      </div>
+
+      <div class="categoryHeader">
+        class documentation
+      </div>
+
+      <div class="extrasDocstring">
+        <p><code><span class="py-keyword">class</span> <span class="py-defname">Dialect</span>(<a href="https://docs.python.org/3/library/functions.html#object" class="intersphinx-link" title="object">object</a>): <a href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/engine/interfaces.py#L16" class="sourceLink">(source)</a></code></p><p>Known subclasses: <code><a href="sqlalchemy.engine.default.DefaultDialect.html" class="internal-link">sqlalchemy.engine.default.DefaultDialect</a></code></p>
+        <p><a href="classIndex.html#sqlalchemy.engine.interfaces.Dialect">View In Hierarchy</a></p>
+      </div>
+
+      <div class="moduleDocstring">
+        <div><p>Define the behavior of a specific database and DB-API combination.</p>
+<p>Any aspect of metadata definition, SQL query generation,
+execution, result-set handling, or anything else which varies
+between databases is defined under the general category of the
+Dialect.  The Dialect acts as a factory for other
+database-specific object implementations including
+ExecutionContext, Compiled, DefaultGenerator, and TypeEngine.</p>
+<div class="rst-admonition note">
+<p class="rst-first rst-admonition-title">Note</p>
+<p class="rst-last">Third party dialects should not subclass <code>.Dialect</code>
+directly.  Instead, subclass <code>.default.DefaultDialect</code> or
+descendant class.</p>
+</div>
+<p>All dialects include the following attributes.   There are many other
+attributes that may be supported as well:</p>
+<dl class="rst-docutils">
+<dt><tt class="rst-docutils literal">name</tt></dt>
+<dd>identifying name for the dialect from a DBAPI-neutral point of view
+(i.e. 'sqlite')</dd>
+<dt><tt class="rst-docutils literal">driver</tt></dt>
+<dd>identifying name for the dialect's DBAPI</dd>
+<dt><tt class="rst-docutils literal">positional</tt></dt>
+<dd>True if the paramstyle for this Dialect is positional.</dd>
+<dt><tt class="rst-docutils literal">paramstyle</tt></dt>
+<dd>the paramstyle to be used (some DB-APIs support multiple
+paramstyles).</dd>
+<dt><tt class="rst-docutils literal">encoding</tt></dt>
+<dd>type of encoding to use for unicode, usually defaults to
+'utf-8'.</dd>
+<dt><tt class="rst-docutils literal">statement_compiler</tt></dt>
+<dd>a <code>.Compiled</code> class used to compile SQL statements</dd>
+<dt><tt class="rst-docutils literal">ddl_compiler</tt></dt>
+<dd>a <code>.Compiled</code> class used to compile DDL statements</dd>
+<dt><tt class="rst-docutils literal">server_version_info</tt></dt>
+<dd>a tuple containing a version number for the DB backend in use.
+This value is only available for supporting dialects, and is
+typically populated during the initial connection to the database.</dd>
+<dt><tt class="rst-docutils literal">default_schema_name</tt></dt>
+<dd>the name of the default schema.  This value is only available for
+supporting dialects, and is typically populated during the
+initial connection to the database.</dd>
+<dt><tt class="rst-docutils literal">execution_ctx_cls</tt></dt>
+<dd>a <code>.ExecutionContext</code> class used to handle statement execution</dd>
+<dt><tt class="rst-docutils literal">execute_sequence_format</tt></dt>
+<dd>either the 'tuple' or 'list' type, depending on what cursor.execute()
+accepts for the second argument (they vary).</dd>
+<dt><tt class="rst-docutils literal">preparer</tt></dt>
+<dd>a <code>~sqlalchemy.sql.compiler.IdentifierPreparer</code> class used to
+quote identifiers.</dd>
+<dt><tt class="rst-docutils literal">supports_alter</tt></dt>
+<dd><tt class="rst-docutils literal">True</tt> if the database supports <tt class="rst-docutils literal">ALTER TABLE</tt> - used only for
+generating foreign key constraints in certain circumstances</dd>
+<dt><tt class="rst-docutils literal">max_identifier_length</tt></dt>
+<dd>The maximum length of identifier names.</dd>
+<dt><tt class="rst-docutils literal">supports_sane_rowcount</tt></dt>
+<dd>Indicate whether the dialect properly implements rowcount for
+<tt class="rst-docutils literal">UPDATE</tt> and <tt class="rst-docutils literal">DELETE</tt> statements.</dd>
+<dt><tt class="rst-docutils literal">supports_sane_multi_rowcount</tt></dt>
+<dd>Indicate whether the dialect properly implements rowcount for
+<tt class="rst-docutils literal">UPDATE</tt> and <tt class="rst-docutils literal">DELETE</tt> statements when executed via
+executemany.</dd>
+<dt><tt class="rst-docutils literal">preexecute_autoincrement_sequences</tt></dt>
+<dd>True if 'implicit' primary key functions must be executed separately
+in order to get their value.   This is currently oriented towards
+PostgreSQL.</dd>
+<dt><tt class="rst-docutils literal">implicit_returning</tt></dt>
+<dd>use RETURNING or equivalent during INSERT execution in order to load
+newly generated primary keys and other column defaults in one execution,
+which are then available via inserted_primary_key.
+If an insert statement has returning() specified explicitly,
+the "implicit" functionality is not used and inserted_primary_key
+will not be available.</dd>
+<dt><tt class="rst-docutils literal">colspecs</tt></dt>
+<dd>A dictionary of TypeEngine classes from sqlalchemy.types mapped
+to subclasses that are specific to the dialect class.  This
+dictionary is class-level only and is not accessed from the
+dialect instance itself.</dd>
+<dt><tt class="rst-docutils literal">supports_default_values</tt></dt>
+<dd>Indicates if the construct <tt class="rst-docutils literal">INSERT INTO tablename DEFAULT
+VALUES</tt> is supported</dd>
+<dt><tt class="rst-docutils literal">supports_sequences</tt></dt>
+<dd>Indicates if the dialect supports CREATE SEQUENCE or similar.</dd>
+<dt><tt class="rst-docutils literal">sequences_optional</tt></dt>
+<dd>If True, indicates if the "optional" flag on the Sequence() construct
+should signal to not generate a CREATE SEQUENCE. Applies only to
+dialects that support sequences. Currently used only to allow PostgreSQL
+SERIAL to be used on a column that specifies Sequence() for usage on
+other backends.</dd>
+<dt><tt class="rst-docutils literal">supports_native_enum</tt></dt>
+<dd>Indicates if the dialect supports a native ENUM construct.
+This will prevent types.Enum from generating a CHECK
+constraint when that type is used.</dd>
+<dt><tt class="rst-docutils literal">supports_native_boolean</tt></dt>
+<dd>Indicates if the dialect supports a native boolean construct.
+This will prevent types.Boolean from generating a CHECK
+constraint when that type is used.</dd>
+<dt><tt class="rst-docutils literal">dbapi_exception_translation_map</tt></dt>
+<dd><p class="rst-first">A dictionary of names that will contain as values the names of
+pep-249 exceptions ("IntegrityError", "OperationalError", etc)
+keyed to alternate class names, to support the case where a
+DBAPI has exception classes that aren't named as they are
+referred to (e.g. IntegrityError = MyException).   In the vast
+majority of cases this dictionary is empty.</p>
+<div class="rst-last rst-versionadded">
+<span class="rst-versionmodified rst-added">New in version 1.0.5.</span></div>
+</dd>
+</dl>
+</div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id20240">
+  
+  
+  <tr class="classmethod">
+    
+    <td>Class Method</td>
+    <td><code><a href="#engine_created" class="internal-link" title="sqlalchemy.engine.interfaces.Dialect.engine_created">engine​_created</a></code></td>
+    <td>A convenience hook called before returning the final <code>_engine.Engine</code>.</td>
+  </tr><tr class="classmethod">
+    
+    <td>Class Method</td>
+    <td><code><a href="#get_dialect_cls" class="internal-link" title="sqlalchemy.engine.interfaces.Dialect.get_dialect_cls">get​_dialect​_cls</a></code></td>
+    <td>Given a URL, return the <code>.Dialect</code> that will be used.</td>
+  </tr><tr class="classmethod">
+    
+    <td>Class Method</td>
+    <td><code><a href="#load_provisioning" class="internal-link" title="sqlalchemy.engine.interfaces.Dialect.load_provisioning">load​_provisioning</a></code></td>
+    <td>set up the provision.py module for this dialect.</td>
+  </tr><tr class="classmethod">
+    
+    <td>Class Method</td>
+    <td><code><a href="#type_descriptor" class="internal-link" title="sqlalchemy.engine.interfaces.Dialect.type_descriptor">type​_descriptor</a></code></td>
+    <td>Transform a generic type to a dialect-specific type.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#connect" class="internal-link" title="sqlalchemy.engine.interfaces.Dialect.connect">connect</a></code></td>
+    <td>Establish a connection using this dialect's DBAPI.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#create_connect_args" class="internal-link" title="sqlalchemy.engine.interfaces.Dialect.create_connect_args">create​_connect​_args</a></code></td>
+    <td>Build DB-API compatible connection arguments.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#create_xid" class="internal-link" title="sqlalchemy.engine.interfaces.Dialect.create_xid">create​_xid</a></code></td>
+    <td>Create a two-phase transaction ID.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#denormalize_name" class="internal-link" title="sqlalchemy.engine.interfaces.Dialect.denormalize_name">denormalize​_name</a></code></td>
+    <td>convert the given name to a case insensitive identifier for the backend if it is an all-lowercase name.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#do_begin" class="internal-link" title="sqlalchemy.engine.interfaces.Dialect.do_begin">do​_begin</a></code></td>
+    <td>Provide an implementation of <tt class="rst-docutils literal">connection.begin()</tt>, given a DB-API connection.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#do_begin_twophase" class="internal-link" title="sqlalchemy.engine.interfaces.Dialect.do_begin_twophase">do​_begin​_twophase</a></code></td>
+    <td>Begin a two phase transaction on the given connection.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#do_close" class="internal-link" title="sqlalchemy.engine.interfaces.Dialect.do_close">do​_close</a></code></td>
+    <td>Provide an implementation of <tt class="rst-docutils literal">connection.close()</tt>, given a DBAPI connection.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#do_commit" class="internal-link" title="sqlalchemy.engine.interfaces.Dialect.do_commit">do​_commit</a></code></td>
+    <td>Provide an implementation of <tt class="rst-docutils literal">connection.commit()</tt>, given a DB-API connection.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#do_commit_twophase" class="internal-link" title="sqlalchemy.engine.interfaces.Dialect.do_commit_twophase">do​_commit​_twophase</a></code></td>
+    <td>Commit a two phase transaction on the given connection.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#do_execute" class="internal-link" title="sqlalchemy.engine.interfaces.Dialect.do_execute">do​_execute</a></code></td>
+    <td>Provide an implementation of <tt class="rst-docutils literal">cursor.execute(statement, parameters)</tt>.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#do_execute_no_params" class="internal-link" title="sqlalchemy.engine.interfaces.Dialect.do_execute_no_params">do​_execute​_no​_params</a></code></td>
+    <td>Provide an implementation of <tt class="rst-docutils literal">cursor.execute(statement)</tt>.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#do_executemany" class="internal-link" title="sqlalchemy.engine.interfaces.Dialect.do_executemany">do​_executemany</a></code></td>
+    <td>Provide an implementation of <tt class="rst-docutils literal">cursor.executemany(statement, parameters)</tt>.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#do_prepare_twophase" class="internal-link" title="sqlalchemy.engine.interfaces.Dialect.do_prepare_twophase">do​_prepare​_twophase</a></code></td>
+    <td>Prepare a two phase transaction on the given connection.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#do_recover_twophase" class="internal-link" title="sqlalchemy.engine.interfaces.Dialect.do_recover_twophase">do​_recover​_twophase</a></code></td>
+    <td>Recover list of uncommitted prepared two phase transaction identifiers on the given connection.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#do_release_savepoint" class="internal-link" title="sqlalchemy.engine.interfaces.Dialect.do_release_savepoint">do​_release​_savepoint</a></code></td>
+    <td>Release the named savepoint on a connection.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#do_rollback" class="internal-link" title="sqlalchemy.engine.interfaces.Dialect.do_rollback">do​_rollback</a></code></td>
+    <td>Provide an implementation of <tt class="rst-docutils literal">connection.rollback()</tt>, given a DB-API connection.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#do_rollback_to_savepoint" class="internal-link" title="sqlalchemy.engine.interfaces.Dialect.do_rollback_to_savepoint">do​_rollback​_to​_savepoint</a></code></td>
+    <td>Rollback a connection to the named savepoint.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#do_rollback_twophase" class="internal-link" title="sqlalchemy.engine.interfaces.Dialect.do_rollback_twophase">do​_rollback​_twophase</a></code></td>
+    <td>Rollback a two phase transaction on the given connection.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#do_savepoint" class="internal-link" title="sqlalchemy.engine.interfaces.Dialect.do_savepoint">do​_savepoint</a></code></td>
+    <td>Create a savepoint with the given name.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#do_set_input_sizes" class="internal-link" title="sqlalchemy.engine.interfaces.Dialect.do_set_input_sizes">do​_set​_input​_sizes</a></code></td>
+    <td>invoke the cursor.setinputsizes() method with appropriate arguments</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#get_check_constraints" class="internal-link" title="sqlalchemy.engine.interfaces.Dialect.get_check_constraints">get​_check​_constraints</a></code></td>
+    <td>Return information about check constraints in <code>table_name</code>.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#get_columns" class="internal-link" title="sqlalchemy.engine.interfaces.Dialect.get_columns">get​_columns</a></code></td>
+    <td>Return information about columns in <code>table_name</code>.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#get_default_isolation_level" class="internal-link" title="sqlalchemy.engine.interfaces.Dialect.get_default_isolation_level">get​_default​_isolation​_level</a></code></td>
+    <td>Given a DBAPI connection, return its isolation level, or a default isolation level if one cannot be retrieved.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#get_driver_connection" class="internal-link" title="sqlalchemy.engine.interfaces.Dialect.get_driver_connection">get​_driver​_connection</a></code></td>
+    <td>Returns the connection object as returned by the external driver package.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#get_foreign_keys" class="internal-link" title="sqlalchemy.engine.interfaces.Dialect.get_foreign_keys">get​_foreign​_keys</a></code></td>
+    <td>Return information about foreign_keys in <code>table_name</code>.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#get_indexes" class="internal-link" title="sqlalchemy.engine.interfaces.Dialect.get_indexes">get​_indexes</a></code></td>
+    <td>Return information about indexes in <code>table_name</code>.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#get_isolation_level" class="internal-link" title="sqlalchemy.engine.interfaces.Dialect.get_isolation_level">get​_isolation​_level</a></code></td>
+    <td>Given a DBAPI connection, return its isolation level.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#get_pk_constraint" class="internal-link" title="sqlalchemy.engine.interfaces.Dialect.get_pk_constraint">get​_pk​_constraint</a></code></td>
+    <td>Return information about the primary key constraint on table_name`.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#get_sequence_names" class="internal-link" title="sqlalchemy.engine.interfaces.Dialect.get_sequence_names">get​_sequence​_names</a></code></td>
+    <td>Return a list of all sequence names available in the database.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#get_table_comment" class="internal-link" title="sqlalchemy.engine.interfaces.Dialect.get_table_comment">get​_table​_comment</a></code></td>
+    <td>Return the "comment" for the table identified by <code>table_name</code>.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#get_table_names" class="internal-link" title="sqlalchemy.engine.interfaces.Dialect.get_table_names">get​_table​_names</a></code></td>
+    <td>Return a list of table names for <code><a href="sqlalchemy.schema.html" class="internal-link" title="sqlalchemy.schema">schema</a></code>.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#get_temp_table_names" class="internal-link" title="sqlalchemy.engine.interfaces.Dialect.get_temp_table_names">get​_temp​_table​_names</a></code></td>
+    <td>Return a list of temporary table names on the given connection, if supported by the underlying backend.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#get_temp_view_names" class="internal-link" title="sqlalchemy.engine.interfaces.Dialect.get_temp_view_names">get​_temp​_view​_names</a></code></td>
+    <td>Return a list of temporary view names on the given connection, if supported by the underlying backend.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#get_unique_constraints" class="internal-link" title="sqlalchemy.engine.interfaces.Dialect.get_unique_constraints">get​_unique​_constraints</a></code></td>
+    <td>Return information about unique constraints in <code>table_name</code>.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#get_view_definition" class="internal-link" title="sqlalchemy.engine.interfaces.Dialect.get_view_definition">get​_view​_definition</a></code></td>
+    <td>Return view definition.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#get_view_names" class="internal-link" title="sqlalchemy.engine.interfaces.Dialect.get_view_names">get​_view​_names</a></code></td>
+    <td>Return a list of all view names available in the database.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#has_index" class="internal-link" title="sqlalchemy.engine.interfaces.Dialect.has_index">has​_index</a></code></td>
+    <td>Check the existence of a particular index name in the database.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#has_sequence" class="internal-link" title="sqlalchemy.engine.interfaces.Dialect.has_sequence">has​_sequence</a></code></td>
+    <td>Check the existence of a particular sequence in the database.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#has_table" class="internal-link" title="sqlalchemy.engine.interfaces.Dialect.has_table">has​_table</a></code></td>
+    <td>For internal dialect use, check the existence of a particular table in the database.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#initialize" class="internal-link" title="sqlalchemy.engine.interfaces.Dialect.initialize">initialize</a></code></td>
+    <td>Called during strategized creation of the dialect with a connection.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#is_disconnect" class="internal-link" title="sqlalchemy.engine.interfaces.Dialect.is_disconnect">is​_disconnect</a></code></td>
+    <td>Return True if the given DB-API error indicates an invalid connection</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#normalize_name" class="internal-link" title="sqlalchemy.engine.interfaces.Dialect.normalize_name">normalize​_name</a></code></td>
+    <td>convert the given name to lowercase if it is detected as case insensitive.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#on_connect" class="internal-link" title="sqlalchemy.engine.interfaces.Dialect.on_connect">on​_connect</a></code></td>
+    <td>return a callable which sets up a newly created DBAPI connection.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#on_connect_url" class="internal-link" title="sqlalchemy.engine.interfaces.Dialect.on_connect_url">on​_connect​_url</a></code></td>
+    <td>return a callable which sets up a newly created DBAPI connection.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#reset_isolation_level" class="internal-link" title="sqlalchemy.engine.interfaces.Dialect.reset_isolation_level">reset​_isolation​_level</a></code></td>
+    <td>Given a DBAPI connection, revert its isolation to the default.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#set_isolation_level" class="internal-link" title="sqlalchemy.engine.interfaces.Dialect.set_isolation_level">set​_isolation​_level</a></code></td>
+    <td>Given a DBAPI connection, set its isolation level.</td>
+  </tr><tr class="classvariable">
+    
+    <td>Class Variable</td>
+    <td><code><a href="#supports_statement_cache" class="internal-link" title="sqlalchemy.engine.interfaces.Dialect.supports_statement_cache">supports​_statement​_cache</a></code></td>
+    <td>indicates if this dialect supports caching.</td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_get_default_schema_name" class="internal-link" title="sqlalchemy.engine.interfaces.Dialect._get_default_schema_name">​_get​_default​_schema​_name</a></code></td>
+    <td>Return the string name of the currently selected schema from the given connection.</td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_get_server_version_info" class="internal-link" title="sqlalchemy.engine.interfaces.Dialect._get_server_version_info">​_get​_server​_version​_info</a></code></td>
+    <td>Retrieve the server version info from the given connection.</td>
+  </tr><tr class="classvariable private">
+    
+    <td>Class Variable</td>
+    <td><code><a href="#_has_events" class="internal-link" title="sqlalchemy.engine.interfaces.Dialect._has_events">​_has​_events</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+        
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="baseclassmethod">
+  
+  
+  <a name="sqlalchemy.engine.interfaces.Dialect.engine_created">
+    
+  </a>
+  <a name="engine_created">
+    
+  </a>
+  <div class="functionHeader">
+    @<a href="https://docs.python.org/3/library/functions.html#classmethod" class="intersphinx-link">classmethod</a><br />
+    <span class="py-keyword">def</span> <span class="py-defname">engine_created</span>(cls, engine):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/engine/interfaces.py#L1042">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>A convenience hook called before returning the final
+<code>_engine.Engine</code>.</p>
+<p>If the dialect returned a different class from the
+<code>.get_dialect_cls</code>
+method, then the hook is called on both classes, first on
+the dialect class returned by the <code>.get_dialect_cls</code> method and
+then on the class on which the method was called.</p>
+<p>The hook should be used by dialects and/or wrappers to apply special
+events to the engine or its components.   In particular, it allows
+a dialect-wrapping class to apply dialect-level events.</p>
+<div class="rst-versionadded">
+<span class="rst-versionmodified rst-added">New in version 1.0.3.</span></div>
+</div>
+  </div>
+</div><div class="baseclassmethod">
+  
+  
+  <a name="sqlalchemy.engine.interfaces.Dialect.get_dialect_cls">
+    
+  </a>
+  <a name="get_dialect_cls">
+    
+  </a>
+  <div class="functionHeader">
+    @<a href="https://docs.python.org/3/library/functions.html#classmethod" class="intersphinx-link">classmethod</a><br />
+    <span class="py-keyword">def</span> <span class="py-defname">get_dialect_cls</span>(cls, url):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/engine/interfaces.py#L997">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Given a URL, return the <code>.Dialect</code> that will be used.</p>
+<p>This is a hook that allows an external plugin to provide functionality
+around an existing dialect, by allowing the plugin to be loaded
+from the url based on an entrypoint, and then the plugin returns
+the actual dialect to be used.</p>
+<p>By default this just returns the cls.</p>
+<div class="rst-versionadded">
+<span class="rst-versionmodified rst-added">New in version 1.0.3.</span></div>
+</div>
+  </div>
+</div><div class="baseclassmethod">
+  
+  
+  <a name="sqlalchemy.engine.interfaces.Dialect.load_provisioning">
+    
+  </a>
+  <a name="load_provisioning">
+    
+  </a>
+  <div class="functionHeader">
+    @<a href="https://docs.python.org/3/library/functions.html#classmethod" class="intersphinx-link">classmethod</a><br />
+    <span class="py-keyword">def</span> <span class="py-defname">load_provisioning</span>(cls):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/engine/interfaces.py#L1013">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="sqlalchemy.engine.default.DefaultDialect.html" class="internal-link">sqlalchemy.engine.default.DefaultDialect</a></code></div>
+    
+    <div><p>set up the provision.py module for this dialect.</p>
+<p>For dialects that include a provision.py module that sets up
+provisioning followers, this method should initiate that process.</p>
+<p>A typical implementation would be:</p>
+<pre class="rst-literal-block">
+@classmethod
+def load_provisioning(cls):
+    __import__("mydialect.provision")
+</pre>
+<p>The default method assumes a module named <tt class="rst-docutils literal">provision.py</tt> inside
+the owning package of the current dialect, based on the <tt class="rst-docutils literal">__module__</tt>
+attribute:</p>
+<pre class="rst-literal-block">
+@classmethod
+def load_provisioning(cls):
+    package = ".".join(cls.__module__.split(".")[0:-1])
+    try:
+        __import__(package + ".provision")
+    except ImportError:
+        pass
+</pre>
+<div class="rst-versionadded">
+<span class="rst-versionmodified rst-added">New in version 1.3.14.</span></div>
+</div>
+  </div>
+</div><div class="baseclassmethod">
+  
+  
+  <a name="sqlalchemy.engine.interfaces.Dialect.type_descriptor">
+    
+  </a>
+  <a name="type_descriptor">
+    
+  </a>
+  <div class="functionHeader">
+    @<a href="https://docs.python.org/3/library/functions.html#classmethod" class="intersphinx-link">classmethod</a><br />
+    <span class="py-keyword">def</span> <span class="py-defname">type_descriptor</span>(cls, typeobj):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/engine/interfaces.py#L202">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="sqlalchemy.engine.default.DefaultDialect.html" class="internal-link">sqlalchemy.engine.default.DefaultDialect</a></code></div>
+    
+    <div><p>Transform a generic type to a dialect-specific type.</p>
+<p>Dialect classes will usually use the
+<code>_types.adapt_type</code> function in the types module to
+accomplish this.</p>
+<p>The returned result is cached <em>per dialect class</em> so can
+contain no dialect-instance state.</p>
+</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.engine.interfaces.Dialect.connect">
+    
+  </a>
+  <a name="connect">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">connect</span>(self, *cargs, **cparams):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/engine/interfaces.py#L743">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="sqlalchemy.engine.default.DefaultDialect.html" class="internal-link">sqlalchemy.engine.default.DefaultDialect</a></code></div>
+    
+    <div><p>Establish a connection using this dialect's DBAPI.</p>
+<p>The default implementation of this method is:</p>
+<pre class="rst-literal-block">
+def connect(self, *cargs, **cparams):
+    return self.dbapi.connect(*cargs, **cparams)
+</pre>
+<p>The <tt class="rst-docutils literal">*cargs, **cparams</tt> parameters are generated directly
+from this dialect's <code>.Dialect.create_connect_args</code> method.</p>
+<p>This method may be used for dialects that need to perform programmatic
+per-connection steps when a new connection is procured from the
+DBAPI.</p>
+<div class="rst-admonition seealso">
+<p class="rst-first rst-admonition-title">See Also</p>
+<p><code>.Dialect.create_connect_args</code></p>
+<p class="rst-last"><code>.Dialect.on_connect</code></p>
+</div>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">*cargs</span></td><td class="fieldArgDesc">positional parameters returned from the
+<code>.Dialect.create_connect_args</code> method</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">**cparams</span></td><td class="fieldArgDesc">keyword parameters returned from the
+<code>.Dialect.create_connect_args</code> method.</td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td colspan="2">a DBAPI connection, typically from the <a class="rst-reference external" href="http://www.python.org/dev/peps/pep-0249" target="_top">PEP 249</a> module
+level <tt class="rst-docutils literal">.connect()</tt> function.</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.engine.interfaces.Dialect.create_connect_args">
+    
+  </a>
+  <a name="create_connect_args">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">create_connect_args</span>(self, url):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/engine/interfaces.py#L169">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="sqlalchemy.engine.default.DefaultDialect.html" class="internal-link">sqlalchemy.engine.default.DefaultDialect</a></code></div>
+    
+    <div><p>Build DB-API compatible connection arguments.</p>
+<p>Given a <code>.URL</code> object, returns a tuple
+consisting of a <tt class="rst-docutils literal">(*args, **kwargs)</tt> suitable to send directly
+to the dbapi's connect function.   The arguments are sent to the
+<code>.Dialect.connect</code> method which then runs the DBAPI-level
+<tt class="rst-docutils literal">connect()</tt> function.</p>
+<p>The method typically makes use of the
+<code>.URL.translate_connect_args</code>
+method in order to generate a dictionary of options.</p>
+<p>The default implementation is:</p>
+<pre class="rst-literal-block">
+def create_connect_args(self, url):
+    opts = url.translate_connect_args()
+    opts.update(url.query)
+    return [[], opts]
+</pre>
+<div class="rst-admonition seealso">
+<p class="rst-first rst-admonition-title">See Also</p>
+<p class="rst-last"><code>.URL.translate_connect_args</code></p>
+</div>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">url</span></td><td class="fieldArgDesc">a <code>.URL</code> object</td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td colspan="2">a tuple of <tt class="rst-docutils literal">(*args, **kwargs)</tt> which will be passed to the
+<code>.Dialect.connect</code> method.</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.engine.interfaces.Dialect.create_xid">
+    
+  </a>
+  <a name="create_xid">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">create_xid</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/engine/interfaces.py#L614">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="sqlalchemy.engine.default.DefaultDialect.html" class="internal-link">sqlalchemy.engine.default.DefaultDialect</a></code></div>
+    
+    <div><p>Create a two-phase transaction ID.</p>
+<p>This id will be passed to do_begin_twophase(),
+do_rollback_twophase(), do_commit_twophase().  Its format is
+unspecified.</p>
+</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.engine.interfaces.Dialect.denormalize_name">
+    
+  </a>
+  <a name="denormalize_name">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">denormalize_name</span>(self, name):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/engine/interfaces.py#L455">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="sqlalchemy.engine.default.DefaultDialect.html" class="internal-link">sqlalchemy.engine.default.DefaultDialect</a></code></div>
+    
+    <div><p>convert the given name to a case insensitive identifier
+for the backend if it is an all-lowercase name.</p>
+<p>This method is only used if the dialect defines
+requires_name_normalize=True.</p>
+</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.engine.interfaces.Dialect.do_begin">
+    
+  </a>
+  <a name="do_begin">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">do_begin</span>(self, dbapi_connection):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/engine/interfaces.py#L540">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="sqlalchemy.engine.default.DefaultDialect.html" class="internal-link">sqlalchemy.engine.default.DefaultDialect</a></code></div>
+    
+    <div><p>Provide an implementation of <tt class="rst-docutils literal">connection.begin()</tt>, given a
+DB-API connection.</p>
+<p>The DBAPI has no dedicated "begin" method and it is expected
+that transactions are implicit.  This hook is provided for those
+DBAPIs that might need additional help in this area.</p>
+<p>Note that <code>.Dialect.do_begin</code> is not called unless a
+<code>.Transaction</code> object is in use.  The
+<code>.Dialect.do_autocommit</code>
+hook is provided for DBAPIs that need some extra commands emitted
+after a commit in order to enter the next transaction, when the
+SQLAlchemy <code>_engine.Connection</code>
+is used in its default "autocommit"
+mode.</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">dbapi​_connection</span></td><td class="fieldArgDesc">a DBAPI connection, typically
+proxied within a <code>.ConnectionFairy</code>.</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.engine.interfaces.Dialect.do_begin_twophase">
+    
+  </a>
+  <a name="do_begin_twophase">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">do_begin_twophase</span>(self, connection, xid):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/engine/interfaces.py#L653">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="sqlalchemy.databases.mysql.MySQLDialect.html" class="internal-link">sqlalchemy.databases.mysql.MySQLDialect</a></code>, <code><a href="sqlalchemy.databases.postgresql.PGDialect.html" class="internal-link">sqlalchemy.databases.postgresql.PGDialect</a></code>, <code><a href="sqlalchemy.dialects.oracle.cx_oracle.OracleDialect_cx_oracle.html" class="internal-link">sqlalchemy.dialects.oracle.cx_oracle.OracleDialect_cx_oracle</a></code></div>
+    
+    <div>Begin a two phase transaction on the given connection.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">connection</span></td><td class="fieldArgDesc">a <code>_engine.Connection</code>.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">xid</span></td><td class="fieldArgDesc">xid</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.engine.interfaces.Dialect.do_close">
+    
+  </a>
+  <a name="do_close">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">do_close</span>(self, dbapi_connection):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/engine/interfaces.py#L586">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="sqlalchemy.engine.default.DefaultDialect.html" class="internal-link">sqlalchemy.engine.default.DefaultDialect</a></code></div>
+    
+    <div><p>Provide an implementation of <tt class="rst-docutils literal">connection.close()</tt>, given a DBAPI
+connection.</p>
+<p>This hook is called by the <code>_pool.Pool</code>
+when a connection has been
+detached from the pool, or is being returned beyond the normal
+capacity of the pool.</p>
+</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.engine.interfaces.Dialect.do_commit">
+    
+  </a>
+  <a name="do_commit">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">do_commit</span>(self, dbapi_connection):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/engine/interfaces.py#L575">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="sqlalchemy.engine.default.DefaultDialect.html" class="internal-link">sqlalchemy.engine.default.DefaultDialect</a></code></div>
+    
+    <div>Provide an implementation of <tt class="rst-docutils literal">connection.commit()</tt>, given a
+DB-API connection.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">dbapi​_connection</span></td><td class="fieldArgDesc">a DBAPI connection, typically
+proxied within a <code>.ConnectionFairy</code>.</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.engine.interfaces.Dialect.do_commit_twophase">
+    
+  </a>
+  <a name="do_commit_twophase">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">do_commit_twophase</span>(self, connection, xid, is_prepared=<a href="https://docs.python.org/3/library/constants.html#True" class="intersphinx-link">True</a>, recover=<a href="https://docs.python.org/3/library/constants.html#False" class="intersphinx-link">False</a>):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/engine/interfaces.py#L688">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="sqlalchemy.databases.mysql.MySQLDialect.html" class="internal-link">sqlalchemy.databases.mysql.MySQLDialect</a></code>, <code><a href="sqlalchemy.databases.postgresql.PGDialect.html" class="internal-link">sqlalchemy.databases.postgresql.PGDialect</a></code>, <code><a href="sqlalchemy.dialects.oracle.cx_oracle.OracleDialect_cx_oracle.html" class="internal-link">sqlalchemy.dialects.oracle.cx_oracle.OracleDialect_cx_oracle</a></code></div>
+    
+    <div>Commit a two phase transaction on the given connection.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">connection</span></td><td class="fieldArgDesc">a <code>_engine.Connection</code>.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">xid</span></td><td class="fieldArgDesc">xid</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">is​_prepared</span></td><td class="fieldArgDesc">whether or not
+<code>.TwoPhaseTransaction.prepare</code> was called.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">recover</span></td><td class="fieldArgDesc">if the recover flag was passed.</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.engine.interfaces.Dialect.do_execute">
+    
+  </a>
+  <a name="do_execute">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">do_execute</span>(self, cursor, statement, parameters, context=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/engine/interfaces.py#L720">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="sqlalchemy.engine.default.DefaultDialect.html" class="internal-link">sqlalchemy.engine.default.DefaultDialect</a></code></div>
+    
+    <div>Provide an implementation of <tt class="rst-docutils literal">cursor.execute(statement,
+parameters)</tt>.</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.engine.interfaces.Dialect.do_execute_no_params">
+    
+  </a>
+  <a name="do_execute_no_params">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">do_execute_no_params</span>(self, cursor, statement, parameters, context=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/engine/interfaces.py#L726">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="sqlalchemy.engine.default.DefaultDialect.html" class="internal-link">sqlalchemy.engine.default.DefaultDialect</a></code></div>
+    
+    <div><p>Provide an implementation of <tt class="rst-docutils literal">cursor.execute(statement)</tt>.</p>
+<p>The parameter collection should not be sent.</p>
+</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.engine.interfaces.Dialect.do_executemany">
+    
+  </a>
+  <a name="do_executemany">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">do_executemany</span>(self, cursor, statement, parameters, context=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/engine/interfaces.py#L714">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="sqlalchemy.engine.default.DefaultDialect.html" class="internal-link">sqlalchemy.engine.default.DefaultDialect</a></code></div>
+    
+    <div>Provide an implementation of <tt class="rst-docutils literal">cursor.executemany(statement,
+parameters)</tt>.</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.engine.interfaces.Dialect.do_prepare_twophase">
+    
+  </a>
+  <a name="do_prepare_twophase">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">do_prepare_twophase</span>(self, connection, xid):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/engine/interfaces.py#L663">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="sqlalchemy.databases.mysql.MySQLDialect.html" class="internal-link">sqlalchemy.databases.mysql.MySQLDialect</a></code>, <code><a href="sqlalchemy.databases.postgresql.PGDialect.html" class="internal-link">sqlalchemy.databases.postgresql.PGDialect</a></code>, <code><a href="sqlalchemy.dialects.oracle.cx_oracle.OracleDialect_cx_oracle.html" class="internal-link">sqlalchemy.dialects.oracle.cx_oracle.OracleDialect_cx_oracle</a></code></div>
+    
+    <div>Prepare a two phase transaction on the given connection.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">connection</span></td><td class="fieldArgDesc">a <code>_engine.Connection</code>.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">xid</span></td><td class="fieldArgDesc">xid</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.engine.interfaces.Dialect.do_recover_twophase">
+    
+  </a>
+  <a name="do_recover_twophase">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">do_recover_twophase</span>(self, connection):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/engine/interfaces.py#L704">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="sqlalchemy.databases.mysql.MySQLDialect.html" class="internal-link">sqlalchemy.databases.mysql.MySQLDialect</a></code>, <code><a href="sqlalchemy.databases.postgresql.PGDialect.html" class="internal-link">sqlalchemy.databases.postgresql.PGDialect</a></code>, <code><a href="sqlalchemy.dialects.oracle.cx_oracle.OracleDialect_cx_oracle.html" class="internal-link">sqlalchemy.dialects.oracle.cx_oracle.OracleDialect_cx_oracle</a></code></div>
+    
+    <div>Recover list of uncommitted prepared two phase transaction
+identifiers on the given connection.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">connection</span></td><td class="fieldArgDesc">a <code>_engine.Connection</code>.</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.engine.interfaces.Dialect.do_release_savepoint">
+    
+  </a>
+  <a name="do_release_savepoint">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">do_release_savepoint</span>(self, connection, name):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/engine/interfaces.py#L644">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="sqlalchemy.engine.default.DefaultDialect.html" class="internal-link">sqlalchemy.engine.default.DefaultDialect</a></code></div>
+    
+    <div>Release the named savepoint on a connection.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">connection</span></td><td class="fieldArgDesc">a <code>_engine.Connection</code>.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">name</span></td><td class="fieldArgDesc">savepoint name.</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.engine.interfaces.Dialect.do_rollback">
+    
+  </a>
+  <a name="do_rollback">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">do_rollback</span>(self, dbapi_connection):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/engine/interfaces.py#L564">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="sqlalchemy.engine.default.DefaultDialect.html" class="internal-link">sqlalchemy.engine.default.DefaultDialect</a></code></div>
+    
+    <div>Provide an implementation of <tt class="rst-docutils literal">connection.rollback()</tt>, given
+a DB-API connection.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">dbapi​_connection</span></td><td class="fieldArgDesc">a DBAPI connection, typically
+proxied within a <code>.ConnectionFairy</code>.</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.engine.interfaces.Dialect.do_rollback_to_savepoint">
+    
+  </a>
+  <a name="do_rollback_to_savepoint">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">do_rollback_to_savepoint</span>(self, connection, name):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/engine/interfaces.py#L634">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="sqlalchemy.engine.default.DefaultDialect.html" class="internal-link">sqlalchemy.engine.default.DefaultDialect</a></code></div>
+    
+    <div>Rollback a connection to the named savepoint.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">connection</span></td><td class="fieldArgDesc">a <code>_engine.Connection</code>.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">name</span></td><td class="fieldArgDesc">savepoint name.</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.engine.interfaces.Dialect.do_rollback_twophase">
+    
+  </a>
+  <a name="do_rollback_twophase">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">do_rollback_twophase</span>(self, connection, xid, is_prepared=<a href="https://docs.python.org/3/library/constants.html#True" class="intersphinx-link">True</a>, recover=<a href="https://docs.python.org/3/library/constants.html#False" class="intersphinx-link">False</a>):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/engine/interfaces.py#L673">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="sqlalchemy.databases.mysql.MySQLDialect.html" class="internal-link">sqlalchemy.databases.mysql.MySQLDialect</a></code>, <code><a href="sqlalchemy.databases.postgresql.PGDialect.html" class="internal-link">sqlalchemy.databases.postgresql.PGDialect</a></code>, <code><a href="sqlalchemy.dialects.oracle.cx_oracle.OracleDialect_cx_oracle.html" class="internal-link">sqlalchemy.dialects.oracle.cx_oracle.OracleDialect_cx_oracle</a></code></div>
+    
+    <div>Rollback a two phase transaction on the given connection.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">connection</span></td><td class="fieldArgDesc">a <code>_engine.Connection</code>.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">xid</span></td><td class="fieldArgDesc">xid</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">is​_prepared</span></td><td class="fieldArgDesc">whether or not
+<code>.TwoPhaseTransaction.prepare</code> was called.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">recover</span></td><td class="fieldArgDesc">if the recover flag was passed.</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.engine.interfaces.Dialect.do_savepoint">
+    
+  </a>
+  <a name="do_savepoint">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">do_savepoint</span>(self, connection, name):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/engine/interfaces.py#L624">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="sqlalchemy.engine.default.DefaultDialect.html" class="internal-link">sqlalchemy.engine.default.DefaultDialect</a></code></div>
+    
+    <div>Create a savepoint with the given name.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">connection</span></td><td class="fieldArgDesc">a <code>_engine.Connection</code>.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">name</span></td><td class="fieldArgDesc">savepoint name.</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.engine.interfaces.Dialect.do_set_input_sizes">
+    
+  </a>
+  <a name="do_set_input_sizes">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">do_set_input_sizes</span>(self, cursor, list_of_tuples, context):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/engine/interfaces.py#L599">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="sqlalchemy.dialects.oracle.cx_oracle.OracleDialect_cx_oracle.html" class="internal-link">sqlalchemy.dialects.oracle.cx_oracle.OracleDialect_cx_oracle</a></code>, <code><a href="sqlalchemy.dialects.postgresql.asyncpg.PGDialect_asyncpg.html" class="internal-link">sqlalchemy.dialects.postgresql.asyncpg.PGDialect_asyncpg</a></code>, <code><a href="sqlalchemy.dialects.postgresql.pg8000.PGDialect_pg8000.html" class="internal-link">sqlalchemy.dialects.postgresql.pg8000.PGDialect_pg8000</a></code></div>
+    
+    <div><p>invoke the cursor.setinputsizes() method with appropriate arguments</p>
+<p>This hook is called if the dialect.use_inputsizes flag is set to True.
+Parameter data is passed in a list of tuples (paramname, dbtype,
+sqltype), where <tt class="rst-docutils literal">paramname</tt> is the key of the parameter in the
+statement, <tt class="rst-docutils literal">dbtype</tt> is the DBAPI datatype and <tt class="rst-docutils literal">sqltype</tt> is the
+SQLAlchemy type. The order of tuples is in the correct parameter order.</p>
+<div class="rst-versionadded">
+<span class="rst-versionmodified rst-added">New in version 1.4.</span></div>
+</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.engine.interfaces.Dialect.get_check_constraints">
+    
+  </a>
+  <a name="get_check_constraints">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">get_check_constraints</span>(self, connection, table_name, schema=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, **kw):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/engine/interfaces.py#L405">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="sqlalchemy.databases.mysql.MySQLDialect.html" class="internal-link">sqlalchemy.databases.mysql.MySQLDialect</a></code>, <code><a href="sqlalchemy.databases.oracle.OracleDialect.html" class="internal-link">sqlalchemy.databases.oracle.OracleDialect</a></code>, <code><a href="sqlalchemy.databases.postgresql.PGDialect.html" class="internal-link">sqlalchemy.databases.postgresql.PGDialect</a></code>, <code><a href="sqlalchemy.databases.sqlite.SQLiteDialect.html" class="internal-link">sqlalchemy.databases.sqlite.SQLiteDialect</a></code></div>
+    
+    <div><p>Return information about check constraints in <code>table_name</code>.</p>
+<p>Given a string <code>table_name</code> and an optional string <code><a href="sqlalchemy.schema.html" class="internal-link" title="sqlalchemy.schema">schema</a></code>, return
+check constraint information as a list of dicts with these keys:</p>
+<ul class="rst-simple">
+<li><tt class="rst-docutils literal">name</tt> -
+the check constraint's name</li>
+<li><tt class="rst-docutils literal">sqltext</tt> -
+the check constraint's SQL expression</li>
+<li><tt class="rst-docutils literal">**kw</tt> -
+other options passed to the dialect's get_check_constraints()
+method.</li>
+</ul>
+<div class="rst-versionadded">
+<span class="rst-versionmodified rst-added">New in version 1.1.0.</span></div>
+</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.engine.interfaces.Dialect.get_columns">
+    
+  </a>
+  <a name="get_columns">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">get_columns</span>(self, connection, table_name, schema=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, **kw):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/engine/interfaces.py#L237">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="sqlalchemy.databases.firebird.FBDialect.html" class="internal-link">sqlalchemy.databases.firebird.FBDialect</a></code>, <code><a href="sqlalchemy.databases.mssql.MSDialect.html" class="internal-link">sqlalchemy.databases.mssql.MSDialect</a></code>, <code><a href="sqlalchemy.databases.mysql.MySQLDialect.html" class="internal-link">sqlalchemy.databases.mysql.MySQLDialect</a></code>, <code><a href="sqlalchemy.databases.oracle.OracleDialect.html" class="internal-link">sqlalchemy.databases.oracle.OracleDialect</a></code>, <code><a href="sqlalchemy.databases.postgresql.PGDialect.html" class="internal-link">sqlalchemy.databases.postgresql.PGDialect</a></code>, <code><a href="sqlalchemy.databases.sqlite.SQLiteDialect.html" class="internal-link">sqlalchemy.databases.sqlite.SQLiteDialect</a></code>, <code><a href="sqlalchemy.databases.sybase.SybaseDialect.html" class="internal-link">sqlalchemy.databases.sybase.SybaseDialect</a></code></div>
+    
+    <div><p>Return information about columns in <code>table_name</code>.</p>
+<p>Given a <code>_engine.Connection</code>, a string
+<code>table_name</code>, and an optional string <code><a href="sqlalchemy.schema.html" class="internal-link" title="sqlalchemy.schema">schema</a></code>, return column
+information as a list of dictionaries with these keys:</p>
+<dl class="rst-docutils">
+<dt>name</dt>
+<dd>the column's name</dd>
+<dt>type</dt>
+<dd>[sqlalchemy.types#TypeEngine]</dd>
+<dt>nullable</dt>
+<dd>boolean</dd>
+<dt>default</dt>
+<dd>the column's default value</dd>
+<dt>autoincrement</dt>
+<dd>boolean</dd>
+<dt>sequence</dt>
+<dd><dl class="rst-first rst-last rst-docutils">
+<dt>a dictionary of the form</dt>
+<dd><dl class="rst-first rst-last rst-docutils">
+<dt>{'name' <span class="classifier-delimiter">:</span> <span class="rst-classifier">str, 'start' :int, 'increment': int, 'minvalue': int,</span></dt>
+<dd>'maxvalue': int, 'nominvalue': bool, 'nomaxvalue': bool,
+'cycle': bool, 'cache': int, 'order': bool}</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+</dl>
+<p>Additional column attributes may be present.</p>
+</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.engine.interfaces.Dialect.get_default_isolation_level">
+    
+  </a>
+  <a name="get_default_isolation_level">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">get_default_isolation_level</span>(self, dbapi_conn):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/engine/interfaces.py#L977">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="sqlalchemy.engine.default.DefaultDialect.html" class="internal-link">sqlalchemy.engine.default.DefaultDialect</a></code></div>
+    
+    <div><p>Given a DBAPI connection, return its isolation level, or
+a default isolation level if one cannot be retrieved.</p>
+<p>This method may only raise NotImplementedError and
+<strong>must not raise any other exception</strong>, as it is used implicitly upon
+first connect.</p>
+<p>The method <strong>must return a value</strong> for a dialect that supports
+isolation level settings, as this level is what will be reverted
+towards when a per-connection isolation level change is made.</p>
+<p>The method defaults to using the <code>.Dialect.get_isolation_level</code>
+method unless overridden by a dialect.</p>
+<div class="rst-versionadded">
+<span class="rst-versionmodified rst-added">New in version 1.3.22.</span></div>
+</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.engine.interfaces.Dialect.get_driver_connection">
+    
+  </a>
+  <a name="get_driver_connection">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">get_driver_connection</span>(self, connection):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/engine/interfaces.py#L1061">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="sqlalchemy.engine.default.DefaultDialect.html" class="internal-link">sqlalchemy.engine.default.DefaultDialect</a></code></div>
+    
+    <div><p>Returns the connection object as returned by the external driver
+package.</p>
+<p>For normal dialects that use a DBAPI compliant driver this call
+will just return the <tt class="rst-docutils literal">connection</tt> passed as argument.
+For dialects that instead adapt a non DBAPI compliant driver, like
+when adapting an asyncio driver, this call will return the
+connection-like object as returned by the driver.</p>
+<div class="rst-versionadded">
+<span class="rst-versionmodified rst-added">New in version 1.4.24.</span></div>
+</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.engine.interfaces.Dialect.get_foreign_keys">
+    
+  </a>
+  <a name="get_foreign_keys">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">get_foreign_keys</span>(self, connection, table_name, schema=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, **kw):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/engine/interfaces.py#L287">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="sqlalchemy.databases.firebird.FBDialect.html" class="internal-link">sqlalchemy.databases.firebird.FBDialect</a></code>, <code><a href="sqlalchemy.databases.mssql.MSDialect.html" class="internal-link">sqlalchemy.databases.mssql.MSDialect</a></code>, <code><a href="sqlalchemy.databases.mysql.MySQLDialect.html" class="internal-link">sqlalchemy.databases.mysql.MySQLDialect</a></code>, <code><a href="sqlalchemy.databases.oracle.OracleDialect.html" class="internal-link">sqlalchemy.databases.oracle.OracleDialect</a></code>, <code><a href="sqlalchemy.databases.postgresql.PGDialect.html" class="internal-link">sqlalchemy.databases.postgresql.PGDialect</a></code>, <code><a href="sqlalchemy.databases.sqlite.SQLiteDialect.html" class="internal-link">sqlalchemy.databases.sqlite.SQLiteDialect</a></code>, <code><a href="sqlalchemy.databases.sybase.SybaseDialect.html" class="internal-link">sqlalchemy.databases.sybase.SybaseDialect</a></code></div>
+    
+    <div><p>Return information about foreign_keys in <code>table_name</code>.</p>
+<p>Given a <code>_engine.Connection</code>, a string
+<code>table_name</code>, and an optional string <code><a href="sqlalchemy.schema.html" class="internal-link" title="sqlalchemy.schema">schema</a></code>, return foreign
+key information as a list of dicts with these keys:</p>
+<dl class="rst-docutils">
+<dt>name</dt>
+<dd>the constraint's name</dd>
+<dt>constrained_columns</dt>
+<dd>a list of column names that make up the foreign key</dd>
+<dt>referred_schema</dt>
+<dd>the name of the referred schema</dd>
+<dt>referred_table</dt>
+<dd>the name of the referred table</dd>
+<dt>referred_columns</dt>
+<dd>a list of column names in the referred table that correspond to
+constrained_columns</dd>
+</dl>
+</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.engine.interfaces.Dialect.get_indexes">
+    
+  </a>
+  <a name="get_indexes">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">get_indexes</span>(self, connection, table_name, schema=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, **kw):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/engine/interfaces.py#L362">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="sqlalchemy.databases.firebird.FBDialect.html" class="internal-link">sqlalchemy.databases.firebird.FBDialect</a></code>, <code><a href="sqlalchemy.databases.mssql.MSDialect.html" class="internal-link">sqlalchemy.databases.mssql.MSDialect</a></code>, <code><a href="sqlalchemy.databases.mysql.MySQLDialect.html" class="internal-link">sqlalchemy.databases.mysql.MySQLDialect</a></code>, <code><a href="sqlalchemy.databases.oracle.OracleDialect.html" class="internal-link">sqlalchemy.databases.oracle.OracleDialect</a></code>, <code><a href="sqlalchemy.databases.postgresql.PGDialect.html" class="internal-link">sqlalchemy.databases.postgresql.PGDialect</a></code>, <code><a href="sqlalchemy.databases.sqlite.SQLiteDialect.html" class="internal-link">sqlalchemy.databases.sqlite.SQLiteDialect</a></code>, <code><a href="sqlalchemy.databases.sybase.SybaseDialect.html" class="internal-link">sqlalchemy.databases.sybase.SybaseDialect</a></code></div>
+    
+    <div><p>Return information about indexes in <code>table_name</code>.</p>
+<p>Given a <code>_engine.Connection</code>, a string
+<code>table_name</code> and an optional string <code><a href="sqlalchemy.schema.html" class="internal-link" title="sqlalchemy.schema">schema</a></code>, return index
+information as a list of dictionaries with these keys:</p>
+<dl class="rst-docutils">
+<dt>name</dt>
+<dd>the index's name</dd>
+<dt>column_names</dt>
+<dd>list of column names in order</dd>
+<dt>unique</dt>
+<dd>boolean</dd>
+</dl>
+</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.engine.interfaces.Dialect.get_isolation_level">
+    
+  </a>
+  <a name="get_isolation_level">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">get_isolation_level</span>(self, dbapi_conn):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/engine/interfaces.py#L944">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="sqlalchemy.databases.mssql.MSDialect.html" class="internal-link">sqlalchemy.databases.mssql.MSDialect</a></code>, <code><a href="sqlalchemy.databases.mysql.MySQLDialect.html" class="internal-link">sqlalchemy.databases.mysql.MySQLDialect</a></code>, <code><a href="sqlalchemy.databases.oracle.OracleDialect.html" class="internal-link">sqlalchemy.databases.oracle.OracleDialect</a></code>, <code><a href="sqlalchemy.databases.postgresql.PGDialect.html" class="internal-link">sqlalchemy.databases.postgresql.PGDialect</a></code>, <code><a href="sqlalchemy.databases.sqlite.SQLiteDialect.html" class="internal-link">sqlalchemy.databases.sqlite.SQLiteDialect</a></code></div>
+    
+    <div><p>Given a DBAPI connection, return its isolation level.</p>
+<p>When working with a <code>_engine.Connection</code> object,
+the corresponding
+DBAPI connection may be procured using the
+<code>_engine.Connection.connection</code> accessor.</p>
+<p>Note that this is a dialect-level method which is used as part
+of the implementation of the <code>_engine.Connection</code> and
+<code>_engine.Engine</code> isolation level facilities;
+these APIs should be preferred for most typical use cases.</p>
+<div class="rst-admonition seealso">
+<p class="rst-first rst-admonition-title">See Also</p>
+<p><code>_engine.Connection.get_isolation_level</code>
+- view current level</p>
+<p><code>_engine.Connection.default_isolation_level</code>
+- view default level</p>
+<p><a href="#system-message-1"><span class="rst-problematic" id="rst-problematic-1">:paramref:`.Connection.execution_options.isolation_level`</span></a> -
+set per <code>_engine.Connection</code> isolation level</p>
+<p class="rst-last"><a href="#system-message-2"><span class="rst-problematic" id="rst-problematic-2">:paramref:`_sa.create_engine.isolation_level`</span></a> -
+set per <code>_engine.Engine</code> isolation level</p>
+</div>
+</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.engine.interfaces.Dialect.get_pk_constraint">
+    
+  </a>
+  <a name="get_pk_constraint">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">get_pk_constraint</span>(self, connection, table_name, schema=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, **kw):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/engine/interfaces.py#L270">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="sqlalchemy.databases.firebird.FBDialect.html" class="internal-link">sqlalchemy.databases.firebird.FBDialect</a></code>, <code><a href="sqlalchemy.databases.mssql.MSDialect.html" class="internal-link">sqlalchemy.databases.mssql.MSDialect</a></code>, <code><a href="sqlalchemy.databases.mysql.MySQLDialect.html" class="internal-link">sqlalchemy.databases.mysql.MySQLDialect</a></code>, <code><a href="sqlalchemy.databases.oracle.OracleDialect.html" class="internal-link">sqlalchemy.databases.oracle.OracleDialect</a></code>, <code><a href="sqlalchemy.databases.postgresql.PGDialect.html" class="internal-link">sqlalchemy.databases.postgresql.PGDialect</a></code>, <code><a href="sqlalchemy.databases.sqlite.SQLiteDialect.html" class="internal-link">sqlalchemy.databases.sqlite.SQLiteDialect</a></code>, <code><a href="sqlalchemy.databases.sybase.SybaseDialect.html" class="internal-link">sqlalchemy.databases.sybase.SybaseDialect</a></code></div>
+    
+    <div><p>Return information about the primary key constraint on
+table_name`.</p>
+<p>Given a <code>_engine.Connection</code>, a string
+<code>table_name</code>, and an optional string <code><a href="sqlalchemy.schema.html" class="internal-link" title="sqlalchemy.schema">schema</a></code>, return primary
+key information as a dictionary with these keys:</p>
+<dl class="rst-docutils">
+<dt>constrained_columns</dt>
+<dd>a list of column names that make up the primary key</dd>
+<dt>name</dt>
+<dd>optional name of the primary key constraint.</dd>
+</dl>
+</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.engine.interfaces.Dialect.get_sequence_names">
+    
+  </a>
+  <a name="get_sequence_names">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">get_sequence_names</span>(self, connection, schema=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, **kw):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/engine/interfaces.py#L334">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="sqlalchemy.databases.mssql.MSDialect.html" class="internal-link">sqlalchemy.databases.mssql.MSDialect</a></code>, <code><a href="sqlalchemy.databases.mysql.MySQLDialect.html" class="internal-link">sqlalchemy.databases.mysql.MySQLDialect</a></code>, <code><a href="sqlalchemy.databases.oracle.OracleDialect.html" class="internal-link">sqlalchemy.databases.oracle.OracleDialect</a></code>, <code><a href="sqlalchemy.databases.postgresql.PGDialect.html" class="internal-link">sqlalchemy.databases.postgresql.PGDialect</a></code></div>
+    
+    <div><p>Return a list of all sequence names available in the database.</p>
+<div class="rst-versionadded">
+<span class="rst-versionmodified rst-added">New in version 1.4.</span></div>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">connection</span></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">schema</span></td><td class="fieldArgDesc">schema name to query, if not the default schema.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">**kw</span></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.engine.interfaces.Dialect.get_table_comment">
+    
+  </a>
+  <a name="get_table_comment">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">get_table_comment</span>(self, connection, table_name, schema=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, **kw):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/engine/interfaces.py#L427">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="sqlalchemy.databases.mysql.MySQLDialect.html" class="internal-link">sqlalchemy.databases.mysql.MySQLDialect</a></code>, <code><a href="sqlalchemy.databases.oracle.OracleDialect.html" class="internal-link">sqlalchemy.databases.oracle.OracleDialect</a></code>, <code><a href="sqlalchemy.databases.postgresql.PGDialect.html" class="internal-link">sqlalchemy.databases.postgresql.PGDialect</a></code></div>
+    
+    <div><p>Return the "comment" for the table identified by <code>table_name</code>.</p>
+<p>Given a string <code>table_name</code> and an optional string <code><a href="sqlalchemy.schema.html" class="internal-link" title="sqlalchemy.schema">schema</a></code>, return
+table comment information as a dictionary with this key:</p>
+<dl class="rst-docutils">
+<dt>text</dt>
+<dd>text of the comment</dd>
+</dl>
+<p>Raises <tt class="rst-docutils literal">NotImplementedError</tt> for dialects that don't support
+comments.</p>
+<div class="rst-versionadded">
+<span class="rst-versionmodified rst-added">New in version 1.2.</span></div>
+</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.engine.interfaces.Dialect.get_table_names">
+    
+  </a>
+  <a name="get_table_names">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">get_table_names</span>(self, connection, schema=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, **kw):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/engine/interfaces.py#L313">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="sqlalchemy.databases.firebird.FBDialect.html" class="internal-link">sqlalchemy.databases.firebird.FBDialect</a></code>, <code><a href="sqlalchemy.databases.mssql.MSDialect.html" class="internal-link">sqlalchemy.databases.mssql.MSDialect</a></code>, <code><a href="sqlalchemy.databases.mysql.MySQLDialect.html" class="internal-link">sqlalchemy.databases.mysql.MySQLDialect</a></code>, <code><a href="sqlalchemy.databases.oracle.OracleDialect.html" class="internal-link">sqlalchemy.databases.oracle.OracleDialect</a></code>, <code><a href="sqlalchemy.databases.postgresql.PGDialect.html" class="internal-link">sqlalchemy.databases.postgresql.PGDialect</a></code>, <code><a href="sqlalchemy.databases.sqlite.SQLiteDialect.html" class="internal-link">sqlalchemy.databases.sqlite.SQLiteDialect</a></code>, <code><a href="sqlalchemy.databases.sybase.SybaseDialect.html" class="internal-link">sqlalchemy.databases.sybase.SybaseDialect</a></code></div>
+    
+    <div>Return a list of table names for <code><a href="sqlalchemy.schema.html" class="internal-link" title="sqlalchemy.schema">schema</a></code>.</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.engine.interfaces.Dialect.get_temp_table_names">
+    
+  </a>
+  <a name="get_temp_table_names">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">get_temp_table_names</span>(self, connection, schema=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, **kw):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/engine/interfaces.py#L318">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="sqlalchemy.databases.oracle.OracleDialect.html" class="internal-link">sqlalchemy.databases.oracle.OracleDialect</a></code>, <code><a href="sqlalchemy.databases.sqlite.SQLiteDialect.html" class="internal-link">sqlalchemy.databases.sqlite.SQLiteDialect</a></code></div>
+    
+    <div>Return a list of temporary table names on the given connection,
+if supported by the underlying backend.</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.engine.interfaces.Dialect.get_temp_view_names">
+    
+  </a>
+  <a name="get_temp_view_names">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">get_temp_view_names</span>(self, connection, schema=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, **kw):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/engine/interfaces.py#L344">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="sqlalchemy.databases.sqlite.SQLiteDialect.html" class="internal-link">sqlalchemy.databases.sqlite.SQLiteDialect</a></code></div>
+    
+    <div>Return a list of temporary view names on the given connection,
+if supported by the underlying backend.</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.engine.interfaces.Dialect.get_unique_constraints">
+    
+  </a>
+  <a name="get_unique_constraints">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">get_unique_constraints</span>(self, connection, table_name, schema=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, **kw):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/engine/interfaces.py#L381">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="sqlalchemy.databases.mysql.MySQLDialect.html" class="internal-link">sqlalchemy.databases.mysql.MySQLDialect</a></code>, <code><a href="sqlalchemy.databases.oracle.OracleDialect.html" class="internal-link">sqlalchemy.databases.oracle.OracleDialect</a></code>, <code><a href="sqlalchemy.databases.postgresql.PGDialect.html" class="internal-link">sqlalchemy.databases.postgresql.PGDialect</a></code>, <code><a href="sqlalchemy.databases.sqlite.SQLiteDialect.html" class="internal-link">sqlalchemy.databases.sqlite.SQLiteDialect</a></code></div>
+    
+    <div><p>Return information about unique constraints in <code>table_name</code>.</p>
+<p>Given a string <code>table_name</code> and an optional string <code><a href="sqlalchemy.schema.html" class="internal-link" title="sqlalchemy.schema">schema</a></code>, return
+unique constraint information as a list of dicts with these keys:</p>
+<dl class="rst-docutils">
+<dt>name</dt>
+<dd>the unique constraint's name</dd>
+<dt>column_names</dt>
+<dd>list of column names in order</dd>
+<dt>**kw</dt>
+<dd>other options passed to the dialect's get_unique_constraints()
+method.</dd>
+</dl>
+<div class="rst-versionadded">
+<span class="rst-versionmodified rst-added">New in version 0.9.0.</span></div>
+</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.engine.interfaces.Dialect.get_view_definition">
+    
+  </a>
+  <a name="get_view_definition">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">get_view_definition</span>(self, connection, view_name, schema=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, **kw):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/engine/interfaces.py#L352">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="sqlalchemy.databases.firebird.FBDialect.html" class="internal-link">sqlalchemy.databases.firebird.FBDialect</a></code>, <code><a href="sqlalchemy.databases.mssql.MSDialect.html" class="internal-link">sqlalchemy.databases.mssql.MSDialect</a></code>, <code><a href="sqlalchemy.databases.mysql.MySQLDialect.html" class="internal-link">sqlalchemy.databases.mysql.MySQLDialect</a></code>, <code><a href="sqlalchemy.databases.oracle.OracleDialect.html" class="internal-link">sqlalchemy.databases.oracle.OracleDialect</a></code>, <code><a href="sqlalchemy.databases.postgresql.PGDialect.html" class="internal-link">sqlalchemy.databases.postgresql.PGDialect</a></code>, <code><a href="sqlalchemy.databases.sqlite.SQLiteDialect.html" class="internal-link">sqlalchemy.databases.sqlite.SQLiteDialect</a></code>, <code><a href="sqlalchemy.databases.sybase.SybaseDialect.html" class="internal-link">sqlalchemy.databases.sybase.SybaseDialect</a></code></div>
+    
+    <div><p>Return view definition.</p>
+<p>Given a <code>_engine.Connection</code>, a string
+<code>view_name</code>, and an optional string <code><a href="sqlalchemy.schema.html" class="internal-link" title="sqlalchemy.schema">schema</a></code>, return the view
+definition.</p>
+</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.engine.interfaces.Dialect.get_view_names">
+    
+  </a>
+  <a name="get_view_names">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">get_view_names</span>(self, connection, schema=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, **kw):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/engine/interfaces.py#L326">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="sqlalchemy.databases.firebird.FBDialect.html" class="internal-link">sqlalchemy.databases.firebird.FBDialect</a></code>, <code><a href="sqlalchemy.databases.mssql.MSDialect.html" class="internal-link">sqlalchemy.databases.mssql.MSDialect</a></code>, <code><a href="sqlalchemy.databases.mysql.MySQLDialect.html" class="internal-link">sqlalchemy.databases.mysql.MySQLDialect</a></code>, <code><a href="sqlalchemy.databases.oracle.OracleDialect.html" class="internal-link">sqlalchemy.databases.oracle.OracleDialect</a></code>, <code><a href="sqlalchemy.databases.postgresql.PGDialect.html" class="internal-link">sqlalchemy.databases.postgresql.PGDialect</a></code>, <code><a href="sqlalchemy.databases.sqlite.SQLiteDialect.html" class="internal-link">sqlalchemy.databases.sqlite.SQLiteDialect</a></code>, <code><a href="sqlalchemy.databases.sybase.SybaseDialect.html" class="internal-link">sqlalchemy.databases.sybase.SybaseDialect</a></code></div>
+    
+    <div>Return a list of all view names available in the database.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">connection</span></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">schema</span></td><td class="fieldArgDesc">schema name to query, if not the default schema.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">**kw</span></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.engine.interfaces.Dialect.has_index">
+    
+  </a>
+  <a name="has_index">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">has_index</span>(self, connection, table_name, index_name, schema=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/engine/interfaces.py#L489">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="sqlalchemy.engine.default.DefaultDialect.html" class="internal-link">sqlalchemy.engine.default.DefaultDialect</a></code></div>
+    
+    <div><p>Check the existence of a particular index name in the database.</p>
+<p>Given a <code>_engine.Connection</code> object, a string
+<code>table_name</code> and string index name, return True if an index of the
+given name on the given table exists, false otherwise.</p>
+<p>The <code>.DefaultDialect</code> implements this in terms of the
+<code>.Dialect.has_table</code> and <code>.Dialect.get_indexes</code> methods,
+however dialects can implement a more performant version.</p>
+<div class="rst-versionadded">
+<span class="rst-versionmodified rst-added">New in version 1.4.</span></div>
+</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.engine.interfaces.Dialect.has_sequence">
+    
+  </a>
+  <a name="has_sequence">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">has_sequence</span>(self, connection, sequence_name, schema=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, **kw):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/engine/interfaces.py#L507">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="sqlalchemy.databases.firebird.FBDialect.html" class="internal-link">sqlalchemy.databases.firebird.FBDialect</a></code>, <code><a href="sqlalchemy.databases.mssql.MSDialect.html" class="internal-link">sqlalchemy.databases.mssql.MSDialect</a></code>, <code><a href="sqlalchemy.databases.mysql.MySQLDialect.html" class="internal-link">sqlalchemy.databases.mysql.MySQLDialect</a></code>, <code><a href="sqlalchemy.databases.oracle.OracleDialect.html" class="internal-link">sqlalchemy.databases.oracle.OracleDialect</a></code>, <code><a href="sqlalchemy.databases.postgresql.PGDialect.html" class="internal-link">sqlalchemy.databases.postgresql.PGDialect</a></code></div>
+    
+    <div><p>Check the existence of a particular sequence in the database.</p>
+<p>Given a <code>_engine.Connection</code> object and a string
+<code>sequence_name</code>, return True if the given sequence exists in
+the database, False otherwise.</p>
+</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.engine.interfaces.Dialect.has_table">
+    
+  </a>
+  <a name="has_table">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">has_table</span>(self, connection, table_name, schema=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, **kw):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/engine/interfaces.py#L465">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="sqlalchemy.databases.firebird.FBDialect.html" class="internal-link">sqlalchemy.databases.firebird.FBDialect</a></code>, <code><a href="sqlalchemy.databases.mssql.MSDialect.html" class="internal-link">sqlalchemy.databases.mssql.MSDialect</a></code>, <code><a href="sqlalchemy.databases.mysql.MySQLDialect.html" class="internal-link">sqlalchemy.databases.mysql.MySQLDialect</a></code>, <code><a href="sqlalchemy.databases.oracle.OracleDialect.html" class="internal-link">sqlalchemy.databases.oracle.OracleDialect</a></code>, <code><a href="sqlalchemy.databases.postgresql.PGDialect.html" class="internal-link">sqlalchemy.databases.postgresql.PGDialect</a></code>, <code><a href="sqlalchemy.databases.sqlite.SQLiteDialect.html" class="internal-link">sqlalchemy.databases.sqlite.SQLiteDialect</a></code>, <code><a href="sqlalchemy.databases.sybase.SybaseDialect.html" class="internal-link">sqlalchemy.databases.sybase.SybaseDialect</a></code></div>
+    
+    <div><p>For internal dialect use, check the existence of a particular table
+in the database.</p>
+<p>Given a <code>_engine.Connection</code> object, a string table_name and
+optional schema name, return True if the given table exists in the
+database, False otherwise.</p>
+<p>This method serves as the underlying implementation of the
+public facing <code>.Inspector.has_table</code> method, and is also used
+internally to implement the "checkfirst" behavior for methods like
+<code>_schema.Table.create</code> and <code>_schema.MetaData.create_all</code>.</p>
+<div class="rst-admonition note">
+<p class="rst-first rst-admonition-title">Note</p>
+<p class="rst-last">This method is used internally by SQLAlchemy, and is
+published so that third-party dialects may provide an
+implementation. It is <strong>not</strong> the public API for checking for table
+presence. Please use the <code>.Inspector.has_table</code> method.
+Alternatively, for legacy cross-compatibility, the
+<code>_engine.Engine.has_table</code> method may be used.</p>
+</div>
+</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.engine.interfaces.Dialect.initialize">
+    
+  </a>
+  <a name="initialize">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">initialize</span>(self, connection):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/engine/interfaces.py#L217">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="sqlalchemy.engine.default.DefaultDialect.html" class="internal-link">sqlalchemy.engine.default.DefaultDialect</a></code></div>
+    
+    <div><p>Called during strategized creation of the dialect with a
+connection.</p>
+<p>Allows dialects to configure options based on server version info or
+other properties.</p>
+<p>The connection passed here is a SQLAlchemy Connection object,
+with full capabilities.</p>
+<p>The initialize() method of the base dialect should be called via
+super().</p>
+<div class="rst-admonition note">
+<p class="rst-first rst-admonition-title">Note</p>
+<p class="rst-last">as of SQLAlchemy 1.4, this method is called <strong>before</strong>
+any <code>_engine.Dialect.on_connect</code> hooks are called.</p>
+</div>
+</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.engine.interfaces.Dialect.is_disconnect">
+    
+  </a>
+  <a name="is_disconnect">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">is_disconnect</span>(self, e, connection, cursor):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/engine/interfaces.py#L737">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="sqlalchemy.engine.default.DefaultDialect.html" class="internal-link">sqlalchemy.engine.default.DefaultDialect</a></code></div>
+    
+    <div>Return True if the given DB-API error indicates an invalid
+connection</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.engine.interfaces.Dialect.normalize_name">
+    
+  </a>
+  <a name="normalize_name">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">normalize_name</span>(self, name):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/engine/interfaces.py#L445">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="sqlalchemy.engine.default.DefaultDialect.html" class="internal-link">sqlalchemy.engine.default.DefaultDialect</a></code></div>
+    
+    <div><p>convert the given name to lowercase if it is detected as
+case insensitive.</p>
+<p>This method is only used if the dialect defines
+requires_name_normalize=True.</p>
+</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.engine.interfaces.Dialect.on_connect">
+    
+  </a>
+  <a name="on_connect">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">on_connect</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/engine/interfaces.py#L837">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="sqlalchemy.engine.default.DefaultDialect.html" class="internal-link">sqlalchemy.engine.default.DefaultDialect</a></code></div>
+    
+    <div><p>return a callable which sets up a newly created DBAPI connection.</p>
+<p>The callable should accept a single argument "conn" which is the
+DBAPI connection itself.  The inner callable has no
+return value.</p>
+<p>E.g.:</p>
+<pre class="rst-literal-block">
+class MyDialect(default.DefaultDialect):
+    # ...
+
+    def on_connect(self):
+        def do_on_connect(connection):
+            connection.execute("SET SPECIAL FLAGS etc")
+
+        return do_on_connect
+</pre>
+<p>This is used to set dialect-wide per-connection options such as
+isolation modes, Unicode modes, etc.</p>
+<p>The "do_on_connect" callable is invoked by using the
+<code>_events.PoolEvents.connect</code> event
+hook, then unwrapping the DBAPI connection and passing it into the
+callable.</p>
+<div class="rst-versionchanged">
+<span class="rst-versionmodified rst-changed">Changed in version 1.4: </span><span>the on_connect hook is no longer called twice
+for the first connection of a dialect.  The on_connect hook is still
+called before the <code>_engine.Dialect.initialize</code> method however.</span></div>
+<div class="rst-versionchanged">
+<span class="rst-versionmodified rst-changed">Changed in version 1.4.3: </span><span>the on_connect hook is invoked from a new
+method on_connect_url that passes the URL that was used to create
+the connect args.   Dialects can implement on_connect_url instead
+of on_connect if they need the URL object that was used for the
+connection in order to get additional context.</span></div>
+<p>If None is returned, no event listener is generated.</p>
+<div class="rst-admonition seealso">
+<p class="rst-first rst-admonition-title">See Also</p>
+<p><code>.Dialect.connect</code> - allows the DBAPI <tt class="rst-docutils literal">connect()</tt> sequence
+itself to be controlled.</p>
+<p class="rst-last"><code>.Dialect.on_connect_url</code> - supersedes
+<code>.Dialect.on_connect</code> to also receive the
+<code>_engine.URL</code> object in context.</p>
+</div>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td colspan="2">a callable that accepts a single DBAPI connection as an
+argument, or None.</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.engine.interfaces.Dialect.on_connect_url">
+    
+  </a>
+  <a name="on_connect_url">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">on_connect_url</span>(self, url):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/engine/interfaces.py#L776">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="sqlalchemy.dialects.sqlite.pysqlcipher.SQLiteDialect_pysqlcipher.html" class="internal-link">sqlalchemy.dialects.sqlite.pysqlcipher.SQLiteDialect_pysqlcipher</a></code></div>
+    
+    <div><p>return a callable which sets up a newly created DBAPI connection.</p>
+<p>This method is a new hook that supersedes the
+<code>_engine.Dialect.on_connect</code> method when implemented by a
+dialect.   When not implemented by a dialect, it invokes the
+<code>_engine.Dialect.on_connect</code> method directly to maintain
+compatibility with existing dialects.   There is no deprecation
+for <code>_engine.Dialect.on_connect</code> expected.</p>
+<p>The callable should accept a single argument "conn" which is the
+DBAPI connection itself.  The inner callable has no
+return value.</p>
+<p>E.g.:</p>
+<pre class="rst-literal-block">
+class MyDialect(default.DefaultDialect):
+    # ...
+
+    def on_connect_url(self, url):
+        def do_on_connect(connection):
+            connection.execute("SET SPECIAL FLAGS etc")
+
+        return do_on_connect
+</pre>
+<p>This is used to set dialect-wide per-connection options such as
+isolation modes, Unicode modes, etc.</p>
+<p>This method differs from <code>_engine.Dialect.on_connect</code> in that
+it is passed the <code>_engine.URL</code> object that's relevant to the
+connect args.  Normally the only way to get this is from the
+<code>_engine.Dialect.on_connect</code> hook is to look on the
+<code>_engine.Engine</code> itself, however this URL object may have been
+replaced by plugins.</p>
+<div class="rst-admonition note">
+<p class="rst-first rst-admonition-title">Note</p>
+<p class="rst-last">The default implementation of
+<code>_engine.Dialect.on_connect_url</code> is to invoke the
+<code>_engine.Dialect.on_connect</code> method. Therefore if a dialect
+implements this method, the <code>_engine.Dialect.on_connect</code>
+method <strong>will not be called</strong> unless the overriding dialect calls
+it directly from here.</p>
+</div>
+<div class="rst-versionadded">
+<span class="rst-versionmodified rst-added">New in version 1.4.3: </span><span>added <code>_engine.Dialect.on_connect_url</code>
+which normally calls into <code>_engine.Dialect.on_connect</code>.</span></div>
+<div class="rst-admonition seealso">
+<p class="rst-first rst-admonition-title">See Also</p>
+<p class="rst-last"><code>_engine.Dialect.on_connect</code></p>
+</div>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">url</span></td><td class="fieldArgDesc">a <code>_engine.URL</code> object representing the
+<code>_engine.URL</code> that was passed to the
+<code>_engine.Dialect.create_connect_args</code> method.</td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td colspan="2">a callable that accepts a single DBAPI connection as an
+argument, or None.</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.engine.interfaces.Dialect.reset_isolation_level">
+    
+  </a>
+  <a name="reset_isolation_level">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">reset_isolation_level</span>(self, dbapi_conn):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/engine/interfaces.py#L890">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="sqlalchemy.engine.default.DefaultDialect.html" class="internal-link">sqlalchemy.engine.default.DefaultDialect</a></code></div>
+    
+    <div><p>Given a DBAPI connection, revert its isolation to the default.</p>
+<p>Note that this is a dialect-level method which is used as part
+of the implementation of the <code>_engine.Connection</code> and
+<code>_engine.Engine</code>
+isolation level facilities; these APIs should be preferred for
+most typical use cases.</p>
+<div class="rst-admonition seealso">
+<p class="rst-first rst-admonition-title">See Also</p>
+<p><code>_engine.Connection.get_isolation_level</code>
+- view current level</p>
+<p><code>_engine.Connection.default_isolation_level</code>
+- view default level</p>
+<p><a href="#system-message-1"><span class="rst-problematic" id="rst-problematic-1">:paramref:`.Connection.execution_options.isolation_level`</span></a> -
+set per <code>_engine.Connection</code> isolation level</p>
+<p class="rst-last"><a href="#system-message-2"><span class="rst-problematic" id="rst-problematic-2">:paramref:`_sa.create_engine.isolation_level`</span></a> -
+set per <code>_engine.Engine</code> isolation level</p>
+</div>
+</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.engine.interfaces.Dialect.set_isolation_level">
+    
+  </a>
+  <a name="set_isolation_level">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">set_isolation_level</span>(self, dbapi_conn, level):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/engine/interfaces.py#L917">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="sqlalchemy.databases.mssql.MSDialect.html" class="internal-link">sqlalchemy.databases.mssql.MSDialect</a></code>, <code><a href="sqlalchemy.databases.mysql.MySQLDialect.html" class="internal-link">sqlalchemy.databases.mysql.MySQLDialect</a></code>, <code><a href="sqlalchemy.databases.oracle.OracleDialect.html" class="internal-link">sqlalchemy.databases.oracle.OracleDialect</a></code>, <code><a href="sqlalchemy.databases.postgresql.PGDialect.html" class="internal-link">sqlalchemy.databases.postgresql.PGDialect</a></code>, <code><a href="sqlalchemy.databases.sqlite.SQLiteDialect.html" class="internal-link">sqlalchemy.databases.sqlite.SQLiteDialect</a></code></div>
+    
+    <div><p>Given a DBAPI connection, set its isolation level.</p>
+<p>Note that this is a dialect-level method which is used as part
+of the implementation of the <code>_engine.Connection</code> and
+<code>_engine.Engine</code>
+isolation level facilities; these APIs should be preferred for
+most typical use cases.</p>
+<div class="rst-admonition seealso">
+<p class="rst-first rst-admonition-title">See Also</p>
+<p><code>_engine.Connection.get_isolation_level</code>
+- view current level</p>
+<p><code>_engine.Connection.default_isolation_level</code>
+- view default level</p>
+<p><a href="#system-message-1"><span class="rst-problematic" id="rst-problematic-1">:paramref:`.Connection.execution_options.isolation_level`</span></a> -
+set per <code>_engine.Connection</code> isolation level</p>
+<p class="rst-last"><a href="#system-message-2"><span class="rst-problematic" id="rst-problematic-2">:paramref:`_sa.create_engine.isolation_level`</span></a> -
+set per <code>_engine.Engine</code> isolation level</p>
+</div>
+</div>
+  </div>
+</div><div class="baseclassvariable">
+  
+  
+  <a name="sqlalchemy.engine.interfaces.Dialect.supports_statement_cache">
+    
+  </a>
+  <a name="supports_statement_cache">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">supports_statement_cache</span>: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/engine/interfaces.py#L151">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="sqlalchemy.engine.default.DefaultDialect.html" class="internal-link">sqlalchemy.engine.default.DefaultDialect</a></code></div>
+    
+    <div><p>indicates if this dialect supports caching.</p>
+<p>All dialects that are compatible with statement caching should set this
+flag to True directly on each dialect class and subclass that supports
+it.  SQLAlchemy tests that this flag is locally present on each dialect
+subclass before it will use statement caching.  This is to provide
+safety for legacy or new dialects that are not yet fully tested to be
+compliant with SQL statement caching.</p>
+<div class="rst-versionadded">
+<span class="rst-versionmodified rst-added">New in version 1.4.5.</span></div>
+<div class="rst-admonition seealso">
+<p class="rst-first rst-admonition-title">See Also</p>
+<p class="rst-last"><a href="#system-message-1"><span class="rst-problematic" id="rst-problematic-1">:ref:`engine_thirdparty_caching`</span></a></p>
+</div>
+</div>
+    
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="sqlalchemy.engine.interfaces.Dialect._get_default_schema_name">
+    
+  </a>
+  <a name="_get_default_schema_name">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_get_default_schema_name</span>(self, connection):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/engine/interfaces.py#L528">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="sqlalchemy.databases.mssql.MSDialect.html" class="internal-link">sqlalchemy.databases.mssql.MSDialect</a></code>, <code><a href="sqlalchemy.databases.mysql.MySQLDialect.html" class="internal-link">sqlalchemy.databases.mysql.MySQLDialect</a></code>, <code><a href="sqlalchemy.databases.oracle.OracleDialect.html" class="internal-link">sqlalchemy.databases.oracle.OracleDialect</a></code>, <code><a href="sqlalchemy.databases.postgresql.PGDialect.html" class="internal-link">sqlalchemy.databases.postgresql.PGDialect</a></code>, <code><a href="sqlalchemy.databases.sqlite.SQLiteDialect.html" class="internal-link">sqlalchemy.databases.sqlite.SQLiteDialect</a></code>, <code><a href="sqlalchemy.databases.sybase.SybaseDialect.html" class="internal-link">sqlalchemy.databases.sybase.SybaseDialect</a></code></div>
+    
+    <div><p>Return the string name of the currently selected schema from
+the given connection.</p>
+<p>This is used by the default implementation to populate the
+"default_schema_name" attribute and is called exactly
+once upon first connect.</p>
+</div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="sqlalchemy.engine.interfaces.Dialect._get_server_version_info">
+    
+  </a>
+  <a name="_get_server_version_info">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_get_server_version_info</span>(self, connection):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/engine/interfaces.py#L517">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="sqlalchemy.databases.mysql.MySQLDialect.html" class="internal-link">sqlalchemy.databases.mysql.MySQLDialect</a></code>, <code><a href="sqlalchemy.databases.postgresql.PGDialect.html" class="internal-link">sqlalchemy.databases.postgresql.PGDialect</a></code>, <code><a href="sqlalchemy.dialects.firebird.kinterbasdb.FBDialect_kinterbasdb.html" class="internal-link">sqlalchemy.dialects.firebird.kinterbasdb.FBDialect_kinterbasdb</a></code>, <code><a href="sqlalchemy.dialects.mssql.pymssql.MSDialect_pymssql.html" class="internal-link">sqlalchemy.dialects.mssql.pymssql.MSDialect_pymssql</a></code>, <code><a href="sqlalchemy.dialects.mssql.pyodbc.MSDialect_pyodbc.html" class="internal-link">sqlalchemy.dialects.mssql.pyodbc.MSDialect_pyodbc</a></code>, <code><a href="sqlalchemy.dialects.oracle.cx_oracle.OracleDialect_cx_oracle.html" class="internal-link">sqlalchemy.dialects.oracle.cx_oracle.OracleDialect_cx_oracle</a></code>, <code><a href="sqlalchemy.dialects.sqlite.pysqlite.SQLiteDialect_pysqlite.html" class="internal-link">sqlalchemy.dialects.sqlite.pysqlite.SQLiteDialect_pysqlite</a></code>, <code><a href="sqlalchemy.dialects.sybase.pysybase.SybaseDialect_pysybase.html" class="internal-link">sqlalchemy.dialects.sybase.pysybase.SybaseDialect_pysybase</a></code></div>
+    
+    <div><p>Retrieve the server version info from the given connection.</p>
+<p>This is used by the default implementation to populate the
+"server_version_info" attribute and is called exactly
+once upon first connect.</p>
+</div>
+  </div>
+</div><div class="baseclassvariable private">
+  
+  
+  <a name="sqlalchemy.engine.interfaces.Dialect._has_events">
+    
+  </a>
+  <a name="_has_events">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_has_events</span>: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/engine/interfaces.py#L149">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div>
+
+      </div>
+    </div>
+
+    <footer class="navbar navbar-default">
+  
+  <div class="container">
+    <a href="index.html">API Documentation</a> for sqlalchemy,
+  generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
+    22.2.0 at 2022-02-23 08:22:50.
+  </div>
+</footer>
+
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+  </body>
+</html>

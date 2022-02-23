@@ -1,0 +1,472 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  
+
+  <head>
+    
+    <title>jinja2.ext.Extension</title>
+    <meta name="generator" content="pydoctor 22.2.0"> 
+        
+    </meta>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=0.75" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+    <link rel="stylesheet" type="text/css" href="extra.css" />
+</head>
+
+  <body>
+
+    <div id="banner" class="container">    
+    <div>
+        <a href="https://pydocbrowser.github.io/">Home</a>
+        &gt; jinja2-3.0.3 
+        <!-- This is an important placeholder and will be 
+            replaced by project name and version on building docs -->
+        
+        <!-- (<a href=""&gt;show all versions</a&gt;) -->
+    </div>
+</div>
+
+    <nav class="navbar navbar-default">
+  
+  <div class="container">
+
+    <div class="navbar-header">
+      
+      <div class="navlinks">
+          <span class="navbar-brand">
+            jinja2 <a href="index.html">API Documentation</a>
+          </span>
+
+          <a href="moduleIndex.html">
+            Modules
+          </a>
+
+          <a href="classIndex.html">
+            Classes
+          </a>
+
+          <a href="nameIndex.html">
+            Names
+          </a>
+      </div>
+
+    </div>
+  </div>
+</nav>
+
+    
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="class"><code><code><a href="index.html" class="internal-link">jinja2</a></code><wbr></wbr>.<code><a href="jinja2.ext.html" class="internal-link" title="jinja2.ext">ext</a></code><wbr></wbr>.<code><a href="jinja2.ext.Extension.html" class="internal-link" title="jinja2.ext.Extension">Extension</a></code></code></h1>
+        <div id="showPrivate">
+          <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+        </div>
+      </div>
+
+      <div class="categoryHeader">
+        class documentation
+      </div>
+
+      <div class="extrasDocstring">
+        <p><code><span class="py-keyword">class</span> <span class="py-defname">Extension</span>: <a href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/jinja2-3.0.3//src/jinja2/ext.py#L55" class="sourceLink">(source)</a></code></p><p>Known subclasses: <code><a href="jinja2.ext.AutoEscapeExtension.html" class="internal-link">jinja2.ext.AutoEscapeExtension</a></code>, <code><a href="jinja2.ext.DebugExtension.html" class="internal-link">jinja2.ext.DebugExtension</a></code>, <code><a href="jinja2.ext.ExprStmtExtension.html" class="internal-link">jinja2.ext.ExprStmtExtension</a></code>, <code><a href="jinja2.ext.InternationalizationExtension.html" class="internal-link">jinja2.ext.InternationalizationExtension</a></code>, <code><a href="jinja2.ext.LoopControlExtension.html" class="internal-link">jinja2.ext.LoopControlExtension</a></code>, <code><a href="jinja2.ext.WithExtension.html" class="internal-link">jinja2.ext.WithExtension</a></code></p>
+        <p><a href="classIndex.html#jinja2.ext.Extension">View In Hierarchy</a></p>
+      </div>
+
+      <div class="moduleDocstring">
+        <div><p>Extensions can be used to add extra functionality to the Jinja template
+system at the parser level.  Custom extensions are bound to an environment
+but may not store environment specific data on <code>self</code>.  The reason for
+this is that an extension can be bound to another environment (for
+overlays) by creating a copy and reassigning the <code><a href="#environment" class="internal-link" title="jinja2.ext.Extension.environment">environment</a></code> attribute.</p>
+<p>As extensions are created by the environment they cannot accept any
+arguments for configuration.  One may want to work around that by using
+a factory function, but that is not possible as extensions are identified
+by their import name.  The correct way to configure the extension is
+storing the configuration values on the environment.  Because this way the
+environment ends up acting as central configuration storage the
+attributes may clash which is why extensions have to ensure that the names
+they choose for configuration are not too generic.  <tt class="rst-docutils literal">prefix</tt> for example
+is a terrible name, <tt class="rst-docutils literal">fragment_cache_prefix</tt> on the other hand is a good
+name as includes the name of the extension (fragment cache).</p>
+</div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id10624">
+  
+  
+  <tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__init__" class="internal-link" title="jinja2.ext.Extension.__init__">__init__</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__init_subclass__" class="internal-link" title="jinja2.ext.Extension.__init_subclass__">__init​_subclass__</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#attr" class="internal-link" title="jinja2.ext.Extension.attr">attr</a></code></td>
+    <td>Return an attribute node for the current extension.  This is useful to pass constants on extensions to generated template code.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#bind" class="internal-link" title="jinja2.ext.Extension.bind">bind</a></code></td>
+    <td>Create a copy of this extension bound to another environment.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#call_method" class="internal-link" title="jinja2.ext.Extension.call_method">call​_method</a></code></td>
+    <td>Call a method of the extension.  This is a shortcut for <code><a href="#attr" class="internal-link" title="jinja2.ext.Extension.attr">attr</a></code> + <code><a href="jinja2.nodes.Call.html" class="internal-link">jinja2.nodes.Call</a></code>.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#filter_stream" class="internal-link" title="jinja2.ext.Extension.filter_stream">filter​_stream</a></code></td>
+    <td><span class="undocumented">No summary</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#parse" class="internal-link" title="jinja2.ext.Extension.parse">parse</a></code></td>
+    <td><span class="undocumented">No summary</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#preprocess" class="internal-link" title="jinja2.ext.Extension.preprocess">preprocess</a></code></td>
+    <td>This method is called before the actual lexing and can be used to preprocess the source.  The <code>filename</code> is optional.  The return value must be the preprocessed source.</td>
+  </tr><tr class="classvariable">
+    
+    <td>Class Variable</td>
+    <td><code><a href="#identifier" class="internal-link" title="jinja2.ext.Extension.identifier">identifier</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="classvariable">
+    
+    <td>Class Variable</td>
+    <td><code><a href="#priority" class="internal-link" title="jinja2.ext.Extension.priority">priority</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="classvariable">
+    
+    <td>Class Variable</td>
+    <td><code><a href="#tags" class="internal-link" title="jinja2.ext.Extension.tags">tags</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#environment" class="internal-link" title="jinja2.ext.Extension.environment">environment</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+        
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="basemethod">
+  
+  
+  <a name="jinja2.ext.Extension.__init__">
+    
+  </a>
+  <a name="__init__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__init__</span>(self, environment):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/jinja2-3.0.3//src/jinja2/ext.py#L89">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="jinja2.ext.AutoEscapeExtension.html" class="internal-link">jinja2.ext.AutoEscapeExtension</a></code>, <code><a href="jinja2.ext.InternationalizationExtension.html" class="internal-link">jinja2.ext.InternationalizationExtension</a></code>, <code><a href="jinja2.ext.WithExtension.html" class="internal-link">jinja2.ext.WithExtension</a></code></div>
+    
+    <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">environment:</span><code><a href="jinja2.environment.Environment.html" class="internal-link" title="jinja2.environment.Environment">Environment</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="jinja2.ext.Extension.__init_subclass__">
+    
+  </a>
+  <a name="__init_subclass__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__init_subclass__</span>(cls):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/jinja2-3.0.3//src/jinja2/ext.py#L76">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="jinja2.ext.Extension.attr">
+    
+  </a>
+  <a name="attr">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">attr</span>(self, name, lineno=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/jinja2-3.0.3//src/jinja2/ext.py#L126">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Return an attribute node for the current extension.  This is useful
+to pass constants on extensions to generated template code.</p>
+<pre class="rst-literal-block">
+self.attr('_my_attribute', lineno=lineno)
+</pre>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">name:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">lineno:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">t.Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/functions.html#int" class="intersphinx-link">int</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="jinja2.nodes.ExtensionAttribute.html" class="internal-link" title="jinja2.nodes.ExtensionAttribute">nodes.ExtensionAttribute</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="jinja2.ext.Extension.bind">
+    
+  </a>
+  <a name="bind">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">bind</span>(self, environment):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/jinja2-3.0.3//src/jinja2/ext.py#L92">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Create a copy of this extension bound to another environment.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">environment:</span><code><a href="jinja2.environment.Environment.html" class="internal-link" title="jinja2.environment.Environment">Environment</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="jinja2.ext.Extension.html" class="internal-link" title="jinja2.ext.Extension">Extension</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="jinja2.ext.Extension.call_method">
+    
+  </a>
+  <a name="call_method">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">call_method</span>(self, name, args=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, kwargs=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, dyn_args=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, dyn_kwargs=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, lineno=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/jinja2-3.0.3//src/jinja2/ext.py#L138">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Call a method of the extension.  This is a shortcut for
+<code><a href="#attr" class="internal-link" title="jinja2.ext.Extension.attr">attr</a></code> + <code><a href="jinja2.nodes.Call.html" class="internal-link">jinja2.nodes.Call</a></code>.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">name:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">args:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">t.Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.List" class="intersphinx-link">t.List</a>[<wbr></wbr><a href="jinja2.nodes.Expr.html" class="internal-link" title="jinja2.nodes.Expr">nodes.Expr</a>]]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">kwargs:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">t.Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.List" class="intersphinx-link">t.List</a>[<wbr></wbr><a href="jinja2.nodes.Keyword.html" class="internal-link" title="jinja2.nodes.Keyword">nodes.Keyword</a>]]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">dyn​_args:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">t.Optional</a>[<wbr></wbr><a href="jinja2.nodes.Expr.html" class="internal-link" title="jinja2.nodes.Expr">nodes.Expr</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">dyn​_kwargs:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">t.Optional</a>[<wbr></wbr><a href="jinja2.nodes.Expr.html" class="internal-link" title="jinja2.nodes.Expr">nodes.Expr</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">lineno:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">t.Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/functions.html#int" class="intersphinx-link">int</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="jinja2.nodes.Call.html" class="internal-link" title="jinja2.nodes.Call">nodes.Call</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="jinja2.ext.Extension.filter_stream">
+    
+  </a>
+  <a name="filter_stream">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">filter_stream</span>(self, stream):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/jinja2-3.0.3//src/jinja2/ext.py#L108">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>It's passed a <code>~jinja2.lexer.TokenStream</code> that can be used
+to filter tokens returned.  This method has to return an iterable of
+<code>~jinja2.lexer.Token</code>s, but it doesn't have to return a
+<code>~jinja2.lexer.TokenStream</code>.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">stream:</span><code><a href="jinja2.lexer.TokenStream.html" class="internal-link" title="jinja2.lexer.TokenStream">TokenStream</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Union" class="intersphinx-link">t.Union</a>[<wbr></wbr><a href="jinja2.lexer.TokenStream.html" class="internal-link" title="jinja2.lexer.TokenStream">TokenStream</a>, <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Iterable" class="intersphinx-link">t.Iterable</a>[<wbr></wbr><a href="jinja2.lexer.Token.html" class="internal-link" title="jinja2.lexer.Token">Token</a>]]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="jinja2.ext.Extension.parse">
+    
+  </a>
+  <a name="parse">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">parse</span>(self, parser):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/jinja2-3.0.3//src/jinja2/ext.py#L118">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="jinja2.ext.DebugExtension.html" class="internal-link">jinja2.ext.DebugExtension</a></code>, <code><a href="jinja2.ext.ExprStmtExtension.html" class="internal-link">jinja2.ext.ExprStmtExtension</a></code>, <code><a href="jinja2.ext.InternationalizationExtension.html" class="internal-link">jinja2.ext.InternationalizationExtension</a></code>, <code><a href="jinja2.ext.LoopControlExtension.html" class="internal-link">jinja2.ext.LoopControlExtension</a></code></div>
+    
+    <div>If any of the <code><a href="#tags" class="internal-link" title="jinja2.ext.Extension.tags">tags</a></code> matched this method is called with the
+parser as first argument.  The token the parser stream is pointing at
+is the name token that matched.  This method has to return one or a
+list of multiple nodes.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">parser:</span><code><a href="jinja2.parser.Parser.html" class="internal-link" title="jinja2.parser.Parser">Parser</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Union" class="intersphinx-link">t.Union</a>[<wbr></wbr><a href="jinja2.nodes.Node.html" class="internal-link" title="jinja2.nodes.Node">nodes.Node</a>, <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.List" class="intersphinx-link">t.List</a>[<wbr></wbr><a href="jinja2.nodes.Node.html" class="internal-link" title="jinja2.nodes.Node">nodes.Node</a>]]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="jinja2.ext.Extension.preprocess">
+    
+  </a>
+  <a name="preprocess">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">preprocess</span>(self, source, name, filename=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/jinja2-3.0.3//src/jinja2/ext.py#L99">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>This method is called before the actual lexing and can be used to
+preprocess the source.  The <code>filename</code> is optional.  The return value
+must be the preprocessed source.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">source:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">name:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">t.Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">filename:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">t.Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="baseclassvariable">
+  
+  
+  <a name="jinja2.ext.Extension.identifier">
+    
+  </a>
+  <a name="identifier">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">identifier</span>: <code><a href="https://docs.python.org/3/library/typing.html#typing.ClassVar" class="intersphinx-link">t.ClassVar</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]</code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/jinja2-3.0.3//src/jinja2/ext.py#L74">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseclassvariable">
+  
+  
+  <a name="jinja2.ext.Extension.priority">
+    
+  </a>
+  <a name="priority">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">priority</span>: <code><a href="https://docs.python.org/3/library/functions.html#int" class="intersphinx-link">int</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/jinja2-3.0.3//src/jinja2/ext.py#L87">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseclassvariable">
+  
+  
+  <a name="jinja2.ext.Extension.tags">
+    
+  </a>
+  <a name="tags">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">tags</span>: <code><a href="https://docs.python.org/3/library/typing.html#typing.Set" class="intersphinx-link">t.Set</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]</code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/jinja2-3.0.3//src/jinja2/ext.py#L80">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="jinja2.ext.DebugExtension.html" class="internal-link">jinja2.ext.DebugExtension</a></code>, <code><a href="jinja2.ext.ExprStmtExtension.html" class="internal-link">jinja2.ext.ExprStmtExtension</a></code>, <code><a href="jinja2.ext.InternationalizationExtension.html" class="internal-link">jinja2.ext.InternationalizationExtension</a></code>, <code><a href="jinja2.ext.LoopControlExtension.html" class="internal-link">jinja2.ext.LoopControlExtension</a></code></div>
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="jinja2.ext.Extension.environment">
+    
+  </a>
+  <a name="environment">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">environment</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/jinja2-3.0.3//src/jinja2/ext.py#L90">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div>
+
+      </div>
+    </div>
+
+    <footer class="navbar navbar-default">
+  
+  <div class="container">
+    <a href="index.html">API Documentation</a> for jinja2,
+  generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
+    22.2.0 at 2022-02-23 08:15:20.
+  </div>
+</footer>
+
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+  </body>
+</html>

@@ -1,0 +1,768 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  
+
+  <head>
+    
+    <title>setuptools._vendor.more_itertools.more.numeric_range</title>
+    <meta name="generator" content="pydoctor 22.2.0"> 
+        
+    </meta>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=0.75" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+    <link rel="stylesheet" type="text/css" href="extra.css" />
+</head>
+
+  <body>
+
+    <div id="banner" class="container">    
+    <div>
+        <a href="https://pydocbrowser.github.io/">Home</a>
+        &gt; setuptools-60.9.3 
+        <!-- This is an important placeholder and will be 
+            replaced by project name and version on building docs -->
+        
+        <!-- (<a href=""&gt;show all versions</a&gt;) -->
+    </div>
+</div>
+
+    <nav class="navbar navbar-default">
+  
+  <div class="container">
+
+    <div class="navbar-header">
+      
+      <div class="navlinks">
+          <span class="navbar-brand">
+            setuptools <a href="index.html">API Documentation</a>
+          </span>
+
+          <a href="moduleIndex.html">
+            Modules
+          </a>
+
+          <a href="classIndex.html">
+            Classes
+          </a>
+
+          <a href="nameIndex.html">
+            Names
+          </a>
+      </div>
+
+    </div>
+  </div>
+</nav>
+
+    
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="class"><code><code><a href="index.html" class="internal-link">setuptools</a></code><wbr></wbr>.<code><a href="setuptools._vendor.html" class="internal-link" title="setuptools._vendor">_vendor</a></code><wbr></wbr>.<code><a href="setuptools._vendor.more_itertools.html" class="internal-link" title="setuptools._vendor.more_itertools">more_itertools</a></code><wbr></wbr>.<code><a href="setuptools._vendor.more_itertools.more.html" class="internal-link" title="setuptools._vendor.more_itertools.more">more</a></code><wbr></wbr>.<code><a href="setuptools._vendor.more_itertools.more.numeric_range.html" class="internal-link" title="setuptools._vendor.more_itertools.more.numeric_range">numeric_range</a></code></code></h1>
+        <div id="showPrivate">
+          <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+        </div>
+      </div>
+
+      <div class="categoryHeader">
+        class documentation
+      </div>
+
+      <div class="extrasDocstring">
+        <p><code><span class="py-keyword">class</span> <span class="py-defname">numeric_range</span>(<a href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence" class="intersphinx-link" title="collections.abc.Sequence">abc.Sequence</a>, <a href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Hashable" class="intersphinx-link" title="collections.abc.Hashable">abc.Hashable</a>): <a href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/setuptools-60.9.3//setuptools/_vendor/more_itertools/more.py#L1888" class="sourceLink">(source)</a></code></p>
+        <p><a href="classIndex.html#setuptools._vendor.more_itertools.more.numeric_range">View In Hierarchy</a></p>
+      </div>
+
+      <div class="moduleDocstring">
+        <div><p>An extension of the built-in <tt class="rst-docutils literal">range()</tt> function whose arguments can
+be any orderable numeric type.</p>
+<p>With only <em>stop</em> specified, <em>start</em> defaults to <tt class="rst-docutils literal">0</tt> and <em>step</em>
+defaults to <tt class="rst-docutils literal">1</tt>. The output items will match the type of <em>stop</em>:</p>
+<blockquote>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-builtin">list</span>(numeric_range(3.5))
+<span class="py-output">[0.0, 1.0, 2.0, 3.0]</span>
+</pre></blockquote>
+<p>With only <em>start</em> and <em>stop</em> specified, <em>step</em> defaults to <tt class="rst-docutils literal">1</tt>. The
+output items will match the type of <em>start</em>:</p>
+<blockquote>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">from</span> decimal <span class="py-keyword">import</span> Decimal
+<span class="py-prompt">&gt;&gt;&gt; </span>start = Decimal(<span class="py-string">'2.1'</span>)
+<span class="py-prompt">&gt;&gt;&gt; </span>stop = Decimal(<span class="py-string">'5.1'</span>)
+<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-builtin">list</span>(numeric_range(start, stop))
+<span class="py-output">[Decimal('2.1'), Decimal('3.1'), Decimal('4.1')]</span>
+</pre></blockquote>
+<p>With <em>start</em>, <em>stop</em>, and <em>step</em>  specified the output items will match
+the type of <tt class="rst-docutils literal">start + step</tt>:</p>
+<blockquote>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">from</span> fractions <span class="py-keyword">import</span> Fraction
+<span class="py-prompt">&gt;&gt;&gt; </span>start = Fraction(1, 2)  <span class="py-comment"># Start at 1/2</span>
+<span class="py-prompt">&gt;&gt;&gt; </span>stop = Fraction(5, 2)  <span class="py-comment"># End at 5/2</span>
+<span class="py-prompt">&gt;&gt;&gt; </span>step = Fraction(1, 2)  <span class="py-comment"># Count by 1/2</span>
+<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-builtin">list</span>(numeric_range(start, stop, step))
+<span class="py-output">[Fraction(1, 2), Fraction(1, 1), Fraction(3, 2), Fraction(2, 1)]</span>
+</pre></blockquote>
+<p>If <em>step</em> is zero, <tt class="rst-docutils literal">ValueError</tt> is raised. Negative steps are supported:</p>
+<blockquote>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-builtin">list</span>(numeric_range(3, -1, -1.0))
+<span class="py-output">[3.0, 2.0, 1.0, 0.0]</span>
+</pre></blockquote>
+<p>Be aware of the limitations of floating point numbers; the representation
+of the yielded numbers may be surprising.</p>
+<p><tt class="rst-docutils literal">datetime.datetime</tt> objects can be used for <em>start</em> and <em>stop</em>, if <em>step</em>
+is a <tt class="rst-docutils literal">datetime.timedelta</tt> object:</p>
+<blockquote>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">import</span> datetime
+<span class="py-prompt">&gt;&gt;&gt; </span>start = datetime.datetime(2019, 1, 1)
+<span class="py-prompt">&gt;&gt;&gt; </span>stop = datetime.datetime(2019, 1, 3)
+<span class="py-prompt">&gt;&gt;&gt; </span>step = datetime.timedelta(days=1)
+<span class="py-prompt">&gt;&gt;&gt; </span>items = <span class="py-builtin">iter</span>(numeric_range(start, stop, step))
+<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-builtin">next</span>(items)
+<span class="py-output">datetime.datetime(2019, 1, 1, 0, 0)</span>
+<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-builtin">next</span>(items)
+<span class="py-output">datetime.datetime(2019, 1, 2, 0, 0)</span>
+</pre></blockquote>
+</div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id16110">
+  
+  
+  <tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__bool__" class="internal-link" title="setuptools._vendor.more_itertools.more.numeric_range.__bool__">__bool__</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__contains__" class="internal-link" title="setuptools._vendor.more_itertools.more.numeric_range.__contains__">__contains__</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__eq__" class="internal-link" title="setuptools._vendor.more_itertools.more.numeric_range.__eq__">__eq__</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__getitem__" class="internal-link" title="setuptools._vendor.more_itertools.more.numeric_range.__getitem__">__getitem__</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__hash__" class="internal-link" title="setuptools._vendor.more_itertools.more.numeric_range.__hash__">__hash__</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__init__" class="internal-link" title="setuptools._vendor.more_itertools.more.numeric_range.__init__">__init__</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__iter__" class="internal-link" title="setuptools._vendor.more_itertools.more.numeric_range.__iter__">__iter__</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__len__" class="internal-link" title="setuptools._vendor.more_itertools.more.numeric_range.__len__">__len__</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__reduce__" class="internal-link" title="setuptools._vendor.more_itertools.more.numeric_range.__reduce__">__reduce__</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__repr__" class="internal-link" title="setuptools._vendor.more_itertools.more.numeric_range.__repr__">__repr__</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__reversed__" class="internal-link" title="setuptools._vendor.more_itertools.more.numeric_range.__reversed__">__reversed__</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#count" class="internal-link" title="setuptools._vendor.more_itertools.more.numeric_range.count">count</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#index" class="internal-link" title="setuptools._vendor.more_itertools.more.numeric_range.index">index</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_get_by_index" class="internal-link" title="setuptools._vendor.more_itertools.more.numeric_range._get_by_index">​_get​_by​_index</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_init_len" class="internal-link" title="setuptools._vendor.more_itertools.more.numeric_range._init_len">​_init​_len</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="constant private">
+    
+    <td>Constant</td>
+    <td><code><a href="#_EMPTY_HASH" class="internal-link" title="setuptools._vendor.more_itertools.more.numeric_range._EMPTY_HASH">​_EMPTY​_HASH</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#_growing" class="internal-link" title="setuptools._vendor.more_itertools.more.numeric_range._growing">​_growing</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#_len" class="internal-link" title="setuptools._vendor.more_itertools.more.numeric_range._len">​_len</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#_start" class="internal-link" title="setuptools._vendor.more_itertools.more.numeric_range._start">​_start</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#_step" class="internal-link" title="setuptools._vendor.more_itertools.more.numeric_range._step">​_step</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#_stop" class="internal-link" title="setuptools._vendor.more_itertools.more.numeric_range._stop">​_stop</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#_zero" class="internal-link" title="setuptools._vendor.more_itertools.more.numeric_range._zero">​_zero</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+        
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="basemethod">
+  
+  
+  <a name="setuptools._vendor.more_itertools.more.numeric_range.__bool__">
+    
+  </a>
+  <a name="__bool__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__bool__</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/setuptools-60.9.3//setuptools/_vendor/more_itertools/more.py#L1970">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="setuptools._vendor.more_itertools.more.numeric_range.__contains__">
+    
+  </a>
+  <a name="__contains__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__contains__</span>(self, elem):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/setuptools-60.9.3//setuptools/_vendor/more_itertools/more.py#L1976">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="setuptools._vendor.more_itertools.more.numeric_range.__eq__">
+    
+  </a>
+  <a name="__eq__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__eq__</span>(self, other):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/setuptools-60.9.3//setuptools/_vendor/more_itertools/more.py#L1986">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="setuptools._vendor.more_itertools.more.numeric_range.__getitem__">
+    
+  </a>
+  <a name="__getitem__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__getitem__</span>(self, key):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/setuptools-60.9.3//setuptools/_vendor/more_itertools/more.py#L2001">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="setuptools._vendor.more_itertools.more.numeric_range.__hash__">
+    
+  </a>
+  <a name="__hash__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__hash__</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/setuptools-60.9.3//setuptools/_vendor/more_itertools/more.py#L2028">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="setuptools._vendor.more_itertools.more.numeric_range.__init__">
+    
+  </a>
+  <a name="__init__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__init__</span>(self, *args):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/setuptools-60.9.3//setuptools/_vendor/more_itertools/more.py#L1942">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="setuptools._vendor.more_itertools.more.numeric_range.__iter__">
+    
+  </a>
+  <a name="__iter__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__iter__</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/setuptools-60.9.3//setuptools/_vendor/more_itertools/more.py#L2034">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="setuptools._vendor.more_itertools.more.numeric_range.__len__">
+    
+  </a>
+  <a name="__len__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__len__</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/setuptools-60.9.3//setuptools/_vendor/more_itertools/more.py#L2041">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="setuptools._vendor.more_itertools.more.numeric_range.__reduce__">
+    
+  </a>
+  <a name="__reduce__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__reduce__</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/setuptools-60.9.3//setuptools/_vendor/more_itertools/more.py#L2060">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="setuptools._vendor.more_itertools.more.numeric_range.__repr__">
+    
+  </a>
+  <a name="__repr__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__repr__</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/setuptools-60.9.3//setuptools/_vendor/more_itertools/more.py#L2063">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="setuptools._vendor.more_itertools.more.numeric_range.__reversed__">
+    
+  </a>
+  <a name="__reversed__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__reversed__</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/setuptools-60.9.3//setuptools/_vendor/more_itertools/more.py#L2073">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="setuptools._vendor.more_itertools.more.numeric_range.count">
+    
+  </a>
+  <a name="count">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">count</span>(self, value):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/setuptools-60.9.3//setuptools/_vendor/more_itertools/more.py#L2080">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="setuptools._vendor.more_itertools.more.numeric_range.index">
+    
+  </a>
+  <a name="index">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">index</span>(self, value):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/setuptools-60.9.3//setuptools/_vendor/more_itertools/more.py#L2083">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="setuptools._vendor.more_itertools.more.numeric_range._get_by_index">
+    
+  </a>
+  <a name="_get_by_index">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_get_by_index</span>(self, i):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/setuptools-60.9.3//setuptools/_vendor/more_itertools/more.py#L2097">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="setuptools._vendor.more_itertools.more.numeric_range._init_len">
+    
+  </a>
+  <a name="_init_len">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_init_len</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/setuptools-60.9.3//setuptools/_vendor/more_itertools/more.py#L2044">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="baseconstant private">
+  
+  
+  <a name="setuptools._vendor.more_itertools.more.numeric_range._EMPTY_HASH">
+    
+  </a>
+  <a name="_EMPTY_HASH">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_EMPTY_HASH</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/setuptools-60.9.3//setuptools/_vendor/more_itertools/more.py#L1940">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    <table class="valueTable"><tr class="fieldStart"><td class="fieldName">Value</td></tr><tr><td><pre class="constant-value"><code><a href="https://docs.python.org/3/library/functions.html#hash" class="intersphinx-link">hash</a>(<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#range" class="intersphinx-link">range</a>(<wbr></wbr>0, <wbr></wbr>0))</code></pre></td></tr></table>
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  
+  <a name="setuptools._vendor.more_itertools.more.numeric_range._growing">
+    
+  </a>
+  <a name="_growing">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_growing</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/setuptools-60.9.3//setuptools/_vendor/more_itertools/more.py#L1967">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  
+  <a name="setuptools._vendor.more_itertools.more.numeric_range._len">
+    
+  </a>
+  <a name="_len">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_len</span>: <code><a href="https://docs.python.org/3/library/functions.html#int" class="intersphinx-link">int</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/setuptools-60.9.3//setuptools/_vendor/more_itertools/more.py#L2055">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  
+  <a name="setuptools._vendor.more_itertools.more.numeric_range._start">
+    
+  </a>
+  <a name="_start">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_start</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/setuptools-60.9.3//setuptools/_vendor/more_itertools/more.py#L1946">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  
+  <a name="setuptools._vendor.more_itertools.more.numeric_range._step">
+    
+  </a>
+  <a name="_step">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_step</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/setuptools-60.9.3//setuptools/_vendor/more_itertools/more.py#L1947">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  
+  <a name="setuptools._vendor.more_itertools.more.numeric_range._stop">
+    
+  </a>
+  <a name="_stop">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_stop</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/setuptools-60.9.3//setuptools/_vendor/more_itertools/more.py#L1945">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  
+  <a name="setuptools._vendor.more_itertools.more.numeric_range._zero">
+    
+  </a>
+  <a name="_zero">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_zero</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/setuptools-60.9.3//setuptools/_vendor/more_itertools/more.py#L1964">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div>
+
+      </div>
+    </div>
+
+    <footer class="navbar navbar-default">
+  
+  <div class="container">
+    <a href="index.html">API Documentation</a> for setuptools,
+  generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
+    22.2.0 at 2022-02-23 08:20:16.
+  </div>
+</footer>
+
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+  </body>
+</html>

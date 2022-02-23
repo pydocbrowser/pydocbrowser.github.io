@@ -1,0 +1,2204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  
+
+  <head>
+    
+    <title>babel.core.Locale</title>
+    <meta name="generator" content="pydoctor 22.2.0"> 
+        
+    </meta>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=0.75" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+    <link rel="stylesheet" type="text/css" href="extra.css" />
+</head>
+
+  <body>
+
+    <div id="banner" class="container">    
+    <div>
+        <a href="https://pydocbrowser.github.io/">Home</a>
+        &gt; babel-2.9.1 
+        <!-- This is an important placeholder and will be 
+            replaced by project name and version on building docs -->
+        
+        <!-- (<a href=""&gt;show all versions</a&gt;) -->
+    </div>
+</div>
+
+    <nav class="navbar navbar-default">
+  
+  <div class="container">
+
+    <div class="navbar-header">
+      
+      <div class="navlinks">
+          <span class="navbar-brand">
+            babel <a href="index.html">API Documentation</a>
+          </span>
+
+          <a href="moduleIndex.html">
+            Modules
+          </a>
+
+          <a href="classIndex.html">
+            Classes
+          </a>
+
+          <a href="nameIndex.html">
+            Names
+          </a>
+      </div>
+
+    </div>
+  </div>
+</nav>
+
+    
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="class"><code><code><a href="index.html" class="internal-link">babel</a></code><wbr></wbr>.<code><a href="babel.core.html" class="internal-link" title="babel.core">core</a></code><wbr></wbr>.<code><a href="babel.core.Locale.html" class="internal-link" title="babel.core.Locale">Locale</a></code></code></h1>
+        <div id="showPrivate">
+          <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+        </div>
+      </div>
+
+      <div class="categoryHeader">
+        class documentation
+      </div>
+
+      <div class="extrasDocstring">
+        <p><code><span class="py-keyword">class</span> <span class="py-defname">Locale</span>(<a href="https://docs.python.org/3/library/functions.html#object" class="intersphinx-link" title="object">object</a>): <a href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/babel-2.9.1//babel/core.py#L108" class="sourceLink">(source)</a></code></p>
+        <p><a href="classIndex.html#babel.core.Locale">View In Hierarchy</a></p>
+      </div>
+
+      <div class="moduleDocstring">
+        <div><p>Representation of a specific locale.</p>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>locale = Locale(<span class="py-string">'en'</span>, <span class="py-string">'US'</span>)
+<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-builtin">repr</span>(locale)
+<span class="py-output">"Locale('en', territory='US')"</span>
+<span class="py-prompt">&gt;&gt;&gt; </span>locale.display_name
+<span class="py-output">u'English (United States)'</span>
+</pre><p>A <code><a href="babel.core.Locale.html" class="internal-link" title="babel.core.Locale">Locale</a></code> object can also be instantiated from a raw locale string:</p>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>locale = Locale.parse(<span class="py-string">'en-US'</span>, sep=<span class="py-string">'-'</span>)
+<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-builtin">repr</span>(locale)
+<span class="py-output">"Locale('en', territory='US')"</span>
+</pre><p><code><a href="babel.core.Locale.html" class="internal-link" title="babel.core.Locale">Locale</a></code> objects provide access to a collection of locale data, such as
+territory and language names, number and date format patterns, and more:</p>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>locale.number_symbols[<span class="py-string">'decimal'</span>]
+<span class="py-output">u'.'</span>
+</pre><p>If a locale is requested for which no locale data is available, an
+<code><a href="babel.core.UnknownLocaleError.html" class="internal-link" title="babel.core.UnknownLocaleError">UnknownLocaleError</a></code> is raised:</p>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>Locale.parse(<span class="py-string">'en_XX'</span>)
+<span class="py-except">Traceback (most recent call last):</span>
+<span class="py-except">    ...</span>
+<span class="py-except">UnknownLocaleError: unknown locale 'en_XX'</span>
+</pre><p>For more information see <a class="rst-reference external" href="http://tools.ietf.org/html/rfc3066.html" target="_top">RFC 3066</a>.</p>
+</div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id604">
+  
+  
+  <tr class="classmethod">
+    
+    <td>Class Method</td>
+    <td><code><a href="#default" class="internal-link" title="babel.core.Locale.default">default</a></code></td>
+    <td>Return the system default locale for the specified category.</td>
+  </tr><tr class="classmethod">
+    
+    <td>Class Method</td>
+    <td><code><a href="#negotiate" class="internal-link" title="babel.core.Locale.negotiate">negotiate</a></code></td>
+    <td>Find the best match between available and requested locale strings.</td>
+  </tr><tr class="classmethod">
+    
+    <td>Class Method</td>
+    <td><code><a href="#parse" class="internal-link" title="babel.core.Locale.parse">parse</a></code></td>
+    <td>Create a <code><a href="babel.core.Locale.html" class="internal-link" title="babel.core.Locale">Locale</a></code> instance for the given locale identifier.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__eq__" class="internal-link" title="babel.core.Locale.__eq__">__eq__</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__hash__" class="internal-link" title="babel.core.Locale.__hash__">__hash__</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__init__" class="internal-link" title="babel.core.Locale.__init__">__init__</a></code></td>
+    <td>Initialize the locale object from the given identifier components.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__ne__" class="internal-link" title="babel.core.Locale.__ne__">__ne__</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__repr__" class="internal-link" title="babel.core.Locale.__repr__">__repr__</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__str__" class="internal-link" title="babel.core.Locale.__str__">__str__</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#get_display_name" class="internal-link" title="babel.core.Locale.get_display_name">get​_display​_name</a></code></td>
+    <td>Return the display name of the locale using the given locale.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#get_language_name" class="internal-link" title="babel.core.Locale.get_language_name">get​_language​_name</a></code></td>
+    <td>Return the language of this locale in the given locale.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#get_script_name" class="internal-link" title="babel.core.Locale.get_script_name">get​_script​_name</a></code></td>
+    <td>Return the script name in the given locale.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#get_territory_name" class="internal-link" title="babel.core.Locale.get_territory_name">get​_territory​_name</a></code></td>
+    <td>Return the territory name in the given locale.</td>
+  </tr><tr class="classvariable">
+    
+    <td>Class Variable</td>
+    <td><code><a href="#display_name" class="internal-link" title="babel.core.Locale.display_name">display​_name</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="classvariable">
+    
+    <td>Class Variable</td>
+    <td><code><a href="#language_name" class="internal-link" title="babel.core.Locale.language_name">language​_name</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="classvariable">
+    
+    <td>Class Variable</td>
+    <td><code><a href="#script_name" class="internal-link" title="babel.core.Locale.script_name">script​_name</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="classvariable">
+    
+    <td>Class Variable</td>
+    <td><code><a href="#territory_name" class="internal-link" title="babel.core.Locale.territory_name">territory​_name</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#language" class="internal-link" title="babel.core.Locale.language">language</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#script" class="internal-link" title="babel.core.Locale.script">script</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#territory" class="internal-link" title="babel.core.Locale.territory">territory</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#variant" class="internal-link" title="babel.core.Locale.variant">variant</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="property">
+    
+    <td>Property</td>
+    <td><code><a href="#character_order" class="internal-link" title="babel.core.Locale.character_order">character​_order</a></code></td>
+    <td>The text direction for the language.</td>
+  </tr><tr class="property">
+    
+    <td>Property</td>
+    <td><code><a href="#currencies" class="internal-link" title="babel.core.Locale.currencies">currencies</a></code></td>
+    <td><span class="undocumented">No summary</span></td>
+  </tr><tr class="property">
+    
+    <td>Property</td>
+    <td><code><a href="#currency_formats" class="internal-link" title="babel.core.Locale.currency_formats">currency​_formats</a></code></td>
+    <td>Locale patterns for currency number formatting.</td>
+  </tr><tr class="property">
+    
+    <td>Property</td>
+    <td><code><a href="#currency_symbols" class="internal-link" title="babel.core.Locale.currency_symbols">currency​_symbols</a></code></td>
+    <td>Mapping of currency codes to symbols.</td>
+  </tr><tr class="property">
+    
+    <td>Property</td>
+    <td><code><a href="#date_formats" class="internal-link" title="babel.core.Locale.date_formats">date​_formats</a></code></td>
+    <td>Locale patterns for date formatting.</td>
+  </tr><tr class="property">
+    
+    <td>Property</td>
+    <td><code><a href="#datetime_formats" class="internal-link" title="babel.core.Locale.datetime_formats">datetime​_formats</a></code></td>
+    <td>Locale patterns for datetime formatting.</td>
+  </tr><tr class="property">
+    
+    <td>Property</td>
+    <td><code><a href="#datetime_skeletons" class="internal-link" title="babel.core.Locale.datetime_skeletons">datetime​_skeletons</a></code></td>
+    <td>Locale patterns for formatting parts of a datetime.</td>
+  </tr><tr class="property">
+    
+    <td>Property</td>
+    <td><code><a href="#day_period_rules" class="internal-link" title="babel.core.Locale.day_period_rules">day​_period​_rules</a></code></td>
+    <td>Day period rules for the locale.  Used by <code><a href="babel.dates.html#get_period_id" class="internal-link" title="babel.dates.get_period_id">get_period_id</a></code>.</td>
+  </tr><tr class="property">
+    
+    <td>Property</td>
+    <td><code><a href="#day_periods" class="internal-link" title="babel.core.Locale.day_periods">day​_periods</a></code></td>
+    <td>Locale display names for various day periods (not necessarily only AM/PM).</td>
+  </tr><tr class="property">
+    
+    <td>Property</td>
+    <td><code><a href="#days" class="internal-link" title="babel.core.Locale.days">days</a></code></td>
+    <td>Locale display names for weekdays.</td>
+  </tr><tr class="property">
+    
+    <td>Property</td>
+    <td><code><a href="#decimal_formats" class="internal-link" title="babel.core.Locale.decimal_formats">decimal​_formats</a></code></td>
+    <td>Locale patterns for decimal number formatting.</td>
+  </tr><tr class="property">
+    
+    <td>Property</td>
+    <td><code><a href="#english_name" class="internal-link" title="babel.core.Locale.english_name">english​_name</a></code></td>
+    <td>The english display name of the locale.</td>
+  </tr><tr class="property">
+    
+    <td>Property</td>
+    <td><code><a href="#eras" class="internal-link" title="babel.core.Locale.eras">eras</a></code></td>
+    <td>Locale display names for eras.</td>
+  </tr><tr class="property">
+    
+    <td>Property</td>
+    <td><code><a href="#first_week_day" class="internal-link" title="babel.core.Locale.first_week_day">first​_week​_day</a></code></td>
+    <td>The first day of a week, with 0 being Monday.</td>
+  </tr><tr class="property">
+    
+    <td>Property</td>
+    <td><code><a href="#interval_formats" class="internal-link" title="babel.core.Locale.interval_formats">interval​_formats</a></code></td>
+    <td>Locale patterns for interval formatting.</td>
+  </tr><tr class="property">
+    
+    <td>Property</td>
+    <td><code><a href="#languages" class="internal-link" title="babel.core.Locale.languages">languages</a></code></td>
+    <td>Mapping of language codes to translated language names.</td>
+  </tr><tr class="property">
+    
+    <td>Property</td>
+    <td><code><a href="#list_patterns" class="internal-link" title="babel.core.Locale.list_patterns">list​_patterns</a></code></td>
+    <td>Patterns for generating lists</td>
+  </tr><tr class="property">
+    
+    <td>Property</td>
+    <td><code><a href="#measurement_systems" class="internal-link" title="babel.core.Locale.measurement_systems">measurement​_systems</a></code></td>
+    <td>Localized names for various measurement systems.</td>
+  </tr><tr class="property">
+    
+    <td>Property</td>
+    <td><code><a href="#meta_zones" class="internal-link" title="babel.core.Locale.meta_zones">meta​_zones</a></code></td>
+    <td>Locale display names for meta time zones.</td>
+  </tr><tr class="property">
+    
+    <td>Property</td>
+    <td><code><a href="#min_week_days" class="internal-link" title="babel.core.Locale.min_week_days">min​_week​_days</a></code></td>
+    <td>The minimum number of days in a week so that the week is counted as the first week of a year or month.</td>
+  </tr><tr class="property">
+    
+    <td>Property</td>
+    <td><code><a href="#months" class="internal-link" title="babel.core.Locale.months">months</a></code></td>
+    <td>Locale display names for months.</td>
+  </tr><tr class="property">
+    
+    <td>Property</td>
+    <td><code><a href="#number_symbols" class="internal-link" title="babel.core.Locale.number_symbols">number​_symbols</a></code></td>
+    <td>Symbols used in number formatting.</td>
+  </tr><tr class="property">
+    
+    <td>Property</td>
+    <td><code><a href="#ordinal_form" class="internal-link" title="babel.core.Locale.ordinal_form">ordinal​_form</a></code></td>
+    <td>Plural rules for the locale.</td>
+  </tr><tr class="property">
+    
+    <td>Property</td>
+    <td><code><a href="#percent_formats" class="internal-link" title="babel.core.Locale.percent_formats">percent​_formats</a></code></td>
+    <td>Locale patterns for percent number formatting.</td>
+  </tr><tr class="property">
+    
+    <td>Property</td>
+    <td><code><a href="#periods" class="internal-link" title="babel.core.Locale.periods">periods</a></code></td>
+    <td>Locale display names for day periods (AM/PM).</td>
+  </tr><tr class="property">
+    
+    <td>Property</td>
+    <td><code><a href="#plural_form" class="internal-link" title="babel.core.Locale.plural_form">plural​_form</a></code></td>
+    <td>Plural rules for the locale.</td>
+  </tr><tr class="property">
+    
+    <td>Property</td>
+    <td><code><a href="#quarters" class="internal-link" title="babel.core.Locale.quarters">quarters</a></code></td>
+    <td>Locale display names for quarters.</td>
+  </tr><tr class="property">
+    
+    <td>Property</td>
+    <td><code><a href="#scientific_formats" class="internal-link" title="babel.core.Locale.scientific_formats">scientific​_formats</a></code></td>
+    <td>Locale patterns for scientific number formatting.</td>
+  </tr><tr class="property">
+    
+    <td>Property</td>
+    <td><code><a href="#scripts" class="internal-link" title="babel.core.Locale.scripts">scripts</a></code></td>
+    <td>Mapping of script codes to translated script names.</td>
+  </tr><tr class="property">
+    
+    <td>Property</td>
+    <td><code><a href="#territories" class="internal-link" title="babel.core.Locale.territories">territories</a></code></td>
+    <td>Mapping of script codes to translated script names.</td>
+  </tr><tr class="property">
+    
+    <td>Property</td>
+    <td><code><a href="#text_direction" class="internal-link" title="babel.core.Locale.text_direction">text​_direction</a></code></td>
+    <td>The text direction for the language in CSS short-hand form.</td>
+  </tr><tr class="property">
+    
+    <td>Property</td>
+    <td><code><a href="#time_formats" class="internal-link" title="babel.core.Locale.time_formats">time​_formats</a></code></td>
+    <td>Locale patterns for time formatting.</td>
+  </tr><tr class="property">
+    
+    <td>Property</td>
+    <td><code><a href="#time_zones" class="internal-link" title="babel.core.Locale.time_zones">time​_zones</a></code></td>
+    <td>Locale display names for time zones.</td>
+  </tr><tr class="property">
+    
+    <td>Property</td>
+    <td><code><a href="#unit_display_names" class="internal-link" title="babel.core.Locale.unit_display_names">unit​_display​_names</a></code></td>
+    <td>Display names for units of measurement.</td>
+  </tr><tr class="property">
+    
+    <td>Property</td>
+    <td><code><a href="#variants" class="internal-link" title="babel.core.Locale.variants">variants</a></code></td>
+    <td>Mapping of script codes to translated script names.</td>
+  </tr><tr class="property">
+    
+    <td>Property</td>
+    <td><code><a href="#weekend_end" class="internal-link" title="babel.core.Locale.weekend_end">weekend​_end</a></code></td>
+    <td>The day the weekend ends, with 0 being Monday.</td>
+  </tr><tr class="property">
+    
+    <td>Property</td>
+    <td><code><a href="#weekend_start" class="internal-link" title="babel.core.Locale.weekend_start">weekend​_start</a></code></td>
+    <td>The day the weekend starts, with 0 being Monday.</td>
+  </tr><tr class="property">
+    
+    <td>Property</td>
+    <td><code><a href="#zone_formats" class="internal-link" title="babel.core.Locale.zone_formats">zone​_formats</a></code></td>
+    <td>Patterns related to the formatting of time zones.</td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#__data" class="internal-link" title="babel.core.Locale.__data">__data</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="property private">
+    
+    <td>Property</td>
+    <td><code><a href="#_data" class="internal-link" title="babel.core.Locale._data">​_data</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+        
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="baseclassmethod">
+  
+  
+  <a name="babel.core.Locale.default">
+    
+  </a>
+  <a name="default">
+    
+  </a>
+  <div class="functionHeader">
+    @<a href="https://docs.python.org/3/library/functions.html#classmethod" class="intersphinx-link">classmethod</a><br />
+    <span class="py-keyword">def</span> <span class="py-defname">default</span>(cls, category=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, aliases=<a href="babel.core.html#LOCALE_ALIASES" class="internal-link" title="babel.core.LOCALE_ALIASES">LOCALE_ALIASES</a>):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/babel-2.9.1//babel/core.py#L170">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Return the system default locale for the specified category.</p>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">for</span> name <span class="py-keyword">in</span> [<span class="py-string">'LANGUAGE'</span>, <span class="py-string">'LC_ALL'</span>, <span class="py-string">'LC_CTYPE'</span>, <span class="py-string">'LC_MESSAGES'</span>]:
+<span class="py-more">... </span>    os.environ[name] = <span class="py-string">''</span>
+<span class="py-prompt">&gt;&gt;&gt; </span>os.environ[<span class="py-string">'LANG'</span>] = <span class="py-string">'fr_FR.UTF-8'</span>
+<span class="py-prompt">&gt;&gt;&gt; </span>Locale.default(<span class="py-string">'LC_MESSAGES'</span>)
+<span class="py-output">Locale('fr', territory='FR')</span>
+</pre><p>The following fallbacks to the variable are always considered:</p>
+<ul class="rst-simple">
+<li><tt class="rst-docutils literal">LANGUAGE</tt></li>
+<li><tt class="rst-docutils literal">LC_ALL</tt></li>
+<li><tt class="rst-docutils literal">LC_CTYPE</tt></li>
+<li><tt class="rst-docutils literal">LANG</tt></li>
+</ul>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">category</span></td><td class="fieldArgDesc">one of the <tt class="rst-docutils literal">LC_XXX</tt> environment variable names</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">aliases</span></td><td class="fieldArgDesc">a dictionary of aliases for locale identifiers</td></tr></table></div>
+  </div>
+</div><div class="baseclassmethod">
+  
+  
+  <a name="babel.core.Locale.negotiate">
+    
+  </a>
+  <a name="negotiate">
+    
+  </a>
+  <div class="functionHeader">
+    @<a href="https://docs.python.org/3/library/functions.html#classmethod" class="intersphinx-link">classmethod</a><br />
+    <span class="py-keyword">def</span> <span class="py-defname">negotiate</span>(cls, preferred, available, sep=<span class="rst-variable-quote">'</span><span class="rst-variable-string">_</span><span class="rst-variable-quote">'</span>, aliases=<a href="babel.core.html#LOCALE_ALIASES" class="internal-link" title="babel.core.LOCALE_ALIASES">LOCALE_ALIASES</a>):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/babel-2.9.1//babel/core.py#L195">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Find the best match between available and requested locale strings.</p>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>Locale.negotiate([<span class="py-string">'de_DE'</span>, <span class="py-string">'en_US'</span>], [<span class="py-string">'de_DE'</span>, <span class="py-string">'de_AT'</span>])
+<span class="py-output">Locale('de', territory='DE')</span>
+<span class="py-prompt">&gt;&gt;&gt; </span>Locale.negotiate([<span class="py-string">'de_DE'</span>, <span class="py-string">'en_US'</span>], [<span class="py-string">'en'</span>, <span class="py-string">'de'</span>])
+<span class="py-output">Locale('de')</span>
+<span class="py-prompt">&gt;&gt;&gt; </span>Locale.negotiate([<span class="py-string">'de_DE'</span>, <span class="py-string">'de'</span>], [<span class="py-string">'en_US'</span>])</pre><p>You can specify the character used in the locale identifiers to separate
+the differnet components. This separator is applied to both lists. Also,
+case is ignored in the comparison:</p>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>Locale.negotiate([<span class="py-string">'de-DE'</span>, <span class="py-string">'de'</span>], [<span class="py-string">'en-us'</span>, <span class="py-string">'de-de'</span>], sep=<span class="py-string">'-'</span>)
+<span class="py-output">Locale('de', territory='DE')</span>
+</pre><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">preferred</span></td><td class="fieldArgDesc">the list of locale identifers preferred by the user</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">available</span></td><td class="fieldArgDesc">the list of locale identifiers available</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">sep</span></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">aliases</span></td><td class="fieldArgDesc">a dictionary of aliases for locale identifiers</td></tr></table></div>
+  </div>
+</div><div class="baseclassmethod">
+  
+  
+  <a name="babel.core.Locale.parse">
+    
+  </a>
+  <a name="parse">
+    
+  </a>
+  <div class="functionHeader">
+    @<a href="https://docs.python.org/3/library/functions.html#classmethod" class="intersphinx-link">classmethod</a><br />
+    <span class="py-keyword">def</span> <span class="py-defname">parse</span>(cls, identifier, sep=<span class="rst-variable-quote">'</span><span class="rst-variable-string">_</span><span class="rst-variable-quote">'</span>, resolve_likely_subtags=<a href="https://docs.python.org/3/library/constants.html#True" class="intersphinx-link">True</a>):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/babel-2.9.1//babel/core.py#L221">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Create a <code><a href="babel.core.Locale.html" class="internal-link" title="babel.core.Locale">Locale</a></code> instance for the given locale identifier.</p>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>l = Locale.parse(<span class="py-string">'de-DE'</span>, sep=<span class="py-string">'-'</span>)
+<span class="py-prompt">&gt;&gt;&gt; </span>l.display_name
+<span class="py-output">u'Deutsch (Deutschland)'</span>
+</pre><p>If the <code><a href="babel.core.UnknownLocaleError.html#identifier" class="internal-link" title="babel.core.UnknownLocaleError.identifier">identifier</a></code> parameter is not a string, but actually a <code><a href="babel.core.Locale.html" class="internal-link" title="babel.core.Locale">Locale</a></code>
+object, that object is returned:</p>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>Locale.parse(l)
+<span class="py-output">Locale('de', territory='DE')</span>
+</pre><p>This also can perform resolving of likely subtags which it does
+by default.  This is for instance useful to figure out the most
+likely locale for a territory you can use <tt class="rst-docutils literal">'und'</tt> as the
+language tag:</p>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>Locale.parse(<span class="py-string">'und_AT'</span>)
+<span class="py-output">Locale('de', territory='AT')</span>
+</pre><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">identifier</span></td><td class="fieldArgDesc">the locale identifier string</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">sep</span></td><td class="fieldArgDesc">optional component separator</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">resolve​_likely​_subtags</span></td><td class="fieldArgDesc">if this is specified then a locale will
+have its likely subtag resolved if the
+locale otherwise does not exist.  For
+instance <tt class="rst-docutils literal">zh_TW</tt> by itself is not a
+locale that exists but Babel can
+automatically expand it to the full
+form of <tt class="rst-docutils literal">zh_hant_TW</tt>.  Note that this
+expansion is only taking place if no
+locale exists otherwise.  For instance
+there is a locale <tt class="rst-docutils literal">en</tt> that can exist
+by itself.</td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Raises</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/exceptions.html#ValueError" class="intersphinx-link">ValueError</a></code></td><td>if the string does not appear to be a valid locale
+identifier</td></tr><tr><td class="fieldArgContainer"><code><a href="babel.core.UnknownLocaleError.html" class="internal-link" title="babel.core.UnknownLocaleError">UnknownLocaleError</a></code></td><td>if no locale data is available for the
+requested locale</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="babel.core.Locale.__eq__">
+    
+  </a>
+  <a name="__eq__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__eq__</span>(self, other):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/babel-2.9.1//babel/core.py#L333">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="babel.core.Locale.__hash__">
+    
+  </a>
+  <a name="__hash__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__hash__</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/babel-2.9.1//babel/core.py#L345">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="babel.core.Locale.__init__">
+    
+  </a>
+  <a name="__init__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__init__</span>(self, language, territory=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, script=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, variant=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/babel-2.9.1//babel/core.py#L140">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Initialize the locale object from the given identifier components.</p>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>locale = Locale(<span class="py-string">'en'</span>, <span class="py-string">'US'</span>)
+<span class="py-prompt">&gt;&gt;&gt; </span>locale.language
+<span class="py-output">'en'</span>
+<span class="py-prompt">&gt;&gt;&gt; </span>locale.territory
+<span class="py-output">'US'</span>
+</pre><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">language</span></td><td class="fieldArgDesc">the language code</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">territory</span></td><td class="fieldArgDesc">the territory (country or region) code</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">script</span></td><td class="fieldArgDesc">the script code</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">variant</span></td><td class="fieldArgDesc">the variant code</td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Raises</td></tr><tr><td class="fieldArgContainer"><code><a href="babel.core.UnknownLocaleError.html" class="internal-link" title="babel.core.UnknownLocaleError">UnknownLocaleError</a></code></td><td>if no locale data is available for the
+requested locale</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="babel.core.Locale.__ne__">
+    
+  </a>
+  <a name="__ne__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__ne__</span>(self, other):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/babel-2.9.1//babel/core.py#L342">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="babel.core.Locale.__repr__">
+    
+  </a>
+  <a name="__repr__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__repr__</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/babel-2.9.1//babel/core.py#L348">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="babel.core.Locale.__str__">
+    
+  </a>
+  <a name="__str__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__str__</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/babel-2.9.1//babel/core.py#L357">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="babel.core.Locale.get_display_name">
+    
+  </a>
+  <a name="get_display_name">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">get_display_name</span>(self, locale=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/babel-2.9.1//babel/core.py#L367">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Return the display name of the locale using the given locale.</p>
+<p>The display name will include the language, territory, script, and
+variant, if those are specified.</p>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>Locale(<span class="py-string">'zh'</span>, <span class="py-string">'CN'</span>, script=<span class="py-string">'Hans'</span>).get_display_name(<span class="py-string">'en'</span>)
+<span class="py-output">u'Chinese (Simplified, China)'</span>
+</pre><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">locale</span></td><td class="fieldArgDesc">the locale to use</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="babel.core.Locale.get_language_name">
+    
+  </a>
+  <a name="get_language_name">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">get_language_name</span>(self, locale=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/babel-2.9.1//babel/core.py#L408">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Return the language of this locale in the given locale.</p>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>Locale(<span class="py-string">'zh'</span>, <span class="py-string">'CN'</span>, script=<span class="py-string">'Hans'</span>).get_language_name(<span class="py-string">'de'</span>)
+<span class="py-output">u'Chinesisch'</span>
+</pre><div class="rst-versionadded">
+<span class="rst-versionmodified rst-added">New in version 1.0.</span></div>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">locale</span></td><td class="fieldArgDesc">the locale to use</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="babel.core.Locale.get_script_name">
+    
+  </a>
+  <a name="get_script_name">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">get_script_name</span>(self, locale=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/babel-2.9.1//babel/core.py#L444">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Return the script name in the given locale.</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="babel.core.Locale.get_territory_name">
+    
+  </a>
+  <a name="get_territory_name">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">get_territory_name</span>(self, locale=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/babel-2.9.1//babel/core.py#L430">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Return the territory name in the given locale.</div>
+  </div>
+</div><div class="baseclassvariable">
+  
+  
+  <a name="babel.core.Locale.display_name">
+    
+  </a>
+  <a name="display_name">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">display_name</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/babel-2.9.1//babel/core.py#L395">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseclassvariable">
+  
+  
+  <a name="babel.core.Locale.language_name">
+    
+  </a>
+  <a name="language_name">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">language_name</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/babel-2.9.1//babel/core.py#L423">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseclassvariable">
+  
+  
+  <a name="babel.core.Locale.script_name">
+    
+  </a>
+  <a name="script_name">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">script_name</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/babel-2.9.1//babel/core.py#L451">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseclassvariable">
+  
+  
+  <a name="babel.core.Locale.territory_name">
+    
+  </a>
+  <a name="territory_name">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">territory_name</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/babel-2.9.1//babel/core.py#L437">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="babel.core.Locale.language">
+    
+  </a>
+  <a name="language">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">language</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/babel-2.9.1//babel/core.py#L157">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="babel.core.Locale.script">
+    
+  </a>
+  <a name="script">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">script</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/babel-2.9.1//babel/core.py#L161">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="babel.core.Locale.territory">
+    
+  </a>
+  <a name="territory">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">territory</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/babel-2.9.1//babel/core.py#L159">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="babel.core.Locale.variant">
+    
+  </a>
+  <a name="variant">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">variant</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/babel-2.9.1//babel/core.py#L163">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseproperty">
+  
+  
+  <a name="babel.core.Locale.character_order">
+    
+  </a>
+  <a name="character_order">
+    
+  </a>
+  <div class="functionHeader">
+    @<a href="https://docs.python.org/3/library/functions.html#property" class="intersphinx-link">property</a><br />
+    <span class="py-defname">character_order</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/babel-2.9.1//babel/core.py#L898">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p>The text direction for the language.</p>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>Locale(<span class="py-string">'de'</span>, <span class="py-string">'DE'</span>).character_order
+<span class="py-output">'left-to-right'</span>
+<span class="py-prompt">&gt;&gt;&gt; </span>Locale(<span class="py-string">'ar'</span>, <span class="py-string">'SA'</span>).character_order
+<span class="py-output">'right-to-left'</span>
+</pre></div>
+    
+  </div>
+</div><div class="baseproperty">
+  
+  
+  <a name="babel.core.Locale.currencies">
+    
+  </a>
+  <a name="currencies">
+    
+  </a>
+  <div class="functionHeader">
+    @<a href="https://docs.python.org/3/library/functions.html#property" class="intersphinx-link">property</a><br />
+    <span class="py-defname">currencies</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/babel-2.9.1//babel/core.py#L519">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p>Mapping of currency codes to translated currency names.  This
+only returns the generic form of the currency name, not the count
+specific one.  If an actual number is requested use the
+<code><a href="babel.numbers.html#get_currency_name" class="internal-link">babel.numbers.get_currency_name</a></code> function.</p>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>Locale(<span class="py-string">'en'</span>).currencies[<span class="py-string">'COP'</span>]
+<span class="py-output">u'Colombian Peso'</span>
+<span class="py-prompt">&gt;&gt;&gt; </span>Locale(<span class="py-string">'de'</span>, <span class="py-string">'DE'</span>).currencies[<span class="py-string">'COP'</span>]
+<span class="py-output">u'Kolumbianischer Peso'</span>
+</pre></div>
+    
+  </div>
+</div><div class="baseproperty">
+  
+  
+  <a name="babel.core.Locale.currency_formats">
+    
+  </a>
+  <a name="currency_formats">
+    
+  </a>
+  <div class="functionHeader">
+    @<a href="https://docs.python.org/3/library/functions.html#property" class="intersphinx-link">property</a><br />
+    <span class="py-defname">currency_formats</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/babel-2.9.1//babel/core.py#L568">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p>Locale patterns for currency number formatting.</p>
+<div class="rst-admonition note">
+<p class="rst-first rst-admonition-title">Note</p>
+<p class="rst-last">The format of the value returned may change between
+Babel versions.</p>
+</div>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>Locale(<span class="py-string">'en'</span>, <span class="py-string">'US'</span>).currency_formats[<span class="py-string">'standard'</span>]
+<span class="py-output">&lt;NumberPattern u'\xa4#,##0.00'&gt;</span>
+<span class="py-prompt">&gt;&gt;&gt; </span>Locale(<span class="py-string">'en'</span>, <span class="py-string">'US'</span>).currency_formats[<span class="py-string">'accounting'</span>]
+<span class="py-output">&lt;NumberPattern u'\xa4#,##0.00;(\xa4#,##0.00)'&gt;</span>
+</pre></div>
+    
+  </div>
+</div><div class="baseproperty">
+  
+  
+  <a name="babel.core.Locale.currency_symbols">
+    
+  </a>
+  <a name="currency_symbols">
+    
+  </a>
+  <div class="functionHeader">
+    @<a href="https://docs.python.org/3/library/functions.html#property" class="intersphinx-link">property</a><br />
+    <span class="py-defname">currency_symbols</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/babel-2.9.1//babel/core.py#L533">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p>Mapping of currency codes to symbols.</p>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>Locale(<span class="py-string">'en'</span>, <span class="py-string">'US'</span>).currency_symbols[<span class="py-string">'USD'</span>]
+<span class="py-output">u'$'</span>
+<span class="py-prompt">&gt;&gt;&gt; </span>Locale(<span class="py-string">'es'</span>, <span class="py-string">'CO'</span>).currency_symbols[<span class="py-string">'USD'</span>]
+<span class="py-output">u'US$'</span>
+</pre></div>
+    
+  </div>
+</div><div class="baseproperty">
+  
+  
+  <a name="babel.core.Locale.date_formats">
+    
+  </a>
+  <a name="date_formats">
+    
+  </a>
+  <div class="functionHeader">
+    @<a href="https://docs.python.org/3/library/functions.html#property" class="intersphinx-link">property</a><br />
+    <span class="py-defname">date_formats</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/babel-2.9.1//babel/core.py#L761">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p>Locale patterns for date formatting.</p>
+<div class="rst-admonition note">
+<p class="rst-first rst-admonition-title">Note</p>
+<p class="rst-last">The format of the value returned may change between
+Babel versions.</p>
+</div>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>Locale(<span class="py-string">'en'</span>, <span class="py-string">'US'</span>).date_formats[<span class="py-string">'short'</span>]
+<span class="py-output">&lt;DateTimePattern u'M/d/yy'&gt;</span>
+<span class="py-prompt">&gt;&gt;&gt; </span>Locale(<span class="py-string">'fr'</span>, <span class="py-string">'FR'</span>).date_formats[<span class="py-string">'long'</span>]
+<span class="py-output">&lt;DateTimePattern u'd MMMM y'&gt;</span>
+</pre></div>
+    
+  </div>
+</div><div class="baseproperty">
+  
+  
+  <a name="babel.core.Locale.datetime_formats">
+    
+  </a>
+  <a name="datetime_formats">
+    
+  </a>
+  <div class="functionHeader">
+    @<a href="https://docs.python.org/3/library/functions.html#property" class="intersphinx-link">property</a><br />
+    <span class="py-defname">datetime_formats</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/babel-2.9.1//babel/core.py#L789">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p>Locale patterns for datetime formatting.</p>
+<div class="rst-admonition note">
+<p class="rst-first rst-admonition-title">Note</p>
+<p class="rst-last">The format of the value returned may change between
+Babel versions.</p>
+</div>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>Locale(<span class="py-string">'en'</span>).datetime_formats[<span class="py-string">'full'</span>]
+<span class="py-output">u"{1} 'at' {0}"</span>
+<span class="py-prompt">&gt;&gt;&gt; </span>Locale(<span class="py-string">'th'</span>).datetime_formats[<span class="py-string">'medium'</span>]
+<span class="py-output">u'{1} {0}'</span>
+</pre></div>
+    
+  </div>
+</div><div class="baseproperty">
+  
+  
+  <a name="babel.core.Locale.datetime_skeletons">
+    
+  </a>
+  <a name="datetime_skeletons">
+    
+  </a>
+  <div class="functionHeader">
+    @<a href="https://docs.python.org/3/library/functions.html#property" class="intersphinx-link">property</a><br />
+    <span class="py-defname">datetime_skeletons</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/babel-2.9.1//babel/core.py#L803">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p>Locale patterns for formatting parts of a datetime.</p>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>Locale(<span class="py-string">'en'</span>).datetime_skeletons[<span class="py-string">'MEd'</span>]
+<span class="py-output">&lt;DateTimePattern u'E, M/d'&gt;</span>
+<span class="py-prompt">&gt;&gt;&gt; </span>Locale(<span class="py-string">'fr'</span>).datetime_skeletons[<span class="py-string">'MEd'</span>]
+<span class="py-output">&lt;DateTimePattern u'E dd/MM'&gt;</span>
+<span class="py-prompt">&gt;&gt;&gt; </span>Locale(<span class="py-string">'fr'</span>).datetime_skeletons[<span class="py-string">'H'</span>]
+<span class="py-output">&lt;DateTimePattern u"HH 'h'"&gt;</span>
+</pre></div>
+    
+  </div>
+</div><div class="baseproperty">
+  
+  
+  <a name="babel.core.Locale.day_period_rules">
+    
+  </a>
+  <a name="day_period_rules">
+    
+  </a>
+  <div class="functionHeader">
+    @<a href="https://docs.python.org/3/library/functions.html#property" class="intersphinx-link">property</a><br />
+    <span class="py-defname">day_period_rules</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/babel-2.9.1//babel/core.py#L628">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div>Day period rules for the locale.  Used by <code><a href="babel.dates.html#get_period_id" class="internal-link" title="babel.dates.get_period_id">get_period_id</a></code>.</div>
+    
+  </div>
+</div><div class="baseproperty">
+  
+  
+  <a name="babel.core.Locale.day_periods">
+    
+  </a>
+  <a name="day_periods">
+    
+  </a>
+  <div class="functionHeader">
+    @<a href="https://docs.python.org/3/library/functions.html#property" class="intersphinx-link">property</a><br />
+    <span class="py-defname">day_periods</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/babel-2.9.1//babel/core.py#L620">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p>Locale display names for various day periods (not necessarily only AM/PM).</p>
+<p>These are not meant to be used without the relevant <code><a href="#day_period_rules" class="internal-link" title="babel.core.Locale.day_period_rules">day_period_rules</a></code>.</p>
+</div>
+    
+  </div>
+</div><div class="baseproperty">
+  
+  
+  <a name="babel.core.Locale.days">
+    
+  </a>
+  <a name="days">
+    
+  </a>
+  <div class="functionHeader">
+    @<a href="https://docs.python.org/3/library/functions.html#property" class="intersphinx-link">property</a><br />
+    <span class="py-defname">days</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/babel-2.9.1//babel/core.py#L634">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p>Locale display names for weekdays.</p>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>Locale(<span class="py-string">'de'</span>, <span class="py-string">'DE'</span>).days[<span class="py-string">'format'</span>][<span class="py-string">'wide'</span>][3]
+<span class="py-output">u'Donnerstag'</span>
+</pre></div>
+    
+  </div>
+</div><div class="baseproperty">
+  
+  
+  <a name="babel.core.Locale.decimal_formats">
+    
+  </a>
+  <a name="decimal_formats">
+    
+  </a>
+  <div class="functionHeader">
+    @<a href="https://docs.python.org/3/library/functions.html#property" class="intersphinx-link">property</a><br />
+    <span class="py-defname">decimal_formats</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/babel-2.9.1//babel/core.py#L556">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p>Locale patterns for decimal number formatting.</p>
+<div class="rst-admonition note">
+<p class="rst-first rst-admonition-title">Note</p>
+<p class="rst-last">The format of the value returned may change between
+Babel versions.</p>
+</div>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>Locale(<span class="py-string">'en'</span>, <span class="py-string">'US'</span>).decimal_formats[<span class="py-builtin">None</span>]
+<span class="py-output">&lt;NumberPattern u'#,##0.###'&gt;</span>
+</pre></div>
+    
+  </div>
+</div><div class="baseproperty">
+  
+  
+  <a name="babel.core.Locale.english_name">
+    
+  </a>
+  <a name="english_name">
+    
+  </a>
+  <div class="functionHeader">
+    @<a href="https://docs.python.org/3/library/functions.html#property" class="intersphinx-link">property</a><br />
+    <span class="py-defname">english_name</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/babel-2.9.1//babel/core.py#L458">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p>The english display name of the locale.</p>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>Locale(<span class="py-string">'de'</span>).english_name
+<span class="py-output">u'German'</span>
+<span class="py-prompt">&gt;&gt;&gt; </span>Locale(<span class="py-string">'de'</span>, <span class="py-string">'DE'</span>).english_name
+<span class="py-output">u'German (Germany)'</span>
+</pre></div>
+    
+  </div>
+</div><div class="baseproperty">
+  
+  
+  <a name="babel.core.Locale.eras">
+    
+  </a>
+  <a name="eras">
+    
+  </a>
+  <div class="functionHeader">
+    @<a href="https://docs.python.org/3/library/functions.html#property" class="intersphinx-link">property</a><br />
+    <span class="py-defname">eras</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/babel-2.9.1//babel/core.py#L661">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p>Locale display names for eras.</p>
+<div class="rst-admonition note">
+<p class="rst-first rst-admonition-title">Note</p>
+<p class="rst-last">The format of the value returned may change between
+Babel versions.</p>
+</div>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>Locale(<span class="py-string">'en'</span>, <span class="py-string">'US'</span>).eras[<span class="py-string">'wide'</span>][1]
+<span class="py-output">u'Anno Domini'</span>
+<span class="py-prompt">&gt;&gt;&gt; </span>Locale(<span class="py-string">'en'</span>, <span class="py-string">'US'</span>).eras[<span class="py-string">'abbreviated'</span>][0]
+<span class="py-output">u'BC'</span>
+</pre></div>
+    
+  </div>
+</div><div class="baseproperty">
+  
+  
+  <a name="babel.core.Locale.first_week_day">
+    
+  </a>
+  <a name="first_week_day">
+    
+  </a>
+  <div class="functionHeader">
+    @<a href="https://docs.python.org/3/library/functions.html#property" class="intersphinx-link">property</a><br />
+    <span class="py-defname">first_week_day</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/babel-2.9.1//babel/core.py#L722">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p>The first day of a week, with 0 being Monday.</p>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>Locale(<span class="py-string">'de'</span>, <span class="py-string">'DE'</span>).first_week_day
+<span class="py-output">0</span>
+<span class="py-prompt">&gt;&gt;&gt; </span>Locale(<span class="py-string">'en'</span>, <span class="py-string">'US'</span>).first_week_day
+<span class="py-output">6</span>
+</pre></div>
+    
+  </div>
+</div><div class="baseproperty">
+  
+  
+  <a name="babel.core.Locale.interval_formats">
+    
+  </a>
+  <a name="interval_formats">
+    
+  </a>
+  <div class="functionHeader">
+    @<a href="https://docs.python.org/3/library/functions.html#property" class="intersphinx-link">property</a><br />
+    <span class="py-defname">interval_formats</span>: dict[str, dict[str, list[str]]] =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/babel-2.9.1//babel/core.py#L816">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p>Locale patterns for interval formatting.</p>
+<div class="rst-admonition note">
+<p class="rst-first rst-admonition-title">Note</p>
+<p class="rst-last">The format of the value returned may change between
+Babel versions.</p>
+</div>
+<p>How to format date intervals in Finnish when the day is the
+smallest changing component:</p>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>Locale(<span class="py-string">'fi_FI'</span>).interval_formats[<span class="py-string">'MEd'</span>][<span class="py-string">'d'</span>]
+<span class="py-output">[u'E d. – ', u'E d.M.']</span>
+</pre><div class="rst-admonition seealso">
+<p class="rst-first rst-admonition-title">See Also</p>
+<p class="rst-last">The primary API to use this data is <code><a href="babel.dates.html#format_interval" class="internal-link">babel.dates.format_interval</a></code>.</p>
+</div>
+</div>
+    
+  </div>
+</div><div class="baseproperty">
+  
+  
+  <a name="babel.core.Locale.languages">
+    
+  </a>
+  <a name="languages">
+    
+  </a>
+  <div class="functionHeader">
+    @<a href="https://docs.python.org/3/library/functions.html#property" class="intersphinx-link">property</a><br />
+    <span class="py-defname">languages</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/babel-2.9.1//babel/core.py#L472">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p>Mapping of language codes to translated language names.</p>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>Locale(<span class="py-string">'de'</span>, <span class="py-string">'DE'</span>).languages[<span class="py-string">'ja'</span>]
+<span class="py-output">u'Japanisch'</span>
+</pre><p>See <a class="rst-reference external" href="http://www.loc.gov/standards/iso639-2/" target="_top">ISO 639</a> for
+more information.</p>
+</div>
+    
+  </div>
+</div><div class="baseproperty">
+  
+  
+  <a name="babel.core.Locale.list_patterns">
+    
+  </a>
+  <a name="list_patterns">
+    
+  </a>
+  <div class="functionHeader">
+    @<a href="https://docs.python.org/3/library/functions.html#property" class="intersphinx-link">property</a><br />
+    <span class="py-defname">list_patterns</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/babel-2.9.1//babel/core.py#L853">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p>Patterns for generating lists</p>
+<div class="rst-admonition note">
+<p class="rst-first rst-admonition-title">Note</p>
+<p class="rst-last">The format of the value returned may change between
+Babel versions.</p>
+</div>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>Locale(<span class="py-string">'en'</span>).list_patterns[<span class="py-string">'standard'</span>][<span class="py-string">'start'</span>]
+<span class="py-output">u'{0}, {1}'</span>
+<span class="py-prompt">&gt;&gt;&gt; </span>Locale(<span class="py-string">'en'</span>).list_patterns[<span class="py-string">'standard'</span>][<span class="py-string">'end'</span>]
+<span class="py-output">u'{0}, and {1}'</span>
+<span class="py-prompt">&gt;&gt;&gt; </span>Locale(<span class="py-string">'en_GB'</span>).list_patterns[<span class="py-string">'standard'</span>][<span class="py-string">'end'</span>]
+<span class="py-output">u'{0} and {1}'</span>
+</pre></div>
+    
+  </div>
+</div><div class="baseproperty">
+  
+  
+  <a name="babel.core.Locale.measurement_systems">
+    
+  </a>
+  <a name="measurement_systems">
+    
+  </a>
+  <div class="functionHeader">
+    @<a href="https://docs.python.org/3/library/functions.html#property" class="intersphinx-link">property</a><br />
+    <span class="py-defname">measurement_systems</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/babel-2.9.1//babel/core.py#L886">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p>Localized names for various measurement systems.</p>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>Locale(<span class="py-string">'fr'</span>, <span class="py-string">'FR'</span>).measurement_systems[<span class="py-string">'US'</span>]
+<span class="py-output">u'am\xe9ricain'</span>
+<span class="py-prompt">&gt;&gt;&gt; </span>Locale(<span class="py-string">'en'</span>, <span class="py-string">'US'</span>).measurement_systems[<span class="py-string">'US'</span>]
+<span class="py-output">u'US'</span>
+</pre></div>
+    
+  </div>
+</div><div class="baseproperty">
+  
+  
+  <a name="babel.core.Locale.meta_zones">
+    
+  </a>
+  <a name="meta_zones">
+    
+  </a>
+  <div class="functionHeader">
+    @<a href="https://docs.python.org/3/library/functions.html#property" class="intersphinx-link">property</a><br />
+    <span class="py-defname">meta_zones</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/babel-2.9.1//babel/core.py#L689">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p>Locale display names for meta time zones.</p>
+<p>Meta time zones are basically groups of different Olson time zones that
+have the same GMT offset and daylight savings time.</p>
+<div class="rst-admonition note">
+<p class="rst-first rst-admonition-title">Note</p>
+<p class="rst-last">The format of the value returned may change between
+Babel versions.</p>
+</div>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>Locale(<span class="py-string">'en'</span>, <span class="py-string">'US'</span>).meta_zones[<span class="py-string">'Europe_Central'</span>][<span class="py-string">'long'</span>][<span class="py-string">'daylight'</span>]
+<span class="py-output">u'Central European Summer Time'</span>
+</pre><div class="rst-versionadded">
+<span class="rst-versionmodified rst-added">New in version 0.9.</span></div>
+</div>
+    
+  </div>
+</div><div class="baseproperty">
+  
+  
+  <a name="babel.core.Locale.min_week_days">
+    
+  </a>
+  <a name="min_week_days">
+    
+  </a>
+  <div class="functionHeader">
+    @<a href="https://docs.python.org/3/library/functions.html#property" class="intersphinx-link">property</a><br />
+    <span class="py-defname">min_week_days</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/babel-2.9.1//babel/core.py#L751">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p>The minimum number of days in a week so that the week is counted as
+the first week of a year or month.</p>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>Locale(<span class="py-string">'de'</span>, <span class="py-string">'DE'</span>).min_week_days
+<span class="py-output">4</span>
+</pre></div>
+    
+  </div>
+</div><div class="baseproperty">
+  
+  
+  <a name="babel.core.Locale.months">
+    
+  </a>
+  <a name="months">
+    
+  </a>
+  <div class="functionHeader">
+    @<a href="https://docs.python.org/3/library/functions.html#property" class="intersphinx-link">property</a><br />
+    <span class="py-defname">months</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/babel-2.9.1//babel/core.py#L643">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p>Locale display names for months.</p>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>Locale(<span class="py-string">'de'</span>, <span class="py-string">'DE'</span>).months[<span class="py-string">'format'</span>][<span class="py-string">'wide'</span>][10]
+<span class="py-output">u'Oktober'</span>
+</pre></div>
+    
+  </div>
+</div><div class="baseproperty">
+  
+  
+  <a name="babel.core.Locale.number_symbols">
+    
+  </a>
+  <a name="number_symbols">
+    
+  </a>
+  <div class="functionHeader">
+    @<a href="https://docs.python.org/3/library/functions.html#property" class="intersphinx-link">property</a><br />
+    <span class="py-defname">number_symbols</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/babel-2.9.1//babel/core.py#L544">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p>Symbols used in number formatting.</p>
+<div class="rst-admonition note">
+<p class="rst-first rst-admonition-title">Note</p>
+<p class="rst-last">The format of the value returned may change between
+Babel versions.</p>
+</div>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>Locale(<span class="py-string">'fr'</span>, <span class="py-string">'FR'</span>).number_symbols[<span class="py-string">'decimal'</span>]
+<span class="py-output">u','</span>
+</pre></div>
+    
+  </div>
+</div><div class="baseproperty">
+  
+  
+  <a name="babel.core.Locale.ordinal_form">
+    
+  </a>
+  <a name="ordinal_form">
+    
+  </a>
+  <div class="functionHeader">
+    @<a href="https://docs.python.org/3/library/functions.html#property" class="intersphinx-link">property</a><br />
+    <span class="py-defname">ordinal_form</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/babel-2.9.1//babel/core.py#L869">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p>Plural rules for the locale.</p>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>Locale(<span class="py-string">'en'</span>).ordinal_form(1)
+<span class="py-output">'one'</span>
+<span class="py-prompt">&gt;&gt;&gt; </span>Locale(<span class="py-string">'en'</span>).ordinal_form(2)
+<span class="py-output">'two'</span>
+<span class="py-prompt">&gt;&gt;&gt; </span>Locale(<span class="py-string">'en'</span>).ordinal_form(3)
+<span class="py-output">'few'</span>
+<span class="py-prompt">&gt;&gt;&gt; </span>Locale(<span class="py-string">'fr'</span>).ordinal_form(2)
+<span class="py-output">'other'</span>
+<span class="py-prompt">&gt;&gt;&gt; </span>Locale(<span class="py-string">'ru'</span>).ordinal_form(100)
+<span class="py-output">'other'</span>
+</pre></div>
+    
+  </div>
+</div><div class="baseproperty">
+  
+  
+  <a name="babel.core.Locale.percent_formats">
+    
+  </a>
+  <a name="percent_formats">
+    
+  </a>
+  <div class="functionHeader">
+    @<a href="https://docs.python.org/3/library/functions.html#property" class="intersphinx-link">property</a><br />
+    <span class="py-defname">percent_formats</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/babel-2.9.1//babel/core.py#L582">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p>Locale patterns for percent number formatting.</p>
+<div class="rst-admonition note">
+<p class="rst-first rst-admonition-title">Note</p>
+<p class="rst-last">The format of the value returned may change between
+Babel versions.</p>
+</div>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>Locale(<span class="py-string">'en'</span>, <span class="py-string">'US'</span>).percent_formats[<span class="py-builtin">None</span>]
+<span class="py-output">&lt;NumberPattern u'#,##0%'&gt;</span>
+</pre></div>
+    
+  </div>
+</div><div class="baseproperty">
+  
+  
+  <a name="babel.core.Locale.periods">
+    
+  </a>
+  <a name="periods">
+    
+  </a>
+  <div class="functionHeader">
+    @<a href="https://docs.python.org/3/library/functions.html#property" class="intersphinx-link">property</a><br />
+    <span class="py-defname">periods</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/babel-2.9.1//babel/core.py#L608">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p>Locale display names for day periods (AM/PM).</p>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>Locale(<span class="py-string">'en'</span>, <span class="py-string">'US'</span>).periods[<span class="py-string">'am'</span>]
+<span class="py-output">u'AM'</span>
+</pre></div>
+    
+  </div>
+</div><div class="baseproperty">
+  
+  
+  <a name="babel.core.Locale.plural_form">
+    
+  </a>
+  <a name="plural_form">
+    
+  </a>
+  <div class="functionHeader">
+    @<a href="https://docs.python.org/3/library/functions.html#property" class="intersphinx-link">property</a><br />
+    <span class="py-defname">plural_form</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/babel-2.9.1//babel/core.py#L838">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p>Plural rules for the locale.</p>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>Locale(<span class="py-string">'en'</span>).plural_form(1)
+<span class="py-output">'one'</span>
+<span class="py-prompt">&gt;&gt;&gt; </span>Locale(<span class="py-string">'en'</span>).plural_form(0)
+<span class="py-output">'other'</span>
+<span class="py-prompt">&gt;&gt;&gt; </span>Locale(<span class="py-string">'fr'</span>).plural_form(0)
+<span class="py-output">'one'</span>
+<span class="py-prompt">&gt;&gt;&gt; </span>Locale(<span class="py-string">'ru'</span>).plural_form(100)
+<span class="py-output">'many'</span>
+</pre></div>
+    
+  </div>
+</div><div class="baseproperty">
+  
+  
+  <a name="babel.core.Locale.quarters">
+    
+  </a>
+  <a name="quarters">
+    
+  </a>
+  <div class="functionHeader">
+    @<a href="https://docs.python.org/3/library/functions.html#property" class="intersphinx-link">property</a><br />
+    <span class="py-defname">quarters</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/babel-2.9.1//babel/core.py#L652">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p>Locale display names for quarters.</p>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>Locale(<span class="py-string">'de'</span>, <span class="py-string">'DE'</span>).quarters[<span class="py-string">'format'</span>][<span class="py-string">'wide'</span>][1]
+<span class="py-output">u'1. Quartal'</span>
+</pre></div>
+    
+  </div>
+</div><div class="baseproperty">
+  
+  
+  <a name="babel.core.Locale.scientific_formats">
+    
+  </a>
+  <a name="scientific_formats">
+    
+  </a>
+  <div class="functionHeader">
+    @<a href="https://docs.python.org/3/library/functions.html#property" class="intersphinx-link">property</a><br />
+    <span class="py-defname">scientific_formats</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/babel-2.9.1//babel/core.py#L594">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p>Locale patterns for scientific number formatting.</p>
+<div class="rst-admonition note">
+<p class="rst-first rst-admonition-title">Note</p>
+<p class="rst-last">The format of the value returned may change between
+Babel versions.</p>
+</div>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>Locale(<span class="py-string">'en'</span>, <span class="py-string">'US'</span>).scientific_formats[<span class="py-builtin">None</span>]
+<span class="py-output">&lt;NumberPattern u'#E0'&gt;</span>
+</pre></div>
+    
+  </div>
+</div><div class="baseproperty">
+  
+  
+  <a name="babel.core.Locale.scripts">
+    
+  </a>
+  <a name="scripts">
+    
+  </a>
+  <div class="functionHeader">
+    @<a href="https://docs.python.org/3/library/functions.html#property" class="intersphinx-link">property</a><br />
+    <span class="py-defname">scripts</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/babel-2.9.1//babel/core.py#L484">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p>Mapping of script codes to translated script names.</p>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>Locale(<span class="py-string">'en'</span>, <span class="py-string">'US'</span>).scripts[<span class="py-string">'Hira'</span>]
+<span class="py-output">u'Hiragana'</span>
+</pre><p>See <a class="rst-reference external" href="http://www.evertype.com/standards/iso15924/" target="_top">ISO 15924</a>
+for more information.</p>
+</div>
+    
+  </div>
+</div><div class="baseproperty">
+  
+  
+  <a name="babel.core.Locale.territories">
+    
+  </a>
+  <a name="territories">
+    
+  </a>
+  <div class="functionHeader">
+    @<a href="https://docs.python.org/3/library/functions.html#property" class="intersphinx-link">property</a><br />
+    <span class="py-defname">territories</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/babel-2.9.1//babel/core.py#L496">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p>Mapping of script codes to translated script names.</p>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>Locale(<span class="py-string">'es'</span>, <span class="py-string">'CO'</span>).territories[<span class="py-string">'DE'</span>]
+<span class="py-output">u'Alemania'</span>
+</pre><p>See <a class="rst-reference external" href="http://www.iso.org/iso/en/prods-services/iso3166ma/" target="_top">ISO 3166</a>
+for more information.</p>
+</div>
+    
+  </div>
+</div><div class="baseproperty">
+  
+  
+  <a name="babel.core.Locale.text_direction">
+    
+  </a>
+  <a name="text_direction">
+    
+  </a>
+  <div class="functionHeader">
+    @<a href="https://docs.python.org/3/library/functions.html#property" class="intersphinx-link">property</a><br />
+    <span class="py-defname">text_direction</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/babel-2.9.1//babel/core.py#L909">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p>The text direction for the language in CSS short-hand form.</p>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>Locale(<span class="py-string">'de'</span>, <span class="py-string">'DE'</span>).text_direction
+<span class="py-output">'ltr'</span>
+<span class="py-prompt">&gt;&gt;&gt; </span>Locale(<span class="py-string">'ar'</span>, <span class="py-string">'SA'</span>).text_direction
+<span class="py-output">'rtl'</span>
+</pre></div>
+    
+  </div>
+</div><div class="baseproperty">
+  
+  
+  <a name="babel.core.Locale.time_formats">
+    
+  </a>
+  <a name="time_formats">
+    
+  </a>
+  <div class="functionHeader">
+    @<a href="https://docs.python.org/3/library/functions.html#property" class="intersphinx-link">property</a><br />
+    <span class="py-defname">time_formats</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/babel-2.9.1//babel/core.py#L775">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p>Locale patterns for time formatting.</p>
+<div class="rst-admonition note">
+<p class="rst-first rst-admonition-title">Note</p>
+<p class="rst-last">The format of the value returned may change between
+Babel versions.</p>
+</div>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>Locale(<span class="py-string">'en'</span>, <span class="py-string">'US'</span>).time_formats[<span class="py-string">'short'</span>]
+<span class="py-output">&lt;DateTimePattern u'h:mm a'&gt;</span>
+<span class="py-prompt">&gt;&gt;&gt; </span>Locale(<span class="py-string">'fr'</span>, <span class="py-string">'FR'</span>).time_formats[<span class="py-string">'long'</span>]
+<span class="py-output">&lt;DateTimePattern u'HH:mm:ss z'&gt;</span>
+</pre></div>
+    
+  </div>
+</div><div class="baseproperty">
+  
+  
+  <a name="babel.core.Locale.time_zones">
+    
+  </a>
+  <a name="time_zones">
+    
+  </a>
+  <div class="functionHeader">
+    @<a href="https://docs.python.org/3/library/functions.html#property" class="intersphinx-link">property</a><br />
+    <span class="py-defname">time_zones</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/babel-2.9.1//babel/core.py#L675">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p>Locale display names for time zones.</p>
+<div class="rst-admonition note">
+<p class="rst-first rst-admonition-title">Note</p>
+<p class="rst-last">The format of the value returned may change between
+Babel versions.</p>
+</div>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>Locale(<span class="py-string">'en'</span>, <span class="py-string">'US'</span>).time_zones[<span class="py-string">'Europe/London'</span>][<span class="py-string">'long'</span>][<span class="py-string">'daylight'</span>]
+<span class="py-output">u'British Summer Time'</span>
+<span class="py-prompt">&gt;&gt;&gt; </span>Locale(<span class="py-string">'en'</span>, <span class="py-string">'US'</span>).time_zones[<span class="py-string">'America/St_Johns'</span>][<span class="py-string">'city'</span>]
+<span class="py-output">u'St. John’s'</span>
+</pre></div>
+    
+  </div>
+</div><div class="baseproperty">
+  
+  
+  <a name="babel.core.Locale.unit_display_names">
+    
+  </a>
+  <a name="unit_display_names">
+    
+  </a>
+  <div class="functionHeader">
+    @<a href="https://docs.python.org/3/library/functions.html#property" class="intersphinx-link">property</a><br />
+    <span class="py-defname">unit_display_names</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/babel-2.9.1//babel/core.py#L920">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p>Display names for units of measurement.</p>
+<div class="rst-admonition seealso">
+<p class="rst-first rst-admonition-title">See Also</p>
+<p class="rst-last">You may want to use <code><a href="babel.units.html#get_unit_name" class="internal-link">babel.units.get_unit_name</a></code> instead.</p>
+</div>
+<div class="rst-admonition note">
+<p class="rst-first rst-admonition-title">Note</p>
+<p class="rst-last">The format of the value returned may change between
+Babel versions.</p>
+</div>
+</div>
+    
+  </div>
+</div><div class="baseproperty">
+  
+  
+  <a name="babel.core.Locale.variants">
+    
+  </a>
+  <a name="variants">
+    
+  </a>
+  <div class="functionHeader">
+    @<a href="https://docs.python.org/3/library/functions.html#property" class="intersphinx-link">property</a><br />
+    <span class="py-defname">variants</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/babel-2.9.1//babel/core.py#L508">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p>Mapping of script codes to translated script names.</p>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>Locale(<span class="py-string">'de'</span>, <span class="py-string">'DE'</span>).variants[<span class="py-string">'1901'</span>]
+<span class="py-output">u'Alte deutsche Rechtschreibung'</span>
+</pre></div>
+    
+  </div>
+</div><div class="baseproperty">
+  
+  
+  <a name="babel.core.Locale.weekend_end">
+    
+  </a>
+  <a name="weekend_end">
+    
+  </a>
+  <div class="functionHeader">
+    @<a href="https://docs.python.org/3/library/functions.html#property" class="intersphinx-link">property</a><br />
+    <span class="py-defname">weekend_end</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/babel-2.9.1//babel/core.py#L742">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p>The day the weekend ends, with 0 being Monday.</p>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>Locale(<span class="py-string">'de'</span>, <span class="py-string">'DE'</span>).weekend_end
+<span class="py-output">6</span>
+</pre></div>
+    
+  </div>
+</div><div class="baseproperty">
+  
+  
+  <a name="babel.core.Locale.weekend_start">
+    
+  </a>
+  <a name="weekend_start">
+    
+  </a>
+  <div class="functionHeader">
+    @<a href="https://docs.python.org/3/library/functions.html#property" class="intersphinx-link">property</a><br />
+    <span class="py-defname">weekend_start</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/babel-2.9.1//babel/core.py#L733">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p>The day the weekend starts, with 0 being Monday.</p>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>Locale(<span class="py-string">'de'</span>, <span class="py-string">'DE'</span>).weekend_start
+<span class="py-output">5</span>
+</pre></div>
+    
+  </div>
+</div><div class="baseproperty">
+  
+  
+  <a name="babel.core.Locale.zone_formats">
+    
+  </a>
+  <a name="zone_formats">
+    
+  </a>
+  <div class="functionHeader">
+    @<a href="https://docs.python.org/3/library/functions.html#property" class="intersphinx-link">property</a><br />
+    <span class="py-defname">zone_formats</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/babel-2.9.1//babel/core.py#L706">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p>Patterns related to the formatting of time zones.</p>
+<div class="rst-admonition note">
+<p class="rst-first rst-admonition-title">Note</p>
+<p class="rst-last">The format of the value returned may change between
+Babel versions.</p>
+</div>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>Locale(<span class="py-string">'en'</span>, <span class="py-string">'US'</span>).zone_formats[<span class="py-string">'fallback'</span>]
+<span class="py-output">u'%(1)s (%(0)s)'</span>
+<span class="py-prompt">&gt;&gt;&gt; </span>Locale(<span class="py-string">'pt'</span>, <span class="py-string">'BR'</span>).zone_formats[<span class="py-string">'region'</span>]
+<span class="py-output">u'Hor\xe1rio %s'</span>
+</pre><div class="rst-versionadded">
+<span class="rst-versionmodified rst-added">New in version 0.9.</span></div>
+</div>
+    
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  
+  <a name="babel.core.Locale.__data">
+    
+  </a>
+  <a name="__data">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">__data</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/babel-2.9.1//babel/core.py#L164">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseproperty private">
+  
+  
+  <a name="babel.core.Locale._data">
+    
+  </a>
+  <a name="_data">
+    
+  </a>
+  <div class="functionHeader">
+    @<a href="https://docs.python.org/3/library/functions.html#property" class="intersphinx-link">property</a><br />
+    <span class="py-defname">_data</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/babel-2.9.1//babel/core.py#L361">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div>
+
+      </div>
+    </div>
+
+    <footer class="navbar navbar-default">
+  
+  <div class="container">
+    <a href="index.html">API Documentation</a> for babel,
+  generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
+    22.2.0 at 2022-02-23 08:04:53.
+  </div>
+</footer>
+
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+  </body>
+</html>

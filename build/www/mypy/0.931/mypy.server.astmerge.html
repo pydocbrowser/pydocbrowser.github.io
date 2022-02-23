@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  
+
+  <head>
+    
+    <title>mypy.server.astmerge</title>
+    <meta name="generator" content="pydoctor 22.2.0"> 
+        
+    </meta>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=0.75" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+    <link rel="stylesheet" type="text/css" href="extra.css" />
+</head>
+
+  <body>
+
+    <div id="banner" class="container">    
+    <div>
+        <a href="https://pydocbrowser.github.io/">Home</a>
+        &gt; mypy-0.931 
+        <!-- This is an important placeholder and will be 
+            replaced by project name and version on building docs -->
+        
+        <!-- (<a href=""&gt;show all versions</a&gt;) -->
+    </div>
+</div>
+
+    <nav class="navbar navbar-default">
+  
+  <div class="container">
+
+    <div class="navbar-header">
+      
+      <div class="navlinks">
+          <span class="navbar-brand">
+            mypy <a href="index.html">API Documentation</a>
+          </span>
+
+          <a href="moduleIndex.html">
+            Modules
+          </a>
+
+          <a href="classIndex.html">
+            Classes
+          </a>
+
+          <a href="nameIndex.html">
+            Names
+          </a>
+      </div>
+
+    </div>
+  </div>
+</nav>
+
+    
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="module"><code><code><a href="index.html" class="internal-link">mypy</a></code><wbr></wbr>.<code><a href="mypy.server.html" class="internal-link" title="mypy.server">server</a></code><wbr></wbr>.<code><a href="mypy.server.astmerge.html" class="internal-link" title="mypy.server.astmerge">astmerge</a></code></code></h1>
+        <div id="showPrivate">
+          <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+        </div>
+      </div>
+
+      <div class="categoryHeader">
+        module documentation
+      </div>
+
+      <div class="extrasDocstring">
+        <a href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.931//mypy/server/astmerge.py" class="sourceLink">(source)</a>
+        <p></p>
+      </div>
+
+      <div class="moduleDocstring">
+        <div><p>Merge a new version of a module AST and symbol table to older versions of those.</p>
+<p>When the source code of a module has a change in fine-grained incremental mode,
+we build a new AST from the updated source. However, other parts of the program
+may have direct references to parts of the old AST (namely, those nodes exposed
+in the module symbol table). The merge operation changes the identities of new
+AST nodes that have a correspondence in the old AST to the old ones so that
+existing cross-references in other modules will continue to point to the correct
+nodes. Also internal cross-references within the new AST are replaced. AST nodes
+that aren't externally visible will get new, distinct object identities. This
+applies to most expression and statement nodes, for example.</p>
+<p>We perform this merge operation so that we don't have to update all
+external references (which would be slow and fragile) or always perform
+translation when looking up references (which would be hard to retrofit).</p>
+<p>The AST merge operation is performed after semantic analysis. Semantic
+analysis has to deal with potentially multiple aliases to certain AST
+nodes (in particular, MypyFile nodes). Type checking assumes that we
+don't have multiple variants of a single AST node visible to the type
+checker.</p>
+<p>Discussion of some notable special cases:</p>
+<ul class="rst-simple">
+<li>If a node is replaced with a different kind of node (say, a function is
+replaced with a class), we don't perform the merge. Fine-grained dependencies
+will be used to rebind all references to the node.</li>
+<li>If a function is replaced with another function with an identical signature,
+call sites continue to point to the same object (by identity) and don't need
+to be reprocessed. Similarly, if a class is replaced with a class that is
+sufficiently similar (MRO preserved, etc.), class references don't need any
+processing. A typical incremental update to a file only changes a few
+externally visible things in a module, and this means that often only few
+external references need any processing, even if the modified module is large.</li>
+<li>A no-op update of a module should not require any processing outside the
+module, since all relevant object identities are preserved.</li>
+<li>The AST diff operation (mypy.server.astdiff) and the top-level fine-grained
+incremental logic (mypy.server.update) handle the cases where the new AST has
+differences from the old one that may need to be propagated to elsewhere in the
+program.</li>
+</ul>
+<p>See the main entry point merge_asts for more details.</p>
+</div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id12290">
+  
+  
+  <tr class="class">
+    
+    <td>Class</td>
+    <td><code><a href="mypy.server.astmerge.NodeReplaceVisitor.html" class="internal-link" title="mypy.server.astmerge.NodeReplaceVisitor">​Node​Replace​Visitor</a></code></td>
+    <td>Transform some nodes to new identities in an AST.</td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><code><a href="mypy.server.astmerge.TypeReplaceVisitor.html" class="internal-link" title="mypy.server.astmerge.TypeReplaceVisitor">​Type​Replace​Visitor</a></code></td>
+    <td>Similar to NodeReplaceVisitor, but for type objects.</td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#merge_asts" class="internal-link" title="mypy.server.astmerge.merge_asts">merge​_asts</a></code></td>
+    <td>Merge a new version of a module AST to a previous version.</td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#replace_nodes_in_ast" class="internal-link" title="mypy.server.astmerge.replace_nodes_in_ast">replace​_nodes​_in​_ast</a></code></td>
+    <td>Replace all references to replacement map keys within an AST node, recursively.</td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#replace_nodes_in_symbol_table" class="internal-link" title="mypy.server.astmerge.replace_nodes_in_symbol_table">replace​_nodes​_in​_symbol​_table</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#replacement_map_from_symbol_table" class="internal-link" title="mypy.server.astmerge.replacement_map_from_symbol_table">replacement​_map​_from​_symbol​_table</a></code></td>
+    <td>Create a new-to-old object identity map by comparing two symbol table revisions.</td>
+  </tr><tr class="constant">
+    
+    <td>Constant</td>
+    <td><code><a href="#SN" class="internal-link" title="mypy.server.astmerge.SN">SN</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+        
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="basefunction">
+  
+  
+  <a name="mypy.server.astmerge.merge_asts">
+    
+  </a>
+  <a name="merge_asts">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">merge_asts</span>(old, old_symbols, new, new_symbols):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.931//mypy/server/astmerge.py#L68">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Merge a new version of a module AST to a previous version.</p>
+<p>The main idea is to preserve the identities of externally visible
+nodes in the old AST (that have a corresponding node in the new AST).
+All old node state (outside identity) will come from the new AST.</p>
+<p>When this returns, 'old' will refer to the merged AST, but 'new_symbols'
+will be the new symbol table. 'new' and 'old_symbols' will no longer be
+valid.</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">old:</span><code><a href="mypy.nodes.MypyFile.html" class="internal-link" title="mypy.nodes.MypyFile">MypyFile</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">old​_symbols:</span><code><a href="mypy.nodes.SymbolTable.html" class="internal-link" title="mypy.nodes.SymbolTable">SymbolTable</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">new:</span><code><a href="mypy.nodes.MypyFile.html" class="internal-link" title="mypy.nodes.MypyFile">MypyFile</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">new​_symbols:</span><code><a href="mypy.nodes.SymbolTable.html" class="internal-link" title="mypy.nodes.SymbolTable">SymbolTable</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="mypy.server.astmerge.replace_nodes_in_ast">
+    
+  </a>
+  <a name="replace_nodes_in_ast">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">replace_nodes_in_ast</span>(node, replacements):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.931//mypy/server/astmerge.py#L125">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Replace all references to replacement map keys within an AST node, recursively.</p>
+<p>Also replace the <em>identity</em> of any nodes that have replacements. Return the
+<em>replaced</em> version of the argument node (which may have a different identity, if
+it's included in the replacement map).</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">node:</span><code><a href="mypy.nodes.SymbolNode.html" class="internal-link" title="mypy.nodes.SymbolNode">SymbolNode</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">replacements:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Dict" class="intersphinx-link">Dict</a>[<wbr></wbr><a href="mypy.nodes.SymbolNode.html" class="internal-link" title="mypy.nodes.SymbolNode">SymbolNode</a>, <wbr></wbr><a href="mypy.nodes.SymbolNode.html" class="internal-link" title="mypy.nodes.SymbolNode">SymbolNode</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="mypy.nodes.SymbolNode.html" class="internal-link" title="mypy.nodes.SymbolNode">SymbolNode</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="mypy.server.astmerge.replace_nodes_in_symbol_table">
+    
+  </a>
+  <a name="replace_nodes_in_symbol_table">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">replace_nodes_in_symbol_table</span>(symbols, replacements):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.931//mypy/server/astmerge.py#L462">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">symbols:</span><code><a href="mypy.nodes.SymbolTable.html" class="internal-link" title="mypy.nodes.SymbolTable">SymbolTable</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">replacements:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Dict" class="intersphinx-link">Dict</a>[<wbr></wbr><a href="mypy.nodes.SymbolNode.html" class="internal-link" title="mypy.nodes.SymbolNode">SymbolNode</a>, <wbr></wbr><a href="mypy.nodes.SymbolNode.html" class="internal-link" title="mypy.nodes.SymbolNode">SymbolNode</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="mypy.server.astmerge.replacement_map_from_symbol_table">
+    
+  </a>
+  <a name="replacement_map_from_symbol_table">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">replacement_map_from_symbol_table</span>(old, new, prefix):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.931//mypy/server/astmerge.py#L97">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Create a new-to-old object identity map by comparing two symbol table revisions.</p>
+<p>Both symbol tables must refer to revisions of the same module id. The symbol tables
+are compared recursively (recursing into nested class symbol tables), but only within
+the given module prefix. Don't recurse into other modules accessible through the symbol
+table.</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">old:</span><code><a href="mypy.nodes.SymbolTable.html" class="internal-link" title="mypy.nodes.SymbolTable">SymbolTable</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">new:</span><code><a href="mypy.nodes.SymbolTable.html" class="internal-link" title="mypy.nodes.SymbolTable">SymbolTable</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">prefix:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Dict" class="intersphinx-link">Dict</a>[<wbr></wbr><a href="mypy.nodes.SymbolNode.html" class="internal-link" title="mypy.nodes.SymbolNode">SymbolNode</a>, <wbr></wbr><a href="mypy.nodes.SymbolNode.html" class="internal-link" title="mypy.nodes.SymbolNode">SymbolNode</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="baseconstant">
+  
+  
+  <a name="mypy.server.astmerge.SN">
+    
+  </a>
+  <a name="SN">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">SN</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.931//mypy/server/astmerge.py#L138">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    <table class="valueTable"><tr class="fieldStart"><td class="fieldName">Value</td></tr><tr><td><pre class="constant-value"><code><a href="https://docs.python.org/3/library/typing.html#typing.TypeVar" class="intersphinx-link">TypeVar</a>(<wbr></wbr><span class="rst-variable-quote">'</span><span class="rst-variable-string">SN</span><span class="rst-variable-quote">'</span>,
+        <wbr></wbr>bound=<a href="mypy.nodes.SymbolNode.html" class="internal-link" title="mypy.nodes.SymbolNode">SymbolNode</a>)</code></pre></td></tr></table>
+  </div>
+</div>
+
+      </div>
+    </div>
+
+    <footer class="navbar navbar-default">
+  
+  <div class="container">
+    <a href="index.html">API Documentation</a> for mypy,
+  generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
+    22.2.0 at 2022-02-23 08:16:30.
+  </div>
+</footer>
+
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+  </body>
+</html>

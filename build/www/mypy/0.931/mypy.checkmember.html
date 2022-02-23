@@ -1,0 +1,812 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  
+
+  <head>
+    
+    <title>mypy.checkmember</title>
+    <meta name="generator" content="pydoctor 22.2.0"> 
+        
+    </meta>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=0.75" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+    <link rel="stylesheet" type="text/css" href="extra.css" />
+</head>
+
+  <body>
+
+    <div id="banner" class="container">    
+    <div>
+        <a href="https://pydocbrowser.github.io/">Home</a>
+        &gt; mypy-0.931 
+        <!-- This is an important placeholder and will be 
+            replaced by project name and version on building docs -->
+        
+        <!-- (<a href=""&gt;show all versions</a&gt;) -->
+    </div>
+</div>
+
+    <nav class="navbar navbar-default">
+  
+  <div class="container">
+
+    <div class="navbar-header">
+      
+      <div class="navlinks">
+          <span class="navbar-brand">
+            mypy <a href="index.html">API Documentation</a>
+          </span>
+
+          <a href="moduleIndex.html">
+            Modules
+          </a>
+
+          <a href="classIndex.html">
+            Classes
+          </a>
+
+          <a href="nameIndex.html">
+            Names
+          </a>
+      </div>
+
+    </div>
+  </div>
+</nav>
+
+    
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="module"><code><code><a href="index.html" class="internal-link">mypy</a></code><wbr></wbr>.<code><a href="mypy.checkmember.html" class="internal-link" title="mypy.checkmember">checkmember</a></code></code></h1>
+        <div id="showPrivate">
+          <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+        </div>
+      </div>
+
+      <div class="categoryHeader">
+        module documentation
+      </div>
+
+      <div class="extrasDocstring">
+        <a href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.931//mypy/checkmember.py" class="sourceLink">(source)</a>
+        <p></p>
+      </div>
+
+      <div class="moduleDocstring">
+        <div>Type checking of attribute access</div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id11777">
+  
+  
+  <tr class="class">
+    
+    <td>Class</td>
+    <td><code><a href="mypy.checkmember.MemberContext.html" class="internal-link" title="mypy.checkmember.MemberContext">​Member​Context</a></code></td>
+    <td>Information and objects needed to type check attribute access.</td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#add_class_tvars" class="internal-link" title="mypy.checkmember.add_class_tvars">add​_class​_tvars</a></code></td>
+    <td>Instantiate type variables during analyze_class_attribute_access, e.g T and Q in the following:</td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#analyze_class_attribute_access" class="internal-link" title="mypy.checkmember.analyze_class_attribute_access">analyze​_class​_attribute​_access</a></code></td>
+    <td>Analyze access to an attribute on a class object.</td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#analyze_decorator_or_funcbase_access" class="internal-link" title="mypy.checkmember.analyze_decorator_or_funcbase_access">analyze​_decorator​_or​_funcbase​_access</a></code></td>
+    <td>Analyzes the type behind method access.</td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#analyze_descriptor_access" class="internal-link" title="mypy.checkmember.analyze_descriptor_access">analyze​_descriptor​_access</a></code></td>
+    <td>Type check descriptor access.</td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#analyze_enum_class_attribute_access" class="internal-link" title="mypy.checkmember.analyze_enum_class_attribute_access">analyze​_enum​_class​_attribute​_access</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#analyze_instance_member_access" class="internal-link" title="mypy.checkmember.analyze_instance_member_access">analyze​_instance​_member​_access</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#analyze_member_access" class="internal-link" title="mypy.checkmember.analyze_member_access">analyze​_member​_access</a></code></td>
+    <td>Return the type of attribute 'name' of 'typ'.</td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#analyze_member_var_access" class="internal-link" title="mypy.checkmember.analyze_member_var_access">analyze​_member​_var​_access</a></code></td>
+    <td>Analyse attribute access that does not target a method.</td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#analyze_none_member_access" class="internal-link" title="mypy.checkmember.analyze_none_member_access">analyze​_none​_member​_access</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#analyze_type_callable_member_access" class="internal-link" title="mypy.checkmember.analyze_type_callable_member_access">analyze​_type​_callable​_member​_access</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#analyze_type_type_member_access" class="internal-link" title="mypy.checkmember.analyze_type_type_member_access">analyze​_type​_type​_member​_access</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#analyze_typeddict_access" class="internal-link" title="mypy.checkmember.analyze_typeddict_access">analyze​_typeddict​_access</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#analyze_union_member_access" class="internal-link" title="mypy.checkmember.analyze_union_member_access">analyze​_union​_member​_access</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#analyze_var" class="internal-link" title="mypy.checkmember.analyze_var">analyze​_var</a></code></td>
+    <td>Analyze access to an attribute via a Var node.</td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#check_final_member" class="internal-link" title="mypy.checkmember.check_final_member">check​_final​_member</a></code></td>
+    <td>Give an error if the name being assigned was declared as final.</td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#check_self_arg" class="internal-link" title="mypy.checkmember.check_self_arg">check​_self​_arg</a></code></td>
+    <td>Check that an instance has a valid type for a method with annotated 'self'.</td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#freeze_type_vars" class="internal-link" title="mypy.checkmember.freeze_type_vars">freeze​_type​_vars</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#instance_alias_type" class="internal-link" title="mypy.checkmember.instance_alias_type">instance​_alias​_type</a></code></td>
+    <td>Type of a type alias node targeting an instance, when appears in runtime context.</td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#is_valid_constructor" class="internal-link" title="mypy.checkmember.is_valid_constructor">is​_valid​_constructor</a></code></td>
+    <td>Does this node represents a valid constructor method?</td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#lookup_member_var_or_accessor" class="internal-link" title="mypy.checkmember.lookup_member_var_or_accessor">lookup​_member​_var​_or​_accessor</a></code></td>
+    <td>Find the attribute/accessor node that refers to a member of a type.</td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#type_object_type" class="internal-link" title="mypy.checkmember.type_object_type">type​_object​_type</a></code></td>
+    <td>Return the type of a type object.</td>
+  </tr><tr class="function private">
+    
+    <td>Function</td>
+    <td><code><a href="#_analyze_member_access" class="internal-link" title="mypy.checkmember._analyze_member_access">​_analyze​_member​_access</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+        
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="basefunction">
+  
+  
+  <a name="mypy.checkmember.add_class_tvars">
+    
+  </a>
+  <a name="add_class_tvars">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">add_class_tvars</span>(t, isuper, is_classmethod, original_type, original_vars=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.931//mypy/checkmember.py#L887">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Instantiate type variables during analyze_class_attribute_access,
+e.g T and Q in the following:</p>
+<dl class="rst-docutils">
+<dt>class A(Generic[T]):</dt>
+<dd>@classmethod
+def foo(cls: Type[Q]) -&gt; Tuple[T, Q]: ...</dd>
+</dl>
+<p>class B(A[str]): pass
+B.foo()</p>
+<dl class="rst-docutils">
+<dt>Args:</dt>
+<dd><p class="rst-first">t: Declared type of the method (or property)
+isuper: Current instance mapped to the superclass where method was defined, this</p>
+<blockquote>
+is usually done by map_instance_to_supertype()</blockquote>
+<p>is_classmethod: True if this method is decorated with @classmethod
+original_type: The value of the type B in the expression B.foo() or the corresponding</p>
+<blockquote>
+component in case of a union (this is used to bind the self-types)</blockquote>
+<p class="rst-last">original_vars: Type variables of the class callable on which the method was accessed</p>
+</dd>
+<dt>Returns:</dt>
+<dd>Expanded method type with added type variables (when needed).</dd>
+</dl>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">t:</span><code><a href="mypy.types.ProperType.html" class="internal-link" title="mypy.types.ProperType">ProperType</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">isuper:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">Optional</a>[<wbr></wbr><a href="mypy.types.Instance.html" class="internal-link" title="mypy.types.Instance">Instance</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">is​_classmethod:</span><code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">original​_type:</span><code><a href="mypy.types.Type.html" class="internal-link" title="mypy.types.Type">Type</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">original​_vars:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Sequence" class="intersphinx-link">Sequence</a>[<wbr></wbr><a href="mypy.types.TypeVarLikeType.html" class="internal-link" title="mypy.types.TypeVarLikeType">TypeVarLikeType</a>]]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="mypy.types.Type.html" class="internal-link" title="mypy.types.Type">Type</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="mypy.checkmember.analyze_class_attribute_access">
+    
+  </a>
+  <a name="analyze_class_attribute_access">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">analyze_class_attribute_access</span>(itype, name, mx, override_info=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, original_vars=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.931//mypy/checkmember.py#L690">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Analyze access to an attribute on a class object.</p>
+<p>itype is the return type of the class object callable, original_type is the type
+of E in the expression E.var, original_vars are type variables of the class callable
+(for generic classes).</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">itype:</span><code><a href="mypy.types.Instance.html" class="internal-link" title="mypy.types.Instance">Instance</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">name:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">mx:</span><code><a href="mypy.checkmember.MemberContext.html" class="internal-link" title="mypy.checkmember.MemberContext">MemberContext</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">override​_info:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">Optional</a>[<wbr></wbr><a href="mypy.nodes.TypeInfo.html" class="internal-link" title="mypy.nodes.TypeInfo">TypeInfo</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">original​_vars:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Sequence" class="intersphinx-link">Sequence</a>[<wbr></wbr><a href="mypy.types.TypeVarLikeType.html" class="internal-link" title="mypy.types.TypeVarLikeType">TypeVarLikeType</a>]]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">Optional</a>[<wbr></wbr><a href="mypy.types.Type.html" class="internal-link" title="mypy.types.Type">Type</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="mypy.checkmember.analyze_decorator_or_funcbase_access">
+    
+  </a>
+  <a name="analyze_decorator_or_funcbase_access">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">analyze_decorator_or_funcbase_access</span>(defn, itype, info, self_type, name, mx):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.931//mypy/checkmember.py#L1014">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Analyzes the type behind method access.</p>
+<p>The function itself can possibly be decorated.
+See: <a class="rst-reference external" href="https://github.com/python/mypy/issues/10409" target="_top">https://github.com/python/mypy/issues/10409</a></p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">defn:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Union" class="intersphinx-link">Union</a>[<wbr></wbr><a href="mypy.nodes.Decorator.html" class="internal-link" title="mypy.nodes.Decorator">Decorator</a>, <wbr></wbr><a href="mypy.nodes.FuncBase.html" class="internal-link" title="mypy.nodes.FuncBase">FuncBase</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">itype:</span><code><a href="mypy.types.Instance.html" class="internal-link" title="mypy.types.Instance">Instance</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">info:</span><code><a href="mypy.nodes.TypeInfo.html" class="internal-link" title="mypy.nodes.TypeInfo">TypeInfo</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">self​_type:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">Optional</a>[<wbr></wbr><a href="mypy.types.Type.html" class="internal-link" title="mypy.types.Type">Type</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">name:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">mx:</span><code><a href="mypy.checkmember.MemberContext.html" class="internal-link" title="mypy.checkmember.MemberContext">MemberContext</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="mypy.types.Type.html" class="internal-link" title="mypy.types.Type">Type</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="mypy.checkmember.analyze_descriptor_access">
+    
+  </a>
+  <a name="analyze_descriptor_access">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">analyze_descriptor_access</span>(descriptor_type, mx):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.931//mypy/checkmember.py#L453">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Type check descriptor access.</p>
+<dl class="rst-docutils">
+<dt>Arguments:</dt>
+<dd><dl class="rst-first rst-docutils">
+<dt>descriptor_type: The type of the descriptor attribute being accessed</dt>
+<dd>(the type of <tt class="rst-docutils literal">f</tt> in <tt class="rst-docutils literal">a.f</tt> when <tt class="rst-docutils literal">f</tt> is a descriptor).</dd>
+</dl>
+<p class="rst-last">mx: The current member access context.</p>
+</dd>
+<dt>Return:</dt>
+<dd>The return type of the appropriate <tt class="rst-docutils literal">__get__</tt> overload for the descriptor.</dd>
+</dl>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">descriptor​_type:</span><code><a href="mypy.types.Type.html" class="internal-link" title="mypy.types.Type">Type</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">mx:</span><code><a href="mypy.checkmember.MemberContext.html" class="internal-link" title="mypy.checkmember.MemberContext">MemberContext</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="mypy.types.Type.html" class="internal-link" title="mypy.types.Type">Type</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="mypy.checkmember.analyze_enum_class_attribute_access">
+    
+  </a>
+  <a name="analyze_enum_class_attribute_access">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">analyze_enum_class_attribute_access</span>(itype, name, mx):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.931//mypy/checkmember.py#L831">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">itype:</span><code><a href="mypy.types.Instance.html" class="internal-link" title="mypy.types.Instance">Instance</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">name:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">mx:</span><code><a href="mypy.checkmember.MemberContext.html" class="internal-link" title="mypy.checkmember.MemberContext">MemberContext</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">Optional</a>[<wbr></wbr><a href="mypy.types.Type.html" class="internal-link" title="mypy.types.Type">Type</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="mypy.checkmember.analyze_instance_member_access">
+    
+  </a>
+  <a name="analyze_instance_member_access">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">analyze_instance_member_access</span>(name, typ, mx, override_info):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.931//mypy/checkmember.py#L180">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">name:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">typ:</span><code><a href="mypy.types.Instance.html" class="internal-link" title="mypy.types.Instance">Instance</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">mx:</span><code><a href="mypy.checkmember.MemberContext.html" class="internal-link" title="mypy.checkmember.MemberContext">MemberContext</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">override​_info:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">Optional</a>[<wbr></wbr><a href="mypy.nodes.TypeInfo.html" class="internal-link" title="mypy.nodes.TypeInfo">TypeInfo</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="mypy.types.Type.html" class="internal-link" title="mypy.types.Type">Type</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="mypy.checkmember.analyze_member_access">
+    
+  </a>
+  <a name="analyze_member_access">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">analyze_member_access</span>(name, typ, context, is_lvalue, is_super, is_operator, msg, *, original_type, chk, override_info=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, in_literal_context=<a href="https://docs.python.org/3/library/constants.html#False" class="intersphinx-link">False</a>, self_type=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, module_symbol_table=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.931//mypy/checkmember.py#L84">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Return the type of attribute 'name' of 'typ'.</p>
+<p>The actual implementation is in '_analyze_member_access' and this docstring
+also applies to it.</p>
+<p>This is a general operation that supports various different variations:</p>
+<blockquote>
+<ol class="rst-arabic simple">
+<li>lvalue or non-lvalue access (setter or getter access)</li>
+<li>supertype access when using super() (is_super == True and
+'override_info' should refer to the supertype)</li>
+</ol>
+</blockquote>
+<p>'original_type' is the most precise inferred or declared type of the base object
+that we have available. When looking for an attribute of 'typ', we may perform
+recursive calls targeting the fallback type, and 'typ' may become some supertype
+of 'original_type'. 'original_type' is always preserved as the 'typ' type used in
+the initial, non-recursive call. The 'self_type' is a component of 'original_type'
+to which generic self should be bound (a narrower type that has a fallback to instance).
+Currently this is used only for union types.</p>
+<p>'module_symbol_table' is passed to this function if 'typ' is actually a module
+and we want to keep track of the available attributes of the module (since they
+are not available via the type object directly)</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">name:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">typ:</span><code><a href="mypy.types.Type.html" class="internal-link" title="mypy.types.Type">Type</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">context:</span><code><a href="mypy.nodes.Context.html" class="internal-link" title="mypy.nodes.Context">Context</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">is​_lvalue:</span><code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">is​_super:</span><code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">is​_operator:</span><code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">msg:</span><code><a href="mypy.messages.MessageBuilder.html" class="internal-link" title="mypy.messages.MessageBuilder">MessageBuilder</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">original​_type:</span><code><a href="mypy.types.Type.html" class="internal-link" title="mypy.types.Type">Type</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">chk:</span><code><a href="mypy.checker.TypeChecker.html" class="internal-link">mypy.checker.TypeChecker</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">override​_info:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">Optional</a>[<wbr></wbr><a href="mypy.nodes.TypeInfo.html" class="internal-link" title="mypy.nodes.TypeInfo">TypeInfo</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">in​_literal​_context:</span><code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">self​_type:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">Optional</a>[<wbr></wbr><a href="mypy.types.Type.html" class="internal-link" title="mypy.types.Type">Type</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">module​_symbol​_table:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">Optional</a>[<wbr></wbr><a href="mypy.nodes.SymbolTable.html" class="internal-link" title="mypy.nodes.SymbolTable">SymbolTable</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="mypy.types.Type.html" class="internal-link" title="mypy.types.Type">Type</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="mypy.checkmember.analyze_member_var_access">
+    
+  </a>
+  <a name="analyze_member_var_access">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">analyze_member_var_access</span>(name, itype, info, mx):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.931//mypy/checkmember.py#L341">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Analyse attribute access that does not target a method.</p>
+<p>This is logically part of analyze_member_access and the arguments are similar.</p>
+<p>original_type is the type of E in the expression E.var</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">name:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">itype:</span><code><a href="mypy.types.Instance.html" class="internal-link" title="mypy.types.Instance">Instance</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">info:</span><code><a href="mypy.nodes.TypeInfo.html" class="internal-link" title="mypy.nodes.TypeInfo">TypeInfo</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">mx:</span><code><a href="mypy.checkmember.MemberContext.html" class="internal-link" title="mypy.checkmember.MemberContext">MemberContext</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="mypy.types.Type.html" class="internal-link" title="mypy.types.Type">Type</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="mypy.checkmember.analyze_none_member_access">
+    
+  </a>
+  <a name="analyze_none_member_access">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">analyze_none_member_access</span>(name, typ, mx):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.931//mypy/checkmember.py#L324">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">name:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">typ:</span><code><a href="mypy.types.NoneType.html" class="internal-link" title="mypy.types.NoneType">NoneType</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">mx:</span><code><a href="mypy.checkmember.MemberContext.html" class="internal-link" title="mypy.checkmember.MemberContext">MemberContext</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="mypy.types.Type.html" class="internal-link" title="mypy.types.Type">Type</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="mypy.checkmember.analyze_type_callable_member_access">
+    
+  </a>
+  <a name="analyze_type_callable_member_access">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">analyze_type_callable_member_access</span>(name, typ, mx):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.931//mypy/checkmember.py#L233">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">name:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">typ:</span><code><a href="mypy.types.FunctionLike.html" class="internal-link" title="mypy.types.FunctionLike">FunctionLike</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">mx:</span><code><a href="mypy.checkmember.MemberContext.html" class="internal-link" title="mypy.checkmember.MemberContext">MemberContext</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="mypy.types.Type.html" class="internal-link" title="mypy.types.Type">Type</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="mypy.checkmember.analyze_type_type_member_access">
+    
+  </a>
+  <a name="analyze_type_type_member_access">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">analyze_type_type_member_access</span>(name, typ, mx, override_info):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.931//mypy/checkmember.py#L268">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">name:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">typ:</span><code><a href="mypy.types.TypeType.html" class="internal-link" title="mypy.types.TypeType">TypeType</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">mx:</span><code><a href="mypy.checkmember.MemberContext.html" class="internal-link" title="mypy.checkmember.MemberContext">MemberContext</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">override​_info:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">Optional</a>[<wbr></wbr><a href="mypy.nodes.TypeInfo.html" class="internal-link" title="mypy.nodes.TypeInfo">TypeInfo</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="mypy.types.Type.html" class="internal-link" title="mypy.types.Type">Type</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="mypy.checkmember.analyze_typeddict_access">
+    
+  </a>
+  <a name="analyze_typeddict_access">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">analyze_typeddict_access</span>(name, typ, mx, override_info):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.931//mypy/checkmember.py#L853">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">name:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">typ:</span><code><a href="mypy.types.TypedDictType.html" class="internal-link" title="mypy.types.TypedDictType">TypedDictType</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">mx:</span><code><a href="mypy.checkmember.MemberContext.html" class="internal-link" title="mypy.checkmember.MemberContext">MemberContext</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">override​_info:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">Optional</a>[<wbr></wbr><a href="mypy.nodes.TypeInfo.html" class="internal-link" title="mypy.nodes.TypeInfo">TypeInfo</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="mypy.types.Type.html" class="internal-link" title="mypy.types.Type">Type</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="mypy.checkmember.analyze_union_member_access">
+    
+  </a>
+  <a name="analyze_union_member_access">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">analyze_union_member_access</span>(name, typ, mx):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.931//mypy/checkmember.py#L313">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">name:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">typ:</span><code><a href="mypy.types.UnionType.html" class="internal-link" title="mypy.types.UnionType">UnionType</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">mx:</span><code><a href="mypy.checkmember.MemberContext.html" class="internal-link" title="mypy.checkmember.MemberContext">MemberContext</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="mypy.types.Type.html" class="internal-link" title="mypy.types.Type">Type</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="mypy.checkmember.analyze_var">
+    
+  </a>
+  <a name="analyze_var">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">analyze_var</span>(name, var, itype, info, mx, *, implicit=<a href="https://docs.python.org/3/library/constants.html#False" class="intersphinx-link">False</a>):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.931//mypy/checkmember.py#L544">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Analyze access to an attribute via a Var node.</p>
+<p>This is conceptually part of analyze_member_access and the arguments are similar.</p>
+<p>itype is the class object in which var is defined
+original_type is the type of E in the expression E.var
+if implicit is True, the original Var was created as an assignment to self</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">name:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">var:</span><code><a href="mypy.nodes.Var.html" class="internal-link" title="mypy.nodes.Var">Var</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">itype:</span><code><a href="mypy.types.Instance.html" class="internal-link" title="mypy.types.Instance">Instance</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">info:</span><code><a href="mypy.nodes.TypeInfo.html" class="internal-link" title="mypy.nodes.TypeInfo">TypeInfo</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">mx:</span><code><a href="mypy.checkmember.MemberContext.html" class="internal-link" title="mypy.checkmember.MemberContext">MemberContext</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">implicit:</span><code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="mypy.types.Type.html" class="internal-link" title="mypy.types.Type">Type</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="mypy.checkmember.check_final_member">
+    
+  </a>
+  <a name="check_final_member">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">check_final_member</span>(name, info, msg, ctx):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.931//mypy/checkmember.py#L445">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Give an error if the name being assigned was declared as final.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">name:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">info:</span><code><a href="mypy.nodes.TypeInfo.html" class="internal-link" title="mypy.nodes.TypeInfo">TypeInfo</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">msg:</span><code><a href="mypy.messages.MessageBuilder.html" class="internal-link" title="mypy.messages.MessageBuilder">MessageBuilder</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">ctx:</span><code><a href="mypy.nodes.Context.html" class="internal-link" title="mypy.nodes.Context">Context</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="mypy.checkmember.check_self_arg">
+    
+  </a>
+  <a name="check_self_arg">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">check_self_arg</span>(functype, dispatched_arg_type, is_classmethod, context, name, msg):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.931//mypy/checkmember.py#L642">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Check that an instance has a valid type for a method with annotated 'self'.</p>
+<dl class="rst-docutils">
+<dt>For example if the method is defined as:</dt>
+<dd><dl class="rst-first rst-last rst-docutils">
+<dt>class A:</dt>
+<dd>def f(self: S) -&gt; T: ...</dd>
+</dl>
+</dd>
+</dl>
+<p>then for 'x.f' we check that meet(type(x), A) &lt;: S. If the method is overloaded, we
+select only overloads items that satisfy this requirement. If there are no matching
+overloads, an error is generated.</p>
+<p>Note: dispatched_arg_type uses a meet to select a relevant item in case if the
+original type of 'x' is a union. This is done because several special methods
+treat union types in ad-hoc manner, so we can't use MemberContext.self_type yet.</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">functype:</span><code><a href="mypy.types.FunctionLike.html" class="internal-link" title="mypy.types.FunctionLike">FunctionLike</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">dispatched​_arg​_type:</span><code><a href="mypy.types.Type.html" class="internal-link" title="mypy.types.Type">Type</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">is​_classmethod:</span><code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">context:</span><code><a href="mypy.nodes.Context.html" class="internal-link" title="mypy.nodes.Context">Context</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">name:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">msg:</span><code><a href="mypy.messages.MessageBuilder.html" class="internal-link" title="mypy.messages.MessageBuilder">MessageBuilder</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="mypy.types.FunctionLike.html" class="internal-link" title="mypy.types.FunctionLike">FunctionLike</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="mypy.checkmember.freeze_type_vars">
+    
+  </a>
+  <a name="freeze_type_vars">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">freeze_type_vars</span>(member_type):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.931//mypy/checkmember.py#L619">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">member​_type:</span><code><a href="mypy.types.Type.html" class="internal-link" title="mypy.types.Type">Type</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="mypy.checkmember.instance_alias_type">
+    
+  </a>
+  <a name="instance_alias_type">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">instance_alias_type</span>(alias, named_type):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.931//mypy/checkmember.py#L529">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Type of a type alias node targeting an instance, when appears in runtime context.</p>
+<p>As usual, we first erase any unbound type variables to Any.</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">alias:</span><code><a href="mypy.nodes.TypeAlias.html" class="internal-link" title="mypy.nodes.TypeAlias">TypeAlias</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">named​_type:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Callable" class="intersphinx-link">Callable</a>[<wbr></wbr>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>], <wbr></wbr><a href="mypy.types.Instance.html" class="internal-link" title="mypy.types.Instance">Instance</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="mypy.types.Type.html" class="internal-link" title="mypy.types.Type">Type</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="mypy.checkmember.is_valid_constructor">
+    
+  </a>
+  <a name="is_valid_constructor">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">is_valid_constructor</span>(n):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.931//mypy/checkmember.py#L1035">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Does this node represents a valid constructor method?</p>
+<p>This includes normal functions, overloaded functions, and decorators
+that return a callable type.</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">n:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">Optional</a>[<wbr></wbr><a href="mypy.nodes.SymbolNode.html" class="internal-link" title="mypy.nodes.SymbolNode">SymbolNode</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="mypy.checkmember.lookup_member_var_or_accessor">
+    
+  </a>
+  <a name="lookup_member_var_or_accessor">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">lookup_member_var_or_accessor</span>(info, name, is_lvalue):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.931//mypy/checkmember.py#L631">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Find the attribute/accessor node that refers to a member of a type.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">info:</span><code><a href="mypy.nodes.TypeInfo.html" class="internal-link" title="mypy.nodes.TypeInfo">TypeInfo</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">name:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">is​_lvalue:</span><code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">Optional</a>[<wbr></wbr><a href="mypy.nodes.SymbolNode.html" class="internal-link" title="mypy.nodes.SymbolNode">SymbolNode</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="mypy.checkmember.type_object_type">
+    
+  </a>
+  <a name="type_object_type">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">type_object_type</span>(info, named_type):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.931//mypy/checkmember.py#L945">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Return the type of a type object.</p>
+<p>For a generic type G with type variables T and S the type is generally of form</p>
+<blockquote>
+Callable[..., G[T, S]]</blockquote>
+<p>where ... are argument types for the __init__/__new__ method (without the self
+argument). Also, the fallback type will be 'type' instead of 'function'.</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">info:</span><code><a href="mypy.nodes.TypeInfo.html" class="internal-link" title="mypy.nodes.TypeInfo">TypeInfo</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">named​_type:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Callable" class="intersphinx-link">Callable</a>[<wbr></wbr>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>], <wbr></wbr><a href="mypy.types.Instance.html" class="internal-link" title="mypy.types.Instance">Instance</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="mypy.types.ProperType.html" class="internal-link" title="mypy.types.ProperType">ProperType</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basefunction private">
+  
+  
+  <a name="mypy.checkmember._analyze_member_access">
+    
+  </a>
+  <a name="_analyze_member_access">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_analyze_member_access</span>(name, typ, mx, override_info=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.931//mypy/checkmember.py#L138">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">name:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">typ:</span><code><a href="mypy.types.Type.html" class="internal-link" title="mypy.types.Type">Type</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">mx:</span><code><a href="mypy.checkmember.MemberContext.html" class="internal-link" title="mypy.checkmember.MemberContext">MemberContext</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">override​_info:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">Optional</a>[<wbr></wbr><a href="mypy.nodes.TypeInfo.html" class="internal-link" title="mypy.nodes.TypeInfo">TypeInfo</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="mypy.types.Type.html" class="internal-link" title="mypy.types.Type">Type</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div>
+
+      </div>
+    </div>
+
+    <footer class="navbar navbar-default">
+  
+  <div class="container">
+    <a href="index.html">API Documentation</a> for mypy,
+  generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
+    22.2.0 at 2022-02-23 08:16:30.
+  </div>
+</footer>
+
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+  </body>
+</html>

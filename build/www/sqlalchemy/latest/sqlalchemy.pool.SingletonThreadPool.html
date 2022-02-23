@@ -1,0 +1,519 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  
+
+  <head>
+    
+    <title>sqlalchemy.pool.SingletonThreadPool</title>
+    <meta name="generator" content="pydoctor 22.2.0"> 
+        
+    </meta>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=0.75" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+    <link rel="stylesheet" type="text/css" href="extra.css" />
+</head>
+
+  <body>
+
+    <div id="banner" class="container">    
+    <div>
+        <a href="https://pydocbrowser.github.io/">Home</a>
+        &gt; sqlalchemy-1.4.31 
+        <!-- This is an important placeholder and will be 
+            replaced by project name and version on building docs -->
+        
+        <!-- (<a href=""&gt;show all versions</a&gt;) -->
+    </div>
+</div>
+
+    <nav class="navbar navbar-default">
+  
+  <div class="container">
+
+    <div class="navbar-header">
+      
+      <div class="navlinks">
+          <span class="navbar-brand">
+            sqlalchemy <a href="index.html">API Documentation</a>
+          </span>
+
+          <a href="moduleIndex.html">
+            Modules
+          </a>
+
+          <a href="classIndex.html">
+            Classes
+          </a>
+
+          <a href="nameIndex.html">
+            Names
+          </a>
+      </div>
+
+    </div>
+  </div>
+</nav>
+
+    
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="class"><code><code><a href="index.html" class="internal-link">sqlalchemy</a></code><wbr></wbr>.<code><a href="sqlalchemy.pool.html" class="internal-link" title="sqlalchemy.pool">pool</a></code><wbr></wbr>.<code><a href="sqlalchemy.pool.SingletonThreadPool.html" class="internal-link" title="sqlalchemy.pool.SingletonThreadPool">SingletonThreadPool</a></code></code></h1>
+        <div id="showPrivate">
+          <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+        </div>
+      </div>
+
+      <div class="categoryHeader">
+        class documentation
+      </div>
+
+      <div class="extrasDocstring">
+        <p><code><span class="py-keyword">class</span> <span class="py-defname">SingletonThreadPool</span>(<a href="sqlalchemy.pool.Pool.html" class="internal-link" title="sqlalchemy.pool.base.Pool">Pool</a>): <a href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/pool/impl.py#L276" class="sourceLink">(source)</a></code></p>
+        <p><a href="classIndex.html#sqlalchemy.pool.SingletonThreadPool">View In Hierarchy</a></p>
+      </div>
+
+      <div class="moduleDocstring">
+        <div><p>A Pool that maintains one connection per thread.</p>
+<p>Maintains one connection per each thread, never moving a connection to a
+thread other than the one which it was created in.</p>
+<div class="rst-admonition warning">
+<p class="rst-first rst-admonition-title">Warning</p>
+<p>the <code>.SingletonThreadPool</code> will call <tt class="rst-docutils literal">.close()</tt>
+on arbitrary connections that exist beyond the size setting of
+<tt class="rst-docutils literal">pool_size</tt>, e.g. if more unique <strong>thread identities</strong>
+than what <tt class="rst-docutils literal">pool_size</tt> states are used.   This cleanup is
+non-deterministic and not sensitive to whether or not the connections
+linked to those thread identities are currently in use.</p>
+<p class="rst-last"><code>.SingletonThreadPool</code> may be improved in a future release,
+however in its current status it is generally used only for test
+scenarios using a SQLite <tt class="rst-docutils literal">:memory:</tt> database and is not recommended
+for production use.</p>
+</div>
+<p>Options are the same as those of <code><a href="sqlalchemy.pool.Pool.html" class="internal-link" title="sqlalchemy.pool.Pool">_pool.Pool</a></code>, as well as:</p>
+<p><code>.SingletonThreadPool</code> is used by the SQLite dialect
+automatically when a memory-based database is used.
+See <a href="#system-message-1"><span class="rst-problematic" id="rst-problematic-1">:ref:`sqlite_toplevel`</span></a>.</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">pool​_size</span></td><td class="fieldArgDesc">The number of threads in which to maintain connections
+at once.  Defaults to five.</td></tr></table></div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id21352">
+  
+  
+  <tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__init__" class="internal-link" title="sqlalchemy.pool.SingletonThreadPool.__init__">__init__</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#connect" class="internal-link" title="sqlalchemy.pool.SingletonThreadPool.connect">connect</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#dispose" class="internal-link" title="sqlalchemy.pool.SingletonThreadPool.dispose">dispose</a></code></td>
+    <td>Dispose of this pool.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#recreate" class="internal-link" title="sqlalchemy.pool.SingletonThreadPool.recreate">recreate</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#status" class="internal-link" title="sqlalchemy.pool.SingletonThreadPool.status">status</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#size" class="internal-link" title="sqlalchemy.pool.SingletonThreadPool.size">size</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_cleanup" class="internal-link" title="sqlalchemy.pool.SingletonThreadPool._cleanup">​_cleanup</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_do_get" class="internal-link" title="sqlalchemy.pool.SingletonThreadPool._do_get">​_do​_get</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_do_return_conn" class="internal-link" title="sqlalchemy.pool.SingletonThreadPool._do_return_conn">​_do​_return​_conn</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_return_conn" class="internal-link" title="sqlalchemy.pool.SingletonThreadPool._return_conn">​_return​_conn</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="classvariable private">
+    
+    <td>Class Variable</td>
+    <td><code><a href="#_is_asyncio" class="internal-link" title="sqlalchemy.pool.SingletonThreadPool._is_asyncio">​_is​_asyncio</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#_all_conns" class="internal-link" title="sqlalchemy.pool.SingletonThreadPool._all_conns">​_all​_conns</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#_conn" class="internal-link" title="sqlalchemy.pool.SingletonThreadPool._conn">​_conn</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#_fairy" class="internal-link" title="sqlalchemy.pool.SingletonThreadPool._fairy">​_fairy</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+        
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="basemethod">
+  
+  
+  <a name="sqlalchemy.pool.SingletonThreadPool.__init__">
+    
+  </a>
+  <a name="__init__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__init__</span>(self, creator, pool_size=5, **kw):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/pool/impl.py#L309">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.pool.SingletonThreadPool.connect">
+    
+  </a>
+  <a name="connect">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">connect</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/pool/impl.py#L371">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.pool.SingletonThreadPool.dispose">
+    
+  </a>
+  <a name="dispose">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">dispose</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/pool/impl.py#L330">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Dispose of this pool.</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.pool.SingletonThreadPool.recreate">
+    
+  </a>
+  <a name="recreate">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">recreate</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/pool/impl.py#L316">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.pool.SingletonThreadPool.status">
+    
+  </a>
+  <a name="status">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">status</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/pool/impl.py#L348">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="sqlalchemy.pool.SingletonThreadPool.size">
+    
+  </a>
+  <a name="size">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">size</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/pool/impl.py#L314">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="sqlalchemy.pool.SingletonThreadPool._cleanup">
+    
+  </a>
+  <a name="_cleanup">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_cleanup</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/pool/impl.py#L343">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="sqlalchemy.pool.SingletonThreadPool._do_get">
+    
+  </a>
+  <a name="_do_get">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_do_get</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/pool/impl.py#L357">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="sqlalchemy.pool.SingletonThreadPool._do_return_conn">
+    
+  </a>
+  <a name="_do_return_conn">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_do_return_conn</span>(self, conn):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/pool/impl.py#L354">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="sqlalchemy.pool.SingletonThreadPool._return_conn">
+    
+  </a>
+  <a name="_return_conn">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_return_conn</span>(self, record):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/pool/impl.py#L384">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="baseclassvariable private">
+  
+  
+  <a name="sqlalchemy.pool.SingletonThreadPool._is_asyncio">
+    
+  </a>
+  <a name="_is_asyncio">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_is_asyncio</span>: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/pool/impl.py#L307">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  
+  <a name="sqlalchemy.pool.SingletonThreadPool._all_conns">
+    
+  </a>
+  <a name="_all_conns">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_all_conns</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/pool/impl.py#L313">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  
+  <a name="sqlalchemy.pool.SingletonThreadPool._conn">
+    
+  </a>
+  <a name="_conn">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_conn</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/pool/impl.py#L311">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  
+  <a name="sqlalchemy.pool.SingletonThreadPool._fairy">
+    
+  </a>
+  <a name="_fairy">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_fairy</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/pool/impl.py#L312">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div>
+
+      </div>
+    </div>
+
+    <footer class="navbar navbar-default">
+  
+  <div class="container">
+    <a href="index.html">API Documentation</a> for sqlalchemy,
+  generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
+    22.2.0 at 2022-02-23 08:22:50.
+  </div>
+</footer>
+
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+  </body>
+</html>

@@ -1,0 +1,1175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  
+
+  <head>
+    
+    <title>urllib3.util.Retry</title>
+    <meta name="generator" content="pydoctor 22.2.0"> 
+        
+    </meta>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=0.75" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+    <link rel="stylesheet" type="text/css" href="extra.css" />
+</head>
+
+  <body>
+
+    <div id="banner" class="container">    
+    <div>
+        <a href="https://pydocbrowser.github.io/">Home</a>
+        &gt; urllib3-1.26.8 
+        <!-- This is an important placeholder and will be 
+            replaced by project name and version on building docs -->
+        
+        <!-- (<a href=""&gt;show all versions</a&gt;) -->
+    </div>
+</div>
+
+    <nav class="navbar navbar-default">
+  
+  <div class="container">
+
+    <div class="navbar-header">
+      
+      <div class="navlinks">
+          <span class="navbar-brand">
+            urllib3 <a href="index.html">API Documentation</a>
+          </span>
+
+          <a href="moduleIndex.html">
+            Modules
+          </a>
+
+          <a href="classIndex.html">
+            Classes
+          </a>
+
+          <a href="nameIndex.html">
+            Names
+          </a>
+      </div>
+
+    </div>
+  </div>
+</nav>
+
+    
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="class"><code><code><a href="index.html" class="internal-link">urllib3</a></code><wbr></wbr>.<code><a href="urllib3.util.html" class="internal-link" title="urllib3.util">util</a></code><wbr></wbr>.<code><a href="urllib3.util.Retry.html" class="internal-link" title="urllib3.util.Retry">Retry</a></code></code></h1>
+        <div id="showPrivate">
+          <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+        </div>
+      </div>
+
+      <div class="categoryHeader">
+        class documentation
+      </div>
+
+      <div class="extrasDocstring">
+        <p><code><span class="py-keyword">class</span> <span class="py-defname">Retry</span>(<a href="https://docs.python.org/3/library/functions.html#object" class="intersphinx-link" title="object">object</a>): <a href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/urllib3-1.26.8//src/urllib3/util/retry.py#L91" class="sourceLink">(source)</a></code></p>
+        <p><a href="classIndex.html#urllib3.util.Retry">View In Hierarchy</a></p>
+      </div>
+
+      <div class="moduleDocstring">
+        <div><p>Retry configuration.</p>
+<p>Each retry attempt will create a new Retry object with updated values, so
+they can be safely reused.</p>
+<p>Retries can be defined as a default for a pool:</p>
+<pre class="rst-literal-block">
+retries = Retry(connect=5, read=2, redirect=5)
+http = PoolManager(retries=retries)
+response = http.request('GET', 'http://example.com/')
+</pre>
+<p>Or per-request (which overrides the default for the pool):</p>
+<pre class="rst-literal-block">
+response = http.request('GET', 'http://example.com/', retries=Retry(10))
+</pre>
+<p>Retries can be disabled by passing <tt class="rst-docutils literal">False</tt>:</p>
+<pre class="rst-literal-block">
+response = http.request('GET', 'http://example.com/', retries=False)
+</pre>
+<p>Errors will be wrapped in <code>~urllib3.exceptions.MaxRetryError</code> unless
+retries are disabled, in which case the causing exception will be raised.</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">int total</span></td><td class="fieldArgDesc"><p>Total number of retries to allow. Takes precedence over other counts.</p>
+<p>Set to <tt class="rst-docutils literal">None</tt> to remove this constraint and fall back on other
+counts.</p>
+<p>Set to <tt class="rst-docutils literal">0</tt> to fail on the first retry.</p>
+<p>Set to <tt class="rst-docutils literal">False</tt> to disable and imply <tt class="rst-docutils literal">raise_on_redirect=False</tt>.</p>
+</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">int connect</span></td><td class="fieldArgDesc"><p>How many connection-related errors to retry on.</p>
+<p>These are errors raised before the request is sent to the remote server,
+which we assume has not triggered the server to process the request.</p>
+<p>Set to <tt class="rst-docutils literal">0</tt> to fail on the first retry of this type.</p>
+</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">int read</span></td><td class="fieldArgDesc"><p>How many times to retry on read errors.</p>
+<p>These errors are raised after the request was sent to the server, so the
+request may have side-effects.</p>
+<p>Set to <tt class="rst-docutils literal">0</tt> to fail on the first retry of this type.</p>
+</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">int redirect</span></td><td class="fieldArgDesc"><p>How many redirects to perform. Limit this to avoid infinite redirect
+loops.</p>
+<p>A redirect is a HTTP response with a status code 301, 302, 303, 307 or
+308.</p>
+<p>Set to <tt class="rst-docutils literal">0</tt> to fail on the first retry of this type.</p>
+<p>Set to <tt class="rst-docutils literal">False</tt> to disable and imply <tt class="rst-docutils literal">raise_on_redirect=False</tt>.</p>
+</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">int status</span></td><td class="fieldArgDesc"><p>How many times to retry on bad status codes.</p>
+<p>These are retries made on responses, where status code matches
+<tt class="rst-docutils literal">status_forcelist</tt>.</p>
+<p>Set to <tt class="rst-docutils literal">0</tt> to fail on the first retry of this type.</p>
+</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">int other</span></td><td class="fieldArgDesc"><p>How many times to retry on other errors.</p>
+<p>Other errors are errors that are not connect, read, redirect or status errors.
+These errors might be raised after the request was sent to the server, so the
+request might have side-effects.</p>
+<p>Set to <tt class="rst-docutils literal">0</tt> to fail on the first retry of this type.</p>
+<p>If <tt class="rst-docutils literal">total</tt> is not set, it's a good idea to set this to 0 to account
+for unexpected edge cases and avoid infinite retry loops.</p>
+</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">iterable allowed​_methods</span></td><td class="fieldArgDesc"><p>Set of uppercased HTTP method verbs that we should retry on.</p>
+<p>By default, we only retry on methods which are considered to be
+idempotent (multiple requests with the same parameters end with the
+same state). See <code><a href="#DEFAULT_ALLOWED_METHODS" class="internal-link" title="urllib3.util.Retry.DEFAULT_ALLOWED_METHODS">Retry.DEFAULT_ALLOWED_METHODS</a></code>.</p>
+<p>Set to a <tt class="rst-docutils literal">False</tt> value to retry on any verb.</p>
+<div class="rst-admonition warning">
+<p class="rst-first rst-admonition-title">Warning</p>
+<p class="rst-last">Previously this parameter was named <tt class="rst-docutils literal">method_whitelist</tt>, that
+usage is deprecated in v1.26.0 and will be removed in v2.0.</p>
+</div>
+</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">iterable status​_forcelist</span></td><td class="fieldArgDesc"><p>A set of integer HTTP status codes that we should force a retry on.
+A retry is initiated if the request method is in <tt class="rst-docutils literal">allowed_methods</tt>
+and the response status code is in <tt class="rst-docutils literal">status_forcelist</tt>.</p>
+<p>By default, this is disabled with <tt class="rst-docutils literal">None</tt>.</p>
+</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">float backoff​_factor</span></td><td class="fieldArgDesc"><p>A backoff factor to apply between attempts after the second try
+(most errors are resolved immediately by a second try without a
+delay). urllib3 will sleep for:</p>
+<pre class="rst-literal-block">
+{backoff factor} * (2 ** ({number of total retries} - 1))
+</pre>
+<p>seconds. If the backoff_factor is 0.1, then <code>.sleep</code> will sleep
+for [0.0s, 0.2s, 0.4s, ...] between retries. It will never be longer
+than <code><a href="#DEFAULT_BACKOFF_MAX" class="internal-link" title="urllib3.util.Retry.DEFAULT_BACKOFF_MAX">Retry.DEFAULT_BACKOFF_MAX</a></code>.</p>
+<p>By default, backoff is disabled (set to 0).</p>
+</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">bool raise​_on​_redirect</span></td><td class="fieldArgDesc">Whether, if the number of redirects is
+exhausted, to raise a MaxRetryError, or to return a response with a
+response code in the 3xx range.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">bool raise​_on​_status</span></td><td class="fieldArgDesc">Similar meaning to <tt class="rst-docutils literal">raise_on_redirect</tt>:
+whether we should raise an exception, or return a response,
+if status falls in <tt class="rst-docutils literal">status_forcelist</tt> range and retries have
+been exhausted.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">tuple history</span></td><td class="fieldArgDesc">The history of the request encountered during
+each call to <code>~Retry.increment</code>. The list is in the order
+the requests occurred. Each list item is of class <code><a href="urllib3.util.retry.html#RequestHistory" class="internal-link" title="urllib3.util.retry.RequestHistory">RequestHistory</a></code>.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">bool respect​_retry​_after​_header</span></td><td class="fieldArgDesc">Whether to respect Retry-After header on status codes defined as
+<code><a href="#RETRY_AFTER_STATUS_CODES" class="internal-link" title="urllib3.util.Retry.RETRY_AFTER_STATUS_CODES">Retry.RETRY_AFTER_STATUS_CODES</a></code> or not.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">iterable remove​_headers​_on​_redirect</span></td><td class="fieldArgDesc">Sequence of headers to remove from the request when a response
+indicating a redirect is returned before firing off the redirected
+request.</td></tr></table></div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id25649">
+  
+  
+  <tr class="classmethod">
+    
+    <td>Class Method</td>
+    <td><code><a href="#from_int" class="internal-link" title="urllib3.util.Retry.from_int">from​_int</a></code></td>
+    <td>Backwards-compatibility for the old retries format.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__getattr__" class="internal-link" title="urllib3.util.Retry.__getattr__">__getattr__</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__init__" class="internal-link" title="urllib3.util.Retry.__init__">__init__</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__repr__" class="internal-link" title="urllib3.util.Retry.__repr__">__repr__</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#get_backoff_time" class="internal-link" title="urllib3.util.Retry.get_backoff_time">get​_backoff​_time</a></code></td>
+    <td>Formula for computing the current backoff</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#get_retry_after" class="internal-link" title="urllib3.util.Retry.get_retry_after">get​_retry​_after</a></code></td>
+    <td>Get the value of Retry-After in seconds.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#increment" class="internal-link" title="urllib3.util.Retry.increment">increment</a></code></td>
+    <td>Return a new Retry object with incremented retry counters.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#is_exhausted" class="internal-link" title="urllib3.util.Retry.is_exhausted">is​_exhausted</a></code></td>
+    <td>Are we out of retries?</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#is_retry" class="internal-link" title="urllib3.util.Retry.is_retry">is​_retry</a></code></td>
+    <td><span class="undocumented">No summary</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#new" class="internal-link" title="urllib3.util.Retry.new">new</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#parse_retry_after" class="internal-link" title="urllib3.util.Retry.parse_retry_after">parse​_retry​_after</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#sleep" class="internal-link" title="urllib3.util.Retry.sleep">sleep</a></code></td>
+    <td>Sleep between retry attempts.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#sleep_for_retry" class="internal-link" title="urllib3.util.Retry.sleep_for_retry">sleep​_for​_retry</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="constant">
+    
+    <td>Constant</td>
+    <td><code><a href="#DEFAULT_ALLOWED_METHODS" class="internal-link" title="urllib3.util.Retry.DEFAULT_ALLOWED_METHODS">DEFAULT​_ALLOWED​_METHODS</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="constant">
+    
+    <td>Constant</td>
+    <td><code><a href="#DEFAULT_BACKOFF_MAX" class="internal-link" title="urllib3.util.Retry.DEFAULT_BACKOFF_MAX">DEFAULT​_BACKOFF​_MAX</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="constant">
+    
+    <td>Constant</td>
+    <td><code><a href="#DEFAULT_REMOVE_HEADERS_ON_REDIRECT" class="internal-link" title="urllib3.util.Retry.DEFAULT_REMOVE_HEADERS_ON_REDIRECT">DEFAULT​_REMOVE​_HEADERS​_ON​_REDIRECT</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="constant">
+    
+    <td>Constant</td>
+    <td><code><a href="#RETRY_AFTER_STATUS_CODES" class="internal-link" title="urllib3.util.Retry.RETRY_AFTER_STATUS_CODES">RETRY​_AFTER​_STATUS​_CODES</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#allowed_methods" class="internal-link" title="urllib3.util.Retry.allowed_methods">allowed​_methods</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#backoff_factor" class="internal-link" title="urllib3.util.Retry.backoff_factor">backoff​_factor</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#connect" class="internal-link" title="urllib3.util.Retry.connect">connect</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#history" class="internal-link" title="urllib3.util.Retry.history">history</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#other" class="internal-link" title="urllib3.util.Retry.other">other</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#raise_on_redirect" class="internal-link" title="urllib3.util.Retry.raise_on_redirect">raise​_on​_redirect</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#raise_on_status" class="internal-link" title="urllib3.util.Retry.raise_on_status">raise​_on​_status</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#read" class="internal-link" title="urllib3.util.Retry.read">read</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#redirect" class="internal-link" title="urllib3.util.Retry.redirect">redirect</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#remove_headers_on_redirect" class="internal-link" title="urllib3.util.Retry.remove_headers_on_redirect">remove​_headers​_on​_redirect</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#respect_retry_after_header" class="internal-link" title="urllib3.util.Retry.respect_retry_after_header">respect​_retry​_after​_header</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#status" class="internal-link" title="urllib3.util.Retry.status">status</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#status_forcelist" class="internal-link" title="urllib3.util.Retry.status_forcelist">status​_forcelist</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#total" class="internal-link" title="urllib3.util.Retry.total">total</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_is_connection_error" class="internal-link" title="urllib3.util.Retry._is_connection_error">​_is​_connection​_error</a></code></td>
+    <td>Errors when we're fairly sure that the server did not receive the request, so it should be safe to retry.</td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_is_method_retryable" class="internal-link" title="urllib3.util.Retry._is_method_retryable">​_is​_method​_retryable</a></code></td>
+    <td>Checks if a given HTTP method should be retried upon, depending if it is included in the allowed_methods</td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_is_read_error" class="internal-link" title="urllib3.util.Retry._is_read_error">​_is​_read​_error</a></code></td>
+    <td>Errors that occur after the request has been started, so we should assume that the server began processing it.</td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_sleep_backoff" class="internal-link" title="urllib3.util.Retry._sleep_backoff">​_sleep​_backoff</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+        
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="baseclassmethod">
+  
+  
+  <a name="urllib3.util.Retry.from_int">
+    
+  </a>
+  <a name="from_int">
+    
+  </a>
+  <div class="functionHeader">
+    @<a href="https://docs.python.org/3/library/functions.html#classmethod" class="intersphinx-link">classmethod</a><br />
+    <span class="py-keyword">def</span> <span class="py-defname">from_int</span>(cls, retries, redirect=<a href="https://docs.python.org/3/library/constants.html#True" class="intersphinx-link">True</a>, default=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/urllib3-1.26.8//src/urllib3/util/retry.py#L340">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Backwards-compatibility for the old retries format.</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="urllib3.util.Retry.__getattr__">
+    
+  </a>
+  <a name="__getattr__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__getattr__</span>(self, item):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/urllib3-1.26.8//src/urllib3/util/retry.py#L604">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="urllib3.util.Retry.__init__">
+    
+  </a>
+  <a name="__init__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__init__</span>(self, total=10, connect=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, read=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, redirect=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, status=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, other=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, allowed_methods=_Default, status_forcelist=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, backoff_factor=0, raise_on_redirect=<a href="https://docs.python.org/3/library/constants.html#True" class="intersphinx-link">True</a>, raise_on_status=<a href="https://docs.python.org/3/library/constants.html#True" class="intersphinx-link">True</a>, history=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, respect_retry_after_header=<a href="https://docs.python.org/3/library/constants.html#True" class="intersphinx-link">True</a>, remove_headers_on_redirect=_Default, method_whitelist=_Default):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/urllib3-1.26.8//src/urllib3/util/retry.py#L243">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="urllib3.util.Retry.__repr__">
+    
+  </a>
+  <a name="__repr__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__repr__</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/urllib3-1.26.8//src/urllib3/util/retry.py#L598">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="urllib3.util.Retry.get_backoff_time">
+    
+  </a>
+  <a name="get_backoff_time">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">get_backoff_time</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/urllib3-1.26.8//src/urllib3/util/retry.py#L354">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Formula for computing the current backoff<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer">float</td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="urllib3.util.Retry.get_retry_after">
+    
+  </a>
+  <a name="get_retry_after">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">get_retry_after</span>(self, response):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/urllib3-1.26.8//src/urllib3/util/retry.py#L394">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Get the value of Retry-After in seconds.</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="urllib3.util.Retry.increment">
+    
+  </a>
+  <a name="increment">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">increment</span>(self, method=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, url=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, response=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, error=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, _pool=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, _stacktrace=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/urllib3-1.26.8//src/urllib3/util/retry.py#L504">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Return a new Retry object with incremented retry counters.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">method</span></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">url</span></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">response:</span><code>~urllib3.response.HTTPResponse</code></td><td class="fieldArgDesc">A response object, or None, if the server did not
+return a response.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">error</span></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">​_pool</span></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">​_stacktrace</span></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">​Exception error</span></td><td class="fieldArgDesc">An error encountered during the request, or
+None if the response was received successfully.</td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td colspan="2">A new <tt class="rst-docutils literal">Retry</tt> object.</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="urllib3.util.Retry.is_exhausted">
+    
+  </a>
+  <a name="is_exhausted">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">is_exhausted</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/urllib3-1.26.8//src/urllib3/util/retry.py#L488">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Are we out of retries?</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="urllib3.util.Retry.is_retry">
+    
+  </a>
+  <a name="is_retry">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">is_retry</span>(self, method, status_code, has_retry_after=<a href="https://docs.python.org/3/library/constants.html#False" class="intersphinx-link">False</a>):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/urllib3-1.26.8//src/urllib3/util/retry.py#L468">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Is this method/status code retryable? (Based on allowlists and control
+variables such as the number of total retries to allow, whether to
+respect the Retry-After header, whether this header is present, and
+whether the returned status code is on the list of status codes to
+be retried upon on the presence of the aforementioned header)</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="urllib3.util.Retry.new">
+    
+  </a>
+  <a name="new">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">new</span>(self, **kw):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/urllib3-1.26.8//src/urllib3/util/retry.py#L304">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="urllib3.util.Retry.parse_retry_after">
+    
+  </a>
+  <a name="parse_retry_after">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">parse_retry_after</span>(self, retry_after):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/urllib3-1.26.8//src/urllib3/util/retry.py#L371">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="urllib3.util.Retry.sleep">
+    
+  </a>
+  <a name="sleep">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">sleep</span>(self, response=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/urllib3-1.26.8//src/urllib3/util/retry.py#L418">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Sleep between retry attempts.</p>
+<p>This method will respect a server's <tt class="rst-docutils literal"><span class="pre">Retry-After</span></tt> response header
+and sleep the duration of the time requested. If that is not present, it
+will use an exponential backoff. By default, the backoff factor is 0 and
+this method will return immediately.</p>
+</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="urllib3.util.Retry.sleep_for_retry">
+    
+  </a>
+  <a name="sleep_for_retry">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">sleep_for_retry</span>(self, response=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/urllib3-1.26.8//src/urllib3/util/retry.py#L404">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="baseconstant">
+  
+  
+  <a name="urllib3.util.Retry.DEFAULT_ALLOWED_METHODS">
+    
+  </a>
+  <a name="DEFAULT_ALLOWED_METHODS">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">DEFAULT_ALLOWED_METHODS</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/urllib3-1.26.8//src/urllib3/util/retry.py#L230">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    <table class="valueTable"><tr class="fieldStart"><td class="fieldName">Value</td></tr><tr><td><pre class="constant-value"><code><a href="https://docs.python.org/3/library/stdtypes.html#frozenset" class="intersphinx-link">frozenset</a>(<wbr></wbr>[<wbr></wbr><span class="rst-variable-quote">'</span><span class="rst-variable-string">HEAD</span><span class="rst-variable-quote">'</span>, <wbr></wbr><span class="rst-variable-quote">'</span><span class="rst-variable-string">GET</span><span class="rst-variable-quote">'</span>, <wbr></wbr><span class="rst-variable-quote">'</span><span class="rst-variable-string">PUT</span><span class="rst-variable-quote">'</span>, <wbr></wbr><span class="rst-variable-quote">'</span><span class="rst-variable-string">DELETE</span><span class="rst-variable-quote">'</span>, <wbr></wbr><span class="rst-variable-quote">'</span><span class="rst-variable-string">OPTIONS</span><span class="rst-variable-quote">'</span>, <wbr></wbr><span class="rst-variable-quote">'</span><span class="rst-variable-string">TRACE</span><span class="rst-variable-quote">'</span>])</code></pre></td></tr></table>
+  </div>
+</div><div class="baseconstant">
+  
+  
+  <a name="urllib3.util.Retry.DEFAULT_BACKOFF_MAX">
+    
+  </a>
+  <a name="DEFAULT_BACKOFF_MAX">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">DEFAULT_BACKOFF_MAX</span>: <code><a href="https://docs.python.org/3/library/functions.html#int" class="intersphinx-link">int</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/urllib3-1.26.8//src/urllib3/util/retry.py#L241">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    <table class="valueTable"><tr class="fieldStart"><td class="fieldName">Value</td></tr><tr><td><pre class="constant-value"><code>120</code></pre></td></tr></table>
+  </div>
+</div><div class="baseconstant">
+  
+  
+  <a name="urllib3.util.Retry.DEFAULT_REMOVE_HEADERS_ON_REDIRECT">
+    
+  </a>
+  <a name="DEFAULT_REMOVE_HEADERS_ON_REDIRECT">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">DEFAULT_REMOVE_HEADERS_ON_REDIRECT</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/urllib3-1.26.8//src/urllib3/util/retry.py#L238">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    <table class="valueTable"><tr class="fieldStart"><td class="fieldName">Value</td></tr><tr><td><pre class="constant-value"><code><a href="https://docs.python.org/3/library/stdtypes.html#frozenset" class="intersphinx-link">frozenset</a>(<wbr></wbr>[<wbr></wbr><span class="rst-variable-quote">'</span><span class="rst-variable-string">Authorization</span><span class="rst-variable-quote">'</span>])</code></pre></td></tr></table>
+  </div>
+</div><div class="baseconstant">
+  
+  
+  <a name="urllib3.util.Retry.RETRY_AFTER_STATUS_CODES">
+    
+  </a>
+  <a name="RETRY_AFTER_STATUS_CODES">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">RETRY_AFTER_STATUS_CODES</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/urllib3-1.26.8//src/urllib3/util/retry.py#L235">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    <table class="valueTable"><tr class="fieldStart"><td class="fieldName">Value</td></tr><tr><td><pre class="constant-value"><code><a href="https://docs.python.org/3/library/stdtypes.html#frozenset" class="intersphinx-link">frozenset</a>(<wbr></wbr>[<wbr></wbr>413, <wbr></wbr>429, <wbr></wbr>503])</code></pre></td></tr></table>
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="urllib3.util.Retry.allowed_methods">
+    
+  </a>
+  <a name="allowed_methods">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">allowed_methods</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/urllib3-1.26.8//src/urllib3/util/retry.py#L294">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="urllib3.util.Retry.backoff_factor">
+    
+  </a>
+  <a name="backoff_factor">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">backoff_factor</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/urllib3-1.26.8//src/urllib3/util/retry.py#L295">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="urllib3.util.Retry.connect">
+    
+  </a>
+  <a name="connect">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">connect</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/urllib3-1.26.8//src/urllib3/util/retry.py#L283">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="urllib3.util.Retry.history">
+    
+  </a>
+  <a name="history">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">history</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/urllib3-1.26.8//src/urllib3/util/retry.py#L298">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="urllib3.util.Retry.other">
+    
+  </a>
+  <a name="other">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">other</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/urllib3-1.26.8//src/urllib3/util/retry.py#L286">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="urllib3.util.Retry.raise_on_redirect">
+    
+  </a>
+  <a name="raise_on_redirect">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">raise_on_redirect</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/urllib3-1.26.8//src/urllib3/util/retry.py#L296">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="urllib3.util.Retry.raise_on_status">
+    
+  </a>
+  <a name="raise_on_status">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">raise_on_status</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/urllib3-1.26.8//src/urllib3/util/retry.py#L297">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="urllib3.util.Retry.read">
+    
+  </a>
+  <a name="read">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">read</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/urllib3-1.26.8//src/urllib3/util/retry.py#L284">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="urllib3.util.Retry.redirect">
+    
+  </a>
+  <a name="redirect">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">redirect</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/urllib3-1.26.8//src/urllib3/util/retry.py#L292">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="urllib3.util.Retry.remove_headers_on_redirect">
+    
+  </a>
+  <a name="remove_headers_on_redirect">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">remove_headers_on_redirect</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/urllib3-1.26.8//src/urllib3/util/retry.py#L300">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="urllib3.util.Retry.respect_retry_after_header">
+    
+  </a>
+  <a name="respect_retry_after_header">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">respect_retry_after_header</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/urllib3-1.26.8//src/urllib3/util/retry.py#L299">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="urllib3.util.Retry.status">
+    
+  </a>
+  <a name="status">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">status</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/urllib3-1.26.8//src/urllib3/util/retry.py#L285">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="urllib3.util.Retry.status_forcelist">
+    
+  </a>
+  <a name="status_forcelist">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">status_forcelist</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/urllib3-1.26.8//src/urllib3/util/retry.py#L293">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="urllib3.util.Retry.total">
+    
+  </a>
+  <a name="total">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">total</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/urllib3-1.26.8//src/urllib3/util/retry.py#L282">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="urllib3.util.Retry._is_connection_error">
+    
+  </a>
+  <a name="_is_connection_error">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_is_connection_error</span>(self, err):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/urllib3-1.26.8//src/urllib3/util/retry.py#L434">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Errors when we're fairly sure that the server did not receive the
+request, so it should be safe to retry.</div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="urllib3.util.Retry._is_method_retryable">
+    
+  </a>
+  <a name="_is_method_retryable">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_is_method_retryable</span>(self, method):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/urllib3-1.26.8//src/urllib3/util/retry.py#L448">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Checks if a given HTTP method should be retried upon, depending if
+it is included in the allowed_methods</div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="urllib3.util.Retry._is_read_error">
+    
+  </a>
+  <a name="_is_read_error">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_is_read_error</span>(self, err):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/urllib3-1.26.8//src/urllib3/util/retry.py#L442">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Errors that occur after the request has been started, so we should
+assume that the server began processing it.</div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="urllib3.util.Retry._sleep_backoff">
+    
+  </a>
+  <a name="_sleep_backoff">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_sleep_backoff</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/urllib3-1.26.8//src/urllib3/util/retry.py#L412">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div>
+
+      </div>
+    </div>
+
+    <footer class="navbar navbar-default">
+  
+  <div class="container">
+    <a href="index.html">API Documentation</a> for urllib3,
+  generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
+    22.2.0 at 2022-02-23 08:27:39.
+  </div>
+</footer>
+
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+  </body>
+</html>

@@ -1,0 +1,1433 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  
+
+  <head>
+    
+    <title>sqlalchemy.orm.events.SessionEvents</title>
+    <meta name="generator" content="pydoctor 22.2.0"> 
+        
+    </meta>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=0.75" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+    <link rel="stylesheet" type="text/css" href="extra.css" />
+</head>
+
+  <body>
+
+    <div id="banner" class="container">    
+    <div>
+        <a href="https://pydocbrowser.github.io/">Home</a>
+        &gt; sqlalchemy-1.4.31 
+        <!-- This is an important placeholder and will be 
+            replaced by project name and version on building docs -->
+        
+        <!-- (<a href=""&gt;show all versions</a&gt;) -->
+    </div>
+</div>
+
+    <nav class="navbar navbar-default">
+  
+  <div class="container">
+
+    <div class="navbar-header">
+      
+      <div class="navlinks">
+          <span class="navbar-brand">
+            sqlalchemy <a href="index.html">API Documentation</a>
+          </span>
+
+          <a href="moduleIndex.html">
+            Modules
+          </a>
+
+          <a href="classIndex.html">
+            Classes
+          </a>
+
+          <a href="nameIndex.html">
+            Names
+          </a>
+      </div>
+
+    </div>
+  </div>
+</nav>
+
+    
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="class"><code><code><a href="index.html" class="internal-link">sqlalchemy</a></code><wbr></wbr>.<code><a href="sqlalchemy.orm.html" class="internal-link" title="sqlalchemy.orm">orm</a></code><wbr></wbr>.<code><a href="sqlalchemy.orm.events.html" class="internal-link" title="sqlalchemy.orm.events">events</a></code><wbr></wbr>.<code><a href="sqlalchemy.orm.events.SessionEvents.html" class="internal-link" title="sqlalchemy.orm.events.SessionEvents">SessionEvents</a></code></code></h1>
+        <div id="showPrivate">
+          <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+        </div>
+      </div>
+
+      <div class="categoryHeader">
+        class documentation
+      </div>
+
+      <div class="extrasDocstring">
+        <p><code><span class="py-keyword">class</span> <span class="py-defname">SessionEvents</span>(<a href="sqlalchemy.event.base.Events.html" class="internal-link" title="sqlalchemy.event.base.Events">event.Events</a>): <a href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/orm/events.py#L1313" class="sourceLink">(source)</a></code></p><p>Known subclasses: <code><a href="sqlalchemy.ext.asyncio.events.AsyncSessionEvents.html" class="internal-link">sqlalchemy.ext.asyncio.events.AsyncSessionEvents</a></code></p>
+        <p><a href="classIndex.html#sqlalchemy.orm.events.SessionEvents">View In Hierarchy</a></p>
+      </div>
+
+      <div class="moduleDocstring">
+        <div><p>Define events specific to <code>.Session</code> lifecycle.</p>
+<p>e.g.:</p>
+<pre class="rst-literal-block">
+from sqlalchemy import event
+from sqlalchemy.orm import sessionmaker
+
+def my_before_commit(session):
+    print("before commit!")
+
+Session = sessionmaker()
+
+event.listen(Session, "before_commit", my_before_commit)
+</pre>
+<p>The <code>~.event.listen</code> function will accept
+<code>.Session</code> objects as well as the return result
+of <code>~.sessionmaker()</code> and <code>~.scoped_session()</code>.</p>
+<p>Additionally, it accepts the <code>.Session</code> class which
+will apply listeners to all <code>.Session</code> instances
+globally.</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">raw=​False</span></td><td class="fieldArgDesc"><p>When True, the "target" argument passed
+to applicable event listener functions that work on individual
+objects will be the instance's <code>.InstanceState</code> management
+object, rather than the mapped instance itself.</p>
+<div class="rst-versionadded">
+<span class="rst-versionmodified rst-added">New in version 1.3.14.</span></div>
+</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">restore_load_context=​False</span></td><td class="fieldArgDesc"><p>Applies to the
+<code>.SessionEvents.loaded_as_persistent</code> event.  Restores the loader
+context of the object when the event hook is complete, so that ongoing
+eager load operations continue to target the object appropriately.  A
+warning is emitted if the object is moved to a new loader context from
+within this event if this flag is not set.</p>
+<div class="rst-versionadded">
+<span class="rst-versionmodified rst-added">New in version 1.3.14.</span></div>
+</td></tr></table></div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id20862">
+  
+  
+  <tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#after_attach" class="internal-link" title="sqlalchemy.orm.events.SessionEvents.after_attach">after​_attach</a></code></td>
+    <td>Execute after an instance is attached to a session.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#after_begin" class="internal-link" title="sqlalchemy.orm.events.SessionEvents.after_begin">after​_begin</a></code></td>
+    <td>Execute after a transaction is begun on a connection</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#after_bulk_delete" class="internal-link" title="sqlalchemy.orm.events.SessionEvents.after_bulk_delete">after​_bulk​_delete</a></code></td>
+    <td>Execute after ORM DELETE against a WHERE expression has been invoked.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#after_bulk_update" class="internal-link" title="sqlalchemy.orm.events.SessionEvents.after_bulk_update">after​_bulk​_update</a></code></td>
+    <td>Execute after an ORM UPDATE against a WHERE expression has been invoked.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#after_commit" class="internal-link" title="sqlalchemy.orm.events.SessionEvents.after_commit">after​_commit</a></code></td>
+    <td>Execute after a commit has occurred.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#after_flush" class="internal-link" title="sqlalchemy.orm.events.SessionEvents.after_flush">after​_flush</a></code></td>
+    <td>Execute after flush has completed, but before commit has been called.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#after_flush_postexec" class="internal-link" title="sqlalchemy.orm.events.SessionEvents.after_flush_postexec">after​_flush​_postexec</a></code></td>
+    <td>Execute after flush has completed, and after the post-exec state occurs.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#after_rollback" class="internal-link" title="sqlalchemy.orm.events.SessionEvents.after_rollback">after​_rollback</a></code></td>
+    <td>Execute after a real DBAPI rollback has occurred.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#after_soft_rollback" class="internal-link" title="sqlalchemy.orm.events.SessionEvents.after_soft_rollback">after​_soft​_rollback</a></code></td>
+    <td>Execute after any rollback has occurred, including "soft" rollbacks that don't actually emit at the DBAPI level.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#after_transaction_create" class="internal-link" title="sqlalchemy.orm.events.SessionEvents.after_transaction_create">after​_transaction​_create</a></code></td>
+    <td>Execute when a new <code>.SessionTransaction</code> is created.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#after_transaction_end" class="internal-link" title="sqlalchemy.orm.events.SessionEvents.after_transaction_end">after​_transaction​_end</a></code></td>
+    <td>Execute when the span of a <code>.SessionTransaction</code> ends.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#before_attach" class="internal-link" title="sqlalchemy.orm.events.SessionEvents.before_attach">before​_attach</a></code></td>
+    <td>Execute before an instance is attached to a session.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#before_commit" class="internal-link" title="sqlalchemy.orm.events.SessionEvents.before_commit">before​_commit</a></code></td>
+    <td>Execute before commit is called.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#before_flush" class="internal-link" title="sqlalchemy.orm.events.SessionEvents.before_flush">before​_flush</a></code></td>
+    <td>Execute before flush process has started.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#deleted_to_detached" class="internal-link" title="sqlalchemy.orm.events.SessionEvents.deleted_to_detached">deleted​_to​_detached</a></code></td>
+    <td>Intercept the "deleted to detached" transition for a specific object.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#deleted_to_persistent" class="internal-link" title="sqlalchemy.orm.events.SessionEvents.deleted_to_persistent">deleted​_to​_persistent</a></code></td>
+    <td>Intercept the "deleted to persistent" transition for a specific object.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#detached_to_persistent" class="internal-link" title="sqlalchemy.orm.events.SessionEvents.detached_to_persistent">detached​_to​_persistent</a></code></td>
+    <td>Intercept the "detached to persistent" transition for a specific object.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#do_orm_execute" class="internal-link" title="sqlalchemy.orm.events.SessionEvents.do_orm_execute">do​_orm​_execute</a></code></td>
+    <td>Intercept statement executions that occur in terms of a <code>.Session</code>.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#loaded_as_persistent" class="internal-link" title="sqlalchemy.orm.events.SessionEvents.loaded_as_persistent">loaded​_as​_persistent</a></code></td>
+    <td>Intercept the "loaded as persistent" transition for a specific object.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#pending_to_persistent" class="internal-link" title="sqlalchemy.orm.events.SessionEvents.pending_to_persistent">pending​_to​_persistent</a></code></td>
+    <td>Intercept the "pending to persistent"" transition for a specific object.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#pending_to_transient" class="internal-link" title="sqlalchemy.orm.events.SessionEvents.pending_to_transient">pending​_to​_transient</a></code></td>
+    <td>Intercept the "pending to transient" transition for a specific object.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#persistent_to_deleted" class="internal-link" title="sqlalchemy.orm.events.SessionEvents.persistent_to_deleted">persistent​_to​_deleted</a></code></td>
+    <td>Intercept the "persistent to deleted" transition for a specific object.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#persistent_to_detached" class="internal-link" title="sqlalchemy.orm.events.SessionEvents.persistent_to_detached">persistent​_to​_detached</a></code></td>
+    <td>Intercept the "persistent to detached" transition for a specific object.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#persistent_to_transient" class="internal-link" title="sqlalchemy.orm.events.SessionEvents.persistent_to_transient">persistent​_to​_transient</a></code></td>
+    <td>Intercept the "persistent to transient" transition for a specific object.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#transient_to_pending" class="internal-link" title="sqlalchemy.orm.events.SessionEvents.transient_to_pending">transient​_to​_pending</a></code></td>
+    <td>Intercept the "transient to pending" transition for a specific object.</td>
+  </tr><tr class="classmethod private">
+    
+    <td>Class Method</td>
+    <td><code><a href="#_accept_with" class="internal-link" title="sqlalchemy.orm.events.SessionEvents._accept_with">​_accept​_with</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="classmethod private">
+    
+    <td>Class Method</td>
+    <td><code><a href="#_listen" class="internal-link" title="sqlalchemy.orm.events.SessionEvents._listen">​_listen</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_lifecycle_event" class="internal-link" title="sqlalchemy.orm.events.SessionEvents._lifecycle_event">​_lifecycle​_event</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="classvariable private">
+    
+    <td>Class Variable</td>
+    <td><code><a href="#_target_class_doc" class="internal-link" title="sqlalchemy.orm.events.SessionEvents._target_class_doc">​_target​_class​_doc</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+        
+          <p class="inheritedFrom">
+            Inherited from <code><a href="sqlalchemy.event.base.Events.html" class="internal-link" title="sqlalchemy.event.base.Events">Events</a></code>:
+          </p>
+          <table class="children sortable" id="id20863">
+  
+  
+  <tr class="baseclassmethod private">
+    
+    <td>Class Method</td>
+    <td><code><a href="sqlalchemy.event.base.Events.html#_clear" class="internal-link" title="sqlalchemy.event.base.Events._clear">​_clear</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="baseclassmethod private">
+    
+    <td>Class Method</td>
+    <td><code><a href="sqlalchemy.event.base.Events.html#_remove" class="internal-link" title="sqlalchemy.event.base.Events._remove">​_remove</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basestaticmethod private">
+    
+    <td>Static Method</td>
+    <td><code><a href="sqlalchemy.event.base.Events.html#_set_dispatch" class="internal-link" title="sqlalchemy.event.base.Events._set_dispatch">​_set​_dispatch</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+          
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="basemethod">
+  
+  
+  <a name="sqlalchemy.orm.events.SessionEvents.after_attach">
+    
+  </a>
+  <a name="after_attach">
+    
+  </a>
+  <div class="functionHeader">
+    @<a href="#_lifecycle_event" class="internal-link" title="sqlalchemy.orm.events.SessionEvents._lifecycle_event">_lifecycle_event</a><br />
+    <span class="py-keyword">def</span> <span class="py-defname">after_attach</span>(self, session, instance):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/orm/events.py#L1777">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Execute after an instance is attached to a session.</p>
+<p>This is called after an add, delete or merge.</p>
+<div class="rst-admonition note">
+<p class="rst-first rst-admonition-title">Note</p>
+<p class="rst-last">As of 0.8, this event fires off <em>after</em> the item
+has been fully associated with the session, which is
+different than previous releases.  For event
+handlers that require the object not yet
+be part of session state (such as handlers which
+may autoflush while the target object is not
+yet complete) consider the
+new <code>.before_attach</code> event.</p>
+</div>
+<div class="rst-admonition seealso">
+<p class="rst-first rst-admonition-title">See Also</p>
+<p><code>~.SessionEvents.before_attach</code></p>
+<p class="rst-last"><a href="#system-message-1"><span class="rst-problematic" id="rst-problematic-1">:ref:`session_lifecycle_events`</span></a></p>
+</div>
+</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.orm.events.SessionEvents.after_begin">
+    
+  </a>
+  <a name="after_begin">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">after_begin</span>(self, session, transaction, connection):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/orm/events.py#L1742">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Execute after a transaction is begun on a connection</p>
+<div class="rst-admonition seealso">
+<p class="rst-first rst-admonition-title">See Also</p>
+<p><code>~.SessionEvents.before_commit</code></p>
+<p><code>~.SessionEvents.after_commit</code></p>
+<p><code>~.SessionEvents.after_transaction_create</code></p>
+<p class="rst-last"><code>~.SessionEvents.after_transaction_end</code></p>
+</div>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">session</span></td><td class="fieldArgDesc">The target <code>.Session</code>.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">transaction</span></td><td class="fieldArgDesc">The <code>.SessionTransaction</code>.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">connection</span></td><td class="fieldArgDesc">The <code>_engine.Connection</code> object
+which will be used for SQL statements.</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.orm.events.SessionEvents.after_bulk_delete">
+    
+  </a>
+  <a name="after_bulk_delete">
+    
+  </a>
+  <div class="functionHeader">
+    @<a href="sqlalchemy.event.legacy.html#_legacy_signature" class="internal-link" title="sqlalchemy.event.legacy._legacy_signature">event._legacy_signature</a>(<wbr></wbr><span class="rst-variable-quote">'</span><span class="rst-variable-string">0.9</span><span class="rst-variable-quote">'</span>, <wbr></wbr>[<wbr></wbr><span class="rst-variable-quote">'</span><span class="rst-variable-string">session</span><span class="rst-variable-quote">'</span>, <wbr></wbr><span class="rst-variable-quote">'</span><span class="rst-variable-string">query</span><span class="rst-variable-quote">'</span>, <wbr></wbr><span class="rst-variable-quote">'</span><span class="rst-variable-string">query_context</span><span class="rst-variable-quote">'</span>, <wbr></wbr><span class="rst-variable-quote">'</span><span class="rst-variable-string">result</span><span class="rst-variable-quote">'</span>], <wbr></wbr>(lambda delete_context: (delete_context.session, delete_context.query, No<span class="rst-variable-ellipsis">...</span><br />
+    <span class="py-keyword">def</span> <span class="py-defname">after_bulk_delete</span>(self, delete_context):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/orm/events.py#L1842">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Execute after ORM DELETE against a WHERE expression has been
+invoked.</p>
+<p>This is called as a result of the <code>_query.Query.delete</code> method.</p>
+<div class="rst-versionchanged">
+<span class="rst-versionmodified rst-changed">Changed in version 1.4: </span><span>the update_context no longer has a
+<tt class="rst-docutils literal">QueryContext</tt> object associated with it.</span></div>
+<div class="rst-admonition seealso">
+<p class="rst-first rst-admonition-title">See Also</p>
+<p><code>.QueryEvents.before_compile_delete</code></p>
+<p class="rst-last"><code>.SessionEvents.after_bulk_update</code></p>
+</div>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">delete​_context</span></td><td class="fieldArgDesc"><p>a "delete context" object which contains
+details about the update, including these attributes:</p>
+<blockquote>
+<ul class="rst-simple">
+<li><tt class="rst-docutils literal">session</tt> - the <code>.Session</code> involved</li>
+<li><tt class="rst-docutils literal">query</tt> -the <code>_query.Query</code>
+object that this update operation
+was called upon.</li>
+<li><tt class="rst-docutils literal">result</tt> the <code>_engine.CursorResult</code>
+returned as a result of the
+bulk DELETE operation.</li>
+</ul>
+</blockquote>
+</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.orm.events.SessionEvents.after_bulk_update">
+    
+  </a>
+  <a name="after_bulk_update">
+    
+  </a>
+  <div class="functionHeader">
+    @<a href="sqlalchemy.event.legacy.html#_legacy_signature" class="internal-link" title="sqlalchemy.event.legacy._legacy_signature">event._legacy_signature</a>(<wbr></wbr><span class="rst-variable-quote">'</span><span class="rst-variable-string">0.9</span><span class="rst-variable-quote">'</span>, <wbr></wbr>[<wbr></wbr><span class="rst-variable-quote">'</span><span class="rst-variable-string">session</span><span class="rst-variable-quote">'</span>, <wbr></wbr><span class="rst-variable-quote">'</span><span class="rst-variable-string">query</span><span class="rst-variable-quote">'</span>, <wbr></wbr><span class="rst-variable-quote">'</span><span class="rst-variable-string">query_context</span><span class="rst-variable-quote">'</span>, <wbr></wbr><span class="rst-variable-quote">'</span><span class="rst-variable-string">result</span><span class="rst-variable-quote">'</span>], <wbr></wbr>(lambda update_context: (update_context.session, update_context.query, No<span class="rst-variable-ellipsis">...</span><br />
+    <span class="py-keyword">def</span> <span class="py-defname">after_bulk_update</span>(self, update_context):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/orm/events.py#L1802">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Execute after an ORM UPDATE against a WHERE expression has been
+invoked.</p>
+<p>This is called as a result of the <code>_query.Query.update</code> method.</p>
+<div class="rst-versionchanged">
+<span class="rst-versionmodified rst-changed">Changed in version 1.4: </span><span>the update_context no longer has a
+<tt class="rst-docutils literal">QueryContext</tt> object associated with it.</span></div>
+<div class="rst-admonition seealso">
+<p class="rst-first rst-admonition-title">See Also</p>
+<p><code>.QueryEvents.before_compile_update</code></p>
+<p class="rst-last"><code>.SessionEvents.after_bulk_delete</code></p>
+</div>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">update​_context</span></td><td class="fieldArgDesc"><p>an "update context" object which contains
+details about the update, including these attributes:</p>
+<blockquote>
+<ul class="rst-simple">
+<li><tt class="rst-docutils literal">session</tt> - the <code>.Session</code> involved</li>
+<li><tt class="rst-docutils literal">query</tt> -the <code>_query.Query</code>
+object that this update operation
+was called upon.</li>
+<li><tt class="rst-docutils literal">values</tt> The "values" dictionary that was passed to
+<code>_query.Query.update</code>.</li>
+<li><tt class="rst-docutils literal">result</tt> the <code>_engine.CursorResult</code>
+returned as a result of the
+bulk UPDATE operation.</li>
+</ul>
+</blockquote>
+</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.orm.events.SessionEvents.after_commit">
+    
+  </a>
+  <a name="after_commit">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">after_commit</span>(self, session):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/orm/events.py#L1587">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Execute after a commit has occurred.</p>
+<div class="rst-admonition note">
+<p class="rst-first rst-admonition-title">Note</p>
+<p class="rst-last">The <code>~.SessionEvents.after_commit</code> hook is <em>not</em> per-flush,
+that is, the <code>.Session</code> can emit SQL to the database
+many times within the scope of a transaction.
+For interception of these events, use the
+<code>~.SessionEvents.before_flush</code>,
+<code>~.SessionEvents.after_flush</code>, or
+<code>~.SessionEvents.after_flush_postexec</code>
+events.</p>
+</div>
+<div class="rst-admonition note">
+<p class="rst-first rst-admonition-title">Note</p>
+<p class="rst-last">The <code>.Session</code> is not in an active transaction
+when the <code>~.SessionEvents.after_commit</code> event is invoked,
+and therefore can not emit SQL.  To emit SQL corresponding to
+every transaction, use the <code>~.SessionEvents.before_commit</code>
+event.</p>
+</div>
+<div class="rst-admonition seealso">
+<p class="rst-first rst-admonition-title">See Also</p>
+<p><code>~.SessionEvents.before_commit</code></p>
+<p><code>~.SessionEvents.after_begin</code></p>
+<p><code>~.SessionEvents.after_transaction_create</code></p>
+<p class="rst-last"><code>~.SessionEvents.after_transaction_end</code></p>
+</div>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">session</span></td><td class="fieldArgDesc">The target <code>.Session</code>.</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.orm.events.SessionEvents.after_flush">
+    
+  </a>
+  <a name="after_flush">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">after_flush</span>(self, session, flush_context):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/orm/events.py#L1687">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Execute after flush has completed, but before commit has been
+called.</p>
+<p>Note that the session's state is still in pre-flush, i.e. 'new',
+'dirty', and 'deleted' lists still show pre-flush state as well
+as the history settings on instance attributes.</p>
+<div class="rst-admonition warning">
+<p class="rst-first rst-admonition-title">Warning</p>
+<p class="rst-last">This event runs after the <code>.Session</code> has emitted
+SQL to modify the database, but <strong>before</strong> it has altered its
+internal state to reflect those changes, including that newly
+inserted objects are placed into the identity map.  ORM operations
+emitted within this event such as loads of related items
+may produce new identity map entries that will immediately
+be replaced, sometimes causing confusing results.  SQLAlchemy will
+emit a warning for this condition as of version 1.3.9.</p>
+</div>
+<div class="rst-admonition seealso">
+<p class="rst-first rst-admonition-title">See Also</p>
+<p><code>~.SessionEvents.before_flush</code></p>
+<p><code>~.SessionEvents.after_flush_postexec</code></p>
+<p class="rst-last"><a href="#system-message-1"><span class="rst-problematic" id="rst-problematic-1">:ref:`session_persistence_events`</span></a></p>
+</div>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">session</span></td><td class="fieldArgDesc">The target <code>.Session</code>.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">flush​_context</span></td><td class="fieldArgDesc">Internal <code>.UOWTransaction</code> object
+which handles the details of the flush.</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.orm.events.SessionEvents.after_flush_postexec">
+    
+  </a>
+  <a name="after_flush_postexec">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">after_flush_postexec</span>(self, session, flush_context):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/orm/events.py#L1718">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Execute after flush has completed, and after the post-exec
+state occurs.</p>
+<p>This will be when the 'new', 'dirty', and 'deleted' lists are in
+their final state.  An actual commit() may or may not have
+occurred, depending on whether or not the flush started its own
+transaction or participated in a larger transaction.</p>
+<div class="rst-admonition seealso">
+<p class="rst-first rst-admonition-title">See Also</p>
+<p><code>~.SessionEvents.before_flush</code></p>
+<p><code>~.SessionEvents.after_flush</code></p>
+<p class="rst-last"><a href="#system-message-1"><span class="rst-problematic" id="rst-problematic-1">:ref:`session_persistence_events`</span></a></p>
+</div>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">session</span></td><td class="fieldArgDesc">The target <code>.Session</code>.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">flush​_context</span></td><td class="fieldArgDesc">Internal <code>.UOWTransaction</code> object
+which handles the details of the flush.</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.orm.events.SessionEvents.after_rollback">
+    
+  </a>
+  <a name="after_rollback">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">after_rollback</span>(self, session):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/orm/events.py#L1623">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Execute after a real DBAPI rollback has occurred.</p>
+<p>Note that this event only fires when the <em>actual</em> rollback against
+the database occurs - it does <em>not</em> fire each time the
+<code>.Session.rollback</code> method is called, if the underlying
+DBAPI transaction has already been rolled back.  In many
+cases, the <code>.Session</code> will not be in
+an "active" state during this event, as the current
+transaction is not valid.   To acquire a <code>.Session</code>
+which is active after the outermost rollback has proceeded,
+use the <code>.SessionEvents.after_soft_rollback</code> event, checking the
+<code>.Session.is_active</code> flag.</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">session</span></td><td class="fieldArgDesc">The target <code>.Session</code>.</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.orm.events.SessionEvents.after_soft_rollback">
+    
+  </a>
+  <a name="after_soft_rollback">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">after_soft_rollback</span>(self, session, previous_transaction):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/orm/events.py#L1641">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Execute after any rollback has occurred, including "soft"
+rollbacks that don't actually emit at the DBAPI level.</p>
+<p>This corresponds to both nested and outer rollbacks, i.e.
+the innermost rollback that calls the DBAPI's
+rollback() method, as well as the enclosing rollback
+calls that only pop themselves from the transaction stack.</p>
+<p>The given <code>.Session</code> can be used to invoke SQL and
+<code>.Session.query</code> operations after an outermost rollback
+by first checking the <code>.Session.is_active</code> flag:</p>
+<pre class="rst-literal-block">
+@event.listens_for(Session, "after_soft_rollback")
+def do_something(session, previous_transaction):
+    if session.is_active:
+        session.execute("select * from some_table")
+</pre>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">session</span></td><td class="fieldArgDesc">The target <code>.Session</code>.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">previous​_transaction</span></td><td class="fieldArgDesc">The <code>.SessionTransaction</code>
+transactional marker object which was just closed.   The current
+<code>.SessionTransaction</code> for the given <code>.Session</code> is
+available via the <code>.Session.transaction</code> attribute.</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.orm.events.SessionEvents.after_transaction_create">
+    
+  </a>
+  <a name="after_transaction_create">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">after_transaction_create</span>(self, session, transaction):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/orm/events.py#L1478">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Execute when a new <code>.SessionTransaction</code> is created.</p>
+<p>This event differs from <code>~.SessionEvents.after_begin</code>
+in that it occurs for each <code>.SessionTransaction</code>
+overall, as opposed to when transactions are begun
+on individual database connections.  It is also invoked
+for nested transactions and subtransactions, and is always
+matched by a corresponding
+<code>~.SessionEvents.after_transaction_end</code> event
+(assuming normal operation of the <code>.Session</code>).</p>
+<div class="rst-admonition seealso">
+<p class="rst-first rst-admonition-title">See Also</p>
+<p><code>.SessionTransaction</code></p>
+<p class="rst-last"><code>~.SessionEvents.after_transaction_end</code></p>
+</div>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">session</span></td><td class="fieldArgDesc">the target <code>.Session</code>.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">transaction</span></td><td class="fieldArgDesc"><p>the target <code>.SessionTransaction</code>.</p>
+<p>To detect if this is the outermost
+<code>.SessionTransaction</code>, as opposed to a "subtransaction" or a
+SAVEPOINT, test that the <code>.SessionTransaction.parent</code> attribute
+is <tt class="rst-docutils literal">None</tt>:</p>
+<pre class="rst-literal-block">
+@event.listens_for(session, "after_transaction_create")
+def after_transaction_create(session, transaction):
+    if transaction.parent is None:
+        # work with top-level transaction
+</pre>
+<p>To detect if the <code>.SessionTransaction</code> is a SAVEPOINT, use the
+<code>.SessionTransaction.nested</code> attribute:</p>
+<pre class="rst-literal-block">
+@event.listens_for(session, "after_transaction_create")
+def after_transaction_create(session, transaction):
+    if transaction.nested:
+        # work with SAVEPOINT transaction
+</pre>
+</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.orm.events.SessionEvents.after_transaction_end">
+    
+  </a>
+  <a name="after_transaction_end">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">after_transaction_end</span>(self, session, transaction):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/orm/events.py#L1520">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Execute when the span of a <code>.SessionTransaction</code> ends.</p>
+<p>This event differs from <code>~.SessionEvents.after_commit</code>
+in that it corresponds to all <code>.SessionTransaction</code>
+objects in use, including those for nested transactions
+and subtransactions, and is always matched by a corresponding
+<code>~.SessionEvents.after_transaction_create</code> event.</p>
+<div class="rst-admonition seealso">
+<p class="rst-first rst-admonition-title">See Also</p>
+<p><code>.SessionTransaction</code></p>
+<p class="rst-last"><code>~.SessionEvents.after_transaction_create</code></p>
+</div>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">session</span></td><td class="fieldArgDesc">the target <code>.Session</code>.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">transaction</span></td><td class="fieldArgDesc"><p>the target <code>.SessionTransaction</code>.</p>
+<p>To detect if this is the outermost
+<code>.SessionTransaction</code>, as opposed to a "subtransaction" or a
+SAVEPOINT, test that the <code>.SessionTransaction.parent</code> attribute
+is <tt class="rst-docutils literal">None</tt>:</p>
+<pre class="rst-literal-block">
+@event.listens_for(session, "after_transaction_create")
+def after_transaction_end(session, transaction):
+    if transaction.parent is None:
+        # work with top-level transaction
+</pre>
+<p>To detect if the <code>.SessionTransaction</code> is a SAVEPOINT, use the
+<code>.SessionTransaction.nested</code> attribute:</p>
+<pre class="rst-literal-block">
+@event.listens_for(session, "after_transaction_create")
+def after_transaction_end(session, transaction):
+    if transaction.nested:
+        # work with SAVEPOINT transaction
+</pre>
+</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.orm.events.SessionEvents.before_attach">
+    
+  </a>
+  <a name="before_attach">
+    
+  </a>
+  <div class="functionHeader">
+    @<a href="#_lifecycle_event" class="internal-link" title="sqlalchemy.orm.events.SessionEvents._lifecycle_event">_lifecycle_event</a><br />
+    <span class="py-keyword">def</span> <span class="py-defname">before_attach</span>(self, session, instance):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/orm/events.py#L1762">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Execute before an instance is attached to a session.</p>
+<p>This is called before an add, delete or merge causes
+the object to be part of the session.</p>
+<div class="rst-admonition seealso">
+<p class="rst-first rst-admonition-title">See Also</p>
+<p><code>~.SessionEvents.after_attach</code></p>
+<p class="rst-last"><a href="#system-message-1"><span class="rst-problematic" id="rst-problematic-1">:ref:`session_lifecycle_events`</span></a></p>
+</div>
+</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.orm.events.SessionEvents.before_commit">
+    
+  </a>
+  <a name="before_commit">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">before_commit</span>(self, session):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/orm/events.py#L1559">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Execute before commit is called.</p>
+<div class="rst-admonition note">
+<p class="rst-first rst-admonition-title">Note</p>
+<p class="rst-last">The <code>~.SessionEvents.before_commit</code> hook is <em>not</em> per-flush,
+that is, the <code>.Session</code> can emit SQL to the database
+many times within the scope of a transaction.
+For interception of these events, use the
+<code>~.SessionEvents.before_flush</code>,
+<code>~.SessionEvents.after_flush</code>, or
+<code>~.SessionEvents.after_flush_postexec</code>
+events.</p>
+</div>
+<div class="rst-admonition seealso">
+<p class="rst-first rst-admonition-title">See Also</p>
+<p><code>~.SessionEvents.after_commit</code></p>
+<p><code>~.SessionEvents.after_begin</code></p>
+<p><code>~.SessionEvents.after_transaction_create</code></p>
+<p class="rst-last"><code>~.SessionEvents.after_transaction_end</code></p>
+</div>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">session</span></td><td class="fieldArgDesc">The target <code>.Session</code>.</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.orm.events.SessionEvents.before_flush">
+    
+  </a>
+  <a name="before_flush">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">before_flush</span>(self, session, flush_context, instances):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/orm/events.py#L1667">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Execute before flush process has started.</p>
+<div class="rst-admonition seealso">
+<p class="rst-first rst-admonition-title">See Also</p>
+<p><code>~.SessionEvents.after_flush</code></p>
+<p><code>~.SessionEvents.after_flush_postexec</code></p>
+<p class="rst-last"><a href="#system-message-1"><span class="rst-problematic" id="rst-problematic-1">:ref:`session_persistence_events`</span></a></p>
+</div>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">session</span></td><td class="fieldArgDesc">The target <code>.Session</code>.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">flush​_context</span></td><td class="fieldArgDesc">Internal <code>.UOWTransaction</code> object
+which handles the details of the flush.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">instances</span></td><td class="fieldArgDesc">Usually <tt class="rst-docutils literal">None</tt>, this is the collection of
+objects which can be passed to the <code>.Session.flush</code> method
+(note this usage is deprecated).</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.orm.events.SessionEvents.deleted_to_detached">
+    
+  </a>
+  <a name="deleted_to_detached">
+    
+  </a>
+  <div class="functionHeader">
+    @<a href="#_lifecycle_event" class="internal-link" title="sqlalchemy.orm.events.SessionEvents._lifecycle_event">_lifecycle_event</a><br />
+    <span class="py-keyword">def</span> <span class="py-defname">deleted_to_detached</span>(self, session, instance):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/orm/events.py#L2084">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Intercept the "deleted to detached" transition for a specific object.</p>
+<p>This event is invoked when a deleted object is evicted
+from the session.   The typical case when this occurs is when
+the transaction for a <code>.Session</code> in which the object
+was deleted is committed; the object moves from the deleted
+state to the detached state.</p>
+<p>It is also invoked for objects that were deleted in a flush
+when the <code>.Session.expunge_all</code> or <code>.Session.close</code>
+events are called, as well as if the object is individually
+expunged from its deleted state via <code>.Session.expunge</code>.</p>
+<div class="rst-versionadded">
+<span class="rst-versionmodified rst-added">New in version 1.1.</span></div>
+<div class="rst-admonition seealso">
+<p class="rst-first rst-admonition-title">See Also</p>
+<p class="rst-last"><a href="#system-message-1"><span class="rst-problematic" id="rst-problematic-1">:ref:`session_lifecycle_events`</span></a></p>
+</div>
+</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.orm.events.SessionEvents.deleted_to_persistent">
+    
+  </a>
+  <a name="deleted_to_persistent">
+    
+  </a>
+  <div class="functionHeader">
+    @<a href="#_lifecycle_event" class="internal-link" title="sqlalchemy.orm.events.SessionEvents._lifecycle_event">_lifecycle_event</a><br />
+    <span class="py-keyword">def</span> <span class="py-defname">deleted_to_persistent</span>(self, session, instance):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/orm/events.py#L2067">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Intercept the "deleted to persistent" transition for a specific object.</p>
+<p>This transition occurs only when an object that's been deleted
+successfully in a flush is restored due to a call to
+<code>.Session.rollback</code>.   The event is not called under
+any other circumstances.</p>
+<div class="rst-versionadded">
+<span class="rst-versionmodified rst-added">New in version 1.1.</span></div>
+<div class="rst-admonition seealso">
+<p class="rst-first rst-admonition-title">See Also</p>
+<p class="rst-last"><a href="#system-message-1"><span class="rst-problematic" id="rst-problematic-1">:ref:`session_lifecycle_events`</span></a></p>
+</div>
+</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.orm.events.SessionEvents.detached_to_persistent">
+    
+  </a>
+  <a name="detached_to_persistent">
+    
+  </a>
+  <div class="functionHeader">
+    @<a href="#_lifecycle_event" class="internal-link" title="sqlalchemy.orm.events.SessionEvents._lifecycle_event">_lifecycle_event</a><br />
+    <span class="py-keyword">def</span> <span class="py-defname">detached_to_persistent</span>(self, session, instance):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/orm/events.py#L1964">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Intercept the "detached to persistent" transition for a specific object.</p>
+<p>This event is a specialization of the
+<code>.SessionEvents.after_attach</code> event which is only invoked
+for this specific transition.  It is invoked typically during the
+<code>.Session.add</code> call, as well as during the
+<code>.Session.delete</code> call if the object was not previously
+associated with the
+<code>.Session</code> (note that an object marked as "deleted" remains
+in the "persistent" state until the flush proceeds).</p>
+<div class="rst-admonition note">
+<p class="rst-first rst-admonition-title">Note</p>
+<p class="rst-last">If the object becomes persistent as part of a call to
+<code>.Session.delete</code>, the object is <strong>not</strong> yet marked as
+deleted when this event is called.  To detect deleted objects,
+check the <tt class="rst-docutils literal">deleted</tt> flag sent to the
+<code>.SessionEvents.persistent_to_detached</code> to event after the
+flush proceeds, or check the <code>.Session.deleted</code> collection
+within the <code>.SessionEvents.before_flush</code> event if deleted
+objects need to be intercepted before the flush.</p>
+</div>
+<div class="rst-versionadded">
+<span class="rst-versionmodified rst-added">New in version 1.1.</span></div>
+<div class="rst-admonition seealso">
+<p class="rst-first rst-admonition-title">See Also</p>
+<p class="rst-last"><a href="#system-message-1"><span class="rst-problematic" id="rst-problematic-1">:ref:`session_lifecycle_events`</span></a></p>
+</div>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">session</span></td><td class="fieldArgDesc">target <code>.Session</code></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">instance</span></td><td class="fieldArgDesc">the ORM-mapped instance being operated upon.</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.orm.events.SessionEvents.do_orm_execute">
+    
+  </a>
+  <a name="do_orm_execute">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">do_orm_execute</span>(self, orm_execute_state):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/orm/events.py#L1421">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Intercept statement executions that occur in terms of a <code>.Session</code>.</p>
+<p>This event is invoked for all top-level SQL statements invoked
+from the <code>_orm.Session.execute</code> method.   As of SQLAlchemy 1.4,
+all ORM queries emitted on behalf of a <code>_orm.Session</code> will
+flow through this method, so this event hook provides the single
+point at which ORM queries of all types may be intercepted before
+they are invoked, and additionally to replace their execution with
+a different process.</p>
+<p>This event is a <tt class="rst-docutils literal">do_</tt> event, meaning it has the capability to replace
+the operation that the <code>_orm.Session.execute</code> method normally
+performs.  The intended use for this includes sharding and
+result-caching schemes which may seek to invoke the same statement
+across  multiple database connections, returning a result that is
+merged from each of them, or which don't invoke the statement at all,
+instead returning data from a cache.</p>
+<p>The hook intends to replace the use of the
+<tt class="rst-docutils literal">Query._execute_and_instances</tt> method that could be subclassed prior
+to SQLAlchemy 1.4.</p>
+<div class="rst-admonition seealso">
+<p class="rst-first rst-admonition-title">See Also</p>
+<p><a href="#system-message-1"><span class="rst-problematic" id="rst-problematic-1">:ref:`session_execute_events`</span></a> - top level documentation on how
+to use <code>_orm.SessionEvents.do_orm_execute</code></p>
+<p><code>.ORMExecuteState</code> - the object passed to the
+<code>_orm.SessionEvents.do_orm_execute</code> event which contains
+all information about the statement to be invoked.  It also
+provides an interface to extend the current statement, options,
+and parameters as well as an option that allows programmatic
+invocation of the statement at any point.</p>
+<p><a href="#system-message-2"><span class="rst-problematic" id="rst-problematic-2">:ref:`examples_session_orm_events`</span></a> - includes examples of using
+<code>_orm.SessionEvents.do_orm_execute</code></p>
+<p><a href="#system-message-3"><span class="rst-problematic" id="rst-problematic-3">:ref:`examples_caching`</span></a> - an example of how to integrate
+Dogpile caching with the ORM <code>_orm.Session</code> making use
+of the <code>_orm.SessionEvents.do_orm_execute</code> event hook.</p>
+<p class="rst-last"><a href="#system-message-4"><span class="rst-problematic" id="rst-problematic-4">:ref:`examples_sharding`</span></a> - the Horizontal Sharding example /
+extension relies upon the
+<code>_orm.SessionEvents.do_orm_execute</code> event hook to invoke a
+SQL statement on multiple backends and return a merged result.</p>
+</div>
+<div class="rst-versionadded">
+<span class="rst-versionmodified rst-added">New in version 1.4.</span></div>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">orm​_execute​_state</span></td><td class="fieldArgDesc">an instance of <code>.ORMExecuteState</code>
+which contains all information about the current execution, as well
+as helper functions used to derive other commonly required
+information.   See that object for details.</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.orm.events.SessionEvents.loaded_as_persistent">
+    
+  </a>
+  <a name="loaded_as_persistent">
+    
+  </a>
+  <div class="functionHeader">
+    @<a href="#_lifecycle_event" class="internal-link" title="sqlalchemy.orm.events.SessionEvents._lifecycle_event">_lifecycle_event</a><br />
+    <span class="py-keyword">def</span> <span class="py-defname">loaded_as_persistent</span>(self, session, instance):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/orm/events.py#L2000">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Intercept the "loaded as persistent" transition for a specific object.</p>
+<p>This event is invoked within the ORM loading process, and is invoked
+very similarly to the <code>.InstanceEvents.load</code> event.  However,
+the event here is linkable to a <code>.Session</code> class or instance,
+rather than to a mapper or class hierarchy, and integrates
+with the other session lifecycle events smoothly.  The object
+is guaranteed to be present in the session's identity map when
+this event is called.</p>
+<div class="rst-admonition note">
+<p class="rst-first rst-admonition-title">Note</p>
+<p class="rst-last">This event is invoked within the loader process before
+eager loaders may have been completed, and the object's state may
+not be complete.  Additionally, invoking row-level refresh
+operations on the object will place the object into a new loader
+context, interfering with the existing load context.   See the note
+on <code>.InstanceEvents.load</code> for background on making use of the
+<a href="#system-message-1"><span class="rst-problematic" id="rst-problematic-1">:paramref:`.SessionEvents.restore_load_context`</span></a> parameter, which
+works in the same manner as that of
+<a href="#system-message-2"><span class="rst-problematic" id="rst-problematic-2">:paramref:`.InstanceEvents.restore_load_context`</span></a>, in  order to
+resolve this scenario.</p>
+</div>
+<div class="rst-versionadded">
+<span class="rst-versionmodified rst-added">New in version 1.1.</span></div>
+<div class="rst-admonition seealso">
+<p class="rst-first rst-admonition-title">See Also</p>
+<p class="rst-last"><a href="#system-message-3"><span class="rst-problematic" id="rst-problematic-3">:ref:`session_lifecycle_events`</span></a></p>
+</div>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">session</span></td><td class="fieldArgDesc">target <code>.Session</code></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">instance</span></td><td class="fieldArgDesc">the ORM-mapped instance being operated upon.</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.orm.events.SessionEvents.pending_to_persistent">
+    
+  </a>
+  <a name="pending_to_persistent">
+    
+  </a>
+  <div class="functionHeader">
+    @<a href="#_lifecycle_event" class="internal-link" title="sqlalchemy.orm.events.SessionEvents._lifecycle_event">_lifecycle_event</a><br />
+    <span class="py-keyword">def</span> <span class="py-defname">pending_to_persistent</span>(self, session, instance):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/orm/events.py#L1942">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Intercept the "pending to persistent"" transition for a specific object.</p>
+<p>This event is invoked within the flush process, and is
+similar to scanning the <code>.Session.new</code> collection within
+the <code>.SessionEvents.after_flush</code> event.  However, in this
+case the object has already been moved to the persistent state
+when the event is called.</p>
+<div class="rst-versionadded">
+<span class="rst-versionmodified rst-added">New in version 1.1.</span></div>
+<div class="rst-admonition seealso">
+<p class="rst-first rst-admonition-title">See Also</p>
+<p class="rst-last"><a href="#system-message-1"><span class="rst-problematic" id="rst-problematic-1">:ref:`session_lifecycle_events`</span></a></p>
+</div>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">session</span></td><td class="fieldArgDesc">target <code>.Session</code></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">instance</span></td><td class="fieldArgDesc">the ORM-mapped instance being operated upon.</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.orm.events.SessionEvents.pending_to_transient">
+    
+  </a>
+  <a name="pending_to_transient">
+    
+  </a>
+  <div class="functionHeader">
+    @<a href="#_lifecycle_event" class="internal-link" title="sqlalchemy.orm.events.SessionEvents._lifecycle_event">_lifecycle_event</a><br />
+    <span class="py-keyword">def</span> <span class="py-defname">pending_to_transient</span>(self, session, instance):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/orm/events.py#L1901">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Intercept the "pending to transient" transition for a specific object.</p>
+<p>This less common transition occurs when an pending object that has
+not been flushed is evicted from the session; this can occur
+when the <code>.Session.rollback</code> method rolls back the transaction,
+or when the <code>.Session.expunge</code> method is used.</p>
+<div class="rst-versionadded">
+<span class="rst-versionmodified rst-added">New in version 1.1.</span></div>
+<div class="rst-admonition seealso">
+<p class="rst-first rst-admonition-title">See Also</p>
+<p class="rst-last"><a href="#system-message-1"><span class="rst-problematic" id="rst-problematic-1">:ref:`session_lifecycle_events`</span></a></p>
+</div>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">session</span></td><td class="fieldArgDesc">target <code>.Session</code></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">instance</span></td><td class="fieldArgDesc">the ORM-mapped instance being operated upon.</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.orm.events.SessionEvents.persistent_to_deleted">
+    
+  </a>
+  <a name="persistent_to_deleted">
+    
+  </a>
+  <div class="functionHeader">
+    @<a href="#_lifecycle_event" class="internal-link" title="sqlalchemy.orm.events.SessionEvents._lifecycle_event">_lifecycle_event</a><br />
+    <span class="py-keyword">def</span> <span class="py-defname">persistent_to_deleted</span>(self, session, instance):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/orm/events.py#L2035">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Intercept the "persistent to deleted" transition for a specific object.</p>
+<p>This event is invoked when a persistent object's identity
+is deleted from the database within a flush, however the object
+still remains associated with the <code>.Session</code> until the
+transaction completes.</p>
+<p>If the transaction is rolled back, the object moves again
+to the persistent state, and the
+<code>.SessionEvents.deleted_to_persistent</code> event is called.
+If the transaction is committed, the object becomes detached,
+which will emit the <code>.SessionEvents.deleted_to_detached</code>
+event.</p>
+<p>Note that while the <code>.Session.delete</code> method is the primary
+public interface to mark an object as deleted, many objects
+get deleted due to cascade rules, which are not always determined
+until flush time.  Therefore, there's no way to catch
+every object that will be deleted until the flush has proceeded.
+the <code>.SessionEvents.persistent_to_deleted</code> event is therefore
+invoked at the end of a flush.</p>
+<div class="rst-versionadded">
+<span class="rst-versionmodified rst-added">New in version 1.1.</span></div>
+<div class="rst-admonition seealso">
+<p class="rst-first rst-admonition-title">See Also</p>
+<p class="rst-last"><a href="#system-message-1"><span class="rst-problematic" id="rst-problematic-1">:ref:`session_lifecycle_events`</span></a></p>
+</div>
+</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.orm.events.SessionEvents.persistent_to_detached">
+    
+  </a>
+  <a name="persistent_to_detached">
+    
+  </a>
+  <div class="functionHeader">
+    @<a href="#_lifecycle_event" class="internal-link" title="sqlalchemy.orm.events.SessionEvents._lifecycle_event">_lifecycle_event</a><br />
+    <span class="py-keyword">def</span> <span class="py-defname">persistent_to_detached</span>(self, session, instance):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/orm/events.py#L2107">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Intercept the "persistent to detached" transition for a specific object.</p>
+<p>This event is invoked when a persistent object is evicted
+from the session.  There are many conditions that cause this
+to happen, including:</p>
+<ul class="rst-simple">
+<li>using a method such as <code>.Session.expunge</code>
+or <code>.Session.close</code></li>
+<li>Calling the <code>.Session.rollback</code> method, when the object
+was part of an INSERT statement for that session's transaction</li>
+</ul>
+<div class="rst-versionadded">
+<span class="rst-versionmodified rst-added">New in version 1.1.</span></div>
+<div class="rst-admonition seealso">
+<p class="rst-first rst-admonition-title">See Also</p>
+<p class="rst-last"><a href="#system-message-1"><span class="rst-problematic" id="rst-problematic-1">:ref:`session_lifecycle_events`</span></a></p>
+</div>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">session</span></td><td class="fieldArgDesc">target <code>.Session</code></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">instance</span></td><td class="fieldArgDesc">the ORM-mapped instance being operated upon.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">deleted</span></td><td class="fieldArgDesc">boolean.  If True, indicates this object moved
+to the detached state because it was marked as deleted and flushed.</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.orm.events.SessionEvents.persistent_to_transient">
+    
+  </a>
+  <a name="persistent_to_transient">
+    
+  </a>
+  <div class="functionHeader">
+    @<a href="#_lifecycle_event" class="internal-link" title="sqlalchemy.orm.events.SessionEvents._lifecycle_event">_lifecycle_event</a><br />
+    <span class="py-keyword">def</span> <span class="py-defname">persistent_to_transient</span>(self, session, instance):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/orm/events.py#L1922">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Intercept the "persistent to transient" transition for a specific object.</p>
+<p>This less common transition occurs when an pending object that has
+has been flushed is evicted from the session; this can occur
+when the <code>.Session.rollback</code> method rolls back the transaction.</p>
+<div class="rst-versionadded">
+<span class="rst-versionmodified rst-added">New in version 1.1.</span></div>
+<div class="rst-admonition seealso">
+<p class="rst-first rst-admonition-title">See Also</p>
+<p class="rst-last"><a href="#system-message-1"><span class="rst-problematic" id="rst-problematic-1">:ref:`session_lifecycle_events`</span></a></p>
+</div>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">session</span></td><td class="fieldArgDesc">target <code>.Session</code></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">instance</span></td><td class="fieldArgDesc">the ORM-mapped instance being operated upon.</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.orm.events.SessionEvents.transient_to_pending">
+    
+  </a>
+  <a name="transient_to_pending">
+    
+  </a>
+  <div class="functionHeader">
+    @<a href="#_lifecycle_event" class="internal-link" title="sqlalchemy.orm.events.SessionEvents._lifecycle_event">_lifecycle_event</a><br />
+    <span class="py-keyword">def</span> <span class="py-defname">transient_to_pending</span>(self, session, instance):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/orm/events.py#L1880">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Intercept the "transient to pending" transition for a specific object.</p>
+<p>This event is a specialization of the
+<code>.SessionEvents.after_attach</code> event which is only invoked
+for this specific transition.  It is invoked typically during the
+<code>.Session.add</code> call.</p>
+<div class="rst-versionadded">
+<span class="rst-versionmodified rst-added">New in version 1.1.</span></div>
+<div class="rst-admonition seealso">
+<p class="rst-first rst-admonition-title">See Also</p>
+<p class="rst-last"><a href="#system-message-1"><span class="rst-problematic" id="rst-problematic-1">:ref:`session_lifecycle_events`</span></a></p>
+</div>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">session</span></td><td class="fieldArgDesc">target <code>.Session</code></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">instance</span></td><td class="fieldArgDesc">the ORM-mapped instance being operated upon.</td></tr></table></div>
+  </div>
+</div><div class="baseclassmethod private">
+  
+  
+  <a name="sqlalchemy.orm.events.SessionEvents._accept_with">
+    
+  </a>
+  <a name="_accept_with">
+    
+  </a>
+  <div class="functionHeader">
+    @<a href="https://docs.python.org/3/library/functions.html#classmethod" class="intersphinx-link">classmethod</a><br />
+    <span class="py-keyword">def</span> <span class="py-defname">_accept_with</span>(cls, target):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/orm/events.py#L1362">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overrides <code><a href="sqlalchemy.event.base.Events.html#_accept_with" class="internal-link">sqlalchemy.event.base.Events._accept_with</a></code></div>
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="baseclassmethod private">
+  
+  
+  <a name="sqlalchemy.orm.events.SessionEvents._listen">
+    
+  </a>
+  <a name="_listen">
+    
+  </a>
+  <div class="functionHeader">
+    @<a href="https://docs.python.org/3/library/functions.html#classmethod" class="intersphinx-link">classmethod</a><br />
+    <span class="py-keyword">def</span> <span class="py-defname">_listen</span>(cls, event_key, raw=<a href="https://docs.python.org/3/library/constants.html#False" class="intersphinx-link">False</a>, restore_load_context=<a href="https://docs.python.org/3/library/constants.html#False" class="intersphinx-link">False</a>, **kw):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/orm/events.py#L1389">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overrides <code><a href="sqlalchemy.event.base.Events.html#_listen" class="internal-link">sqlalchemy.event.base.Events._listen</a></code></div><div class="interfaceinfo">overridden in <code><a href="sqlalchemy.ext.asyncio.events.AsyncSessionEvents.html" class="internal-link">sqlalchemy.ext.asyncio.events.AsyncSessionEvents</a></code></div>
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="sqlalchemy.orm.events.SessionEvents._lifecycle_event">
+    
+  </a>
+  <a name="_lifecycle_event">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_lifecycle_event</span>(fn):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/orm/events.py#L1358">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="baseclassvariable private">
+  
+  
+  <a name="sqlalchemy.orm.events.SessionEvents._target_class_doc">
+    
+  </a>
+  <a name="_target_class_doc">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_target_class_doc</span>: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/orm/events.py#L1354">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="sqlalchemy.ext.asyncio.events.AsyncSessionEvents.html" class="internal-link">sqlalchemy.ext.asyncio.events.AsyncSessionEvents</a></code></div>
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div>
+
+      </div>
+    </div>
+
+    <footer class="navbar navbar-default">
+  
+  <div class="container">
+    <a href="index.html">API Documentation</a> for sqlalchemy,
+  generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
+    22.2.0 at 2022-02-23 08:22:50.
+  </div>
+</footer>
+
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+  </body>
+</html>

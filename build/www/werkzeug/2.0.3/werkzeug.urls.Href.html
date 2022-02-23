@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  
+
+  <head>
+    
+    <title>werkzeug.urls.Href</title>
+    <meta name="generator" content="pydoctor 22.2.0"> 
+        
+    </meta>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=0.75" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+    <link rel="stylesheet" type="text/css" href="extra.css" />
+</head>
+
+  <body>
+
+    <div id="banner" class="container">    
+    <div>
+        <a href="https://pydocbrowser.github.io/">Home</a>
+        &gt; werkzeug-2.0.3 
+        <!-- This is an important placeholder and will be 
+            replaced by project name and version on building docs -->
+        
+        <!-- (<a href=""&gt;show all versions</a&gt;) -->
+    </div>
+</div>
+
+    <nav class="navbar navbar-default">
+  
+  <div class="container">
+
+    <div class="navbar-header">
+      
+      <div class="navlinks">
+          <span class="navbar-brand">
+            werkzeug <a href="index.html">API Documentation</a>
+          </span>
+
+          <a href="moduleIndex.html">
+            Modules
+          </a>
+
+          <a href="classIndex.html">
+            Classes
+          </a>
+
+          <a href="nameIndex.html">
+            Names
+          </a>
+      </div>
+
+    </div>
+  </div>
+</nav>
+
+    
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="class"><code><code><a href="index.html" class="internal-link">werkzeug</a></code><wbr></wbr>.<code><a href="werkzeug.urls.html" class="internal-link" title="werkzeug.urls">urls</a></code><wbr></wbr>.<code><a href="werkzeug.urls.Href.html" class="internal-link" title="werkzeug.urls.Href">Href</a></code></code></h1>
+        <div id="showPrivate">
+          <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+        </div>
+      </div>
+
+      <div class="categoryHeader">
+        class documentation
+      </div>
+
+      <div class="extrasDocstring">
+        <p><code><span class="py-keyword">class</span> <span class="py-defname">Href</span>: <a href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/werkzeug-2.0.3//src/werkzeug/urls.py#L1108" class="sourceLink">(source)</a></code></p>
+        <p><a href="classIndex.html#werkzeug.urls.Href">View In Hierarchy</a></p>
+      </div>
+
+      <div class="moduleDocstring">
+        <div><p>Implements a callable that constructs URLs with the given base. The
+function can be called with any number of positional and keyword
+arguments which than are used to assemble the URL.  Works with URLs
+and posix paths.</p>
+<p>Positional arguments are appended as individual segments to
+the path of the URL:</p>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>href = Href(<span class="py-string">'/foo'</span>)
+<span class="py-prompt">&gt;&gt;&gt; </span>href(<span class="py-string">'bar'</span>, 23)
+<span class="py-output">'/foo/bar/23'</span>
+<span class="py-prompt">&gt;&gt;&gt; </span>href(<span class="py-string">'foo'</span>, bar=23)
+<span class="py-output">'/foo/foo?bar=23'</span>
+</pre><p>If any of the arguments (positional or keyword) evaluates to <code><a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a></code> it
+will be skipped.  If no keyword arguments are given the last argument
+can be a <code><a href="https://docs.python.org/3/library/stdtypes.html#dict" class="intersphinx-link">dict</a></code> or <code><a href="werkzeug.datastructures.MultiDict.html" class="internal-link" title="werkzeug.datastructures.MultiDict">MultiDict</a></code> (or any other dict subclass),
+otherwise the keyword arguments are used for the query parameters, cutting
+off the first trailing underscore of the parameter name:</p>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>href(is_=42)
+<span class="py-output">'/foo?is=42'</span>
+<span class="py-prompt">&gt;&gt;&gt; </span>href({<span class="py-string">'foo'</span>: <span class="py-string">'bar'</span>})
+<span class="py-output">'/foo?foo=bar'</span>
+</pre><p>Combining of both methods is not allowed:</p>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>href({<span class="py-string">'foo'</span>: <span class="py-string">'bar'</span>}, bar=42)
+<span class="py-except">Traceback (most recent call last):</span>
+<span class="py-except">  ...</span>
+<span class="py-except">TypeError: keyword arguments and query-dicts can't be combined</span>
+</pre><p>Accessing attributes on the href object creates a new href object with
+the attribute name as prefix:</p>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>bar_href = href.bar
+<span class="py-prompt">&gt;&gt;&gt; </span>bar_href(<span class="py-string">"blub"</span>)
+<span class="py-output">'/foo/bar/blub'</span>
+</pre><p>If <code><a href="#sort" class="internal-link" title="werkzeug.urls.Href.sort">sort</a></code> is set to <code><a href="https://docs.python.org/3/library/constants.html#True" class="intersphinx-link">True</a></code> the items are sorted by <code><a href="#key" class="internal-link" title="werkzeug.urls.Href.key">key</a></code> or the default
+sorting algorithm:</p>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>href = Href(<span class="py-string">"/"</span>, sort=<span class="py-builtin">True</span>)
+<span class="py-prompt">&gt;&gt;&gt; </span>href(a=1, b=2, c=3)
+<span class="py-output">'/?a=1&amp;b=2&amp;c=3'</span>
+</pre><div class="rst-deprecated">
+<span class="rst-versionmodified rst-deprecated">Deprecated since version 2.0: </span><span>Will be removed in Werkzeug 2.1. Use <code><a href="werkzeug.routing.html" class="internal-link">werkzeug.routing</a></code>
+instead.</span></div>
+<div class="rst-versionadded">
+<span class="rst-versionmodified rst-added">New in version 0.5: </span><span><code><a href="#sort" class="internal-link" title="werkzeug.urls.Href.sort">sort</a></code> and <code><a href="#key" class="internal-link" title="werkzeug.urls.Href.key">key</a></code> were added.</span></div>
+</div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id25956">
+  
+  
+  <tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__call__" class="internal-link" title="werkzeug.urls.Href.__call__">__call__</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__getattr__" class="internal-link" title="werkzeug.urls.Href.__getattr__">__getattr__</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__init__" class="internal-link" title="werkzeug.urls.Href.__init__">__init__</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#base" class="internal-link" title="werkzeug.urls.Href.base">base</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#charset" class="internal-link" title="werkzeug.urls.Href.charset">charset</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#key" class="internal-link" title="werkzeug.urls.Href.key">key</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#sort" class="internal-link" title="werkzeug.urls.Href.sort">sort</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+        
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="basemethod">
+  
+  
+  <a name="werkzeug.urls.Href.__call__">
+    
+  </a>
+  <a name="__call__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__call__</span>(self, *path, **query):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/werkzeug-2.0.3//src/werkzeug/urls.py#L1188">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="werkzeug.urls.Href.__getattr__">
+    
+  </a>
+  <a name="__getattr__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__getattr__</span>(self, name):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/werkzeug-2.0.3//src/werkzeug/urls.py#L1180">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="werkzeug.urls.Href.__init__">
+    
+  </a>
+  <a name="__init__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__init__</span>(self, base=<span class="rst-variable-quote">'</span><span class="rst-variable-string">./</span><span class="rst-variable-quote">'</span>, charset=<span class="rst-variable-quote">'</span><span class="rst-variable-string">utf-8</span><span class="rst-variable-quote">'</span>, sort=<a href="https://docs.python.org/3/library/constants.html#False" class="intersphinx-link">False</a>, key=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/werkzeug-2.0.3//src/werkzeug/urls.py#L1163">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="werkzeug.urls.Href.base">
+    
+  </a>
+  <a name="base">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">base</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/werkzeug-2.0.3//src/werkzeug/urls.py#L1175">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="werkzeug.urls.Href.charset">
+    
+  </a>
+  <a name="charset">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">charset</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/werkzeug-2.0.3//src/werkzeug/urls.py#L1176">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="werkzeug.urls.Href.key">
+    
+  </a>
+  <a name="key">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">key</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/werkzeug-2.0.3//src/werkzeug/urls.py#L1178">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="werkzeug.urls.Href.sort">
+    
+  </a>
+  <a name="sort">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">sort</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/werkzeug-2.0.3//src/werkzeug/urls.py#L1177">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div>
+
+      </div>
+    </div>
+
+    <footer class="navbar navbar-default">
+  
+  <div class="container">
+    <a href="index.html">API Documentation</a> for werkzeug,
+  generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
+    22.2.0 at 2022-02-23 08:27:49.
+  </div>
+</footer>
+
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+  </body>
+</html>

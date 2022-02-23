@@ -1,0 +1,1043 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  
+
+  <head>
+    
+    <title>httpx.URL</title>
+    <meta name="generator" content="pydoctor 22.2.0"> 
+        
+    </meta>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=0.75" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+    <link rel="stylesheet" type="text/css" href="extra.css" />
+</head>
+
+  <body>
+
+    <div id="banner" class="container">    
+    <div>
+        <a href="https://pydocbrowser.github.io/">Home</a>
+        &gt; httpx-0.22.0 
+        <!-- This is an important placeholder and will be 
+            replaced by project name and version on building docs -->
+        
+        <!-- (<a href=""&gt;show all versions</a&gt;) -->
+    </div>
+</div>
+
+    <nav class="navbar navbar-default">
+  
+  <div class="container">
+
+    <div class="navbar-header">
+      
+      <div class="navlinks">
+          <span class="navbar-brand">
+            httpx <a href="index.html">API Documentation</a>
+          </span>
+
+          <a href="moduleIndex.html">
+            Modules
+          </a>
+
+          <a href="classIndex.html">
+            Classes
+          </a>
+
+          <a href="nameIndex.html">
+            Names
+          </a>
+      </div>
+
+    </div>
+  </div>
+</nav>
+
+    
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="class"><code><code><a href="index.html" class="internal-link">httpx</a></code><wbr></wbr>.<code><a href="httpx.URL.html" class="internal-link" title="httpx.URL">URL</a></code></code></h1>
+        <div id="showPrivate">
+          <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+        </div>
+      </div>
+
+      <div class="categoryHeader">
+        class documentation
+      </div>
+
+      <div class="extrasDocstring">
+        <p><code><span class="py-keyword">class</span> <span class="py-defname">URL</span>: <a href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/httpx-0.22.0//httpx/_models.py#L63" class="sourceLink">(source)</a></code></p>
+        <p><a href="classIndex.html#httpx.URL">View In Hierarchy</a></p>
+      </div>
+
+      <div class="moduleDocstring">
+        <div><p>url = httpx.URL("<a class="rst-reference external" href="HTTPS://jo%40email.com" target="_top">HTTPS://jo%40email.com</a>:a%20secret@müller.de:1234/pa%20th?search=ab#anchorlink")</p>
+<p>assert url.scheme == "https"
+assert url.username == "<a class="rst-reference external" href="mailto:jo@email.com" target="_top">jo@email.com</a>"
+assert url.password == "a secret"
+assert url.userinfo == b"jo%40email.com:a%20secret"
+assert url.host == "müller.de"
+assert url.raw_host == b"xn--mller-kva.de"
+assert url.port == 1234
+assert url.netloc == b"xn--mller-kva.de:1234"
+assert url.path == "/pa th"
+assert url.query == b"?search=ab"
+assert url.raw_path == b"/pa%20th?search=ab"
+assert url.fragment == "anchorlink"</p>
+<p>The components of a URL are broken down like this:</p>
+<blockquote>
+<a class="rst-reference external" href="https://jo%40email.com" target="_top">https://jo%40email.com</a>:a%20secret@müller.de:1234/pa%20th?search=ab#anchorlink</blockquote>
+<dl class="rst-docutils">
+<dt>[scheme]   [  username  ] [password] [ host ][port][ path ] [ query ] [fragment]</dt>
+<dd>[       userinfo        ] [   netloc   ][    raw_path    ]</dd>
+</dl>
+<p>Note that:</p>
+<ul>
+<li><p class="rst-first"><code>url.scheme</code> is normalized to always be lowercased.</p>
+</li>
+<li><p class="rst-first"><code>url.host</code> is normalized to always be lowercased. Internationalized domain
+names are represented in unicode, without IDNA encoding applied. For instance:</p>
+<p>url = httpx.URL("<a class="rst-reference external" href="http:/" target="_top">http:/</a>/中国.icom.museum")
+assert url.host == "中国.icom.museum"
+url = httpx.URL("<a class="rst-reference external" href="http://xn--fiqs8s.icom.museum" target="_top">http://xn--fiqs8s.icom.museum</a>")
+assert url.host == "中国.icom.museum"</p>
+</li>
+<li><p class="rst-first"><code>url.raw_host</code> is normalized to always be lowercased, and is IDNA encoded.</p>
+<p>url = httpx.URL("<a class="rst-reference external" href="http:/" target="_top">http:/</a>/中国.icom.museum")
+assert url.raw_host == b"xn--fiqs8s.icom.museum"
+url = httpx.URL("<a class="rst-reference external" href="http://xn--fiqs8s.icom.museum" target="_top">http://xn--fiqs8s.icom.museum</a>")
+assert url.raw_host == b"xn--fiqs8s.icom.museum"</p>
+</li>
+<li><p class="rst-first"><code>url.port</code> is either None or an integer. URLs that include the default port for
+"http", "https", "ws", "wss", and "ftp" schemes have their port normalized to <code><a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a></code>.</p>
+<p>assert httpx.URL("<a class="rst-reference external" href="http://example.com" target="_top">http://example.com</a>") == httpx.URL("<a class="rst-reference external" href="http://example.com:80" target="_top">http://example.com:80</a>")
+assert httpx.URL("<a class="rst-reference external" href="http://example.com" target="_top">http://example.com</a>").port is None
+assert httpx.URL("<a class="rst-reference external" href="http://example.com:80" target="_top">http://example.com:80</a>").port is None</p>
+</li>
+<li><p class="rst-first"><code>url.userinfo</code> is raw bytes, without URL escaping. Usually you'll want to work with
+<code>url.username</code> and <code>url.password</code> instead, which handle the URL escaping.</p>
+</li>
+<li><p class="rst-first"><code>url.raw_path</code> is raw bytes of both the path and query, without URL escaping.
+This portion is used as the target when constructing HTTP requests. Usually you'll
+want to work with <code>url.path</code> instead.</p>
+</li>
+<li><p class="rst-first"><code>url.query</code> is raw bytes, without URL escaping. A URL query string portion can only
+be properly URL escaped when decoding the parameter names and values themselves.</p>
+</li>
+</ul>
+</div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id10466">
+  
+  
+  <tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__eq__" class="internal-link" title="httpx.URL.__eq__">__eq__</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__hash__" class="internal-link" title="httpx.URL.__hash__">__hash__</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__init__" class="internal-link" title="httpx.URL.__init__">__init__</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__repr__" class="internal-link" title="httpx.URL.__repr__">__repr__</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__str__" class="internal-link" title="httpx.URL.__str__">__str__</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#copy_add_param" class="internal-link" title="httpx.URL.copy_add_param">copy​_add​_param</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#copy_merge_params" class="internal-link" title="httpx.URL.copy_merge_params">copy​_merge​_params</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#copy_remove_param" class="internal-link" title="httpx.URL.copy_remove_param">copy​_remove​_param</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#copy_set_param" class="internal-link" title="httpx.URL.copy_set_param">copy​_set​_param</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#copy_with" class="internal-link" title="httpx.URL.copy_with">copy​_with</a></code></td>
+    <td>Copy this URL, returning a new URL with some components altered. Accepts the same set of parameters as the components that are made available via properties on the <code><a href="httpx.URL.html" class="internal-link" title="httpx.URL">URL</a></code> class.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#join" class="internal-link" title="httpx.URL.join">join</a></code></td>
+    <td>Return an absolute URL, using this URL as the base.</td>
+  </tr><tr class="property">
+    
+    <td>Property</td>
+    <td><code><a href="#fragment" class="internal-link" title="httpx.URL.fragment">fragment</a></code></td>
+    <td>The URL fragments, as used in HTML anchors. As a string, without the leading '#'.</td>
+  </tr><tr class="property">
+    
+    <td>Property</td>
+    <td><code><a href="#host" class="internal-link" title="httpx.URL.host">host</a></code></td>
+    <td>The URL host as a string. Always normalized to lowercase, with IDNA hosts decoded into unicode.</td>
+  </tr><tr class="property">
+    
+    <td>Property</td>
+    <td><code><a href="#is_absolute_url" class="internal-link" title="httpx.URL.is_absolute_url">is​_absolute​_url</a></code></td>
+    <td>Return <code><a href="https://docs.python.org/3/library/constants.html#True" class="intersphinx-link">True</a></code> for absolute URLs such as '<a class="rst-reference external" href="http://example.com/path" target="_top">http://example.com/path</a>', and <code><a href="https://docs.python.org/3/library/constants.html#False" class="intersphinx-link">False</a></code> for relative URLs such as '/path'.</td>
+  </tr><tr class="property">
+    
+    <td>Property</td>
+    <td><code><a href="#is_relative_url" class="internal-link" title="httpx.URL.is_relative_url">is​_relative​_url</a></code></td>
+    <td>Return <code><a href="https://docs.python.org/3/library/constants.html#False" class="intersphinx-link">False</a></code> for absolute URLs such as '<a class="rst-reference external" href="http://example.com/path" target="_top">http://example.com/path</a>', and <code><a href="https://docs.python.org/3/library/constants.html#True" class="intersphinx-link">True</a></code> for relative URLs such as '/path'.</td>
+  </tr><tr class="property">
+    
+    <td>Property</td>
+    <td><code><a href="#netloc" class="internal-link" title="httpx.URL.netloc">netloc</a></code></td>
+    <td>Either <code><a href="#host" class="internal-link" title="httpx.URL.host"></a></code> or <code><a href="#port" class="internal-link" title="httpx.URL.port">&lt;host&gt;:</a></code> as bytes. Always normalized to lowercase, and IDNA encoded.</td>
+  </tr><tr class="property">
+    
+    <td>Property</td>
+    <td><code><a href="#params" class="internal-link" title="httpx.URL.params">params</a></code></td>
+    <td>The URL query parameters, neatly parsed and packaged into an immutable multidict representation.</td>
+  </tr><tr class="property">
+    
+    <td>Property</td>
+    <td><code><a href="#password" class="internal-link" title="httpx.URL.password">password</a></code></td>
+    <td>The URL password as a string, with URL decoding applied. For example: "a secret"</td>
+  </tr><tr class="property">
+    
+    <td>Property</td>
+    <td><code><a href="#path" class="internal-link" title="httpx.URL.path">path</a></code></td>
+    <td>The URL path as a string. Excluding the query string, and URL decoded.</td>
+  </tr><tr class="property">
+    
+    <td>Property</td>
+    <td><code><a href="#port" class="internal-link" title="httpx.URL.port">port</a></code></td>
+    <td>The URL port as an integer.</td>
+  </tr><tr class="property">
+    
+    <td>Property</td>
+    <td><code><a href="#query" class="internal-link" title="httpx.URL.query">query</a></code></td>
+    <td>The URL query string, as raw bytes, excluding the leading b"?".</td>
+  </tr><tr class="property">
+    
+    <td>Property</td>
+    <td><code><a href="#raw" class="internal-link" title="httpx.URL.raw">raw</a></code></td>
+    <td>The URL in the raw representation used by the low level transport API. See <code><a href="httpx.BaseTransport.html#handle_request" class="internal-link" title="httpx.BaseTransport.handle_request">BaseTransport.handle_request</a></code>.</td>
+  </tr><tr class="property">
+    
+    <td>Property</td>
+    <td><code><a href="#raw_host" class="internal-link" title="httpx.URL.raw_host">raw​_host</a></code></td>
+    <td>The raw bytes representation of the URL host. Always normalized to lowercase, and IDNA encoded.</td>
+  </tr><tr class="property">
+    
+    <td>Property</td>
+    <td><code><a href="#raw_path" class="internal-link" title="httpx.URL.raw_path">raw​_path</a></code></td>
+    <td>The complete URL path and query string as raw bytes. Used as the target when constructing HTTP requests.</td>
+  </tr><tr class="property">
+    
+    <td>Property</td>
+    <td><code><a href="#raw_scheme" class="internal-link" title="httpx.URL.raw_scheme">raw​_scheme</a></code></td>
+    <td>The raw bytes representation of the URL scheme, such as b"http", b"https". Always normalised to lowercase.</td>
+  </tr><tr class="property">
+    
+    <td>Property</td>
+    <td><code><a href="#scheme" class="internal-link" title="httpx.URL.scheme">scheme</a></code></td>
+    <td>The URL scheme, such as "http", "https". Always normalised to lowercase.</td>
+  </tr><tr class="property">
+    
+    <td>Property</td>
+    <td><code><a href="#userinfo" class="internal-link" title="httpx.URL.userinfo">userinfo</a></code></td>
+    <td>The URL userinfo as a raw bytestring. For example: b"jo%40email.com:a%20secret".</td>
+  </tr><tr class="property">
+    
+    <td>Property</td>
+    <td><code><a href="#username" class="internal-link" title="httpx.URL.username">username</a></code></td>
+    <td>The URL username as a string, with URL decoding applied. For example: "<a class="rst-reference external" href="mailto:jo@email.com" target="_top">jo@email.com</a>"</td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#_uri_reference" class="internal-link" title="httpx.URL._uri_reference">​_uri​_reference</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+        
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="basemethod">
+  
+  
+  <a name="httpx.URL.__eq__">
+    
+  </a>
+  <a name="__eq__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__eq__</span>(self, other):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/httpx-0.22.0//httpx/_models.py#L580">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">other:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">typing.Any</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="httpx.URL.__hash__">
+    
+  </a>
+  <a name="__hash__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__hash__</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/httpx-0.22.0//httpx/_models.py#L577">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/functions.html#int" class="intersphinx-link">int</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="httpx.URL.__init__">
+    
+  </a>
+  <a name="__init__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__init__</span>(self, url=<span class="rst-variable-quote">'</span><span class="rst-variable-string"></span><span class="rst-variable-quote">'</span>, **kwargs):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/httpx-0.22.0//httpx/_models.py#L123">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">url:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Union" class="intersphinx-link">typing.Union</a>[<wbr></wbr><a href="httpx.URL.html" class="internal-link" title="httpx.URL">URL</a>, <wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>, <wbr></wbr>RawURL]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">**kwargs:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">typing.Any</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="httpx.URL.__repr__">
+    
+  </a>
+  <a name="__repr__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__repr__</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/httpx-0.22.0//httpx/_models.py#L586">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="httpx.URL.__str__">
+    
+  </a>
+  <a name="__str__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__str__</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/httpx-0.22.0//httpx/_models.py#L583">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="httpx.URL.copy_add_param">
+    
+  </a>
+  <a name="copy_add_param">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">copy_add_param</span>(self, key, value=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/httpx-0.22.0//httpx/_models.py#L542">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">key:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">value:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">typing.Any</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="httpx.URL.html" class="internal-link" title="httpx.URL">URL</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="httpx.URL.copy_merge_params">
+    
+  </a>
+  <a name="copy_merge_params">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">copy_merge_params</span>(self, params):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/httpx-0.22.0//httpx/_models.py#L548">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">params:</span><code>QueryParamTypes</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="httpx.URL.html" class="internal-link" title="httpx.URL">URL</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="httpx.URL.copy_remove_param">
+    
+  </a>
+  <a name="copy_remove_param">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">copy_remove_param</span>(self, key):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/httpx-0.22.0//httpx/_models.py#L545">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">key:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="httpx.URL.html" class="internal-link" title="httpx.URL">URL</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="httpx.URL.copy_set_param">
+    
+  </a>
+  <a name="copy_set_param">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">copy_set_param</span>(self, key, value=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/httpx-0.22.0//httpx/_models.py#L539">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">key:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">value:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">typing.Any</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="httpx.URL.html" class="internal-link" title="httpx.URL">URL</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="httpx.URL.copy_with">
+    
+  </a>
+  <a name="copy_with">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">copy_with</span>(self, **kwargs):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/httpx-0.22.0//httpx/_models.py#L410">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Copy this URL, returning a new URL with some components altered.
+Accepts the same set of parameters as the components that are made
+available via properties on the <code><a href="httpx.URL.html" class="internal-link" title="httpx.URL">URL</a></code> class.</p>
+<p>For example:</p>
+<p>url = httpx.URL("<a class="rst-reference external" href="https://www.example.com" target="_top">https://www.example.com</a>").copy_with(username="<a class="rst-reference external" href="mailto:jo@gmail.com" target="_top">jo@gmail.com</a>", password="a secret")
+assert url == "<a class="rst-reference external" href="https://jo%40email.com:a%20secret@www.example.com" target="_top">https://jo%40email.com:a%20secret@www.example.com</a>"</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">**kwargs:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">typing.Any</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="httpx.URL.html" class="internal-link" title="httpx.URL">URL</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="httpx.URL.join">
+    
+  </a>
+  <a name="join">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">join</span>(self, url):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/httpx-0.22.0//httpx/_models.py#L551">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Return an absolute URL, using this URL as the base.</p>
+<p>Eg.</p>
+<p>url = httpx.URL("<a class="rst-reference external" href="https://www.example.com/test" target="_top">https://www.example.com/test</a>")
+url = url.join("/new/path")
+assert url == "<a class="rst-reference external" href="https://www.example.com/new/path" target="_top">https://www.example.com/new/path</a>"</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">url:</span><code>URLTypes</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="httpx.URL.html" class="internal-link" title="httpx.URL">URL</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="baseproperty">
+  
+  
+  <a name="httpx.URL.fragment">
+    
+  </a>
+  <a name="fragment">
+    
+  </a>
+  <div class="functionHeader">
+    @<a href="https://docs.python.org/3/library/functions.html#property" class="intersphinx-link">property</a><br />
+    <span class="py-defname">fragment</span>: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/httpx-0.22.0//httpx/_models.py#L367">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div>The URL fragments, as used in HTML anchors.
+As a string, without the leading '#'.</div>
+    
+  </div>
+</div><div class="baseproperty">
+  
+  
+  <a name="httpx.URL.host">
+    
+  </a>
+  <a name="host">
+    
+  </a>
+  <div class="functionHeader">
+    @<a href="https://docs.python.org/3/library/functions.html#property" class="intersphinx-link">property</a><br />
+    <span class="py-defname">host</span>: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/httpx-0.22.0//httpx/_models.py#L220">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p>The URL host as a string.
+Always normalized to lowercase, with IDNA hosts decoded into unicode.</p>
+<p>Examples:</p>
+<p>url = httpx.URL("<a class="rst-reference external" href="http://www.EXAMPLE.org" target="_top">http://www.EXAMPLE.org</a>")
+assert url.host == "www.example.org"</p>
+<p>url = httpx.URL("<a class="rst-reference external" href="http:/" target="_top">http:/</a>/中国.icom.museum")
+assert url.host == "中国.icom.museum"</p>
+<p>url = httpx.URL("<a class="rst-reference external" href="http://xn--fiqs8s.icom.museum" target="_top">http://xn--fiqs8s.icom.museum</a>")
+assert url.host == "中国.icom.museum"</p>
+<p>url = httpx.URL("<a class="rst-reference external" href="https://[::ffff:192.168.0.1" target="_top">https://[::ffff:192.168.0.1</a>]")
+assert url.host == "::ffff:192.168.0.1"</p>
+</div>
+    
+  </div>
+</div><div class="baseproperty">
+  
+  
+  <a name="httpx.URL.is_absolute_url">
+    
+  </a>
+  <a name="is_absolute_url">
+    
+  </a>
+  <div class="functionHeader">
+    @<a href="https://docs.python.org/3/library/functions.html#property" class="intersphinx-link">property</a><br />
+    <span class="py-defname">is_absolute_url</span>: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/httpx-0.22.0//httpx/_models.py#L390">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div>Return <code><a href="https://docs.python.org/3/library/constants.html#True" class="intersphinx-link">True</a></code> for absolute URLs such as '<a class="rst-reference external" href="http://example.com/path" target="_top">http://example.com/path</a>',
+and <code><a href="https://docs.python.org/3/library/constants.html#False" class="intersphinx-link">False</a></code> for relative URLs such as '/path'.</div>
+    
+  </div>
+</div><div class="baseproperty">
+  
+  
+  <a name="httpx.URL.is_relative_url">
+    
+  </a>
+  <a name="is_relative_url">
+    
+  </a>
+  <div class="functionHeader">
+    @<a href="https://docs.python.org/3/library/functions.html#property" class="intersphinx-link">property</a><br />
+    <span class="py-defname">is_relative_url</span>: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/httpx-0.22.0//httpx/_models.py#L402">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div>Return <code><a href="https://docs.python.org/3/library/constants.html#False" class="intersphinx-link">False</a></code> for absolute URLs such as '<a class="rst-reference external" href="http://example.com/path" target="_top">http://example.com/path</a>',
+and <code><a href="https://docs.python.org/3/library/constants.html#True" class="intersphinx-link">True</a></code> for relative URLs such as '/path'.</div>
+    
+  </div>
+</div><div class="baseproperty">
+  
+  
+  <a name="httpx.URL.netloc">
+    
+  </a>
+  <a name="netloc">
+    
+  </a>
+  <div class="functionHeader">
+    @<a href="https://docs.python.org/3/library/functions.html#property" class="intersphinx-link">property</a><br />
+    <span class="py-defname">netloc</span>: <code><a href="https://docs.python.org/3/library/stdtypes.html#bytes" class="intersphinx-link">bytes</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/httpx-0.22.0//httpx/_models.py#L296">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p>Either <code><a href="#host" class="internal-link" title="httpx.URL.host"></a></code> or <code><a href="#port" class="internal-link" title="httpx.URL.port">&lt;host&gt;:</a></code> as bytes.
+Always normalized to lowercase, and IDNA encoded.</p>
+<p>This property may be used for generating the value of a request
+"Host" header.</p>
+</div>
+    
+  </div>
+</div><div class="baseproperty">
+  
+  
+  <a name="httpx.URL.params">
+    
+  </a>
+  <a name="params">
+    
+  </a>
+  <div class="functionHeader">
+    @<a href="https://docs.python.org/3/library/functions.html#property" class="intersphinx-link">property</a><br />
+    <span class="py-defname">params</span>: <code><a href="httpx.QueryParams.html" class="internal-link" title="httpx.QueryParams">QueryParams</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/httpx-0.22.0//httpx/_models.py#L342">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div>The URL query parameters, neatly parsed and packaged into an immutable
+multidict representation.</div>
+    
+  </div>
+</div><div class="baseproperty">
+  
+  
+  <a name="httpx.URL.password">
+    
+  </a>
+  <a name="password">
+    
+  </a>
+  <div class="functionHeader">
+    @<a href="https://docs.python.org/3/library/functions.html#property" class="intersphinx-link">property</a><br />
+    <span class="py-defname">password</span>: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/httpx-0.22.0//httpx/_models.py#L211">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div>The URL password as a string, with URL decoding applied.
+For example: "a secret"</div>
+    
+  </div>
+</div><div class="baseproperty">
+  
+  
+  <a name="httpx.URL.path">
+    
+  </a>
+  <a name="path">
+    
+  </a>
+  <div class="functionHeader">
+    @<a href="https://docs.python.org/3/library/functions.html#property" class="intersphinx-link">property</a><br />
+    <span class="py-defname">path</span>: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/httpx-0.22.0//httpx/_models.py#L312">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p>The URL path as a string. Excluding the query string, and URL decoded.</p>
+<p>For example:</p>
+<p>url = httpx.URL("<a class="rst-reference external" href="https://example.com/pa%20th" target="_top">https://example.com/pa%20th</a>")
+assert url.path == "/pa th"</p>
+</div>
+    
+  </div>
+</div><div class="baseproperty">
+  
+  
+  <a name="httpx.URL.port">
+    
+  </a>
+  <a name="port">
+    
+  </a>
+  <div class="functionHeader">
+    @<a href="https://docs.python.org/3/library/functions.html#property" class="intersphinx-link">property</a><br />
+    <span class="py-defname">port</span>: <code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">typing.Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/functions.html#int" class="intersphinx-link">int</a>]</code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/httpx-0.22.0//httpx/_models.py#L279">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p>The URL port as an integer.</p>
+<p>Note that the URL class performs port normalization as per the WHATWG spec.
+Default ports for "http", "https", "ws", "wss", and "ftp" schemes are always
+treated as <code><a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a></code>.</p>
+<p>For example:</p>
+<p>assert httpx.URL("<a class="rst-reference external" href="http://www.example.com" target="_top">http://www.example.com</a>") == httpx.URL("<a class="rst-reference external" href="http://www.example.com:80" target="_top">http://www.example.com:80</a>")
+assert httpx.URL("<a class="rst-reference external" href="http://www.example.com:80" target="_top">http://www.example.com:80</a>").port is None</p>
+</div>
+    
+  </div>
+</div><div class="baseproperty">
+  
+  
+  <a name="httpx.URL.query">
+    
+  </a>
+  <a name="query">
+    
+  </a>
+  <div class="functionHeader">
+    @<a href="https://docs.python.org/3/library/functions.html#property" class="intersphinx-link">property</a><br />
+    <span class="py-defname">query</span>: <code><a href="https://docs.python.org/3/library/stdtypes.html#bytes" class="intersphinx-link">bytes</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/httpx-0.22.0//httpx/_models.py#L325">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p>The URL query string, as raw bytes, excluding the leading b"?".</p>
+<p>This is necessarily a bytewise interface, because we cannot
+perform URL decoding of this representation until we've parsed
+the keys and values into a QueryParams instance.</p>
+<p>For example:</p>
+<p>url = httpx.URL("<a class="rst-reference external" href="https://example.com/?filter=some%20search%20terms" target="_top">https://example.com/?filter=some%20search%20terms</a>")
+assert url.query == b"filter=some%20search%20terms"</p>
+</div>
+    
+  </div>
+</div><div class="baseproperty">
+  
+  
+  <a name="httpx.URL.raw">
+    
+  </a>
+  <a name="raw">
+    
+  </a>
+  <div class="functionHeader">
+    @<a href="https://docs.python.org/3/library/functions.html#property" class="intersphinx-link">property</a><br />
+    <span class="py-defname">raw</span>: <code>RawURL</code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/httpx-0.22.0//httpx/_models.py#L375">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p>The URL in the raw representation used by the low level
+transport API. See <code><a href="httpx.BaseTransport.html#handle_request" class="internal-link" title="httpx.BaseTransport.handle_request">BaseTransport.handle_request</a></code>.</p>
+<p>Provides the (scheme, host, port, target) for the outgoing request.</p>
+</div>
+    
+  </div>
+</div><div class="baseproperty">
+  
+  
+  <a name="httpx.URL.raw_host">
+    
+  </a>
+  <a name="raw_host">
+    
+  </a>
+  <div class="functionHeader">
+    @<a href="https://docs.python.org/3/library/functions.html#property" class="intersphinx-link">property</a><br />
+    <span class="py-defname">raw_host</span>: <code><a href="https://docs.python.org/3/library/stdtypes.html#bytes" class="intersphinx-link">bytes</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/httpx-0.22.0//httpx/_models.py#L251">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p>The raw bytes representation of the URL host.
+Always normalized to lowercase, and IDNA encoded.</p>
+<p>Examples:</p>
+<p>url = httpx.URL("<a class="rst-reference external" href="http://www.EXAMPLE.org" target="_top">http://www.EXAMPLE.org</a>")
+assert url.raw_host == b"www.example.org"</p>
+<p>url = httpx.URL("<a class="rst-reference external" href="http:/" target="_top">http:/</a>/中国.icom.museum")
+assert url.raw_host == b"xn--fiqs8s.icom.museum"</p>
+<p>url = httpx.URL("<a class="rst-reference external" href="http://xn--fiqs8s.icom.museum" target="_top">http://xn--fiqs8s.icom.museum</a>")
+assert url.raw_host == b"xn--fiqs8s.icom.museum"</p>
+<p>url = httpx.URL("<a class="rst-reference external" href="https://[::ffff:192.168.0.1" target="_top">https://[::ffff:192.168.0.1</a>]")
+assert url.raw_host == b"::ffff:192.168.0.1"</p>
+</div>
+    
+  </div>
+</div><div class="baseproperty">
+  
+  
+  <a name="httpx.URL.raw_path">
+    
+  </a>
+  <a name="raw_path">
+    
+  </a>
+  <div class="functionHeader">
+    @<a href="https://docs.python.org/3/library/functions.html#property" class="intersphinx-link">property</a><br />
+    <span class="py-defname">raw_path</span>: <code><a href="https://docs.python.org/3/library/stdtypes.html#bytes" class="intersphinx-link">bytes</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/httpx-0.22.0//httpx/_models.py#L350">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p>The complete URL path and query string as raw bytes.
+Used as the target when constructing HTTP requests.</p>
+<p>For example:</p>
+<p>GET /users?search=some%20text HTTP/1.1
+Host: www.example.org
+Connection: close</p>
+</div>
+    
+  </div>
+</div><div class="baseproperty">
+  
+  
+  <a name="httpx.URL.raw_scheme">
+    
+  </a>
+  <a name="raw_scheme">
+    
+  </a>
+  <div class="functionHeader">
+    @<a href="https://docs.python.org/3/library/functions.html#property" class="intersphinx-link">property</a><br />
+    <span class="py-defname">raw_scheme</span>: <code><a href="https://docs.python.org/3/library/stdtypes.html#bytes" class="intersphinx-link">bytes</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/httpx-0.22.0//httpx/_models.py#L185">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div>The raw bytes representation of the URL scheme, such as b"http", b"https".
+Always normalised to lowercase.</div>
+    
+  </div>
+</div><div class="baseproperty">
+  
+  
+  <a name="httpx.URL.scheme">
+    
+  </a>
+  <a name="scheme">
+    
+  </a>
+  <div class="functionHeader">
+    @<a href="https://docs.python.org/3/library/functions.html#property" class="intersphinx-link">property</a><br />
+    <span class="py-defname">scheme</span>: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/httpx-0.22.0//httpx/_models.py#L177">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div>The URL scheme, such as "http", "https".
+Always normalised to lowercase.</div>
+    
+  </div>
+</div><div class="baseproperty">
+  
+  
+  <a name="httpx.URL.userinfo">
+    
+  </a>
+  <a name="userinfo">
+    
+  </a>
+  <div class="functionHeader">
+    @<a href="https://docs.python.org/3/library/functions.html#property" class="intersphinx-link">property</a><br />
+    <span class="py-defname">userinfo</span>: <code><a href="https://docs.python.org/3/library/stdtypes.html#bytes" class="intersphinx-link">bytes</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/httpx-0.22.0//httpx/_models.py#L193">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div>The URL userinfo as a raw bytestring.
+For example: b"jo%40email.com:a%20secret".</div>
+    
+  </div>
+</div><div class="baseproperty">
+  
+  
+  <a name="httpx.URL.username">
+    
+  </a>
+  <a name="username">
+    
+  </a>
+  <div class="functionHeader">
+    @<a href="https://docs.python.org/3/library/functions.html#property" class="intersphinx-link">property</a><br />
+    <span class="py-defname">username</span>: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/httpx-0.22.0//httpx/_models.py#L202">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div>The URL username as a string, with URL decoding applied.
+For example: "<a class="rst-reference external" href="mailto:jo@email.com" target="_top">jo@email.com</a>"</div>
+    
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  
+  <a name="httpx.URL._uri_reference">
+    
+  </a>
+  <a name="_uri_reference">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_uri_reference</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/httpx-0.22.0//httpx/_models.py#L141">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div>
+
+      </div>
+    </div>
+
+    <footer class="navbar navbar-default">
+  
+  <div class="container">
+    <a href="index.html">API Documentation</a> for httpx,
+  generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
+    22.2.0 at 2022-02-23 08:15:00.
+  </div>
+</footer>
+
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+  </body>
+</html>

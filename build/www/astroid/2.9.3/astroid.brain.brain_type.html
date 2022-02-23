@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  
+
+  <head>
+    
+    <title>astroid.brain.brain_type</title>
+    <meta name="generator" content="pydoctor 22.2.0"> 
+        
+    </meta>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=0.75" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+    <link rel="stylesheet" type="text/css" href="extra.css" />
+</head>
+
+  <body>
+
+    <div id="banner" class="container">    
+    <div>
+        <a href="https://pydocbrowser.github.io/">Home</a>
+        &gt; astroid-2.9.3 
+        <!-- This is an important placeholder and will be 
+            replaced by project name and version on building docs -->
+        
+        <!-- (<a href=""&gt;show all versions</a&gt;) -->
+    </div>
+</div>
+
+    <nav class="navbar navbar-default">
+  
+  <div class="container">
+
+    <div class="navbar-header">
+      
+      <div class="navlinks">
+          <span class="navbar-brand">
+            astroid <a href="index.html">API Documentation</a>
+          </span>
+
+          <a href="moduleIndex.html">
+            Modules
+          </a>
+
+          <a href="classIndex.html">
+            Classes
+          </a>
+
+          <a href="nameIndex.html">
+            Names
+          </a>
+      </div>
+
+    </div>
+  </div>
+</nav>
+
+    
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="module"><code><code><a href="index.html" class="internal-link">astroid</a></code><wbr></wbr>.<code><a href="astroid.brain.html" class="internal-link" title="astroid.brain">brain</a></code><wbr></wbr>.<code><a href="astroid.brain.brain_type.html" class="internal-link" title="astroid.brain.brain_type">brain_type</a></code></code></h1>
+        <div id="showPrivate">
+          <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+        </div>
+      </div>
+
+      <div class="categoryHeader">
+        module documentation
+      </div>
+
+      <div class="extrasDocstring">
+        <a href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/astroid-2.9.3//astroid/brain/brain_type.py" class="sourceLink">(source)</a>
+        <p></p>
+      </div>
+
+      <div class="moduleDocstring">
+        <div><p>Astroid hooks for type support.</p>
+<p>Starting from python3.9, type object behaves as it had __class_getitem__ method.
+However it was not possible to simply add this method inside type's body, otherwise
+all types would also have this method. In this case it would have been possible
+to write str[int].
+Guido Van Rossum proposed a hack to handle this in the interpreter:
+<a class="rst-reference external" href="https://github.com/python/cpython/blob/67e394562d67cbcd0ac8114e5439494e7645b8f5/Objects/abstract.c#L181-L184" target="_top">https://github.com/python/cpython/blob/67e394562d67cbcd0ac8114e5439494e7645b8f5/Objects/abstract.c#L181-L184</a></p>
+<p>This brain follows the same logic. It is no wise to add permanently the __class_getitem__ method
+to the type object. Instead we choose to add it only in the case of a subscript node
+which inside name node is type.
+Doing this type[int] is allowed whereas str[int] is not.</p>
+<p>Thanks to Lukasz Langa for fruitful discussion.</p>
+</div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id76">
+  
+  
+  <tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#infer_type_sub" class="internal-link" title="astroid.brain.brain_type.infer_type_sub">infer​_type​_sub</a></code></td>
+    <td>Infer a type[...] subscript</td>
+  </tr><tr class="function private">
+    
+    <td>Function</td>
+    <td><code><a href="#_looks_like_type_subscript" class="internal-link" title="astroid.brain.brain_type._looks_like_type_subscript">​_looks​_like​_type​_subscript</a></code></td>
+    <td>Try to figure out if a Name node is used inside a type related subscript</td>
+  </tr>
+</table>
+        
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="basefunction">
+  
+  
+  <a name="astroid.brain.brain_type.infer_type_sub">
+    
+  </a>
+  <a name="infer_type_sub">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">infer_type_sub</span>(node, context=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/astroid-2.9.3//astroid/brain/brain_type.py#L39">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Infer a type[...] subscript<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">node:</span>astroid.nodes.node_classes.NodeNG</td><td class="fieldArgDesc">node to infer</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">context:</span>astroid.context.InferenceContext</td><td class="fieldArgDesc">inference context</td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer">nodes.NodeNG</td><td class="fieldArgDesc">the inferred node</td></tr></table></div>
+  </div>
+</div><div class="basefunction private">
+  
+  
+  <a name="astroid.brain.brain_type._looks_like_type_subscript">
+    
+  </a>
+  <a name="_looks_like_type_subscript">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_looks_like_type_subscript</span>(node):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/astroid-2.9.3//astroid/brain/brain_type.py#L25">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Try to figure out if a Name node is used inside a type related subscript<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">node:</span>astroid.nodes.node_classes.NodeNG</td><td class="fieldArgDesc">node to check</td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer">bool</td><td class="fieldArgDesc">true if the node is a Name node inside a type related subscript</td></tr></table></div>
+  </div>
+</div>
+
+      </div>
+    </div>
+
+    <footer class="navbar navbar-default">
+  
+  <div class="container">
+    <a href="index.html">API Documentation</a> for astroid,
+  generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
+    22.2.0 at 2022-02-23 08:04:09.
+  </div>
+</footer>
+
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+  </body>
+</html>

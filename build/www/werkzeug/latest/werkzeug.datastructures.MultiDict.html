@@ -1,0 +1,937 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  
+
+  <head>
+    
+    <title>werkzeug.datastructures.MultiDict</title>
+    <meta name="generator" content="pydoctor 22.2.0"> 
+        
+    </meta>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=0.75" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+    <link rel="stylesheet" type="text/css" href="extra.css" />
+</head>
+
+  <body>
+
+    <div id="banner" class="container">    
+    <div>
+        <a href="https://pydocbrowser.github.io/">Home</a>
+        &gt; werkzeug-2.0.3 
+        <!-- This is an important placeholder and will be 
+            replaced by project name and version on building docs -->
+        
+        <!-- (<a href=""&gt;show all versions</a&gt;) -->
+    </div>
+</div>
+
+    <nav class="navbar navbar-default">
+  
+  <div class="container">
+
+    <div class="navbar-header">
+      
+      <div class="navlinks">
+          <span class="navbar-brand">
+            werkzeug <a href="index.html">API Documentation</a>
+          </span>
+
+          <a href="moduleIndex.html">
+            Modules
+          </a>
+
+          <a href="classIndex.html">
+            Classes
+          </a>
+
+          <a href="nameIndex.html">
+            Names
+          </a>
+      </div>
+
+    </div>
+  </div>
+</nav>
+
+    
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="class"><code><code><a href="index.html" class="internal-link">werkzeug</a></code><wbr></wbr>.<code><a href="werkzeug.datastructures.html" class="internal-link" title="werkzeug.datastructures">datastructures</a></code><wbr></wbr>.<code><a href="werkzeug.datastructures.MultiDict.html" class="internal-link" title="werkzeug.datastructures.MultiDict">MultiDict</a></code></code></h1>
+        <div id="showPrivate">
+          <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+        </div>
+      </div>
+
+      <div class="categoryHeader">
+        class documentation
+      </div>
+
+      <div class="extrasDocstring">
+        <p><code><span class="py-keyword">class</span> <span class="py-defname">MultiDict</span>(<a href="werkzeug.datastructures.TypeConversionDict.html" class="internal-link" title="werkzeug.datastructures.TypeConversionDict">TypeConversionDict</a>): <a href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/werkzeug-2.0.3//src/werkzeug/datastructures.py#L291" class="sourceLink">(source)</a></code></p><p>Known subclasses: <code><a href="werkzeug.datastructures.CombinedMultiDict.html" class="internal-link">werkzeug.datastructures.CombinedMultiDict</a></code>, <code><a href="werkzeug.datastructures.FileMultiDict.html" class="internal-link">werkzeug.datastructures.FileMultiDict</a></code>, <code><a href="werkzeug.datastructures.ImmutableMultiDict.html" class="internal-link">werkzeug.datastructures.ImmutableMultiDict</a></code>, <code><a href="werkzeug.datastructures.OrderedMultiDict.html" class="internal-link">werkzeug.datastructures.OrderedMultiDict</a></code></p>
+        <p><a href="classIndex.html#werkzeug.datastructures.MultiDict">View In Hierarchy</a></p>
+      </div>
+
+      <div class="moduleDocstring">
+        <div><p>A <code><a href="werkzeug.datastructures.MultiDict.html" class="internal-link" title="werkzeug.datastructures.MultiDict">MultiDict</a></code> is a dictionary subclass customized to deal with
+multiple values for the same key which is for example used by the parsing
+functions in the wrappers.  This is necessary because some HTML form
+elements pass multiple values for the same key.</p>
+<p><code><a href="werkzeug.datastructures.MultiDict.html" class="internal-link" title="werkzeug.datastructures.MultiDict">MultiDict</a></code> implements all standard dictionary methods.
+Internally, it saves all values for a key as a list, but the standard dict
+access methods will only return the first value for a key. If you want to
+gain access to the other values, too, you have to use the <code><a href="https://docs.python.org/3/library/stdtypes.html#list" class="intersphinx-link">list</a></code> methods as
+explained below.</p>
+<p>Basic Usage:</p>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>d = MultiDict([(<span class="py-string">'a'</span>, <span class="py-string">'b'</span>), (<span class="py-string">'a'</span>, <span class="py-string">'c'</span>)])
+<span class="py-prompt">&gt;&gt;&gt; </span>d
+<span class="py-output">MultiDict([('a', 'b'), ('a', 'c')])</span>
+<span class="py-prompt">&gt;&gt;&gt; </span>d[<span class="py-string">'a'</span>]
+<span class="py-output">'b'</span>
+<span class="py-prompt">&gt;&gt;&gt; </span>d.getlist(<span class="py-string">'a'</span>)
+<span class="py-output">['b', 'c']</span>
+<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-string">'a'</span> <span class="py-keyword">in</span> d
+<span class="py-output">True</span>
+</pre><p>It behaves like a normal dict thus all dict functions will only return the
+first value when multiple values for one key are found.</p>
+<p>From Werkzeug 0.3 onwards, the <code><a href="https://docs.python.org/3/library/exceptions.html#KeyError" class="intersphinx-link">KeyError</a></code> raised by this class is also a
+subclass of the <code>~exceptions.BadRequest</code> HTTP exception and will
+render a page for a <tt class="rst-docutils literal">400 BAD REQUEST</tt> if caught in a catch-all for HTTP
+exceptions.</p>
+<p>A <code><a href="werkzeug.datastructures.MultiDict.html" class="internal-link" title="werkzeug.datastructures.MultiDict">MultiDict</a></code> can be constructed from an iterable of
+<tt class="rst-docutils literal">(key, value)</tt> tuples, a dict, a <code><a href="werkzeug.datastructures.MultiDict.html" class="internal-link" title="werkzeug.datastructures.MultiDict">MultiDict</a></code> or from Werkzeug 0.2
+onwards some keyword parameters.</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">mapping</span></td><td class="fieldArgDesc">the initial value for the <code><a href="werkzeug.datastructures.MultiDict.html" class="internal-link" title="werkzeug.datastructures.MultiDict">MultiDict</a></code>.  Either a
+regular dict, an iterable of <tt class="rst-docutils literal">(key, value)</tt> tuples
+or <code><a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a></code>.</td></tr></table></div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id25685">
+  
+  
+  <tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__copy__" class="internal-link" title="werkzeug.datastructures.MultiDict.__copy__">__copy__</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__deepcopy__" class="internal-link" title="werkzeug.datastructures.MultiDict.__deepcopy__">__deepcopy__</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__getitem__" class="internal-link" title="werkzeug.datastructures.MultiDict.__getitem__">__getitem__</a></code></td>
+    <td>Return the first data value for this key; raises KeyError if not found.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__getstate__" class="internal-link" title="werkzeug.datastructures.MultiDict.__getstate__">__getstate__</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__init__" class="internal-link" title="werkzeug.datastructures.MultiDict.__init__">__init__</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__iter__" class="internal-link" title="werkzeug.datastructures.MultiDict.__iter__">__iter__</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__repr__" class="internal-link" title="werkzeug.datastructures.MultiDict.__repr__">__repr__</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__setitem__" class="internal-link" title="werkzeug.datastructures.MultiDict.__setitem__">__setitem__</a></code></td>
+    <td>Like <code><a href="#add" class="internal-link" title="werkzeug.datastructures.MultiDict.add">add</a></code> but removes an existing key first.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__setstate__" class="internal-link" title="werkzeug.datastructures.MultiDict.__setstate__">__setstate__</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#add" class="internal-link" title="werkzeug.datastructures.MultiDict.add">add</a></code></td>
+    <td>Adds a new value for the key.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#copy" class="internal-link" title="werkzeug.datastructures.MultiDict.copy">copy</a></code></td>
+    <td>Return a shallow copy of this object.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#deepcopy" class="internal-link" title="werkzeug.datastructures.MultiDict.deepcopy">deepcopy</a></code></td>
+    <td>Return a deep copy of this object.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#getlist" class="internal-link" title="werkzeug.datastructures.MultiDict.getlist">getlist</a></code></td>
+    <td><span class="undocumented">No summary</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#items" class="internal-link" title="werkzeug.datastructures.MultiDict.items">items</a></code></td>
+    <td>Return an iterator of <tt class="rst-docutils literal">(key, value)</tt> pairs.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#lists" class="internal-link" title="werkzeug.datastructures.MultiDict.lists">lists</a></code></td>
+    <td>Return a iterator of <tt class="rst-docutils literal">(key, values)</tt> pairs, where values is the list of all values associated with the key.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#listvalues" class="internal-link" title="werkzeug.datastructures.MultiDict.listvalues">listvalues</a></code></td>
+    <td>Return an iterator of all values associated with a key.  Zipping <code>keys</code> and this is the same as calling <code><a href="#lists" class="internal-link" title="werkzeug.datastructures.MultiDict.lists">lists</a></code>:</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#pop" class="internal-link" title="werkzeug.datastructures.MultiDict.pop">pop</a></code></td>
+    <td>Pop the first item for a list on the dict.  Afterwards the key is removed from the dict, so additional values are discarded:</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#popitem" class="internal-link" title="werkzeug.datastructures.MultiDict.popitem">popitem</a></code></td>
+    <td>Pop an item from the dict.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#popitemlist" class="internal-link" title="werkzeug.datastructures.MultiDict.popitemlist">popitemlist</a></code></td>
+    <td>Pop a <tt class="rst-docutils literal">(key, list)</tt> tuple from the dict.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#poplist" class="internal-link" title="werkzeug.datastructures.MultiDict.poplist">poplist</a></code></td>
+    <td>Pop the list for a key from the dict.  If the key is not in the dict an empty list is returned.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#setdefault" class="internal-link" title="werkzeug.datastructures.MultiDict.setdefault">setdefault</a></code></td>
+    <td>Returns the value for the key if it is in the dict, otherwise it returns <code>default</code> and sets that value for <code><a href="werkzeug.datastructures._omd_bucket.html#key" class="internal-link" title="werkzeug.datastructures._omd_bucket.key">key</a></code>.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#setlist" class="internal-link" title="werkzeug.datastructures.MultiDict.setlist">setlist</a></code></td>
+    <td>Remove the old values for a key and add new ones.  Note that the list you pass the values in will be shallow-copied before it is inserted in the dictionary.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#setlistdefault" class="internal-link" title="werkzeug.datastructures.MultiDict.setlistdefault">setlistdefault</a></code></td>
+    <td><span class="undocumented">No summary</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#to_dict" class="internal-link" title="werkzeug.datastructures.MultiDict.to_dict">to​_dict</a></code></td>
+    <td>Return the contents as regular dict.  If <code>flat</code> is <code><a href="https://docs.python.org/3/library/constants.html#True" class="intersphinx-link">True</a></code> the returned dict will only have the first item present, if <code>flat</code> is <code><a href="https://docs.python.org/3/library/constants.html#False" class="intersphinx-link">False</a></code> all values will be returned as lists.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#update" class="internal-link" title="werkzeug.datastructures.MultiDict.update">update</a></code></td>
+    <td>update() extends rather than replaces existing key lists:</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#values" class="internal-link" title="werkzeug.datastructures.MultiDict.values">values</a></code></td>
+    <td>Returns an iterator of the first value on every key's value list.</td>
+  </tr>
+</table>
+        
+          <p class="inheritedFrom">
+            Inherited from <code><a href="werkzeug.datastructures.TypeConversionDict.html" class="internal-link" title="werkzeug.datastructures.TypeConversionDict">TypeConversionDict</a></code>:
+          </p>
+          <table class="children sortable" id="id25686">
+  
+  
+  <tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="werkzeug.datastructures.TypeConversionDict.html#get" class="internal-link" title="werkzeug.datastructures.TypeConversionDict.get">get</a></code></td>
+    <td><span class="undocumented">No summary</span></td>
+  </tr>
+</table>
+          
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="basemethod">
+  
+  
+  <a name="werkzeug.datastructures.MultiDict.__copy__">
+    
+  </a>
+  <a name="__copy__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__copy__</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/werkzeug-2.0.3//src/werkzeug/datastructures.py#L613">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="werkzeug.datastructures.ImmutableMultiDict.html" class="internal-link">werkzeug.datastructures.ImmutableMultiDict</a></code>, <code><a href="werkzeug.datastructures.ImmutableOrderedMultiDict.html" class="internal-link">werkzeug.datastructures.ImmutableOrderedMultiDict</a></code></div>
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="werkzeug.datastructures.MultiDict.__deepcopy__">
+    
+  </a>
+  <a name="__deepcopy__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__deepcopy__</span>(self, memo):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/werkzeug-2.0.3//src/werkzeug/datastructures.py#L616">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="werkzeug.datastructures.MultiDict.__getitem__">
+    
+  </a>
+  <a name="__getitem__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__getitem__</span>(self, key):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/werkzeug-2.0.3//src/werkzeug/datastructures.py#L365">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="werkzeug.datastructures.CombinedMultiDict.html" class="internal-link">werkzeug.datastructures.CombinedMultiDict</a></code>, <code><a href="werkzeug.datastructures.OrderedMultiDict.html" class="internal-link">werkzeug.datastructures.OrderedMultiDict</a></code></div>
+    
+    <div>Return the first data value for this key;
+raises KeyError if not found.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">key</span></td><td class="fieldArgDesc">The key to be looked up.</td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Raises</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/exceptions.html#KeyError" class="intersphinx-link">KeyError</a></code></td><td>if the key does not exist.</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="werkzeug.datastructures.MultiDict.__getstate__">
+    
+  </a>
+  <a name="__getstate__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__getstate__</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/werkzeug-2.0.3//src/werkzeug/datastructures.py#L352">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="werkzeug.datastructures.OrderedMultiDict.html" class="internal-link">werkzeug.datastructures.OrderedMultiDict</a></code></div>
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="werkzeug.datastructures.MultiDict.__init__">
+    
+  </a>
+  <a name="__init__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__init__</span>(self, mapping=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/werkzeug-2.0.3//src/werkzeug/datastructures.py#L332">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="werkzeug.datastructures.CombinedMultiDict.html" class="internal-link">werkzeug.datastructures.CombinedMultiDict</a></code>, <code><a href="werkzeug.datastructures.OrderedMultiDict.html" class="internal-link">werkzeug.datastructures.OrderedMultiDict</a></code></div>
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="werkzeug.datastructures.MultiDict.__iter__">
+    
+  </a>
+  <a name="__iter__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__iter__</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/werkzeug-2.0.3//src/werkzeug/datastructures.py#L359">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="werkzeug.datastructures.CombinedMultiDict.html" class="internal-link">werkzeug.datastructures.CombinedMultiDict</a></code>, <code><a href="werkzeug.datastructures.OrderedMultiDict.html" class="internal-link">werkzeug.datastructures.OrderedMultiDict</a></code></div>
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="werkzeug.datastructures.MultiDict.__repr__">
+    
+  </a>
+  <a name="__repr__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__repr__</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/werkzeug-2.0.3//src/werkzeug/datastructures.py#L619">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="werkzeug.datastructures.CombinedMultiDict.html" class="internal-link">werkzeug.datastructures.CombinedMultiDict</a></code></div>
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="werkzeug.datastructures.MultiDict.__setitem__">
+    
+  </a>
+  <a name="__setitem__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__setitem__</span>(self, key, value):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/werkzeug-2.0.3//src/werkzeug/datastructures.py#L379">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="werkzeug.datastructures.OrderedMultiDict.html" class="internal-link">werkzeug.datastructures.OrderedMultiDict</a></code></div>
+    
+    <div>Like <code><a href="#add" class="internal-link" title="werkzeug.datastructures.MultiDict.add">add</a></code> but removes an existing key first.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">key</span></td><td class="fieldArgDesc">the key for the value.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">value</span></td><td class="fieldArgDesc">the value to set.</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="werkzeug.datastructures.MultiDict.__setstate__">
+    
+  </a>
+  <a name="__setstate__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__setstate__</span>(self, value):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/werkzeug-2.0.3//src/werkzeug/datastructures.py#L355">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="werkzeug.datastructures.OrderedMultiDict.html" class="internal-link">werkzeug.datastructures.OrderedMultiDict</a></code></div>
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="werkzeug.datastructures.MultiDict.add">
+    
+  </a>
+  <a name="add">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">add</span>(self, key, value):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/werkzeug-2.0.3//src/werkzeug/datastructures.py#L387">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="werkzeug.datastructures.OrderedMultiDict.html" class="internal-link">werkzeug.datastructures.OrderedMultiDict</a></code></div>
+    
+    <div><p>Adds a new value for the key.</p>
+<div class="rst-versionadded">
+<span class="rst-versionmodified rst-added">New in version 0.6.</span></div>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">key</span></td><td class="fieldArgDesc">the key for the value.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">value</span></td><td class="fieldArgDesc">the value to add.</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="werkzeug.datastructures.MultiDict.copy">
+    
+  </a>
+  <a name="copy">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">copy</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/werkzeug-2.0.3//src/werkzeug/datastructures.py#L514">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="werkzeug.datastructures.CombinedMultiDict.html" class="internal-link">werkzeug.datastructures.CombinedMultiDict</a></code>, <code><a href="werkzeug.datastructures.ImmutableMultiDict.html" class="internal-link">werkzeug.datastructures.ImmutableMultiDict</a></code>, <code><a href="werkzeug.datastructures.ImmutableOrderedMultiDict.html" class="internal-link">werkzeug.datastructures.ImmutableOrderedMultiDict</a></code></div>
+    
+    <div>Return a shallow copy of this object.</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="werkzeug.datastructures.MultiDict.deepcopy">
+    
+  </a>
+  <a name="deepcopy">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">deepcopy</span>(self, memo=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/werkzeug-2.0.3//src/werkzeug/datastructures.py#L518">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Return a deep copy of this object.</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="werkzeug.datastructures.MultiDict.getlist">
+    
+  </a>
+  <a name="getlist">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">getlist</span>(self, key, type=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/werkzeug-2.0.3//src/werkzeug/datastructures.py#L397">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="werkzeug.datastructures.CombinedMultiDict.html" class="internal-link">werkzeug.datastructures.CombinedMultiDict</a></code>, <code><a href="werkzeug.datastructures.OrderedMultiDict.html" class="internal-link">werkzeug.datastructures.OrderedMultiDict</a></code></div>
+    
+    <div>Return the list of items for a given key. If that key is not in the
+<code><a href="werkzeug.datastructures.MultiDict.html" class="internal-link" title="werkzeug.datastructures.MultiDict">MultiDict</a></code>, the return value will be an empty list.  Just like <code>get</code>,
+<code><a href="#getlist" class="internal-link" title="werkzeug.datastructures.MultiDict.getlist">getlist</a></code> accepts a <code><a href="https://docs.python.org/3/library/functions.html#type" class="intersphinx-link">type</a></code> parameter.  All items will be converted
+with the callable defined there.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">key</span></td><td class="fieldArgDesc">The key to be looked up.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">type</span></td><td class="fieldArgDesc">A callable that is used to cast the value in the
+<code><a href="werkzeug.datastructures.MultiDict.html" class="internal-link" title="werkzeug.datastructures.MultiDict">MultiDict</a></code>.  If a <code><a href="https://docs.python.org/3/library/exceptions.html#ValueError" class="intersphinx-link">ValueError</a></code> is raised
+by this callable the value will be removed from the list.</td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td colspan="2">a <code><a href="https://docs.python.org/3/library/stdtypes.html#list" class="intersphinx-link">list</a></code> of all the values for the key.</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="werkzeug.datastructures.MultiDict.items">
+    
+  </a>
+  <a name="items">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">items</span>(self, multi=<a href="https://docs.python.org/3/library/constants.html#False" class="intersphinx-link">False</a>):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/werkzeug-2.0.3//src/werkzeug/datastructures.py#L479">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="werkzeug.datastructures.CombinedMultiDict.html" class="internal-link">werkzeug.datastructures.CombinedMultiDict</a></code>, <code><a href="werkzeug.datastructures.OrderedMultiDict.html" class="internal-link">werkzeug.datastructures.OrderedMultiDict</a></code></div>
+    
+    <div>Return an iterator of <tt class="rst-docutils literal">(key, value)</tt> pairs.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">multi</span></td><td class="fieldArgDesc">If set to <code><a href="https://docs.python.org/3/library/constants.html#True" class="intersphinx-link">True</a></code> the iterator returned will have a pair
+for each value of each key.  Otherwise it will only
+contain pairs for the first value of each key.</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="werkzeug.datastructures.MultiDict.lists">
+    
+  </a>
+  <a name="lists">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">lists</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/werkzeug-2.0.3//src/werkzeug/datastructures.py#L493">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="werkzeug.datastructures.CombinedMultiDict.html" class="internal-link">werkzeug.datastructures.CombinedMultiDict</a></code>, <code><a href="werkzeug.datastructures.OrderedMultiDict.html" class="internal-link">werkzeug.datastructures.OrderedMultiDict</a></code></div>
+    
+    <div>Return a iterator of <tt class="rst-docutils literal">(key, values)</tt> pairs, where values is the list
+of all values associated with the key.</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="werkzeug.datastructures.MultiDict.listvalues">
+    
+  </a>
+  <a name="listvalues">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">listvalues</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/werkzeug-2.0.3//src/werkzeug/datastructures.py#L504">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="werkzeug.datastructures.CombinedMultiDict.html" class="internal-link">werkzeug.datastructures.CombinedMultiDict</a></code>, <code><a href="werkzeug.datastructures.OrderedMultiDict.html" class="internal-link">werkzeug.datastructures.OrderedMultiDict</a></code></div>
+    
+    <div><p>Return an iterator of all values associated with a key.  Zipping
+<code>keys</code> and this is the same as calling <code><a href="#lists" class="internal-link" title="werkzeug.datastructures.MultiDict.lists">lists</a></code>:</p>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>d = MultiDict({<span class="py-string">"foo"</span>: [1, 2, 3]})
+<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-builtin">zip</span>(d.keys(), d.listvalues()) == d.lists()
+<span class="py-output">True</span>
+</pre></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="werkzeug.datastructures.MultiDict.pop">
+    
+  </a>
+  <a name="pop">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">pop</span>(self, key, default=<a href="werkzeug._internal.html#_missing" class="internal-link" title="werkzeug._internal._missing">_missing</a>):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/werkzeug-2.0.3//src/werkzeug/datastructures.py#L557">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="werkzeug.datastructures.OrderedMultiDict.html" class="internal-link">werkzeug.datastructures.OrderedMultiDict</a></code></div>
+    
+    <div><p>Pop the first item for a list on the dict.  Afterwards the
+key is removed from the dict, so additional values are discarded:</p>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>d = MultiDict({<span class="py-string">"foo"</span>: [1, 2, 3]})
+<span class="py-prompt">&gt;&gt;&gt; </span>d.pop(<span class="py-string">"foo"</span>)
+<span class="py-output">1</span>
+<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-string">"foo"</span> <span class="py-keyword">in</span> d
+<span class="py-output">False</span>
+</pre><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">key</span></td><td class="fieldArgDesc">the key to pop.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">default</span></td><td class="fieldArgDesc">if provided the value to return if the key was
+not in the dictionary.</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="werkzeug.datastructures.MultiDict.popitem">
+    
+  </a>
+  <a name="popitem">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">popitem</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/werkzeug-2.0.3//src/werkzeug/datastructures.py#L584">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="werkzeug.datastructures.OrderedMultiDict.html" class="internal-link">werkzeug.datastructures.OrderedMultiDict</a></code></div>
+    
+    <div>Pop an item from the dict.</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="werkzeug.datastructures.MultiDict.popitemlist">
+    
+  </a>
+  <a name="popitemlist">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">popitemlist</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/werkzeug-2.0.3//src/werkzeug/datastructures.py#L606">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="werkzeug.datastructures.OrderedMultiDict.html" class="internal-link">werkzeug.datastructures.OrderedMultiDict</a></code></div>
+    
+    <div>Pop a <tt class="rst-docutils literal">(key, list)</tt> tuple from the dict.</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="werkzeug.datastructures.MultiDict.poplist">
+    
+  </a>
+  <a name="poplist">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">poplist</span>(self, key):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/werkzeug-2.0.3//src/werkzeug/datastructures.py#L596">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="werkzeug.datastructures.OrderedMultiDict.html" class="internal-link">werkzeug.datastructures.OrderedMultiDict</a></code></div>
+    
+    <div><p>Pop the list for a key from the dict.  If the key is not in the dict
+an empty list is returned.</p>
+<div class="rst-versionchanged">
+<span class="rst-versionmodified rst-changed">Changed in version 0.5: </span><span>If the key does no longer exist a list is returned instead of
+raising an error.</span></div>
+</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="werkzeug.datastructures.MultiDict.setdefault">
+    
+  </a>
+  <a name="setdefault">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">setdefault</span>(self, key, default=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/werkzeug-2.0.3//src/werkzeug/datastructures.py#L441">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Returns the value for the key if it is in the dict, otherwise it
+returns <code>default</code> and sets that value for <code><a href="werkzeug.datastructures._omd_bucket.html#key" class="internal-link" title="werkzeug.datastructures._omd_bucket.key">key</a></code>.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">key</span></td><td class="fieldArgDesc">The key to be looked up.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">default</span></td><td class="fieldArgDesc">The default value to be returned if the key is not
+in the dict.  If not further specified it's <code><a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a></code>.</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="werkzeug.datastructures.MultiDict.setlist">
+    
+  </a>
+  <a name="setlist">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">setlist</span>(self, key, new_list):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/werkzeug-2.0.3//src/werkzeug/datastructures.py#L423">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="werkzeug.datastructures.OrderedMultiDict.html" class="internal-link">werkzeug.datastructures.OrderedMultiDict</a></code></div>
+    
+    <div><p>Remove the old values for a key and add new ones.  Note that the list
+you pass the values in will be shallow-copied before it is inserted in
+the dictionary.</p>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>d = MultiDict()
+<span class="py-prompt">&gt;&gt;&gt; </span>d.setlist(<span class="py-string">'foo'</span>, [<span class="py-string">'1'</span>, <span class="py-string">'2'</span>])
+<span class="py-prompt">&gt;&gt;&gt; </span>d[<span class="py-string">'foo'</span>]
+<span class="py-output">'1'</span>
+<span class="py-prompt">&gt;&gt;&gt; </span>d.getlist(<span class="py-string">'foo'</span>)
+<span class="py-output">['1', '2']</span>
+</pre><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">key</span></td><td class="fieldArgDesc">The key for which the values are set.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">new​_list</span></td><td class="fieldArgDesc">An iterable with the new values for the key.  Old values
+are removed first.</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="werkzeug.datastructures.MultiDict.setlistdefault">
+    
+  </a>
+  <a name="setlistdefault">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">setlistdefault</span>(self, key, default_list=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/werkzeug-2.0.3//src/werkzeug/datastructures.py#L455">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="werkzeug.datastructures.OrderedMultiDict.html" class="internal-link">werkzeug.datastructures.OrderedMultiDict</a></code></div>
+    
+    <div><p>Like <code><a href="#setdefault" class="internal-link" title="werkzeug.datastructures.MultiDict.setdefault">setdefault</a></code> but sets multiple values.  The list returned
+is not a copy, but the list that is actually used internally.  This
+means that you can put new values into the dict by appending items
+to the list:</p>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>d = MultiDict({<span class="py-string">"foo"</span>: 1})
+<span class="py-prompt">&gt;&gt;&gt; </span>d.setlistdefault(<span class="py-string">"foo"</span>).extend([2, 3])
+<span class="py-prompt">&gt;&gt;&gt; </span>d.getlist(<span class="py-string">"foo"</span>)
+<span class="py-output">[1, 2, 3]</span>
+</pre><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">key</span></td><td class="fieldArgDesc">The key to be looked up.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">default​_list</span></td><td class="fieldArgDesc">An iterable of default values.  It is either copied
+(in case it was a list) or converted into a list
+before returned.</td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td colspan="2">a <code><a href="https://docs.python.org/3/library/stdtypes.html#list" class="intersphinx-link">list</a></code></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="werkzeug.datastructures.MultiDict.to_dict">
+    
+  </a>
+  <a name="to_dict">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">to_dict</span>(self, flat=<a href="https://docs.python.org/3/library/constants.html#True" class="intersphinx-link">True</a>):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/werkzeug-2.0.3//src/werkzeug/datastructures.py#L522">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="werkzeug.datastructures.CombinedMultiDict.html" class="internal-link">werkzeug.datastructures.CombinedMultiDict</a></code></div>
+    
+    <div>Return the contents as regular dict.  If <code>flat</code> is <code><a href="https://docs.python.org/3/library/constants.html#True" class="intersphinx-link">True</a></code> the
+returned dict will only have the first item present, if <code>flat</code> is
+<code><a href="https://docs.python.org/3/library/constants.html#False" class="intersphinx-link">False</a></code> all values will be returned as lists.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">flat</span></td><td class="fieldArgDesc">If set to <code><a href="https://docs.python.org/3/library/constants.html#False" class="intersphinx-link">False</a></code> the dict returned will have lists
+with all the values in it.  Otherwise it will only
+contain the first value for each key.</td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td colspan="2">a <code><a href="https://docs.python.org/3/library/stdtypes.html#dict" class="intersphinx-link">dict</a></code></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="werkzeug.datastructures.MultiDict.update">
+    
+  </a>
+  <a name="update">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">update</span>(self, mapping):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/werkzeug-2.0.3//src/werkzeug/datastructures.py#L536">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="werkzeug.datastructures.OrderedMultiDict.html" class="internal-link">werkzeug.datastructures.OrderedMultiDict</a></code></div>
+    
+    <div><p>update() extends rather than replaces existing key lists:</p>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>a = MultiDict({<span class="py-string">'x'</span>: 1})
+<span class="py-prompt">&gt;&gt;&gt; </span>b = MultiDict({<span class="py-string">'x'</span>: 2, <span class="py-string">'y'</span>: 3})
+<span class="py-prompt">&gt;&gt;&gt; </span>a.update(b)
+<span class="py-prompt">&gt;&gt;&gt; </span>a
+<span class="py-output">MultiDict([('y', 3), ('x', 1), ('x', 2)])</span>
+</pre><p>If the value list for a key in <tt class="rst-docutils literal">other_dict</tt> is empty, no new values
+will be added to the dict and the key will not be created:</p>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>x = {<span class="py-string">'empty_list'</span>: []}
+<span class="py-prompt">&gt;&gt;&gt; </span>y = MultiDict()
+<span class="py-prompt">&gt;&gt;&gt; </span>y.update(x)
+<span class="py-prompt">&gt;&gt;&gt; </span>y
+<span class="py-output">MultiDict([])</span>
+</pre></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="werkzeug.datastructures.MultiDict.values">
+    
+  </a>
+  <a name="values">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">values</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/werkzeug-2.0.3//src/werkzeug/datastructures.py#L499">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="werkzeug.datastructures.CombinedMultiDict.html" class="internal-link">werkzeug.datastructures.CombinedMultiDict</a></code>, <code><a href="werkzeug.datastructures.OrderedMultiDict.html" class="internal-link">werkzeug.datastructures.OrderedMultiDict</a></code></div>
+    
+    <div>Returns an iterator of the first value on every key's value list.</div>
+  </div>
+</div>
+
+      </div>
+    </div>
+
+    <footer class="navbar navbar-default">
+  
+  <div class="container">
+    <a href="index.html">API Documentation</a> for werkzeug,
+  generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
+    22.2.0 at 2022-02-23 08:27:49.
+  </div>
+</footer>
+
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+  </body>
+</html>

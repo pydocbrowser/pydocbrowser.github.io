@@ -1,0 +1,952 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  
+
+  <head>
+    
+    <title>sqlalchemy.ext.automap</title>
+    <meta name="generator" content="pydoctor 22.2.0"> 
+        
+    </meta>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=0.75" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+    <link rel="stylesheet" type="text/css" href="extra.css" />
+</head>
+
+  <body>
+
+    <div id="banner" class="container">    
+    <div>
+        <a href="https://pydocbrowser.github.io/">Home</a>
+        &gt; sqlalchemy-1.4.31 
+        <!-- This is an important placeholder and will be 
+            replaced by project name and version on building docs -->
+        
+        <!-- (<a href=""&gt;show all versions</a&gt;) -->
+    </div>
+</div>
+
+    <nav class="navbar navbar-default">
+  
+  <div class="container">
+
+    <div class="navbar-header">
+      
+      <div class="navlinks">
+          <span class="navbar-brand">
+            sqlalchemy <a href="index.html">API Documentation</a>
+          </span>
+
+          <a href="moduleIndex.html">
+            Modules
+          </a>
+
+          <a href="classIndex.html">
+            Classes
+          </a>
+
+          <a href="nameIndex.html">
+            Names
+          </a>
+      </div>
+
+    </div>
+  </div>
+</nav>
+
+    
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="module"><code><code><a href="index.html" class="internal-link">sqlalchemy</a></code><wbr></wbr>.<code><a href="sqlalchemy.ext.html" class="internal-link" title="sqlalchemy.ext">ext</a></code><wbr></wbr>.<code><a href="sqlalchemy.ext.automap.html" class="internal-link" title="sqlalchemy.ext.automap">automap</a></code></code></h1>
+        <div id="showPrivate">
+          <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+        </div>
+      </div>
+
+      <div class="categoryHeader">
+        module documentation
+      </div>
+
+      <div class="extrasDocstring">
+        <a href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/ext/automap.py" class="sourceLink">(source)</a>
+        <p></p>
+      </div>
+
+      <div class="moduleDocstring">
+        <div><p>Define an extension to the <code><a href="sqlalchemy.ext.declarative.html" class="internal-link">sqlalchemy.ext.declarative</a></code> system
+which automatically generates mapped classes and relationships from a database
+schema, typically though not necessarily one which is reflected.</p>
+<div class="rst-versionadded">
+<span class="rst-versionmodified rst-added">New in version 0.9.1: </span><span>Added <code><a href="sqlalchemy.ext.automap.html" class="internal-link">sqlalchemy.ext.automap</a></code>.</span></div>
+<p>It is hoped that the <code>.AutomapBase</code> system provides a quick
+and modernized solution to the problem that the very famous
+<a class="rst-reference external" href="https://sqlsoup.readthedocs.io/en/latest/" target="_top">SQLSoup</a>
+also tries to solve, that of generating a quick and rudimentary object
+model from an existing database on the fly.  By addressing the issue strictly
+at the mapper configuration level, and integrating fully with existing
+Declarative class techniques, <code>.AutomapBase</code> seeks to provide
+a well-integrated approach to the issue of expediently auto-generating ad-hoc
+mappings.</p>
+<div class="rst-section" id="rst-basic-use">
+<h2 class="heading">Basic Use</h2>
+<p>The simplest usage is to reflect an existing database into a new model.
+We create a new <code>.AutomapBase</code> class in a similar manner as to how
+we create a declarative base class, using <code>.automap_base</code>.
+We then call <code>.AutomapBase.prepare</code> on the resulting base class,
+asking it to reflect the schema and produce mappings:</p>
+<pre class="rst-literal-block">
+from sqlalchemy.ext.automap import automap_base
+from sqlalchemy.orm import Session
+from sqlalchemy import create_engine
+
+Base = automap_base()
+
+# engine, suppose it has two tables 'user' and 'address' set up
+engine = create_engine("sqlite:///mydatabase.db")
+
+# reflect the tables
+Base.prepare(engine, reflect=True)
+
+# mapped classes are now created with names by default
+# matching that of the table name.
+User = Base.classes.user
+Address = Base.classes.address
+
+session = Session(engine)
+
+# rudimentary relationships are produced
+session.add(Address(email_address="foo@bar.com", user=User(name="foo")))
+session.commit()
+
+# collection-based relationships are by default named
+# "&lt;classname&gt;_collection"
+print (u1.address_collection)
+</pre>
+<p>Above, calling <code>.AutomapBase.prepare</code> while passing along the
+<a href="#system-message-1"><span class="rst-problematic" id="rst-problematic-1">:paramref:`.AutomapBase.prepare.reflect`</span></a> parameter indicates that the
+<code>_schema.MetaData.reflect</code>
+method will be called on this declarative base
+classes' <code>_schema.MetaData</code> collection; then, each <strong>viable</strong>
+<code>_schema.Table</code> within the <code>_schema.MetaData</code>
+will get a new mapped class
+generated automatically.  The <code>_schema.ForeignKeyConstraint</code>
+objects which
+link the various tables together will be used to produce new, bidirectional
+<code>_orm.relationship</code> objects between classes.
+The classes and relationships
+follow along a default naming scheme that we can customize.  At this point,
+our basic mapping consisting of related <tt class="rst-docutils literal">User</tt> and <tt class="rst-docutils literal">Address</tt> classes is
+ready to use in the traditional way.</p>
+<div class="rst-admonition note">
+<p class="rst-first rst-admonition-title">Note</p>
+<p class="rst-last">By <strong>viable</strong>, we mean that for a table to be mapped, it must
+specify a primary key.  Additionally, if the table is detected as being
+a pure association table between two other tables, it will not be directly
+mapped and will instead be configured as a many-to-many table between
+the mappings for the two referring tables.</p>
+</div>
+</div>
+<div class="rst-section" id="rst-generating-mappings-from-an-existing-metadata">
+<h2 class="heading">Generating Mappings from an Existing MetaData</h2>
+<p>We can pass a pre-declared <code>_schema.MetaData</code> object to
+<code>.automap_base</code>.
+This object can be constructed in any way, including programmatically, from
+a serialized file, or from itself being reflected using
+<code>_schema.MetaData.reflect</code>.
+Below we illustrate a combination of reflection and
+explicit table declaration:</p>
+<pre class="rst-literal-block">
+from sqlalchemy import create_engine, MetaData, Table, Column, ForeignKey
+from sqlalchemy.ext.automap import automap_base
+engine = create_engine("sqlite:///mydatabase.db")
+
+# produce our own MetaData object
+metadata = MetaData()
+
+# we can reflect it ourselves from a database, using options
+# such as 'only' to limit what tables we look at...
+metadata.reflect(engine, only=['user', 'address'])
+
+# ... or just define our own Table objects with it (or combine both)
+Table('user_order', metadata,
+                Column('id', Integer, primary_key=True),
+                Column('user_id', ForeignKey('user.id'))
+            )
+
+# we can then produce a set of mappings from this MetaData.
+Base = automap_base(metadata=metadata)
+
+# calling prepare() just sets up mapped classes and relationships.
+Base.prepare()
+
+# mapped classes are ready
+User, Address, Order = Base.classes.user, Base.classes.address,\
+    Base.classes.user_order
+</pre>
+</div>
+<div class="rst-section" id="rst-specifying-classes-explicitly">
+<h2 class="heading">Specifying Classes Explicitly</h2>
+<p>The <code>.sqlalchemy.ext.automap</code> extension allows classes to be defined
+explicitly, in a way similar to that of the <code>.DeferredReflection</code> class.
+Classes that extend from <code>.AutomapBase</code> act like regular declarative
+classes, but are not immediately mapped after their construction, and are
+instead mapped when we call <code>.AutomapBase.prepare</code>.  The
+<code>.AutomapBase.prepare</code> method will make use of the classes we've
+established based on the table name we use.  If our schema contains tables
+<tt class="rst-docutils literal">user</tt> and <tt class="rst-docutils literal">address</tt>, we can define one or both of the classes to be used:</p>
+<pre class="rst-literal-block">
+from sqlalchemy.ext.automap import automap_base
+from sqlalchemy import create_engine
+
+# automap base
+Base = automap_base()
+
+# pre-declare User for the 'user' table
+class User(Base):
+    __tablename__ = 'user'
+
+    # override schema elements like Columns
+    user_name = Column('name', String)
+
+    # override relationships too, if desired.
+    # we must use the same name that automap would use for the
+    # relationship, and also must refer to the class name that automap will
+    # generate for "address"
+    address_collection = relationship("address", collection_class=set)
+
+# reflect
+engine = create_engine("sqlite:///mydatabase.db")
+Base.prepare(engine, reflect=True)
+
+# we still have Address generated from the tablename "address",
+# but User is the same as Base.classes.User now
+
+Address = Base.classes.address
+
+u1 = session.query(User).first()
+print (u1.address_collection)
+
+# the backref is still there:
+a1 = session.query(Address).first()
+print (a1.user)
+</pre>
+<p>Above, one of the more intricate details is that we illustrated overriding
+one of the <code>_orm.relationship</code> objects that automap would have created.
+To do this, we needed to make sure the names match up with what automap
+would normally generate, in that the relationship name would be
+<tt class="rst-docutils literal">User.address_collection</tt> and the name of the class referred to, from
+automap's perspective, is called <tt class="rst-docutils literal">address</tt>, even though we are referring to
+it as <tt class="rst-docutils literal">Address</tt> within our usage of this class.</p>
+</div>
+<div class="rst-section" id="rst-overriding-naming-schemes">
+<h2 class="heading">Overriding Naming Schemes</h2>
+<p><code>.sqlalchemy.ext.automap</code> is tasked with producing mapped classes and
+relationship names based on a schema, which means it has decision points in how
+these names are determined.  These three decision points are provided using
+functions which can be passed to the <code>.AutomapBase.prepare</code> method, and
+are known as <code>.classname_for_table</code>,
+<code>.name_for_scalar_relationship</code>,
+and <code>.name_for_collection_relationship</code>.  Any or all of these
+functions are provided as in the example below, where we use a "camel case"
+scheme for class names and a "pluralizer" for collection names using the
+<a class="rst-reference external" href="https://pypi.org/project/inflect" target="_top">Inflect</a> package:</p>
+<pre class="rst-literal-block">
+import re
+import inflect
+
+def camelize_classname(base, tablename, table):
+    "Produce a 'camelized' class name, e.g. "
+    "'words_and_underscores' -&gt; 'WordsAndUnderscores'"
+
+    return str(tablename[0].upper() + \
+            re.sub(r'_([a-z])', lambda m: m.group(1).upper(), tablename[1:]))
+
+_pluralizer = inflect.engine()
+def pluralize_collection(base, local_cls, referred_cls, constraint):
+    "Produce an 'uncamelized', 'pluralized' class name, e.g. "
+    "'SomeTerm' -&gt; 'some_terms'"
+
+    referred_name = referred_cls.__name__
+    uncamelized = re.sub(r'[A-Z]',
+                         lambda m: "_%s" % m.group(0).lower(),
+                         referred_name)[1:]
+    pluralized = _pluralizer.plural(uncamelized)
+    return pluralized
+
+from sqlalchemy.ext.automap import automap_base
+
+Base = automap_base()
+
+engine = create_engine("sqlite:///mydatabase.db")
+
+Base.prepare(engine, reflect=True,
+            classname_for_table=camelize_classname,
+            name_for_collection_relationship=pluralize_collection
+    )
+</pre>
+<p>From the above mapping, we would now have classes <tt class="rst-docutils literal">User</tt> and <tt class="rst-docutils literal">Address</tt>,
+where the collection from <tt class="rst-docutils literal">User</tt> to <tt class="rst-docutils literal">Address</tt> is called
+<tt class="rst-docutils literal">User.addresses</tt>:</p>
+<pre class="rst-literal-block">
+User, Address = Base.classes.User, Base.classes.Address
+
+u1 = User(addresses=[Address(email="foo@bar.com")])
+</pre>
+</div>
+<div class="rst-section" id="rst-relationship-detection">
+<h2 class="heading">Relationship Detection</h2>
+<p>The vast majority of what automap accomplishes is the generation of
+<code>_orm.relationship</code> structures based on foreign keys.  The mechanism
+by which this works for many-to-one and one-to-many relationships is as
+follows:</p>
+<ol class="rst-arabic">
+<li><p class="rst-first">A given <code>_schema.Table</code>, known to be mapped to a particular class,
+is examined for <code>_schema.ForeignKeyConstraint</code> objects.</p>
+</li>
+<li><p class="rst-first">From each <code>_schema.ForeignKeyConstraint</code>, the remote
+<code>_schema.Table</code>
+object present is matched up to the class to which it is to be mapped,
+if any, else it is skipped.</p>
+</li>
+<li><p class="rst-first">As the <code>_schema.ForeignKeyConstraint</code>
+we are examining corresponds to a
+reference from the immediate mapped class,  the relationship will be set up
+as a many-to-one referring to the referred class; a corresponding
+one-to-many backref will be created on the referred class referring
+to this class.</p>
+</li>
+<li><p class="rst-first">If any of the columns that are part of the
+<code>_schema.ForeignKeyConstraint</code>
+are not nullable (e.g. <tt class="rst-docutils literal">nullable=False</tt>), a
+<a href="#system-message-2"><span class="rst-problematic" id="rst-problematic-2">:paramref:`_orm.relationship.cascade`</span></a> keyword argument
+of <tt class="rst-docutils literal">all, <span class="pre">delete-orphan</span></tt> will be added to the keyword arguments to
+be passed to the relationship or backref.  If the
+<code>_schema.ForeignKeyConstraint</code> reports that
+<a href="#system-message-3"><span class="rst-problematic" id="rst-problematic-3">:paramref:`_schema.ForeignKeyConstraint.ondelete`</span></a>
+is set to <tt class="rst-docutils literal">CASCADE</tt> for a not null or <tt class="rst-docutils literal">SET NULL</tt> for a nullable
+set of columns, the option <a href="#system-message-4"><span class="rst-problematic" id="rst-problematic-4">:paramref:`_orm.relationship.passive_deletes`</span></a>
+flag is set to <tt class="rst-docutils literal">True</tt> in the set of relationship keyword arguments.
+Note that not all backends support reflection of ON DELETE.</p>
+<div class="rst-versionadded">
+<p><span class="rst-versionmodified rst-added">New in version 1.0.0: </span><span>- automap will detect non-nullable foreign key
+constraints when producing a one-to-many relationship and establish
+a default cascade of <tt class="rst-docutils literal">all, <span class="pre">delete-orphan</span></tt> if so; additionally,
+if the constraint specifies
+<a href="#system-message-5"><span class="rst-problematic" id="rst-problematic-5">:paramref:`_schema.ForeignKeyConstraint.ondelete`</span></a>
+of <tt class="rst-docutils literal">CASCADE</tt> for non-nullable or <tt class="rst-docutils literal">SET NULL</tt> for nullable columns,
+the <tt class="rst-docutils literal">passive_deletes=True</tt> option is also added.</span></p>
+</div>
+</li>
+<li><p class="rst-first">The names of the relationships are determined using the
+<a href="#system-message-6"><span class="rst-problematic" id="rst-problematic-6">:paramref:`.AutomapBase.prepare.name_for_scalar_relationship`</span></a> and
+<a href="#system-message-7"><span class="rst-problematic" id="rst-problematic-7">:paramref:`.AutomapBase.prepare.name_for_collection_relationship`</span></a>
+callable functions.  It is important to note that the default relationship
+naming derives the name from the <strong>the actual class name</strong>.  If you've
+given a particular class an explicit name by declaring it, or specified an
+alternate class naming scheme, that's the name from which the relationship
+name will be derived.</p>
+</li>
+<li><p class="rst-first">The classes are inspected for an existing mapped property matching these
+names.  If one is detected on one side, but none on the other side,
+<code>.AutomapBase</code> attempts to create a relationship on the missing side,
+then uses the <a href="#system-message-8"><span class="rst-problematic" id="rst-problematic-8">:paramref:`_orm.relationship.back_populates`</span></a>
+parameter in order to
+point the new relationship to the other side.</p>
+</li>
+<li><p class="rst-first">In the usual case where no relationship is on either side,
+<code>.AutomapBase.prepare</code> produces a <code>_orm.relationship</code> on the
+"many-to-one" side and matches it to the other using the
+<a href="#system-message-9"><span class="rst-problematic" id="rst-problematic-9">:paramref:`_orm.relationship.backref`</span></a> parameter.</p>
+</li>
+<li><p class="rst-first">Production of the <code>_orm.relationship</code> and optionally the
+<code>.backref</code>
+is handed off to the <a href="#system-message-10"><span class="rst-problematic" id="rst-problematic-10">:paramref:`.AutomapBase.prepare.generate_relationship`</span></a>
+function, which can be supplied by the end-user in order to augment
+the arguments passed to <code>_orm.relationship</code> or <code>.backref</code> or to
+make use of custom implementations of these functions.</p>
+</li>
+</ol>
+<div class="rst-section" id="rst-custom-relationship-arguments">
+<h3 class="heading">Custom Relationship Arguments</h3>
+<p>The <a href="#system-message-11"><span class="rst-problematic" id="rst-problematic-11">:paramref:`.AutomapBase.prepare.generate_relationship`</span></a> hook can be used
+to add parameters to relationships.  For most cases, we can make use of the
+existing <code>.automap.generate_relationship</code> function to return
+the object, after augmenting the given keyword dictionary with our own
+arguments.</p>
+<p>Below is an illustration of how to send
+<a href="#system-message-12"><span class="rst-problematic" id="rst-problematic-12">:paramref:`_orm.relationship.cascade`</span></a> and
+<a href="#system-message-13"><span class="rst-problematic" id="rst-problematic-13">:paramref:`_orm.relationship.passive_deletes`</span></a>
+options along to all one-to-many relationships:</p>
+<pre class="rst-literal-block">
+from sqlalchemy.ext.automap import generate_relationship
+
+def _gen_relationship(base, direction, return_fn,
+                                attrname, local_cls, referred_cls, **kw):
+    if direction is interfaces.ONETOMANY:
+        kw['cascade'] = 'all, delete-orphan'
+        kw['passive_deletes'] = True
+    # make use of the built-in function to actually return
+    # the result.
+    return generate_relationship(base, direction, return_fn,
+                                 attrname, local_cls, referred_cls, **kw)
+
+from sqlalchemy.ext.automap import automap_base
+from sqlalchemy import create_engine
+
+# automap base
+Base = automap_base()
+
+engine = create_engine("sqlite:///mydatabase.db")
+Base.prepare(engine, reflect=True,
+            generate_relationship=_gen_relationship)
+</pre>
+</div>
+<div class="rst-section" id="rst-many-to-many-relationships">
+<h3 class="heading">Many-to-Many relationships</h3>
+<p><code>.sqlalchemy.ext.automap</code> will generate many-to-many relationships, e.g.
+those which contain a <tt class="rst-docutils literal">secondary</tt> argument.  The process for producing these
+is as follows:</p>
+<ol class="rst-arabic simple">
+<li>A given <code>_schema.Table</code> is examined for
+<code>_schema.ForeignKeyConstraint</code>
+objects, before any mapped class has been assigned to it.</li>
+<li>If the table contains two and exactly two
+<code>_schema.ForeignKeyConstraint</code>
+objects, and all columns within this table are members of these two
+<code>_schema.ForeignKeyConstraint</code> objects, the table is assumed to be a
+"secondary" table, and will <strong>not be mapped directly</strong>.</li>
+<li>The two (or one, for self-referential) external tables to which the
+<code>_schema.Table</code>
+refers to are matched to the classes to which they will be
+mapped, if any.</li>
+<li>If mapped classes for both sides are located, a many-to-many bi-directional
+<code>_orm.relationship</code> / <code>.backref</code>
+pair is created between the two
+classes.</li>
+<li>The override logic for many-to-many works the same as that of one-to-many/
+many-to-one; the <code>.generate_relationship</code> function is called upon
+to generate the structures and existing attributes will be maintained.</li>
+</ol>
+</div>
+<div class="rst-section" id="rst-relationships-with-inheritance">
+<h3 class="heading">Relationships with Inheritance</h3>
+<p><code>.sqlalchemy.ext.automap</code> will not generate any relationships between
+two classes that are in an inheritance relationship.   That is, with two
+classes given as follows:</p>
+<pre class="rst-literal-block">
+class Employee(Base):
+    __tablename__ = 'employee'
+    id = Column(Integer, primary_key=True)
+    type = Column(String(50))
+    __mapper_args__ = {
+         'polymorphic_identity':'employee', 'polymorphic_on': type
+    }
+
+class Engineer(Employee):
+    __tablename__ = 'engineer'
+    id = Column(Integer, ForeignKey('employee.id'), primary_key=True)
+    __mapper_args__ = {
+        'polymorphic_identity':'engineer',
+    }
+</pre>
+<p>The foreign key from <tt class="rst-docutils literal">Engineer</tt> to <tt class="rst-docutils literal">Employee</tt> is used not for a
+relationship, but to establish joined inheritance between the two classes.</p>
+<p>Note that this means automap will not generate <em>any</em> relationships
+for foreign keys that link from a subclass to a superclass.  If a mapping
+has actual relationships from subclass to superclass as well, those
+need to be explicit.  Below, as we have two separate foreign keys
+from <tt class="rst-docutils literal">Engineer</tt> to <tt class="rst-docutils literal">Employee</tt>, we need to set up both the relationship
+we want as well as the <tt class="rst-docutils literal">inherit_condition</tt>, as these are not things
+SQLAlchemy can guess:</p>
+<pre class="rst-literal-block">
+class Employee(Base):
+    __tablename__ = 'employee'
+    id = Column(Integer, primary_key=True)
+    type = Column(String(50))
+
+    __mapper_args__ = {
+        'polymorphic_identity':'employee', 'polymorphic_on':type
+    }
+
+class Engineer(Employee):
+    __tablename__ = 'engineer'
+    id = Column(Integer, ForeignKey('employee.id'), primary_key=True)
+    favorite_employee_id = Column(Integer, ForeignKey('employee.id'))
+
+    favorite_employee = relationship(Employee,
+                                     foreign_keys=favorite_employee_id)
+
+    __mapper_args__ = {
+        'polymorphic_identity':'engineer',
+        'inherit_condition': id == Employee.id
+    }
+</pre>
+</div>
+<div class="rst-section" id="rst-handling-simple-naming-conflicts">
+<h3 class="heading">Handling Simple Naming Conflicts</h3>
+<p>In the case of naming conflicts during mapping, override any of
+<code>.classname_for_table</code>, <code>.name_for_scalar_relationship</code>,
+and <code>.name_for_collection_relationship</code> as needed.  For example, if
+automap is attempting to name a many-to-one relationship the same as an
+existing column, an alternate convention can be conditionally selected.  Given
+a schema:</p>
+<pre class="rst-code rst-sql rst-literal-block">
+CREATE TABLE table_a (
+    id INTEGER PRIMARY KEY
+);
+
+CREATE TABLE table_b (
+    id INTEGER PRIMARY KEY,
+    table_a INTEGER,
+    FOREIGN KEY(table_a) REFERENCES table_a(id)
+);
+</pre>
+<p>The above schema will first automap the <tt class="rst-docutils literal">table_a</tt> table as a class named
+<tt class="rst-docutils literal">table_a</tt>; it will then automap a relationship onto the class for <tt class="rst-docutils literal">table_b</tt>
+with the same name as this related class, e.g. <tt class="rst-docutils literal">table_a</tt>.  This
+relationship name conflicts with the mapping column <tt class="rst-docutils literal">table_b.table_a</tt>,
+and will emit an error on mapping.</p>
+<p>We can resolve this conflict by using an underscore as follows:</p>
+<pre class="rst-literal-block">
+def name_for_scalar_relationship(base, local_cls, referred_cls, constraint):
+    name = referred_cls.__name__.lower()
+    local_table = local_cls.__table__
+    if name in local_table.columns:
+        newname = name + "_"
+        warnings.warn(
+            "Already detected name %s present.  using %s" %
+            (name, newname))
+        return newname
+    return name
+
+
+Base.prepare(engine, reflect=True,
+    name_for_scalar_relationship=name_for_scalar_relationship)
+</pre>
+<p>Alternatively, we can change the name on the column side.   The columns
+that are mapped can be modified using the technique described at
+<a href="#system-message-14"><span class="rst-problematic" id="rst-problematic-14">:ref:`mapper_column_distinct_names`</span></a>, by assigning the column explicitly
+to a new name:</p>
+<pre class="rst-literal-block">
+Base = automap_base()
+
+class TableB(Base):
+    __tablename__ = 'table_b'
+    _table_a = Column('table_a', ForeignKey('table_a.id'))
+
+Base.prepare(engine, reflect=True)
+</pre>
+</div>
+</div>
+<div class="rst-section" id="rst-using-automap-with-explicit-declarations">
+<h2 class="heading">Using Automap with Explicit Declarations</h2>
+<p>As noted previously, automap has no dependency on reflection, and can make
+use of any collection of <code>_schema.Table</code> objects within a
+<code>_schema.MetaData</code>
+collection.  From this, it follows that automap can also be used
+generate missing relationships given an otherwise complete model that fully
+defines table metadata:</p>
+<pre class="rst-literal-block">
+from sqlalchemy.ext.automap import automap_base
+from sqlalchemy import Column, Integer, String, ForeignKey
+
+Base = automap_base()
+
+class User(Base):
+    __tablename__ = 'user'
+
+    id = Column(Integer, primary_key=True)
+    name = Column(String)
+
+class Address(Base):
+    __tablename__ = 'address'
+
+    id = Column(Integer, primary_key=True)
+    email = Column(String)
+    user_id = Column(ForeignKey('user.id'))
+
+# produce relationships
+Base.prepare()
+
+# mapping is complete, with "address_collection" and
+# "user" relationships
+a1 = Address(email='u1')
+a2 = Address(email='u2')
+u1 = User(address_collection=[a1, a2])
+assert a1.user is u1
+</pre>
+<p>Above, given mostly complete <tt class="rst-docutils literal">User</tt> and <tt class="rst-docutils literal">Address</tt> mappings, the
+<code>_schema.ForeignKey</code> which we defined on <tt class="rst-docutils literal">Address.user_id</tt> allowed a
+bidirectional relationship pair <tt class="rst-docutils literal">Address.user</tt> and
+<tt class="rst-docutils literal">User.address_collection</tt> to be generated on the mapped classes.</p>
+<p>Note that when subclassing <code>.AutomapBase</code>,
+the <code>.AutomapBase.prepare</code> method is required; if not called, the classes
+we've declared are in an un-mapped state.</p>
+</div>
+<div class="rst-section" id="rst-intercepting-column-definitions">
+<span id="rst-automap-intercepting-columns"></span><h2 class="heading">Intercepting Column Definitions</h2>
+<p>The <code>_schema.MetaData</code> and <code>_schema.Table</code> objects support an
+event hook <code>_events.DDLEvents.column_reflect</code> that may be used to intercept
+the information reflected about a database column before the <code>_schema.Column</code>
+object is constructed.   For example if we wanted to map columns using a
+naming convention such as <tt class="rst-docutils literal">"attr_&lt;columnname&gt;"</tt>, the event could
+be applied as:</p>
+<pre class="rst-literal-block">
+@event.listens_for(Base.metadata, "column_reflect")
+def column_reflect(inspector, table, column_info):
+    # set column.key = "attr_&lt;lower_case_name&gt;"
+    column_info['key'] = "attr_%s" % column_info['name'].lower()
+
+# run reflection
+Base.prepare(engine, reflect=True)
+</pre>
+<div class="rst-versionadded">
+<span class="rst-versionmodified rst-added">New in version 1.4.0b2: </span><span>the <code>_events.DDLEvents.column_reflect</code> event
+may be applied to a <code>_schema.MetaData</code> object.</span></div>
+<div class="rst-admonition seealso">
+<p class="rst-first rst-admonition-title">See Also</p>
+<p><code>_events.DDLEvents.column_reflect</code></p>
+<p class="rst-last"><a href="#system-message-15"><span class="rst-problematic" id="rst-problematic-15">:ref:`mapper_automated_reflection_schemes`</span></a> - in the ORM mapping documentation</p>
+</div>
+</div>
+</div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id20561">
+  
+  
+  <tr class="class">
+    
+    <td>Class</td>
+    <td><code><a href="sqlalchemy.ext.automap.AutomapBase.html" class="internal-link" title="sqlalchemy.ext.automap.AutomapBase">​Automap​Base</a></code></td>
+    <td>Base class for an "automap" schema.</td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#automap_base" class="internal-link" title="sqlalchemy.ext.automap.automap_base">automap​_base</a></code></td>
+    <td>Produce a declarative automap base.</td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#classname_for_table" class="internal-link" title="sqlalchemy.ext.automap.classname_for_table">classname​_for​_table</a></code></td>
+    <td>Return the class name that should be used, given the name of a table.</td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#generate_relationship" class="internal-link" title="sqlalchemy.ext.automap.generate_relationship">generate​_relationship</a></code></td>
+    <td>Generate a <code>_orm.relationship</code> or <code>.backref</code> on behalf of two mapped classes.</td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#name_for_collection_relationship" class="internal-link" title="sqlalchemy.ext.automap.name_for_collection_relationship">name​_for​_collection​_relationship</a></code></td>
+    <td>Return the attribute name that should be used to refer from one class to another, for a collection reference.</td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#name_for_scalar_relationship" class="internal-link" title="sqlalchemy.ext.automap.name_for_scalar_relationship">name​_for​_scalar​_relationship</a></code></td>
+    <td>Return the attribute name that should be used to refer from one class to another, for a scalar object reference.</td>
+  </tr><tr class="function private">
+    
+    <td>Function</td>
+    <td><code><a href="#_is_many_to_many" class="internal-link" title="sqlalchemy.ext.automap._is_many_to_many">​_is​_many​_to​_many</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="function private">
+    
+    <td>Function</td>
+    <td><code><a href="#_m2m_relationship" class="internal-link" title="sqlalchemy.ext.automap._m2m_relationship">​_m2m​_relationship</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="function private">
+    
+    <td>Function</td>
+    <td><code><a href="#_relationships_for_fks" class="internal-link" title="sqlalchemy.ext.automap._relationships_for_fks">​_relationships​_for​_fks</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+        
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="basefunction">
+  
+  
+  <a name="sqlalchemy.ext.automap.automap_base">
+    
+  </a>
+  <a name="automap_base">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">automap_base</span>(declarative_base=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, **kw):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/ext/automap.py#L962">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Produce a declarative automap base.</p>
+<p>This function produces a new base class that is a product of the
+<code>.AutomapBase</code> class as well a declarative base produced by
+<code>.declarative.declarative_base</code>.</p>
+<p>All parameters other than <tt class="rst-docutils literal">declarative_base</tt> are keyword arguments
+that are passed directly to the <code>.declarative.declarative_base</code>
+function.</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">declarative​_base</span></td><td class="fieldArgDesc">an existing class produced by
+<code>.declarative.declarative_base</code>.  When this is passed, the function
+no longer invokes <code>.declarative.declarative_base</code> itself, and all
+other keyword arguments are ignored.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">**kw</span></td><td class="fieldArgDesc">keyword arguments are passed along to
+<code>.declarative.declarative_base</code>.</td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="sqlalchemy.ext.automap.classname_for_table">
+    
+  </a>
+  <a name="classname_for_table">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">classname_for_table</span>(base, tablename, table):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/ext/automap.py#L575">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Return the class name that should be used, given the name
+of a table.</p>
+<p>The default implementation is:</p>
+<pre class="rst-literal-block">
+return str(tablename)
+</pre>
+<p>Alternate implementations can be specified using the
+<a href="#system-message-1"><span class="rst-problematic" id="rst-problematic-1">:paramref:`.AutomapBase.prepare.classname_for_table`</span></a>
+parameter.</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">base</span></td><td class="fieldArgDesc">the <code>.AutomapBase</code> class doing the prepare.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">tablename</span></td><td class="fieldArgDesc">string name of the <code>_schema.Table</code>.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">table</span></td><td class="fieldArgDesc">the <code>_schema.Table</code> object itself.</td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td colspan="2"><p>a string class name.</p>
+<div class="rst-admonition note">
+<p class="rst-first rst-admonition-title">Note</p>
+<p class="rst-last">In Python 2, the string used for the class name <strong>must</strong> be a
+non-Unicode object, e.g. a <tt class="rst-docutils literal">str()</tt> object.  The <tt class="rst-docutils literal">.name</tt> attribute
+of <code>_schema.Table</code> is typically a Python unicode subclass,
+so the
+<tt class="rst-docutils literal">str()</tt> function should be applied to this name, after accounting for
+any non-ASCII characters.</p>
+</div>
+</td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="sqlalchemy.ext.automap.generate_relationship">
+    
+  </a>
+  <a name="generate_relationship">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">generate_relationship</span>(base, direction, return_fn, attrname, local_cls, referred_cls, **kw):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/ext/automap.py#L661">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Generate a <code>_orm.relationship</code> or <code>.backref</code>
+on behalf of two
+mapped classes.</p>
+<p>An alternate implementation of this function can be specified using the
+<a href="#system-message-1"><span class="rst-problematic" id="rst-problematic-1">:paramref:`.AutomapBase.prepare.generate_relationship`</span></a> parameter.</p>
+<p>The default implementation of this function is as follows:</p>
+<pre class="rst-literal-block">
+if return_fn is backref:
+    return return_fn(attrname, **kw)
+elif return_fn is relationship:
+    return return_fn(referred_cls, **kw)
+else:
+    raise TypeError("Unknown relationship function: %s" % return_fn)
+</pre>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">base</span></td><td class="fieldArgDesc">the <code>.AutomapBase</code> class doing the prepare.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">direction</span></td><td class="fieldArgDesc">indicate the "direction" of the relationship; this will
+be one of <code>.ONETOMANY</code>, <code>.MANYTOONE</code>, <code>.MANYTOMANY</code>.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">return​_fn</span></td><td class="fieldArgDesc">the function that is used by default to create the
+relationship.  This will be either <code>_orm.relationship</code> or
+<code>.backref</code>.  The <code>.backref</code> function's result will be used to
+produce a new <code>_orm.relationship</code> in a second step,
+so it is critical
+that user-defined implementations correctly differentiate between the two
+functions, if a custom relationship function is being used.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">attrname</span></td><td class="fieldArgDesc">the attribute name to which this relationship is being
+assigned. If the value of <a href="#system-message-2"><span class="rst-problematic" id="rst-problematic-2">:paramref:`.generate_relationship.return_fn`</span></a> is
+the <code>.backref</code> function, then this name is the name that is being
+assigned to the backref.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">local​_cls</span></td><td class="fieldArgDesc">the "local" class to which this relationship or backref
+will be locally present.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">referred​_cls</span></td><td class="fieldArgDesc">the "referred" class to which the relationship or
+backref refers to.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">**kw</span></td><td class="fieldArgDesc">all additional keyword arguments are passed along to the
+function.</td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td colspan="2">a <code>_orm.relationship</code> or <code>.backref</code> construct,
+as dictated
+by the <a href="#system-message-3"><span class="rst-problematic" id="rst-problematic-3">:paramref:`.generate_relationship.return_fn`</span></a> parameter.</td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="sqlalchemy.ext.automap.name_for_collection_relationship">
+    
+  </a>
+  <a name="name_for_collection_relationship">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">name_for_collection_relationship</span>(base, local_cls, referred_cls, constraint):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/ext/automap.py#L633">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Return the attribute name that should be used to refer from one
+class to another, for a collection reference.</p>
+<p>The default implementation is:</p>
+<pre class="rst-literal-block">
+return referred_cls.__name__.lower() + "_collection"
+</pre>
+<p>Alternate implementations
+can be specified using the
+<a href="#system-message-1"><span class="rst-problematic" id="rst-problematic-1">:paramref:`.AutomapBase.prepare.name_for_collection_relationship`</span></a>
+parameter.</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">base</span></td><td class="fieldArgDesc">the <code>.AutomapBase</code> class doing the prepare.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">local​_cls</span></td><td class="fieldArgDesc">the class to be mapped on the local side.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">referred​_cls</span></td><td class="fieldArgDesc">the class to be mapped on the referring side.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">constraint</span></td><td class="fieldArgDesc">the <code>_schema.ForeignKeyConstraint</code> that is being
+inspected to produce this relationship.</td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="sqlalchemy.ext.automap.name_for_scalar_relationship">
+    
+  </a>
+  <a name="name_for_scalar_relationship">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">name_for_scalar_relationship</span>(base, local_cls, referred_cls, constraint):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/ext/automap.py#L608">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Return the attribute name that should be used to refer from one
+class to another, for a scalar object reference.</p>
+<p>The default implementation is:</p>
+<pre class="rst-literal-block">
+return referred_cls.__name__.lower()
+</pre>
+<p>Alternate implementations can be specified using the
+<a href="#system-message-1"><span class="rst-problematic" id="rst-problematic-1">:paramref:`.AutomapBase.prepare.name_for_scalar_relationship`</span></a>
+parameter.</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">base</span></td><td class="fieldArgDesc">the <code>.AutomapBase</code> class doing the prepare.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">local​_cls</span></td><td class="fieldArgDesc">the class to be mapped on the local side.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">referred​_cls</span></td><td class="fieldArgDesc">the class to be mapped on the referring side.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">constraint</span></td><td class="fieldArgDesc">the <code>_schema.ForeignKeyConstraint</code> that is being
+inspected to produce this relationship.</td></tr></table></div>
+  </div>
+</div><div class="basefunction private">
+  
+  
+  <a name="sqlalchemy.ext.automap._is_many_to_many">
+    
+  </a>
+  <a name="_is_many_to_many">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_is_many_to_many</span>(automap_base, table):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/ext/automap.py#L994">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basefunction private">
+  
+  
+  <a name="sqlalchemy.ext.automap._m2m_relationship">
+    
+  </a>
+  <a name="_m2m_relationship">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_m2m_relationship</span>(automap_base, lcl_m2m, rem_m2m, m2m_const, table, table_to_map_config, collection_class, name_for_scalar_relationship, name_for_collection_relationship, generate_relationship):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/ext/automap.py#L1126">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basefunction private">
+  
+  
+  <a name="sqlalchemy.ext.automap._relationships_for_fks">
+    
+  </a>
+  <a name="_relationships_for_fks">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_relationships_for_fks</span>(automap_base, map_config, table_to_map_config, collection_class, name_for_scalar_relationship, name_for_collection_relationship, generate_relationship):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/ext/automap.py#L1021">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div>
+
+      </div>
+    </div>
+
+    <footer class="navbar navbar-default">
+  
+  <div class="container">
+    <a href="index.html">API Documentation</a> for sqlalchemy,
+  generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
+    22.2.0 at 2022-02-23 08:22:50.
+  </div>
+</footer>
+
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+  </body>
+</html>

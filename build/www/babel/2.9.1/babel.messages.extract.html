@@ -1,0 +1,571 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  
+
+  <head>
+    
+    <title>babel.messages.extract</title>
+    <meta name="generator" content="pydoctor 22.2.0"> 
+        
+    </meta>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=0.75" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+    <link rel="stylesheet" type="text/css" href="extra.css" />
+</head>
+
+  <body>
+
+    <div id="banner" class="container">    
+    <div>
+        <a href="https://pydocbrowser.github.io/">Home</a>
+        &gt; babel-2.9.1 
+        <!-- This is an important placeholder and will be 
+            replaced by project name and version on building docs -->
+        
+        <!-- (<a href=""&gt;show all versions</a&gt;) -->
+    </div>
+</div>
+
+    <nav class="navbar navbar-default">
+  
+  <div class="container">
+
+    <div class="navbar-header">
+      
+      <div class="navlinks">
+          <span class="navbar-brand">
+            babel <a href="index.html">API Documentation</a>
+          </span>
+
+          <a href="moduleIndex.html">
+            Modules
+          </a>
+
+          <a href="classIndex.html">
+            Classes
+          </a>
+
+          <a href="nameIndex.html">
+            Names
+          </a>
+      </div>
+
+    </div>
+  </div>
+</nav>
+
+    
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="module"><code><code><a href="index.html" class="internal-link">babel</a></code><wbr></wbr>.<code><a href="babel.messages.html" class="internal-link" title="babel.messages">messages</a></code><wbr></wbr>.<code><a href="babel.messages.extract.html" class="internal-link" title="babel.messages.extract">extract</a></code></code></h1>
+        <div id="showPrivate">
+          <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+        </div>
+      </div>
+
+      <div class="categoryHeader">
+        module documentation
+      </div>
+
+      <div class="extrasDocstring">
+        <a href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/babel-2.9.1//babel/messages/extract.py" class="sourceLink">(source)</a>
+        <p></p>
+      </div>
+
+      <div class="moduleDocstring">
+        <div><p>Basic infrastructure for extracting localizable messages from source files.</p>
+<p>This module defines an extensible system for collecting localizable message
+strings from a variety of sources. A native extractor for Python source
+files is builtin, extractors for other sources can be added using very
+simple plugins.</p>
+<p>The main entry points into the extraction functionality are the functions
+<code><a href="#extract_from_dir" class="internal-link" title="babel.messages.extract.extract_from_dir">extract_from_dir</a></code> and <code><a href="#extract_from_file" class="internal-link" title="babel.messages.extract.extract_from_file">extract_from_file</a></code>.</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Unknown Field: copyright</td></tr><tr><td colspan="2"><ol class="rst-loweralpha simple" start="3">
+<li>2013-2021 by the Babel Team.</li>
+</ol>
+</td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Unknown Field: license</td></tr><tr><td colspan="2">BSD, see LICENSE for more details.</td></tr></table></div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id624">
+  
+  
+  <tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#check_and_call_extract_file" class="internal-link" title="babel.messages.extract.check_and_call_extract_file">check​_and​_call​_extract​_file</a></code></td>
+    <td>Checks if the given file matches an extraction method mapping, and if so, calls extract_from_file.</td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#extract" class="internal-link" title="babel.messages.extract.extract">extract</a></code></td>
+    <td>Extract messages from the given file-like object using the specified extraction method.</td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#extract_from_dir" class="internal-link" title="babel.messages.extract.extract_from_dir">extract​_from​_dir</a></code></td>
+    <td>Extract messages from any source files found in the given directory.</td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#extract_from_file" class="internal-link" title="babel.messages.extract.extract_from_file">extract​_from​_file</a></code></td>
+    <td>Extract messages from a specific file.</td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#extract_javascript" class="internal-link" title="babel.messages.extract.extract_javascript">extract​_javascript</a></code></td>
+    <td>Extract messages from JavaScript source code.</td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#extract_nothing" class="internal-link" title="babel.messages.extract.extract_nothing">extract​_nothing</a></code></td>
+    <td>Pseudo extractor that does not actually extract anything, but simply returns an empty list.</td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#extract_python" class="internal-link" title="babel.messages.extract.extract_python">extract​_python</a></code></td>
+    <td>Extract messages from Python source code.</td>
+  </tr><tr class="constant">
+    
+    <td>Constant</td>
+    <td><code><a href="#DEFAULT_KEYWORDS" class="internal-link" title="babel.messages.extract.DEFAULT_KEYWORDS">DEFAULT​_KEYWORDS</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="constant">
+    
+    <td>Constant</td>
+    <td><code><a href="#DEFAULT_MAPPING" class="internal-link" title="babel.messages.extract.DEFAULT_MAPPING">DEFAULT​_MAPPING</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="constant">
+    
+    <td>Constant</td>
+    <td><code><a href="#GROUP_NAME" class="internal-link" title="babel.messages.extract.GROUP_NAME">GROUP​_NAME</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><code><a href="#empty_msgid_warning" class="internal-link" title="babel.messages.extract.empty_msgid_warning">empty​_msgid​_warning</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="function private">
+    
+    <td>Function</td>
+    <td><code><a href="#_strip_comment_tags" class="internal-link" title="babel.messages.extract._strip_comment_tags">​_strip​_comment​_tags</a></code></td>
+    <td>Helper function for <code><a href="#extract" class="internal-link" title="babel.messages.extract.extract">extract</a></code> that strips comment tags from strings in a list of comment lines.  This functions operates in-place.</td>
+  </tr>
+</table>
+        
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="basefunction">
+  
+  
+  <a name="babel.messages.extract.check_and_call_extract_file">
+    
+  </a>
+  <a name="check_and_call_extract_file">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">check_and_call_extract_file</span>(filepath, method_map, options_map, callback, keywords, comment_tags, strip_comment_tags, dirpath=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/babel-2.9.1//babel/messages/extract.py#L162">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Checks if the given file matches an extraction method mapping, and if so, calls extract_from_file.</p>
+<p>Note that the extraction method mappings are based relative to dirpath.
+So, given an absolute path to a file <code>filepath</code>, we want to check using
+just the relative path from <code>dirpath</code> to <code>filepath</code>.</p>
+<p>Yields 5-tuples (filename, lineno, messages, comments, context).</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">filepath</span></td><td class="fieldArgDesc">An absolute path to a file that exists.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">method​_map</span></td><td class="fieldArgDesc">a list of <tt class="rst-docutils literal">(pattern, method)</tt> tuples that maps of
+extraction method names to extended glob patterns</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">options​_map</span></td><td class="fieldArgDesc">a dictionary of additional options (optional)</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">callback</span></td><td class="fieldArgDesc">a function that is called for every file that message are
+extracted from, just before the extraction itself is
+performed; the function is passed the filename, the name
+of the extraction method and and the options dictionary as
+positional arguments, in that order</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">keywords</span></td><td class="fieldArgDesc">a dictionary mapping keywords (i.e. names of functions
+that should be recognized as translation functions) to
+tuples that specify which of their arguments contain
+localizable strings</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">comment​_tags</span></td><td class="fieldArgDesc">a list of tags of translator comments to search for
+and include in the results</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">strip​_comment​_tags</span></td><td class="fieldArgDesc">a flag that if set to <code><a href="https://docs.python.org/3/library/constants.html#True" class="intersphinx-link">True</a></code> causes all comment
+tags to be removed from the collected comments.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">dirpath</span></td><td class="fieldArgDesc">the path to the directory to extract messages from.</td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer">Iterable[tuple[str, int, str|tuple[str], list[str], str|None]</td><td class="fieldArgDesc">iterable of 5-tuples (filename, lineno, messages, comments, context)</td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="babel.messages.extract.extract">
+    
+  </a>
+  <a name="extract">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">extract</span>(method, fileobj, keywords=<a href="#DEFAULT_KEYWORDS" class="internal-link" title="babel.messages.extract.DEFAULT_KEYWORDS">DEFAULT_KEYWORDS</a>, comment_tags=(), options=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, strip_comment_tags=<a href="https://docs.python.org/3/library/constants.html#False" class="intersphinx-link">False</a>):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/babel-2.9.1//babel/messages/extract.py#L247">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Extract messages from the given file-like object using the specified
+extraction method.</p>
+<p>This function returns tuples of the form <tt class="rst-docutils literal">(lineno, message, comments, context)</tt>.</p>
+<p>The implementation dispatches the actual extraction to plugins, based on the
+value of the <tt class="rst-docutils literal">method</tt> parameter.</p>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>source = b<span class="py-string">'''# foo module</span>
+<span class="py-more">... </span><span class="py-string">def run(argv):</span>
+<span class="py-more">... </span><span class="py-string">   print(_('Hello, world!'))</span>
+<span class="py-more">... </span><span class="py-string">'''</span></pre><pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">from</span> babel._compat <span class="py-keyword">import</span> BytesIO
+<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">for</span> message <span class="py-keyword">in</span> extract(<span class="py-string">'python'</span>, BytesIO(source)):
+<span class="py-more">... </span>    <span class="py-builtin">print</span>(message)
+<span class="py-output">(3, u'Hello, world!', [], None)</span>
+</pre><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">method</span></td><td class="fieldArgDesc">an extraction method (a callable), or
+a string specifying the extraction method (.e.g. "python");
+if this is a simple name, the extraction function will be
+looked up by entry point; if it is an explicit reference
+to a function (of the form <tt class="rst-docutils literal">package.module:funcname</tt> or
+<tt class="rst-docutils literal">package.module.funcname</tt>), the corresponding function
+will be imported and used</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">fileobj</span></td><td class="fieldArgDesc">the file-like object the messages should be extracted from</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">keywords</span></td><td class="fieldArgDesc">a dictionary mapping keywords (i.e. names of functions
+that should be recognized as translation functions) to
+tuples that specify which of their arguments contain
+localizable strings</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">comment​_tags</span></td><td class="fieldArgDesc">a list of translator tags to search for and include
+in the results</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">options</span></td><td class="fieldArgDesc">a dictionary of additional options (optional)</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">strip​_comment​_tags</span></td><td class="fieldArgDesc">a flag that if set to <code><a href="https://docs.python.org/3/library/constants.html#True" class="intersphinx-link">True</a></code> causes all comment
+tags to be removed from the collected comments.</td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer">Iterable[tuple[int, str|tuple[str], list[str], str|None]</td><td class="fieldArgDesc">iterable of tuples of the form <tt class="rst-docutils literal">(lineno, message, comments, context)</tt></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Raises</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/exceptions.html#ValueError" class="intersphinx-link">ValueError</a></code></td><td>if the extraction method is not registered</td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="babel.messages.extract.extract_from_dir">
+    
+  </a>
+  <a name="extract_from_dir">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">extract_from_dir</span>(dirname=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, method_map=<a href="#DEFAULT_MAPPING" class="internal-link" title="babel.messages.extract.DEFAULT_MAPPING">DEFAULT_MAPPING</a>, options_map=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, keywords=<a href="#DEFAULT_KEYWORDS" class="internal-link" title="babel.messages.extract.DEFAULT_KEYWORDS">DEFAULT_KEYWORDS</a>, comment_tags=(), callback=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, strip_comment_tags=<a href="https://docs.python.org/3/library/constants.html#False" class="intersphinx-link">False</a>):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/babel-2.9.1//babel/messages/extract.py#L64">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Extract messages from any source files found in the given directory.</p>
+<p>This function generates tuples of the form <tt class="rst-docutils literal">(filename, lineno, message,
+comments, context)</tt>.</p>
+<p>Which extraction method is used per file is determined by the <code>method_map</code>
+parameter, which maps extended glob patterns to extraction method names.
+For example, the following is the default mapping:</p>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>method_map = [
+<span class="py-more">... </span>    (<span class="py-string">'**.py'</span>, <span class="py-string">'python'</span>)
+<span class="py-more">... </span>]</pre><p>This basically says that files with the filename extension ".py" at any
+level inside the directory should be processed by the "python" extraction
+method. Files that don't match any of the mapping patterns are ignored. See
+the documentation of the <code><a href="babel.util.html#pathmatch" class="internal-link" title="babel.util.pathmatch">pathmatch</a></code> function for details on the pattern
+syntax.</p>
+<p>The following extended mapping would also use the "genshi" extraction
+method on any file in "templates" subdirectory:</p>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>method_map = [
+<span class="py-more">... </span>    (<span class="py-string">'**/templates/**.*'</span>, <span class="py-string">'genshi'</span>),
+<span class="py-more">... </span>    (<span class="py-string">'**.py'</span>, <span class="py-string">'python'</span>)
+<span class="py-more">... </span>]</pre><p>The dictionary provided by the optional <code>options_map</code> parameter augments
+these mappings. It uses extended glob patterns as keys, and the values are
+dictionaries mapping options names to option values (both strings).</p>
+<p>The glob patterns of the <code>options_map</code> do not necessarily need to be the
+same as those used in the method mapping. For example, while all files in
+the <tt class="rst-docutils literal">templates</tt> folders in an application may be Genshi applications, the
+options for those files may differ based on extension:</p>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>options_map = {
+<span class="py-more">... </span>    <span class="py-string">'**/templates/**.txt'</span>: {
+<span class="py-more">... </span>        <span class="py-string">'template_class'</span>: <span class="py-string">'genshi.template:TextTemplate'</span>,
+<span class="py-more">... </span>        <span class="py-string">'encoding'</span>: <span class="py-string">'latin-1'</span>
+<span class="py-more">... </span>    },
+<span class="py-more">... </span>    <span class="py-string">'**/templates/**.html'</span>: {
+<span class="py-more">... </span>        <span class="py-string">'include_attrs'</span>: <span class="py-string">''</span>
+<span class="py-more">... </span>    }
+<span class="py-more">... </span>}</pre><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">dirname</span></td><td class="fieldArgDesc">the path to the directory to extract messages from.  If
+not given the current working directory is used.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">method​_map</span></td><td class="fieldArgDesc">a list of <tt class="rst-docutils literal">(pattern, method)</tt> tuples that maps of
+extraction method names to extended glob patterns</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">options​_map</span></td><td class="fieldArgDesc">a dictionary of additional options (optional)</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">keywords</span></td><td class="fieldArgDesc">a dictionary mapping keywords (i.e. names of functions
+that should be recognized as translation functions) to
+tuples that specify which of their arguments contain
+localizable strings</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">comment​_tags</span></td><td class="fieldArgDesc">a list of tags of translator comments to search for
+and include in the results</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">callback</span></td><td class="fieldArgDesc">a function that is called for every file that message are
+extracted from, just before the extraction itself is
+performed; the function is passed the filename, the name
+of the extraction method and and the options dictionary as
+positional arguments, in that order</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">strip​_comment​_tags</span></td><td class="fieldArgDesc">a flag that if set to <code><a href="https://docs.python.org/3/library/constants.html#True" class="intersphinx-link">True</a></code> causes all comment
+tags to be removed from the collected comments.</td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">See Also</td></tr><tr><td colspan="2"><code><a href="babel.util.html#pathmatch" class="internal-link" title="babel.util.pathmatch">pathmatch</a></code></td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="babel.messages.extract.extract_from_file">
+    
+  </a>
+  <a name="extract_from_file">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">extract_from_file</span>(method, filename, keywords=<a href="#DEFAULT_KEYWORDS" class="internal-link" title="babel.messages.extract.DEFAULT_KEYWORDS">DEFAULT_KEYWORDS</a>, comment_tags=(), options=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, strip_comment_tags=<a href="https://docs.python.org/3/library/constants.html#False" class="intersphinx-link">False</a>):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/babel-2.9.1//babel/messages/extract.py#L219">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Extract messages from a specific file.</p>
+<p>This function returns a list of tuples of the form <tt class="rst-docutils literal">(lineno, message, comments, context)</tt>.</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">method</span></td><td class="fieldArgDesc">a string specifying the extraction method (.e.g. "python")</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">filename</span></td><td class="fieldArgDesc">the path to the file to extract messages from</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">keywords</span></td><td class="fieldArgDesc">a dictionary mapping keywords (i.e. names of functions
+that should be recognized as translation functions) to
+tuples that specify which of their arguments contain
+localizable strings</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">comment​_tags</span></td><td class="fieldArgDesc">a list of translator tags to search for and include
+in the results</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">options</span></td><td class="fieldArgDesc">a dictionary of additional options (optional)</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">strip​_comment​_tags</span></td><td class="fieldArgDesc">a flag that if set to <code><a href="https://docs.python.org/3/library/constants.html#True" class="intersphinx-link">True</a></code> causes all comment
+tags to be removed from the collected comments.</td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer">list[tuple[int, str|tuple[str], list[str], str|None]</td><td class="fieldArgDesc">list of tuples of the form <tt class="rst-docutils literal">(lineno, message, comments, context)</tt></td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="babel.messages.extract.extract_javascript">
+    
+  </a>
+  <a name="extract_javascript">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">extract_javascript</span>(fileobj, keywords, comment_tags, options):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/babel-2.9.1//babel/messages/extract.py#L512">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Extract messages from JavaScript source code.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">fileobj</span></td><td class="fieldArgDesc">the seekable, file-like object the messages should be
+extracted from</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">keywords</span></td><td class="fieldArgDesc">a list of keywords (i.e. function names) that should be
+recognized as translation functions</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">comment​_tags</span></td><td class="fieldArgDesc">a list of translator tags to search for and include
+in the results</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">options</span></td><td class="fieldArgDesc"><p>a dictionary of additional options (optional)
+Supported options are:
+* <code>jsx</code> -- set to false to disable JSX/E4X support.
+* <code>template_string</code> -- set to false to disable ES6</p>
+<blockquote>
+template string support.</blockquote>
+</td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="babel.messages.extract.extract_nothing">
+    
+  </a>
+  <a name="extract_nothing">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">extract_nothing</span>(fileobj, keywords, comment_tags, options):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/babel-2.9.1//babel/messages/extract.py#L379">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Pseudo extractor that does not actually extract anything, but simply
+returns an empty list.</div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="babel.messages.extract.extract_python">
+    
+  </a>
+  <a name="extract_python">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">extract_python</span>(fileobj, keywords, comment_tags, options):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/babel-2.9.1//babel/messages/extract.py#L386">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Extract messages from Python source code.</p>
+<p>It returns an iterator yielding tuples in the following form <tt class="rst-docutils literal">(lineno,
+funcname, message, comments)</tt>.</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">fileobj</span></td><td class="fieldArgDesc">the seekable, file-like object the messages should be
+extracted from</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">keywords</span></td><td class="fieldArgDesc">a list of keywords (i.e. function names) that should be
+recognized as translation functions</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">comment​_tags</span></td><td class="fieldArgDesc">a list of translator tags to search for and include
+in the results</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">options</span></td><td class="fieldArgDesc">a dictionary of additional options (optional)</td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><tt class="rst-docutils literal">iterator</tt></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="baseconstant">
+  
+  
+  <a name="babel.messages.extract.DEFAULT_KEYWORDS">
+    
+  </a>
+  <a name="DEFAULT_KEYWORDS">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">DEFAULT_KEYWORDS</span>: <code><a href="https://docs.python.org/3/library/stdtypes.html#dict" class="intersphinx-link">dict</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/babel-2.9.1//babel/messages/extract.py#L32">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    <table class="valueTable"><tr class="fieldStart"><td class="fieldName">Value</td></tr><tr><td><pre class="constant-value"><code>{<wbr></wbr><span class="rst-variable-quote">'</span><span class="rst-variable-string">_</span><span class="rst-variable-quote">'</span>: <a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>,
+ <wbr></wbr><span class="rst-variable-quote">'</span><span class="rst-variable-string">gettext</span><span class="rst-variable-quote">'</span>: <a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>,
+ <wbr></wbr><span class="rst-variable-quote">'</span><span class="rst-variable-string">ngettext</span><span class="rst-variable-quote">'</span>: (<wbr></wbr>1, <wbr></wbr>2),
+ <wbr></wbr><span class="rst-variable-quote">'</span><span class="rst-variable-string">ugettext</span><span class="rst-variable-quote">'</span>: <a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>,
+ <wbr></wbr><span class="rst-variable-quote">'</span><span class="rst-variable-string">ungettext</span><span class="rst-variable-quote">'</span>: (<wbr></wbr>1, <wbr></wbr>2),
+ <wbr></wbr><span class="rst-variable-quote">'</span><span class="rst-variable-string">dgettext</span><span class="rst-variable-quote">'</span>: (<wbr></wbr>2),
+ <wbr></wbr><span class="rst-variable-quote">'</span><span class="rst-variable-string">dngettext</span><span class="rst-variable-quote">'</span>: (<wbr></wbr>2, <wbr></wbr>3),
+<span class="rst-variable-ellipsis">...</span></code></pre></td></tr></table>
+  </div>
+</div><div class="baseconstant">
+  
+  
+  <a name="babel.messages.extract.DEFAULT_MAPPING">
+    
+  </a>
+  <a name="DEFAULT_MAPPING">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">DEFAULT_MAPPING</span>: <code><a href="https://docs.python.org/3/library/stdtypes.html#list" class="intersphinx-link">list</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/babel-2.9.1//babel/messages/extract.py#L45">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    <table class="valueTable"><tr class="fieldStart"><td class="fieldName">Value</td></tr><tr><td><pre class="constant-value"><code>[<wbr></wbr>(<wbr></wbr><span class="rst-variable-quote">'</span><span class="rst-variable-string">**.py</span><span class="rst-variable-quote">'</span>, <wbr></wbr><span class="rst-variable-quote">'</span><span class="rst-variable-string">python</span><span class="rst-variable-quote">'</span>)]</code></pre></td></tr></table>
+  </div>
+</div><div class="baseconstant">
+  
+  
+  <a name="babel.messages.extract.GROUP_NAME">
+    
+  </a>
+  <a name="GROUP_NAME">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">GROUP_NAME</span>: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/babel-2.9.1//babel/messages/extract.py#L30">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    <table class="valueTable"><tr class="fieldStart"><td class="fieldName">Value</td></tr><tr><td><pre class="constant-value"><code><span class="rst-variable-quote">'</span><span class="rst-variable-string">babel.extractors</span><span class="rst-variable-quote">'</span></code></pre></td></tr></table>
+  </div>
+</div><div class="basevariable">
+  
+  
+  <a name="babel.messages.extract.empty_msgid_warning">
+    
+  </a>
+  <a name="empty_msgid_warning">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">empty_msgid_warning</span>: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/babel-2.9.1//babel/messages/extract.py#L47">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="basefunction private">
+  
+  
+  <a name="babel.messages.extract._strip_comment_tags">
+    
+  </a>
+  <a name="_strip_comment_tags">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_strip_comment_tags</span>(comments, tags):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/babel-2.9.1//babel/messages/extract.py#L52">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Helper function for <code><a href="#extract" class="internal-link" title="babel.messages.extract.extract">extract</a></code> that strips comment tags from strings
+in a list of comment lines.  This functions operates in-place.</div>
+  </div>
+</div>
+
+      </div>
+    </div>
+
+    <footer class="navbar navbar-default">
+  
+  <div class="container">
+    <a href="index.html">API Documentation</a> for babel,
+  generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
+    22.2.0 at 2022-02-23 08:04:53.
+  </div>
+</footer>
+
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+  </body>
+</html>

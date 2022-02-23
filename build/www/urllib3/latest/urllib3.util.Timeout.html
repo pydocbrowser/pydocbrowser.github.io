@@ -1,0 +1,544 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  
+
+  <head>
+    
+    <title>urllib3.util.Timeout</title>
+    <meta name="generator" content="pydoctor 22.2.0"> 
+        
+    </meta>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=0.75" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+    <link rel="stylesheet" type="text/css" href="extra.css" />
+</head>
+
+  <body>
+
+    <div id="banner" class="container">    
+    <div>
+        <a href="https://pydocbrowser.github.io/">Home</a>
+        &gt; urllib3-1.26.8 
+        <!-- This is an important placeholder and will be 
+            replaced by project name and version on building docs -->
+        
+        <!-- (<a href=""&gt;show all versions</a&gt;) -->
+    </div>
+</div>
+
+    <nav class="navbar navbar-default">
+  
+  <div class="container">
+
+    <div class="navbar-header">
+      
+      <div class="navlinks">
+          <span class="navbar-brand">
+            urllib3 <a href="index.html">API Documentation</a>
+          </span>
+
+          <a href="moduleIndex.html">
+            Modules
+          </a>
+
+          <a href="classIndex.html">
+            Classes
+          </a>
+
+          <a href="nameIndex.html">
+            Names
+          </a>
+      </div>
+
+    </div>
+  </div>
+</nav>
+
+    
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="class"><code><code><a href="index.html" class="internal-link">urllib3</a></code><wbr></wbr>.<code><a href="urllib3.util.html" class="internal-link" title="urllib3.util">util</a></code><wbr></wbr>.<code><a href="urllib3.util.Timeout.html" class="internal-link" title="urllib3.util.Timeout">Timeout</a></code></code></h1>
+        <div id="showPrivate">
+          <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+        </div>
+      </div>
+
+      <div class="categoryHeader">
+        class documentation
+      </div>
+
+      <div class="extrasDocstring">
+        <p><code><span class="py-keyword">class</span> <span class="py-defname">Timeout</span>(<a href="https://docs.python.org/3/library/functions.html#object" class="intersphinx-link" title="object">object</a>): <a href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/urllib3-1.26.8//src/urllib3/util/timeout.py#L20" class="sourceLink">(source)</a></code></p>
+        <p><a href="classIndex.html#urllib3.util.Timeout">View In Hierarchy</a></p>
+      </div>
+
+      <div class="moduleDocstring">
+        <div><p>Timeout configuration.</p>
+<p>Timeouts can be defined as a default for a pool:</p>
+<pre class="rst-code rst-python rst-literal-block">
+timeout = Timeout(connect=2.0, read=7.0)
+http = PoolManager(timeout=timeout)
+response = http.request('GET', 'http://example.com/')
+</pre>
+<p>Or per-request (which overrides the default for the pool):</p>
+<pre class="rst-code rst-python rst-literal-block">
+response = http.request('GET', 'http://example.com/', timeout=Timeout(10))
+</pre>
+<p>Timeouts can be disabled by setting all the parameters to <tt class="rst-docutils literal">None</tt>:</p>
+<pre class="rst-code rst-python rst-literal-block">
+no_timeout = Timeout(connect=None, read=None)
+response = http.request('GET', 'http://example.com/, timeout=no_timeout)
+</pre>
+<div class="rst-admonition note">
+<p class="rst-first rst-admonition-title">Note</p>
+<p>Many factors can affect the total amount of time for urllib3 to return
+an HTTP response.</p>
+<p>For example, Python's DNS resolver does not obey the timeout specified
+on the socket. Other factors that can affect total request time include
+high CPU load, high swap, the program running at a low priority level,
+or other behaviors.</p>
+<p>In addition, the read and total timeouts only measure the time between
+read operations on the socket connecting the client and the server,
+not the total amount of time for the request to return a complete
+response. For most requests, the timeout is raised because the server
+has not sent the first byte in the specified time. This is not always
+the case; if a server streams one byte every fifteen seconds, a timeout
+of 20 seconds will not trigger, even though the request will take
+several minutes to complete.</p>
+<p class="rst-last">If your goal is to cut off any request after a set amount of wall clock
+time, consider having a second "watcher" thread to cut off a slow
+request.</p>
+</div>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">total</span></td><td class="fieldArgDesc"><p>This combines the connect and read timeouts into one; the read timeout
+will be set to the time leftover from the connect attempt. In the
+event that both a connect timeout and a total are specified, or a read
+timeout and a total are specified, the shorter timeout will be applied.</p>
+<p>Defaults to None.</p>
+</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">connect</span></td><td class="fieldArgDesc">The maximum amount of time (in seconds) to wait for a connection
+attempt to a server to succeed. Omitting the parameter will default the
+connect timeout to the system default, probably <a class="rst-reference external" href="http://hg.python.org/cpython/file/603b4d593758/Lib/socket.py#l535" target="_top">the global default
+timeout in socket.py</a>.
+None will set an infinite timeout for connection attempts.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">read</span></td><td class="fieldArgDesc">The maximum amount of time (in seconds) to wait between consecutive
+read operations for a response from the server. Omitting the parameter
+will default the read timeout to the system default, probably <a class="rst-reference external" href="http://hg.python.org/cpython/file/603b4d593758/Lib/socket.py#l535" target="_top">the
+global default timeout in socket.py</a>.
+None will set an infinite timeout.</td></tr></table></div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id25651">
+  
+  
+  <tr class="classmethod">
+    
+    <td>Class Method</td>
+    <td><code><a href="#from_float" class="internal-link" title="urllib3.util.Timeout.from_float">from​_float</a></code></td>
+    <td>Create a new Timeout from a legacy timeout value.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__init__" class="internal-link" title="urllib3.util.Timeout.__init__">__init__</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__repr__" class="internal-link" title="urllib3.util.Timeout.__repr__">__repr__</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#clone" class="internal-link" title="urllib3.util.Timeout.clone">clone</a></code></td>
+    <td>Create a copy of the timeout object</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#get_connect_duration" class="internal-link" title="urllib3.util.Timeout.get_connect_duration">get​_connect​_duration</a></code></td>
+    <td>Gets the time elapsed since the call to <code><a href="#start_connect" class="internal-link" title="urllib3.util.Timeout.start_connect">start_connect</a></code>.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#start_connect" class="internal-link" title="urllib3.util.Timeout.start_connect">start​_connect</a></code></td>
+    <td>Start the timeout clock, used during a connect() attempt</td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#total" class="internal-link" title="urllib3.util.Timeout.total">total</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="property">
+    
+    <td>Property</td>
+    <td><code><a href="#connect_timeout" class="internal-link" title="urllib3.util.Timeout.connect_timeout">connect​_timeout</a></code></td>
+    <td>Get the value to use when setting a connection timeout.</td>
+  </tr><tr class="property">
+    
+    <td>Property</td>
+    <td><code><a href="#read_timeout" class="internal-link" title="urllib3.util.Timeout.read_timeout">read​_timeout</a></code></td>
+    <td>Get the value for the read timeout.</td>
+  </tr><tr class="classmethod private">
+    
+    <td>Class Method</td>
+    <td><code><a href="#_validate_timeout" class="internal-link" title="urllib3.util.Timeout._validate_timeout">​_validate​_timeout</a></code></td>
+    <td>Check that a timeout attribute is valid.</td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#_connect" class="internal-link" title="urllib3.util.Timeout._connect">​_connect</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#_read" class="internal-link" title="urllib3.util.Timeout._read">​_read</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#_start_connect" class="internal-link" title="urllib3.util.Timeout._start_connect">​_start​_connect</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+        
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="baseclassmethod">
+  
+  
+  <a name="urllib3.util.Timeout.from_float">
+    
+  </a>
+  <a name="from_float">
+    
+  </a>
+  <div class="functionHeader">
+    @<a href="https://docs.python.org/3/library/functions.html#classmethod" class="intersphinx-link">classmethod</a><br />
+    <span class="py-keyword">def</span> <span class="py-defname">from_float</span>(cls, timeout):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/urllib3-1.26.8//src/urllib3/util/timeout.py#L165">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Create a new Timeout from a legacy timeout value.</p>
+<p>The timeout value used by httplib.py sets the same timeout on the
+connect(), and recv() socket requests. This creates a <code><a href="urllib3.util.Timeout.html" class="internal-link" title="urllib3.util.Timeout">Timeout</a></code>
+object that sets the individual timeouts to the <tt class="rst-docutils literal">timeout</tt> value
+passed to this function.</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">timeout:</span>integer, float, sentinel default object, or None</td><td class="fieldArgDesc">The legacy timeout value.</td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="urllib3.util.Timeout.html" class="internal-link" title="urllib3.util.Timeout">Timeout</a></code></td><td class="fieldArgDesc">Timeout object</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="urllib3.util.Timeout.__init__">
+    
+  </a>
+  <a name="__init__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__init__</span>(self, total=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, connect=_Default, read=_Default):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/urllib3-1.26.8//src/urllib3/util/timeout.py#L102">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="urllib3.util.Timeout.__repr__">
+    
+  </a>
+  <a name="__repr__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__repr__</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/urllib3-1.26.8//src/urllib3/util/timeout.py#L108">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="urllib3.util.Timeout.clone">
+    
+  </a>
+  <a name="clone">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">clone</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/urllib3-1.26.8//src/urllib3/util/timeout.py#L181">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Create a copy of the timeout object</p>
+<p>Timeout properties are stored per-pool but each request needs a fresh
+Timeout object to ensure each one has its own start/stop configured.</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="urllib3.util.Timeout.html" class="internal-link" title="urllib3.util.Timeout">Timeout</a></code></td><td class="fieldArgDesc">a copy of the timeout object</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="urllib3.util.Timeout.get_connect_duration">
+    
+  </a>
+  <a name="get_connect_duration">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">get_connect_duration</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/urllib3-1.26.8//src/urllib3/util/timeout.py#L206">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Gets the time elapsed since the call to <code><a href="#start_connect" class="internal-link" title="urllib3.util.Timeout.start_connect">start_connect</a></code>.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer">float</td><td class="fieldArgDesc">Elapsed time in seconds.</td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Raises</td></tr><tr><td class="fieldArgContainer"><code><a href="urllib3.exceptions.TimeoutStateError.html" class="internal-link">urllib3.exceptions.TimeoutStateError</a></code></td><td>if you attempt
+to get duration for a timer that hasn't been started.</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="urllib3.util.Timeout.start_connect">
+    
+  </a>
+  <a name="start_connect">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">start_connect</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/urllib3-1.26.8//src/urllib3/util/timeout.py#L195">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Start the timeout clock, used during a connect() attempt<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Raises</td></tr><tr><td class="fieldArgContainer"><code><a href="urllib3.exceptions.TimeoutStateError.html" class="internal-link">urllib3.exceptions.TimeoutStateError</a></code></td><td>if you attempt
+to start a timer that has been started already.</td></tr></table></div>
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="urllib3.util.Timeout.total">
+    
+  </a>
+  <a name="total">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">total</span>: int, float, or None =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/urllib3-1.26.8//src/urllib3/util/timeout.py#L53">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseproperty">
+  
+  
+  <a name="urllib3.util.Timeout.connect_timeout">
+    
+  </a>
+  <a name="connect_timeout">
+    
+  </a>
+  <div class="functionHeader">
+    @<a href="https://docs.python.org/3/library/functions.html#property" class="intersphinx-link">property</a><br />
+    <span class="py-defname">connect_timeout</span>: int, float, <code>Timeout.DEFAULT_TIMEOUT</code> or None =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/urllib3-1.26.8//src/urllib3/util/timeout.py#L220">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p>Get the value to use when setting a connection timeout.</p>
+<p>This will be a positive float or integer, the value None
+(never timeout), or the default system timeout.</p>
+</div>
+    
+  </div>
+</div><div class="baseproperty">
+  
+  
+  <a name="urllib3.util.Timeout.read_timeout">
+    
+  </a>
+  <a name="read_timeout">
+    
+  </a>
+  <div class="functionHeader">
+    @<a href="https://docs.python.org/3/library/functions.html#property" class="intersphinx-link">property</a><br />
+    <span class="py-defname">read_timeout</span>: int, float, <code>Timeout.DEFAULT_TIMEOUT</code> or None =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/urllib3-1.26.8//src/urllib3/util/timeout.py#L238">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p>Get the value for the read timeout.</p>
+<p>This assumes some time has elapsed in the connection timeout and
+computes the read timeout appropriately.</p>
+<p>If self.total is set, the read timeout is dependent on the amount of
+time taken by the connect timeout. If the connection time has not been
+established, a <code>~urllib3.exceptions.TimeoutStateError</code> will be
+raised.</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Raises</td></tr><tr><td class="fieldArgContainer"><code><a href="urllib3.exceptions.TimeoutStateError.html" class="internal-link">urllib3.exceptions.TimeoutStateError</a></code></td><td>If <code><a href="#start_connect" class="internal-link" title="urllib3.util.Timeout.start_connect">start_connect</a></code>
+has not yet been called on this object.</td></tr></table></div>
+    
+  </div>
+</div><div class="baseclassmethod private">
+  
+  
+  <a name="urllib3.util.Timeout._validate_timeout">
+    
+  </a>
+  <a name="_validate_timeout">
+    
+  </a>
+  <div class="functionHeader">
+    @<a href="https://docs.python.org/3/library/functions.html#classmethod" class="intersphinx-link">classmethod</a><br />
+    <span class="py-keyword">def</span> <span class="py-defname">_validate_timeout</span>(cls, value, name):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/urllib3-1.26.8//src/urllib3/util/timeout.py#L119">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Check that a timeout attribute is valid.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">value</span></td><td class="fieldArgDesc">The timeout value to validate</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">name</span></td><td class="fieldArgDesc">The name of the timeout attribute to validate. This is
+used to specify in error messages.</td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td colspan="2">The validated and casted version of the given value.</td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Raises</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/exceptions.html#ValueError" class="intersphinx-link">ValueError</a></code></td><td>If it is a numeric value less than or equal to
+zero, or the type is not an integer, float, or None.</td></tr></table></div>
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  
+  <a name="urllib3.util.Timeout._connect">
+    
+  </a>
+  <a name="_connect">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_connect</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/urllib3-1.26.8//src/urllib3/util/timeout.py#L103">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  
+  <a name="urllib3.util.Timeout._read">
+    
+  </a>
+  <a name="_read">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_read</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/urllib3-1.26.8//src/urllib3/util/timeout.py#L104">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  
+  <a name="urllib3.util.Timeout._start_connect">
+    
+  </a>
+  <a name="_start_connect">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_start_connect</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/urllib3-1.26.8//src/urllib3/util/timeout.py#L106">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div>
+
+      </div>
+    </div>
+
+    <footer class="navbar navbar-default">
+  
+  <div class="container">
+    <a href="index.html">API Documentation</a> for urllib3,
+  generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
+    22.2.0 at 2022-02-23 08:27:39.
+  </div>
+</footer>
+
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+  </body>
+</html>

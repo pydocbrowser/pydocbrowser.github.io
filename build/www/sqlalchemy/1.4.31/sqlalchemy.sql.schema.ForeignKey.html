@@ -1,0 +1,1273 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  
+
+  <head>
+    
+    <title>sqlalchemy.sql.schema.ForeignKey</title>
+    <meta name="generator" content="pydoctor 22.2.0"> 
+        
+    </meta>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=0.75" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+    <link rel="stylesheet" type="text/css" href="extra.css" />
+</head>
+
+  <body>
+
+    <div id="banner" class="container">    
+    <div>
+        <a href="https://pydocbrowser.github.io/">Home</a>
+        &gt; sqlalchemy-1.4.31 
+        <!-- This is an important placeholder and will be 
+            replaced by project name and version on building docs -->
+        
+        <!-- (<a href=""&gt;show all versions</a&gt;) -->
+    </div>
+</div>
+
+    <nav class="navbar navbar-default">
+  
+  <div class="container">
+
+    <div class="navbar-header">
+      
+      <div class="navlinks">
+          <span class="navbar-brand">
+            sqlalchemy <a href="index.html">API Documentation</a>
+          </span>
+
+          <a href="moduleIndex.html">
+            Modules
+          </a>
+
+          <a href="classIndex.html">
+            Classes
+          </a>
+
+          <a href="nameIndex.html">
+            Names
+          </a>
+      </div>
+
+    </div>
+  </div>
+</nav>
+
+    
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="class"><code><code><a href="index.html" class="internal-link">sqlalchemy</a></code><wbr></wbr>.<code><a href="sqlalchemy.sql.html" class="internal-link" title="sqlalchemy.sql">sql</a></code><wbr></wbr>.<code><a href="sqlalchemy.sql.schema.html" class="internal-link" title="sqlalchemy.sql.schema">schema</a></code><wbr></wbr>.<code><a href="sqlalchemy.sql.schema.ForeignKey.html" class="internal-link" title="sqlalchemy.sql.schema.ForeignKey">ForeignKey</a></code></code></h1>
+        <div id="showPrivate">
+          <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+        </div>
+      </div>
+
+      <div class="categoryHeader">
+        class documentation
+      </div>
+
+      <div class="extrasDocstring">
+        <p><code><span class="py-keyword">class</span> <span class="py-defname">ForeignKey</span>(<a href="sqlalchemy.sql.base.DialectKWArgs.html" class="internal-link" title="sqlalchemy.sql.base.DialectKWArgs">DialectKWArgs</a>, <a href="sqlalchemy.sql.schema.SchemaItem.html" class="internal-link" title="sqlalchemy.sql.schema.SchemaItem">SchemaItem</a>): <a href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/sql/schema.py#L2006" class="sourceLink">(source)</a></code></p>
+        <p><a href="classIndex.html#sqlalchemy.sql.schema.ForeignKey">View In Hierarchy</a></p>
+      </div>
+
+      <div class="moduleDocstring">
+        <div><p>Defines a dependency between two columns.</p>
+<p><tt class="rst-docutils literal">ForeignKey</tt> is specified as an argument to a <code>_schema.Column</code>
+object,
+e.g.:</p>
+<pre class="rst-literal-block">
+t = Table("remote_table", metadata,
+    Column("remote_id", ForeignKey("main_table.id"))
+)
+</pre>
+<p>Note that <tt class="rst-docutils literal">ForeignKey</tt> is only a marker object that defines
+a dependency between two columns.   The actual constraint
+is in all cases represented by the <code>_schema.ForeignKeyConstraint</code>
+object.   This object will be generated automatically when
+a <tt class="rst-docutils literal">ForeignKey</tt> is associated with a <code>_schema.Column</code> which
+in turn is associated with a <code>_schema.Table</code>.   Conversely,
+when <code>_schema.ForeignKeyConstraint</code> is applied to a
+<code>_schema.Table</code>,
+<tt class="rst-docutils literal">ForeignKey</tt> markers are automatically generated to be
+present on each associated <code>_schema.Column</code>, which are also
+associated with the constraint object.</p>
+<p>Note that you cannot define a "composite" foreign key constraint,
+that is a constraint between a grouping of multiple parent/child
+columns, using <tt class="rst-docutils literal">ForeignKey</tt> objects.   To define this grouping,
+the <code>_schema.ForeignKeyConstraint</code> object must be used, and applied
+to the <code>_schema.Table</code>.   The associated <tt class="rst-docutils literal">ForeignKey</tt> objects
+are created automatically.</p>
+<p>The <tt class="rst-docutils literal">ForeignKey</tt> objects associated with an individual
+<code>_schema.Column</code>
+object are available in the <code>foreign_keys</code> collection
+of that column.</p>
+<p>Further examples of foreign key configuration are in
+<a href="#system-message-1"><span class="rst-problematic" id="rst-problematic-1">:ref:`metadata_foreignkeys`</span></a>.</p>
+</div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id24218">
+  
+  
+  <tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__init__" class="internal-link" title="sqlalchemy.sql.schema.ForeignKey.__init__">__init__</a></code></td>
+    <td>Construct a column-level FOREIGN KEY.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__repr__" class="internal-link" title="sqlalchemy.sql.schema.ForeignKey.__repr__">__repr__</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#copy" class="internal-link" title="sqlalchemy.sql.schema.ForeignKey.copy">copy</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#get_referent" class="internal-link" title="sqlalchemy.sql.schema.ForeignKey.get_referent">get​_referent</a></code></td>
+    <td>Return the <code>_schema.Column</code> in the given <code>_schema.Table</code> referenced by this <code>_schema.ForeignKey</code>.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#references" class="internal-link" title="sqlalchemy.sql.schema.ForeignKey.references">references</a></code></td>
+    <td>Return True if the given <code>_schema.Table</code> is referenced by this <code>_schema.ForeignKey</code>.</td>
+  </tr><tr class="classvariable">
+    
+    <td>Class Variable</td>
+    <td><code><a href="#__visit_name__" class="internal-link" title="sqlalchemy.sql.schema.ForeignKey.__visit_name__">__visit​_name__</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="classvariable">
+    
+    <td>Class Variable</td>
+    <td><code><a href="#target_fullname" class="internal-link" title="sqlalchemy.sql.schema.ForeignKey.target_fullname">target​_fullname</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#constraint" class="internal-link" title="sqlalchemy.sql.schema.ForeignKey.constraint">constraint</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#deferrable" class="internal-link" title="sqlalchemy.sql.schema.ForeignKey.deferrable">deferrable</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#info" class="internal-link" title="sqlalchemy.sql.schema.ForeignKey.info">info</a></code></td>
+    <td>Info dictionary associated with the object, allowing user-defined data to be associated with this <code>.SchemaItem</code>.</td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#initially" class="internal-link" title="sqlalchemy.sql.schema.ForeignKey.initially">initially</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#link_to_name" class="internal-link" title="sqlalchemy.sql.schema.ForeignKey.link_to_name">link​_to​_name</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#match" class="internal-link" title="sqlalchemy.sql.schema.ForeignKey.match">match</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#name" class="internal-link" title="sqlalchemy.sql.schema.ForeignKey.name">name</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#ondelete" class="internal-link" title="sqlalchemy.sql.schema.ForeignKey.ondelete">ondelete</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#onupdate" class="internal-link" title="sqlalchemy.sql.schema.ForeignKey.onupdate">onupdate</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#parent" class="internal-link" title="sqlalchemy.sql.schema.ForeignKey.parent">parent</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#use_alter" class="internal-link" title="sqlalchemy.sql.schema.ForeignKey.use_alter">use​_alter</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="property">
+    
+    <td>Property</td>
+    <td><code><a href="#column" class="internal-link" title="sqlalchemy.sql.schema.ForeignKey.column">column</a></code></td>
+    <td>Return the target <code>_schema.Column</code> referenced by this <code>_schema.ForeignKey</code>.</td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_copy" class="internal-link" title="sqlalchemy.sql.schema.ForeignKey._copy">​_copy</a></code></td>
+    <td>Produce a copy of this <code>_schema.ForeignKey</code> object.</td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_get_colspec" class="internal-link" title="sqlalchemy.sql.schema.ForeignKey._get_colspec">​_get​_colspec</a></code></td>
+    <td>Return a string based 'column specification' for this <code>_schema.ForeignKey</code>.</td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_link_to_col_by_colstring" class="internal-link" title="sqlalchemy.sql.schema.ForeignKey._link_to_col_by_colstring">​_link​_to​_col​_by​_colstring</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_remove_from_metadata" class="internal-link" title="sqlalchemy.sql.schema.ForeignKey._remove_from_metadata">​_remove​_from​_metadata</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_resolve_col_tokens" class="internal-link" title="sqlalchemy.sql.schema.ForeignKey._resolve_col_tokens">​_resolve​_col​_tokens</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_set_parent" class="internal-link" title="sqlalchemy.sql.schema.ForeignKey._set_parent">​_set​_parent</a></code></td>
+    <td>Associate with this SchemaEvent's parent object.</td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_set_remote_table" class="internal-link" title="sqlalchemy.sql.schema.ForeignKey._set_remote_table">​_set​_remote​_table</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_set_table" class="internal-link" title="sqlalchemy.sql.schema.ForeignKey._set_table">​_set​_table</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_set_target_column" class="internal-link" title="sqlalchemy.sql.schema.ForeignKey._set_target_column">​_set​_target​_column</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_table_key" class="internal-link" title="sqlalchemy.sql.schema.ForeignKey._table_key">​_table​_key</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#_colspec" class="internal-link" title="sqlalchemy.sql.schema.ForeignKey._colspec">​_colspec</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#_table_column" class="internal-link" title="sqlalchemy.sql.schema.ForeignKey._table_column">​_table​_column</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#_unvalidated_dialect_kw" class="internal-link" title="sqlalchemy.sql.schema.ForeignKey._unvalidated_dialect_kw">​_unvalidated​_dialect​_kw</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="property private">
+    
+    <td>Property</td>
+    <td><code><a href="#_column_tokens" class="internal-link" title="sqlalchemy.sql.schema.ForeignKey._column_tokens">​_column​_tokens</a></code></td>
+    <td>parse a string-based _colspec into its component parts.</td>
+  </tr><tr class="property private">
+    
+    <td>Property</td>
+    <td><code><a href="#_referred_schema" class="internal-link" title="sqlalchemy.sql.schema.ForeignKey._referred_schema">​_referred​_schema</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+        
+          <p class="inheritedFrom">
+            Inherited from <code><a href="sqlalchemy.sql.base.DialectKWArgs.html" class="internal-link" title="sqlalchemy.sql.base.DialectKWArgs">DialectKWArgs</a></code>:
+          </p>
+          <table class="children sortable" id="id24219">
+  
+  
+  <tr class="baseclassmethod">
+    
+    <td>Class Method</td>
+    <td><code><a href="sqlalchemy.sql.base.DialectKWArgs.html#argument_for" class="internal-link" title="sqlalchemy.sql.base.DialectKWArgs.argument_for">argument​_for</a></code></td>
+    <td>Add a new kind of dialect-specific keyword argument for this class.</td>
+  </tr><tr class="baseproperty">
+    
+    <td>Property</td>
+    <td><code><a href="sqlalchemy.sql.base.DialectKWArgs.html#dialect_kwargs" class="internal-link" title="sqlalchemy.sql.base.DialectKWArgs.dialect_kwargs">dialect​_kwargs</a></code></td>
+    <td>A collection of keyword arguments specified as dialect-specific options to this construct.</td>
+  </tr><tr class="baseproperty">
+    
+    <td>Property</td>
+    <td><code><a href="sqlalchemy.sql.base.DialectKWArgs.html#dialect_options" class="internal-link" title="sqlalchemy.sql.base.DialectKWArgs.dialect_options">dialect​_options</a></code></td>
+    <td>A collection of keyword arguments specified as dialect-specific options to this construct.</td>
+  </tr><tr class="baseproperty">
+    
+    <td>Property</td>
+    <td><code><a href="sqlalchemy.sql.base.DialectKWArgs.html#kwargs" class="internal-link" title="sqlalchemy.sql.base.DialectKWArgs.kwargs">kwargs</a></code></td>
+    <td>A synonym for <code>.DialectKWArgs.dialect_kwargs</code>.</td>
+  </tr><tr class="basemethod private">
+    
+    <td>Method</td>
+    <td><code><a href="sqlalchemy.sql.base.DialectKWArgs.html#_kw_reg_for_dialect_cls" class="internal-link" title="sqlalchemy.sql.base.DialectKWArgs._kw_reg_for_dialect_cls">​_kw​_reg​_for​_dialect​_cls</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod private">
+    
+    <td>Method</td>
+    <td><code><a href="sqlalchemy.sql.base.DialectKWArgs.html#_validate_dialect_kwargs" class="internal-link" title="sqlalchemy.sql.base.DialectKWArgs._validate_dialect_kwargs">​_validate​_dialect​_kwargs</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="baseclassvariable private">
+    
+    <td>Class Variable</td>
+    <td><code><a href="sqlalchemy.sql.base.DialectKWArgs.html#_dialect_kwargs_traverse_internals" class="internal-link" title="sqlalchemy.sql.base.DialectKWArgs._dialect_kwargs_traverse_internals">​_dialect​_kwargs​_traverse​_internals</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="baseclassvariable private">
+    
+    <td>Class Variable</td>
+    <td><code><a href="sqlalchemy.sql.base.DialectKWArgs.html#_kw_registry" class="internal-link" title="sqlalchemy.sql.base.DialectKWArgs._kw_registry">​_kw​_registry</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+          
+          <p class="inheritedFrom">
+            Inherited from <code><a href="sqlalchemy.sql.schema.SchemaItem.html" class="internal-link" title="sqlalchemy.sql.schema.SchemaItem">SchemaItem</a></code>:
+          </p>
+          <table class="children sortable" id="id24220">
+  
+  
+  <tr class="baseclassvariable">
+    
+    <td>Class Variable</td>
+    <td><code><a href="sqlalchemy.sql.schema.SchemaItem.html#create_drop_stringify_dialect" class="internal-link" title="sqlalchemy.sql.schema.SchemaItem.create_drop_stringify_dialect">create​_drop​_stringify​_dialect</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod private">
+    
+    <td>Method</td>
+    <td><code><a href="sqlalchemy.sql.schema.SchemaItem.html#_init_items" class="internal-link" title="sqlalchemy.sql.schema.SchemaItem._init_items">​_init​_items</a></code></td>
+    <td>Initialize the list of child items for this SchemaItem.</td>
+  </tr><tr class="basemethod private">
+    
+    <td>Method</td>
+    <td><code><a href="sqlalchemy.sql.schema.SchemaItem.html#_schema_item_copy" class="internal-link" title="sqlalchemy.sql.schema.SchemaItem._schema_item_copy">​_schema​_item​_copy</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="baseclassvariable private">
+    
+    <td>Class Variable</td>
+    <td><code><a href="sqlalchemy.sql.schema.SchemaItem.html#_use_schema_map" class="internal-link" title="sqlalchemy.sql.schema.SchemaItem._use_schema_map">​_use​_schema​_map</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+          
+          <p class="inheritedFrom">
+            Inherited from <code><a href="sqlalchemy.sql.base.SchemaEventTarget.html" class="internal-link" title="sqlalchemy.sql.base.SchemaEventTarget">SchemaEventTarget</a></code> (via <code><a href="sqlalchemy.sql.schema.SchemaItem.html" class="internal-link" title="sqlalchemy.sql.schema.SchemaItem">SchemaItem</a></code>):
+          </p>
+          <table class="children sortable" id="id24221">
+  
+  
+  <tr class="basemethod private">
+    
+    <td>Method</td>
+    <td><code><a href="sqlalchemy.sql.base.SchemaEventTarget.html#_set_parent_with_dispatch" class="internal-link" title="sqlalchemy.sql.base.SchemaEventTarget._set_parent_with_dispatch">​_set​_parent​_with​_dispatch</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+          
+          <p class="inheritedFrom">
+            Inherited from <code><a href="sqlalchemy.sql.visitors.Traversible.html" class="internal-link" title="sqlalchemy.sql.visitors.Traversible">Traversible</a></code> (via <code><a href="sqlalchemy.sql.schema.SchemaItem.html" class="internal-link" title="sqlalchemy.sql.schema.SchemaItem">SchemaItem</a></code>):
+          </p>
+          <table class="children sortable" id="id24222">
+  
+  
+  <tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="sqlalchemy.sql.visitors.Traversible.html#__class_getitem__" class="internal-link" title="sqlalchemy.sql.visitors.Traversible.__class_getitem__">__class​_getitem__</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="sqlalchemy.sql.visitors.Traversible.html#get_children" class="internal-link" title="sqlalchemy.sql.visitors.Traversible.get_children">get​_children</a></code></td>
+    <td>Return immediate child <code>.visitors.Traversible</code> elements of this <code>.visitors.Traversible</code>.</td>
+  </tr>
+</table>
+          
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="basemethod">
+  
+  
+  <a name="sqlalchemy.sql.schema.ForeignKey.__init__">
+    
+  </a>
+  <a name="__init__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__init__</span>(self, column, _constraint=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, use_alter=<a href="https://docs.python.org/3/library/constants.html#False" class="intersphinx-link">False</a>, name=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, onupdate=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, ondelete=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, deferrable=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, initially=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, link_to_name=<a href="https://docs.python.org/3/library/constants.html#False" class="intersphinx-link">False</a>, match=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, info=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, **dialect_kw):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/sql/schema.py#L2048">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Construct a column-level FOREIGN KEY.</p>
+<p>The <code>_schema.ForeignKey</code> object when constructed generates a
+<code>_schema.ForeignKeyConstraint</code>
+which is associated with the parent
+<code>_schema.Table</code> object's collection of constraints.</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">column</span></td><td class="fieldArgDesc">A single target column for the key relationship. A
+<code>_schema.Column</code> object or a column name as a string:
+<tt class="rst-docutils literal">tablename.columnkey</tt> or <tt class="rst-docutils literal">schema.tablename.columnkey</tt>.
+<tt class="rst-docutils literal">columnkey</tt> is the <tt class="rst-docutils literal">key</tt> which has been assigned to the column
+(defaults to the column name itself), unless <tt class="rst-docutils literal">link_to_name</tt> is
+<tt class="rst-docutils literal">True</tt> in which case the rendered name of the column is used.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">​_constraint</span></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">use​_alter</span></td><td class="fieldArgDesc"><p>passed to the underlying
+<code>_schema.ForeignKeyConstraint</code>
+to indicate the constraint should
+be generated/dropped externally from the CREATE TABLE/ DROP TABLE
+statement.  See <a href="#system-message-1"><span class="rst-problematic" id="rst-problematic-1">:paramref:`_schema.ForeignKeyConstraint.use_alter`</span></a>
+for further description.</p>
+<div class="rst-admonition seealso">
+<p class="rst-first rst-admonition-title">See Also</p>
+<p><a href="#system-message-2"><span class="rst-problematic" id="rst-problematic-2">:paramref:`_schema.ForeignKeyConstraint.use_alter`</span></a></p>
+<p class="rst-last"><a href="#system-message-3"><span class="rst-problematic" id="rst-problematic-3">:ref:`use_alter`</span></a></p>
+</div>
+</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">name</span></td><td class="fieldArgDesc">Optional string. An in-database name for the key if
+<code><a href="#constraint" class="internal-link" title="sqlalchemy.sql.schema.ForeignKey.constraint">constraint</a></code> is not provided.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">onupdate</span></td><td class="fieldArgDesc">Optional string. If set, emit ON UPDATE &lt;value&gt; when
+issuing DDL for this constraint. Typical values include CASCADE,
+DELETE and RESTRICT.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">ondelete</span></td><td class="fieldArgDesc">Optional string. If set, emit ON DELETE &lt;value&gt; when
+issuing DDL for this constraint. Typical values include CASCADE,
+DELETE and RESTRICT.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">deferrable</span></td><td class="fieldArgDesc">Optional bool. If set, emit DEFERRABLE or NOT
+DEFERRABLE when issuing DDL for this constraint.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">initially</span></td><td class="fieldArgDesc">Optional string. If set, emit INITIALLY &lt;value&gt; when
+issuing DDL for this constraint.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">link​_to​_name</span></td><td class="fieldArgDesc">if True, the string name given in <tt class="rst-docutils literal">column</tt> is
+the rendered name of the referenced column, not its locally
+assigned <tt class="rst-docutils literal">key</tt>.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">match</span></td><td class="fieldArgDesc">Optional string. If set, emit MATCH &lt;value&gt; when issuing
+DDL for this constraint. Typical values include SIMPLE, PARTIAL
+and FULL.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">info</span></td><td class="fieldArgDesc"><p>Optional data dictionary which will be populated into the
+<code>.SchemaItem.info</code> attribute of this object.</p>
+<div class="rst-versionadded">
+<span class="rst-versionmodified rst-added">New in version 1.0.0.</span></div>
+</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">**dialect​_kw</span></td><td class="fieldArgDesc"><p>Additional keyword arguments are dialect
+specific, and passed in the form <tt class="rst-docutils literal">&lt;dialectname&gt;_&lt;argname&gt;</tt>.  The
+arguments are ultimately handled by a corresponding
+<code>_schema.ForeignKeyConstraint</code>.
+See the documentation regarding
+an individual dialect at <a href="#system-message-4"><span class="rst-problematic" id="rst-problematic-4">:ref:`dialect_toplevel`</span></a> for detail on
+documented arguments.</p>
+<div class="rst-versionadded">
+<span class="rst-versionmodified rst-added">New in version 0.9.2.</span></div>
+</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.sql.schema.ForeignKey.__repr__">
+    
+  </a>
+  <a name="__repr__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__repr__</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/sql/schema.py#L2167">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overrides <code><a href="sqlalchemy.sql.schema.SchemaItem.html#__repr__" class="internal-link">sqlalchemy.sql.schema.SchemaItem.__repr__</a></code></div>
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.sql.schema.ForeignKey.copy">
+    
+  </a>
+  <a name="copy">
+    
+  </a>
+  <div class="functionHeader">
+    @<a href="sqlalchemy.util.deprecations.html#deprecated" class="internal-link" title="sqlalchemy.util.deprecations.deprecated">util.deprecated</a>(<wbr></wbr><span class="rst-variable-quote">'</span><span class="rst-variable-string">1.4</span><span class="rst-variable-quote">'</span>, <wbr></wbr><span class="rst-variable-quote">'</span><span class="rst-variable-string">The :meth:`_schema.ForeignKey.copy` method is deprecated and will be removed in a future release.</span><span class="rst-variable-quote">'</span>)<br />
+    <span class="py-keyword">def</span> <span class="py-defname">copy</span>(self, schema=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, **kw):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/sql/schema.py#L2170">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.sql.schema.ForeignKey.get_referent">
+    
+  </a>
+  <a name="get_referent">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">get_referent</span>(self, table):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/sql/schema.py#L2258">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Return the <code>_schema.Column</code> in the given
+<code>_schema.Table</code>
+referenced by this <code>_schema.ForeignKey</code>.</p>
+<p>Returns None if this <code>_schema.ForeignKey</code>
+does not reference the given
+<code>_schema.Table</code>.</p>
+</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.sql.schema.ForeignKey.references">
+    
+  </a>
+  <a name="references">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">references</span>(self, table):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/sql/schema.py#L2251">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Return True if the given <code>_schema.Table</code>
+is referenced by this
+<code>_schema.ForeignKey</code>.</div>
+  </div>
+</div><div class="baseclassvariable">
+  
+  
+  <a name="sqlalchemy.sql.schema.ForeignKey.__visit_name__">
+    
+  </a>
+  <a name="__visit_name__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">__visit_name__</span>: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/sql/schema.py#L2046">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">overrides <code><a href="sqlalchemy.sql.schema.SchemaItem.html#__visit_name__" class="internal-link">sqlalchemy.sql.schema.SchemaItem.__visit_name__</a></code></div>
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseclassvariable">
+  
+  
+  <a name="sqlalchemy.sql.schema.ForeignKey.target_fullname">
+    
+  </a>
+  <a name="target_fullname">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">target_fullname</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/sql/schema.py#L2249">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="sqlalchemy.sql.schema.ForeignKey.constraint">
+    
+  </a>
+  <a name="constraint">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">constraint</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/sql/schema.py#L2153">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="sqlalchemy.sql.schema.ForeignKey.deferrable">
+    
+  </a>
+  <a name="deferrable">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">deferrable</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/sql/schema.py#L2159">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="sqlalchemy.sql.schema.ForeignKey.info">
+    
+  </a>
+  <a name="info">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">info</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/sql/schema.py#L2164">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">overrides <code><a href="sqlalchemy.sql.schema.SchemaItem.html#info" class="internal-link">sqlalchemy.sql.schema.SchemaItem.info</a></code></div>
+    
+    <div><p>Info dictionary associated with the object, allowing user-defined
+data to be associated with this <code>.SchemaItem</code>.</p>
+<p>The dictionary is automatically generated when first accessed.
+It can also be specified in the constructor of some objects,
+such as <code>_schema.Table</code> and <code>_schema.Column</code>.</p>
+</div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="sqlalchemy.sql.schema.ForeignKey.initially">
+    
+  </a>
+  <a name="initially">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">initially</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/sql/schema.py#L2160">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="sqlalchemy.sql.schema.ForeignKey.link_to_name">
+    
+  </a>
+  <a name="link_to_name">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">link_to_name</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/sql/schema.py#L2161">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="sqlalchemy.sql.schema.ForeignKey.match">
+    
+  </a>
+  <a name="match">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">match</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/sql/schema.py#L2162">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="sqlalchemy.sql.schema.ForeignKey.name">
+    
+  </a>
+  <a name="name">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">name</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/sql/schema.py#L2156">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="sqlalchemy.sql.schema.ForeignKey.ondelete">
+    
+  </a>
+  <a name="ondelete">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">ondelete</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/sql/schema.py#L2158">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="sqlalchemy.sql.schema.ForeignKey.onupdate">
+    
+  </a>
+  <a name="onupdate">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">onupdate</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/sql/schema.py#L2157">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="sqlalchemy.sql.schema.ForeignKey.parent">
+    
+  </a>
+  <a name="parent">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">parent</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/sql/schema.py#L2154">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="sqlalchemy.sql.schema.ForeignKey.use_alter">
+    
+  </a>
+  <a name="use_alter">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">use_alter</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/sql/schema.py#L2155">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseproperty">
+  
+  
+  <a name="sqlalchemy.sql.schema.ForeignKey.column">
+    
+  </a>
+  <a name="column">
+    
+  </a>
+  <div class="functionHeader">
+    @<a href="sqlalchemy.util.langhelpers.memoized_property.html" class="internal-link" title="sqlalchemy.util.langhelpers.memoized_property">util.memoized_property</a><br />
+    <span class="py-defname">column</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/sql/schema.py#L2390">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p>Return the target <code>_schema.Column</code> referenced by this
+<code>_schema.ForeignKey</code>.</p>
+<p>If no target column has been established, an exception
+is raised.</p>
+<div class="rst-versionchanged">
+<span class="rst-versionmodified rst-changed">Changed in version 0.9.0: </span><span>Foreign key target column resolution now occurs as soon as both
+the ForeignKey object and the remote Column to which it refers
+are both associated with the same MetaData object.</span></div>
+</div>
+    
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="sqlalchemy.sql.schema.ForeignKey._copy">
+    
+  </a>
+  <a name="_copy">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_copy</span>(self, schema=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, **kw):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/sql/schema.py#L2178">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Produce a copy of this <code>_schema.ForeignKey</code> object.</p>
+<p>The new <code>_schema.ForeignKey</code> will not be bound
+to any <code>_schema.Column</code>.</p>
+<p>This method is usually used by the internal
+copy procedures of <code>_schema.Column</code>, <code>_schema.Table</code>,
+and <code>_schema.MetaData</code>.</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">schema</span></td><td class="fieldArgDesc">The returned <code>_schema.ForeignKey</code> will
+reference the original table and column name, qualified
+by the given string schema name.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">**kw</span></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="sqlalchemy.sql.schema.ForeignKey._get_colspec">
+    
+  </a>
+  <a name="_get_colspec">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_get_colspec</span>(self, schema=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, table_name=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/sql/schema.py#L2208">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Return a string based 'column specification' for this
+<code>_schema.ForeignKey</code>.</p>
+<p>This is usually the equivalent of the string-based "tablename.colname"
+argument first passed to the object's constructor.</p>
+</div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="sqlalchemy.sql.schema.ForeignKey._link_to_col_by_colstring">
+    
+  </a>
+  <a name="_link_to_col_by_colstring">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_link_to_col_by_colstring</span>(self, parenttable, table, colname):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/sql/schema.py#L2337">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="sqlalchemy.sql.schema.ForeignKey._remove_from_metadata">
+    
+  </a>
+  <a name="_remove_from_metadata">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_remove_from_metadata</span>(self, metadata):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/sql/schema.py#L2452">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="sqlalchemy.sql.schema.ForeignKey._resolve_col_tokens">
+    
+  </a>
+  <a name="_resolve_col_tokens">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_resolve_col_tokens</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/sql/schema.py#L2302">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="sqlalchemy.sql.schema.ForeignKey._set_parent">
+    
+  </a>
+  <a name="_set_parent">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_set_parent</span>(self, column, **kw):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/sql/schema.py#L2438">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overrides <code><a href="sqlalchemy.sql.base.SchemaEventTarget.html#_set_parent" class="internal-link">sqlalchemy.sql.base.SchemaEventTarget._set_parent</a></code></div>
+    
+    <div>Associate with this SchemaEvent's parent object.</div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="sqlalchemy.sql.schema.ForeignKey._set_remote_table">
+    
+  </a>
+  <a name="_set_remote_table">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_set_remote_table</span>(self, table):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/sql/schema.py#L2447">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="sqlalchemy.sql.schema.ForeignKey._set_table">
+    
+  </a>
+  <a name="_set_table">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_set_table</span>(self, column, table):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/sql/schema.py#L2460">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="sqlalchemy.sql.schema.ForeignKey._set_target_column">
+    
+  </a>
+  <a name="_set_target_column">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_set_target_column</span>(self, column):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/sql/schema.py#L2372">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="sqlalchemy.sql.schema.ForeignKey._table_key">
+    
+  </a>
+  <a name="_table_key">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_table_key</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/sql/schema.py#L2239">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  
+  <a name="sqlalchemy.sql.schema.ForeignKey._colspec">
+    
+  </a>
+  <a name="_colspec">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_colspec</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/sql/schema.py#L2133">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  
+  <a name="sqlalchemy.sql.schema.ForeignKey._table_column">
+    
+  </a>
+  <a name="_table_column">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_table_column</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/sql/schema.py#L2136">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  
+  <a name="sqlalchemy.sql.schema.ForeignKey._unvalidated_dialect_kw">
+    
+  </a>
+  <a name="_unvalidated_dialect_kw">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_unvalidated_dialect_kw</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/sql/schema.py#L2165">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseproperty private">
+  
+  
+  <a name="sqlalchemy.sql.schema.ForeignKey._column_tokens">
+    
+  </a>
+  <a name="_column_tokens">
+    
+  </a>
+  <div class="functionHeader">
+    @<a href="sqlalchemy.util.langhelpers.memoized_property.html" class="internal-link" title="sqlalchemy.util.langhelpers.memoized_property">util.memoized_property</a><br />
+    <span class="py-defname">_column_tokens</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/sql/schema.py#L2271">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div>parse a string-based _colspec into its component parts.</div>
+    
+  </div>
+</div><div class="baseproperty private">
+  
+  
+  <a name="sqlalchemy.sql.schema.ForeignKey._referred_schema">
+    
+  </a>
+  <a name="_referred_schema">
+    
+  </a>
+  <div class="functionHeader">
+    @<a href="https://docs.python.org/3/library/functions.html#property" class="intersphinx-link">property</a><br />
+    <span class="py-defname">_referred_schema</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/sql/schema.py#L2235">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div>
+
+      </div>
+    </div>
+
+    <footer class="navbar navbar-default">
+  
+  <div class="container">
+    <a href="index.html">API Documentation</a> for sqlalchemy,
+  generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
+    22.2.0 at 2022-02-23 08:22:50.
+  </div>
+</footer>
+
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+  </body>
+</html>

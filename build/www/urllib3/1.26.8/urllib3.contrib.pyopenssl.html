@@ -1,0 +1,556 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  
+
+  <head>
+    
+    <title>urllib3.contrib.pyopenssl</title>
+    <meta name="generator" content="pydoctor 22.2.0"> 
+        
+    </meta>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=0.75" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+    <link rel="stylesheet" type="text/css" href="extra.css" />
+</head>
+
+  <body>
+
+    <div id="banner" class="container">    
+    <div>
+        <a href="https://pydocbrowser.github.io/">Home</a>
+        &gt; urllib3-1.26.8 
+        <!-- This is an important placeholder and will be 
+            replaced by project name and version on building docs -->
+        
+        <!-- (<a href=""&gt;show all versions</a&gt;) -->
+    </div>
+</div>
+
+    <nav class="navbar navbar-default">
+  
+  <div class="container">
+
+    <div class="navbar-header">
+      
+      <div class="navlinks">
+          <span class="navbar-brand">
+            urllib3 <a href="index.html">API Documentation</a>
+          </span>
+
+          <a href="moduleIndex.html">
+            Modules
+          </a>
+
+          <a href="classIndex.html">
+            Classes
+          </a>
+
+          <a href="nameIndex.html">
+            Names
+          </a>
+      </div>
+
+    </div>
+  </div>
+</nav>
+
+    
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="module"><code><code><a href="index.html" class="internal-link">urllib3</a></code><wbr></wbr>.<code><a href="urllib3.contrib.html" class="internal-link" title="urllib3.contrib">contrib</a></code><wbr></wbr>.<code><a href="urllib3.contrib.pyopenssl.html" class="internal-link" title="urllib3.contrib.pyopenssl">pyopenssl</a></code></code></h1>
+        <div id="showPrivate">
+          <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+        </div>
+      </div>
+
+      <div class="categoryHeader">
+        module documentation
+      </div>
+
+      <div class="extrasDocstring">
+        <a href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/urllib3-1.26.8//src/urllib3/contrib/pyopenssl.py" class="sourceLink">(source)</a>
+        <p></p>
+      </div>
+
+      <div class="moduleDocstring">
+        <div><p>TLS with <a class="rst-reference external" href="https://en.wikipedia.org/wiki/Server_Name_Indication" target="_top">SNI</a>-support for Python 2. Follow these instructions if you would
+like to verify TLS certificates in Python 2. Note, the default libraries do
+<em>not</em> do certificate checking; you need to do additional work to validate
+certificates yourself.</p>
+<p>This needs the following packages installed:</p>
+<ul class="rst-simple">
+<li><a class="rst-reference external" href="https://www.pyopenssl.org" target="_top">pyOpenSSL</a> (tested with 16.0.0)</li>
+<li><a class="rst-reference external" href="https://cryptography.io" target="_top">cryptography</a> (minimum 1.3.4, from pyopenssl)</li>
+<li><a class="rst-reference external" href="https://github.com/kjd/idna" target="_top">idna</a> (minimum 2.0, from cryptography)</li>
+</ul>
+<p>However, pyopenssl depends on cryptography, which depends on idna, so while we
+use all three directly here we end up having relatively few packages required.</p>
+<p>You can install them with the following command:</p>
+<pre class="rst-code rst-bash rst-literal-block">
+$ python -m pip install pyopenssl cryptography idna
+</pre>
+<p>To activate certificate checking, call
+<code>~urllib3.contrib.pyopenssl.inject_into_urllib3</code> from your Python code
+before you begin making HTTP requests. This can be done in a <tt class="rst-docutils literal">sitecustomize</tt>
+module, or at any other time before your application begins using <tt class="rst-docutils literal">urllib3</tt>,
+like this:</p>
+<pre class="rst-code rst-python rst-literal-block">
+try:
+    import urllib3.contrib.pyopenssl
+    urllib3.contrib.pyopenssl.inject_into_urllib3()
+except ImportError:
+    pass
+</pre>
+<p>Now you can use <code><a href="index.html" class="internal-link">urllib3</a></code> as you normally would, and it will support SNI
+when the required modules are installed.</p>
+<p>Activating this module also has the positive side effect of disabling SSL/TLS
+compression in Python 2 (see <a class="rst-reference external" href="https://en.wikipedia.org/wiki/CRIME_(security_exploit)" target="_top">CRIME attack</a>).</p>
+</div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id25557">
+  
+  
+  <tr class="class">
+    
+    <td>Class</td>
+    <td><code><a href="urllib3.contrib.pyopenssl.PyOpenSSLContext.html" class="internal-link" title="urllib3.contrib.pyopenssl.PyOpenSSLContext">​Py​Open​SSLContext</a></code></td>
+    <td>I am a wrapper class for the PyOpenSSL <tt class="rst-docutils literal">Context</tt> object. I am responsible for translating the interface of the standard library <tt class="rst-docutils literal">SSLContext</tt> object to calls into PyOpenSSL.</td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><code><a href="urllib3.contrib.pyopenssl.UnsupportedExtension.html" class="internal-link" title="urllib3.contrib.pyopenssl.UnsupportedExtension">​Unsupported​Extension</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><code><a href="urllib3.contrib.pyopenssl.WrappedSocket.html" class="internal-link" title="urllib3.contrib.pyopenssl.WrappedSocket">​Wrapped​Socket</a></code></td>
+    <td>API-compatibility wrapper for Python OpenSSL's Connection-class.</td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#extract_from_urllib3" class="internal-link" title="urllib3.contrib.pyopenssl.extract_from_urllib3">extract​_from​_urllib3</a></code></td>
+    <td>Undo monkey-patching by <code><a href="#inject_into_urllib3" class="internal-link" title="urllib3.contrib.pyopenssl.inject_into_urllib3">inject_into_urllib3</a></code>.</td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#get_subj_alt_name" class="internal-link" title="urllib3.contrib.pyopenssl.get_subj_alt_name">get​_subj​_alt​_name</a></code></td>
+    <td>Given an PyOpenSSL certificate, provides all the subject alternative names.</td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#inject_into_urllib3" class="internal-link" title="urllib3.contrib.pyopenssl.inject_into_urllib3">inject​_into​_urllib3</a></code></td>
+    <td>Monkey-patch urllib3 with PyOpenSSL-backed SSL-support.</td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#makefile" class="internal-link" title="urllib3.contrib.pyopenssl.makefile">makefile</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="constant">
+    
+    <td>Constant</td>
+    <td><code><a href="#HAS_SNI" class="internal-link" title="urllib3.contrib.pyopenssl.HAS_SNI">HAS​_SNI</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="constant">
+    
+    <td>Constant</td>
+    <td><code><a href="#SSL_WRITE_BLOCKSIZE" class="internal-link" title="urllib3.contrib.pyopenssl.SSL_WRITE_BLOCKSIZE">SSL​_WRITE​_BLOCKSIZE</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><code><a href="#log" class="internal-link" title="urllib3.contrib.pyopenssl.log">log</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="function private">
+    
+    <td>Function</td>
+    <td><code><a href="#_dnsname_to_stdlib" class="internal-link" title="urllib3.contrib.pyopenssl._dnsname_to_stdlib">​_dnsname​_to​_stdlib</a></code></td>
+    <td>Converts a dNSName SubjectAlternativeName field to the form used by the standard library on the given Python version.</td>
+  </tr><tr class="function private">
+    
+    <td>Function</td>
+    <td><code><a href="#_validate_dependencies_met" class="internal-link" title="urllib3.contrib.pyopenssl._validate_dependencies_met">​_validate​_dependencies​_met</a></code></td>
+    <td>Verifies that PyOpenSSL's package-level dependencies have been met. Throws <code><a href="https://docs.python.org/3/library/exceptions.html#ImportError" class="intersphinx-link">ImportError</a></code> if they are not met.</td>
+  </tr><tr class="function private">
+    
+    <td>Function</td>
+    <td><code><a href="#_verify_callback" class="internal-link" title="urllib3.contrib.pyopenssl._verify_callback">​_verify​_callback</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable private">
+    
+    <td>Variable</td>
+    <td><code><a href="#_fileobject" class="internal-link" title="urllib3.contrib.pyopenssl._fileobject">​_fileobject</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable private">
+    
+    <td>Variable</td>
+    <td><code><a href="#_openssl_to_stdlib_verify" class="internal-link" title="urllib3.contrib.pyopenssl._openssl_to_stdlib_verify">​_openssl​_to​_stdlib​_verify</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable private">
+    
+    <td>Variable</td>
+    <td><code><a href="#_openssl_versions" class="internal-link" title="urllib3.contrib.pyopenssl._openssl_versions">​_openssl​_versions</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable private">
+    
+    <td>Variable</td>
+    <td><code><a href="#_stdlib_to_openssl_verify" class="internal-link" title="urllib3.contrib.pyopenssl._stdlib_to_openssl_verify">​_stdlib​_to​_openssl​_verify</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+        
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="basefunction">
+  
+  
+  <a name="urllib3.contrib.pyopenssl.extract_from_urllib3">
+    
+  </a>
+  <a name="extract_from_urllib3">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">extract_from_urllib3</span>():
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/urllib3-1.26.8//src/urllib3/contrib/pyopenssl.py#L134">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Undo monkey-patching by <code><a href="#inject_into_urllib3" class="internal-link" title="urllib3.contrib.pyopenssl.inject_into_urllib3">inject_into_urllib3</a></code>.</div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="urllib3.contrib.pyopenssl.get_subj_alt_name">
+    
+  </a>
+  <a name="get_subj_alt_name">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">get_subj_alt_name</span>(peer_cert):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/urllib3-1.26.8//src/urllib3/contrib/pyopenssl.py#L214">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Given an PyOpenSSL certificate, provides all the subject alternative names.</div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="urllib3.contrib.pyopenssl.inject_into_urllib3">
+    
+  </a>
+  <a name="inject_into_urllib3">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">inject_into_urllib3</span>():
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/urllib3-1.26.8//src/urllib3/contrib/pyopenssl.py#L121">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Monkey-patch urllib3 with PyOpenSSL-backed SSL-support.</div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="urllib3.contrib.pyopenssl.makefile">
+    
+  </a>
+  <a name="makefile">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">makefile</span>(self, mode, bufsize=-1):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/urllib3-1.26.8//src/urllib3/contrib/pyopenssl.py#L405">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="baseconstant">
+  
+  
+  <a name="urllib3.contrib.pyopenssl.HAS_SNI">
+    
+  </a>
+  <a name="HAS_SNI">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">HAS_SNI</span>: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/urllib3-1.26.8//src/urllib3/contrib/pyopenssl.py#L84">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    <table class="valueTable"><tr class="fieldStart"><td class="fieldName">Value</td></tr><tr><td><pre class="constant-value"><code><a href="https://docs.python.org/3/library/constants.html#True" class="intersphinx-link">True</a></code></pre></td></tr></table>
+  </div>
+</div><div class="baseconstant">
+  
+  
+  <a name="urllib3.contrib.pyopenssl.SSL_WRITE_BLOCKSIZE">
+    
+  </a>
+  <a name="SSL_WRITE_BLOCKSIZE">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">SSL_WRITE_BLOCKSIZE</span>: <code><a href="https://docs.python.org/3/library/functions.html#int" class="intersphinx-link">int</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/urllib3-1.26.8//src/urllib3/contrib/pyopenssl.py#L112">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    <table class="valueTable"><tr class="fieldStart"><td class="fieldName">Value</td></tr><tr><td><pre class="constant-value"><code>16384</code></pre></td></tr></table>
+  </div>
+</div><div class="basevariable">
+  
+  
+  <a name="urllib3.contrib.pyopenssl.log">
+    
+  </a>
+  <a name="log">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">log</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/urllib3-1.26.8//src/urllib3/contrib/pyopenssl.py#L118">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="basefunction private">
+  
+  
+  <a name="urllib3.contrib.pyopenssl._dnsname_to_stdlib">
+    
+  </a>
+  <a name="_dnsname_to_stdlib">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_dnsname_to_stdlib</span>(name):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/urllib3-1.26.8//src/urllib3/contrib/pyopenssl.py#L171">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Converts a dNSName SubjectAlternativeName field to the form used by the
+standard library on the given Python version.</p>
+<p>Cryptography produces a dNSName as a unicode string that was idna-decoded
+from ASCII bytes. We need to idna-encode that string to get it back, and
+then on Python 3 we also need to convert to unicode via UTF-8 (the stdlib
+uses PyUnicode_FromStringAndSize on it, which decodes via UTF-8).</p>
+<p>If the name cannot be idna-encoded then we return None signalling that
+the name given should be skipped.</p>
+</div>
+  </div>
+</div><div class="basefunction private">
+  
+  
+  <a name="urllib3.contrib.pyopenssl._validate_dependencies_met">
+    
+  </a>
+  <a name="_validate_dependencies_met">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_validate_dependencies_met</span>():
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/urllib3-1.26.8//src/urllib3/contrib/pyopenssl.py#L145">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Verifies that PyOpenSSL's package-level dependencies have been met.
+Throws <code><a href="https://docs.python.org/3/library/exceptions.html#ImportError" class="intersphinx-link">ImportError</a></code> if they are not met.</div>
+  </div>
+</div><div class="basefunction private">
+  
+  
+  <a name="urllib3.contrib.pyopenssl._verify_callback">
+    
+  </a>
+  <a name="_verify_callback">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_verify_callback</span>(cnx, x509, err_no, err_depth, return_code):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/urllib3-1.26.8//src/urllib3/contrib/pyopenssl.py#L510">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basevariable private">
+  
+  
+  <a name="urllib3.contrib.pyopenssl._fileobject">
+    
+  </a>
+  <a name="_fileobject">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_fileobject</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/urllib3-1.26.8//src/urllib3/contrib/pyopenssl.py#L70">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="basevariable private">
+  
+  
+  <a name="urllib3.contrib.pyopenssl._openssl_to_stdlib_verify">
+    
+  </a>
+  <a name="_openssl_to_stdlib_verify">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_openssl_to_stdlib_verify</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/urllib3-1.26.8//src/urllib3/contrib/pyopenssl.py#L109">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="basevariable private">
+  
+  
+  <a name="urllib3.contrib.pyopenssl._openssl_versions">
+    
+  </a>
+  <a name="_openssl_versions">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_openssl_versions</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/urllib3-1.26.8//src/urllib3/contrib/pyopenssl.py#L87">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="basevariable private">
+  
+  
+  <a name="urllib3.contrib.pyopenssl._stdlib_to_openssl_verify">
+    
+  </a>
+  <a name="_stdlib_to_openssl_verify">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_stdlib_to_openssl_verify</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/urllib3-1.26.8//src/urllib3/contrib/pyopenssl.py#L103">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div>
+
+      </div>
+    </div>
+
+    <footer class="navbar navbar-default">
+  
+  <div class="container">
+    <a href="index.html">API Documentation</a> for urllib3,
+  generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
+    22.2.0 at 2022-02-23 08:27:39.
+  </div>
+</footer>
+
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+  </body>
+</html>

@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  
+
+  <head>
+    
+    <title>sqlalchemy.dialects.sqlite.pysqlcipher</title>
+    <meta name="generator" content="pydoctor 22.2.0"> 
+        
+    </meta>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=0.75" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+    <link rel="stylesheet" type="text/css" href="extra.css" />
+</head>
+
+  <body>
+
+    <div id="banner" class="container">    
+    <div>
+        <a href="https://pydocbrowser.github.io/">Home</a>
+        &gt; sqlalchemy-1.4.31 
+        <!-- This is an important placeholder and will be 
+            replaced by project name and version on building docs -->
+        
+        <!-- (<a href=""&gt;show all versions</a&gt;) -->
+    </div>
+</div>
+
+    <nav class="navbar navbar-default">
+  
+  <div class="container">
+
+    <div class="navbar-header">
+      
+      <div class="navlinks">
+          <span class="navbar-brand">
+            sqlalchemy <a href="index.html">API Documentation</a>
+          </span>
+
+          <a href="moduleIndex.html">
+            Modules
+          </a>
+
+          <a href="classIndex.html">
+            Classes
+          </a>
+
+          <a href="nameIndex.html">
+            Names
+          </a>
+      </div>
+
+    </div>
+  </div>
+</nav>
+
+    
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="module"><code><code><a href="index.html" class="internal-link">sqlalchemy</a></code><wbr></wbr>.<code><a href="sqlalchemy.dialects.html" class="internal-link" title="sqlalchemy.dialects">dialects</a></code><wbr></wbr>.<code><a href="sqlalchemy.dialects.sqlite.html" class="internal-link" title="sqlalchemy.dialects.sqlite">sqlite</a></code><wbr></wbr>.<code><a href="sqlalchemy.dialects.sqlite.pysqlcipher.html" class="internal-link" title="sqlalchemy.dialects.sqlite.pysqlcipher">pysqlcipher</a></code></code></h1>
+        <div id="showPrivate">
+          <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+        </div>
+      </div>
+
+      <div class="categoryHeader">
+        module documentation
+      </div>
+
+      <div class="extrasDocstring">
+        <a href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/dialects/sqlite/pysqlcipher.py" class="sourceLink">(source)</a>
+        <p></p>
+      </div>
+
+      <div class="moduleDocstring">
+        <div><div class="rst-section" id="rst-driver">
+<h2 class="heading">Driver</h2>
+<p>Current dialect selection logic is:</p>
+<ul class="rst-simple">
+<li>If the <a href="#system-message-1"><span class="rst-problematic" id="rst-problematic-1">:paramref:`_sa.create_engine.module`</span></a> parameter supplies a DBAPI module,
+that module is used.</li>
+<li>Otherwise for Python 3, choose <a class="rst-reference external" href="https://pypi.org/project/sqlcipher3/" target="_top">https://pypi.org/project/sqlcipher3/</a></li>
+<li>If not available, fall back to <a class="rst-reference external" href="https://pypi.org/project/pysqlcipher3/" target="_top">https://pypi.org/project/pysqlcipher3/</a></li>
+<li>For Python 2, <a class="rst-reference external" href="https://pypi.org/project/pysqlcipher/" target="_top">https://pypi.org/project/pysqlcipher/</a> is used.</li>
+</ul>
+<div class="rst-admonition warning">
+<p class="rst-first rst-admonition-title">Warning</p>
+<p>The <tt class="rst-docutils literal">pysqlcipher3</tt> and <tt class="rst-docutils literal">pysqlcipher</tt> DBAPI drivers are no
+longer maintained; the <tt class="rst-docutils literal">sqlcipher3</tt> driver as of this writing appears
+to be current.  For future compatibility, any pysqlcipher-compatible DBAPI
+may be used as follows:</p>
+<pre class="rst-last rst-literal-block">
+import sqlcipher_compatible_driver
+
+from sqlalchemy import create_engine
+
+e = create_engine(
+    "sqlite+pysqlcipher://:password@/dbname.db",
+    module=sqlcipher_compatible_driver
+)
+</pre>
+</div>
+<p>These drivers make use of the SQLCipher engine. This system essentially
+introduces new PRAGMA commands to SQLite which allows the setting of a
+passphrase and other encryption parameters, allowing the database file to be
+encrypted.</p>
+</div>
+<div class="rst-section" id="rst-connect-strings">
+<h2 class="heading">Connect Strings</h2>
+<p>The format of the connect string is in every way the same as that
+of the <code>~sqlalchemy.dialects.sqlite.pysqlite</code> driver, except that the
+"password" field is now accepted, which should contain a passphrase:</p>
+<pre class="rst-literal-block">
+e = create_engine('sqlite+pysqlcipher://:testing@/foo.db')
+</pre>
+<p>For an absolute file path, two leading slashes should be used for the
+database name:</p>
+<pre class="rst-literal-block">
+e = create_engine('sqlite+pysqlcipher://:testing@//path/to/foo.db')
+</pre>
+<p>A selection of additional encryption-related pragmas supported by SQLCipher
+as documented at <a class="rst-reference external" href="https://www.zetetic.net/sqlcipher/sqlcipher-api/" target="_top">https://www.zetetic.net/sqlcipher/sqlcipher-api/</a> can be passed
+in the query string, and will result in that PRAGMA being called for each
+new connection.  Currently, <tt class="rst-docutils literal">cipher</tt>, <tt class="rst-docutils literal">kdf_iter</tt>
+<tt class="rst-docutils literal">cipher_page_size</tt> and <tt class="rst-docutils literal">cipher_use_hmac</tt> are supported:</p>
+<pre class="rst-literal-block">
+e = create_engine('sqlite+pysqlcipher://:testing@/foo.db?cipher=aes-256-cfb&amp;kdf_iter=64000')
+</pre>
+<div class="rst-admonition warning">
+<p class="rst-first rst-admonition-title">Warning</p>
+<p class="rst-last">Previous versions of sqlalchemy did not take into consideration
+the encryption-related pragmas passed in the url string, that were silently
+ignored. This may cause errors when opening files saved by a
+previous sqlalchemy version if the encryption options do not match.</p>
+</div>
+</div>
+<div class="rst-section" id="rst-pooling-behavior">
+<h2 class="heading">Pooling Behavior</h2>
+<p>The driver makes a change to the default pool behavior of pysqlite
+as described in <a href="#system-message-2"><span class="rst-problematic" id="rst-problematic-2">:ref:`pysqlite_threading_pooling`</span></a>.   The pysqlcipher driver
+has been observed to be significantly slower on connection than the
+pysqlite driver, most likely due to the encryption overhead, so the
+dialect here defaults to using the <code>.SingletonThreadPool</code>
+implementation,
+instead of the <code>.NullPool</code> pool used by pysqlite.  As always, the pool
+implementation is entirely configurable using the
+<a href="#system-message-3"><span class="rst-problematic" id="rst-problematic-3">:paramref:`_sa.create_engine.poolclass`</span></a> parameter; the <code>.
+StaticPool</code> may
+be more feasible for single-threaded use, or <code>.NullPool</code> may be used
+to prevent unencrypted connections from being held open for long periods of
+time, at the expense of slower startup time for new connections.</p>
+</div>
+</div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id19989">
+  
+  
+  <tr class="class">
+    
+    <td>Class</td>
+    <td><code><a href="sqlalchemy.dialects.sqlite.pysqlcipher.SQLiteDialect_pysqlcipher.html" class="internal-link" title="sqlalchemy.dialects.sqlite.pysqlcipher.SQLiteDialect_pysqlcipher">​SQLite​Dialect_pysqlcipher</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+        
+
+          
+      </div>
+
+      <div id="childList">
+
+        
+
+      </div>
+    </div>
+
+    <footer class="navbar navbar-default">
+  
+  <div class="container">
+    <a href="index.html">API Documentation</a> for sqlalchemy,
+  generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
+    22.2.0 at 2022-02-23 08:22:50.
+  </div>
+</footer>
+
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+  </body>
+</html>

@@ -1,0 +1,479 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  
+
+  <head>
+    
+    <title>sqlalchemy.dialects.sqlite.pysqlite</title>
+    <meta name="generator" content="pydoctor 22.2.0"> 
+        
+    </meta>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=0.75" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+    <link rel="stylesheet" type="text/css" href="extra.css" />
+</head>
+
+  <body>
+
+    <div id="banner" class="container">    
+    <div>
+        <a href="https://pydocbrowser.github.io/">Home</a>
+        &gt; sqlalchemy-1.4.31 
+        <!-- This is an important placeholder and will be 
+            replaced by project name and version on building docs -->
+        
+        <!-- (<a href=""&gt;show all versions</a&gt;) -->
+    </div>
+</div>
+
+    <nav class="navbar navbar-default">
+  
+  <div class="container">
+
+    <div class="navbar-header">
+      
+      <div class="navlinks">
+          <span class="navbar-brand">
+            sqlalchemy <a href="index.html">API Documentation</a>
+          </span>
+
+          <a href="moduleIndex.html">
+            Modules
+          </a>
+
+          <a href="classIndex.html">
+            Classes
+          </a>
+
+          <a href="nameIndex.html">
+            Names
+          </a>
+      </div>
+
+    </div>
+  </div>
+</nav>
+
+    
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="module"><code><code><a href="index.html" class="internal-link">sqlalchemy</a></code><wbr></wbr>.<code><a href="sqlalchemy.dialects.html" class="internal-link" title="sqlalchemy.dialects">dialects</a></code><wbr></wbr>.<code><a href="sqlalchemy.dialects.sqlite.html" class="internal-link" title="sqlalchemy.dialects.sqlite">sqlite</a></code><wbr></wbr>.<code><a href="sqlalchemy.dialects.sqlite.pysqlite.html" class="internal-link" title="sqlalchemy.dialects.sqlite.pysqlite">pysqlite</a></code></code></h1>
+        <div id="showPrivate">
+          <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+        </div>
+      </div>
+
+      <div class="categoryHeader">
+        module documentation
+      </div>
+
+      <div class="extrasDocstring">
+        <a href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/dialects/sqlite/pysqlite.py" class="sourceLink">(source)</a>
+        <p></p>
+      </div>
+
+      <div class="moduleDocstring">
+        <div><div class="rst-section" id="rst-driver">
+<h2 class="heading">Driver</h2>
+<p>The <tt class="rst-docutils literal">sqlite3</tt> Python DBAPI is standard on all modern Python versions;
+for cPython and Pypy, no additional installation is necessary.</p>
+</div>
+<div class="rst-section" id="rst-connect-strings">
+<h2 class="heading">Connect Strings</h2>
+<p>The file specification for the SQLite database is taken as the "database"
+portion of the URL.  Note that the format of a SQLAlchemy url is:</p>
+<pre class="rst-literal-block">
+driver://user:pass@host/database
+</pre>
+<p>This means that the actual filename to be used starts with the characters to
+the <strong>right</strong> of the third slash.   So connecting to a relative filepath
+looks like:</p>
+<pre class="rst-literal-block">
+# relative path
+e = create_engine('sqlite:///path/to/database.db')
+</pre>
+<p>An absolute path, which is denoted by starting with a slash, means you
+need <strong>four</strong> slashes:</p>
+<pre class="rst-literal-block">
+# absolute path
+e = create_engine('sqlite:////path/to/database.db')
+</pre>
+<p>To use a Windows path, regular drive specifications and backslashes can be
+used. Double backslashes are probably needed:</p>
+<pre class="rst-literal-block">
+# absolute path on Windows
+e = create_engine('sqlite:///C:\\path\\to\\database.db')
+</pre>
+<p>The sqlite <tt class="rst-docutils literal">:memory:</tt> identifier is the default if no filepath is
+present.  Specify <tt class="rst-docutils literal"><span class="pre">sqlite://</span></tt> and nothing else:</p>
+<pre class="rst-literal-block">
+# in-memory database
+e = create_engine('sqlite://')
+</pre>
+<div class="rst-section" id="rst-uri-connections">
+<span id="rst-pysqlite-uri-connections"></span><h3 class="heading">URI Connections</h3>
+<p>Modern versions of SQLite support an alternative system of connecting using a
+<a class="rst-reference external" href="https://www.sqlite.org/uri.html" target="_top">driver level URI</a>, which has the  advantage
+that additional driver-level arguments can be passed including options such as
+"read only".   The Python sqlite3 driver supports this mode under modern Python
+3 versions.   The SQLAlchemy pysqlite driver supports this mode of use by
+specifying "uri=true" in the URL query string.  The SQLite-level "URI" is kept
+as the "database" portion of the SQLAlchemy url (that is, following a slash):</p>
+<pre class="rst-literal-block">
+e = create_engine("sqlite:///file:path/to/database?mode=ro&amp;uri=true")
+</pre>
+<div class="rst-admonition note">
+<p class="rst-first rst-admonition-title">Note</p>
+<p class="rst-last">The "uri=true" parameter must appear in the <strong>query string</strong>
+of the URL.  It will not currently work as expected if it is only
+present in the <a href="#system-message-1"><span class="rst-problematic" id="rst-problematic-1">:paramref:`_sa.create_engine.connect_args`</span></a>
+parameter dictionary.</p>
+</div>
+<p>The logic reconciles the simultaneous presence of SQLAlchemy's query string and
+SQLite's query string by separating out the parameters that belong to the
+Python sqlite3 driver vs. those that belong to the SQLite URI.  This is
+achieved through the use of a fixed list of parameters known to be accepted by
+the Python side of the driver.  For example, to include a URL that indicates
+the Python sqlite3 "timeout" and "check_same_thread" parameters, along with the
+SQLite "mode" and "nolock" parameters, they can all be passed together on the
+query string:</p>
+<pre class="rst-literal-block">
+e = create_engine(
+    "sqlite:///file:path/to/database?"
+    "check_same_thread=true&amp;timeout=10&amp;mode=ro&amp;nolock=1&amp;uri=true"
+)
+</pre>
+<p>Above, the pysqlite / sqlite3 DBAPI would be passed arguments as:</p>
+<pre class="rst-literal-block">
+sqlite3.connect(
+    "file:path/to/database?mode=ro&amp;nolock=1",
+    check_same_thread=True, timeout=10, uri=True
+)
+</pre>
+<p>Regarding future parameters added to either the Python or native drivers. new
+parameter names added to the SQLite URI scheme should be automatically
+accommodated by this scheme.  New parameter names added to the Python driver
+side can be accommodated by specifying them in the
+<a href="#system-message-2"><span class="rst-problematic" id="rst-problematic-2">:paramref:`_sa.create_engine.connect_args`</span></a> dictionary,
+until dialect support is
+added by SQLAlchemy.   For the less likely case that the native SQLite driver
+adds a new parameter name that overlaps with one of the existing, known Python
+driver parameters (such as "timeout" perhaps), SQLAlchemy's dialect would
+require adjustment for the URL scheme to continue to support this.</p>
+<p>As is always the case for all SQLAlchemy dialects, the entire "URL" process
+can be bypassed in <code>_sa.create_engine</code> through the use of the
+<a href="#system-message-3"><span class="rst-problematic" id="rst-problematic-3">:paramref:`_sa.create_engine.creator`</span></a>
+parameter which allows for a custom callable
+that creates a Python sqlite3 driver level connection directly.</p>
+<div class="rst-versionadded">
+<span class="rst-versionmodified rst-added">New in version 1.3.9.</span></div>
+<div class="rst-admonition seealso">
+<p class="rst-first rst-admonition-title">See Also</p>
+<p class="rst-last"><a class="rst-reference external" href="https://www.sqlite.org/uri.html" target="_top">Uniform Resource Identifiers</a> - in
+the SQLite documentation</p>
+</div>
+</div>
+</div>
+<div class="rst-section" id="rst-regular-expression-support">
+<span id="rst-pysqlite-regexp"></span><h2 class="heading">Regular Expression Support</h2>
+<div class="rst-versionadded">
+<span class="rst-versionmodified rst-added">New in version 1.4.</span></div>
+<p>Support for the <code>_sql.ColumnOperators.regexp_match</code> operator is provided
+using Python's <a class="rst-reference external" href="https://docs.python.org/3/library/re.html#re.search" target="_top">re.search</a> function.  SQLite itself does not include a working
+regular expression operator; instead, it includes a non-implemented placeholder
+operator <tt class="rst-docutils literal">REGEXP</tt> that calls a user-defined function that must be provided.</p>
+<p>SQLAlchemy's implementation makes use of the pysqlite <a class="rst-reference external" href="https://docs.python.org/3/library/sqlite3.html#sqlite3.Connection.create_function" target="_top">create_function</a> hook
+as follows:</p>
+<pre class="rst-literal-block">
+def regexp(a, b):
+    return re.search(a, b) is not None
+
+sqlite_connection.create_function(
+    "regexp", 2, regexp,
+)
+</pre>
+<p>There is currently no support for regular expression flags as a separate
+argument, as these are not supported by SQLite's REGEXP operator, however these
+may be included inline within the regular expression string.  See <a class="rst-reference external" href="https://docs.python.org/3/library/re.html#re.search" target="_top">Python regular expressions</a> for
+details.</p>
+<div class="rst-admonition seealso">
+<p class="rst-first rst-admonition-title">See Also</p>
+<p class="rst-last"><a class="rst-reference external" href="https://docs.python.org/3/library/re.html#re.search" target="_top">Python regular expressions</a>: Documentation for Python's regular expression syntax.</p>
+</div>
+</div>
+<div class="rst-section" id="rst-compatibility-with-sqlite3-native-date-and-datetime-types">
+<h2 class="heading">Compatibility with sqlite3 "native" date and datetime types</h2>
+<p>The pysqlite driver includes the sqlite3.PARSE_DECLTYPES and
+sqlite3.PARSE_COLNAMES options, which have the effect of any column
+or expression explicitly cast as "date" or "timestamp" will be converted
+to a Python date or datetime object.  The date and datetime types provided
+with the pysqlite dialect are not currently compatible with these options,
+since they render the ISO date/datetime including microseconds, which
+pysqlite's driver does not.   Additionally, SQLAlchemy does not at
+this time automatically render the "cast" syntax required for the
+freestanding functions "current_timestamp" and "current_date" to return
+datetime/date types natively.   Unfortunately, pysqlite
+does not provide the standard DBAPI types in <tt class="rst-docutils literal">cursor.description</tt>,
+leaving SQLAlchemy with no way to detect these types on the fly
+without expensive per-row type checks.</p>
+<p>Keeping in mind that pysqlite's parsing option is not recommended,
+nor should be necessary, for use with SQLAlchemy, usage of PARSE_DECLTYPES
+can be forced if one configures "native_datetime=True" on create_engine():</p>
+<pre class="rst-literal-block">
+engine = create_engine('sqlite://',
+    connect_args={'detect_types':
+        sqlite3.PARSE_DECLTYPES|sqlite3.PARSE_COLNAMES},
+    native_datetime=True
+)
+</pre>
+<p>With this flag enabled, the DATE and TIMESTAMP types (but note - not the
+DATETIME or TIME types...confused yet ?) will not perform any bind parameter
+or result processing. Execution of "func.current_date()" will return a string.
+"func.current_timestamp()" is registered as returning a DATETIME type in
+SQLAlchemy, so this function still receives SQLAlchemy-level result
+processing.</p>
+</div>
+<div class="rst-section" id="rst-threading-pooling-behavior">
+<span id="rst-pysqlite-threading-pooling"></span><h2 class="heading">Threading/Pooling Behavior</h2>
+<p>Pysqlite's default behavior is to prohibit the usage of a single connection
+in more than one thread.   This is originally intended to work with older
+versions of SQLite that did not support multithreaded operation under
+various circumstances.  In particular, older SQLite versions
+did not allow a <tt class="rst-docutils literal">:memory:</tt> database to be used in multiple threads
+under any circumstances.</p>
+<p>Pysqlite does include a now-undocumented flag known as
+<tt class="rst-docutils literal">check_same_thread</tt> which will disable this check, however note that
+pysqlite connections are still not safe to use in concurrently in multiple
+threads.  In particular, any statement execution calls would need to be
+externally mutexed, as Pysqlite does not provide for thread-safe propagation
+of error messages among other things.   So while even <tt class="rst-docutils literal">:memory:</tt> databases
+can be shared among threads in modern SQLite, Pysqlite doesn't provide enough
+thread-safety to make this usage worth it.</p>
+<p>SQLAlchemy sets up pooling to work with Pysqlite's default behavior:</p>
+<ul class="rst-simple">
+<li>When a <tt class="rst-docutils literal">:memory:</tt> SQLite database is specified, the dialect by default
+will use <code>.SingletonThreadPool</code>. This pool maintains a single
+connection per thread, so that all access to the engine within the current
+thread use the same <tt class="rst-docutils literal">:memory:</tt> database - other threads would access a
+different <tt class="rst-docutils literal">:memory:</tt> database.</li>
+<li>When a file-based database is specified, the dialect will use
+<code>.NullPool</code> as the source of connections. This pool closes and
+discards connections which are returned to the pool immediately. SQLite
+file-based connections have extremely low overhead, so pooling is not
+necessary. The scheme also prevents a connection from being used again in
+a different thread and works best with SQLite's coarse-grained file locking.</li>
+</ul>
+<div class="rst-section" id="rst-using-a-memory-database-in-multiple-threads">
+<h3 class="heading">Using a Memory Database in Multiple Threads</h3>
+<p>To use a <tt class="rst-docutils literal">:memory:</tt> database in a multithreaded scenario, the same
+connection object must be shared among threads, since the database exists
+only within the scope of that connection.   The
+<code>.StaticPool</code> implementation will maintain a single connection
+globally, and the <tt class="rst-docutils literal">check_same_thread</tt> flag can be passed to Pysqlite
+as <tt class="rst-docutils literal">False</tt>:</p>
+<pre class="rst-literal-block">
+from sqlalchemy.pool import StaticPool
+engine = create_engine('sqlite://',
+                    connect_args={'check_same_thread':False},
+                    poolclass=StaticPool)
+</pre>
+<p>Note that using a <tt class="rst-docutils literal">:memory:</tt> database in multiple threads requires a recent
+version of SQLite.</p>
+</div>
+<div class="rst-section" id="rst-using-temporary-tables-with-sqlite">
+<h3 class="heading">Using Temporary Tables with SQLite</h3>
+<p>Due to the way SQLite deals with temporary tables, if you wish to use a
+temporary table in a file-based SQLite database across multiple checkouts
+from the connection pool, such as when using an ORM <code>.Session</code> where
+the temporary table should continue to remain after <code>.Session.commit</code> or
+<code>.Session.rollback</code> is called, a pool which maintains a single
+connection must be used.   Use <code>.SingletonThreadPool</code> if the scope is
+only needed within the current thread, or <code>.StaticPool</code> is scope is
+needed within multiple threads for this case:</p>
+<pre class="rst-literal-block">
+# maintain the same connection per thread
+from sqlalchemy.pool import SingletonThreadPool
+engine = create_engine('sqlite:///mydb.db',
+                    poolclass=SingletonThreadPool)
+
+
+# maintain the same connection across all threads
+from sqlalchemy.pool import StaticPool
+engine = create_engine('sqlite:///mydb.db',
+                    poolclass=StaticPool)
+</pre>
+<p>Note that <code>.SingletonThreadPool</code> should be configured for the number
+of threads that are to be used; beyond that number, connections will be
+closed out in a non deterministic way.</p>
+</div>
+</div>
+<div class="rst-section" id="rst-unicode">
+<h2 class="heading">Unicode</h2>
+<p>The pysqlite driver only returns Python <tt class="rst-docutils literal">unicode</tt> objects in result sets,
+never plain strings, and accommodates <tt class="rst-docutils literal">unicode</tt> objects within bound
+parameter values in all cases.   Regardless of the SQLAlchemy string type in
+use, string-based result values will by Python <tt class="rst-docutils literal">unicode</tt> in Python 2.
+The <code>.Unicode</code> type should still be used to indicate those columns that
+require unicode, however, so that non-<tt class="rst-docutils literal">unicode</tt> values passed inadvertently
+will emit a warning.  Pysqlite will emit an error if a non-<tt class="rst-docutils literal">unicode</tt> string
+is passed containing non-ASCII characters.</p>
+</div>
+<div class="rst-section" id="rst-dealing-with-mixed-string-binary-columns-in-python-3">
+<h2 class="heading">Dealing with Mixed String / Binary Columns in Python 3</h2>
+<p>The SQLite database is weakly typed, and as such it is possible when using
+binary values, which in Python 3 are represented as <tt class="rst-docutils literal">b'some string'</tt>, that a
+particular SQLite database can have data values within different rows where
+some of them will be returned as a <tt class="rst-docutils literal">b''</tt> value by the Pysqlite driver, and
+others will be returned as Python strings, e.g. <tt class="rst-docutils literal">''</tt> values.   This situation
+is not known to occur if the SQLAlchemy <code>.LargeBinary</code> datatype is used
+consistently, however if a particular SQLite database has data that was
+inserted using the Pysqlite driver directly, or when using the SQLAlchemy
+<code>.String</code> type which was later changed to <code>.LargeBinary</code>, the
+table will not be consistently readable because SQLAlchemy's
+<code>.LargeBinary</code> datatype does not handle strings so it has no way of
+"encoding" a value that is in string format.</p>
+<p>To deal with a SQLite table that has mixed string / binary data in the
+same column, use a custom type that will check each row individually:</p>
+<pre class="rst-literal-block">
+# note this is Python 3 only
+
+from sqlalchemy import String
+from sqlalchemy import TypeDecorator
+
+class MixedBinary(TypeDecorator):
+    impl = String
+    cache_ok = True
+
+    def process_result_value(self, value, dialect):
+        if isinstance(value, str):
+            value = bytes(value, 'utf-8')
+        elif value is not None:
+            value = bytes(value)
+
+        return value
+</pre>
+<p>Then use the above <tt class="rst-docutils literal">MixedBinary</tt> datatype in the place where
+<code>.LargeBinary</code> would normally be used.</p>
+</div>
+<div class="rst-section" id="rst-serializable-isolation-savepoints-transactional-ddl">
+<span id="rst-pysqlite-serializable"></span><h2 class="heading">Serializable isolation / Savepoints / Transactional DDL</h2>
+<p>In the section <a href="#system-message-4"><span class="rst-problematic" id="rst-problematic-4">:ref:`sqlite_concurrency`</span></a>, we refer to the pysqlite
+driver's assortment of issues that prevent several features of SQLite
+from working correctly.  The pysqlite DBAPI driver has several
+long-standing bugs which impact the correctness of its transactional
+behavior.   In its default mode of operation, SQLite features such as
+SERIALIZABLE isolation, transactional DDL, and SAVEPOINT support are
+non-functional, and in order to use these features, workarounds must
+be taken.</p>
+<p>The issue is essentially that the driver attempts to second-guess the user's
+intent, failing to start transactions and sometimes ending them prematurely, in
+an effort to minimize the SQLite databases's file locking behavior, even
+though SQLite itself uses "shared" locks for read-only activities.</p>
+<p>SQLAlchemy chooses to not alter this behavior by default, as it is the
+long-expected behavior of the pysqlite driver; if and when the pysqlite
+driver attempts to repair these issues, that will be more of a driver towards
+defaults for SQLAlchemy.</p>
+<p>The good news is that with a few events, we can implement transactional
+support fully, by disabling pysqlite's feature entirely and emitting BEGIN
+ourselves. This is achieved using two event listeners:</p>
+<pre class="rst-literal-block">
+from sqlalchemy import create_engine, event
+
+engine = create_engine("sqlite:///myfile.db")
+
+@event.listens_for(engine, "connect")
+def do_connect(dbapi_connection, connection_record):
+    # disable pysqlite's emitting of the BEGIN statement entirely.
+    # also stops it from emitting COMMIT before any DDL.
+    dbapi_connection.isolation_level = None
+
+@event.listens_for(engine, "begin")
+def do_begin(conn):
+    # emit our own BEGIN
+    conn.exec_driver_sql("BEGIN")
+</pre>
+<div class="rst-admonition warning">
+<p class="rst-first rst-admonition-title">Warning</p>
+<p class="rst-last">When using the above recipe, it is advised to not use the
+<a href="#system-message-5"><span class="rst-problematic" id="rst-problematic-5">:paramref:`.Connection.execution_options.isolation_level`</span></a> setting on
+<code>_engine.Connection</code> and <code>_sa.create_engine</code>
+with the SQLite driver,
+as this function necessarily will also alter the ".isolation_level" setting.</p>
+</div>
+<p>Above, we intercept a new pysqlite connection and disable any transactional
+integration.   Then, at the point at which SQLAlchemy knows that transaction
+scope is to begin, we emit <tt class="rst-docutils literal">"BEGIN"</tt> ourselves.</p>
+<p>When we take control of <tt class="rst-docutils literal">"BEGIN"</tt>, we can also control directly SQLite's
+locking modes, introduced at
+<a class="rst-reference external" href="https://sqlite.org/lang_transaction.html" target="_top">BEGIN TRANSACTION</a>,
+by adding the desired locking mode to our <tt class="rst-docutils literal">"BEGIN"</tt>:</p>
+<pre class="rst-literal-block">
+@event.listens_for(engine, "begin")
+def do_begin(conn):
+    conn.exec_driver_sql("BEGIN EXCLUSIVE")
+</pre>
+<div class="rst-admonition seealso">
+<p class="rst-first rst-admonition-title">See Also</p>
+<p><a class="rst-reference external" href="https://sqlite.org/lang_transaction.html" target="_top">BEGIN TRANSACTION</a> -
+on the SQLite site</p>
+<p><a class="rst-reference external" href="https://bugs.python.org/issue9924" target="_top">sqlite3 SELECT does not BEGIN a transaction</a> -
+on the Python bug tracker</p>
+<p class="rst-last"><a class="rst-reference external" href="https://bugs.python.org/issue10740" target="_top">sqlite3 module breaks transactions and potentially corrupts data</a> -
+on the Python bug tracker</p>
+</div>
+</div>
+</div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id19995">
+  
+  
+  <tr class="class">
+    
+    <td>Class</td>
+    <td><code><a href="sqlalchemy.dialects.sqlite.pysqlite.SQLiteDialect_pysqlite.html" class="internal-link" title="sqlalchemy.dialects.sqlite.pysqlite.SQLiteDialect_pysqlite">​SQLite​Dialect_pysqlite</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="class private">
+    
+    <td>Class</td>
+    <td><code><a href="sqlalchemy.dialects.sqlite.pysqlite._SQLite_pysqliteDate.html" class="internal-link" title="sqlalchemy.dialects.sqlite.pysqlite._SQLite_pysqliteDate">_​SQLite_pysqlite​Date</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="class private">
+    
+    <td>Class</td>
+    <td><code><a href="sqlalchemy.dialects.sqlite.pysqlite._SQLite_pysqliteTimeStamp.html" class="internal-link" title="sqlalchemy.dialects.sqlite.pysqlite._SQLite_pysqliteTimeStamp">_​SQLite_pysqlite​Time​Stamp</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+        
+
+          
+      </div>
+
+      <div id="childList">
+
+        
+
+      </div>
+    </div>
+
+    <footer class="navbar navbar-default">
+  
+  <div class="container">
+    <a href="index.html">API Documentation</a> for sqlalchemy,
+  generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
+    22.2.0 at 2022-02-23 08:22:50.
+  </div>
+</footer>
+
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+  </body>
+</html>

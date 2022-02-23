@@ -1,0 +1,373 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  
+
+  <head>
+    
+    <title>sqlalchemy.engine.util.TransactionalContext</title>
+    <meta name="generator" content="pydoctor 22.2.0"> 
+        
+    </meta>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=0.75" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+    <link rel="stylesheet" type="text/css" href="extra.css" />
+</head>
+
+  <body>
+
+    <div id="banner" class="container">    
+    <div>
+        <a href="https://pydocbrowser.github.io/">Home</a>
+        &gt; sqlalchemy-1.4.31 
+        <!-- This is an important placeholder and will be 
+            replaced by project name and version on building docs -->
+        
+        <!-- (<a href=""&gt;show all versions</a&gt;) -->
+    </div>
+</div>
+
+    <nav class="navbar navbar-default">
+  
+  <div class="container">
+
+    <div class="navbar-header">
+      
+      <div class="navlinks">
+          <span class="navbar-brand">
+            sqlalchemy <a href="index.html">API Documentation</a>
+          </span>
+
+          <a href="moduleIndex.html">
+            Modules
+          </a>
+
+          <a href="classIndex.html">
+            Classes
+          </a>
+
+          <a href="nameIndex.html">
+            Names
+          </a>
+      </div>
+
+    </div>
+  </div>
+</nav>
+
+    
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="class"><code><code><a href="index.html" class="internal-link">sqlalchemy</a></code><wbr></wbr>.<code><a href="sqlalchemy.engine.html" class="internal-link" title="sqlalchemy.engine">engine</a></code><wbr></wbr>.<code><a href="sqlalchemy.engine.util.html" class="internal-link" title="sqlalchemy.engine.util">util</a></code><wbr></wbr>.<code><a href="sqlalchemy.engine.util.TransactionalContext.html" class="internal-link" title="sqlalchemy.engine.util.TransactionalContext">TransactionalContext</a></code></code></h1>
+        <div id="showPrivate">
+          <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+        </div>
+      </div>
+
+      <div class="categoryHeader">
+        class documentation
+      </div>
+
+      <div class="extrasDocstring">
+        <p><code><span class="py-keyword">class</span> <span class="py-defname">TransactionalContext</span>(<a href="https://docs.python.org/3/library/functions.html#object" class="intersphinx-link" title="object">object</a>): <a href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/engine/util.py#L158" class="sourceLink">(source)</a></code></p><p>Known subclasses: <code><a href="sqlalchemy.engine.base.Transaction.html" class="internal-link">sqlalchemy.engine.base.Transaction</a></code>, <code><a href="sqlalchemy.orm.session.SessionTransaction.html" class="internal-link">sqlalchemy.orm.session.SessionTransaction</a></code></p>
+        <p><a href="classIndex.html#sqlalchemy.engine.util.TransactionalContext">View In Hierarchy</a></p>
+      </div>
+
+      <div class="moduleDocstring">
+        <div><p>Apply Python context manager behavior to transaction objects.</p>
+<p>Performs validation to ensure the subject of the transaction is not
+used if the transaction were ended prematurely.</p>
+</div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id20307">
+  
+  
+  <tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__enter__" class="internal-link" title="sqlalchemy.engine.util.TransactionalContext.__enter__">__enter__</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__exit__" class="internal-link" title="sqlalchemy.engine.util.TransactionalContext.__exit__">__exit__</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="classmethod private">
+    
+    <td>Class Method</td>
+    <td><code><a href="#_trans_ctx_check" class="internal-link" title="sqlalchemy.engine.util.TransactionalContext._trans_ctx_check">​_trans​_ctx​_check</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_get_subject" class="internal-link" title="sqlalchemy.engine.util.TransactionalContext._get_subject">​_get​_subject</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_rollback_can_be_called" class="internal-link" title="sqlalchemy.engine.util.TransactionalContext._rollback_can_be_called">​_rollback​_can​_be​_called</a></code></td>
+    <td>indicates the object is in a state that is known to be acceptable for rollback() to be called.</td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_transaction_is_active" class="internal-link" title="sqlalchemy.engine.util.TransactionalContext._transaction_is_active">​_transaction​_is​_active</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_transaction_is_closed" class="internal-link" title="sqlalchemy.engine.util.TransactionalContext._transaction_is_closed">​_transaction​_is​_closed</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#_outer_trans_ctx" class="internal-link" title="sqlalchemy.engine.util.TransactionalContext._outer_trans_ctx">​_outer​_trans​_ctx</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#_trans_subject" class="internal-link" title="sqlalchemy.engine.util.TransactionalContext._trans_subject">​_trans​_subject</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+        
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="basemethod">
+  
+  
+  <a name="sqlalchemy.engine.util.TransactionalContext.__enter__">
+    
+  </a>
+  <a name="__enter__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__enter__</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/engine/util.py#L205">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.engine.util.TransactionalContext.__exit__">
+    
+  </a>
+  <a name="__exit__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__exit__</span>(self, type_, value, traceback):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/engine/util.py#L217">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="baseclassmethod private">
+  
+  
+  <a name="sqlalchemy.engine.util.TransactionalContext._trans_ctx_check">
+    
+  </a>
+  <a name="_trans_ctx_check">
+    
+  </a>
+  <div class="functionHeader">
+    @<a href="https://docs.python.org/3/library/functions.html#classmethod" class="intersphinx-link">classmethod</a><br />
+    <span class="py-keyword">def</span> <span class="py-defname">_trans_ctx_check</span>(cls, subject):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/engine/util.py#L194">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="sqlalchemy.engine.util.TransactionalContext._get_subject">
+    
+  </a>
+  <a name="_get_subject">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_get_subject</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/engine/util.py#L191">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="sqlalchemy.engine.base.Transaction.html" class="internal-link">sqlalchemy.engine.base.Transaction</a></code>, <code><a href="sqlalchemy.orm.session.SessionTransaction.html" class="internal-link">sqlalchemy.orm.session.SessionTransaction</a></code></div>
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="sqlalchemy.engine.util.TransactionalContext._rollback_can_be_called">
+    
+  </a>
+  <a name="_rollback_can_be_called">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_rollback_can_be_called</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/engine/util.py#L174">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="sqlalchemy.engine.base.Transaction.html" class="internal-link">sqlalchemy.engine.base.Transaction</a></code>, <code><a href="sqlalchemy.orm.session.SessionTransaction.html" class="internal-link">sqlalchemy.orm.session.SessionTransaction</a></code></div>
+    
+    <div><p>indicates the object is in a state that is known to be acceptable
+for rollback() to be called.</p>
+<p>This does not necessarily mean rollback() will succeed or not raise
+an error, just that there is currently no state detected that indicates
+rollback() would fail or emit warnings.</p>
+<p>It also does not mean that there's a transaction in progress, as
+it is usually safe to call rollback() even if no transaction is
+present.</p>
+<div class="rst-versionadded">
+<span class="rst-versionmodified rst-added">New in version 1.4.28.</span></div>
+</div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="sqlalchemy.engine.util.TransactionalContext._transaction_is_active">
+    
+  </a>
+  <a name="_transaction_is_active">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_transaction_is_active</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/engine/util.py#L168">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="sqlalchemy.engine.base.Transaction.html" class="internal-link">sqlalchemy.engine.base.Transaction</a></code>, <code><a href="sqlalchemy.orm.session.SessionTransaction.html" class="internal-link">sqlalchemy.orm.session.SessionTransaction</a></code></div>
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="sqlalchemy.engine.util.TransactionalContext._transaction_is_closed">
+    
+  </a>
+  <a name="_transaction_is_closed">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_transaction_is_closed</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/engine/util.py#L171">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="sqlalchemy.engine.base.Transaction.html" class="internal-link">sqlalchemy.engine.base.Transaction</a></code>, <code><a href="sqlalchemy.orm.session.SessionTransaction.html" class="internal-link">sqlalchemy.orm.session.SessionTransaction</a></code></div>
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  
+  <a name="sqlalchemy.engine.util.TransactionalContext._outer_trans_ctx">
+    
+  </a>
+  <a name="_outer_trans_ctx">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_outer_trans_ctx</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/engine/util.py#L211">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  
+  <a name="sqlalchemy.engine.util.TransactionalContext._trans_subject">
+    
+  </a>
+  <a name="_trans_subject">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_trans_subject</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/engine/util.py#L166">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div>
+
+      </div>
+    </div>
+
+    <footer class="navbar navbar-default">
+  
+  <div class="container">
+    <a href="index.html">API Documentation</a> for sqlalchemy,
+  generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
+    22.2.0 at 2022-02-23 08:22:50.
+  </div>
+</footer>
+
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+  </body>
+</html>

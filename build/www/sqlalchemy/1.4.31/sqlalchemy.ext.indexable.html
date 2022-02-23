@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  
+
+  <head>
+    
+    <title>sqlalchemy.ext.indexable</title>
+    <meta name="generator" content="pydoctor 22.2.0"> 
+        
+    </meta>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=0.75" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+    <link rel="stylesheet" type="text/css" href="extra.css" />
+</head>
+
+  <body>
+
+    <div id="banner" class="container">    
+    <div>
+        <a href="https://pydocbrowser.github.io/">Home</a>
+        &gt; sqlalchemy-1.4.31 
+        <!-- This is an important placeholder and will be 
+            replaced by project name and version on building docs -->
+        
+        <!-- (<a href=""&gt;show all versions</a&gt;) -->
+    </div>
+</div>
+
+    <nav class="navbar navbar-default">
+  
+  <div class="container">
+
+    <div class="navbar-header">
+      
+      <div class="navlinks">
+          <span class="navbar-brand">
+            sqlalchemy <a href="index.html">API Documentation</a>
+          </span>
+
+          <a href="moduleIndex.html">
+            Modules
+          </a>
+
+          <a href="classIndex.html">
+            Classes
+          </a>
+
+          <a href="nameIndex.html">
+            Names
+          </a>
+      </div>
+
+    </div>
+  </div>
+</nav>
+
+    
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="module"><code><code><a href="index.html" class="internal-link">sqlalchemy</a></code><wbr></wbr>.<code><a href="sqlalchemy.ext.html" class="internal-link" title="sqlalchemy.ext">ext</a></code><wbr></wbr>.<code><a href="sqlalchemy.ext.indexable.html" class="internal-link" title="sqlalchemy.ext.indexable">indexable</a></code></code></h1>
+        <div id="showPrivate">
+          <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+        </div>
+      </div>
+
+      <div class="categoryHeader">
+        module documentation
+      </div>
+
+      <div class="extrasDocstring">
+        <a href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/ext/indexable.py" class="sourceLink">(source)</a>
+        <p></p>
+      </div>
+
+      <div class="moduleDocstring">
+        <div><p>Define attributes on ORM-mapped classes that have "index" attributes for
+columns with <code>_types.Indexable</code> types.</p>
+<p>"index" means the attribute is associated with an element of an
+<code>_types.Indexable</code> column with the predefined index to access it.
+The <code>_types.Indexable</code> types include types such as
+<code>_types.ARRAY</code>, <code>_types.JSON</code> and
+<code>_postgresql.HSTORE</code>.</p>
+<p>The <code>~sqlalchemy.ext.indexable</code> extension provides
+<code>_schema.Column</code>-like interface for any element of an
+<code>_types.Indexable</code> typed column. In simple cases, it can be
+treated as a <code>_schema.Column</code> - mapped attribute.</p>
+<div class="rst-versionadded">
+<span class="rst-versionmodified rst-added">New in version 1.1.</span></div>
+<div class="rst-section" id="rst-synopsis">
+<h2 class="heading">Synopsis</h2>
+<p>Given <tt class="rst-docutils literal">Person</tt> as a model with a primary key and JSON data field.
+While this field may have any number of elements encoded within it,
+we would like to refer to the element called <tt class="rst-docutils literal">name</tt> individually
+as a dedicated attribute which behaves like a standalone column:</p>
+<pre class="rst-literal-block">
+from sqlalchemy import Column, JSON, Integer
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.ext.indexable import index_property
+
+Base = declarative_base()
+
+class Person(Base):
+    __tablename__ = 'person'
+
+    id = Column(Integer, primary_key=True)
+    data = Column(JSON)
+
+    name = index_property('data', 'name')
+</pre>
+<p>Above, the <tt class="rst-docutils literal">name</tt> attribute now behaves like a mapped column.   We
+can compose a new <tt class="rst-docutils literal">Person</tt> and set the value of <tt class="rst-docutils literal">name</tt>:</p>
+<pre class="rst-literal-block">
+&gt;&gt;&gt; person = Person(name='Alchemist')
+</pre>
+<p>The value is now accessible:</p>
+<pre class="rst-literal-block">
+&gt;&gt;&gt; person.name
+'Alchemist'
+</pre>
+<p>Behind the scenes, the JSON field was initialized to a new blank dictionary
+and the field was set:</p>
+<pre class="rst-literal-block">
+&gt;&gt;&gt; person.data
+{"name": "Alchemist'}
+</pre>
+<p>The field is mutable in place:</p>
+<pre class="rst-literal-block">
+&gt;&gt;&gt; person.name = 'Renamed'
+&gt;&gt;&gt; person.name
+'Renamed'
+&gt;&gt;&gt; person.data
+{'name': 'Renamed'}
+</pre>
+<p>When using <code>.index_property</code>, the change that we make to the indexable
+structure is also automatically tracked as history; we no longer need
+to use <code>~.mutable.MutableDict</code> in order to track this change
+for the unit of work.</p>
+<p>Deletions work normally as well:</p>
+<pre class="rst-literal-block">
+&gt;&gt;&gt; del person.name
+&gt;&gt;&gt; person.data
+{}
+</pre>
+<p>Above, deletion of <tt class="rst-docutils literal">person.name</tt> deletes the value from the dictionary,
+but not the dictionary itself.</p>
+<p>A missing key will produce <tt class="rst-docutils literal">AttributeError</tt>:</p>
+<pre class="rst-literal-block">
+&gt;&gt;&gt; person = Person()
+&gt;&gt;&gt; person.name
+...
+AttributeError: 'name'
+</pre>
+<p>Unless you set a default value:</p>
+<pre class="rst-literal-block">
+&gt;&gt;&gt; class Person(Base):
+&gt;&gt;&gt;     __tablename__ = 'person'
+&gt;&gt;&gt;
+&gt;&gt;&gt;     id = Column(Integer, primary_key=True)
+&gt;&gt;&gt;     data = Column(JSON)
+&gt;&gt;&gt;
+&gt;&gt;&gt;     name = index_property('data', 'name', default=None)  # See default
+
+&gt;&gt;&gt; person = Person()
+&gt;&gt;&gt; print(person.name)
+None
+</pre>
+<p>The attributes are also accessible at the class level.
+Below, we illustrate <tt class="rst-docutils literal">Person.name</tt> used to generate
+an indexed SQL criteria:</p>
+<pre class="rst-literal-block">
+&gt;&gt;&gt; from sqlalchemy.orm import Session
+&gt;&gt;&gt; session = Session()
+&gt;&gt;&gt; query = session.query(Person).filter(Person.name == 'Alchemist')
+</pre>
+<p>The above query is equivalent to:</p>
+<pre class="rst-literal-block">
+&gt;&gt;&gt; query = session.query(Person).filter(Person.data['name'] == 'Alchemist')
+</pre>
+<p>Multiple <code>.index_property</code> objects can be chained to produce
+multiple levels of indexing:</p>
+<pre class="rst-literal-block">
+from sqlalchemy import Column, JSON, Integer
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.ext.indexable import index_property
+
+Base = declarative_base()
+
+class Person(Base):
+    __tablename__ = 'person'
+
+    id = Column(Integer, primary_key=True)
+    data = Column(JSON)
+
+    birthday = index_property('data', 'birthday')
+    year = index_property('birthday', 'year')
+    month = index_property('birthday', 'month')
+    day = index_property('birthday', 'day')
+</pre>
+<p>Above, a query such as:</p>
+<pre class="rst-literal-block">
+q = session.query(Person).filter(Person.year == '1980')
+</pre>
+<p>On a PostgreSQL backend, the above query will render as:</p>
+<pre class="rst-literal-block">
+SELECT person.id, person.data
+FROM person
+WHERE person.data -&gt; %(data_1)s -&gt; %(param_1)s = %(param_2)s
+</pre>
+</div>
+<div class="rst-section" id="rst-default-values">
+<h2 class="heading">Default Values</h2>
+<p><code>.index_property</code> includes special behaviors for when the indexed
+data structure does not exist, and a set operation is called:</p>
+<ul class="rst-simple">
+<li>For an <code>.index_property</code> that is given an integer index value,
+the default data structure will be a Python list of <tt class="rst-docutils literal">None</tt> values,
+at least as long as the index value; the value is then set at its
+place in the list.  This means for an index value of zero, the list
+will be initialized to <tt class="rst-docutils literal">[None]</tt> before setting the given value,
+and for an index value of five, the list will be initialized to
+<tt class="rst-docutils literal">[None, None, None, None, None]</tt> before setting the fifth element
+to the given value.   Note that an existing list is <strong>not</strong> extended
+in place to receive a value.</li>
+<li>for an <code>.index_property</code> that is given any other kind of index
+value (e.g. strings usually), a Python dictionary is used as the
+default data structure.</li>
+<li>The default data structure can be set to any Python callable using the
+<a href="#system-message-1"><span class="rst-problematic" id="rst-problematic-1">:paramref:`.index_property.datatype`</span></a> parameter, overriding the previous
+rules.</li>
+</ul>
+</div>
+<div class="rst-section" id="rst-subclassing">
+<h2 class="heading">Subclassing</h2>
+<p><code>.index_property</code> can be subclassed, in particular for the common
+use case of providing coercion of values or SQL expressions as they are
+accessed.  Below is a common recipe for use with a PostgreSQL JSON type,
+where we want to also include automatic casting plus <tt class="rst-docutils literal">astext()</tt>:</p>
+<pre class="rst-literal-block">
+class pg_json_property(index_property):
+    def __init__(self, attr_name, index, cast_type):
+        super(pg_json_property, self).__init__(attr_name, index)
+        self.cast_type = cast_type
+
+    def expr(self, model):
+        expr = super(pg_json_property, self).expr(model)
+        return expr.astext.cast(self.cast_type)
+</pre>
+<p>The above subclass can be used with the PostgreSQL-specific
+version of <code>_postgresql.JSON</code>:</p>
+<pre class="rst-literal-block">
+from sqlalchemy import Column, Integer
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.dialects.postgresql import JSON
+
+Base = declarative_base()
+
+class Person(Base):
+    __tablename__ = 'person'
+
+    id = Column(Integer, primary_key=True)
+    data = Column(JSON)
+
+    age = pg_json_property('data', 'age', Integer)
+</pre>
+<p>The <tt class="rst-docutils literal">age</tt> attribute at the instance level works as before; however
+when rendering SQL, PostgreSQL's <tt class="rst-docutils literal"><span class="pre">-&gt;&gt;</span></tt> operator will be used
+for indexed access, instead of the usual index operator of <tt class="rst-docutils literal"><span class="pre">-&gt;</span></tt>:</p>
+<pre class="rst-literal-block">
+&gt;&gt;&gt; query = session.query(Person).filter(Person.age &lt; 20)
+</pre>
+<p>The above query will render:</p>
+<pre class="rst-literal-block">
+SELECT person.id, person.data
+FROM person
+WHERE CAST(person.data -&gt;&gt; %(data_1)s AS INTEGER) &lt; %(param_1)s
+</pre>
+</div>
+</div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id20610">
+  
+  
+  <tr class="class">
+    
+    <td>Class</td>
+    <td><code><a href="sqlalchemy.ext.indexable.index_property.html" class="internal-link" title="sqlalchemy.ext.indexable.index_property">index​_property</a></code></td>
+    <td>A property generator. The generated property describes an object attribute that corresponds to an <code>_types.Indexable</code> column.</td>
+  </tr>
+</table>
+        
+
+          
+      </div>
+
+      <div id="childList">
+
+        
+
+      </div>
+    </div>
+
+    <footer class="navbar navbar-default">
+  
+  <div class="container">
+    <a href="index.html">API Documentation</a> for sqlalchemy,
+  generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
+    22.2.0 at 2022-02-23 08:22:50.
+  </div>
+</footer>
+
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+  </body>
+</html>

@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  
+
+  <head>
+    
+    <title>scrapy.core.downloader.handlers.ftp</title>
+    <meta name="generator" content="pydoctor 22.2.0"> 
+        
+    </meta>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=0.75" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+    <link rel="stylesheet" type="text/css" href="extra.css" />
+</head>
+
+  <body>
+
+    <div id="banner" class="container">    
+    <div>
+        <a href="https://pydocbrowser.github.io/">Home</a>
+        &gt; scrapy-2.5.1 
+        <!-- This is an important placeholder and will be 
+            replaced by project name and version on building docs -->
+        
+        <!-- (<a href=""&gt;show all versions</a&gt;) -->
+    </div>
+</div>
+
+    <nav class="navbar navbar-default">
+  
+  <div class="container">
+
+    <div class="navbar-header">
+      
+      <div class="navlinks">
+          <span class="navbar-brand">
+            scrapy <a href="index.html">API Documentation</a>
+          </span>
+
+          <a href="moduleIndex.html">
+            Modules
+          </a>
+
+          <a href="classIndex.html">
+            Classes
+          </a>
+
+          <a href="nameIndex.html">
+            Names
+          </a>
+      </div>
+
+    </div>
+  </div>
+</nav>
+
+    
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="module"><code><code><a href="index.html" class="internal-link">scrapy</a></code><wbr></wbr>.<code><a href="scrapy.core.html" class="internal-link" title="scrapy.core">core</a></code><wbr></wbr>.<code><a href="scrapy.core.downloader.html" class="internal-link" title="scrapy.core.downloader">downloader</a></code><wbr></wbr>.<code><a href="scrapy.core.downloader.handlers.html" class="internal-link" title="scrapy.core.downloader.handlers">handlers</a></code><wbr></wbr>.<code><a href="scrapy.core.downloader.handlers.ftp.html" class="internal-link" title="scrapy.core.downloader.handlers.ftp">ftp</a></code></code></h1>
+        <div id="showPrivate">
+          <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+        </div>
+      </div>
+
+      <div class="categoryHeader">
+        module documentation
+      </div>
+
+      <div class="extrasDocstring">
+        <a href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/scrapy-2.5.1//scrapy/core/downloader/handlers/ftp.py" class="sourceLink">(source)</a>
+        <p></p>
+      </div>
+
+      <div class="moduleDocstring">
+        <div><p>An asynchronous FTP file download handler for scrapy which somehow emulates an http response.</p>
+<p>FTP connection parameters are passed using the request meta field:
+- ftp_user (required)
+- ftp_password (required)
+- ftp_passive (by default, enabled) sets FTP connection passive mode
+- ftp_local_filename</p>
+<blockquote>
+<ul class="rst-simple">
+<li>If not given, file data will come in the response.body, as a normal scrapy Response,</li>
+</ul>
+<p>which will imply that the entire file will be on memory.
+- if given, file data will be saved in a local file with the given name
+This helps when downloading very big files to avoid memory issues. In addition, for
+convenience the local file name will also be given in the response body.</p>
+</blockquote>
+<p>The status of the built html response will be, by default
+- 200 in case of success
+- 404 in case specified file was not found in the server (ftp code 550)</p>
+<p>or raise corresponding ftp exception otherwise</p>
+<p>The matching from server ftp command return codes to html response codes is defined in the
+CODE_MAPPING attribute of the handler class. The key 'default' is used for any code
+that is not explicitly present among the map keys. You may need to overwrite this
+mapping if want a different behaviour than default.</p>
+<dl class="rst-docutils">
+<dt>In case of status 200 request, response.headers will come with two keys:</dt>
+<dd>'Local Filename' - with the value of the local filename if given
+'Size' - with size of the downloaded data</dd>
+</dl>
+</div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id15293">
+  
+  
+  <tr class="class">
+    
+    <td>Class</td>
+    <td><code><a href="scrapy.core.downloader.handlers.ftp.FTPDownloadHandler.html" class="internal-link" title="scrapy.core.downloader.handlers.ftp.FTPDownloadHandler">​FTPDownload​Handler</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><code><a href="scrapy.core.downloader.handlers.ftp.ReceivedDataProtocol.html" class="internal-link" title="scrapy.core.downloader.handlers.ftp.ReceivedDataProtocol">​Received​Data​Protocol</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="constant private">
+    
+    <td>Constant</td>
+    <td><code><a href="#_CODE_RE" class="internal-link" title="scrapy.core.downloader.handlers.ftp._CODE_RE">​_CODE​_RE</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+        
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="baseconstant private">
+  
+  
+  <a name="scrapy.core.downloader.handlers.ftp._CODE_RE">
+    
+  </a>
+  <a name="_CODE_RE">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_CODE_RE</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/scrapy-2.5.1//scrapy/core/downloader/handlers/ftp.py#L62">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    <table class="valueTable"><tr class="fieldStart"><td class="fieldName">Value</td></tr><tr><td><pre class="constant-value"><code><a href="https://docs.python.org/3/library/re.html#re.compile" class="intersphinx-link">re.compile</a>(r<span class="rst-variable-quote">'</span>\d<span class="rst-re-op">+</span><span class="rst-variable-quote">'</span>)</code></pre></td></tr></table>
+  </div>
+</div>
+
+      </div>
+    </div>
+
+    <footer class="navbar navbar-default">
+  
+  <div class="container">
+    <a href="index.html">API Documentation</a> for scrapy,
+  generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
+    22.2.0 at 2022-02-23 08:19:51.
+  </div>
+</footer>
+
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+  </body>
+</html>

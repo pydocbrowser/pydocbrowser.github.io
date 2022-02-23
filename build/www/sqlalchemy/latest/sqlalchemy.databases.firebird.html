@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  
+
+  <head>
+    
+    <title>sqlalchemy.databases.firebird</title>
+    <meta name="generator" content="pydoctor 22.2.0"> 
+        
+    </meta>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=0.75" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+    <link rel="stylesheet" type="text/css" href="extra.css" />
+</head>
+
+  <body>
+
+    <div id="banner" class="container">    
+    <div>
+        <a href="https://pydocbrowser.github.io/">Home</a>
+        &gt; sqlalchemy-1.4.31 
+        <!-- This is an important placeholder and will be 
+            replaced by project name and version on building docs -->
+        
+        <!-- (<a href=""&gt;show all versions</a&gt;) -->
+    </div>
+</div>
+
+    <nav class="navbar navbar-default">
+  
+  <div class="container">
+
+    <div class="navbar-header">
+      
+      <div class="navlinks">
+          <span class="navbar-brand">
+            sqlalchemy <a href="index.html">API Documentation</a>
+          </span>
+
+          <a href="moduleIndex.html">
+            Modules
+          </a>
+
+          <a href="classIndex.html">
+            Classes
+          </a>
+
+          <a href="nameIndex.html">
+            Names
+          </a>
+      </div>
+
+    </div>
+  </div>
+</nav>
+
+    
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="module"><code><code><a href="index.html" class="internal-link">sqlalchemy</a></code><wbr></wbr>.<code><a href="sqlalchemy.databases.html" class="internal-link" title="sqlalchemy.databases">databases</a></code><wbr></wbr>.<code><a href="sqlalchemy.databases.firebird.html" class="internal-link" title="sqlalchemy.databases.firebird">firebird</a></code></code></h1>
+        <div id="showPrivate">
+          <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+        </div>
+      </div>
+
+      <div class="categoryHeader">
+        module documentation
+      </div>
+
+      <div class="extrasDocstring">
+        <a href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/dialects/firebird/base.py" class="sourceLink">(source)</a>
+        <p></p>
+      </div>
+
+      <div class="moduleDocstring">
+        <div><div class="rst-admonition note">
+<p class="rst-first rst-admonition-title">Note</p>
+<p class="rst-last">The Firebird dialect within SQLAlchemy <strong>is not currently supported</strong>.
+It is not tested within continuous integration and is likely to have
+many issues and caveats not currently handled. Consider using the
+<a class="rst-reference external" href="https://github.com/pauldex/sqlalchemy-firebird" target="_top">external dialect</a>
+instead.</p>
+</div>
+<div class="rst-deprecated">
+<span class="rst-versionmodified rst-deprecated">Deprecated since version 1.4: </span><span>The internal Firebird dialect is deprecated and will be
+removed in a future version. Use the external dialect.</span></div>
+<div class="rst-section" id="rst-firebird-dialects">
+<h2 class="heading">Firebird Dialects</h2>
+<p>Firebird offers two distinct <a class="rst-reference external" href="https://mc-computing.com/Databases/Firebird/SQL_Dialect.html" target="_top">dialects</a> (not to be confused with a
+SQLAlchemy <tt class="rst-docutils literal">Dialect</tt>):</p>
+<dl class="rst-docutils">
+<dt>dialect 1</dt>
+<dd>This is the old syntax and behaviour, inherited from Interbase pre-6.0.</dd>
+<dt>dialect 3</dt>
+<dd>This is the newer and supported syntax, introduced in Interbase 6.0.</dd>
+</dl>
+<p>The SQLAlchemy Firebird dialect detects these versions and
+adjusts its representation of SQL accordingly.  However,
+support for dialect 1 is not well tested and probably has
+incompatibilities.</p>
+</div>
+<div class="rst-section" id="rst-locking-behavior">
+<h2 class="heading">Locking Behavior</h2>
+<p>Firebird locks tables aggressively.  For this reason, a DROP TABLE may
+hang until other transactions are released.  SQLAlchemy does its best
+to release transactions as quickly as possible.  The most common cause
+of hanging transactions is a non-fully consumed result set, i.e.:</p>
+<pre class="rst-literal-block">
+result = engine.execute(text("select * from table"))
+row = result.fetchone()
+return
+</pre>
+<p>Where above, the <tt class="rst-docutils literal">CursorResult</tt> has not been fully consumed.  The
+connection will be returned to the pool and the transactional state
+rolled back once the Python garbage collector reclaims the objects
+which hold onto the connection, which often occurs asynchronously.
+The above use case can be alleviated by calling <tt class="rst-docutils literal">first()</tt> on the
+<tt class="rst-docutils literal">CursorResult</tt> which will fetch the first row and immediately close
+all remaining cursor/connection resources.</p>
+</div>
+<div class="rst-section" id="rst-returning-support">
+<h2 class="heading">RETURNING support</h2>
+<p>Firebird 2.0 supports returning a result set from inserts, and 2.1
+extends that to deletes and updates. This is generically exposed by
+the SQLAlchemy <tt class="rst-docutils literal">returning()</tt> method, such as:</p>
+<pre class="rst-literal-block">
+# INSERT..RETURNING
+result = table.insert().returning(table.c.col1, table.c.col2).\
+               values(name='foo')
+print(result.fetchall())
+
+# UPDATE..RETURNING
+raises = empl.update().returning(empl.c.id, empl.c.salary).\
+              where(empl.c.sales&gt;100).\
+              values(dict(salary=empl.c.salary * 1.1))
+print(raises.fetchall())
+</pre>
+</div>
+</div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id18127">
+  
+  
+  <tr class="class">
+    
+    <td>Class</td>
+    <td><code><a href="sqlalchemy.databases.firebird.FBCompiler.html" class="internal-link" title="sqlalchemy.databases.firebird.FBCompiler">​FBCompiler</a></code></td>
+    <td>Firebird specific idiosyncrasies</td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><code><a href="sqlalchemy.databases.firebird.FBDDLCompiler.html" class="internal-link" title="sqlalchemy.databases.firebird.FBDDLCompiler">​FBDDLCompiler</a></code></td>
+    <td>Firebird syntactic idiosyncrasies</td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><code><a href="sqlalchemy.databases.firebird.FBDialect.html" class="internal-link" title="sqlalchemy.databases.firebird.FBDialect">​FBDialect</a></code></td>
+    <td>Firebird dialect</td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><code><a href="sqlalchemy.databases.firebird.FBExecutionContext.html" class="internal-link" title="sqlalchemy.databases.firebird.FBExecutionContext">​FBExecution​Context</a></code></td>
+    <td><span class="undocumented">No class docstring; 1/1 method documented</span></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><code><a href="sqlalchemy.databases.firebird.FBIdentifierPreparer.html" class="internal-link" title="sqlalchemy.databases.firebird.FBIdentifierPreparer">​FBIdentifier​Preparer</a></code></td>
+    <td>Install Firebird specific reserved words.</td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><code><a href="sqlalchemy.databases.firebird.FBTypeCompiler.html" class="internal-link" title="sqlalchemy.databases.firebird.FBTypeCompiler">​FBType​Compiler</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="constant">
+    
+    <td>Constant</td>
+    <td><code><a href="#RESERVED_WORDS" class="internal-link" title="sqlalchemy.databases.firebird.RESERVED_WORDS">RESERVED​_WORDS</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><code><a href="#colspecs" class="internal-link" title="sqlalchemy.databases.firebird.colspecs">colspecs</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><code><a href="#ischema_names" class="internal-link" title="sqlalchemy.databases.firebird.ischema_names">ischema​_names</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="class private">
+    
+    <td>Class</td>
+    <td><code><a href="sqlalchemy.databases.firebird._FBDateTime.html" class="internal-link" title="sqlalchemy.databases.firebird._FBDateTime">_​FBDate​Time</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="class private">
+    
+    <td>Class</td>
+    <td><code><a href="sqlalchemy.databases.firebird._StringType.html" class="internal-link" title="sqlalchemy.databases.firebird._StringType">_​String​Type</a></code></td>
+    <td>Base for Firebird string types.</td>
+  </tr>
+</table>
+        
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="baseconstant">
+  
+  
+  <a name="sqlalchemy.databases.firebird.RESERVED_WORDS">
+    
+  </a>
+  <a name="RESERVED_WORDS">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">RESERVED_WORDS</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/dialects/firebird/base.py#L106">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    <table class="valueTable"><tr class="fieldStart"><td class="fieldName">Value</td></tr><tr><td><pre class="constant-value"><code><a href="https://docs.python.org/3/library/stdtypes.html#set" class="intersphinx-link">set</a>(<wbr></wbr>[<wbr></wbr><span class="rst-variable-quote">'</span><span class="rst-variable-string">active</span><span class="rst-variable-quote">'</span>,
+     <wbr></wbr><span class="rst-variable-quote">'</span><span class="rst-variable-string">add</span><span class="rst-variable-quote">'</span>,
+     <wbr></wbr><span class="rst-variable-quote">'</span><span class="rst-variable-string">admin</span><span class="rst-variable-quote">'</span>,
+     <wbr></wbr><span class="rst-variable-quote">'</span><span class="rst-variable-string">after</span><span class="rst-variable-quote">'</span>,
+     <wbr></wbr><span class="rst-variable-quote">'</span><span class="rst-variable-string">all</span><span class="rst-variable-quote">'</span>,
+     <wbr></wbr><span class="rst-variable-quote">'</span><span class="rst-variable-string">alter</span><span class="rst-variable-quote">'</span>,
+     <wbr></wbr><span class="rst-variable-quote">'</span><span class="rst-variable-string">and</span><span class="rst-variable-quote">'</span>,
+<span class="rst-variable-ellipsis">...</span></code></pre></td></tr></table>
+  </div>
+</div><div class="basevariable">
+  
+  
+  <a name="sqlalchemy.databases.firebird.colspecs">
+    
+  </a>
+  <a name="colspecs">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">colspecs</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/dialects/firebird/base.py#L378">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="basevariable">
+  
+  
+  <a name="sqlalchemy.databases.firebird.ischema_names">
+    
+  </a>
+  <a name="ischema_names">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">ischema_names</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/dialects/firebird/base.py#L380">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div>
+
+      </div>
+    </div>
+
+    <footer class="navbar navbar-default">
+  
+  <div class="container">
+    <a href="index.html">API Documentation</a> for sqlalchemy,
+  generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
+    22.2.0 at 2022-02-23 08:22:50.
+  </div>
+</footer>
+
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+  </body>
+</html>

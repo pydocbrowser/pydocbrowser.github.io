@@ -1,0 +1,1685 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  
+
+  <head>
+    
+    <title>click.core.Context</title>
+    <meta name="generator" content="pydoctor 22.2.0"> 
+        
+    </meta>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=0.75" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+    <link rel="stylesheet" type="text/css" href="extra.css" />
+</head>
+
+  <body>
+
+    <div id="banner" class="container">    
+    <div>
+        <a href="https://pydocbrowser.github.io/">Home</a>
+        &gt; click-8.0.4 
+        <!-- This is an important placeholder and will be 
+            replaced by project name and version on building docs -->
+        
+        <!-- (<a href=""&gt;show all versions</a&gt;) -->
+    </div>
+</div>
+
+    <nav class="navbar navbar-default">
+  
+  <div class="container">
+
+    <div class="navbar-header">
+      
+      <div class="navlinks">
+          <span class="navbar-brand">
+            click <a href="index.html">API Documentation</a>
+          </span>
+
+          <a href="moduleIndex.html">
+            Modules
+          </a>
+
+          <a href="classIndex.html">
+            Classes
+          </a>
+
+          <a href="nameIndex.html">
+            Names
+          </a>
+      </div>
+
+    </div>
+  </div>
+</nav>
+
+    
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="class"><code><code><a href="index.html" class="internal-link">click</a></code><wbr></wbr>.<code><a href="click.core.html" class="internal-link" title="click.core">core</a></code><wbr></wbr>.<code><a href="click.core.Context.html" class="internal-link" title="click.core.Context">Context</a></code></code></h1>
+        <div id="showPrivate">
+          <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+        </div>
+      </div>
+
+      <div class="categoryHeader">
+        class documentation
+      </div>
+
+      <div class="extrasDocstring">
+        <p><code><span class="py-keyword">class</span> <span class="py-defname">Context</span>: <a href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/click-8.0.4//src/click/core.py#L161" class="sourceLink">(source)</a></code></p>
+        <p><a href="classIndex.html#click.core.Context">View In Hierarchy</a></p>
+      </div>
+
+      <div class="moduleDocstring">
+        <div><p>The context is a special internal object that holds state relevant
+for the script execution at every single level.  It's normally invisible
+to commands unless they opt-in to getting access to it.</p>
+<p>The context is useful as it can pass internal objects around and can
+control special execution features such as reading data from
+environment variables.</p>
+<p>A context can be used as context manager in which case it will call
+<code><a href="#close" class="internal-link" title="click.core.Context.close">close</a></code> on teardown.</p>
+<div class="rst-versionchanged">
+<span class="rst-versionmodified rst-changed">Changed in version 8.0: </span><span>The <tt class="rst-docutils literal">show_default</tt> parameter defaults to the value from the
+parent context.</span></div>
+<div class="rst-versionchanged">
+<span class="rst-versionmodified rst-changed">Changed in version 7.1: </span><span>Added the <tt class="rst-docutils literal">show_default</tt> parameter.</span></div>
+<div class="rst-versionchanged">
+<span class="rst-versionmodified rst-changed">Changed in version 4.0: </span><span>Added the <tt class="rst-docutils literal">color</tt>, <tt class="rst-docutils literal">ignore_unknown_options</tt>, and
+<tt class="rst-docutils literal">max_content_width</tt> parameters.</span></div>
+<div class="rst-versionchanged">
+<span class="rst-versionmodified rst-changed">Changed in version 3.0: </span><span>Added the <tt class="rst-docutils literal">allow_extra_args</tt> and <tt class="rst-docutils literal">allow_interspersed_args</tt>
+parameters.</span></div>
+<div class="rst-versionchanged">
+<span class="rst-versionmodified rst-changed">Changed in version 2.0: </span><span>Added the <tt class="rst-docutils literal">resilient_parsing</tt>, <tt class="rst-docutils literal">help_option_names</tt>, and
+<tt class="rst-docutils literal">token_normalize_func</tt> parameters.</span></div>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">command</span></td><td class="fieldArgDesc">the command class for this context.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">parent</span></td><td class="fieldArgDesc">the parent context.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">info​_name</span></td><td class="fieldArgDesc">the info name for this invocation.  Generally this
+is the most descriptive name for the script or
+command.  For the toplevel script it is usually
+the name of the script, for commands below it it's
+the name of the script.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">obj</span></td><td class="fieldArgDesc">an arbitrary object of user data.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">auto​_envvar​_prefix</span></td><td class="fieldArgDesc">the prefix to use for automatic environment
+variables.  If this is <code><a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a></code> then reading
+from environment variables is disabled.  This
+does not affect manually set environment
+variables which are always read.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">default​_map</span></td><td class="fieldArgDesc">a dictionary (like object) with default values
+for parameters.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">terminal​_width</span></td><td class="fieldArgDesc">the width of the terminal.  The default is
+inherit from parent context.  If no context
+defines the terminal width then auto
+detection will be applied.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">max​_content​_width</span></td><td class="fieldArgDesc">the maximum width for content rendered by
+Click (this currently only affects help
+pages).  This defaults to 80 characters if
+not overridden.  In other words: even if the
+terminal is larger than that, Click will not
+format things wider than 80 characters by
+default.  In addition to that, formatters might
+add some safety mapping on the right.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">resilient​_parsing</span></td><td class="fieldArgDesc">if this flag is enabled then Click will
+parse without any interactivity or callback
+invocation.  Default values will also be
+ignored.  This is useful for implementing
+things such as completion support.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">allow​_extra​_args</span></td><td class="fieldArgDesc">if this is set to <code><a href="https://docs.python.org/3/library/constants.html#True" class="intersphinx-link">True</a></code> then extra arguments
+at the end will not raise an error and will be
+kept on the context.  The default is to inherit
+from the command.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">allow​_interspersed​_args</span></td><td class="fieldArgDesc">if this is set to <code><a href="https://docs.python.org/3/library/constants.html#False" class="intersphinx-link">False</a></code> then options
+and arguments cannot be mixed.  The
+default is to inherit from the command.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">ignore​_unknown​_options</span></td><td class="fieldArgDesc">instructs click to ignore options it does
+not know and keeps them for later
+processing.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">help​_option​_names</span></td><td class="fieldArgDesc">optionally a list of strings that define how
+the default help parameter is named.  The
+default is <tt class="rst-docutils literal"><span class="pre">['--help']</span></tt>.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">token​_normalize​_func</span></td><td class="fieldArgDesc">an optional function that is used to
+normalize tokens (options, choices,
+etc.).  This for instance can be used to
+implement case insensitive behavior.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">color</span></td><td class="fieldArgDesc">controls if the terminal supports ANSI colors or not.  The
+default is autodetection.  This is only needed if ANSI
+codes are used in texts that Click prints which is by
+default not the case.  This for instance would affect
+help output.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">show​_default</span></td><td class="fieldArgDesc">Show defaults for all options. If not set,
+defaults to the value from a parent context. Overrides an
+option's <tt class="rst-docutils literal">show_default</tt> argument.</td></tr></table></div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id1004">
+  
+  
+  <tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__enter__" class="internal-link" title="click.core.Context.__enter__">__enter__</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__exit__" class="internal-link" title="click.core.Context.__exit__">__exit__</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__init__" class="internal-link" title="click.core.Context.__init__">__init__</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#abort" class="internal-link" title="click.core.Context.abort">abort</a></code></td>
+    <td>Aborts the script.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#call_on_close" class="internal-link" title="click.core.Context.call_on_close">call​_on​_close</a></code></td>
+    <td>Register a function to be called when the context tears down.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#close" class="internal-link" title="click.core.Context.close">close</a></code></td>
+    <td>Invoke all close callbacks registered with <code><a href="#call_on_close" class="internal-link" title="click.core.Context.call_on_close">call_on_close</a></code>, and exit all context managers entered with <code><a href="#with_resource" class="internal-link" title="click.core.Context.with_resource">with_resource</a></code>.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#ensure_object" class="internal-link" title="click.core.Context.ensure_object">ensure​_object</a></code></td>
+    <td>Like <code><a href="#find_object" class="internal-link" title="click.core.Context.find_object">find_object</a></code> but sets the innermost object to a new instance of <code>object_type</code> if it does not exist.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#exit" class="internal-link" title="click.core.Context.exit">exit</a></code></td>
+    <td>Exits the application with a given exit code.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#fail" class="internal-link" title="click.core.Context.fail">fail</a></code></td>
+    <td>Aborts the execution of the program with a specific error message.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#find_object" class="internal-link" title="click.core.Context.find_object">find​_object</a></code></td>
+    <td>Finds the closest object of a given type.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#find_root" class="internal-link" title="click.core.Context.find_root">find​_root</a></code></td>
+    <td>Finds the outermost context.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#forward" class="internal-link" title="click.core.Context.forward">forward</a></code></td>
+    <td>Similar to <code><a href="#invoke" class="internal-link" title="click.core.Context.invoke">invoke</a></code> but fills in default keyword arguments from the current context if the other command expects it.  This cannot invoke callbacks directly, only other commands.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#get_help" class="internal-link" title="click.core.Context.get_help">get​_help</a></code></td>
+    <td>Helper method to get formatted help page for the current context and command.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#get_parameter_source" class="internal-link" title="click.core.Context.get_parameter_source">get​_parameter​_source</a></code></td>
+    <td>Get the source of a parameter. This indicates the location from which the value of the parameter was obtained.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#get_usage" class="internal-link" title="click.core.Context.get_usage">get​_usage</a></code></td>
+    <td>Helper method to get formatted usage string for the current context and command.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#invoke" class="internal-link" title="click.core.Context.invoke">invoke</a></code></td>
+    <td>Invokes a command callback in exactly the way it expects.  There are two ways to invoke this method:</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#lookup_default" class="internal-link" title="click.core.Context.lookup_default">lookup​_default</a></code></td>
+    <td>Get the default for a parameter from <code><a href="#default_map" class="internal-link" title="click.core.Context.default_map">default_map</a></code>.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#make_formatter" class="internal-link" title="click.core.Context.make_formatter">make​_formatter</a></code></td>
+    <td>Creates the <code>~click.HelpFormatter</code> for the help and usage output.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#scope" class="internal-link" title="click.core.Context.scope">scope</a></code></td>
+    <td><span class="undocumented">No summary</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#set_parameter_source" class="internal-link" title="click.core.Context.set_parameter_source">set​_parameter​_source</a></code></td>
+    <td>Set the source of a parameter. This indicates the location from which the value of the parameter was obtained.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#to_info_dict" class="internal-link" title="click.core.Context.to_info_dict">to​_info​_dict</a></code></td>
+    <td>Gather information that could be useful for a tool generating user-facing documentation. This traverses the entire CLI structure.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#with_resource" class="internal-link" title="click.core.Context.with_resource">with​_resource</a></code></td>
+    <td>Register a resource as if it were used in a <tt class="rst-docutils literal">with</tt> statement. The resource will be cleaned up when the context is popped.</td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#allow_extra_args" class="internal-link" title="click.core.Context.allow_extra_args">allow​_extra​_args</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#allow_interspersed_args" class="internal-link" title="click.core.Context.allow_interspersed_args">allow​_interspersed​_args</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#args" class="internal-link" title="click.core.Context.args">args</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#auto_envvar_prefix" class="internal-link" title="click.core.Context.auto_envvar_prefix">auto​_envvar​_prefix</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#color" class="internal-link" title="click.core.Context.color">color</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#command" class="internal-link" title="click.core.Context.command">command</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#default_map" class="internal-link" title="click.core.Context.default_map">default​_map</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#help_option_names" class="internal-link" title="click.core.Context.help_option_names">help​_option​_names</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#ignore_unknown_options" class="internal-link" title="click.core.Context.ignore_unknown_options">ignore​_unknown​_options</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#info_name" class="internal-link" title="click.core.Context.info_name">info​_name</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#invoked_subcommand" class="internal-link" title="click.core.Context.invoked_subcommand">invoked​_subcommand</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#max_content_width" class="internal-link" title="click.core.Context.max_content_width">max​_content​_width</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#obj" class="internal-link" title="click.core.Context.obj">obj</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#params" class="internal-link" title="click.core.Context.params">params</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#parent" class="internal-link" title="click.core.Context.parent">parent</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#protected_args" class="internal-link" title="click.core.Context.protected_args">protected​_args</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#resilient_parsing" class="internal-link" title="click.core.Context.resilient_parsing">resilient​_parsing</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#show_default" class="internal-link" title="click.core.Context.show_default">show​_default</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#terminal_width" class="internal-link" title="click.core.Context.terminal_width">terminal​_width</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#token_normalize_func" class="internal-link" title="click.core.Context.token_normalize_func">token​_normalize​_func</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="property">
+    
+    <td>Property</td>
+    <td><code><a href="#command_path" class="internal-link" title="click.core.Context.command_path">command​_path</a></code></td>
+    <td>The computed command path.  This is used for the <tt class="rst-docutils literal">usage</tt> information on the help page.  It's automatically created by combining the info names of the chain of contexts to the root.</td>
+  </tr><tr class="property">
+    
+    <td>Property</td>
+    <td><code><a href="#meta" class="internal-link" title="click.core.Context.meta">meta</a></code></td>
+    <td><span class="undocumented">No summary</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_make_sub_context" class="internal-link" title="click.core.Context._make_sub_context">​_make​_sub​_context</a></code></td>
+    <td>Create a new context of the same type as this context, but for a new command.</td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#_close_callbacks" class="internal-link" title="click.core.Context._close_callbacks">​_close​_callbacks</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#_depth" class="internal-link" title="click.core.Context._depth">​_depth</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#_exit_stack" class="internal-link" title="click.core.Context._exit_stack">​_exit​_stack</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#_meta" class="internal-link" title="click.core.Context._meta">​_meta</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#_parameter_source" class="internal-link" title="click.core.Context._parameter_source">​_parameter​_source</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+        
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="basemethod">
+  
+  
+  <a name="click.core.Context.__enter__">
+    
+  </a>
+  <a name="__enter__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__enter__</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/click-8.0.4//src/click/core.py#L447">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="click.core.Context.html" class="internal-link" title="click.core.Context">Context</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="click.core.Context.__exit__">
+    
+  </a>
+  <a name="__exit__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__exit__</span>(self, exc_type, exc_value, tb):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/click-8.0.4//src/click/core.py#L452">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="click.core.Context.__init__">
+    
+  </a>
+  <a name="__init__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__init__</span>(self, command, parent=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, info_name=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, obj=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, auto_envvar_prefix=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, default_map=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, terminal_width=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, max_content_width=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, resilient_parsing=<a href="https://docs.python.org/3/library/constants.html#False" class="intersphinx-link">False</a>, allow_extra_args=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, allow_interspersed_args=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, ignore_unknown_options=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, help_option_names=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, token_normalize_func=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, color=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, show_default=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/click-8.0.4//src/click/core.py#L256">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">command:</span><code><a href="click.core.Command.html" class="internal-link" title="click.core.Command">Command</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">parent:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">t.Optional</a>[<wbr></wbr><a href="click.core.Context.html" class="internal-link" title="click.core.Context">Context</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">info​_name:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">t.Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">obj:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">t.Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">t.Any</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">auto​_envvar​_prefix:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">t.Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">default​_map:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">t.Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Dict" class="intersphinx-link">t.Dict</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>, <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">t.Any</a>]]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">terminal​_width:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">t.Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/functions.html#int" class="intersphinx-link">int</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">max​_content​_width:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">t.Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/functions.html#int" class="intersphinx-link">int</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">resilient​_parsing:</span><code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">allow​_extra​_args:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">t.Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">allow​_interspersed​_args:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">t.Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">ignore​_unknown​_options:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">t.Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">help​_option​_names:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">t.Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.List" class="intersphinx-link">t.List</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">token​_normalize​_func:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">t.Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Callable" class="intersphinx-link">t.Callable</a>[<wbr></wbr>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>], <wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">color:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">t.Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">show​_default:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">t.Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="click.core.Context.abort">
+    
+  </a>
+  <a name="abort">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">abort</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/click-8.0.4//src/click/core.py#L675">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Aborts the script.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code>te.NoReturn</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="click.core.Context.call_on_close">
+    
+  </a>
+  <a name="call_on_close">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">call_on_close</span>(self, f):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/click-8.0.4//src/click/core.py#L567">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Register a function to be called when the context tears down.</p>
+<p>This can be used to close resources opened during the script
+execution. Resources that support Python's context manager
+protocol which would be used in a <tt class="rst-docutils literal">with</tt> statement should be
+registered with <code><a href="#with_resource" class="internal-link" title="click.core.Context.with_resource">with_resource</a></code> instead.</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">f:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Callable" class="intersphinx-link">t.Callable</a>[<wbr></wbr><span class="rst-variable-ellipsis">...</span>, <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">t.Any</a>]</code></td><td class="fieldArgDesc">The function to execute on teardown.</td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Callable" class="intersphinx-link">t.Callable</a>[<wbr></wbr><span class="rst-variable-ellipsis">...</span>, <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">t.Any</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="click.core.Context.close">
+    
+  </a>
+  <a name="close">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">close</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/click-8.0.4//src/click/core.py#L579">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Invoke all close callbacks registered with
+<code><a href="#call_on_close" class="internal-link" title="click.core.Context.call_on_close">call_on_close</a></code>, and exit all context managers entered
+with <code><a href="#with_resource" class="internal-link" title="click.core.Context.with_resource">with_resource</a></code>.</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="click.core.Context.ensure_object">
+    
+  </a>
+  <a name="ensure_object">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">ensure_object</span>(self, object_type):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/click-8.0.4//src/click/core.py#L626">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Like <code><a href="#find_object" class="internal-link" title="click.core.Context.find_object">find_object</a></code> but sets the innermost object to a
+new instance of <code>object_type</code> if it does not exist.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">object​_type:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Type" class="intersphinx-link">t.Type</a>[<wbr></wbr><a href="click.core.html#V" class="internal-link" title="click.core.V">V</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="click.core.html#V" class="internal-link" title="click.core.V">V</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="click.core.Context.exit">
+    
+  </a>
+  <a name="exit">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">exit</span>(self, code=0):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/click-8.0.4//src/click/core.py#L679">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Exits the application with a given exit code.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">code:</span><code><a href="https://docs.python.org/3/library/functions.html#int" class="intersphinx-link">int</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code>te.NoReturn</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="click.core.Context.fail">
+    
+  </a>
+  <a name="fail">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">fail</span>(self, message):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/click-8.0.4//src/click/core.py#L667">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Aborts the execution of the program with a specific error
+message.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">message:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc">the error message to fail with.</td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code>te.NoReturn</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="click.core.Context.find_object">
+    
+  </a>
+  <a name="find_object">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">find_object</span>(self, object_type):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/click-8.0.4//src/click/core.py#L614">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Finds the closest object of a given type.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">object​_type:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Type" class="intersphinx-link">t.Type</a>[<wbr></wbr><a href="click.core.html#V" class="internal-link" title="click.core.V">V</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">t.Optional</a>[<wbr></wbr><a href="click.core.html#V" class="internal-link" title="click.core.V">V</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="click.core.Context.find_root">
+    
+  </a>
+  <a name="find_root">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">find_root</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/click-8.0.4//src/click/core.py#L607">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Finds the outermost context.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="click.core.Context.html" class="internal-link" title="click.core.Context">Context</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="click.core.Context.forward">
+    
+  </a>
+  <a name="forward">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">forward</span>(__self, __cmd, *args, **kwargs):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/click-8.0.4//src/click/core.py#L756">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Similar to <code><a href="#invoke" class="internal-link" title="click.core.Context.invoke">invoke</a></code> but fills in default keyword
+arguments from the current context if the other command expects
+it.  This cannot invoke callbacks directly, only other commands.</p>
+<div class="rst-versionchanged">
+<span class="rst-versionmodified rst-changed">Changed in version 8.0: </span><span>All <tt class="rst-docutils literal">kwargs</tt> are tracked in <code><a href="#params" class="internal-link" title="click.core.Context.params">params</a></code> so they will be
+passed if <tt class="rst-docutils literal">forward</tt> is called at multiple levels.</span></div>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">__self</span></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">__cmd:</span><code><a href="click.core.Command.html" class="internal-link" title="click.core.Command">Command</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">*args:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">t.Any</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">**kwargs:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">t.Any</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">t.Any</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="click.core.Context.get_help">
+    
+  </a>
+  <a name="get_help">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">get_help</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/click-8.0.4//src/click/core.py#L689">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Helper method to get formatted help page for the current
+context and command.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="click.core.Context.get_parameter_source">
+    
+  </a>
+  <a name="get_parameter_source">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">get_parameter_source</span>(self, name):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/click-8.0.4//src/click/core.py#L786">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Get the source of a parameter. This indicates the location
+from which the value of the parameter was obtained.</p>
+<p>This can be useful for determining when a user specified a value
+on the command line that is the same as the default value. It
+will be <code>~click.core.ParameterSource.DEFAULT</code> only if the
+value was actually taken from the default.</p>
+<div class="rst-versionchanged">
+<span class="rst-versionmodified rst-changed">Changed in version 8.0: </span><span>Returns <tt class="rst-docutils literal">None</tt> if the parameter was not provided from any
+source.</span></div>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">name:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc">The name of the parameter.</td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer">ParameterSource</td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="click.core.Context.get_usage">
+    
+  </a>
+  <a name="get_usage">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">get_usage</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/click-8.0.4//src/click/core.py#L683">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Helper method to get formatted usage string for the current
+context and command.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="click.core.Context.invoke">
+    
+  </a>
+  <a name="invoke">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">invoke</span>(__self, __callback, *args, **kwargs):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/click-8.0.4//src/click/core.py#L703">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Invokes a command callback in exactly the way it expects.  There
+are two ways to invoke this method:</p>
+<ol class="rst-arabic simple">
+<li>the first argument can be a callback and all other arguments and
+keyword arguments are forwarded directly to the function.</li>
+<li>the first argument is a click command object.  In that case all
+arguments are forwarded as well but proper click parameters
+(options and click arguments) must be keyword arguments and Click
+will fill in defaults.</li>
+</ol>
+<p>Note that before Click 3.2 keyword arguments were not properly filled
+in against the intention of this code and no context was created.  For
+more information about this change and why it was done in a bugfix
+release see <a href="#system-message-1"><span class="rst-problematic" id="rst-problematic-1">:ref:`upgrade-to-3.2`</span></a>.</p>
+<div class="rst-versionchanged">
+<span class="rst-versionmodified rst-changed">Changed in version 8.0: </span><span>All <tt class="rst-docutils literal">kwargs</tt> are tracked in <code><a href="#params" class="internal-link" title="click.core.Context.params">params</a></code> so they will be
+passed if <code><a href="#forward" class="internal-link" title="click.core.Context.forward">forward</a></code> is called at multiple levels.</span></div>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">__self</span></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">__callback:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Union" class="intersphinx-link">t.Union</a>[<wbr></wbr><a href="click.core.Command.html" class="internal-link" title="click.core.Command">Command</a>, <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Callable" class="intersphinx-link">t.Callable</a>[<wbr></wbr><span class="rst-variable-ellipsis">...</span>, <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">t.Any</a>]]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">*args:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">t.Any</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">**kwargs:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">t.Any</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">t.Any</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="click.core.Context.lookup_default">
+    
+  </a>
+  <a name="lookup_default">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">lookup_default</span>(self, name, call=<a href="https://docs.python.org/3/library/constants.html#True" class="intersphinx-link">True</a>):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/click-8.0.4//src/click/core.py#L647">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Get the default for a parameter from <code><a href="#default_map" class="internal-link" title="click.core.Context.default_map">default_map</a></code>.</p>
+<div class="rst-versionchanged">
+<span class="rst-versionmodified rst-changed">Changed in version 8.0: </span><span>Added the <tt class="rst-docutils literal">call</tt> parameter.</span></div>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">name:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc">Name of the parameter.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">call:</span><code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code></td><td class="fieldArgDesc">If the default is a callable, call it. Disable to
+return the callable instead.</td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">t.Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">t.Any</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="click.core.Context.make_formatter">
+    
+  </a>
+  <a name="make_formatter">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">make_formatter</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/click-8.0.4//src/click/core.py#L524">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Creates the <code>~click.HelpFormatter</code> for the help and
+usage output.</p>
+<p>To quickly customize the formatter class used without overriding
+this method, set the <code><a href="click.formatting.HelpFormatter.html" class="internal-link" title="click.formatting.HelpFormatter">formatter_class</a></code> attribute.</p>
+<div class="rst-versionchanged">
+<span class="rst-versionmodified rst-changed">Changed in version 8.0: </span><span>Added the <code><a href="click.formatting.HelpFormatter.html" class="internal-link" title="click.formatting.HelpFormatter">formatter_class</a></code> attribute.</span></div>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="click.formatting.HelpFormatter.html" class="internal-link" title="click.formatting.HelpFormatter">HelpFormatter</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="click.core.Context.scope">
+    
+  </a>
+  <a name="scope">
+    
+  </a>
+  <div class="functionHeader">
+    @<a href="https://docs.python.org/3/library/contextlib.html#contextlib.contextmanager" class="intersphinx-link">contextmanager</a><br />
+    <span class="py-keyword">def</span> <span class="py-defname">scope</span>(self, cleanup=<a href="https://docs.python.org/3/library/constants.html#True" class="intersphinx-link">True</a>):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/click-8.0.4//src/click/core.py#L458">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>This helper method can be used with the context object to promote
+it to the current thread local (see <code><a href="click.globals.html#get_current_context" class="internal-link" title="click.globals.get_current_context">get_current_context</a></code>).
+The default behavior of this is to invoke the cleanup functions which
+can be disabled by setting <code>cleanup</code> to <code><a href="https://docs.python.org/3/library/constants.html#False" class="intersphinx-link">False</a></code>.  The cleanup
+functions are typically used for things such as closing file handles.</p>
+<p>If the cleanup is intended the context object can also be directly
+used as a context manager.</p>
+<p>Example usage:</p>
+<pre class="rst-literal-block">
+with ctx.scope():
+    assert get_current_context() is ctx
+</pre>
+<p>This is equivalent:</p>
+<pre class="rst-literal-block">
+with ctx:
+    assert get_current_context() is ctx
+</pre>
+<div class="rst-versionadded">
+<span class="rst-versionmodified rst-added">New in version 5.0.</span></div>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">cleanup:</span><code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code></td><td class="fieldArgDesc">controls if the cleanup functions should be run or
+not.  The default is to run these functions.  In
+some situations the context only wants to be
+temporarily pushed in which case this can be disabled.
+Nested pushes automatically defer the cleanup.</td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Iterator" class="intersphinx-link">t.Iterator</a>[<wbr></wbr><a href="click.core.Context.html" class="internal-link" title="click.core.Context">Context</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="click.core.Context.set_parameter_source">
+    
+  </a>
+  <a name="set_parameter_source">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">set_parameter_source</span>(self, name, source):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/click-8.0.4//src/click/core.py#L777">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Set the source of a parameter. This indicates the location
+from which the value of the parameter was obtained.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">name:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc">The name of the parameter.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">source:</span><code><a href="click.core.ParameterSource.html" class="internal-link" title="click.core.ParameterSource">ParameterSource</a></code></td><td class="fieldArgDesc">A member of <code>~click.core.ParameterSource</code>.</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="click.core.Context.to_info_dict">
+    
+  </a>
+  <a name="to_info_dict">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">to_info_dict</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/click-8.0.4//src/click/core.py#L426">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Gather information that could be useful for a tool generating
+user-facing documentation. This traverses the entire CLI
+structure.</p>
+<pre class="rst-code rst-python rst-literal-block">
+with Context(cli) as ctx:
+    info = ctx.to_info_dict()
+</pre>
+<div class="rst-versionadded">
+<span class="rst-versionmodified rst-added">New in version 8.0.</span></div>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Dict" class="intersphinx-link">t.Dict</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>, <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">t.Any</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="click.core.Context.with_resource">
+    
+  </a>
+  <a name="with_resource">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">with_resource</span>(self, context_manager):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/click-8.0.4//src/click/core.py#L538">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Register a resource as if it were used in a <tt class="rst-docutils literal">with</tt>
+statement. The resource will be cleaned up when the context is
+popped.</p>
+<p>Uses <code><a href="https://docs.python.org/3/library/contextlib.html#contextlib.ExitStack.enter_context" class="intersphinx-link">contextlib.ExitStack.enter_context</a></code>. It calls the
+resource's <tt class="rst-docutils literal">__enter__()</tt> method and returns the result. When
+the context is popped, it closes the stack, which calls the
+resource's <tt class="rst-docutils literal">__exit__()</tt> method.</p>
+<p>To register a cleanup function for something that isn't a
+context manager, use <code><a href="#call_on_close" class="internal-link" title="click.core.Context.call_on_close">call_on_close</a></code>. Or use something
+from <code><a href="https://docs.python.org/3/library/contextlib.html#module-contextlib" class="intersphinx-link">contextlib</a></code> to turn it into a context manager first.</p>
+<pre class="rst-code rst-python rst-literal-block">
+@click.group()
+@click.option("--name")
+@click.pass_context
+def cli(ctx):
+    ctx.obj = ctx.with_resource(connect_db(name))
+</pre>
+<div class="rst-versionadded">
+<span class="rst-versionmodified rst-added">New in version 8.0.</span></div>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">context​_manager:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.ContextManager" class="intersphinx-link">t.ContextManager</a>[<wbr></wbr><a href="click.core.html#V" class="internal-link" title="click.core.V">V</a>]</code></td><td class="fieldArgDesc">The context manager to enter.</td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="click.core.html#V" class="internal-link" title="click.core.V">V</a></code></td><td class="fieldArgDesc">Whatever <tt class="rst-docutils literal">context_manager.__enter__()</tt> returns.</td></tr></table></div>
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="click.core.Context.allow_extra_args">
+    
+  </a>
+  <a name="allow_extra_args">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">allow_extra_args</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/click-8.0.4//src/click/core.py#L342">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="click.core.Context.allow_interspersed_args">
+    
+  </a>
+  <a name="allow_interspersed_args">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">allow_interspersed_args</span>: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/click-8.0.4//src/click/core.py#L351">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="click.core.Context.args">
+    
+  </a>
+  <a name="args">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">args</span>: <code><a href="https://docs.python.org/3/library/typing.html#typing.List" class="intersphinx-link">t.List</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]</code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/click-8.0.4//src/click/core.py#L285">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="click.core.Context.auto_envvar_prefix">
+    
+  </a>
+  <a name="auto_envvar_prefix">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">auto_envvar_prefix</span>: <code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">t.Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]</code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/click-8.0.4//src/click/core.py#L407">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="click.core.Context.color">
+    
+  </a>
+  <a name="color">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">color</span>: <code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">t.Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a>]</code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/click-8.0.4//src/click/core.py#L413">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="click.core.Context.command">
+    
+  </a>
+  <a name="command">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">command</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/click-8.0.4//src/click/core.py#L278">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="click.core.Context.default_map">
+    
+  </a>
+  <a name="default_map">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">default_map</span>: <code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">t.Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Dict" class="intersphinx-link">t.Dict</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>, <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">t.Any</a>]]</code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/click-8.0.4//src/click/core.py#L308">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="click.core.Context.help_option_names">
+    
+  </a>
+  <a name="help_option_names">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">help_option_names</span>: <code><a href="https://docs.python.org/3/library/typing.html#typing.List" class="intersphinx-link">t.List</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]</code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/click-8.0.4//src/click/core.py#L373">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="click.core.Context.ignore_unknown_options">
+    
+  </a>
+  <a name="ignore_unknown_options">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">ignore_unknown_options</span>: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/click-8.0.4//src/click/core.py#L364">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="click.core.Context.info_name">
+    
+  </a>
+  <a name="info_name">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">info_name</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/click-8.0.4//src/click/core.py#L280">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="click.core.Context.invoked_subcommand">
+    
+  </a>
+  <a name="invoked_subcommand">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">invoked_subcommand</span>: <code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">t.Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]</code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/click-8.0.4//src/click/core.py#L320">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="click.core.Context.max_content_width">
+    
+  </a>
+  <a name="max_content_width">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">max_content_width</span>: <code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">t.Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/functions.html#int" class="intersphinx-link">int</a>]</code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/click-8.0.4//src/click/core.py#L333">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="click.core.Context.obj">
+    
+  </a>
+  <a name="obj">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">obj</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/click-8.0.4//src/click/core.py#L296">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="click.core.Context.params">
+    
+  </a>
+  <a name="params">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">params</span>: <code><a href="https://docs.python.org/3/library/typing.html#typing.Dict" class="intersphinx-link">t.Dict</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>, <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">t.Any</a>]</code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/click-8.0.4//src/click/core.py#L283">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="click.core.Context.parent">
+    
+  </a>
+  <a name="parent">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">parent</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/click-8.0.4//src/click/core.py#L276">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="click.core.Context.protected_args">
+    
+  </a>
+  <a name="protected_args">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">protected_args</span>: <code><a href="https://docs.python.org/3/library/typing.html#typing.List" class="intersphinx-link">t.List</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]</code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/click-8.0.4//src/click/core.py#L290">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="click.core.Context.resilient_parsing">
+    
+  </a>
+  <a name="resilient_parsing">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">resilient_parsing</span>: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/click-8.0.4//src/click/core.py#L387">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="click.core.Context.show_default">
+    
+  </a>
+  <a name="show_default">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">show_default</span>: <code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">t.Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a>]</code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/click-8.0.4//src/click/core.py#L419">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="click.core.Context.terminal_width">
+    
+  </a>
+  <a name="terminal_width">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">terminal_width</span>: <code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">t.Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/functions.html#int" class="intersphinx-link">int</a>]</code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/click-8.0.4//src/click/core.py#L326">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="click.core.Context.token_normalize_func">
+    
+  </a>
+  <a name="token_normalize_func">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">token_normalize_func</span>: <code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">t.Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Callable" class="intersphinx-link">t.Callable</a>[<wbr></wbr>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>], <wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]]</code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/click-8.0.4//src/click/core.py#L380">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseproperty">
+  
+  
+  <a name="click.core.Context.command_path">
+    
+  </a>
+  <a name="command_path">
+    
+  </a>
+  <div class="functionHeader">
+    @<a href="https://docs.python.org/3/library/functions.html#property" class="intersphinx-link">property</a><br />
+    <span class="py-defname">command_path</span>: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/click-8.0.4//src/click/core.py#L588">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div>The computed command path.  This is used for the <tt class="rst-docutils literal">usage</tt>
+information on the help page.  It's automatically created by
+combining the info names of the chain of contexts to the root.</div>
+    
+  </div>
+</div><div class="baseproperty">
+  
+  
+  <a name="click.core.Context.meta">
+    
+  </a>
+  <a name="meta">
+    
+  </a>
+  <div class="functionHeader">
+    @<a href="https://docs.python.org/3/library/functions.html#property" class="intersphinx-link">property</a><br />
+    <span class="py-defname">meta</span>: <code><a href="https://docs.python.org/3/library/typing.html#typing.Dict" class="intersphinx-link">t.Dict</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>, <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">t.Any</a>]</code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/click-8.0.4//src/click/core.py#L496">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p>This is a dictionary which is shared with all the contexts
+that are nested.  It exists so that click utilities can store some
+state here if they need to.  It is however the responsibility of
+that code to manage this dictionary well.</p>
+<p>The keys are supposed to be unique dotted strings.  For instance
+module paths are a good choice for it.  What is stored in there is
+irrelevant for the operation of click.  However what is important is
+that code that places data here adheres to the general semantics of
+the system.</p>
+<p>Example usage:</p>
+<pre class="rst-literal-block">
+LANG_KEY = f'{__name__}.lang'
+
+def set_language(value):
+    ctx = get_current_context()
+    ctx.meta[LANG_KEY] = value
+
+def get_language():
+    return get_current_context().meta.get(LANG_KEY, 'en_US')
+</pre>
+<div class="rst-versionadded">
+<span class="rst-versionmodified rst-added">New in version 5.0.</span></div>
+</div>
+    
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="click.core.Context._make_sub_context">
+    
+  </a>
+  <a name="_make_sub_context">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_make_sub_context</span>(self, command):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/click-8.0.4//src/click/core.py#L695">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Create a new context of the same type as this context, but
+for a new command.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">command:</span><code><a href="click.core.Command.html" class="internal-link" title="click.core.Command">Command</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="click.core.Context.html" class="internal-link" title="click.core.Context">Context</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Unknown Field: meta</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">private</span></td><td class="fieldArgDesc"></td></tr></table></div>
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  
+  <a name="click.core.Context._close_callbacks">
+    
+  </a>
+  <a name="_close_callbacks">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_close_callbacks</span>: <code><a href="https://docs.python.org/3/library/typing.html#typing.List" class="intersphinx-link">t.List</a>[<wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Callable" class="intersphinx-link">t.Callable</a>[<wbr></wbr>[], <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">t.Any</a>]]</code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/click-8.0.4//src/click/core.py#L421">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  
+  <a name="click.core.Context._depth">
+    
+  </a>
+  <a name="_depth">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_depth</span>: <code><a href="https://docs.python.org/3/library/functions.html#int" class="intersphinx-link">int</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/click-8.0.4//src/click/core.py#L422">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  
+  <a name="click.core.Context._exit_stack">
+    
+  </a>
+  <a name="_exit_stack">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_exit_stack</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/click-8.0.4//src/click/core.py#L424">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  
+  <a name="click.core.Context._meta">
+    
+  </a>
+  <a name="_meta">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_meta</span>: <code><a href="https://docs.python.org/3/library/typing.html#typing.Dict" class="intersphinx-link">t.Dict</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>, <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">t.Any</a>]</code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/click-8.0.4//src/click/core.py#L297">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  
+  <a name="click.core.Context._parameter_source">
+    
+  </a>
+  <a name="_parameter_source">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_parameter_source</span>: <code><a href="https://docs.python.org/3/library/typing.html#typing.Dict" class="intersphinx-link">t.Dict</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>, <wbr></wbr><a href="click.core.ParameterSource.html" class="internal-link" title="click.core.ParameterSource">ParameterSource</a>]</code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/click-8.0.4//src/click/core.py#L423">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div>
+
+      </div>
+    </div>
+
+    <footer class="navbar navbar-default">
+  
+  <div class="container">
+    <a href="index.html">API Documentation</a> for click,
+  generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
+    22.2.0 at 2022-02-23 08:05:22.
+  </div>
+</footer>
+
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+  </body>
+</html>

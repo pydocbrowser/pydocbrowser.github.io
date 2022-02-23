@@ -1,0 +1,477 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  
+
+  <head>
+    
+    <title>setuptools._vendor.more_itertools.more.peekable</title>
+    <meta name="generator" content="pydoctor 22.2.0"> 
+        
+    </meta>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=0.75" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+    <link rel="stylesheet" type="text/css" href="extra.css" />
+</head>
+
+  <body>
+
+    <div id="banner" class="container">    
+    <div>
+        <a href="https://pydocbrowser.github.io/">Home</a>
+        &gt; setuptools-60.9.3 
+        <!-- This is an important placeholder and will be 
+            replaced by project name and version on building docs -->
+        
+        <!-- (<a href=""&gt;show all versions</a&gt;) -->
+    </div>
+</div>
+
+    <nav class="navbar navbar-default">
+  
+  <div class="container">
+
+    <div class="navbar-header">
+      
+      <div class="navlinks">
+          <span class="navbar-brand">
+            setuptools <a href="index.html">API Documentation</a>
+          </span>
+
+          <a href="moduleIndex.html">
+            Modules
+          </a>
+
+          <a href="classIndex.html">
+            Classes
+          </a>
+
+          <a href="nameIndex.html">
+            Names
+          </a>
+      </div>
+
+    </div>
+  </div>
+</nav>
+
+    
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="class"><code><code><a href="index.html" class="internal-link">setuptools</a></code><wbr></wbr>.<code><a href="setuptools._vendor.html" class="internal-link" title="setuptools._vendor">_vendor</a></code><wbr></wbr>.<code><a href="setuptools._vendor.more_itertools.html" class="internal-link" title="setuptools._vendor.more_itertools">more_itertools</a></code><wbr></wbr>.<code><a href="setuptools._vendor.more_itertools.more.html" class="internal-link" title="setuptools._vendor.more_itertools.more">more</a></code><wbr></wbr>.<code><a href="setuptools._vendor.more_itertools.more.peekable.html" class="internal-link" title="setuptools._vendor.more_itertools.more.peekable">peekable</a></code></code></h1>
+        <div id="showPrivate">
+          <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+        </div>
+      </div>
+
+      <div class="categoryHeader">
+        class documentation
+      </div>
+
+      <div class="extrasDocstring">
+        <p><code><span class="py-keyword">class</span> <span class="py-defname">peekable</span>: <a href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/setuptools-60.9.3//setuptools/_vendor/more_itertools/more.py#L233" class="sourceLink">(source)</a></code></p>
+        <p><a href="classIndex.html#setuptools._vendor.more_itertools.more.peekable">View In Hierarchy</a></p>
+      </div>
+
+      <div class="moduleDocstring">
+        <div><p>Wrap an iterator to allow lookahead and prepending elements.</p>
+<p>Call <code><a href="#peek" class="internal-link" title="setuptools._vendor.more_itertools.more.peekable.peek">peek</a></code> on the result to get the value that will be returned
+by <code><a href="https://docs.python.org/3/library/functions.html#next" class="intersphinx-link">next</a></code>. This won't advance the iterator:</p>
+<blockquote>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>p = peekable([<span class="py-string">'a'</span>, <span class="py-string">'b'</span>])
+<span class="py-prompt">&gt;&gt;&gt; </span>p.peek()
+<span class="py-output">'a'</span>
+<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-builtin">next</span>(p)
+<span class="py-output">'a'</span>
+</pre></blockquote>
+<p>Pass <code><a href="#peek" class="internal-link" title="setuptools._vendor.more_itertools.more.peekable.peek">peek</a></code> a default value to return that instead of raising
+<tt class="rst-docutils literal">StopIteration</tt> when the iterator is exhausted.</p>
+<blockquote>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>p = peekable([])
+<span class="py-prompt">&gt;&gt;&gt; </span>p.peek(<span class="py-string">'hi'</span>)
+<span class="py-output">'hi'</span>
+</pre></blockquote>
+<p>peekables also offer a <code><a href="#prepend" class="internal-link" title="setuptools._vendor.more_itertools.more.peekable.prepend">prepend</a></code> method, which "inserts" items
+at the head of the iterable:</p>
+<blockquote>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>p = peekable([1, 2, 3])
+<span class="py-prompt">&gt;&gt;&gt; </span>p.prepend(10, 11, 12)
+<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-builtin">next</span>(p)
+<span class="py-output">10</span>
+<span class="py-prompt">&gt;&gt;&gt; </span>p.peek()
+<span class="py-output">11</span>
+<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-builtin">list</span>(p)
+<span class="py-output">[11, 12, 1, 2, 3]</span>
+</pre></blockquote>
+<p>peekables can be indexed. Index 0 is the item that will be returned by
+<code><a href="https://docs.python.org/3/library/functions.html#next" class="intersphinx-link">next</a></code>, index 1 is the item after that, and so on:
+The values up to the given index will be cached.</p>
+<blockquote>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>p = peekable([<span class="py-string">'a'</span>, <span class="py-string">'b'</span>, <span class="py-string">'c'</span>, <span class="py-string">'d'</span>])
+<span class="py-prompt">&gt;&gt;&gt; </span>p[0]
+<span class="py-output">'a'</span>
+<span class="py-prompt">&gt;&gt;&gt; </span>p[1]
+<span class="py-output">'b'</span>
+<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-builtin">next</span>(p)
+<span class="py-output">'a'</span>
+</pre></blockquote>
+<p>Negative indexes are supported, but be aware that they will cache the
+remaining items in the source iterator, which may require significant
+storage.</p>
+<p>To check whether a peekable is exhausted, check its truth value:</p>
+<blockquote>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>p = peekable([<span class="py-string">'a'</span>, <span class="py-string">'b'</span>])
+<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">if</span> p:  <span class="py-comment"># peekable has items</span>
+<span class="py-more">... </span>    <span class="py-builtin">list</span>(p)
+<span class="py-output">['a', 'b']</span>
+<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">if</span> <span class="py-keyword">not</span> p:  <span class="py-comment"># peekable is exhausted</span>
+<span class="py-more">... </span>    <span class="py-builtin">list</span>(p)
+<span class="py-output">[]</span>
+</pre></blockquote>
+</div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id16107">
+  
+  
+  <tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__bool__" class="internal-link" title="setuptools._vendor.more_itertools.more.peekable.__bool__">__bool__</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__getitem__" class="internal-link" title="setuptools._vendor.more_itertools.more.peekable.__getitem__">__getitem__</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__init__" class="internal-link" title="setuptools._vendor.more_itertools.more.peekable.__init__">__init__</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__iter__" class="internal-link" title="setuptools._vendor.more_itertools.more.peekable.__iter__">__iter__</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__next__" class="internal-link" title="setuptools._vendor.more_itertools.more.peekable.__next__">__next__</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#peek" class="internal-link" title="setuptools._vendor.more_itertools.more.peekable.peek">peek</a></code></td>
+    <td>Return the item that will be next returned from <tt class="rst-docutils literal">next()</tt>.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#prepend" class="internal-link" title="setuptools._vendor.more_itertools.more.peekable.prepend">prepend</a></code></td>
+    <td>Stack up items to be the next ones returned from <tt class="rst-docutils literal">next()</tt> or <tt class="rst-docutils literal">self.peek()</tt>. The items will be returned in first in, first out order:</td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_get_slice" class="internal-link" title="setuptools._vendor.more_itertools.more.peekable._get_slice">​_get​_slice</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#_cache" class="internal-link" title="setuptools._vendor.more_itertools.more.peekable._cache">​_cache</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#_it" class="internal-link" title="setuptools._vendor.more_itertools.more.peekable._it">​_it</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+        
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="basemethod">
+  
+  
+  <a name="setuptools._vendor.more_itertools.more.peekable.__bool__">
+    
+  </a>
+  <a name="__bool__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__bool__</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/setuptools-60.9.3//setuptools/_vendor/more_itertools/more.py#L299">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="setuptools._vendor.more_itertools.more.peekable.__getitem__">
+    
+  </a>
+  <a name="__getitem__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__getitem__</span>(self, index):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/setuptools-60.9.3//setuptools/_vendor/more_itertools/more.py#L385">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="setuptools._vendor.more_itertools.more.peekable.__init__">
+    
+  </a>
+  <a name="__init__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__init__</span>(self, iterable):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/setuptools-60.9.3//setuptools/_vendor/more_itertools/more.py#L292">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="setuptools._vendor.more_itertools.more.peekable.__iter__">
+    
+  </a>
+  <a name="__iter__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__iter__</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/setuptools-60.9.3//setuptools/_vendor/more_itertools/more.py#L296">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="setuptools._vendor.more_itertools.more.peekable.__next__">
+    
+  </a>
+  <a name="__next__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__next__</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/setuptools-60.9.3//setuptools/_vendor/more_itertools/more.py#L353">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="setuptools._vendor.more_itertools.more.peekable.peek">
+    
+  </a>
+  <a name="peek">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">peek</span>(self, default=<a href="setuptools._vendor.more_itertools.more.html#_marker" class="internal-link" title="setuptools._vendor.more_itertools.more._marker">_marker</a>):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/setuptools-60.9.3//setuptools/_vendor/more_itertools/more.py#L306">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Return the item that will be next returned from <tt class="rst-docutils literal">next()</tt>.</p>
+<p>Return <tt class="rst-docutils literal">default</tt> if there are no items left. If <tt class="rst-docutils literal">default</tt> is not
+provided, raise <tt class="rst-docutils literal">StopIteration</tt>.</p>
+</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="setuptools._vendor.more_itertools.more.peekable.prepend">
+    
+  </a>
+  <a name="prepend">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">prepend</span>(self, *items):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/setuptools-60.9.3//setuptools/_vendor/more_itertools/more.py#L322">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Stack up items to be the next ones returned from <tt class="rst-docutils literal">next()</tt> or
+<tt class="rst-docutils literal">self.peek()</tt>. The items will be returned in
+first in, first out order:</p>
+<pre class="rst-literal-block">
+&gt;&gt;&gt; p = peekable([1, 2, 3])
+&gt;&gt;&gt; p.prepend(10, 11, 12)
+&gt;&gt;&gt; next(p)
+10
+&gt;&gt;&gt; list(p)
+[11, 12, 1, 2, 3]
+</pre>
+<p>It is possible, by prepending items, to "resurrect" a peekable that
+previously raised <tt class="rst-docutils literal">StopIteration</tt>.</p>
+<blockquote>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>p = peekable([])
+<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-builtin">next</span>(p)
+<span class="py-except">Traceback (most recent call last):</span>
+<span class="py-except">  ...</span>
+<span class="py-except">StopIteration</span>
+<span class="py-prompt">&gt;&gt;&gt; </span>p.prepend(1)
+<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-builtin">next</span>(p)
+<span class="py-output">1</span>
+<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-builtin">next</span>(p)
+<span class="py-except">Traceback (most recent call last):</span>
+<span class="py-except">  ...</span>
+<span class="py-except">StopIteration</span>
+</pre></blockquote>
+</div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="setuptools._vendor.more_itertools.more.peekable._get_slice">
+    
+  </a>
+  <a name="_get_slice">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_get_slice</span>(self, index):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/setuptools-60.9.3//setuptools/_vendor/more_itertools/more.py#L359">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  
+  <a name="setuptools._vendor.more_itertools.more.peekable._cache">
+    
+  </a>
+  <a name="_cache">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_cache</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/setuptools-60.9.3//setuptools/_vendor/more_itertools/more.py#L294">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  
+  <a name="setuptools._vendor.more_itertools.more.peekable._it">
+    
+  </a>
+  <a name="_it">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_it</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/setuptools-60.9.3//setuptools/_vendor/more_itertools/more.py#L293">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div>
+
+      </div>
+    </div>
+
+    <footer class="navbar navbar-default">
+  
+  <div class="container">
+    <a href="index.html">API Documentation</a> for setuptools,
+  generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
+    22.2.0 at 2022-02-23 08:20:16.
+  </div>
+</footer>
+
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+  </body>
+</html>

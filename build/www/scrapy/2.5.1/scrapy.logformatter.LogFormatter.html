@@ -1,0 +1,348 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  
+
+  <head>
+    
+    <title>scrapy.logformatter.LogFormatter</title>
+    <meta name="generator" content="pydoctor 22.2.0"> 
+        
+    </meta>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=0.75" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+    <link rel="stylesheet" type="text/css" href="extra.css" />
+</head>
+
+  <body>
+
+    <div id="banner" class="container">    
+    <div>
+        <a href="https://pydocbrowser.github.io/">Home</a>
+        &gt; scrapy-2.5.1 
+        <!-- This is an important placeholder and will be 
+            replaced by project name and version on building docs -->
+        
+        <!-- (<a href=""&gt;show all versions</a&gt;) -->
+    </div>
+</div>
+
+    <nav class="navbar navbar-default">
+  
+  <div class="container">
+
+    <div class="navbar-header">
+      
+      <div class="navlinks">
+          <span class="navbar-brand">
+            scrapy <a href="index.html">API Documentation</a>
+          </span>
+
+          <a href="moduleIndex.html">
+            Modules
+          </a>
+
+          <a href="classIndex.html">
+            Classes
+          </a>
+
+          <a href="nameIndex.html">
+            Names
+          </a>
+      </div>
+
+    </div>
+  </div>
+</nav>
+
+    
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="class"><code><code><a href="index.html" class="internal-link">scrapy</a></code><wbr></wbr>.<code><a href="scrapy.logformatter.html" class="internal-link" title="scrapy.logformatter">logformatter</a></code><wbr></wbr>.<code><a href="scrapy.logformatter.LogFormatter.html" class="internal-link" title="scrapy.logformatter.LogFormatter">LogFormatter</a></code></code></h1>
+        <div id="showPrivate">
+          <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+        </div>
+      </div>
+
+      <div class="categoryHeader">
+        class documentation
+      </div>
+
+      <div class="extrasDocstring">
+        <p><code><span class="py-keyword">class</span> <span class="py-defname">LogFormatter</span>: <a href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/scrapy-2.5.1//scrapy/logformatter.py#L17" class="sourceLink">(source)</a></code></p>
+        <p><a href="classIndex.html#scrapy.logformatter.LogFormatter">View In Hierarchy</a></p>
+      </div>
+
+      <div class="moduleDocstring">
+        <div><p>Class for generating log messages for different actions.</p>
+<p>All methods must return a dictionary listing the parameters <tt class="rst-docutils literal">level</tt>, <tt class="rst-docutils literal">msg</tt>
+and <tt class="rst-docutils literal">args</tt> which are going to be used for constructing the log message when
+calling <tt class="rst-docutils literal">logging.log</tt>.</p>
+<p>Dictionary keys for the method outputs:</p>
+<ul class="rst-simple">
+<li><tt class="rst-docutils literal">level</tt> is the log level for that action, you can use those from the
+<a class="rst-reference external" href="https://docs.python.org/3/library/logging.html" target="_top">python logging library</a> :
+<tt class="rst-docutils literal">logging.DEBUG</tt>, <tt class="rst-docutils literal">logging.INFO</tt>, <tt class="rst-docutils literal">logging.WARNING</tt>, <tt class="rst-docutils literal">logging.ERROR</tt>
+and <tt class="rst-docutils literal">logging.CRITICAL</tt>.</li>
+<li><tt class="rst-docutils literal">msg</tt> should be a string that can contain different formatting placeholders.
+This string, formatted with the provided <tt class="rst-docutils literal">args</tt>, is going to be the long message
+for that action.</li>
+<li><tt class="rst-docutils literal">args</tt> should be a tuple or dict with the formatting placeholders for <tt class="rst-docutils literal">msg</tt>.
+The final log message is computed as <tt class="rst-docutils literal">msg % args</tt>.</li>
+</ul>
+<p>Users can define their own <tt class="rst-docutils literal">LogFormatter</tt> class if they want to customize how
+each action is logged or if they want to omit it entirely. In order to omit
+logging an action the method must return <tt class="rst-docutils literal">None</tt>.</p>
+<p>Here is an example on how to create a custom log formatter to lower the severity level of
+the log message when an item is dropped from the pipeline:</p>
+<pre class="rst-literal-block">
+class PoliteLogFormatter(logformatter.LogFormatter):
+    def dropped(self, item, exception, response, spider):
+        return {
+            'level': logging.INFO, # lowering the level from logging.WARNING
+            'msg': "Dropped: %(exception)s" + os.linesep + "%(item)s",
+            'args': {
+                'exception': exception,
+                'item': item,
+            }
+        }
+</pre>
+</div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id15525">
+  
+  
+  <tr class="classmethod">
+    
+    <td>Class Method</td>
+    <td><code><a href="#from_crawler" class="internal-link" title="scrapy.logformatter.LogFormatter.from_crawler">from​_crawler</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#crawled" class="internal-link" title="scrapy.logformatter.LogFormatter.crawled">crawled</a></code></td>
+    <td>Logs a message when the crawler finds a webpage.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#download_error" class="internal-link" title="scrapy.logformatter.LogFormatter.download_error">download​_error</a></code></td>
+    <td>Logs a download error message from a spider (typically coming from the engine).</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#dropped" class="internal-link" title="scrapy.logformatter.LogFormatter.dropped">dropped</a></code></td>
+    <td>Logs a message when an item is dropped while it is passing through the item pipeline.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#item_error" class="internal-link" title="scrapy.logformatter.LogFormatter.item_error">item​_error</a></code></td>
+    <td>Logs a message when an item causes an error while it is passing through the item pipeline.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#scraped" class="internal-link" title="scrapy.logformatter.LogFormatter.scraped">scraped</a></code></td>
+    <td>Logs a message when an item is scraped by a spider.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#spider_error" class="internal-link" title="scrapy.logformatter.LogFormatter.spider_error">spider​_error</a></code></td>
+    <td>Logs an error message from a spider.</td>
+  </tr>
+</table>
+        
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="baseclassmethod">
+  
+  
+  <a name="scrapy.logformatter.LogFormatter.from_crawler">
+    
+  </a>
+  <a name="from_crawler">
+    
+  </a>
+  <div class="functionHeader">
+    @<a href="https://docs.python.org/3/library/functions.html#classmethod" class="intersphinx-link">classmethod</a><br />
+    <span class="py-keyword">def</span> <span class="py-defname">from_crawler</span>(cls, crawler):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/scrapy-2.5.1//scrapy/logformatter.py#L145">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="scrapy.logformatter.LogFormatter.crawled">
+    
+  </a>
+  <a name="crawled">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">crawled</span>(self, request, response, spider):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/scrapy-2.5.1//scrapy/logformatter.py#L55">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Logs a message when the crawler finds a webpage.</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="scrapy.logformatter.LogFormatter.download_error">
+    
+  </a>
+  <a name="download_error">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">download_error</span>(self, failure, request, spider, errmsg=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/scrapy-2.5.1//scrapy/logformatter.py#L127">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Logs a download error message from a spider (typically coming from
+the engine).</p>
+<div class="rst-versionadded">
+<span class="rst-versionmodified rst-added">New in version 2.0.</span></div>
+</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="scrapy.logformatter.LogFormatter.dropped">
+    
+  </a>
+  <a name="dropped">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">dropped</span>(self, item, exception, response, spider):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/scrapy-2.5.1//scrapy/logformatter.py#L88">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Logs a message when an item is dropped while it is passing through the item pipeline.</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="scrapy.logformatter.LogFormatter.item_error">
+    
+  </a>
+  <a name="item_error">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">item_error</span>(self, item, exception, response, spider):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/scrapy-2.5.1//scrapy/logformatter.py#L99">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Logs a message when an item causes an error while it is passing
+through the item pipeline.</p>
+<div class="rst-versionadded">
+<span class="rst-versionmodified rst-added">New in version 2.0.</span></div>
+</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="scrapy.logformatter.LogFormatter.scraped">
+    
+  </a>
+  <a name="scraped">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">scraped</span>(self, item, response, spider):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/scrapy-2.5.1//scrapy/logformatter.py#L73">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Logs a message when an item is scraped by a spider.</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="scrapy.logformatter.LogFormatter.spider_error">
+    
+  </a>
+  <a name="spider_error">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">spider_error</span>(self, failure, request, response, spider):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/scrapy-2.5.1//scrapy/logformatter.py#L113">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Logs an error message from a spider.</p>
+<div class="rst-versionadded">
+<span class="rst-versionmodified rst-added">New in version 2.0.</span></div>
+</div>
+  </div>
+</div>
+
+      </div>
+    </div>
+
+    <footer class="navbar navbar-default">
+  
+  <div class="container">
+    <a href="index.html">API Documentation</a> for scrapy,
+  generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
+    22.2.0 at 2022-02-23 08:19:51.
+  </div>
+</footer>
+
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+  </body>
+</html>

@@ -1,0 +1,737 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  
+
+  <head>
+    
+    <title>sqlalchemy.orm.events.InstanceEvents</title>
+    <meta name="generator" content="pydoctor 22.2.0"> 
+        
+    </meta>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=0.75" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+    <link rel="stylesheet" type="text/css" href="extra.css" />
+</head>
+
+  <body>
+
+    <div id="banner" class="container">    
+    <div>
+        <a href="https://pydocbrowser.github.io/">Home</a>
+        &gt; sqlalchemy-1.4.31 
+        <!-- This is an important placeholder and will be 
+            replaced by project name and version on building docs -->
+        
+        <!-- (<a href=""&gt;show all versions</a&gt;) -->
+    </div>
+</div>
+
+    <nav class="navbar navbar-default">
+  
+  <div class="container">
+
+    <div class="navbar-header">
+      
+      <div class="navlinks">
+          <span class="navbar-brand">
+            sqlalchemy <a href="index.html">API Documentation</a>
+          </span>
+
+          <a href="moduleIndex.html">
+            Modules
+          </a>
+
+          <a href="classIndex.html">
+            Classes
+          </a>
+
+          <a href="nameIndex.html">
+            Names
+          </a>
+      </div>
+
+    </div>
+  </div>
+</nav>
+
+    
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="class"><code><code><a href="index.html" class="internal-link">sqlalchemy</a></code><wbr></wbr>.<code><a href="sqlalchemy.orm.html" class="internal-link" title="sqlalchemy.orm">orm</a></code><wbr></wbr>.<code><a href="sqlalchemy.orm.events.html" class="internal-link" title="sqlalchemy.orm.events">events</a></code><wbr></wbr>.<code><a href="sqlalchemy.orm.events.InstanceEvents.html" class="internal-link" title="sqlalchemy.orm.events.InstanceEvents">InstanceEvents</a></code></code></h1>
+        <div id="showPrivate">
+          <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+        </div>
+      </div>
+
+      <div class="categoryHeader">
+        class documentation
+      </div>
+
+      <div class="extrasDocstring">
+        <p><code><span class="py-keyword">class</span> <span class="py-defname">InstanceEvents</span>(<a href="sqlalchemy.event.base.Events.html" class="internal-link" title="sqlalchemy.event.base.Events">event.Events</a>): <a href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/orm/events.py#L137" class="sourceLink">(source)</a></code></p><p>Known subclasses: <code><a href="sqlalchemy.orm.events._InstanceEventsHold.HoldInstanceEvents.html" class="internal-link">sqlalchemy.orm.events._InstanceEventsHold.HoldInstanceEvents</a></code></p>
+        <p><a href="classIndex.html#sqlalchemy.orm.events.InstanceEvents">View In Hierarchy</a></p>
+      </div>
+
+      <div class="moduleDocstring">
+        <div><p>Define events specific to object lifecycle.</p>
+<p>e.g.:</p>
+<pre class="rst-literal-block">
+from sqlalchemy import event
+
+def my_load_listener(target, context):
+    print("on load!")
+
+event.listen(SomeClass, 'load', my_load_listener)
+</pre>
+<p>Available targets include:</p>
+<ul class="rst-simple">
+<li>mapped classes</li>
+<li>unmapped superclasses of mapped or to-be-mapped classes
+(using the <tt class="rst-docutils literal">propagate=True</tt> flag)</li>
+<li><code>_orm.Mapper</code> objects</li>
+<li>the <code>_orm.Mapper</code> class itself and the <code>.mapper</code>
+function indicate listening for all mappers.</li>
+</ul>
+<p>Instance events are closely related to mapper events, but
+are more specific to the instance and its instrumentation,
+rather than its system of persistence.</p>
+<p>When using <code>.InstanceEvents</code>, several modifiers are
+available to the <code>.event.listen</code> function.</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">propagate=​False</span></td><td class="fieldArgDesc">When True, the event listener should
+be applied to all inheriting classes as well as the
+class which is the target of this listener.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">raw=​False</span></td><td class="fieldArgDesc">When True, the "target" argument passed
+to applicable event listener functions will be the
+instance's <code>.InstanceState</code> management
+object, rather than the mapped instance itself.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">restore_load_context=​False</span></td><td class="fieldArgDesc"><p>Applies to the
+<code>.InstanceEvents.load</code> and <code>.InstanceEvents.refresh</code>
+events.  Restores the loader context of the object when the event
+hook is complete, so that ongoing eager load operations continue
+to target the object appropriately.  A warning is emitted if the
+object is moved to a new loader context from within one of these
+events if this flag is not set.</p>
+<div class="rst-versionadded">
+<span class="rst-versionmodified rst-added">New in version 1.3.14.</span></div>
+</td></tr></table></div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id20840">
+  
+  
+  <tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#expire" class="internal-link" title="sqlalchemy.orm.events.InstanceEvents.expire">expire</a></code></td>
+    <td>Receive an object instance after its attributes or some subset have been expired.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#first_init" class="internal-link" title="sqlalchemy.orm.events.InstanceEvents.first_init">first​_init</a></code></td>
+    <td>Called when the first instance of a particular mapping is called.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#init" class="internal-link" title="sqlalchemy.orm.events.InstanceEvents.init">init</a></code></td>
+    <td>Receive an instance when its constructor is called.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#init_failure" class="internal-link" title="sqlalchemy.orm.events.InstanceEvents.init_failure">init​_failure</a></code></td>
+    <td>Receive an instance when its constructor has been called, and raised an exception.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#load" class="internal-link" title="sqlalchemy.orm.events.InstanceEvents.load">load</a></code></td>
+    <td>Receive an object instance after it has been created via <tt class="rst-docutils literal">__new__</tt>, and after initial attribute population has occurred.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#pickle" class="internal-link" title="sqlalchemy.orm.events.InstanceEvents.pickle">pickle</a></code></td>
+    <td>Receive an object instance when its associated state is being pickled.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#refresh" class="internal-link" title="sqlalchemy.orm.events.InstanceEvents.refresh">refresh</a></code></td>
+    <td>Receive an object instance after one or more attributes have been refreshed from a query.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#refresh_flush" class="internal-link" title="sqlalchemy.orm.events.InstanceEvents.refresh_flush">refresh​_flush</a></code></td>
+    <td>Receive an object instance after one or more attributes that contain a column-level default or onupdate handler have been refreshed during persistence of the object's state.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#unpickle" class="internal-link" title="sqlalchemy.orm.events.InstanceEvents.unpickle">unpickle</a></code></td>
+    <td>Receive an object instance after its associated state has been unpickled.</td>
+  </tr><tr class="classmethod private">
+    
+    <td>Class Method</td>
+    <td><code><a href="#_accept_with" class="internal-link" title="sqlalchemy.orm.events.InstanceEvents._accept_with">​_accept​_with</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="classmethod private">
+    
+    <td>Class Method</td>
+    <td><code><a href="#_clear" class="internal-link" title="sqlalchemy.orm.events.InstanceEvents._clear">​_clear</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="classmethod private">
+    
+    <td>Class Method</td>
+    <td><code><a href="#_listen" class="internal-link" title="sqlalchemy.orm.events.InstanceEvents._listen">​_listen</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="classmethod private">
+    
+    <td>Class Method</td>
+    <td><code><a href="#_new_classmanager_instance" class="internal-link" title="sqlalchemy.orm.events.InstanceEvents._new_classmanager_instance">​_new​_classmanager​_instance</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="classvariable private">
+    
+    <td>Class Variable</td>
+    <td><code><a href="#_target_class_doc" class="internal-link" title="sqlalchemy.orm.events.InstanceEvents._target_class_doc">​_target​_class​_doc</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+        
+          <p class="inheritedFrom">
+            Inherited from <code><a href="sqlalchemy.event.base.Events.html" class="internal-link" title="sqlalchemy.event.base.Events">Events</a></code>:
+          </p>
+          <table class="children sortable" id="id20841">
+  
+  
+  <tr class="baseclassmethod private">
+    
+    <td>Class Method</td>
+    <td><code><a href="sqlalchemy.event.base.Events.html#_remove" class="internal-link" title="sqlalchemy.event.base.Events._remove">​_remove</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basestaticmethod private">
+    
+    <td>Static Method</td>
+    <td><code><a href="sqlalchemy.event.base.Events.html#_set_dispatch" class="internal-link" title="sqlalchemy.event.base.Events._set_dispatch">​_set​_dispatch</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+          
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="basemethod">
+  
+  
+  <a name="sqlalchemy.orm.events.InstanceEvents.expire">
+    
+  </a>
+  <a name="expire">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">expire</span>(self, target, attrs):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/orm/events.py#L477">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Receive an object instance after its attributes or some subset
+have been expired.</p>
+<p>'keys' is a list of attribute names.  If None, the entire
+state was expired.</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">target</span></td><td class="fieldArgDesc">the mapped instance.  If
+the event is configured with <tt class="rst-docutils literal">raw=True</tt>, this will
+instead be the <code>.InstanceState</code> state-management
+object associated with the instance.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">attrs</span></td><td class="fieldArgDesc">sequence of attribute
+names which were expired, or None if all attributes were
+expired.</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.orm.events.InstanceEvents.first_init">
+    
+  </a>
+  <a name="first_init">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">first_init</span>(self, manager, cls):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/orm/events.py#L254">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Called when the first instance of a particular mapping is called.</p>
+<p>This event is called when the <tt class="rst-docutils literal">__init__</tt> method of a class
+is called the first time for that particular class.    The event
+invokes before <tt class="rst-docutils literal">__init__</tt> actually proceeds as well as before
+the <code>.InstanceEvents.init</code> event is invoked.</p>
+</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.orm.events.InstanceEvents.init">
+    
+  </a>
+  <a name="init">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">init</span>(self, target, args, kwargs):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/orm/events.py#L264">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Receive an instance when its constructor is called.</p>
+<p>This method is only called during a userland construction of
+an object, in conjunction with the object's constructor, e.g.
+its <tt class="rst-docutils literal">__init__</tt> method.  It is not called when an object is
+loaded from the database; see the <code>.InstanceEvents.load</code>
+event in order to intercept a database load.</p>
+<p>The event is called before the actual <tt class="rst-docutils literal">__init__</tt> constructor
+of the object is called.  The <tt class="rst-docutils literal">kwargs</tt> dictionary may be
+modified in-place in order to affect what is passed to
+<tt class="rst-docutils literal">__init__</tt>.</p>
+<div class="rst-admonition seealso">
+<p class="rst-first rst-admonition-title">See Also</p>
+<p><code>.InstanceEvents.init_failure</code></p>
+<p class="rst-last"><code>.InstanceEvents.load</code></p>
+</div>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">target</span></td><td class="fieldArgDesc">the mapped instance.  If
+the event is configured with <tt class="rst-docutils literal">raw=True</tt>, this will
+instead be the <code>.InstanceState</code> state-management
+object associated with the instance.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">args</span></td><td class="fieldArgDesc">positional arguments passed to the <tt class="rst-docutils literal">__init__</tt> method.
+This is passed as a tuple and is currently immutable.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">kwargs</span></td><td class="fieldArgDesc">keyword arguments passed to the <tt class="rst-docutils literal">__init__</tt> method.
+This structure <em>can</em> be altered in place.</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.orm.events.InstanceEvents.init_failure">
+    
+  </a>
+  <a name="init_failure">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">init_failure</span>(self, target, args, kwargs):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/orm/events.py#L295">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Receive an instance when its constructor has been called,
+and raised an exception.</p>
+<p>This method is only called during a userland construction of
+an object, in conjunction with the object's constructor, e.g.
+its <tt class="rst-docutils literal">__init__</tt> method. It is not called when an object is loaded
+from the database.</p>
+<p>The event is invoked after an exception raised by the <tt class="rst-docutils literal">__init__</tt>
+method is caught.  After the event
+is invoked, the original exception is re-raised outwards, so that
+the construction of the object still raises an exception.   The
+actual exception and stack trace raised should be present in
+<tt class="rst-docutils literal">sys.exc_info()</tt>.</p>
+<div class="rst-admonition seealso">
+<p class="rst-first rst-admonition-title">See Also</p>
+<p><code>.InstanceEvents.init</code></p>
+<p class="rst-last"><code>.InstanceEvents.load</code></p>
+</div>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">target</span></td><td class="fieldArgDesc">the mapped instance.  If
+the event is configured with <tt class="rst-docutils literal">raw=True</tt>, this will
+instead be the <code>.InstanceState</code> state-management
+object associated with the instance.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">args</span></td><td class="fieldArgDesc">positional arguments that were passed to the <tt class="rst-docutils literal">__init__</tt>
+method.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">kwargs</span></td><td class="fieldArgDesc">keyword arguments that were passed to the <tt class="rst-docutils literal">__init__</tt>
+method.</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.orm.events.InstanceEvents.load">
+    
+  </a>
+  <a name="load">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">load</span>(self, target, context):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/orm/events.py#L328">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Receive an object instance after it has been created via
+<tt class="rst-docutils literal">__new__</tt>, and after initial attribute population has
+occurred.</p>
+<p>This typically occurs when the instance is created based on
+incoming result rows, and is only called once for that
+instance's lifetime.</p>
+<div class="rst-admonition warning">
+<p class="rst-first rst-admonition-title">Warning</p>
+<p>During a result-row load, this event is invoked when the
+first row received for this instance is processed.  When using
+eager loading with collection-oriented attributes, the additional
+rows that are to be loaded / processed in order to load subsequent
+collection items have not occurred yet.   This has the effect
+both that collections will not be fully loaded, as well as that
+if an operation occurs within this event handler that emits
+another database load operation for the object, the "loading
+context" for the object can change and interfere with the
+existing eager loaders still in progress.</p>
+<p>Examples of what can cause the "loading context" to change within
+the event handler include, but are not necessarily limited to:</p>
+<ul class="rst-simple">
+<li>accessing deferred attributes that weren't part of the row,
+will trigger an "undefer" operation and refresh the object</li>
+<li>accessing attributes on a joined-inheritance subclass that
+weren't part of the row, will trigger a refresh operation.</li>
+</ul>
+<p>As of SQLAlchemy 1.3.14, a warning is emitted when this occurs. The
+<a href="#system-message-1"><span class="rst-problematic" id="rst-problematic-1">:paramref:`.InstanceEvents.restore_load_context`</span></a> option may  be
+used on the event to prevent this warning; this will ensure that
+the existing loading context is maintained for the object after the
+event is called:</p>
+<pre class="rst-literal-block">
+@event.listens_for(
+    SomeClass, "load", restore_load_context=True)
+def on_load(instance, context):
+    instance.some_unloaded_attribute
+</pre>
+<div class="rst-last rst-versionchanged">
+<span class="rst-versionmodified rst-changed">Changed in version 1.3.14: </span><span>Added
+<a href="#system-message-2"><span class="rst-problematic" id="rst-problematic-2">:paramref:`.InstanceEvents.restore_load_context`</span></a>
+and <a href="#system-message-3"><span class="rst-problematic" id="rst-problematic-3">:paramref:`.SessionEvents.restore_load_context`</span></a> flags which
+apply to "on load" events, which will ensure that the loading
+context for an object is restored when the event hook is
+complete; a warning is emitted if the load context of the object
+changes without this flag being set.</span></div>
+</div>
+<p>The <code>.InstanceEvents.load</code> event is also available in a
+class-method decorator format called <code>_orm.reconstructor</code>.</p>
+<div class="rst-admonition seealso">
+<p class="rst-first rst-admonition-title">See Also</p>
+<p><code>.InstanceEvents.init</code></p>
+<p><code>.InstanceEvents.refresh</code></p>
+<p><code>.SessionEvents.loaded_as_persistent</code></p>
+<p class="rst-last"><a href="#system-message-4"><span class="rst-problematic" id="rst-problematic-4">:ref:`mapping_constructors`</span></a></p>
+</div>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">target</span></td><td class="fieldArgDesc">the mapped instance.  If
+the event is configured with <tt class="rst-docutils literal">raw=True</tt>, this will
+instead be the <code>.InstanceState</code> state-management
+object associated with the instance.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">context</span></td><td class="fieldArgDesc">the <code>.QueryContext</code> corresponding to the
+current <code>_query.Query</code> in progress.  This argument may be
+<tt class="rst-docutils literal">None</tt> if the load does not correspond to a <code>_query.Query</code>,
+such as during <code>.Session.merge</code>.</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.orm.events.InstanceEvents.pickle">
+    
+  </a>
+  <a name="pickle">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">pickle</span>(self, target, state_dict):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/orm/events.py#L494">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Receive an object instance when its associated state is
+being pickled.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">target</span></td><td class="fieldArgDesc">the mapped instance.  If
+the event is configured with <tt class="rst-docutils literal">raw=True</tt>, this will
+instead be the <code>.InstanceState</code> state-management
+object associated with the instance.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">state​_dict</span></td><td class="fieldArgDesc">the dictionary returned by
+<code>.InstanceState.__getstate__</code>, containing the state
+to be pickled.</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.orm.events.InstanceEvents.refresh">
+    
+  </a>
+  <a name="refresh">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">refresh</span>(self, target, context, attrs):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/orm/events.py#L403">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Receive an object instance after one or more attributes have
+been refreshed from a query.</p>
+<p>Contrast this to the <code>.InstanceEvents.load</code> method, which
+is invoked when the object is first loaded from a query.</p>
+<div class="rst-admonition note">
+<p class="rst-first rst-admonition-title">Note</p>
+<p class="rst-last">This event is invoked within the loader process before
+eager loaders may have been completed, and the object's state may
+not be complete.  Additionally, invoking row-level refresh
+operations on the object will place the object into a new loader
+context, interfering with the existing load context.   See the note
+on <code>.InstanceEvents.load</code> for background on making use of the
+<a href="#system-message-1"><span class="rst-problematic" id="rst-problematic-1">:paramref:`.InstanceEvents.restore_load_context`</span></a> parameter, in
+order to resolve this scenario.</p>
+</div>
+<div class="rst-admonition seealso">
+<p class="rst-first rst-admonition-title">See Also</p>
+<p class="rst-last"><code>.InstanceEvents.load</code></p>
+</div>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">target</span></td><td class="fieldArgDesc">the mapped instance.  If
+the event is configured with <tt class="rst-docutils literal">raw=True</tt>, this will
+instead be the <code>.InstanceState</code> state-management
+object associated with the instance.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">context</span></td><td class="fieldArgDesc">the <code>.QueryContext</code> corresponding to the
+current <code>_query.Query</code> in progress.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">attrs</span></td><td class="fieldArgDesc">sequence of attribute names which
+were populated, or None if all column-mapped, non-deferred
+attributes were populated.</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.orm.events.InstanceEvents.refresh_flush">
+    
+  </a>
+  <a name="refresh_flush">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">refresh_flush</span>(self, target, flush_context, attrs):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/orm/events.py#L435">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Receive an object instance after one or more attributes that
+contain a column-level default or onupdate handler have been refreshed
+during persistence of the object's state.</p>
+<p>This event is the same as <code>.InstanceEvents.refresh</code> except
+it is invoked within the unit of work flush process, and includes
+only non-primary-key columns that have column level default or
+onupdate handlers, including Python callables as well as server side
+defaults and triggers which may be fetched via the RETURNING clause.</p>
+<div class="rst-admonition note">
+<p class="rst-first rst-admonition-title">Note</p>
+<p class="rst-last">While the <code>.InstanceEvents.refresh_flush</code> event is triggered
+for an object that was INSERTed as well as for an object that was
+UPDATEd, the event is geared primarily  towards the UPDATE process;
+it is mostly an internal artifact that INSERT actions can also
+trigger this event, and note that <strong>primary key columns for an
+INSERTed row are explicitly omitted</strong> from this event.  In order to
+intercept the newly INSERTed state of an object, the
+<code>.SessionEvents.pending_to_persistent</code> and
+<code>.MapperEvents.after_insert</code> are better choices.</p>
+</div>
+<div class="rst-versionadded">
+<span class="rst-versionmodified rst-added">New in version 1.0.5.</span></div>
+<div class="rst-admonition seealso">
+<p class="rst-first rst-admonition-title">See Also</p>
+<p><a href="#system-message-1"><span class="rst-problematic" id="rst-problematic-1">:ref:`orm_server_defaults`</span></a></p>
+<p class="rst-last"><a href="#system-message-2"><span class="rst-problematic" id="rst-problematic-2">:ref:`metadata_defaults_toplevel`</span></a></p>
+</div>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">target</span></td><td class="fieldArgDesc">the mapped instance.  If
+the event is configured with <tt class="rst-docutils literal">raw=True</tt>, this will
+instead be the <code>.InstanceState</code> state-management
+object associated with the instance.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">flush​_context</span></td><td class="fieldArgDesc">Internal <code>.UOWTransaction</code> object
+which handles the details of the flush.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">attrs</span></td><td class="fieldArgDesc">sequence of attribute names which
+were populated.</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.orm.events.InstanceEvents.unpickle">
+    
+  </a>
+  <a name="unpickle">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">unpickle</span>(self, target, state_dict):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/orm/events.py#L508">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Receive an object instance after its associated state has
+been unpickled.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">target</span></td><td class="fieldArgDesc">the mapped instance.  If
+the event is configured with <tt class="rst-docutils literal">raw=True</tt>, this will
+instead be the <code>.InstanceState</code> state-management
+object associated with the instance.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">state​_dict</span></td><td class="fieldArgDesc">the dictionary sent to
+<code>.InstanceState.__setstate__</code>, containing the state
+dictionary which was pickled.</td></tr></table></div>
+  </div>
+</div><div class="baseclassmethod private">
+  
+  
+  <a name="sqlalchemy.orm.events.InstanceEvents._accept_with">
+    
+  </a>
+  <a name="_accept_with">
+    
+  </a>
+  <div class="functionHeader">
+    @<a href="https://docs.python.org/3/library/functions.html#classmethod" class="intersphinx-link">classmethod</a><br />@util.preload_module(<wbr></wbr><span class="rst-variable-quote">'</span><span class="rst-variable-string">sqlalchemy.orm</span><span class="rst-variable-quote">'</span>)<br />
+    <span class="py-keyword">def</span> <span class="py-defname">_accept_with</span>(cls, target):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/orm/events.py#L193">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overrides <code><a href="sqlalchemy.event.base.Events.html#_accept_with" class="internal-link">sqlalchemy.event.base.Events._accept_with</a></code></div>
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="baseclassmethod private">
+  
+  
+  <a name="sqlalchemy.orm.events.InstanceEvents._clear">
+    
+  </a>
+  <a name="_clear">
+    
+  </a>
+  <div class="functionHeader">
+    @<a href="https://docs.python.org/3/library/functions.html#classmethod" class="intersphinx-link">classmethod</a><br />
+    <span class="py-keyword">def</span> <span class="py-defname">_clear</span>(cls):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/orm/events.py#L249">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overrides <code><a href="sqlalchemy.event.base.Events.html#_clear" class="internal-link">sqlalchemy.event.base.Events._clear</a></code></div>
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="baseclassmethod private">
+  
+  
+  <a name="sqlalchemy.orm.events.InstanceEvents._listen">
+    
+  </a>
+  <a name="_listen">
+    
+  </a>
+  <div class="functionHeader">
+    @<a href="https://docs.python.org/3/library/functions.html#classmethod" class="intersphinx-link">classmethod</a><br />
+    <span class="py-keyword">def</span> <span class="py-defname">_listen</span>(cls, event_key, raw=<a href="https://docs.python.org/3/library/constants.html#False" class="intersphinx-link">False</a>, propagate=<a href="https://docs.python.org/3/library/constants.html#False" class="intersphinx-link">False</a>, restore_load_context=<a href="https://docs.python.org/3/library/constants.html#False" class="intersphinx-link">False</a>, **kw):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/orm/events.py#L215">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overrides <code><a href="sqlalchemy.event.base.Events.html#_listen" class="internal-link">sqlalchemy.event.base.Events._listen</a></code></div>
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="baseclassmethod private">
+  
+  
+  <a name="sqlalchemy.orm.events.InstanceEvents._new_classmanager_instance">
+    
+  </a>
+  <a name="_new_classmanager_instance">
+    
+  </a>
+  <div class="functionHeader">
+    @<a href="https://docs.python.org/3/library/functions.html#classmethod" class="intersphinx-link">classmethod</a><br />
+    <span class="py-keyword">def</span> <span class="py-defname">_new_classmanager_instance</span>(cls, class_, classmanager):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/orm/events.py#L189">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="baseclassvariable private">
+  
+  
+  <a name="sqlalchemy.orm.events.InstanceEvents._target_class_doc">
+    
+  </a>
+  <a name="_target_class_doc">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_target_class_doc</span>: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/orm/events.py#L185">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div>
+
+      </div>
+    </div>
+
+    <footer class="navbar navbar-default">
+  
+  <div class="container">
+    <a href="index.html">API Documentation</a> for sqlalchemy,
+  generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
+    22.2.0 at 2022-02-23 08:22:50.
+  </div>
+</footer>
+
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+  </body>
+</html>

@@ -1,0 +1,1100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  
+
+  <head>
+    
+    <title>sqlalchemy.sql.expression.ColumnCollection</title>
+    <meta name="generator" content="pydoctor 22.2.0"> 
+        
+    </meta>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=0.75" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+    <link rel="stylesheet" type="text/css" href="extra.css" />
+</head>
+
+  <body>
+
+    <div id="banner" class="container">    
+    <div>
+        <a href="https://pydocbrowser.github.io/">Home</a>
+        &gt; sqlalchemy-1.4.31 
+        <!-- This is an important placeholder and will be 
+            replaced by project name and version on building docs -->
+        
+        <!-- (<a href=""&gt;show all versions</a&gt;) -->
+    </div>
+</div>
+
+    <nav class="navbar navbar-default">
+  
+  <div class="container">
+
+    <div class="navbar-header">
+      
+      <div class="navlinks">
+          <span class="navbar-brand">
+            sqlalchemy <a href="index.html">API Documentation</a>
+          </span>
+
+          <a href="moduleIndex.html">
+            Modules
+          </a>
+
+          <a href="classIndex.html">
+            Classes
+          </a>
+
+          <a href="nameIndex.html">
+            Names
+          </a>
+      </div>
+
+    </div>
+  </div>
+</nav>
+
+    
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="class"><code><code><a href="index.html" class="internal-link">sqlalchemy</a></code><wbr></wbr>.<code><a href="sqlalchemy.sql.html" class="internal-link" title="sqlalchemy.sql">sql</a></code><wbr></wbr>.<code><a href="sqlalchemy.sql.expression.html" class="internal-link" title="sqlalchemy.sql.expression">expression</a></code><wbr></wbr>.<code><a href="sqlalchemy.sql.expression.ColumnCollection.html" class="internal-link" title="sqlalchemy.sql.expression.ColumnCollection">ColumnCollection</a></code></code></h1>
+        <div id="showPrivate">
+          <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+        </div>
+      </div>
+
+      <div class="categoryHeader">
+        class documentation
+      </div>
+
+      <div class="extrasDocstring">
+        <p><code><span class="py-keyword">class</span> <span class="py-defname">ColumnCollection</span>(<a href="https://docs.python.org/3/library/functions.html#object" class="intersphinx-link" title="object">object</a>): <a href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/sql/base.py#L1056" class="sourceLink">(source)</a></code></p><p>Known subclasses: <code><a href="sqlalchemy.sql.base.DedupeColumnCollection.html" class="internal-link">sqlalchemy.sql.base.DedupeColumnCollection</a></code>, <code><a href="sqlalchemy.sql.base.ImmutableColumnCollection.html" class="internal-link">sqlalchemy.sql.base.ImmutableColumnCollection</a></code></p>
+        <p><a href="classIndex.html#sqlalchemy.sql.expression.ColumnCollection">View In Hierarchy</a></p>
+      </div>
+
+      <div class="moduleDocstring">
+        <div><p>Collection of <code>_expression.ColumnElement</code> instances,
+typically for
+<code>_sql.FromClause</code> objects.</p>
+<p>The <code>_sql.ColumnCollection</code> object is most commonly available
+as the <code>_schema.Table.c</code> or <code>_schema.Table.columns</code> collection
+on the <code>_schema.Table</code> object, introduced at
+<a href="#system-message-1"><span class="rst-problematic" id="rst-problematic-1">:ref:`metadata_tables_and_columns`</span></a>.</p>
+<p>The <code>_expression.ColumnCollection</code> has both mapping- and sequence-
+like behaviors. A <code>_expression.ColumnCollection</code> usually stores
+<code>_schema.Column</code> objects, which are then accessible both via mapping
+style access as well as attribute access style.</p>
+<p>To access <code>_schema.Column</code> objects using ordinary attribute-style
+access, specify the name like any other object attribute, such as below
+a column named <tt class="rst-docutils literal">employee_name</tt> is accessed:</p>
+<pre class="rst-literal-block">
+&gt;&gt;&gt; employee_table.c.employee_name
+</pre>
+<p>To access columns that have names with special characters or spaces,
+index-style access is used, such as below which illustrates a column named
+<tt class="rst-docutils literal">employee ' payment</tt> is accessed:</p>
+<pre class="rst-literal-block">
+&gt;&gt;&gt; employee_table.c["employee ' payment"]
+</pre>
+<p>As the <code>_sql.ColumnCollection</code> object provides a Python dictionary
+interface, common dictionary method names like
+<code>_sql.ColumnCollection.keys</code>, <code>_sql.ColumnCollection.values</code>,
+and <code>_sql.ColumnCollection.items</code> are available, which means that
+database columns that are keyed under these names also need to use indexed
+access:</p>
+<pre class="rst-literal-block">
+&gt;&gt;&gt; employee_table.c["values"]
+</pre>
+<p>The name for which a <code>_schema.Column</code> would be present is normally
+that of the <a href="#system-message-2"><span class="rst-problematic" id="rst-problematic-2">:paramref:`_schema.Column.key`</span></a> parameter.  In some contexts,
+such as a <code>_sql.Select</code> object that uses a label style set
+using the <code>_sql.Select.set_label_style</code> method, a column of a certain
+key may instead be represented under a particular label name such
+as <tt class="rst-docutils literal">tablename_columnname</tt>:</p>
+<pre class="rst-literal-block">
+&gt;&gt;&gt; from sqlalchemy import select, column, table
+&gt;&gt;&gt; from sqlalchemy import LABEL_STYLE_TABLENAME_PLUS_COL
+&gt;&gt;&gt; t = table("t", column("c"))
+&gt;&gt;&gt; stmt = select(t).set_label_style(LABEL_STYLE_TABLENAME_PLUS_COL)
+&gt;&gt;&gt; subq = stmt.subquery()
+&gt;&gt;&gt; subq.c.t_c
+&lt;sqlalchemy.sql.elements.ColumnClause at 0x7f59dcf04fa0; t_c&gt;
+</pre>
+<p><code>.ColumnCollection</code> also indexes the columns in order and allows
+them to be accessible by their integer position:</p>
+<pre class="rst-literal-block">
+&gt;&gt;&gt; cc[0]
+Column('x', Integer(), table=None)
+&gt;&gt;&gt; cc[1]
+Column('y', Integer(), table=None)
+</pre>
+<div class="rst-versionadded">
+<span class="rst-versionmodified rst-added">New in version 1.4: </span><span><code>_expression.ColumnCollection</code>
+allows integer-based
+index access to the collection.</span></div>
+<p>Iterating the collection yields the column expressions in order:</p>
+<pre class="rst-literal-block">
+&gt;&gt;&gt; list(cc)
+[Column('x', Integer(), table=None),
+ Column('y', Integer(), table=None)]
+</pre>
+<p>The base <code>_expression.ColumnCollection</code> object can store
+duplicates, which can
+mean either two columns with the same key, in which case the column
+returned by key  access is <strong>arbitrary</strong>:</p>
+<pre class="rst-literal-block">
+&gt;&gt;&gt; x1, x2 = Column('x', Integer), Column('x', Integer)
+&gt;&gt;&gt; cc = ColumnCollection(columns=[(x1.name, x1), (x2.name, x2)])
+&gt;&gt;&gt; list(cc)
+[Column('x', Integer(), table=None),
+ Column('x', Integer(), table=None)]
+&gt;&gt;&gt; cc['x'] is x1
+False
+&gt;&gt;&gt; cc['x'] is x2
+True
+</pre>
+<p>Or it can also mean the same column multiple times.   These cases are
+supported as <code>_expression.ColumnCollection</code>
+is used to represent the columns in
+a SELECT statement which may include duplicates.</p>
+<p>A special subclass <code>.DedupeColumnCollection</code> exists which instead
+maintains SQLAlchemy's older behavior of not allowing duplicates; this
+collection is used for schema level objects like <code>_schema.Table</code>
+and
+<code>.PrimaryKeyConstraint</code> where this deduping is helpful.  The
+<code>.DedupeColumnCollection</code> class also has additional mutation methods
+as the schema constructs have more use cases that require removal and
+replacement of columns.</p>
+<div class="rst-versionchanged">
+<span class="rst-versionmodified rst-changed">Changed in version 1.4: </span><span><code>_expression.ColumnCollection</code>
+now stores duplicate
+column keys as well as the same column in multiple positions.  The
+<code>.DedupeColumnCollection</code> class is added to maintain the
+former behavior in those cases where deduplication as well as
+additional replace/remove operations are needed.</span></div>
+</div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id23233">
+  
+  
+  <tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__bool__" class="internal-link" title="sqlalchemy.sql.expression.ColumnCollection.__bool__">__bool__</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__contains__" class="internal-link" title="sqlalchemy.sql.expression.ColumnCollection.__contains__">__contains__</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__delitem__" class="internal-link" title="sqlalchemy.sql.expression.ColumnCollection.__delitem__">__delitem__</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__eq__" class="internal-link" title="sqlalchemy.sql.expression.ColumnCollection.__eq__">__eq__</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__getattr__" class="internal-link" title="sqlalchemy.sql.expression.ColumnCollection.__getattr__">__getattr__</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__getitem__" class="internal-link" title="sqlalchemy.sql.expression.ColumnCollection.__getitem__">__getitem__</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__getstate__" class="internal-link" title="sqlalchemy.sql.expression.ColumnCollection.__getstate__">__getstate__</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__init__" class="internal-link" title="sqlalchemy.sql.expression.ColumnCollection.__init__">__init__</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__iter__" class="internal-link" title="sqlalchemy.sql.expression.ColumnCollection.__iter__">__iter__</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__len__" class="internal-link" title="sqlalchemy.sql.expression.ColumnCollection.__len__">__len__</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__setattr__" class="internal-link" title="sqlalchemy.sql.expression.ColumnCollection.__setattr__">__setattr__</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__setitem__" class="internal-link" title="sqlalchemy.sql.expression.ColumnCollection.__setitem__">__setitem__</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__setstate__" class="internal-link" title="sqlalchemy.sql.expression.ColumnCollection.__setstate__">__setstate__</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__str__" class="internal-link" title="sqlalchemy.sql.expression.ColumnCollection.__str__">__str__</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#add" class="internal-link" title="sqlalchemy.sql.expression.ColumnCollection.add">add</a></code></td>
+    <td>Add a column to this <code>_sql.ColumnCollection</code>.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#as_immutable" class="internal-link" title="sqlalchemy.sql.expression.ColumnCollection.as_immutable">as​_immutable</a></code></td>
+    <td>Return an "immutable" form of this <code>_sql.ColumnCollection</code>.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#clear" class="internal-link" title="sqlalchemy.sql.expression.ColumnCollection.clear">clear</a></code></td>
+    <td>Dictionary clear() is not implemented for <code>_sql.ColumnCollection</code>.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#compare" class="internal-link" title="sqlalchemy.sql.expression.ColumnCollection.compare">compare</a></code></td>
+    <td>Compare this <code>_expression.ColumnCollection</code> to another based on the names of the keys</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#contains_column" class="internal-link" title="sqlalchemy.sql.expression.ColumnCollection.contains_column">contains​_column</a></code></td>
+    <td>Checks if a column object exists in this collection</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#corresponding_column" class="internal-link" title="sqlalchemy.sql.expression.ColumnCollection.corresponding_column">corresponding​_column</a></code></td>
+    <td><span class="undocumented">No summary</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#get" class="internal-link" title="sqlalchemy.sql.expression.ColumnCollection.get">get</a></code></td>
+    <td>Get a <code>_sql.ColumnClause</code> or <code>_schema.Column</code> object based on a string key name from this <code>_expression.ColumnCollection</code>.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#items" class="internal-link" title="sqlalchemy.sql.expression.ColumnCollection.items">items</a></code></td>
+    <td><span class="undocumented">No summary</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#keys" class="internal-link" title="sqlalchemy.sql.expression.ColumnCollection.keys">keys</a></code></td>
+    <td>Return a sequence of string key names for all columns in this collection.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#remove" class="internal-link" title="sqlalchemy.sql.expression.ColumnCollection.remove">remove</a></code></td>
+    <td>Dictionary remove() is not implemented for <code>_sql.ColumnCollection</code>.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#update" class="internal-link" title="sqlalchemy.sql.expression.ColumnCollection.update">update</a></code></td>
+    <td>Dictionary update() is not implemented for <code>_sql.ColumnCollection</code>.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#values" class="internal-link" title="sqlalchemy.sql.expression.ColumnCollection.values">values</a></code></td>
+    <td>Return a sequence of <code>_sql.ColumnClause</code> or <code>_schema.Column</code> objects for all columns in this collection.</td>
+  </tr><tr class="classvariable">
+    
+    <td>Class Variable</td>
+    <td><code><a href="#__hash__" class="internal-link" title="sqlalchemy.sql.expression.ColumnCollection.__hash__">__hash__</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="classvariable">
+    
+    <td>Class Variable</td>
+    <td><code><a href="#__slots__" class="internal-link" title="sqlalchemy.sql.expression.ColumnCollection.__slots__">__slots__</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_initial_populate" class="internal-link" title="sqlalchemy.sql.expression.ColumnCollection._initial_populate">​_initial​_populate</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_populate_separate_keys" class="internal-link" title="sqlalchemy.sql.expression.ColumnCollection._populate_separate_keys">​_populate​_separate​_keys</a></code></td>
+    <td>populate from an iterator of (key, column)</td>
+  </tr><tr class="property private">
+    
+    <td>Property</td>
+    <td><code><a href="#_all_columns" class="internal-link" title="sqlalchemy.sql.expression.ColumnCollection._all_columns">​_all​_columns</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+        
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="basemethod">
+  
+  
+  <a name="sqlalchemy.sql.expression.ColumnCollection.__bool__">
+    
+  </a>
+  <a name="__bool__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__bool__</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/sql/base.py#L1201">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.sql.expression.ColumnCollection.__contains__">
+    
+  </a>
+  <a name="__contains__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__contains__</span>(self, key):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/sql/base.py#L1226">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.sql.expression.ColumnCollection.__delitem__">
+    
+  </a>
+  <a name="__delitem__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__delitem__</span>(self, key):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/sql/base.py#L1268">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.sql.expression.ColumnCollection.__eq__">
+    
+  </a>
+  <a name="__eq__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__eq__</span>(self, other):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/sql/base.py#L1246">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.sql.expression.ColumnCollection.__getattr__">
+    
+  </a>
+  <a name="__getattr__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__getattr__</span>(self, key):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/sql/base.py#L1220">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.sql.expression.ColumnCollection.__getitem__">
+    
+  </a>
+  <a name="__getitem__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__getitem__</span>(self, key):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/sql/base.py#L1211">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.sql.expression.ColumnCollection.__getstate__">
+    
+  </a>
+  <a name="__getstate__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__getstate__</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/sql/base.py#L1323">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="sqlalchemy.sql.base.ImmutableColumnCollection.html" class="internal-link">sqlalchemy.sql.base.ImmutableColumnCollection</a></code></div>
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.sql.expression.ColumnCollection.__init__">
+    
+  </a>
+  <a name="__init__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__init__</span>(self, columns=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/sql/base.py#L1167">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="sqlalchemy.sql.base.ImmutableColumnCollection.html" class="internal-link">sqlalchemy.sql.base.ImmutableColumnCollection</a></code></div>
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.sql.expression.ColumnCollection.__iter__">
+    
+  </a>
+  <a name="__iter__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__iter__</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/sql/base.py#L1207">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.sql.expression.ColumnCollection.__len__">
+    
+  </a>
+  <a name="__len__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__len__</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/sql/base.py#L1204">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.sql.expression.ColumnCollection.__setattr__">
+    
+  </a>
+  <a name="__setattr__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__setattr__</span>(self, key, obj):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/sql/base.py#L1271">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.sql.expression.ColumnCollection.__setitem__">
+    
+  </a>
+  <a name="__setitem__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__setitem__</span>(self, key, value):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/sql/base.py#L1265">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.sql.expression.ColumnCollection.__setstate__">
+    
+  </a>
+  <a name="__setstate__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__setstate__</span>(self, state):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/sql/base.py#L1326">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="sqlalchemy.sql.base.ImmutableColumnCollection.html" class="internal-link">sqlalchemy.sql.base.ImmutableColumnCollection</a></code></div>
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.sql.expression.ColumnCollection.__str__">
+    
+  </a>
+  <a name="__str__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__str__</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/sql/base.py#L1259">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.sql.expression.ColumnCollection.add">
+    
+  </a>
+  <a name="add">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">add</span>(self, column, key=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/sql/base.py#L1301">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="sqlalchemy.sql.base.DedupeColumnCollection.html" class="internal-link">sqlalchemy.sql.base.DedupeColumnCollection</a></code></div>
+    
+    <div><p>Add a column to this <code>_sql.ColumnCollection</code>.</p>
+<div class="rst-admonition note">
+<p class="rst-first rst-admonition-title">Note</p>
+<p class="rst-last">This method is <strong>not normally used by user-facing code</strong>, as the
+<code>_sql.ColumnCollection</code> is usually part of an existing
+object such as a <code>_schema.Table</code>. To add a
+<code>_schema.Column</code> to an existing <code>_schema.Table</code>
+object, use the <code>_schema.Table.append_column</code> method.</p>
+</div>
+</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.sql.expression.ColumnCollection.as_immutable">
+    
+  </a>
+  <a name="as_immutable">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">as_immutable</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/sql/base.py#L1345">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Return an "immutable" form of this
+<code>_sql.ColumnCollection</code>.</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.sql.expression.ColumnCollection.clear">
+    
+  </a>
+  <a name="clear">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">clear</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/sql/base.py#L1274">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Dictionary clear() is not implemented for
+<code>_sql.ColumnCollection</code>.</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.sql.expression.ColumnCollection.compare">
+    
+  </a>
+  <a name="compare">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">compare</span>(self, other):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/sql/base.py#L1236">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Compare this <code>_expression.ColumnCollection</code> to another
+based on the names of the keys</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.sql.expression.ColumnCollection.contains_column">
+    
+  </a>
+  <a name="contains_column">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">contains_column</span>(self, col):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/sql/base.py#L1333">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Checks if a column object exists in this collection</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.sql.expression.ColumnCollection.corresponding_column">
+    
+  </a>
+  <a name="corresponding_column">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">corresponding_column</span>(self, column, require_embedded=<a href="https://docs.python.org/3/library/constants.html#False" class="intersphinx-link">False</a>):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/sql/base.py#L1351">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Given a <code>_expression.ColumnElement</code>, return the exported
+<code>_expression.ColumnElement</code> object from this
+<code>_expression.ColumnCollection</code>
+which corresponds to that original <code>_expression.ColumnElement</code>
+via a common
+ancestor column.</p>
+<div class="rst-admonition seealso">
+<p class="rst-first rst-admonition-title">See Also</p>
+<p class="rst-last"><code>_expression.Selectable.corresponding_column</code>
+- invokes this method
+against the collection returned by
+<code>_expression.Selectable.exported_columns</code>.</p>
+</div>
+<div class="rst-versionchanged">
+<span class="rst-versionmodified rst-changed">Changed in version 1.4: </span><span>the implementation for <tt class="rst-docutils literal">corresponding_column</tt>
+was moved onto the <code>_expression.ColumnCollection</code> itself.</span></div>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">column</span></td><td class="fieldArgDesc">the target <code>_expression.ColumnElement</code>
+to be matched.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">require​_embedded</span></td><td class="fieldArgDesc">only return corresponding columns for
+the given <code>_expression.ColumnElement</code>, if the given
+<code>_expression.ColumnElement</code>
+is actually present within a sub-element
+of this <code>_expression.Selectable</code>.
+Normally the column will match if
+it merely shares a common ancestor with one of the exported
+columns of this <code>_expression.Selectable</code>.</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.sql.expression.ColumnCollection.get">
+    
+  </a>
+  <a name="get">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">get</span>(self, key, default=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/sql/base.py#L1249">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Get a <code>_sql.ColumnClause</code> or <code>_schema.Column</code> object
+based on a string key name from this
+<code>_expression.ColumnCollection</code>.</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.sql.expression.ColumnCollection.items">
+    
+  </a>
+  <a name="items">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">items</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/sql/base.py#L1192">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Return a sequence of (key, column) tuples for all columns in this
+collection each consisting of a string key name and a
+<code>_sql.ColumnClause</code> or
+<code>_schema.Column</code> object.</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.sql.expression.ColumnCollection.keys">
+    
+  </a>
+  <a name="keys">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">keys</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/sql/base.py#L1181">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Return a sequence of string key names for all columns in this
+collection.</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.sql.expression.ColumnCollection.remove">
+    
+  </a>
+  <a name="remove">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">remove</span>(self, column):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/sql/base.py#L1279">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="sqlalchemy.sql.base.DedupeColumnCollection.html" class="internal-link">sqlalchemy.sql.base.DedupeColumnCollection</a></code></div>
+    
+    <div>Dictionary remove() is not implemented for
+<code>_sql.ColumnCollection</code>.</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.sql.expression.ColumnCollection.update">
+    
+  </a>
+  <a name="update">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">update</span>(self, iter_):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/sql/base.py#L1284">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Dictionary update() is not implemented for
+<code>_sql.ColumnCollection</code>.</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.sql.expression.ColumnCollection.values">
+    
+  </a>
+  <a name="values">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">values</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/sql/base.py#L1186">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Return a sequence of <code>_sql.ColumnClause</code> or
+<code>_schema.Column</code> objects for all columns in this
+collection.</div>
+  </div>
+</div><div class="baseclassvariable">
+  
+  
+  <a name="sqlalchemy.sql.expression.ColumnCollection.__hash__">
+    
+  </a>
+  <a name="__hash__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">__hash__</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/sql/base.py#L1289">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseclassvariable">
+  
+  
+  <a name="sqlalchemy.sql.expression.ColumnCollection.__slots__">
+    
+  </a>
+  <a name="__slots__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">__slots__</span>: <code><a href="https://docs.python.org/3/library/stdtypes.html#tuple" class="intersphinx-link">tuple</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>, <wbr></wbr><span class="rst-variable-ellipsis">...</span>]</code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/sql/base.py#L1165">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="sqlalchemy.sql.base.ImmutableColumnCollection.html" class="internal-link">sqlalchemy.sql.base.ImmutableColumnCollection</a></code></div>
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="sqlalchemy.sql.expression.ColumnCollection._initial_populate">
+    
+  </a>
+  <a name="_initial_populate">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_initial_populate</span>(self, iter_):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/sql/base.py#L1174">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="sqlalchemy.sql.expression.ColumnCollection._populate_separate_keys">
+    
+  </a>
+  <a name="_populate_separate_keys">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_populate_separate_keys</span>(self, iter_):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/sql/base.py#L1291">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="sqlalchemy.sql.base.DedupeColumnCollection.html" class="internal-link">sqlalchemy.sql.base.DedupeColumnCollection</a></code></div>
+    
+    <div>populate from an iterator of (key, column)</div>
+  </div>
+</div><div class="baseproperty private">
+  
+  
+  <a name="sqlalchemy.sql.expression.ColumnCollection._all_columns">
+    
+  </a>
+  <a name="_all_columns">
+    
+  </a>
+  <div class="functionHeader">
+    @<a href="https://docs.python.org/3/library/functions.html#property" class="intersphinx-link">property</a><br />
+    <span class="py-defname">_all_columns</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/sql/base.py#L1177">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div>
+
+      </div>
+    </div>
+
+    <footer class="navbar navbar-default">
+  
+  <div class="container">
+    <a href="index.html">API Documentation</a> for sqlalchemy,
+  generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
+    22.2.0 at 2022-02-23 08:22:50.
+  </div>
+</footer>
+
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+  </body>
+</html>

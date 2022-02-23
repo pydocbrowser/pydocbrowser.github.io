@@ -1,0 +1,394 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  
+
+  <head>
+    
+    <title>lxml.builder.ElementMaker</title>
+    <meta name="generator" content="pydoctor 22.2.0"> 
+        
+    </meta>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=0.75" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+    <link rel="stylesheet" type="text/css" href="extra.css" />
+</head>
+
+  <body>
+
+    <div id="banner" class="container">    
+    <div>
+        <a href="https://pydocbrowser.github.io/">Home</a>
+        &gt; lxml-4.8.0 
+        <!-- This is an important placeholder and will be 
+            replaced by project name and version on building docs -->
+        
+        <!-- (<a href=""&gt;show all versions</a&gt;) -->
+    </div>
+</div>
+
+    <nav class="navbar navbar-default">
+  
+  <div class="container">
+
+    <div class="navbar-header">
+      
+      <div class="navlinks">
+          <span class="navbar-brand">
+            lxml <a href="index.html">API Documentation</a>
+          </span>
+
+          <a href="moduleIndex.html">
+            Modules
+          </a>
+
+          <a href="classIndex.html">
+            Classes
+          </a>
+
+          <a href="nameIndex.html">
+            Names
+          </a>
+      </div>
+
+    </div>
+  </div>
+</nav>
+
+    
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="class"><code><code><a href="index.html" class="internal-link">lxml</a></code><wbr></wbr>.<code><a href="lxml.builder.html" class="internal-link" title="lxml.builder">builder</a></code><wbr></wbr>.<code><a href="lxml.builder.ElementMaker.html" class="internal-link" title="lxml.builder.ElementMaker">ElementMaker</a></code></code></h1>
+        <div id="showPrivate">
+          <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+        </div>
+      </div>
+
+      <div class="categoryHeader">
+        class documentation
+      </div>
+
+      <div class="extrasDocstring">
+        <p><code><span class="py-keyword">class</span> <span class="py-defname">ElementMaker</span>(<a href="https://docs.python.org/3/library/functions.html#object" class="intersphinx-link" title="object">object</a>): <a href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/lxml-4.8.0//src/lxml/builder.py#L60" class="sourceLink">(source)</a></code></p><p>Known subclasses: <code><a href="lxml.html.tests.test_html5parser.HTMLElementMaker.html" class="internal-link">lxml.html.tests.test_html5parser.HTMLElementMaker</a></code></p>
+        <p><a href="classIndex.html#lxml.builder.ElementMaker">View In Hierarchy</a></p>
+      </div>
+
+      <div class="moduleDocstring">
+        <div><p>Element generator factory.</p>
+<p>Unlike the ordinary Element factory, the E factory allows you to pass in
+more than just a tag and some optional attributes; you can also pass in
+text and other elements.  The text is added as either text or tail
+attributes, and elements are inserted at the right spot.  Some small
+examples:</p>
+<pre class="rst-literal-block">
+&gt;&gt;&gt; from lxml import etree as ET
+&gt;&gt;&gt; from lxml.builder import E
+
+&gt;&gt;&gt; ET.tostring(E("tag"))
+'&lt;tag/&gt;'
+&gt;&gt;&gt; ET.tostring(E("tag", "text"))
+'&lt;tag&gt;text&lt;/tag&gt;'
+&gt;&gt;&gt; ET.tostring(E("tag", "text", key="value"))
+'&lt;tag key="value"&gt;text&lt;/tag&gt;'
+&gt;&gt;&gt; ET.tostring(E("tag", E("subtag", "text"), "tail"))
+'&lt;tag&gt;&lt;subtag&gt;text&lt;/subtag&gt;tail&lt;/tag&gt;'
+</pre>
+<p>For simple tags, the factory also allows you to write <tt class="rst-docutils literal"><span class="pre">E.tag(...)</span></tt> instead
+of <tt class="rst-docutils literal"><span class="pre">E('tag',</span> <span class="pre">...)</span></tt>:</p>
+<pre class="rst-literal-block">
+&gt;&gt;&gt; ET.tostring(E.tag())
+'&lt;tag/&gt;'
+&gt;&gt;&gt; ET.tostring(E.tag("text"))
+'&lt;tag&gt;text&lt;/tag&gt;'
+&gt;&gt;&gt; ET.tostring(E.tag(E.subtag("text"), "tail"))
+'&lt;tag&gt;&lt;subtag&gt;text&lt;/subtag&gt;tail&lt;/tag&gt;'
+</pre>
+<p>Here's a somewhat larger example; this shows how to generate HTML
+documents, using a mix of prepared factory functions for inline elements,
+nested <tt class="rst-docutils literal">E.tag</tt> calls, and embedded XHTML fragments:</p>
+<pre class="rst-literal-block">
+# some common inline elements
+A = E.a
+I = E.i
+B = E.b
+
+def CLASS(v):
+    # helper function, 'class' is a reserved word
+    return {'class': v}
+
+page = (
+    E.html(
+        E.head(
+            E.title("This is a sample document")
+        ),
+        E.body(
+            E.h1("Hello!", CLASS("title")),
+            E.p("This is a paragraph with ", B("bold"), " text in it!"),
+            E.p("This is another paragraph, with a ",
+                A("link", href="http://www.python.org"), "."),
+            E.p("Here are some reserved characters: &lt;spam&amp;egg&gt;."),
+            ET.XML("&lt;p&gt;And finally, here is an embedded XHTML fragment.&lt;/p&gt;"),
+        )
+    )
+)
+
+print ET.tostring(page)
+</pre>
+<p>Here's a prettyprinted version of the output from the above script:</p>
+<pre class="rst-literal-block">
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;title&gt;This is a sample document&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;h1 class="title"&gt;Hello!&lt;/h1&gt;
+    &lt;p&gt;This is a paragraph with &lt;b&gt;bold&lt;/b&gt; text in it!&lt;/p&gt;
+    &lt;p&gt;This is another paragraph, with &lt;a href="http://www.python.org"&gt;link&lt;/a&gt;.&lt;/p&gt;
+    &lt;p&gt;Here are some reserved characters: &amp;lt;spam&amp;amp;egg&amp;gt;.&lt;/p&gt;
+    &lt;p&gt;And finally, here is an embedded XHTML fragment.&lt;/p&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</pre>
+<p>For namespace support, you can pass a namespace map (<tt class="rst-docutils literal">nsmap</tt>)
+and/or a specific target <tt class="rst-docutils literal">namespace</tt> to the ElementMaker class:</p>
+<pre class="rst-literal-block">
+&gt;&gt;&gt; E = ElementMaker(namespace="http://my.ns/")
+&gt;&gt;&gt; print(ET.tostring( E.test ))
+&lt;test xmlns="http://my.ns/"/&gt;
+
+&gt;&gt;&gt; E = ElementMaker(namespace="http://my.ns/", nsmap={'p':'http://my.ns/'})
+&gt;&gt;&gt; print(ET.tostring( E.test ))
+&lt;p:test xmlns:p="http://my.ns/"/&gt;
+</pre>
+</div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id10947">
+  
+  
+  <tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__call__" class="internal-link" title="lxml.builder.ElementMaker.__call__">__call__</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__getattr__" class="internal-link" title="lxml.builder.ElementMaker.__getattr__">__getattr__</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__init__" class="internal-link" title="lxml.builder.ElementMaker.__init__">__init__</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#_makeelement" class="internal-link" title="lxml.builder.ElementMaker._makeelement">​_makeelement</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#_namespace" class="internal-link" title="lxml.builder.ElementMaker._namespace">​_namespace</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#_nsmap" class="internal-link" title="lxml.builder.ElementMaker._nsmap">​_nsmap</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#_typemap" class="internal-link" title="lxml.builder.ElementMaker._typemap">​_typemap</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+        
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="basemethod">
+  
+  
+  <a name="lxml.builder.ElementMaker.__call__">
+    
+  </a>
+  <a name="__call__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__call__</span>(self, tag, *children, **attrib):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/lxml-4.8.0//src/lxml/builder.py#L193">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="lxml.builder.ElementMaker.__getattr__">
+    
+  </a>
+  <a name="__getattr__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__getattr__</span>(self, tag):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/lxml-4.8.0//src/lxml/builder.py#L228">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="lxml.builder.ElementMaker.__init__">
+    
+  </a>
+  <a name="__init__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__init__</span>(self, typemap=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, namespace=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, nsmap=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, makeelement=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/lxml-4.8.0//src/lxml/builder.py#L149">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="lxml.html.tests.test_html5parser.HTMLElementMaker.html" class="internal-link">lxml.html.tests.test_html5parser.HTMLElementMaker</a></code></div>
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  
+  <a name="lxml.builder.ElementMaker._makeelement">
+    
+  </a>
+  <a name="_makeelement">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_makeelement</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/lxml-4.8.0//src/lxml/builder.py#L155">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  
+  <a name="lxml.builder.ElementMaker._namespace">
+    
+  </a>
+  <a name="_namespace">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_namespace</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/lxml-4.8.0//src/lxml/builder.py#L151">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  
+  <a name="lxml.builder.ElementMaker._nsmap">
+    
+  </a>
+  <a name="_nsmap">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_nsmap</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/lxml-4.8.0//src/lxml/builder.py#L152">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  
+  <a name="lxml.builder.ElementMaker._typemap">
+    
+  </a>
+  <a name="_typemap">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_typemap</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/lxml-4.8.0//src/lxml/builder.py#L191">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div>
+
+      </div>
+    </div>
+
+    <footer class="navbar navbar-default">
+  
+  <div class="container">
+    <a href="index.html">API Documentation</a> for lxml,
+  generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
+    22.2.0 at 2022-02-23 08:15:47.
+  </div>
+</footer>
+
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+  </body>
+</html>

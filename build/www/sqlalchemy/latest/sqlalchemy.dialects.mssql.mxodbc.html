@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  
+
+  <head>
+    
+    <title>sqlalchemy.dialects.mssql.mxodbc</title>
+    <meta name="generator" content="pydoctor 22.2.0"> 
+        
+    </meta>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=0.75" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+    <link rel="stylesheet" type="text/css" href="extra.css" />
+</head>
+
+  <body>
+
+    <div id="banner" class="container">    
+    <div>
+        <a href="https://pydocbrowser.github.io/">Home</a>
+        &gt; sqlalchemy-1.4.31 
+        <!-- This is an important placeholder and will be 
+            replaced by project name and version on building docs -->
+        
+        <!-- (<a href=""&gt;show all versions</a&gt;) -->
+    </div>
+</div>
+
+    <nav class="navbar navbar-default">
+  
+  <div class="container">
+
+    <div class="navbar-header">
+      
+      <div class="navlinks">
+          <span class="navbar-brand">
+            sqlalchemy <a href="index.html">API Documentation</a>
+          </span>
+
+          <a href="moduleIndex.html">
+            Modules
+          </a>
+
+          <a href="classIndex.html">
+            Classes
+          </a>
+
+          <a href="nameIndex.html">
+            Names
+          </a>
+      </div>
+
+    </div>
+  </div>
+</nav>
+
+    
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="module"><code><code><a href="index.html" class="internal-link">sqlalchemy</a></code><wbr></wbr>.<code><a href="sqlalchemy.dialects.html" class="internal-link" title="sqlalchemy.dialects">dialects</a></code><wbr></wbr>.<code><a href="sqlalchemy.dialects.mssql.html" class="internal-link" title="sqlalchemy.dialects.mssql">mssql</a></code><wbr></wbr>.<code><a href="sqlalchemy.dialects.mssql.mxodbc.html" class="internal-link" title="sqlalchemy.dialects.mssql.mxodbc">mxodbc</a></code></code></h1>
+        <div id="showPrivate">
+          <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+        </div>
+      </div>
+
+      <div class="categoryHeader">
+        module documentation
+      </div>
+
+      <div class="extrasDocstring">
+        <a href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.31//lib/sqlalchemy/dialects/mssql/mxodbc.py" class="sourceLink">(source)</a>
+        <p></p>
+      </div>
+
+      <div class="moduleDocstring">
+        <div><div class="rst-deprecated">
+<span class="rst-versionmodified rst-deprecated">Deprecated since version 1.4: </span><span>The mxODBC DBAPI is deprecated and will be removed
+in a future version. Please use one of the supported DBAPIs to
+connect to mssql.</span></div>
+<div class="rst-section" id="rst-execution-modes">
+<h2 class="heading">Execution Modes</h2>
+<p>mxODBC features two styles of statement execution, using the
+<tt class="rst-docutils literal">cursor.execute()</tt> and <tt class="rst-docutils literal">cursor.executedirect()</tt> methods (the second being
+an extension to the DBAPI specification). The former makes use of a particular
+API call specific to the SQL Server Native Client ODBC driver known
+SQLDescribeParam, while the latter does not.</p>
+<p>mxODBC apparently only makes repeated use of a single prepared statement
+when SQLDescribeParam is used. The advantage to prepared statement reuse is
+one of performance. The disadvantage is that SQLDescribeParam has a limited
+set of scenarios in which bind parameters are understood, including that they
+cannot be placed within the argument lists of function calls, anywhere outside
+the FROM, or even within subqueries within the FROM clause - making the usage
+of bind parameters within SELECT statements impossible for all but the most
+simplistic statements.</p>
+<p>For this reason, the mxODBC dialect uses the "native" mode by default only for
+INSERT, UPDATE, and DELETE statements, and uses the escaped string mode for
+all other statements.</p>
+<p>This behavior can be controlled via
+<code>~sqlalchemy.sql.expression.Executable.execution_options</code> using the
+<tt class="rst-docutils literal">native_odbc_execute</tt> flag with a value of <tt class="rst-docutils literal">True</tt> or <tt class="rst-docutils literal">False</tt>, where a
+value of <tt class="rst-docutils literal">True</tt> will unconditionally use native bind parameters and a value
+of <tt class="rst-docutils literal">False</tt> will unconditionally use string-escaped parameters.</p>
+</div>
+</div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id18523">
+  
+  
+  <tr class="class">
+    
+    <td>Class</td>
+    <td><code><a href="sqlalchemy.dialects.mssql.mxodbc.MSDialect_mxodbc.html" class="internal-link" title="sqlalchemy.dialects.mssql.mxodbc.MSDialect_mxodbc">​MSDialect_mxodbc</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><code><a href="sqlalchemy.dialects.mssql.mxodbc.MSExecutionContext_mxodbc.html" class="internal-link" title="sqlalchemy.dialects.mssql.mxodbc.MSExecutionContext_mxodbc">​MSExecution​Context_mxodbc</a></code></td>
+    <td>The pyodbc execution context is useful for enabling SELECT SCOPE_IDENTITY in cases where OUTPUT clause does not work (tables with insert triggers).</td>
+  </tr><tr class="class private">
+    
+    <td>Class</td>
+    <td><code><a href="sqlalchemy.dialects.mssql.mxodbc._MSDate_mxodbc.html" class="internal-link" title="sqlalchemy.dialects.mssql.mxodbc._MSDate_mxodbc">_​MSDate_mxodbc</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="class private">
+    
+    <td>Class</td>
+    <td><code><a href="sqlalchemy.dialects.mssql.mxodbc._MSNumeric_mxodbc.html" class="internal-link" title="sqlalchemy.dialects.mssql.mxodbc._MSNumeric_mxodbc">_​MSNumeric_mxodbc</a></code></td>
+    <td>Include pyodbc's numeric processor.</td>
+  </tr><tr class="class private">
+    
+    <td>Class</td>
+    <td><code><a href="sqlalchemy.dialects.mssql.mxodbc._MSTime_mxodbc.html" class="internal-link" title="sqlalchemy.dialects.mssql.mxodbc._MSTime_mxodbc">_​MSTime_mxodbc</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="class private">
+    
+    <td>Class</td>
+    <td><code><a href="sqlalchemy.dialects.mssql.mxodbc._VARBINARY_mxodbc.html" class="internal-link" title="sqlalchemy.dialects.mssql.mxodbc._VARBINARY_mxodbc">_​VARBINARY_mxodbc</a></code></td>
+    <td>mxODBC Support for VARBINARY column types.</td>
+  </tr>
+</table>
+        
+
+          
+      </div>
+
+      <div id="childList">
+
+        
+
+      </div>
+    </div>
+
+    <footer class="navbar navbar-default">
+  
+  <div class="container">
+    <a href="index.html">API Documentation</a> for sqlalchemy,
+  generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
+    22.2.0 at 2022-02-23 08:22:50.
+  </div>
+</footer>
+
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+  </body>
+</html>

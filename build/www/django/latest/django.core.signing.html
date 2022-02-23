@@ -1,0 +1,451 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  
+
+  <head>
+    
+    <title>django.core.signing</title>
+    <meta name="generator" content="pydoctor 22.2.0"> 
+        
+    </meta>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=0.75" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+    <link rel="stylesheet" type="text/css" href="extra.css" />
+</head>
+
+  <body>
+
+    <div id="banner" class="container">    
+    <div>
+        <a href="https://pydocbrowser.github.io/">Home</a>
+        &gt; django-4.0.2 
+        <!-- This is an important placeholder and will be 
+            replaced by project name and version on building docs -->
+        
+        <!-- (<a href=""&gt;show all versions</a&gt;) -->
+    </div>
+</div>
+
+    <nav class="navbar navbar-default">
+  
+  <div class="container">
+
+    <div class="navbar-header">
+      
+      <div class="navlinks">
+          <span class="navbar-brand">
+            django <a href="index.html">API Documentation</a>
+          </span>
+
+          <a href="moduleIndex.html">
+            Modules
+          </a>
+
+          <a href="classIndex.html">
+            Classes
+          </a>
+
+          <a href="nameIndex.html">
+            Names
+          </a>
+      </div>
+
+    </div>
+  </div>
+</nav>
+
+    
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="module"><code><code><a href="index.html" class="internal-link">django</a></code><wbr></wbr>.<code><a href="django.core.html" class="internal-link" title="django.core">core</a></code><wbr></wbr>.<code><a href="django.core.signing.html" class="internal-link" title="django.core.signing">signing</a></code></code></h1>
+        <div id="showPrivate">
+          <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+        </div>
+      </div>
+
+      <div class="categoryHeader">
+        module documentation
+      </div>
+
+      <div class="extrasDocstring">
+        <a href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/django-4.0.2//django/core/signing.py" class="sourceLink">(source)</a>
+        <p></p>
+      </div>
+
+      <div class="moduleDocstring">
+        <div><p>Functions for creating and restoring url-safe signed JSON objects.</p>
+<p>The format used looks like this:</p>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>signing.dumps(<span class="py-string">"hello"</span>)
+<span class="py-output">'ImhlbGxvIg:1QaUZC:YIye-ze3TTx7gtSv422nZA4sgmk'</span>
+</pre><p>There are two components here, separated by a ':'. The first component is a
+URLsafe base64 encoded JSON of the object passed to dumps(). The second
+component is a base64 encoded hmac/SHA1 hash of "$first_component:$secret"</p>
+<p>signing.loads(s) checks the signature and returns the deserialized object.
+If the signature fails, a BadSignature exception is raised.</p>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>signing.loads(<span class="py-string">"ImhlbGxvIg:1QaUZC:YIye-ze3TTx7gtSv422nZA4sgmk"</span>)
+<span class="py-output">'hello'</span>
+<span class="py-prompt">&gt;&gt;&gt; </span>signing.loads(<span class="py-string">"ImhlbGxvIg:1QaUZC:YIye-ze3TTx7gtSv422nZA4sgmk-modified"</span>)
+<span class="py-more">...</span>
+<span class="py-output">BadSignature: Signature failed: ImhlbGxvIg:1QaUZC:YIye-ze3TTx7gtSv422nZA4sgmk-modified</span>
+</pre><p>You can optionally compress the JSON prior to base64 encoding it to save
+space, using the compress=True argument. This checks if compression actually
+helps and only applies compression if the result is a shorter string:</p>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>signing.dumps(<span class="py-builtin">list</span>(<span class="py-builtin">range</span>(1, 20)), compress=<span class="py-builtin">True</span>)
+<span class="py-output">'.eJwFwcERACAIwLCF-rCiILN47r-GyZVJsNgkxaFxoDgxcOHGxMKD_T7vhAml:1QaUaL:BA0thEZrp4FQVXIXuOvYJtLJSrQ'</span>
+</pre><p>The fact that the string is compressed is signalled by the prefixed '.' at the
+start of the base64 JSON.</p>
+<p>There are 65 url-safe characters: the 64 used by url-safe base64 and the ':'.
+These functions make use of all of them.</p>
+</div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id3638">
+  
+  
+  <tr class="class">
+    
+    <td>Class</td>
+    <td><code><a href="django.core.signing.BadSignature.html" class="internal-link" title="django.core.signing.BadSignature">​Bad​Signature</a></code></td>
+    <td>Signature does not match.</td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><code><a href="django.core.signing.JSONSerializer.html" class="internal-link" title="django.core.signing.JSONSerializer">​JSONSerializer</a></code></td>
+    <td>Simple wrapper around json to be used in signing.dumps and signing.loads.</td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><code><a href="django.core.signing.SignatureExpired.html" class="internal-link" title="django.core.signing.SignatureExpired">​Signature​Expired</a></code></td>
+    <td>Signature timestamp is older than required max_age.</td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><code><a href="django.core.signing.Signer.html" class="internal-link" title="django.core.signing.Signer">​Signer</a></code></td>
+    <td><span class="undocumented">No class docstring; 0/4 instance variable, 1/6 method documented</span></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><code><a href="django.core.signing.TimestampSigner.html" class="internal-link" title="django.core.signing.TimestampSigner">​Timestamp​Signer</a></code></td>
+    <td><span class="undocumented">No class docstring; 1/3 method documented</span></td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#b62_decode" class="internal-link" title="django.core.signing.b62_decode">b62​_decode</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#b62_encode" class="internal-link" title="django.core.signing.b62_encode">b62​_encode</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#b64_decode" class="internal-link" title="django.core.signing.b64_decode">b64​_decode</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#b64_encode" class="internal-link" title="django.core.signing.b64_encode">b64​_encode</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#base64_hmac" class="internal-link" title="django.core.signing.base64_hmac">base64​_hmac</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#dumps" class="internal-link" title="django.core.signing.dumps">dumps</a></code></td>
+    <td>Return URL-safe, hmac signed base64 compressed JSON string. If key is None, use settings.SECRET_KEY instead. The hmac algorithm is the default Signer algorithm.</td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#get_cookie_signer" class="internal-link" title="django.core.signing.get_cookie_signer">get​_cookie​_signer</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#loads" class="internal-link" title="django.core.signing.loads">loads</a></code></td>
+    <td>Reverse of dumps(), raise BadSignature if signature fails.</td>
+  </tr><tr class="constant">
+    
+    <td>Constant</td>
+    <td><code><a href="#BASE62_ALPHABET" class="internal-link" title="django.core.signing.BASE62_ALPHABET">BASE62​_ALPHABET</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="constant private">
+    
+    <td>Constant</td>
+    <td><code><a href="#_SEP_UNSAFE" class="internal-link" title="django.core.signing._SEP_UNSAFE">​_SEP​_UNSAFE</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+        
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="basefunction">
+  
+  
+  <a name="django.core.signing.b62_decode">
+    
+  </a>
+  <a name="b62_decode">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">b62_decode</span>(s):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/django-4.0.2//django/core/signing.py#L74">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="django.core.signing.b62_encode">
+    
+  </a>
+  <a name="b62_encode">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">b62_encode</span>(s):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/django-4.0.2//django/core/signing.py#L62">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="django.core.signing.b64_decode">
+    
+  </a>
+  <a name="b64_decode">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">b64_decode</span>(s):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/django-4.0.2//django/core/signing.py#L91">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="django.core.signing.b64_encode">
+    
+  </a>
+  <a name="b64_encode">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">b64_encode</span>(s):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/django-4.0.2//django/core/signing.py#L87">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="django.core.signing.base64_hmac">
+    
+  </a>
+  <a name="base64_hmac">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">base64_hmac</span>(salt, value, key, algorithm=<span class="rst-variable-quote">'</span><span class="rst-variable-string">sha1</span><span class="rst-variable-quote">'</span>):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/django-4.0.2//django/core/signing.py#L96">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="django.core.signing.dumps">
+    
+  </a>
+  <a name="dumps">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">dumps</span>(obj, key=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, salt=<span class="rst-variable-quote">'</span><span class="rst-variable-string">django.core.signing</span><span class="rst-variable-quote">'</span>, serializer=<a href="django.core.signing.JSONSerializer.html" class="internal-link" title="django.core.signing.JSONSerializer">JSONSerializer</a>, compress=<a href="https://docs.python.org/3/library/constants.html#False" class="intersphinx-link">False</a>):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/django-4.0.2//django/core/signing.py#L118">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Return URL-safe, hmac signed base64 compressed JSON string. If key is
+None, use settings.SECRET_KEY instead. The hmac algorithm is the default
+Signer algorithm.</p>
+<p>If compress is True (not the default), check if compressing using zlib can
+save some space. Prepend a '.' to signify compression. This is included
+in the signature, to protect against zip bombs.</p>
+<p>Salt can be used to namespace the hash, so that a signed string is
+only valid for a given namespace. Leaving this at the default
+value or re-using a salt value across different parts of your
+application without good cause is a security risk.</p>
+<p>The serializer is expected to return a bytestring.</p>
+</div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="django.core.signing.get_cookie_signer">
+    
+  </a>
+  <a name="get_cookie_signer">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">get_cookie_signer</span>(salt=<span class="rst-variable-quote">'</span><span class="rst-variable-string">django.core.signing.get_cookie_signer</span><span class="rst-variable-quote">'</span>):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/django-4.0.2//django/core/signing.py#L100">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="django.core.signing.loads">
+    
+  </a>
+  <a name="loads">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">loads</span>(s, key=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, salt=<span class="rst-variable-quote">'</span><span class="rst-variable-string">django.core.signing</span><span class="rst-variable-quote">'</span>, serializer=<a href="django.core.signing.JSONSerializer.html" class="internal-link" title="django.core.signing.JSONSerializer">JSONSerializer</a>, max_age=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/django-4.0.2//django/core/signing.py#L138">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Reverse of dumps(), raise BadSignature if signature fails.</p>
+<p>The serializer is expected to accept a bytestring.</p>
+</div>
+  </div>
+</div><div class="baseconstant">
+  
+  
+  <a name="django.core.signing.BASE62_ALPHABET">
+    
+  </a>
+  <a name="BASE62_ALPHABET">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">BASE62_ALPHABET</span>: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/django-4.0.2//django/core/signing.py#L49">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    <table class="valueTable"><tr class="fieldStart"><td class="fieldName">Value</td></tr><tr><td><pre class="constant-value"><code><span class="rst-variable-quote">'</span><span class="rst-variable-string">0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz</span><span class="rst-variable-quote">'</span></code></pre></td></tr></table>
+  </div>
+</div><div class="baseconstant private">
+  
+  
+  <a name="django.core.signing._SEP_UNSAFE">
+    
+  </a>
+  <a name="_SEP_UNSAFE">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_SEP_UNSAFE</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/django-4.0.2//django/core/signing.py#L48">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    <table class="valueTable"><tr class="fieldStart"><td class="fieldName">Value</td></tr><tr><td><pre class="constant-value"><code><a href="django.utils.regex_helper.html#_lazy_re_compile" class="internal-link" title="django.utils.regex_helper._lazy_re_compile">_lazy_re_compile</a>(<wbr></wbr><span class="rst-variable-quote">'</span><span class="rst-variable-string">^[A-z0-9-_=]*$</span><span class="rst-variable-quote">'</span>)</code></pre></td></tr></table>
+  </div>
+</div>
+
+      </div>
+    </div>
+
+    <footer class="navbar navbar-default">
+  
+  <div class="container">
+    <a href="index.html">API Documentation</a> for django,
+  generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
+    22.2.0 at 2022-02-23 08:05:35.
+  </div>
+</footer>
+
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+  </body>
+</html>
