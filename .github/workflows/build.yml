@@ -39,7 +39,7 @@ jobs:
 
             # Exit code 21 means it stopped generating docs because of the build timeout
             if [[ $? -eq 21 ]]; then
-              # Send signal to build docs, again to complete
+              echo 'Sending signal to build docs again'
               curl -XPOST -u "${{secrets.GH_USERNAME}}:${{secrets.GH_TOKEN}}" \
                 -H "Accept: application/vnd.github.everest-preview+json" \
                 -H "Content-Type: application/json" \
