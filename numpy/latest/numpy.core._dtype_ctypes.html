@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  
+
+  <head>
+    
+    <title>numpy.core._dtype_ctypes</title>
+    <meta name="generator" content="pydoctor 22.2.1"> 
+        
+    </meta>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=0.75" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+    <link rel="stylesheet" type="text/css" href="extra.css" />
+</head>
+
+  <body>
+
+    <div id="banner">    
+    <div>
+        <a href="/">Home</a>
+        &gt; numpy-1.22.2 <!-- This is a placeholder -->
+        
+        <!-- (<a href=""&gt;show all versions</a&gt;) -->
+    </div>
+</div>
+
+    <nav class="navbar navbar-default">
+  
+  <div class="container">
+
+    <div class="navbar-header">
+      
+      <div class="navlinks">
+          <span class="navbar-brand">
+            numpy <a href="index.html">API Documentation</a>
+          </span>
+
+          <a href="moduleIndex.html">
+            Modules
+          </a>
+
+          <a href="classIndex.html">
+            Classes
+          </a>
+
+          <a href="nameIndex.html">
+            Names
+          </a>
+      </div>
+
+    </div>
+  </div>
+</nav>
+
+    
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="module private"><code><code><a href="index.html" class="internal-link">numpy</a></code><wbr></wbr>.<code><a href="numpy.core.html" class="internal-link" title="numpy.core">core</a></code><wbr></wbr>.<code><a href="numpy.core._dtype_ctypes.html" class="internal-link" title="numpy.core._dtype_ctypes">_dtype_ctypes</a></code></code></h1>
+        <div id="showPrivate">
+          <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+        </div>
+      </div>
+
+      <div class="categoryHeader">
+        module documentation
+      </div>
+
+      <div class="extrasDocstring">
+        <a href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.22.2//numpy/core/_dtype_ctypes.py" class="sourceLink">(source)</a>
+        <p></p>
+      </div>
+
+      <div class="moduleDocstring">
+        <div><p>Conversion from ctypes to dtype.</p>
+<p>In an ideal world, we could achieve this through the PEP3118 buffer protocol,
+something like:</p>
+<pre class="rst-literal-block">
+def dtype_from_ctypes_type(t):
+    # needed to ensure that the shape of `t` is within memoryview.format
+    class DummyStruct(ctypes.Structure):
+        _fields_ = [('a', t)]
+
+    # empty to avoid memory allocation
+    ctype_0 = (DummyStruct * 0)()
+    mv = memoryview(ctype_0)
+
+    # convert the struct, and slice back out the field
+    return _dtype_from_pep3118(mv.format)['a']
+</pre>
+<p>Unfortunately, this fails because:</p>
+<ul class="rst-simple">
+<li>ctypes cannot handle length-0 arrays with PEP3118 (bpo-32782)</li>
+<li>PEP3118 cannot represent unions, but both numpy and ctypes can</li>
+<li>ctypes cannot handle big-endian structs with PEP3118 (bpo-32780)</li>
+</ul>
+</div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id55">
+  
+  
+  <tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#dtype_from_ctypes_type" class="internal-link" title="numpy.core._dtype_ctypes.dtype_from_ctypes_type">dtype​_from​_ctypes​_type</a></code></td>
+    <td>Construct a dtype object from a ctypes type</td>
+  </tr><tr class="function private">
+    
+    <td>Function</td>
+    <td><code><a href="#_from_ctypes_array" class="internal-link" title="numpy.core._dtype_ctypes._from_ctypes_array">​_from​_ctypes​_array</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="function private">
+    
+    <td>Function</td>
+    <td><code><a href="#_from_ctypes_scalar" class="internal-link" title="numpy.core._dtype_ctypes._from_ctypes_scalar">​_from​_ctypes​_scalar</a></code></td>
+    <td>Return the dtype type with endianness included if it's the case</td>
+  </tr><tr class="function private">
+    
+    <td>Function</td>
+    <td><code><a href="#_from_ctypes_structure" class="internal-link" title="numpy.core._dtype_ctypes._from_ctypes_structure">​_from​_ctypes​_structure</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="function private">
+    
+    <td>Function</td>
+    <td><code><a href="#_from_ctypes_union" class="internal-link" title="numpy.core._dtype_ctypes._from_ctypes_union">​_from​_ctypes​_union</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+        
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="basefunction">
+  
+  
+  <a name="numpy.core._dtype_ctypes.dtype_from_ctypes_type">
+    
+  </a>
+  <a name="dtype_from_ctypes_type">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">dtype_from_ctypes_type</span>(t):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.22.2//numpy/core/_dtype_ctypes.py#L100">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Construct a dtype object from a ctypes type</div>
+  </div>
+</div><div class="basefunction private">
+  
+  
+  <a name="numpy.core._dtype_ctypes._from_ctypes_array">
+    
+  </a>
+  <a name="_from_ctypes_array">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_from_ctypes_array</span>(t):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.22.2//numpy/core/_dtype_ctypes.py#L32">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basefunction private">
+  
+  
+  <a name="numpy.core._dtype_ctypes._from_ctypes_scalar">
+    
+  </a>
+  <a name="_from_ctypes_scalar">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_from_ctypes_scalar</span>(t):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.22.2//numpy/core/_dtype_ctypes.py#L71">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Return the dtype type with endianness included if it's the case</div>
+  </div>
+</div><div class="basefunction private">
+  
+  
+  <a name="numpy.core._dtype_ctypes._from_ctypes_structure">
+    
+  </a>
+  <a name="_from_ctypes_structure">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_from_ctypes_structure</span>(t):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.22.2//numpy/core/_dtype_ctypes.py#L36">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basefunction private">
+  
+  
+  <a name="numpy.core._dtype_ctypes._from_ctypes_union">
+    
+  </a>
+  <a name="_from_ctypes_union">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_from_ctypes_union</span>(t):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.22.2//numpy/core/_dtype_ctypes.py#L83">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div>
+
+      </div>
+    </div>
+
+    <footer class="navbar navbar-default">
+  
+  <div class="container">
+    <a href="index.html">API Documentation</a> for numpy,
+  generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
+    22.2.1 at 2022-02-23 16:52:13.
+  </div>
+</footer>
+
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+  </body>
+</html>
