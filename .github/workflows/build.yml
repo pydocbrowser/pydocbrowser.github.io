@@ -7,6 +7,11 @@ jobs:
 
     steps:
       - uses: actions/checkout@master
+      
+      - name: Wait for other workflows
+        uses: softprops/turnstyle@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Set up Python 3.8
         uses: actions/setup-python@v2
