@@ -1,0 +1,641 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  
+
+  <head>
+    
+    <title>mypy.typestate.TypeState</title>
+    <meta name="generator" content="pydoctor 22.2.0"> 
+        
+    </meta>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=0.75" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+    <link rel="stylesheet" type="text/css" href="extra.css" />
+</head>
+
+  <body>
+
+    
+
+    <nav class="navbar navbar-default">
+  
+  <div class="container">
+
+    <div class="navbar-header">
+      
+      <div class="navlinks">
+          <span class="navbar-brand">
+            mypy <a href="index.html">API Documentation</a>
+          </span>
+
+          <a href="moduleIndex.html">
+            Modules
+          </a>
+
+          <a href="classIndex.html">
+            Classes
+          </a>
+
+          <a href="nameIndex.html">
+            Names
+          </a>
+      </div>
+
+    </div>
+  </div>
+</nav>
+
+    
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="class"><code><code><a href="index.html" class="internal-link">mypy</a></code><wbr></wbr>.<code><a href="mypy.typestate.html" class="internal-link" title="mypy.typestate">typestate</a></code><wbr></wbr>.<code><a href="mypy.typestate.TypeState.html" class="internal-link" title="mypy.typestate.TypeState">TypeState</a></code></code></h1>
+        <div id="showPrivate">
+          <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+        </div>
+      </div>
+
+      <div class="categoryHeader">
+        class documentation
+      </div>
+
+      <div class="extrasDocstring">
+        <p><code><span class="py-keyword">class</span> <span class="py-defname">TypeState</span>:</code></p>
+        <p><a href="classIndex.html#mypy.typestate.TypeState">View In Hierarchy</a></p>
+      </div>
+
+      <div class="moduleDocstring">
+        <div><p>This class provides subtype caching to improve performance of subtype checks.
+It also holds protocol fine grained dependencies.</p>
+<p>Note: to avoid leaking global state, 'reset_all_subtype_caches()' should be called
+after a build has finished and after a daemon shutdown. This subtype cache only exists for
+performance reasons, resetting subtype caches for a class has no semantic effect.
+The protocol dependencies however are only stored here, and shouldn't be deleted unless
+not needed any more (e.g. during daemon shutdown).</p>
+</div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id895">
+  
+  
+  <tr class="staticmethod">
+    
+    <td>Static Method</td>
+    <td><code><a href="#add_all_protocol_deps" class="internal-link" title="mypy.typestate.TypeState.add_all_protocol_deps">add​_all​_protocol​_deps</a></code></td>
+    <td>Add all known protocol dependencies to deps.</td>
+  </tr><tr class="staticmethod">
+    
+    <td>Static Method</td>
+    <td><code><a href="#is_assumed_proper_subtype" class="internal-link" title="mypy.typestate.TypeState.is_assumed_proper_subtype">is​_assumed​_proper​_subtype</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="staticmethod">
+    
+    <td>Static Method</td>
+    <td><code><a href="#is_assumed_subtype" class="internal-link" title="mypy.typestate.TypeState.is_assumed_subtype">is​_assumed​_subtype</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="staticmethod">
+    
+    <td>Static Method</td>
+    <td><code><a href="#is_cached_subtype_check" class="internal-link" title="mypy.typestate.TypeState.is_cached_subtype_check">is​_cached​_subtype​_check</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="staticmethod">
+    
+    <td>Static Method</td>
+    <td><code><a href="#record_protocol_subtype_check" class="internal-link" title="mypy.typestate.TypeState.record_protocol_subtype_check">record​_protocol​_subtype​_check</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="staticmethod">
+    
+    <td>Static Method</td>
+    <td><code><a href="#record_subtype_cache_entry" class="internal-link" title="mypy.typestate.TypeState.record_subtype_cache_entry">record​_subtype​_cache​_entry</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="staticmethod">
+    
+    <td>Static Method</td>
+    <td><code><a href="#reset_all_subtype_caches" class="internal-link" title="mypy.typestate.TypeState.reset_all_subtype_caches">reset​_all​_subtype​_caches</a></code></td>
+    <td>Completely reset all known subtype caches.</td>
+  </tr><tr class="staticmethod">
+    
+    <td>Static Method</td>
+    <td><code><a href="#reset_all_subtype_caches_for" class="internal-link" title="mypy.typestate.TypeState.reset_all_subtype_caches_for">reset​_all​_subtype​_caches​_for</a></code></td>
+    <td>Reset subtype caches (if any) for a given supertype TypeInfo and its MRO.</td>
+  </tr><tr class="staticmethod">
+    
+    <td>Static Method</td>
+    <td><code><a href="#reset_protocol_deps" class="internal-link" title="mypy.typestate.TypeState.reset_protocol_deps">reset​_protocol​_deps</a></code></td>
+    <td>Reset dependencies after a full run or before a daemon shutdown.</td>
+  </tr><tr class="staticmethod">
+    
+    <td>Static Method</td>
+    <td><code><a href="#reset_subtype_caches_for" class="internal-link" title="mypy.typestate.TypeState.reset_subtype_caches_for">reset​_subtype​_caches​_for</a></code></td>
+    <td>Reset subtype caches (if any) for a given supertype TypeInfo.</td>
+  </tr><tr class="staticmethod">
+    
+    <td>Static Method</td>
+    <td><code><a href="#update_protocol_deps" class="internal-link" title="mypy.typestate.TypeState.update_protocol_deps">update​_protocol​_deps</a></code></td>
+    <td>Update global protocol dependency map.</td>
+  </tr><tr class="classvariable">
+    
+    <td>Class Variable</td>
+    <td><code><a href="#proto_deps" class="internal-link" title="mypy.typestate.TypeState.proto_deps">proto​_deps</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="staticmethod private">
+    
+    <td>Static Method</td>
+    <td><code><a href="#_snapshot_protocol_deps" class="internal-link" title="mypy.typestate.TypeState._snapshot_protocol_deps">​_snapshot​_protocol​_deps</a></code></td>
+    <td>Collect protocol attribute dependencies found so far from registered subtype checks.</td>
+  </tr><tr class="constant private">
+    
+    <td>Constant</td>
+    <td><code><a href="#_assuming" class="internal-link" title="mypy.typestate.TypeState._assuming">​_assuming</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="constant private">
+    
+    <td>Constant</td>
+    <td><code><a href="#_assuming_proper" class="internal-link" title="mypy.typestate.TypeState._assuming_proper">​_assuming​_proper</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="constant private">
+    
+    <td>Constant</td>
+    <td><code><a href="#_attempted_protocols" class="internal-link" title="mypy.typestate.TypeState._attempted_protocols">​_attempted​_protocols</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="constant private">
+    
+    <td>Constant</td>
+    <td><code><a href="#_checked_against_members" class="internal-link" title="mypy.typestate.TypeState._checked_against_members">​_checked​_against​_members</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="constant private">
+    
+    <td>Constant</td>
+    <td><code><a href="#_inferring" class="internal-link" title="mypy.typestate.TypeState._inferring">​_inferring</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="constant private">
+    
+    <td>Constant</td>
+    <td><code><a href="#_rechecked_types" class="internal-link" title="mypy.typestate.TypeState._rechecked_types">​_rechecked​_types</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="constant private">
+    
+    <td>Constant</td>
+    <td><code><a href="#_subtype_caches" class="internal-link" title="mypy.typestate.TypeState._subtype_caches">​_subtype​_caches</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+        
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="basestaticmethod">
+  
+  
+  <a name="mypy.typestate.TypeState.add_all_protocol_deps">
+    
+  </a>
+  <a name="add_all_protocol_deps">
+    
+  </a>
+  <div class="functionHeader">
+    @staticmethod<br />
+    <span class="py-keyword">def</span> <span class="py-defname">add_all_protocol_deps</span>(deps):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Add all known protocol dependencies to deps.</p>
+<p>This is used by tests and debug output, and also when collecting
+all collected or loaded dependencies as part of build.</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">deps:</span><code>Dict[<wbr></wbr>str, <wbr></wbr>Set[<wbr></wbr>str]]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basestaticmethod">
+  
+  
+  <a name="mypy.typestate.TypeState.is_assumed_proper_subtype">
+    
+  </a>
+  <a name="is_assumed_proper_subtype">
+    
+  </a>
+  <div class="functionHeader">
+    @staticmethod<br />
+    <span class="py-keyword">def</span> <span class="py-defname">is_assumed_proper_subtype</span>(left, right):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">left:</span><code><a href="mypy.types.Type.html" class="internal-link" title="mypy.types.Type">Type</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">right:</span><code><a href="mypy.types.Type.html" class="internal-link" title="mypy.types.Type">Type</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code>bool</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basestaticmethod">
+  
+  
+  <a name="mypy.typestate.TypeState.is_assumed_subtype">
+    
+  </a>
+  <a name="is_assumed_subtype">
+    
+  </a>
+  <div class="functionHeader">
+    @staticmethod<br />
+    <span class="py-keyword">def</span> <span class="py-defname">is_assumed_subtype</span>(left, right):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">left:</span><code><a href="mypy.types.Type.html" class="internal-link" title="mypy.types.Type">Type</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">right:</span><code><a href="mypy.types.Type.html" class="internal-link" title="mypy.types.Type">Type</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code>bool</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basestaticmethod">
+  
+  
+  <a name="mypy.typestate.TypeState.is_cached_subtype_check">
+    
+  </a>
+  <a name="is_cached_subtype_check">
+    
+  </a>
+  <div class="functionHeader">
+    @staticmethod<br />
+    <span class="py-keyword">def</span> <span class="py-defname">is_cached_subtype_check</span>(kind, left, right):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">kind:</span><code><a href="mypy.typestate.html#SubtypeKind" class="internal-link" title="mypy.typestate.SubtypeKind">SubtypeKind</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">left:</span><code><a href="mypy.types.Instance.html" class="internal-link" title="mypy.types.Instance">Instance</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">right:</span><code><a href="mypy.types.Instance.html" class="internal-link" title="mypy.types.Instance">Instance</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code>bool</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basestaticmethod">
+  
+  
+  <a name="mypy.typestate.TypeState.record_protocol_subtype_check">
+    
+  </a>
+  <a name="record_protocol_subtype_check">
+    
+  </a>
+  <div class="functionHeader">
+    @staticmethod<br />
+    <span class="py-keyword">def</span> <span class="py-defname">record_protocol_subtype_check</span>(left_type, right_type):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">left​_type:</span><code><a href="mypy.nodes.TypeInfo.html" class="internal-link" title="mypy.nodes.TypeInfo">TypeInfo</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">right​_type:</span><code><a href="mypy.nodes.TypeInfo.html" class="internal-link" title="mypy.nodes.TypeInfo">TypeInfo</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basestaticmethod">
+  
+  
+  <a name="mypy.typestate.TypeState.record_subtype_cache_entry">
+    
+  </a>
+  <a name="record_subtype_cache_entry">
+    
+  </a>
+  <div class="functionHeader">
+    @staticmethod<br />
+    <span class="py-keyword">def</span> <span class="py-defname">record_subtype_cache_entry</span>(kind, left, right):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">kind:</span><code><a href="mypy.typestate.html#SubtypeKind" class="internal-link" title="mypy.typestate.SubtypeKind">SubtypeKind</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">left:</span><code><a href="mypy.types.Instance.html" class="internal-link" title="mypy.types.Instance">Instance</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">right:</span><code><a href="mypy.types.Instance.html" class="internal-link" title="mypy.types.Instance">Instance</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basestaticmethod">
+  
+  
+  <a name="mypy.typestate.TypeState.reset_all_subtype_caches">
+    
+  </a>
+  <a name="reset_all_subtype_caches">
+    
+  </a>
+  <div class="functionHeader">
+    @staticmethod<br />
+    <span class="py-keyword">def</span> <span class="py-defname">reset_all_subtype_caches</span>():
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Completely reset all known subtype caches.</div>
+  </div>
+</div><div class="basestaticmethod">
+  
+  
+  <a name="mypy.typestate.TypeState.reset_all_subtype_caches_for">
+    
+  </a>
+  <a name="reset_all_subtype_caches_for">
+    
+  </a>
+  <div class="functionHeader">
+    @staticmethod<br />
+    <span class="py-keyword">def</span> <span class="py-defname">reset_all_subtype_caches_for</span>(info):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Reset subtype caches (if any) for a given supertype TypeInfo and its MRO.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">info:</span><code><a href="mypy.nodes.TypeInfo.html" class="internal-link" title="mypy.nodes.TypeInfo">TypeInfo</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basestaticmethod">
+  
+  
+  <a name="mypy.typestate.TypeState.reset_protocol_deps">
+    
+  </a>
+  <a name="reset_protocol_deps">
+    
+  </a>
+  <div class="functionHeader">
+    @staticmethod<br />
+    <span class="py-keyword">def</span> <span class="py-defname">reset_protocol_deps</span>():
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Reset dependencies after a full run or before a daemon shutdown.</div>
+  </div>
+</div><div class="basestaticmethod">
+  
+  
+  <a name="mypy.typestate.TypeState.reset_subtype_caches_for">
+    
+  </a>
+  <a name="reset_subtype_caches_for">
+    
+  </a>
+  <div class="functionHeader">
+    @staticmethod<br />
+    <span class="py-keyword">def</span> <span class="py-defname">reset_subtype_caches_for</span>(info):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Reset subtype caches (if any) for a given supertype TypeInfo.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">info:</span><code><a href="mypy.nodes.TypeInfo.html" class="internal-link" title="mypy.nodes.TypeInfo">TypeInfo</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basestaticmethod">
+  
+  
+  <a name="mypy.typestate.TypeState.update_protocol_deps">
+    
+  </a>
+  <a name="update_protocol_deps">
+    
+  </a>
+  <div class="functionHeader">
+    @staticmethod<br />
+    <span class="py-keyword">def</span> <span class="py-defname">update_protocol_deps</span>(second_map=None):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Update global protocol dependency map.</p>
+<p>We update the global map incrementally, using a snapshot only from recently
+type checked types. If second_map is given, update it as well. This is currently used
+by FineGrainedBuildManager that maintains normal (non-protocol) dependencies.</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">second​_map:</span><code>Optional[<wbr></wbr>Dict[<wbr></wbr>str, <wbr></wbr>Set[<wbr></wbr>str]]]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="baseclassvariable">
+  
+  
+  <a name="mypy.typestate.TypeState.proto_deps">
+    
+  </a>
+  <a name="proto_deps">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">proto_deps</span>: <code>ClassVar[<wbr></wbr>Optional[<wbr></wbr>Dict[<wbr></wbr>str, <wbr></wbr>Set[<wbr></wbr>str]]]]</code> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="basestaticmethod private">
+  
+  
+  <a name="mypy.typestate.TypeState._snapshot_protocol_deps">
+    
+  </a>
+  <a name="_snapshot_protocol_deps">
+    
+  </a>
+  <div class="functionHeader">
+    @staticmethod<br />
+    <span class="py-keyword">def</span> <span class="py-defname">_snapshot_protocol_deps</span>():
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Collect protocol attribute dependencies found so far from registered subtype checks.</p>
+<p>There are three kinds of protocol dependencies. For example, after a subtype check:</p>
+<blockquote>
+x: Proto = C()</blockquote>
+<dl class="rst-docutils">
+<dt>the following dependencies will be generated:</dt>
+<dd><ol class="rst-first rst-last rst-arabic simple">
+<li>..., &lt;SuperProto[wildcard]&gt;, &lt;Proto[wildcard]&gt; -&gt; &lt;Proto&gt;</li>
+<li>..., &lt;B.attr&gt;, &lt;C.attr&gt; -&gt; &lt;C&gt; [for every attr in Proto members]</li>
+<li>&lt;C&gt; -&gt; Proto  # this one to invalidate the subtype cache</li>
+</ol>
+</dd>
+</dl>
+<p>The first kind is generated immediately per-module in deps.py (see also an example there
+for motivation why it is needed). While two other kinds are generated here after all
+modules are type checked and we have recorded all the subtype checks. To understand these
+two kinds, consider a simple example:</p>
+<blockquote>
+<dl class="rst-docutils">
+<dt>class A:</dt>
+<dd><dl class="rst-first rst-last rst-docutils">
+<dt>def __iter__(self) -&gt; Iterator[int]:</dt>
+<dd>...</dd>
+</dl>
+</dd>
+</dl>
+<p>it: Iterable[int] = A()</p>
+</blockquote>
+<p>We add &lt;a.A.__iter__&gt; -&gt; &lt;a.A&gt; to invalidate the assignment (module target in this case),
+whenever the signature of a.A.__iter__ changes. We also add &lt;a.A&gt; -&gt; typing.Iterable,
+to invalidate the subtype caches of the latter. (Note that the same logic applies to
+proper subtype checks, and calculating meets and joins, if this involves calling
+'subtypes.is_protocol_implementation').</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code>Dict[<wbr></wbr>str, <wbr></wbr>Set[<wbr></wbr>str]]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="baseconstant private">
+  
+  
+  <a name="mypy.typestate.TypeState._assuming">
+    
+  </a>
+  <a name="_assuming">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_assuming</span>: <code>List[<wbr></wbr>Tuple[<wbr></wbr><a href="mypy.types.TypeAliasType.html" class="internal-link" title="mypy.types.TypeAliasType">TypeAliasType</a>, <wbr></wbr><a href="mypy.types.TypeAliasType.html" class="internal-link" title="mypy.types.TypeAliasType">TypeAliasType</a>]]</code> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    <table class="valueTable"><tr class="fieldStart"><td class="fieldName">Value</td></tr><tr><td><pre class="constant-value"><code>[]</code></pre></td></tr></table>
+  </div>
+</div><div class="baseconstant private">
+  
+  
+  <a name="mypy.typestate.TypeState._assuming_proper">
+    
+  </a>
+  <a name="_assuming_proper">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_assuming_proper</span>: <code>List[<wbr></wbr>Tuple[<wbr></wbr><a href="mypy.types.TypeAliasType.html" class="internal-link" title="mypy.types.TypeAliasType">TypeAliasType</a>, <wbr></wbr><a href="mypy.types.TypeAliasType.html" class="internal-link" title="mypy.types.TypeAliasType">TypeAliasType</a>]]</code> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    <table class="valueTable"><tr class="fieldStart"><td class="fieldName">Value</td></tr><tr><td><pre class="constant-value"><code>[]</code></pre></td></tr></table>
+  </div>
+</div><div class="baseconstant private">
+  
+  
+  <a name="mypy.typestate.TypeState._attempted_protocols">
+    
+  </a>
+  <a name="_attempted_protocols">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_attempted_protocols</span>: <code>Dict[<wbr></wbr>str, <wbr></wbr>Set[<wbr></wbr>str]]</code> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    <table class="valueTable"><tr class="fieldStart"><td class="fieldName">Value</td></tr><tr><td><pre class="constant-value"><code>{}</code></pre></td></tr></table>
+  </div>
+</div><div class="baseconstant private">
+  
+  
+  <a name="mypy.typestate.TypeState._checked_against_members">
+    
+  </a>
+  <a name="_checked_against_members">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_checked_against_members</span>: <code>Dict[<wbr></wbr>str, <wbr></wbr>Set[<wbr></wbr>str]]</code> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    <table class="valueTable"><tr class="fieldStart"><td class="fieldName">Value</td></tr><tr><td><pre class="constant-value"><code>{}</code></pre></td></tr></table>
+  </div>
+</div><div class="baseconstant private">
+  
+  
+  <a name="mypy.typestate.TypeState._inferring">
+    
+  </a>
+  <a name="_inferring">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_inferring</span>: <code>List[<wbr></wbr><a href="mypy.types.TypeAliasType.html" class="internal-link" title="mypy.types.TypeAliasType">TypeAliasType</a>]</code> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    <table class="valueTable"><tr class="fieldStart"><td class="fieldName">Value</td></tr><tr><td><pre class="constant-value"><code>[]</code></pre></td></tr></table>
+  </div>
+</div><div class="baseconstant private">
+  
+  
+  <a name="mypy.typestate.TypeState._rechecked_types">
+    
+  </a>
+  <a name="_rechecked_types">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_rechecked_types</span>: <code>Set[<wbr></wbr><a href="mypy.nodes.TypeInfo.html" class="internal-link" title="mypy.nodes.TypeInfo">TypeInfo</a>]</code> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    <table class="valueTable"><tr class="fieldStart"><td class="fieldName">Value</td></tr><tr><td><pre class="constant-value"><code>set()</code></pre></td></tr></table>
+  </div>
+</div><div class="baseconstant private">
+  
+  
+  <a name="mypy.typestate.TypeState._subtype_caches">
+    
+  </a>
+  <a name="_subtype_caches">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_subtype_caches</span>: <code><a href="mypy.typestate.html#SubtypeCache" class="internal-link" title="mypy.typestate.SubtypeCache">SubtypeCache</a></code> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    <table class="valueTable"><tr class="fieldStart"><td class="fieldName">Value</td></tr><tr><td><pre class="constant-value"><code>{}</code></pre></td></tr></table>
+  </div>
+</div>
+
+      </div>
+    </div>
+
+    <footer class="navbar navbar-default">
+  
+  <div class="container">
+    <a href="index.html">API Documentation</a> for mypy,
+  generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
+    22.2.0 at 2022-02-23 05:21:28.
+  </div>
+</footer>
+
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+  </body>
+</html>
