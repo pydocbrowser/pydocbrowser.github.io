@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  
+
+  <head>
+    
+    <title>babel.lists</title>
+    <meta name="generator" content="pydoctor 22.2.0"> 
+        
+    </meta>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=0.75" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+    <link rel="stylesheet" type="text/css" href="extra.css" />
+</head>
+
+  <body>
+
+    
+
+    <nav class="navbar navbar-default">
+  
+  <div class="container">
+
+    <div class="navbar-header">
+      
+      <div class="navlinks">
+          <span class="navbar-brand">
+            babel <a href="index.html">API Documentation</a>
+          </span>
+
+          <a href="moduleIndex.html">
+            Modules
+          </a>
+
+          <a href="classIndex.html">
+            Classes
+          </a>
+
+          <a href="nameIndex.html">
+            Names
+          </a>
+      </div>
+
+    </div>
+  </div>
+</nav>
+
+    
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="module"><code><code><a href="index.html" class="internal-link">babel</a></code><wbr></wbr>.<code><a href="babel.lists.html" class="internal-link" title="babel.lists">lists</a></code></code></h1>
+        <div id="showPrivate">
+          <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+        </div>
+      </div>
+
+      <div class="categoryHeader">
+        module documentation
+      </div>
+
+      <div class="extrasDocstring">
+        
+        <p></p>
+      </div>
+
+      <div class="moduleDocstring">
+        <div><p>Locale dependent formatting of lists.</p>
+<p>The default locale for the functions in this module is determined by the
+following environment variables, in that order:</p>
+<blockquote>
+<ul class="rst-simple">
+<li><tt class="rst-docutils literal">LC_ALL</tt>, and</li>
+<li><tt class="rst-docutils literal">LANG</tt></li>
+</ul>
+</blockquote>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Unknown Field: copyright</td></tr><tr><td colspan="2"><ol class="rst-loweralpha simple" start="3">
+<li>2015-2021 by the Babel Team.</li>
+</ol>
+</td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Unknown Field: license</td></tr><tr><td colspan="2">BSD, see LICENSE for more details.</td></tr></table></div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id12">
+  
+  
+  <tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#format_list" class="internal-link" title="babel.lists.format_list">format​_list</a></code></td>
+    <td>Format the items in <code>lst</code> as a list.</td>
+  </tr><tr class="constant">
+    
+    <td>Constant</td>
+    <td><code><a href="#DEFAULT_LOCALE" class="internal-link" title="babel.lists.DEFAULT_LOCALE">DEFAULT​_LOCALE</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+        
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="basefunction">
+  
+  
+  <a name="babel.lists.format_list">
+    
+  </a>
+  <a name="format_list">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">format_list</span>(lst, style=<span class="rst-variable-quote">'</span><span class="rst-variable-string">standard</span><span class="rst-variable-quote">'</span>, locale=<a href="#DEFAULT_LOCALE" class="internal-link" title="babel.lists.DEFAULT_LOCALE">DEFAULT_LOCALE</a>):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Format the items in <code>lst</code> as a list.</p>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>format_list([<span class="py-string">'apples'</span>, <span class="py-string">'oranges'</span>, <span class="py-string">'pears'</span>], locale=<span class="py-string">'en'</span>)
+<span class="py-output">u'apples, oranges, and pears'</span>
+<span class="py-prompt">&gt;&gt;&gt; </span>format_list([<span class="py-string">'apples'</span>, <span class="py-string">'oranges'</span>, <span class="py-string">'pears'</span>], locale=<span class="py-string">'zh'</span>)
+<span class="py-output">u'apples、oranges和pears'</span>
+<span class="py-prompt">&gt;&gt;&gt; </span>format_list([<span class="py-string">'omena'</span>, <span class="py-string">'peruna'</span>, <span class="py-string">'aplari'</span>], style=<span class="py-string">'or'</span>, locale=<span class="py-string">'fi'</span>)
+<span class="py-output">u'omena, peruna tai aplari'</span>
+</pre><p>These styles are defined, but not all are necessarily available in all locales.
+The following text is verbatim from the Unicode TR35-49 spec [1].</p>
+<ul class="rst-simple">
+<li>standard:
+A typical 'and' list for arbitrary placeholders.
+eg. "January, February, and March"</li>
+<li>standard-short:
+A short version of a 'and' list, suitable for use with short or abbreviated placeholder values.
+eg. "Jan., Feb., and Mar."</li>
+<li>or:
+A typical 'or' list for arbitrary placeholders.
+eg. "January, February, or March"</li>
+<li>or-short:
+A short version of an 'or' list.
+eg. "Jan., Feb., or Mar."</li>
+<li>unit:
+A list suitable for wide units.
+eg. "3 feet, 7 inches"</li>
+<li>unit-short:
+A list suitable for short units
+eg. "3 ft, 7 in"</li>
+<li>unit-narrow:
+A list suitable for narrow units, where space on the screen is very limited.
+eg. "3′ 7″"</li>
+</ul>
+<p>[1]: <a class="rst-reference external" href="https://www.unicode.org/reports/tr35/tr35-49/tr35-general.html#ListPatterns" target="_top">https://www.unicode.org/reports/tr35/tr35-49/tr35-general.html#ListPatterns</a></p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">lst</span></td><td class="fieldArgDesc">a sequence of items to format in to a list</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">style</span></td><td class="fieldArgDesc">the style to format the list with. See above for description.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">locale</span></td><td class="fieldArgDesc">the locale</td></tr></table></div>
+  </div>
+</div><div class="baseconstant">
+  
+  
+  <a name="babel.lists.DEFAULT_LOCALE">
+    
+  </a>
+  <a name="DEFAULT_LOCALE">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">DEFAULT_LOCALE</span> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    <table class="valueTable"><tr class="fieldStart"><td class="fieldName">Value</td></tr><tr><td><pre class="constant-value"><code><a href="babel.core.html#default_locale" class="internal-link" title="babel.core.default_locale">default_locale</a>()</code></pre></td></tr></table>
+  </div>
+</div>
+
+      </div>
+    </div>
+
+    <footer class="navbar navbar-default">
+  
+  <div class="container">
+    <a href="index.html">API Documentation</a> for babel,
+  generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
+    22.2.0 at 2022-02-23 04:30:00.
+  </div>
+</footer>
+
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+  </body>
+</html>

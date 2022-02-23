@@ -1,0 +1,106 @@
+Regression Testing for restructuredtext
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+:RequireModule: docutils
+
+>>> from pydoctor.epydoc.markup import restructuredtext
+>>> from pydoctor.stanutils import flatten
+>>> def parse_and_print(s):
+...     errors = []
+...     parsed = restructuredtext.parse_docstring(s, errors)
+...     for error in errors:
+...         print(f'ERROR: {error}')
+...     if parsed is None:
+...         print('EMPTY BODY')
+...     else:
+...         print(flatten(parsed.to_stan(None)))
+...     for field in parsed.fields:
+...         body = flatten(field.body().to_stan(None))
+...         arg = field.arg()
+...         if arg is None:
+...             print(f'{field.tag()}: {body}')
+...         else:
+...             print(f'{field.tag()} "{arg}": {body}')
+
+Fields
+======
+
+>>> parse_and_print(
+... """A test module
+...
+... :Version: 1.0
+... :Parameter i: integer
+... """)
+A test module
+version: 1.0
+parameter "i": integer
+
+>>> parse_and_print(
+... """A test function
+...
+... :Parameters: a b c
+... """)
+ERROR: Line 4: Unable to split consolidated field "Parameters" - does not contain a bulleted list or definition list.
+A test function
+newfield "parameters": <p class="pre">Parameters</p>
+parameters: a b c
+
+>>> parse_and_print(
+... """A test function
+...
+... :exceptions: - `KeyError`: if the key is not found
+...              - `ValueError`: if the value is bad
+... """)
+A test function
+except "KeyError": if the key is not found
+except "ValueError": if the value is bad
+
+>>> parse_and_print(
+... """
+... Return the maximum speed for a fox.
+...
+... :Parameters:
+...   size
+...     The size of the fox (in meters)
+...   weight : float
+...     The weight of the fox (in stones)
+...   age : int
+...     The age of the fox (in years)
+... """)
+Return the maximum speed for a fox.
+param "size": The size of the fox (in meters)
+param "weight": The weight of the fox (in stones)
+type "weight": float
+param "age": The age of the fox (in years)
+type "age": int
+
+Python code
+===========
+reStructuredText markup defines a ``python`` directive to represent a block
+as colorized Python code.
+
+>>> err = []
+>>> p = restructuredtext.parse_docstring(
+... """A test module
+...
+... .. python::
+...
+...     # This is some Python code
+...     def foo():
+...         pass
+...
+...     class Foo:
+...         def __init__(self):
+...             pass
+... """, err)
+>>> err
+[]
+>>> print(flatten(p.to_stan(None)))
+<p>A test module</p>
+<pre class="py-doctest">
+<span class="py-comment"># This is some Python code</span>
+<span class="py-keyword">def</span> <span class="py-defname">foo</span>():
+    <span class="py-keyword">pass</span>
+<BLANKLINE>
+<span class="py-keyword">class</span> <span class="py-defname">Foo</span>:
+    <span class="py-keyword">def</span> <span class="py-defname">__init__</span>(self):
+        <span class="py-keyword">pass</span></pre>

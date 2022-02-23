@@ -1,0 +1,1499 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  
+
+  <head>
+    
+    <title>sqlalchemy.engine.reflection.Inspector</title>
+    <meta name="generator" content="pydoctor 22.2.0"> 
+        
+    </meta>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=0.75" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+    <link rel="stylesheet" type="text/css" href="extra.css" />
+</head>
+
+  <body>
+
+    
+
+    <nav class="navbar navbar-default">
+  
+  <div class="container">
+
+    <div class="navbar-header">
+      
+      <div class="navlinks">
+          <span class="navbar-brand">
+            sqlalchemy <a href="index.html">API Documentation</a>
+          </span>
+
+          <a href="moduleIndex.html">
+            Modules
+          </a>
+
+          <a href="classIndex.html">
+            Classes
+          </a>
+
+          <a href="nameIndex.html">
+            Names
+          </a>
+      </div>
+
+    </div>
+  </div>
+</nav>
+
+    
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="class"><code><code><a href="index.html" class="internal-link">sqlalchemy</a></code><wbr></wbr>.<code><a href="sqlalchemy.engine.html" class="internal-link" title="sqlalchemy.engine">engine</a></code><wbr></wbr>.<code><a href="sqlalchemy.engine.reflection.html" class="internal-link" title="sqlalchemy.engine.reflection">reflection</a></code><wbr></wbr>.<code><a href="sqlalchemy.engine.reflection.Inspector.html" class="internal-link" title="sqlalchemy.engine.reflection.Inspector">Inspector</a></code></code></h1>
+        <div id="showPrivate">
+          <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+        </div>
+      </div>
+
+      <div class="categoryHeader">
+        class documentation
+      </div>
+
+      <div class="extrasDocstring">
+        <p><code><span class="py-keyword">class</span> <span class="py-defname">Inspector</span>(object):</code></p><p>Known subclasses: <code><a href="sqlalchemy.databases.postgresql.PGInspector.html" class="internal-link">sqlalchemy.databases.postgresql.PGInspector</a></code>, <code><a href="sqlalchemy.databases.sybase.SybaseInspector.html" class="internal-link">sqlalchemy.databases.sybase.SybaseInspector</a></code></p>
+        <p><a href="classIndex.html#sqlalchemy.engine.reflection.Inspector">View In Hierarchy</a></p>
+      </div>
+
+      <div class="moduleDocstring">
+        <div><p>Performs database schema inspection.</p>
+<p>The Inspector acts as a proxy to the reflection methods of the
+<code>~sqlalchemy.engine.interfaces.Dialect</code>, providing a
+consistent interface as well as caching support for previously
+fetched metadata.</p>
+<p>A <code>_reflection.Inspector</code> object is usually created via the
+<code>_sa.inspect</code> function, which may be passed an
+<code>_engine.Engine</code>
+or a <code>_engine.Connection</code>:</p>
+<pre class="rst-literal-block">
+from sqlalchemy import inspect, create_engine
+engine = create_engine('...')
+insp = inspect(engine)
+</pre>
+<p>Where above, the <code>~sqlalchemy.engine.interfaces.Dialect</code> associated
+with the engine may opt to return an <code>_reflection.Inspector</code>
+subclass that
+provides additional methods specific to the dialect's target database.</p>
+</div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id16250">
+  
+  
+  <tr class="classmethod">
+    
+    <td>Class Method</td>
+    <td><code><a href="#from_engine" class="internal-link" title="sqlalchemy.engine.reflection.Inspector.from_engine">from​_engine</a></code></td>
+    <td>Construct a new dialect-specific Inspector object from the given engine or connection.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__init__" class="internal-link" title="sqlalchemy.engine.reflection.Inspector.__init__">__init__</a></code></td>
+    <td>Initialize a new <code>_reflection.Inspector</code>.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#get_check_constraints" class="internal-link" title="sqlalchemy.engine.reflection.Inspector.get_check_constraints">get​_check​_constraints</a></code></td>
+    <td>Return information about check constraints in <code>table_name</code>.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#get_columns" class="internal-link" title="sqlalchemy.engine.reflection.Inspector.get_columns">get​_columns</a></code></td>
+    <td>Return information about columns in <code>table_name</code>.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#get_foreign_keys" class="internal-link" title="sqlalchemy.engine.reflection.Inspector.get_foreign_keys">get​_foreign​_keys</a></code></td>
+    <td>Return information about foreign_keys in <code>table_name</code>.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#get_indexes" class="internal-link" title="sqlalchemy.engine.reflection.Inspector.get_indexes">get​_indexes</a></code></td>
+    <td>Return information about indexes in <code>table_name</code>.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#get_pk_constraint" class="internal-link" title="sqlalchemy.engine.reflection.Inspector.get_pk_constraint">get​_pk​_constraint</a></code></td>
+    <td>Return information about primary key constraint on <code>table_name</code>.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#get_schema_names" class="internal-link" title="sqlalchemy.engine.reflection.Inspector.get_schema_names">get​_schema​_names</a></code></td>
+    <td>Return all schema names.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#get_sequence_names" class="internal-link" title="sqlalchemy.engine.reflection.Inspector.get_sequence_names">get​_sequence​_names</a></code></td>
+    <td>Return all sequence names in <code><a href="sqlalchemy.schema.html" class="internal-link" title="sqlalchemy.schema">schema</a></code>.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#get_sorted_table_and_fkc_names" class="internal-link" title="sqlalchemy.engine.reflection.Inspector.get_sorted_table_and_fkc_names">get​_sorted​_table​_and​_fkc​_names</a></code></td>
+    <td>Return dependency-sorted table and foreign key constraint names in referred to within a particular schema.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#get_table_comment" class="internal-link" title="sqlalchemy.engine.reflection.Inspector.get_table_comment">get​_table​_comment</a></code></td>
+    <td>Return information about the table comment for <tt class="rst-docutils literal">table_name</tt>.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#get_table_names" class="internal-link" title="sqlalchemy.engine.reflection.Inspector.get_table_names">get​_table​_names</a></code></td>
+    <td>Return all table names in referred to within a particular schema.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#get_table_options" class="internal-link" title="sqlalchemy.engine.reflection.Inspector.get_table_options">get​_table​_options</a></code></td>
+    <td>Return a dictionary of options specified when the table of the given name was created.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#get_temp_table_names" class="internal-link" title="sqlalchemy.engine.reflection.Inspector.get_temp_table_names">get​_temp​_table​_names</a></code></td>
+    <td>Return a list of temporary table names for the current bind.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#get_temp_view_names" class="internal-link" title="sqlalchemy.engine.reflection.Inspector.get_temp_view_names">get​_temp​_view​_names</a></code></td>
+    <td>Return a list of temporary view names for the current bind.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#get_unique_constraints" class="internal-link" title="sqlalchemy.engine.reflection.Inspector.get_unique_constraints">get​_unique​_constraints</a></code></td>
+    <td>Return information about unique constraints in <code>table_name</code>.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#get_view_definition" class="internal-link" title="sqlalchemy.engine.reflection.Inspector.get_view_definition">get​_view​_definition</a></code></td>
+    <td>Return definition for <code>view_name</code>.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#get_view_names" class="internal-link" title="sqlalchemy.engine.reflection.Inspector.get_view_names">get​_view​_names</a></code></td>
+    <td>Return all view names in <code><a href="sqlalchemy.schema.html" class="internal-link" title="sqlalchemy.schema">schema</a></code>.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#has_sequence" class="internal-link" title="sqlalchemy.engine.reflection.Inspector.has_sequence">has​_sequence</a></code></td>
+    <td>Return True if the backend has a table of the given name.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#has_table" class="internal-link" title="sqlalchemy.engine.reflection.Inspector.has_table">has​_table</a></code></td>
+    <td>Return True if the backend has a table of the given name.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#reflect_table" class="internal-link" title="sqlalchemy.engine.reflection.Inspector.reflect_table">reflect​_table</a></code></td>
+    <td>Given a <code>_schema.Table</code> object, load its internal constructs based on introspection.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#reflecttable" class="internal-link" title="sqlalchemy.engine.reflection.Inspector.reflecttable">reflecttable</a></code></td>
+    <td>See reflect_table. This method name is deprecated</td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#bind" class="internal-link" title="sqlalchemy.engine.reflection.Inspector.bind">bind</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#dialect" class="internal-link" title="sqlalchemy.engine.reflection.Inspector.dialect">dialect</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#engine" class="internal-link" title="sqlalchemy.engine.reflection.Inspector.engine">engine</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#info_cache" class="internal-link" title="sqlalchemy.engine.reflection.Inspector.info_cache">info​_cache</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="property">
+    
+    <td>Property</td>
+    <td><code><a href="#default_schema_name" class="internal-link" title="sqlalchemy.engine.reflection.Inspector.default_schema_name">default​_schema​_name</a></code></td>
+    <td>Return the default schema name presented by the dialect for the current engine's database user.</td>
+  </tr><tr class="classmethod private">
+    
+    <td>Class Method</td>
+    <td><code><a href="#_construct" class="internal-link" title="sqlalchemy.engine.reflection.Inspector._construct">​_construct</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_connectable_insp" class="internal-link" title="sqlalchemy.engine.reflection.Inspector._connectable_insp">​_connectable​_insp</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_connection_insp" class="internal-link" title="sqlalchemy.engine.reflection.Inspector._connection_insp">​_connection​_insp</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_engine_insp" class="internal-link" title="sqlalchemy.engine.reflection.Inspector._engine_insp">​_engine​_insp</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_init_connection" class="internal-link" title="sqlalchemy.engine.reflection.Inspector._init_connection">​_init​_connection</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_init_engine" class="internal-link" title="sqlalchemy.engine.reflection.Inspector._init_engine">​_init​_engine</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_init_legacy" class="internal-link" title="sqlalchemy.engine.reflection.Inspector._init_legacy">​_init​_legacy</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_inspection_context" class="internal-link" title="sqlalchemy.engine.reflection.Inspector._inspection_context">​_inspection​_context</a></code></td>
+    <td>Return an <code>_reflection.Inspector</code> from this one that will run all operations on a single connection.</td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_operation_context" class="internal-link" title="sqlalchemy.engine.reflection.Inspector._operation_context">​_operation​_context</a></code></td>
+    <td>Return a context that optimizes for multiple operations on a single transaction.</td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_reflect_check_constraints" class="internal-link" title="sqlalchemy.engine.reflection.Inspector._reflect_check_constraints">​_reflect​_check​_constraints</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_reflect_col_sequence" class="internal-link" title="sqlalchemy.engine.reflection.Inspector._reflect_col_sequence">​_reflect​_col​_sequence</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_reflect_column" class="internal-link" title="sqlalchemy.engine.reflection.Inspector._reflect_column">​_reflect​_column</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_reflect_fk" class="internal-link" title="sqlalchemy.engine.reflection.Inspector._reflect_fk">​_reflect​_fk</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_reflect_indexes" class="internal-link" title="sqlalchemy.engine.reflection.Inspector._reflect_indexes">​_reflect​_indexes</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_reflect_pk" class="internal-link" title="sqlalchemy.engine.reflection.Inspector._reflect_pk">​_reflect​_pk</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_reflect_table_comment" class="internal-link" title="sqlalchemy.engine.reflection.Inspector._reflect_table_comment">​_reflect​_table​_comment</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_reflect_unique_constraints" class="internal-link" title="sqlalchemy.engine.reflection.Inspector._reflect_unique_constraints">​_reflect​_unique​_constraints</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="classvariable private">
+    
+    <td>Class Variable</td>
+    <td><code><a href="#_index_sort_exprs" class="internal-link" title="sqlalchemy.engine.reflection.Inspector._index_sort_exprs">​_index​_sort​_exprs</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#_op_context_requires_connect" class="internal-link" title="sqlalchemy.engine.reflection.Inspector._op_context_requires_connect">​_op​_context​_requires​_connect</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+        
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="baseclassmethod">
+  
+  
+  <a name="sqlalchemy.engine.reflection.Inspector.from_engine">
+    
+  </a>
+  <a name="from_engine">
+    
+  </a>
+  <div class="functionHeader">
+    @classmethod<br />@<a href="sqlalchemy.util.deprecations.html#deprecated" class="internal-link" title="sqlalchemy.util.deprecations.deprecated">util.deprecated</a>(<wbr></wbr><span class="rst-variable-quote">'</span><span class="rst-variable-string">1.4</span><span class="rst-variable-quote">'</span>, <wbr></wbr><span class="rst-variable-quote">'</span><span class="rst-variable-string">The from_engine() method on :class:`_reflection.Inspector` is deprecated and will be removed in a future release.  Please use the :func:`.sqlalchemy.inspect` function on an :class:`_engine.Engine` or :class:`_engine.Connection` in order to acquire an :class:`_reflection.Inspector`.</span><span class="rst-variable-quote">'</span>)<br />
+    <span class="py-keyword">def</span> <span class="py-defname">from_engine</span>(cls, bind):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Construct a new dialect-specific Inspector object from the given
+engine or connection.</p>
+<p>This method differs from direct a direct constructor call of
+<code>_reflection.Inspector</code> in that the
+<code>~sqlalchemy.engine.interfaces.Dialect</code> is given a chance to
+provide a dialect-specific <code>_reflection.Inspector</code> instance,
+which may
+provide additional methods.</p>
+<p>See the example at <code>_reflection.Inspector</code>.</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">bind</span></td><td class="fieldArgDesc">a <code>~sqlalchemy.engine.Connectable</code>,
+which is typically an instance of
+<code>~sqlalchemy.engine.Engine</code> or
+<code>~sqlalchemy.engine.Connection</code>.</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.engine.reflection.Inspector.__init__">
+    
+  </a>
+  <a name="__init__">
+    
+  </a>
+  <div class="functionHeader">
+    @<a href="sqlalchemy.util.deprecations.html#deprecated" class="internal-link" title="sqlalchemy.util.deprecations.deprecated">util.deprecated</a>(<wbr></wbr><span class="rst-variable-quote">'</span><span class="rst-variable-string">1.4</span><span class="rst-variable-quote">'</span>, <wbr></wbr><span class="rst-variable-quote">'</span><span class="rst-variable-string">The __init__() method on :class:`_reflection.Inspector` is deprecated and will be removed in a future release.  Please use the :func:`.sqlalchemy.inspect` function on an :class:`_engine.Engine` or :class:`_engine.Connection` in order to acquire an :class:`_reflection.Inspector`.</span><span class="rst-variable-quote">'</span>)<br />
+    <span class="py-keyword">def</span> <span class="py-defname">__init__</span>(self, bind):
+    
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="sqlalchemy.databases.sybase.SybaseInspector.html" class="internal-link">sqlalchemy.databases.sybase.SybaseInspector</a></code></div>
+    
+    <div><p>Initialize a new <code>_reflection.Inspector</code>.</p>
+<p>For a dialect-specific instance of <code>_reflection.Inspector</code>, see
+<code>_reflection.Inspector.from_engine</code></p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">bind</span></td><td class="fieldArgDesc">a <code>~sqlalchemy.engine.Connectable</code>,
+which is typically an instance of
+<code>~sqlalchemy.engine.Engine</code> or
+<code>~sqlalchemy.engine.Connection</code>.</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.engine.reflection.Inspector.get_check_constraints">
+    
+  </a>
+  <a name="get_check_constraints">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">get_check_constraints</span>(self, table_name, schema=None, **kw):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Return information about check constraints in <code>table_name</code>.</p>
+<p>Given a string <code>table_name</code> and an optional string <code><a href="sqlalchemy.schema.html" class="internal-link" title="sqlalchemy.schema">schema</a></code>, return
+check constraint information as a list of dicts with these keys:</p>
+<ul>
+<li><p class="rst-first"><tt class="rst-docutils literal">name</tt> -
+the check constraint's name</p>
+</li>
+<li><p class="rst-first"><tt class="rst-docutils literal">sqltext</tt> -
+the check constraint's SQL expression</p>
+</li>
+<li><p class="rst-first"><tt class="rst-docutils literal">dialect_options</tt> -
+may or may not be present; a dictionary with additional
+dialect-specific options for this CHECK constraint</p>
+<div class="rst-versionadded">
+<p><span class="rst-versionmodified rst-added">New in version 1.3.8.</span></p>
+</div>
+</li>
+</ul>
+<div class="rst-versionadded">
+<span class="rst-versionmodified rst-added">New in version 1.1.0.</span></div>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">table​_name</span></td><td class="fieldArgDesc">string name of the table.  For special quoting,
+use <code>.quoted_name</code>.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">schema</span></td><td class="fieldArgDesc">string schema name; if omitted, uses the default schema
+of the database connection.  For special quoting,
+use <code>.quoted_name</code>.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">**kw</span></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.engine.reflection.Inspector.get_columns">
+    
+  </a>
+  <a name="get_columns">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">get_columns</span>(self, table_name, schema=None, **kw):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Return information about columns in <code>table_name</code>.</p>
+<p>Given a string <code>table_name</code> and an optional string <code><a href="sqlalchemy.schema.html" class="internal-link" title="sqlalchemy.schema">schema</a></code>, return
+column information as a list of dicts with these keys:</p>
+<ul>
+<li><p class="rst-first"><tt class="rst-docutils literal">name</tt> - the column's name</p>
+</li>
+<li><p class="rst-first"><tt class="rst-docutils literal">type</tt> - the type of this column; an instance of
+<code>~sqlalchemy.types.TypeEngine</code></p>
+</li>
+<li><p class="rst-first"><tt class="rst-docutils literal">nullable</tt> - boolean flag if the column is NULL or NOT NULL</p>
+</li>
+<li><p class="rst-first"><tt class="rst-docutils literal">default</tt> - the column's server default value - this is returned
+as a string SQL expression.</p>
+</li>
+<li><p class="rst-first"><tt class="rst-docutils literal">autoincrement</tt> - indicates that the column is auto incremented -
+this is returned as a boolean or 'auto'</p>
+</li>
+<li><p class="rst-first"><tt class="rst-docutils literal">comment</tt> - (optional) the comment on the column. Only some
+dialects return this key</p>
+</li>
+<li><p class="rst-first"><tt class="rst-docutils literal">computed</tt> - (optional) when present it indicates that this column
+is computed by the database. Only some dialects return this key.
+Returned as a dict with the keys:</p>
+<ul class="rst-simple">
+<li><tt class="rst-docutils literal">sqltext</tt> - the expression used to generate this column returned
+as a string SQL expression</li>
+<li><tt class="rst-docutils literal">persisted</tt> - (optional) boolean that indicates if the column is
+stored in the table</li>
+</ul>
+<div class="rst-versionadded">
+<p><span class="rst-versionmodified rst-added">New in version 1.3.16: </span><span>- added support for computed reflection.</span></p>
+</div>
+</li>
+<li><p class="rst-first"><tt class="rst-docutils literal">identity</tt> - (optional) when present it indicates that this column
+is a generated always column. Only some dialects return this key.
+For a list of keywords on this dict see <code>_schema.Identity</code>.</p>
+<div class="rst-versionadded">
+<p><span class="rst-versionmodified rst-added">New in version 1.4: </span><span>- added support for identity column reflection.</span></p>
+</div>
+</li>
+<li><p class="rst-first"><tt class="rst-docutils literal">dialect_options</tt> - (optional) a dict with dialect specific options</p>
+</li>
+</ul>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">table​_name</span></td><td class="fieldArgDesc">string name of the table.  For special quoting,
+use <code>.quoted_name</code>.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">schema</span></td><td class="fieldArgDesc">string schema name; if omitted, uses the default schema
+of the database connection.  For special quoting,
+use <code>.quoted_name</code>.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">**kw</span></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td colspan="2">list of dictionaries, each representing the definition of
+a database column.</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.engine.reflection.Inspector.get_foreign_keys">
+    
+  </a>
+  <a name="get_foreign_keys">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">get_foreign_keys</span>(self, table_name, schema=None, **kw):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Return information about foreign_keys in <code>table_name</code>.</p>
+<p>Given a string <code>table_name</code>, and an optional string <code><a href="sqlalchemy.schema.html" class="internal-link" title="sqlalchemy.schema">schema</a></code>, return
+foreign key information as a list of dicts with these keys:</p>
+<ul class="rst-simple">
+<li><tt class="rst-docutils literal">constrained_columns</tt> -
+a list of column names that make up the foreign key</li>
+<li><tt class="rst-docutils literal">referred_schema</tt> -
+the name of the referred schema</li>
+<li><tt class="rst-docutils literal">referred_table</tt> -
+the name of the referred table</li>
+<li><tt class="rst-docutils literal">referred_columns</tt> -
+a list of column names in the referred table that correspond to
+constrained_columns</li>
+<li><tt class="rst-docutils literal">name</tt> -
+optional name of the foreign key constraint.</li>
+</ul>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">table​_name</span></td><td class="fieldArgDesc">string name of the table.  For special quoting,
+use <code>.quoted_name</code>.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">schema</span></td><td class="fieldArgDesc">string schema name; if omitted, uses the default schema
+of the database connection.  For special quoting,
+use <code>.quoted_name</code>.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">**kw</span></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.engine.reflection.Inspector.get_indexes">
+    
+  </a>
+  <a name="get_indexes">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">get_indexes</span>(self, table_name, schema=None, **kw):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Return information about indexes in <code>table_name</code>.</p>
+<p>Given a string <code>table_name</code> and an optional string <code><a href="sqlalchemy.schema.html" class="internal-link" title="sqlalchemy.schema">schema</a></code>, return
+index information as a list of dicts with these keys:</p>
+<ul>
+<li><p class="rst-first"><tt class="rst-docutils literal">name</tt> -
+the index's name</p>
+</li>
+<li><p class="rst-first"><tt class="rst-docutils literal">column_names</tt> -
+list of column names in order</p>
+</li>
+<li><p class="rst-first"><tt class="rst-docutils literal">unique</tt> -
+boolean</p>
+</li>
+<li><p class="rst-first"><tt class="rst-docutils literal">column_sorting</tt> -
+optional dict mapping column names to tuple of sort keywords,
+which may include <tt class="rst-docutils literal">asc</tt>, <tt class="rst-docutils literal">desc</tt>, <tt class="rst-docutils literal">nulls_first</tt>, <tt class="rst-docutils literal">nulls_last</tt>.</p>
+<div class="rst-versionadded">
+<p><span class="rst-versionmodified rst-added">New in version 1.3.5.</span></p>
+</div>
+</li>
+<li><p class="rst-first"><tt class="rst-docutils literal">dialect_options</tt> -
+dict of dialect-specific index options.  May not be present
+for all dialects.</p>
+<div class="rst-versionadded">
+<p><span class="rst-versionmodified rst-added">New in version 1.0.0.</span></p>
+</div>
+</li>
+</ul>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">table​_name</span></td><td class="fieldArgDesc">string name of the table.  For special quoting,
+use <code>.quoted_name</code>.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">schema</span></td><td class="fieldArgDesc">string schema name; if omitted, uses the default schema
+of the database connection.  For special quoting,
+use <code>.quoted_name</code>.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">**kw</span></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.engine.reflection.Inspector.get_pk_constraint">
+    
+  </a>
+  <a name="get_pk_constraint">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">get_pk_constraint</span>(self, table_name, schema=None, **kw):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Return information about primary key constraint on <code>table_name</code>.</p>
+<p>Given a string <code>table_name</code>, and an optional string <code><a href="sqlalchemy.schema.html" class="internal-link" title="sqlalchemy.schema">schema</a></code>, return
+primary key information as a dictionary with these keys:</p>
+<ul class="rst-simple">
+<li><tt class="rst-docutils literal">constrained_columns</tt> -
+a list of column names that make up the primary key</li>
+<li><tt class="rst-docutils literal">name</tt> -
+optional name of the primary key constraint.</li>
+</ul>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">table​_name</span></td><td class="fieldArgDesc">string name of the table.  For special quoting,
+use <code>.quoted_name</code>.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">schema</span></td><td class="fieldArgDesc">string schema name; if omitted, uses the default schema
+of the database connection.  For special quoting,
+use <code>.quoted_name</code>.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">**kw</span></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.engine.reflection.Inspector.get_schema_names">
+    
+  </a>
+  <a name="get_schema_names">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">get_schema_names</span>(self):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Return all schema names.</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.engine.reflection.Inspector.get_sequence_names">
+    
+  </a>
+  <a name="get_sequence_names">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">get_sequence_names</span>(self, schema=None):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Return all sequence names in <code><a href="sqlalchemy.schema.html" class="internal-link" title="sqlalchemy.schema">schema</a></code>.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">schema</span></td><td class="fieldArgDesc">Optional, retrieve names from a non-default schema.
+For special quoting, use <code>.quoted_name</code>.</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.engine.reflection.Inspector.get_sorted_table_and_fkc_names">
+    
+  </a>
+  <a name="get_sorted_table_and_fkc_names">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">get_sorted_table_and_fkc_names</span>(self, schema=None):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Return dependency-sorted table and foreign key constraint names in
+referred to within a particular schema.</p>
+<p>This will yield 2-tuples of
+<tt class="rst-docutils literal">(tablename, [(tname, fkname), (tname, fkname), <span class="pre">...])</span></tt>
+consisting of table names in CREATE order grouped with the foreign key
+constraint names that are not detected as belonging to a cycle.
+The final element
+will be <tt class="rst-docutils literal">(None, [(tname, fkname), (tname, fkname), <span class="pre">..])</span></tt>
+which will consist of remaining
+foreign key constraint names that would require a separate CREATE
+step after-the-fact, based on dependencies between tables.</p>
+<div class="rst-versionadded">
+<span class="rst-versionmodified rst-added">New in version 1.0.-.</span></div>
+<div class="rst-admonition seealso">
+<p class="rst-first rst-admonition-title">See Also</p>
+<p><code>_reflection.Inspector.get_table_names</code></p>
+<p class="rst-last"><code>.sort_tables_and_constraints</code> - similar method which works
+with an already-given <code>_schema.MetaData</code>.</p>
+</div>
+</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.engine.reflection.Inspector.get_table_comment">
+    
+  </a>
+  <a name="get_table_comment">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">get_table_comment</span>(self, table_name, schema=None, **kw):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Return information about the table comment for <tt class="rst-docutils literal">table_name</tt>.</p>
+<p>Given a string <tt class="rst-docutils literal">table_name</tt> and an optional string <tt class="rst-docutils literal">schema</tt>,
+return table comment information as a dictionary with these keys:</p>
+<ul class="rst-simple">
+<li><dl class="rst-first rst-docutils">
+<dt><tt class="rst-docutils literal">text</tt> -</dt>
+<dd>text of the comment.</dd>
+</dl>
+</li>
+</ul>
+<p>Raises <tt class="rst-docutils literal">NotImplementedError</tt> for a dialect that does not support
+comments.</p>
+<div class="rst-versionadded">
+<span class="rst-versionmodified rst-added">New in version 1.2.</span></div>
+</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.engine.reflection.Inspector.get_table_names">
+    
+  </a>
+  <a name="get_table_names">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">get_table_names</span>(self, schema=None):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Return all table names in referred to within a particular schema.</p>
+<p>The names are expected to be real tables only, not views.
+Views are instead returned using the
+<code>_reflection.Inspector.get_view_names</code>
+method.</p>
+<div class="rst-admonition seealso">
+<p class="rst-first rst-admonition-title">See Also</p>
+<p><code>_reflection.Inspector.get_sorted_table_and_fkc_names</code></p>
+<p class="rst-last"><code>_schema.MetaData.sorted_tables</code></p>
+</div>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">schema</span></td><td class="fieldArgDesc">Schema name. If <tt class="rst-docutils literal">schema</tt> is left at <tt class="rst-docutils literal">None</tt>, the
+database's default schema is
+used, else the named schema is searched.  If the database does not
+support named schemas, behavior is undefined if <tt class="rst-docutils literal">schema</tt> is not
+passed as <tt class="rst-docutils literal">None</tt>.  For special quoting, use <code>.quoted_name</code>.</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.engine.reflection.Inspector.get_table_options">
+    
+  </a>
+  <a name="get_table_options">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">get_table_options</span>(self, table_name, schema=None, **kw):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Return a dictionary of options specified when the table of the
+given name was created.</p>
+<p>This currently includes some options that apply to MySQL tables.</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">table​_name</span></td><td class="fieldArgDesc">string name of the table.  For special quoting,
+use <code>.quoted_name</code>.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">schema</span></td><td class="fieldArgDesc">string schema name; if omitted, uses the default schema
+of the database connection.  For special quoting,
+use <code>.quoted_name</code>.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">**kw</span></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.engine.reflection.Inspector.get_temp_table_names">
+    
+  </a>
+  <a name="get_temp_table_names">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">get_temp_table_names</span>(self):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Return a list of temporary table names for the current bind.</p>
+<p>This method is unsupported by most dialects; currently
+only SQLite implements it.</p>
+<div class="rst-versionadded">
+<span class="rst-versionmodified rst-added">New in version 1.0.0.</span></div>
+</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.engine.reflection.Inspector.get_temp_view_names">
+    
+  </a>
+  <a name="get_temp_view_names">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">get_temp_view_names</span>(self):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Return a list of temporary view names for the current bind.</p>
+<p>This method is unsupported by most dialects; currently
+only SQLite implements it.</p>
+<div class="rst-versionadded">
+<span class="rst-versionmodified rst-added">New in version 1.0.0.</span></div>
+</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.engine.reflection.Inspector.get_unique_constraints">
+    
+  </a>
+  <a name="get_unique_constraints">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">get_unique_constraints</span>(self, table_name, schema=None, **kw):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Return information about unique constraints in <code>table_name</code>.</p>
+<p>Given a string <code>table_name</code> and an optional string <code><a href="sqlalchemy.schema.html" class="internal-link" title="sqlalchemy.schema">schema</a></code>, return
+unique constraint information as a list of dicts with these keys:</p>
+<ul class="rst-simple">
+<li><tt class="rst-docutils literal">name</tt> -
+the unique constraint's name</li>
+<li><tt class="rst-docutils literal">column_names</tt> -
+list of column names in order</li>
+</ul>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">table​_name</span></td><td class="fieldArgDesc">string name of the table.  For special quoting,
+use <code>.quoted_name</code>.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">schema</span></td><td class="fieldArgDesc">string schema name; if omitted, uses the default schema
+of the database connection.  For special quoting,
+use <code>.quoted_name</code>.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">**kw</span></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.engine.reflection.Inspector.get_view_definition">
+    
+  </a>
+  <a name="get_view_definition">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">get_view_definition</span>(self, view_name, schema=None):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Return definition for <code>view_name</code>.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">view​_name</span></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">schema</span></td><td class="fieldArgDesc">Optional, retrieve names from a non-default schema.
+For special quoting, use <code>.quoted_name</code>.</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.engine.reflection.Inspector.get_view_names">
+    
+  </a>
+  <a name="get_view_names">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">get_view_names</span>(self, schema=None):
+    
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="sqlalchemy.databases.postgresql.PGInspector.html" class="internal-link">sqlalchemy.databases.postgresql.PGInspector</a></code></div>
+    
+    <div>Return all view names in <code><a href="sqlalchemy.schema.html" class="internal-link" title="sqlalchemy.schema">schema</a></code>.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">schema</span></td><td class="fieldArgDesc">Optional, retrieve names from a non-default schema.
+For special quoting, use <code>.quoted_name</code>.</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.engine.reflection.Inspector.has_sequence">
+    
+  </a>
+  <a name="has_sequence">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">has_sequence</span>(self, sequence_name, schema=None):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Return True if the backend has a table of the given name.</p>
+<div class="rst-versionadded">
+<span class="rst-versionmodified rst-added">New in version 1.4.</span></div>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">sequence​_name</span></td><td class="fieldArgDesc">name of the table to check</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">schema</span></td><td class="fieldArgDesc">schema name to query, if not the default schema.</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.engine.reflection.Inspector.has_table">
+    
+  </a>
+  <a name="has_table">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">has_table</span>(self, table_name, schema=None):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Return True if the backend has a table of the given name.</p>
+<div class="rst-versionadded">
+<span class="rst-versionmodified rst-added">New in version 1.4: </span><span>- the <code>.Inspector.has_table</code> method
+replaces the <code>_engine.Engine.has_table</code> method.</span></div>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">table​_name</span></td><td class="fieldArgDesc">name of the table to check</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">schema</span></td><td class="fieldArgDesc">schema name to query, if not the default schema.</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.engine.reflection.Inspector.reflect_table">
+    
+  </a>
+  <a name="reflect_table">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">reflect_table</span>(self, table, include_columns, exclude_columns=(), resolve_fks=True, _extend_on=None):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Given a <code>_schema.Table</code> object, load its internal
+constructs based on introspection.</p>
+<p>This is the underlying method used by most dialects to produce
+table reflection.  Direct usage is like:</p>
+<pre class="rst-literal-block">
+from sqlalchemy import create_engine, MetaData, Table
+from sqlalchemy import inspect
+
+engine = create_engine('...')
+meta = MetaData()
+user_table = Table('user', meta)
+insp = inspect(engine)
+insp.reflect_table(user_table, None)
+</pre>
+<div class="rst-versionchanged">
+<span class="rst-versionmodified rst-changed">Changed in version 1.4: </span><span>Renamed from <tt class="rst-docutils literal">reflecttable</tt> to
+<tt class="rst-docutils literal">reflect_table</tt></span></div>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">table</span></td><td class="fieldArgDesc">a <code>~sqlalchemy.schema.Table</code> instance.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">include​_columns</span></td><td class="fieldArgDesc">a list of string column names to include
+in the reflection process.  If <tt class="rst-docutils literal">None</tt>, all columns are reflected.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">exclude​_columns</span></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">resolve​_fks</span></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">​_extend​_on</span></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.engine.reflection.Inspector.reflecttable">
+    
+  </a>
+  <a name="reflecttable">
+    
+  </a>
+  <div class="functionHeader">
+    @<a href="sqlalchemy.util.deprecations.html#deprecated_20" class="internal-link" title="sqlalchemy.util.deprecations.deprecated_20">util.deprecated_20</a>(<wbr></wbr><span class="rst-variable-quote">'</span><span class="rst-variable-string">:meth:`_reflection.Inspector.reflecttable`</span><span class="rst-variable-quote">'</span>, <wbr></wbr><span class="rst-variable-quote">'</span><span class="rst-variable-string">The :meth:`_reflection.Inspector.reflecttable` method was renamed to :meth:`_reflection.Inspector.reflect_table`. This deprecated alias will be removed in a future release.</span><span class="rst-variable-quote">'</span>)<br />
+    <span class="py-keyword">def</span> <span class="py-defname">reflecttable</span>(self, *args, **kwargs):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>See reflect_table. This method name is deprecated</div>
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="sqlalchemy.engine.reflection.Inspector.bind">
+    
+  </a>
+  <a name="bind">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">bind</span> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="sqlalchemy.engine.reflection.Inspector.dialect">
+    
+  </a>
+  <a name="dialect">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">dialect</span> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="sqlalchemy.engine.reflection.Inspector.engine">
+    
+  </a>
+  <a name="engine">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">engine</span> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="sqlalchemy.engine.reflection.Inspector.info_cache">
+    
+  </a>
+  <a name="info_cache">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">info_cache</span>: <code>dict</code> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseproperty">
+  
+  
+  <a name="sqlalchemy.engine.reflection.Inspector.default_schema_name">
+    
+  </a>
+  <a name="default_schema_name">
+    
+  </a>
+  <div class="functionHeader">
+    @property<br />
+    <span class="py-defname">default_schema_name</span> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p>Return the default schema name presented by the dialect
+for the current engine's database user.</p>
+<p>E.g. this is typically <tt class="rst-docutils literal">public</tt> for PostgreSQL and <tt class="rst-docutils literal">dbo</tt>
+for SQL Server.</p>
+</div>
+    
+  </div>
+</div><div class="baseclassmethod private">
+  
+  
+  <a name="sqlalchemy.engine.reflection.Inspector._construct">
+    
+  </a>
+  <a name="_construct">
+    
+  </a>
+  <div class="functionHeader">
+    @classmethod<br />
+    <span class="py-keyword">def</span> <span class="py-defname">_construct</span>(cls, init, bind):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="sqlalchemy.engine.reflection.Inspector._connectable_insp">
+    
+  </a>
+  <a name="_connectable_insp">
+    
+  </a>
+  <div class="functionHeader">
+    @<a href="sqlalchemy.inspection.html#_inspects" class="internal-link" title="sqlalchemy.inspection._inspects">inspection._inspects</a>(<wbr></wbr>Connectable)<br />
+    <span class="py-keyword">def</span> <span class="py-defname">_connectable_insp</span>(bind):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="sqlalchemy.engine.reflection.Inspector._connection_insp">
+    
+  </a>
+  <a name="_connection_insp">
+    
+  </a>
+  <div class="functionHeader">
+    @<a href="sqlalchemy.inspection.html#_inspects" class="internal-link" title="sqlalchemy.inspection._inspects">inspection._inspects</a>(<wbr></wbr><a href="sqlalchemy.engine.base.Connection.html" class="internal-link" title="sqlalchemy.engine.base.Connection">Connection</a>)<br />
+    <span class="py-keyword">def</span> <span class="py-defname">_connection_insp</span>(bind):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="sqlalchemy.engine.reflection.Inspector._engine_insp">
+    
+  </a>
+  <a name="_engine_insp">
+    
+  </a>
+  <div class="functionHeader">
+    @<a href="sqlalchemy.inspection.html#_inspects" class="internal-link" title="sqlalchemy.inspection._inspects">inspection._inspects</a>(<wbr></wbr><a href="sqlalchemy.engine.base.Engine.html" class="internal-link" title="sqlalchemy.engine.base.Engine">Engine</a>)<br />
+    <span class="py-keyword">def</span> <span class="py-defname">_engine_insp</span>(bind):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="sqlalchemy.engine.reflection.Inspector._init_connection">
+    
+  </a>
+  <a name="_init_connection">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_init_connection</span>(self, connection):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="sqlalchemy.engine.reflection.Inspector._init_engine">
+    
+  </a>
+  <a name="_init_engine">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_init_engine</span>(self, engine):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="sqlalchemy.engine.reflection.Inspector._init_legacy">
+    
+  </a>
+  <a name="_init_legacy">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_init_legacy</span>(self, bind):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="sqlalchemy.engine.reflection.Inspector._inspection_context">
+    
+  </a>
+  <a name="_inspection_context">
+    
+  </a>
+  <div class="functionHeader">
+    @contextlib.contextmanager<br />
+    <span class="py-keyword">def</span> <span class="py-defname">_inspection_context</span>(self):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Return an <code>_reflection.Inspector</code>
+from this one that will run all
+operations on a single connection.</div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="sqlalchemy.engine.reflection.Inspector._operation_context">
+    
+  </a>
+  <a name="_operation_context">
+    
+  </a>
+  <div class="functionHeader">
+    @contextlib.contextmanager<br />
+    <span class="py-keyword">def</span> <span class="py-defname">_operation_context</span>(self):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Return a context that optimizes for multiple operations on a single
+transaction.</p>
+<p>This essentially allows connect()/close() to be called if we detected
+that we're against an <code>_engine.Engine</code> and not a
+<code>_engine.Connection</code>.</p>
+</div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="sqlalchemy.engine.reflection.Inspector._reflect_check_constraints">
+    
+  </a>
+  <a name="_reflect_check_constraints">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_reflect_check_constraints</span>(self, table_name, schema, table, cols_by_orig_name, include_columns, exclude_columns, reflection_options):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="sqlalchemy.engine.reflection.Inspector._reflect_col_sequence">
+    
+  </a>
+  <a name="_reflect_col_sequence">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_reflect_col_sequence</span>(self, col_d, colargs):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="sqlalchemy.engine.reflection.Inspector._reflect_column">
+    
+  </a>
+  <a name="_reflect_column">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_reflect_column</span>(self, table, col_d, include_columns, exclude_columns, cols_by_orig_name):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="sqlalchemy.engine.reflection.Inspector._reflect_fk">
+    
+  </a>
+  <a name="_reflect_fk">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_reflect_fk</span>(self, table_name, schema, table, cols_by_orig_name, exclude_columns, resolve_fks, _extend_on, reflection_options):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="sqlalchemy.engine.reflection.Inspector._reflect_indexes">
+    
+  </a>
+  <a name="_reflect_indexes">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_reflect_indexes</span>(self, table_name, schema, table, cols_by_orig_name, include_columns, exclude_columns, reflection_options):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="sqlalchemy.engine.reflection.Inspector._reflect_pk">
+    
+  </a>
+  <a name="_reflect_pk">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_reflect_pk</span>(self, table_name, schema, table, cols_by_orig_name, exclude_columns):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="sqlalchemy.engine.reflection.Inspector._reflect_table_comment">
+    
+  </a>
+  <a name="_reflect_table_comment">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_reflect_table_comment</span>(self, table_name, schema, table, reflection_options):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="sqlalchemy.engine.reflection.Inspector._reflect_unique_constraints">
+    
+  </a>
+  <a name="_reflect_unique_constraints">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_reflect_unique_constraints</span>(self, table_name, schema, table, cols_by_orig_name, include_columns, exclude_columns, reflection_options):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="baseclassvariable private">
+  
+  
+  <a name="sqlalchemy.engine.reflection.Inspector._index_sort_exprs">
+    
+  </a>
+  <a name="_index_sort_exprs">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_index_sort_exprs</span> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  
+  <a name="sqlalchemy.engine.reflection.Inspector._op_context_requires_connect">
+    
+  </a>
+  <a name="_op_context_requires_connect">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_op_context_requires_connect</span>: <code>bool</code> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div>
+
+      </div>
+    </div>
+
+    <footer class="navbar navbar-default">
+  
+  <div class="container">
+    <a href="index.html">API Documentation</a> for sqlalchemy,
+  generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
+    22.2.0 at 2022-02-23 04:41:59.
+  </div>
+</footer>
+
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+  </body>
+</html>

@@ -1,0 +1,983 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  
+
+  <head>
+    
+    <title>sqlalchemy.orm.events.MapperEvents</title>
+    <meta name="generator" content="pydoctor 22.2.0"> 
+        
+    </meta>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=0.75" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+    <link rel="stylesheet" type="text/css" href="extra.css" />
+</head>
+
+  <body>
+
+    
+
+    <nav class="navbar navbar-default">
+  
+  <div class="container">
+
+    <div class="navbar-header">
+      
+      <div class="navlinks">
+          <span class="navbar-brand">
+            sqlalchemy <a href="index.html">API Documentation</a>
+          </span>
+
+          <a href="moduleIndex.html">
+            Modules
+          </a>
+
+          <a href="classIndex.html">
+            Classes
+          </a>
+
+          <a href="nameIndex.html">
+            Names
+          </a>
+      </div>
+
+    </div>
+  </div>
+</nav>
+
+    
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="class"><code><code><a href="index.html" class="internal-link">sqlalchemy</a></code><wbr></wbr>.<code><a href="sqlalchemy.orm.html" class="internal-link" title="sqlalchemy.orm">orm</a></code><wbr></wbr>.<code><a href="sqlalchemy.orm.events.html" class="internal-link" title="sqlalchemy.orm.events">events</a></code><wbr></wbr>.<code><a href="sqlalchemy.orm.events.MapperEvents.html" class="internal-link" title="sqlalchemy.orm.events.MapperEvents">MapperEvents</a></code></code></h1>
+        <div id="showPrivate">
+          <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+        </div>
+      </div>
+
+      <div class="categoryHeader">
+        class documentation
+      </div>
+
+      <div class="extrasDocstring">
+        <p><code><span class="py-keyword">class</span> <span class="py-defname">MapperEvents</span>(<a href="sqlalchemy.event.base.Events.html" class="internal-link" title="sqlalchemy.event.base.Events">event.Events</a>):</code></p><p>Known subclasses: <code><a href="sqlalchemy.orm.events._MapperEventsHold.HoldMapperEvents.html" class="internal-link">sqlalchemy.orm.events._MapperEventsHold.HoldMapperEvents</a></code></p>
+        <p><a href="classIndex.html#sqlalchemy.orm.events.MapperEvents">View In Hierarchy</a></p>
+      </div>
+
+      <div class="moduleDocstring">
+        <div><p>Define events specific to mappings.</p>
+<p>e.g.:</p>
+<pre class="rst-literal-block">
+from sqlalchemy import event
+
+def my_before_insert_listener(mapper, connection, target):
+    # execute a stored procedure upon INSERT,
+    # apply the value to the row to be inserted
+    target.calculated_value = connection.execute(
+        text("select my_special_function(%d)" % target.special_number)
+    ).scalar()
+
+# associate the listener function with SomeClass,
+# to execute during the "before_insert" hook
+event.listen(
+    SomeClass, 'before_insert', my_before_insert_listener)
+</pre>
+<p>Available targets include:</p>
+<ul class="rst-simple">
+<li>mapped classes</li>
+<li>unmapped superclasses of mapped or to-be-mapped classes
+(using the <tt class="rst-docutils literal">propagate=True</tt> flag)</li>
+<li><code>_orm.Mapper</code> objects</li>
+<li>the <code>_orm.Mapper</code> class itself and the <code>.mapper</code>
+function indicate listening for all mappers.</li>
+</ul>
+<p>Mapper events provide hooks into critical sections of the
+mapper, including those related to object instrumentation,
+object loading, and object persistence. In particular, the
+persistence methods <code>~.MapperEvents.before_insert</code>,
+and <code>~.MapperEvents.before_update</code> are popular
+places to augment the state being persisted - however, these
+methods operate with several significant restrictions. The
+user is encouraged to evaluate the
+<code>.SessionEvents.before_flush</code> and
+<code>.SessionEvents.after_flush</code> methods as more
+flexible and user-friendly hooks in which to apply
+additional database state during a flush.</p>
+<p>When using <code>.MapperEvents</code>, several modifiers are
+available to the <code>.event.listen</code> function.</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">propagate=​False</span></td><td class="fieldArgDesc">When True, the event listener should
+be applied to all inheriting mappers and/or the mappers of
+inheriting classes, as well as any
+mapper which is the target of this listener.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">raw=​False</span></td><td class="fieldArgDesc">When True, the "target" argument passed
+to applicable event listener functions will be the
+instance's <code>.InstanceState</code> management
+object, rather than the mapped instance itself.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">retval=​False</span></td><td class="fieldArgDesc"><p>when True, the user-defined event function
+must have a return value, the purpose of which is either to
+control subsequent event propagation, or to otherwise alter
+the operation in progress by the mapper.   Possible return
+values are:</p>
+<ul class="rst-simple">
+<li><tt class="rst-docutils literal">sqlalchemy.orm.interfaces.EXT_CONTINUE</tt> - continue event
+processing normally.</li>
+<li><tt class="rst-docutils literal">sqlalchemy.orm.interfaces.EXT_STOP</tt> - cancel all subsequent
+event handlers in the chain.</li>
+<li>other values - the return value specified by specific listeners.</li>
+</ul>
+</td></tr></table></div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id16853">
+  
+  
+  <tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#after_configured" class="internal-link" title="sqlalchemy.orm.events.MapperEvents.after_configured">after​_configured</a></code></td>
+    <td>Called after a series of mappers have been configured.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#after_delete" class="internal-link" title="sqlalchemy.orm.events.MapperEvents.after_delete">after​_delete</a></code></td>
+    <td>Receive an object instance after a DELETE statement has been emitted corresponding to that instance.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#after_insert" class="internal-link" title="sqlalchemy.orm.events.MapperEvents.after_insert">after​_insert</a></code></td>
+    <td>Receive an object instance after an INSERT statement is emitted corresponding to that instance.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#after_update" class="internal-link" title="sqlalchemy.orm.events.MapperEvents.after_update">after​_update</a></code></td>
+    <td>Receive an object instance after an UPDATE statement is emitted corresponding to that instance.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#before_configured" class="internal-link" title="sqlalchemy.orm.events.MapperEvents.before_configured">before​_configured</a></code></td>
+    <td>Called before a series of mappers have been configured.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#before_delete" class="internal-link" title="sqlalchemy.orm.events.MapperEvents.before_delete">before​_delete</a></code></td>
+    <td>Receive an object instance before a DELETE statement is emitted corresponding to that instance.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#before_insert" class="internal-link" title="sqlalchemy.orm.events.MapperEvents.before_insert">before​_insert</a></code></td>
+    <td>Receive an object instance before an INSERT statement is emitted corresponding to that instance.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#before_mapper_configured" class="internal-link" title="sqlalchemy.orm.events.MapperEvents.before_mapper_configured">before​_mapper​_configured</a></code></td>
+    <td>Called right before a specific mapper is to be configured.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#before_update" class="internal-link" title="sqlalchemy.orm.events.MapperEvents.before_update">before​_update</a></code></td>
+    <td>Receive an object instance before an UPDATE statement is emitted corresponding to that instance.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#instrument_class" class="internal-link" title="sqlalchemy.orm.events.MapperEvents.instrument_class">instrument​_class</a></code></td>
+    <td>Receive a class when the mapper is first constructed, before instrumentation is applied to the mapped class.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#mapper_configured" class="internal-link" title="sqlalchemy.orm.events.MapperEvents.mapper_configured">mapper​_configured</a></code></td>
+    <td>Called when a specific mapper has completed its own configuration within the scope of the <code>.configure_mappers</code> call.</td>
+  </tr><tr class="classmethod private">
+    
+    <td>Class Method</td>
+    <td><code><a href="#_accept_with" class="internal-link" title="sqlalchemy.orm.events.MapperEvents._accept_with">​_accept​_with</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="classmethod private">
+    
+    <td>Class Method</td>
+    <td><code><a href="#_clear" class="internal-link" title="sqlalchemy.orm.events.MapperEvents._clear">​_clear</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="classmethod private">
+    
+    <td>Class Method</td>
+    <td><code><a href="#_listen" class="internal-link" title="sqlalchemy.orm.events.MapperEvents._listen">​_listen</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="classmethod private">
+    
+    <td>Class Method</td>
+    <td><code><a href="#_new_mapper_instance" class="internal-link" title="sqlalchemy.orm.events.MapperEvents._new_mapper_instance">​_new​_mapper​_instance</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="classvariable private">
+    
+    <td>Class Variable</td>
+    <td><code><a href="#_target_class_doc" class="internal-link" title="sqlalchemy.orm.events.MapperEvents._target_class_doc">​_target​_class​_doc</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+        
+          <p class="inheritedFrom">
+            Inherited from <code><a href="sqlalchemy.event.base.Events.html" class="internal-link" title="sqlalchemy.event.base.Events">Events</a></code>:
+          </p>
+          <table class="children sortable" id="id16854">
+  
+  
+  <tr class="baseclassmethod private">
+    
+    <td>Class Method</td>
+    <td><code><a href="sqlalchemy.event.base.Events.html#_remove" class="internal-link" title="sqlalchemy.event.base.Events._remove">​_remove</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basestaticmethod private">
+    
+    <td>Static Method</td>
+    <td><code><a href="sqlalchemy.event.base.Events.html#_set_dispatch" class="internal-link" title="sqlalchemy.event.base.Events._set_dispatch">​_set​_dispatch</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+          
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="basemethod">
+  
+  
+  <a name="sqlalchemy.orm.events.MapperEvents.after_configured">
+    
+  </a>
+  <a name="after_configured">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">after_configured</span>(self):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Called after a series of mappers have been configured.</p>
+<p>The <code>.MapperEvents.after_configured</code> event is invoked
+each time the <code>_orm.configure_mappers</code> function is
+invoked, after the function has completed its work.
+<code>_orm.configure_mappers</code> is typically invoked
+automatically as mappings are first used, as well as each time
+new mappers have been made available and new mapper use is
+detected.</p>
+<p>Contrast this event to the <code>.MapperEvents.mapper_configured</code>
+event, which is called on a per-mapper basis while the configuration
+operation proceeds; unlike that event, when this event is invoked,
+all cross-configurations (e.g. backrefs) will also have been made
+available for any mappers that were pending.
+Also contrast to <code>.MapperEvents.before_configured</code>,
+which is invoked before the series of mappers has been configured.</p>
+<p>This event can <strong>only</strong> be applied to the <code>_orm.Mapper</code> class
+or <code>.mapper</code> function, and not to individual mappings or
+mapped classes.  It is only invoked for all mappings as a whole:</p>
+<pre class="rst-literal-block">
+from sqlalchemy.orm import mapper
+
+@event.listens_for(mapper, "after_configured")
+def go():
+    # ...
+</pre>
+<p>Theoretically this event is called once per
+application, but is actually called any time new mappers
+have been affected by a <code>_orm.configure_mappers</code>
+call.   If new mappings are constructed after existing ones have
+already been used, this event will likely be called again.  To ensure
+that a particular event is only called once and no further, the
+<tt class="rst-docutils literal">once=True</tt> argument (new in 0.9.4) can be applied:</p>
+<pre class="rst-literal-block">
+from sqlalchemy.orm import mapper
+
+@event.listens_for(mapper, "after_configured", once=True)
+def go():
+    # ...
+</pre>
+<div class="rst-admonition seealso">
+<p class="rst-first rst-admonition-title">See Also</p>
+<p><code>.MapperEvents.before_mapper_configured</code></p>
+<p><code>.MapperEvents.mapper_configured</code></p>
+<p class="rst-last"><code>.MapperEvents.before_configured</code></p>
+</div>
+</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.orm.events.MapperEvents.after_delete">
+    
+  </a>
+  <a name="after_delete">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">after_delete</span>(self, mapper, connection, target):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Receive an object instance after a DELETE statement
+has been emitted corresponding to that instance.</p>
+<p>This event is used to emit additional SQL statements on
+the given connection as well as to perform application
+specific bookkeeping related to a deletion event.</p>
+<p>The event is often called for a batch of objects of the
+same class after their DELETE statements have been emitted at
+once in a previous step.</p>
+<div class="rst-admonition warning">
+<p class="rst-first rst-admonition-title">Warning</p>
+<p class="rst-last">Mapper-level flush events only allow <strong>very limited operations</strong>,
+on attributes local to the row being operated upon only,
+as well as allowing any SQL to be emitted on the given
+<code>_engine.Connection</code>.  <strong>Please read fully</strong> the notes
+at <a href="#system-message-1"><span class="rst-problematic" id="rst-problematic-1">:ref:`session_persistence_mapper`</span></a> for guidelines on using
+these methods; generally, the <code>.SessionEvents.before_flush</code>
+method should be preferred for general on-flush changes.</p>
+</div>
+<div class="rst-admonition seealso">
+<p class="rst-first rst-admonition-title">See Also</p>
+<p class="rst-last"><a href="#system-message-2"><span class="rst-problematic" id="rst-problematic-2">:ref:`session_persistence_events`</span></a></p>
+</div>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">mapper</span></td><td class="fieldArgDesc">the <code>_orm.Mapper</code> which is the target
+of this event.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">connection</span></td><td class="fieldArgDesc">the <code>_engine.Connection</code> being used to
+emit DELETE statements for this instance.  This
+provides a handle into the current transaction on the
+target database specific to this instance.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">target</span></td><td class="fieldArgDesc">the mapped instance being deleted.  If
+the event is configured with <tt class="rst-docutils literal">raw=True</tt>, this will
+instead be the <code>.InstanceState</code> state-management
+object associated with the instance.</td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td colspan="2">No return value is supported by this event.</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.orm.events.MapperEvents.after_insert">
+    
+  </a>
+  <a name="after_insert">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">after_insert</span>(self, mapper, connection, target):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Receive an object instance after an INSERT statement
+is emitted corresponding to that instance.</p>
+<p>This event is used to modify in-Python-only
+state on the instance after an INSERT occurs, as well
+as to emit additional SQL statements on the given
+connection.</p>
+<p>The event is often called for a batch of objects of the
+same class after their INSERT statements have been
+emitted at once in a previous step. In the extremely
+rare case that this is not desirable, the
+<code>.mapper</code> can be configured with <tt class="rst-docutils literal">batch=False</tt>,
+which will cause batches of instances to be broken up
+into individual (and more poorly performing)
+event-&gt;persist-&gt;event steps.</p>
+<div class="rst-admonition warning">
+<p class="rst-first rst-admonition-title">Warning</p>
+<p class="rst-last">Mapper-level flush events only allow <strong>very limited operations</strong>,
+on attributes local to the row being operated upon only,
+as well as allowing any SQL to be emitted on the given
+<code>_engine.Connection</code>.  <strong>Please read fully</strong> the notes
+at <a href="#system-message-1"><span class="rst-problematic" id="rst-problematic-1">:ref:`session_persistence_mapper`</span></a> for guidelines on using
+these methods; generally, the <code>.SessionEvents.before_flush</code>
+method should be preferred for general on-flush changes.</p>
+</div>
+<div class="rst-admonition seealso">
+<p class="rst-first rst-admonition-title">See Also</p>
+<p class="rst-last"><a href="#system-message-2"><span class="rst-problematic" id="rst-problematic-2">:ref:`session_persistence_events`</span></a></p>
+</div>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">mapper</span></td><td class="fieldArgDesc">the <code>_orm.Mapper</code> which is the target
+of this event.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">connection</span></td><td class="fieldArgDesc">the <code>_engine.Connection</code> being used to
+emit INSERT statements for this instance.  This
+provides a handle into the current transaction on the
+target database specific to this instance.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">target</span></td><td class="fieldArgDesc">the mapped instance being persisted.  If
+the event is configured with <tt class="rst-docutils literal">raw=True</tt>, this will
+instead be the <code>.InstanceState</code> state-management
+object associated with the instance.</td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td colspan="2">No return value is supported by this event.</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.orm.events.MapperEvents.after_update">
+    
+  </a>
+  <a name="after_update">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">after_update</span>(self, mapper, connection, target):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Receive an object instance after an UPDATE statement
+is emitted corresponding to that instance.</p>
+<p>This event is used to modify in-Python-only
+state on the instance after an UPDATE occurs, as well
+as to emit additional SQL statements on the given
+connection.</p>
+<p>This method is called for all instances that are
+marked as "dirty", <em>even those which have no net changes
+to their column-based attributes</em>, and for which
+no UPDATE statement has proceeded. An object is marked
+as dirty when any of its column-based attributes have a
+"set attribute" operation called or when any of its
+collections are modified. If, at update time, no
+column-based attributes have any net changes, no UPDATE
+statement will be issued. This means that an instance
+being sent to <code>~.MapperEvents.after_update</code> is
+<em>not</em> a guarantee that an UPDATE statement has been
+issued.</p>
+<p>To detect if the column-based attributes on the object have net
+changes, and therefore resulted in an UPDATE statement, use
+<tt class="rst-docutils literal"><span class="pre">object_session(instance).is_modified(instance,</span>
+include_collections=False)</tt>.</p>
+<p>The event is often called for a batch of objects of the
+same class after their UPDATE statements have been emitted at
+once in a previous step. In the extremely rare case that
+this is not desirable, the <code>.mapper</code> can be
+configured with <tt class="rst-docutils literal">batch=False</tt>, which will cause
+batches of instances to be broken up into individual
+(and more poorly performing) event-&gt;persist-&gt;event
+steps.</p>
+<div class="rst-admonition warning">
+<p class="rst-first rst-admonition-title">Warning</p>
+<p class="rst-last">Mapper-level flush events only allow <strong>very limited operations</strong>,
+on attributes local to the row being operated upon only,
+as well as allowing any SQL to be emitted on the given
+<code>_engine.Connection</code>.  <strong>Please read fully</strong> the notes
+at <a href="#system-message-1"><span class="rst-problematic" id="rst-problematic-1">:ref:`session_persistence_mapper`</span></a> for guidelines on using
+these methods; generally, the <code>.SessionEvents.before_flush</code>
+method should be preferred for general on-flush changes.</p>
+</div>
+<div class="rst-admonition seealso">
+<p class="rst-first rst-admonition-title">See Also</p>
+<p class="rst-last"><a href="#system-message-2"><span class="rst-problematic" id="rst-problematic-2">:ref:`session_persistence_events`</span></a></p>
+</div>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">mapper</span></td><td class="fieldArgDesc">the <code>_orm.Mapper</code> which is the target
+of this event.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">connection</span></td><td class="fieldArgDesc">the <code>_engine.Connection</code> being used to
+emit UPDATE statements for this instance.  This
+provides a handle into the current transaction on the
+target database specific to this instance.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">target</span></td><td class="fieldArgDesc">the mapped instance being persisted.  If
+the event is configured with <tt class="rst-docutils literal">raw=True</tt>, this will
+instead be the <code>.InstanceState</code> state-management
+object associated with the instance.</td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td colspan="2">No return value is supported by this event.</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.orm.events.MapperEvents.before_configured">
+    
+  </a>
+  <a name="before_configured">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">before_configured</span>(self):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Called before a series of mappers have been configured.</p>
+<p>The <code>.MapperEvents.before_configured</code> event is invoked
+each time the <code>_orm.configure_mappers</code> function is
+invoked, before the function has done any of its work.
+<code>_orm.configure_mappers</code> is typically invoked
+automatically as mappings are first used, as well as each time
+new mappers have been made available and new mapper use is
+detected.</p>
+<p>This event can <strong>only</strong> be applied to the <code>_orm.Mapper</code> class
+or <code>.mapper</code> function, and not to individual mappings or
+mapped classes.  It is only invoked for all mappings as a whole:</p>
+<pre class="rst-literal-block">
+from sqlalchemy.orm import mapper
+
+@event.listens_for(mapper, "before_configured")
+def go():
+    # ...
+</pre>
+<p>Contrast this event to <code>.MapperEvents.after_configured</code>,
+which is invoked after the series of mappers has been configured,
+as well as <code>.MapperEvents.before_mapper_configured</code>
+and <code>.MapperEvents.mapper_configured</code>, which are both invoked
+on a per-mapper basis.</p>
+<p>Theoretically this event is called once per
+application, but is actually called any time new mappers
+are to be affected by a <code>_orm.configure_mappers</code>
+call.   If new mappings are constructed after existing ones have
+already been used, this event will likely be called again.  To ensure
+that a particular event is only called once and no further, the
+<tt class="rst-docutils literal">once=True</tt> argument (new in 0.9.4) can be applied:</p>
+<pre class="rst-literal-block">
+from sqlalchemy.orm import mapper
+
+@event.listens_for(mapper, "before_configured", once=True)
+def go():
+    # ...
+</pre>
+<div class="rst-versionadded">
+<span class="rst-versionmodified rst-added">New in version 0.9.3.</span></div>
+<div class="rst-admonition seealso">
+<p class="rst-first rst-admonition-title">See Also</p>
+<p><code>.MapperEvents.before_mapper_configured</code></p>
+<p><code>.MapperEvents.mapper_configured</code></p>
+<p class="rst-last"><code>.MapperEvents.after_configured</code></p>
+</div>
+</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.orm.events.MapperEvents.before_delete">
+    
+  </a>
+  <a name="before_delete">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">before_delete</span>(self, mapper, connection, target):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Receive an object instance before a DELETE statement
+is emitted corresponding to that instance.</p>
+<p>This event is used to emit additional SQL statements on
+the given connection as well as to perform application
+specific bookkeeping related to a deletion event.</p>
+<p>The event is often called for a batch of objects of the
+same class before their DELETE statements are emitted at
+once in a later step.</p>
+<div class="rst-admonition warning">
+<p class="rst-first rst-admonition-title">Warning</p>
+<p class="rst-last">Mapper-level flush events only allow <strong>very limited operations</strong>,
+on attributes local to the row being operated upon only,
+as well as allowing any SQL to be emitted on the given
+<code>_engine.Connection</code>.  <strong>Please read fully</strong> the notes
+at <a href="#system-message-1"><span class="rst-problematic" id="rst-problematic-1">:ref:`session_persistence_mapper`</span></a> for guidelines on using
+these methods; generally, the <code>.SessionEvents.before_flush</code>
+method should be preferred for general on-flush changes.</p>
+</div>
+<div class="rst-admonition seealso">
+<p class="rst-first rst-admonition-title">See Also</p>
+<p class="rst-last"><a href="#system-message-2"><span class="rst-problematic" id="rst-problematic-2">:ref:`session_persistence_events`</span></a></p>
+</div>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">mapper</span></td><td class="fieldArgDesc">the <code>_orm.Mapper</code> which is the target
+of this event.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">connection</span></td><td class="fieldArgDesc">the <code>_engine.Connection</code> being used to
+emit DELETE statements for this instance.  This
+provides a handle into the current transaction on the
+target database specific to this instance.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">target</span></td><td class="fieldArgDesc">the mapped instance being deleted.  If
+the event is configured with <tt class="rst-docutils literal">raw=True</tt>, this will
+instead be the <code>.InstanceState</code> state-management
+object associated with the instance.</td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td colspan="2">No return value is supported by this event.</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.orm.events.MapperEvents.before_insert">
+    
+  </a>
+  <a name="before_insert">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">before_insert</span>(self, mapper, connection, target):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Receive an object instance before an INSERT statement
+is emitted corresponding to that instance.</p>
+<p>This event is used to modify local, non-object related
+attributes on the instance before an INSERT occurs, as well
+as to emit additional SQL statements on the given
+connection.</p>
+<p>The event is often called for a batch of objects of the
+same class before their INSERT statements are emitted at
+once in a later step. In the extremely rare case that
+this is not desirable, the <code>.mapper</code> can be
+configured with <tt class="rst-docutils literal">batch=False</tt>, which will cause
+batches of instances to be broken up into individual
+(and more poorly performing) event-&gt;persist-&gt;event
+steps.</p>
+<div class="rst-admonition warning">
+<p class="rst-first rst-admonition-title">Warning</p>
+<p class="rst-last">Mapper-level flush events only allow <strong>very limited operations</strong>,
+on attributes local to the row being operated upon only,
+as well as allowing any SQL to be emitted on the given
+<code>_engine.Connection</code>.  <strong>Please read fully</strong> the notes
+at <a href="#system-message-1"><span class="rst-problematic" id="rst-problematic-1">:ref:`session_persistence_mapper`</span></a> for guidelines on using
+these methods; generally, the <code>.SessionEvents.before_flush</code>
+method should be preferred for general on-flush changes.</p>
+</div>
+<div class="rst-admonition seealso">
+<p class="rst-first rst-admonition-title">See Also</p>
+<p class="rst-last"><a href="#system-message-2"><span class="rst-problematic" id="rst-problematic-2">:ref:`session_persistence_events`</span></a></p>
+</div>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">mapper</span></td><td class="fieldArgDesc">the <code>_orm.Mapper</code> which is the target
+of this event.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">connection</span></td><td class="fieldArgDesc">the <code>_engine.Connection</code> being used to
+emit INSERT statements for this instance.  This
+provides a handle into the current transaction on the
+target database specific to this instance.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">target</span></td><td class="fieldArgDesc">the mapped instance being persisted.  If
+the event is configured with <tt class="rst-docutils literal">raw=True</tt>, this will
+instead be the <code>.InstanceState</code> state-management
+object associated with the instance.</td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td colspan="2">No return value is supported by this event.</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.orm.events.MapperEvents.before_mapper_configured">
+    
+  </a>
+  <a name="before_mapper_configured">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">before_mapper_configured</span>(self, mapper, class_):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Called right before a specific mapper is to be configured.</p>
+<p>This event is intended to allow a specific mapper to be skipped during
+the configure step, by returning the <code>.orm.interfaces.EXT_SKIP</code>
+symbol which indicates to the <code>.configure_mappers</code> call that this
+particular mapper (or hierarchy of mappers, if <tt class="rst-docutils literal">propagate=True</tt> is
+used) should be skipped in the current configuration run.  When one or
+more mappers are skipped, the he "new mappers" flag will remain set,
+meaning the <code>.configure_mappers</code> function will continue to be
+called when mappers are used, to continue to try to configure all
+available mappers.</p>
+<p>In comparison to the other configure-level events,
+<code>.MapperEvents.before_configured</code>,
+<code>.MapperEvents.after_configured</code>, and
+<code>.MapperEvents.mapper_configured</code>, the
+:meth;`.MapperEvents.before_mapper_configured` event provides for a
+meaningful return value when it is registered with the <tt class="rst-docutils literal">retval=True</tt>
+parameter.</p>
+<div class="rst-versionadded">
+<span class="rst-versionmodified rst-added">New in version 1.3.</span></div>
+<p>e.g.:</p>
+<pre class="rst-literal-block">
+from sqlalchemy.orm import EXT_SKIP
+
+Base = declarative_base()
+
+DontConfigureBase = declarative_base()
+
+@event.listens_for(
+    DontConfigureBase,
+    "before_mapper_configured", retval=True, propagate=True)
+def dont_configure(mapper, cls):
+    return EXT_SKIP
+</pre>
+<div class="rst-admonition seealso">
+<p class="rst-first rst-admonition-title">See Also</p>
+<p><code>.MapperEvents.before_configured</code></p>
+<p><code>.MapperEvents.after_configured</code></p>
+<p class="rst-last"><code>.MapperEvents.mapper_configured</code></p>
+</div>
+</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.orm.events.MapperEvents.before_update">
+    
+  </a>
+  <a name="before_update">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">before_update</span>(self, mapper, connection, target):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Receive an object instance before an UPDATE statement
+is emitted corresponding to that instance.</p>
+<p>This event is used to modify local, non-object related
+attributes on the instance before an UPDATE occurs, as well
+as to emit additional SQL statements on the given
+connection.</p>
+<p>This method is called for all instances that are
+marked as "dirty", <em>even those which have no net changes
+to their column-based attributes</em>. An object is marked
+as dirty when any of its column-based attributes have a
+"set attribute" operation called or when any of its
+collections are modified. If, at update time, no
+column-based attributes have any net changes, no UPDATE
+statement will be issued. This means that an instance
+being sent to <code>~.MapperEvents.before_update</code> is
+<em>not</em> a guarantee that an UPDATE statement will be
+issued, although you can affect the outcome here by
+modifying attributes so that a net change in value does
+exist.</p>
+<p>To detect if the column-based attributes on the object have net
+changes, and will therefore generate an UPDATE statement, use
+<tt class="rst-docutils literal"><span class="pre">object_session(instance).is_modified(instance,</span>
+include_collections=False)</tt>.</p>
+<p>The event is often called for a batch of objects of the
+same class before their UPDATE statements are emitted at
+once in a later step. In the extremely rare case that
+this is not desirable, the <code>.mapper</code> can be
+configured with <tt class="rst-docutils literal">batch=False</tt>, which will cause
+batches of instances to be broken up into individual
+(and more poorly performing) event-&gt;persist-&gt;event
+steps.</p>
+<div class="rst-admonition warning">
+<p class="rst-first rst-admonition-title">Warning</p>
+<p class="rst-last">Mapper-level flush events only allow <strong>very limited operations</strong>,
+on attributes local to the row being operated upon only,
+as well as allowing any SQL to be emitted on the given
+<code>_engine.Connection</code>.  <strong>Please read fully</strong> the notes
+at <a href="#system-message-1"><span class="rst-problematic" id="rst-problematic-1">:ref:`session_persistence_mapper`</span></a> for guidelines on using
+these methods; generally, the <code>.SessionEvents.before_flush</code>
+method should be preferred for general on-flush changes.</p>
+</div>
+<div class="rst-admonition seealso">
+<p class="rst-first rst-admonition-title">See Also</p>
+<p class="rst-last"><a href="#system-message-2"><span class="rst-problematic" id="rst-problematic-2">:ref:`session_persistence_events`</span></a></p>
+</div>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">mapper</span></td><td class="fieldArgDesc">the <code>_orm.Mapper</code> which is the target
+of this event.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">connection</span></td><td class="fieldArgDesc">the <code>_engine.Connection</code> being used to
+emit UPDATE statements for this instance.  This
+provides a handle into the current transaction on the
+target database specific to this instance.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">target</span></td><td class="fieldArgDesc">the mapped instance being persisted.  If
+the event is configured with <tt class="rst-docutils literal">raw=True</tt>, this will
+instead be the <code>.InstanceState</code> state-management
+object associated with the instance.</td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td colspan="2">No return value is supported by this event.</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.orm.events.MapperEvents.instrument_class">
+    
+  </a>
+  <a name="instrument_class">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">instrument_class</span>(self, mapper, class_):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Receive a class when the mapper is first constructed,
+before instrumentation is applied to the mapped class.</p>
+<p>This event is the earliest phase of mapper construction.
+Most attributes of the mapper are not yet initialized.</p>
+<p>This listener can either be applied to the <code>_orm.Mapper</code>
+class overall, or to any un-mapped class which serves as a base
+for classes that will be mapped (using the <tt class="rst-docutils literal">propagate=True</tt> flag):</p>
+<pre class="rst-literal-block">
+Base = declarative_base()
+
+@event.listens_for(Base, "instrument_class", propagate=True)
+def on_new_class(mapper, cls_):
+    " ... "
+</pre>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">mapper</span></td><td class="fieldArgDesc">the <code>_orm.Mapper</code> which is the target
+of this event.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">class​_</span></td><td class="fieldArgDesc">the mapped class.</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.orm.events.MapperEvents.mapper_configured">
+    
+  </a>
+  <a name="mapper_configured">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">mapper_configured</span>(self, mapper, class_):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Called when a specific mapper has completed its own configuration
+within the scope of the <code>.configure_mappers</code> call.</p>
+<p>The <code>.MapperEvents.mapper_configured</code> event is invoked
+for each mapper that is encountered when the
+<code>_orm.configure_mappers</code> function proceeds through the current
+list of not-yet-configured mappers.
+<code>_orm.configure_mappers</code> is typically invoked
+automatically as mappings are first used, as well as each time
+new mappers have been made available and new mapper use is
+detected.</p>
+<p>When the event is called, the mapper should be in its final
+state, but <strong>not including backrefs</strong> that may be invoked from
+other mappers; they might still be pending within the
+configuration operation.    Bidirectional relationships that
+are instead configured via the
+<a href="#system-message-1"><span class="rst-problematic" id="rst-problematic-1">:paramref:`.orm.relationship.back_populates`</span></a> argument
+<em>will</em> be fully available, since this style of relationship does not
+rely upon other possibly-not-configured mappers to know that they
+exist.</p>
+<p>For an event that is guaranteed to have <strong>all</strong> mappers ready
+to go including backrefs that are defined only on other
+mappings, use the <code>.MapperEvents.after_configured</code>
+event; this event invokes only after all known mappings have been
+fully configured.</p>
+<p>The <code>.MapperEvents.mapper_configured</code> event, unlike
+<code>.MapperEvents.before_configured</code> or
+<code>.MapperEvents.after_configured</code>,
+is called for each mapper/class individually, and the mapper is
+passed to the event itself.  It also is called exactly once for
+a particular mapper.  The event is therefore useful for
+configurational steps that benefit from being invoked just once
+on a specific mapper basis, which don't require that "backref"
+configurations are necessarily ready yet.</p>
+<div class="rst-admonition seealso">
+<p class="rst-first rst-admonition-title">See Also</p>
+<p><code>.MapperEvents.before_configured</code></p>
+<p><code>.MapperEvents.after_configured</code></p>
+<p class="rst-last"><code>.MapperEvents.before_mapper_configured</code></p>
+</div>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">mapper</span></td><td class="fieldArgDesc">the <code>_orm.Mapper</code> which is the target
+of this event.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">class​_</span></td><td class="fieldArgDesc">the mapped class.</td></tr></table></div>
+  </div>
+</div><div class="baseclassmethod private">
+  
+  
+  <a name="sqlalchemy.orm.events.MapperEvents._accept_with">
+    
+  </a>
+  <a name="_accept_with">
+    
+  </a>
+  <div class="functionHeader">
+    @classmethod<br />@util.preload_module(<wbr></wbr><span class="rst-variable-quote">'</span><span class="rst-variable-string">sqlalchemy.orm</span><span class="rst-variable-quote">'</span>)<br />
+    <span class="py-keyword">def</span> <span class="py-defname">_accept_with</span>(cls, target):
+    
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overrides <code><a href="sqlalchemy.event.base.Events.html#_accept_with" class="internal-link">sqlalchemy.event.base.Events._accept_with</a></code></div>
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="baseclassmethod private">
+  
+  
+  <a name="sqlalchemy.orm.events.MapperEvents._clear">
+    
+  </a>
+  <a name="_clear">
+    
+  </a>
+  <div class="functionHeader">
+    @classmethod<br />
+    <span class="py-keyword">def</span> <span class="py-defname">_clear</span>(cls):
+    
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overrides <code><a href="sqlalchemy.event.base.Events.html#_clear" class="internal-link">sqlalchemy.event.base.Events._clear</a></code></div>
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="baseclassmethod private">
+  
+  
+  <a name="sqlalchemy.orm.events.MapperEvents._listen">
+    
+  </a>
+  <a name="_listen">
+    
+  </a>
+  <div class="functionHeader">
+    @classmethod<br />
+    <span class="py-keyword">def</span> <span class="py-defname">_listen</span>(cls, event_key, raw=False, retval=False, propagate=False, **kw):
+    
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overrides <code><a href="sqlalchemy.event.base.Events.html#_listen" class="internal-link">sqlalchemy.event.base.Events._listen</a></code></div>
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="baseclassmethod private">
+  
+  
+  <a name="sqlalchemy.orm.events.MapperEvents._new_mapper_instance">
+    
+  </a>
+  <a name="_new_mapper_instance">
+    
+  </a>
+  <div class="functionHeader">
+    @classmethod<br />
+    <span class="py-keyword">def</span> <span class="py-defname">_new_mapper_instance</span>(cls, class_, mapper):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="baseclassvariable private">
+  
+  
+  <a name="sqlalchemy.orm.events.MapperEvents._target_class_doc">
+    
+  </a>
+  <a name="_target_class_doc">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_target_class_doc</span>: <code>str</code> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div>
+
+      </div>
+    </div>
+
+    <footer class="navbar navbar-default">
+  
+  <div class="container">
+    <a href="index.html">API Documentation</a> for sqlalchemy,
+  generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
+    22.2.0 at 2022-02-23 04:41:59.
+  </div>
+</footer>
+
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+  </body>
+</html>

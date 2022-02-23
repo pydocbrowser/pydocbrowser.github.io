@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  
+
+  <head>
+    
+    <title>jinja2.bccache.BytecodeCache</title>
+    <meta name="generator" content="pydoctor 22.2.0"> 
+        
+    </meta>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=0.75" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+    <link rel="stylesheet" type="text/css" href="extra.css" />
+</head>
+
+  <body>
+
+    
+
+    <nav class="navbar navbar-default">
+  
+  <div class="container">
+
+    <div class="navbar-header">
+      
+      <div class="navlinks">
+          <span class="navbar-brand">
+            jinja2 <a href="index.html">API Documentation</a>
+          </span>
+
+          <a href="moduleIndex.html">
+            Modules
+          </a>
+
+          <a href="classIndex.html">
+            Classes
+          </a>
+
+          <a href="nameIndex.html">
+            Names
+          </a>
+      </div>
+
+    </div>
+  </div>
+</nav>
+
+    
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="class"><code><code><a href="index.html" class="internal-link">jinja2</a></code><wbr></wbr>.<code><a href="jinja2.bccache.html" class="internal-link" title="jinja2.bccache">bccache</a></code><wbr></wbr>.<code><a href="jinja2.bccache.BytecodeCache.html" class="internal-link" title="jinja2.bccache.BytecodeCache">BytecodeCache</a></code></code></h1>
+        <div id="showPrivate">
+          <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+        </div>
+      </div>
+
+      <div class="categoryHeader">
+        class documentation
+      </div>
+
+      <div class="extrasDocstring">
+        <p><code><span class="py-keyword">class</span> <span class="py-defname">BytecodeCache</span>:</code></p><p>Known subclasses: <code><a href="jinja2.bccache.FileSystemBytecodeCache.html" class="internal-link">jinja2.bccache.FileSystemBytecodeCache</a></code>, <code><a href="jinja2.bccache.MemcachedBytecodeCache.html" class="internal-link">jinja2.bccache.MemcachedBytecodeCache</a></code></p>
+        <p><a href="classIndex.html#jinja2.bccache.BytecodeCache">View In Hierarchy</a></p>
+      </div>
+
+      <div class="moduleDocstring">
+        <div><p>To implement your own bytecode cache you have to subclass this class
+and override <code><a href="#load_bytecode" class="internal-link" title="jinja2.bccache.BytecodeCache.load_bytecode">load_bytecode</a></code> and <code><a href="#dump_bytecode" class="internal-link" title="jinja2.bccache.BytecodeCache.dump_bytecode">dump_bytecode</a></code>.  Both of
+these methods are passed a <code>~jinja2.bccache.Bucket</code>.</p>
+<p>A very basic bytecode cache that saves the bytecode on the file system:</p>
+<pre class="rst-literal-block">
+from os import path
+
+class MyCache(BytecodeCache):
+
+    def __init__(self, directory):
+        self.directory = directory
+
+    def load_bytecode(self, bucket):
+        filename = path.join(self.directory, bucket.key)
+        if path.exists(filename):
+            with open(filename, 'rb') as f:
+                bucket.load_bytecode(f)
+
+    def dump_bytecode(self, bucket):
+        filename = path.join(self.directory, bucket.key)
+        with open(filename, 'wb') as f:
+            bucket.write_bytecode(f)
+</pre>
+<p>A more advanced version of a filesystem based bytecode cache is part of
+Jinja.</p>
+</div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id7646">
+  
+  
+  <tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#clear" class="internal-link" title="jinja2.bccache.BytecodeCache.clear">clear</a></code></td>
+    <td>Clears the cache.  This method is not used by Jinja but should be implemented to allow applications to clear the bytecode cache used by a particular environment.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#dump_bytecode" class="internal-link" title="jinja2.bccache.BytecodeCache.dump_bytecode">dump​_bytecode</a></code></td>
+    <td>Subclasses have to override this method to write the bytecode from a bucket back to the cache.  If it unable to do so it must not fail silently but raise an exception.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#get_bucket" class="internal-link" title="jinja2.bccache.BytecodeCache.get_bucket">get​_bucket</a></code></td>
+    <td>Return a cache bucket for the given template.  All arguments are mandatory but filename may be <code>None</code>.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#get_cache_key" class="internal-link" title="jinja2.bccache.BytecodeCache.get_cache_key">get​_cache​_key</a></code></td>
+    <td>Returns the unique hash key for this template name.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#get_source_checksum" class="internal-link" title="jinja2.bccache.BytecodeCache.get_source_checksum">get​_source​_checksum</a></code></td>
+    <td>Returns a checksum for the source.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#load_bytecode" class="internal-link" title="jinja2.bccache.BytecodeCache.load_bytecode">load​_bytecode</a></code></td>
+    <td>Subclasses have to override this method to load bytecode into a bucket.  If they are not able to find code in the cache for the bucket, it must not do anything.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#set_bucket" class="internal-link" title="jinja2.bccache.BytecodeCache.set_bucket">set​_bucket</a></code></td>
+    <td>Put the bucket into the cache.</td>
+  </tr>
+</table>
+        
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="basemethod">
+  
+  
+  <a name="jinja2.bccache.BytecodeCache.clear">
+    
+  </a>
+  <a name="clear">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">clear</span>(self):
+    
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="jinja2.bccache.FileSystemBytecodeCache.html" class="internal-link">jinja2.bccache.FileSystemBytecodeCache</a></code></div>
+    
+    <div>Clears the cache.  This method is not used by Jinja but should be
+implemented to allow applications to clear the bytecode cache used
+by a particular environment.</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="jinja2.bccache.BytecodeCache.dump_bytecode">
+    
+  </a>
+  <a name="dump_bytecode">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">dump_bytecode</span>(self, bucket):
+    
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="jinja2.bccache.FileSystemBytecodeCache.html" class="internal-link">jinja2.bccache.FileSystemBytecodeCache</a></code>, <code><a href="jinja2.bccache.MemcachedBytecodeCache.html" class="internal-link">jinja2.bccache.MemcachedBytecodeCache</a></code></div>
+    
+    <div>Subclasses have to override this method to write the bytecode
+from a bucket back to the cache.  If it unable to do so it must not
+fail silently but raise an exception.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">bucket:</span><code><a href="jinja2.bccache.Bucket.html" class="internal-link" title="jinja2.bccache.Bucket">Bucket</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="jinja2.bccache.BytecodeCache.get_bucket">
+    
+  </a>
+  <a name="get_bucket">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">get_bucket</span>(self, environment, name, filename, source):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Return a cache bucket for the given template.  All arguments are
+mandatory but filename may be <code>None</code>.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">environment:</span><code><a href="jinja2.environment.Environment.html" class="internal-link" title="jinja2.environment.Environment">Environment</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">name:</span><code>str</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">filename:</span><code>t.Optional[<wbr></wbr>str]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">source:</span><code>str</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="jinja2.bccache.Bucket.html" class="internal-link" title="jinja2.bccache.Bucket">Bucket</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="jinja2.bccache.BytecodeCache.get_cache_key">
+    
+  </a>
+  <a name="get_cache_key">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">get_cache_key</span>(self, name, filename=None):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Returns the unique hash key for this template name.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">name:</span><code>str</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">filename:</span><code>t.Optional[<wbr></wbr>t.Union[<wbr></wbr>str]]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code>str</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="jinja2.bccache.BytecodeCache.get_source_checksum">
+    
+  </a>
+  <a name="get_source_checksum">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">get_source_checksum</span>(self, source):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Returns a checksum for the source.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">source:</span><code>str</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code>str</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="jinja2.bccache.BytecodeCache.load_bytecode">
+    
+  </a>
+  <a name="load_bytecode">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">load_bytecode</span>(self, bucket):
+    
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="jinja2.bccache.FileSystemBytecodeCache.html" class="internal-link">jinja2.bccache.FileSystemBytecodeCache</a></code>, <code><a href="jinja2.bccache.MemcachedBytecodeCache.html" class="internal-link">jinja2.bccache.MemcachedBytecodeCache</a></code></div>
+    
+    <div>Subclasses have to override this method to load bytecode into a
+bucket.  If they are not able to find code in the cache for the
+bucket, it must not do anything.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">bucket:</span><code><a href="jinja2.bccache.Bucket.html" class="internal-link" title="jinja2.bccache.Bucket">Bucket</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="jinja2.bccache.BytecodeCache.set_bucket">
+    
+  </a>
+  <a name="set_bucket">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">set_bucket</span>(self, bucket):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Put the bucket into the cache.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">bucket:</span><code><a href="jinja2.bccache.Bucket.html" class="internal-link" title="jinja2.bccache.Bucket">Bucket</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div>
+
+      </div>
+    </div>
+
+    <footer class="navbar navbar-default">
+  
+  <div class="container">
+    <a href="index.html">API Documentation</a> for jinja2,
+  generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
+    22.2.0 at 2022-02-23 04:36:20.
+  </div>
+</footer>
+
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+  </body>
+</html>

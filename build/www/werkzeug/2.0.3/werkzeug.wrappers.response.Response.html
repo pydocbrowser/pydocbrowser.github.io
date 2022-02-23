@@ -1,0 +1,1257 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  
+
+  <head>
+    
+    <title>werkzeug.wrappers.response.Response</title>
+    <meta name="generator" content="pydoctor 22.2.0"> 
+        
+    </meta>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=0.75" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+    <link rel="stylesheet" type="text/css" href="extra.css" />
+</head>
+
+  <body>
+
+    
+
+    <nav class="navbar navbar-default">
+  
+  <div class="container">
+
+    <div class="navbar-header">
+      
+      <div class="navlinks">
+          <span class="navbar-brand">
+            werkzeug <a href="index.html">API Documentation</a>
+          </span>
+
+          <a href="moduleIndex.html">
+            Modules
+          </a>
+
+          <a href="classIndex.html">
+            Classes
+          </a>
+
+          <a href="nameIndex.html">
+            Names
+          </a>
+      </div>
+
+    </div>
+  </div>
+</nav>
+
+    
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="class"><code><code><a href="index.html" class="internal-link">werkzeug</a></code><wbr></wbr>.<code><a href="werkzeug.wrappers.html" class="internal-link" title="werkzeug.wrappers">wrappers</a></code><wbr></wbr>.<code><a href="werkzeug.wrappers.response.html" class="internal-link" title="werkzeug.wrappers.response">response</a></code><wbr></wbr>.<code><a href="werkzeug.wrappers.response.Response.html" class="internal-link" title="werkzeug.wrappers.response.Response">Response</a></code></code></h1>
+        <div id="showPrivate">
+          <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+        </div>
+      </div>
+
+      <div class="categoryHeader">
+        class documentation
+      </div>
+
+      <div class="extrasDocstring">
+        <p><code><span class="py-keyword">class</span> <span class="py-defname">Response</span>(<a href="werkzeug.sansio.response.Response.html" class="internal-link" title="werkzeug.sansio.response.Response">_SansIOResponse</a>):</code></p><p>Known subclasses: <code><a href="werkzeug.test.TestResponse.html" class="internal-link">werkzeug.test.TestResponse</a></code>, <code><a href="werkzeug.wrappers.base_response.BaseResponse.html" class="internal-link">werkzeug.wrappers.base_response.BaseResponse</a></code></p>
+        <p><a href="classIndex.html#werkzeug.wrappers.response.Response">View In Hierarchy</a></p>
+      </div>
+
+      <div class="moduleDocstring">
+        <div><p>Represents an outgoing WSGI HTTP response with body, status, and
+headers. Has properties and methods for using the functionality
+defined by various HTTP specs.</p>
+<p>The response body is flexible to support different use cases. The
+simple form is passing bytes, or a string which will be encoded as
+UTF-8. Passing an iterable of bytes or strings makes this a
+streaming response. A generator is particularly useful for building
+a CSV file in memory or using SSE (Server Sent Events). A file-like
+object is also iterable, although the
+<code>~werkzeug.utils.send_file</code> helper should be used in that
+case.</p>
+<p>The response object is itself a WSGI application callable. When
+called (<code><a href="#__call__" class="internal-link" title="werkzeug.wrappers.response.Response.__call__">__call__</a></code>) with <tt class="rst-docutils literal">environ</tt> and <tt class="rst-docutils literal">start_response</tt>,
+it will pass its status and headers to <tt class="rst-docutils literal">start_response</tt> then
+return its body as an iterable.</p>
+<pre class="rst-code rst-python rst-literal-block">
+from werkzeug.wrappers.response import Response
+
+def index():
+    return Response("Hello, World!")
+
+def application(environ, start_response):
+    path = environ.get("PATH_INFO") or "/"
+
+    if path == "/":
+        response = index()
+    else:
+        response = Response("Not Found", status=404)
+
+    return response(environ, start_response)
+</pre>
+<div class="rst-versionchanged">
+<span class="rst-versionmodified rst-changed">Changed in version 2.0: </span><span>Combine <tt class="rst-docutils literal">BaseResponse</tt> and mixins into a single <tt class="rst-docutils literal">Response</tt>
+class. Using the old classes is deprecated and will be removed
+in Werkzeug 2.1.</span></div>
+<div class="rst-versionchanged">
+<span class="rst-versionmodified rst-changed">Changed in version 0.5: </span><span>The <tt class="rst-docutils literal">direct_passthrough</tt> parameter was added.</span></div>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">response</span></td><td class="fieldArgDesc">The data for the body of the response. A string or
+bytes, or tuple or list of strings or bytes, for a fixed-length
+response, or any other iterable of strings or bytes for a
+streaming response. Defaults to an empty body.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">status</span></td><td class="fieldArgDesc">The status code for the response. Either an int, in
+which case the default status message is added, or a string in
+the form <tt class="rst-docutils literal">{code} {message}</tt>, like <tt class="rst-docutils literal">404 Not Found</tt>. Defaults
+to 200.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">headers</span></td><td class="fieldArgDesc">A <code>~werkzeug.datastructures.Headers</code> object,
+or a list of <tt class="rst-docutils literal">(key, value)</tt> tuples that will be converted to a
+<tt class="rst-docutils literal">Headers</tt> object.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">mimetype</span></td><td class="fieldArgDesc">The mime type (content type without charset or
+other parameters) of the response. If the value starts with
+<tt class="rst-docutils literal">text/</tt> (or matches some other special cases), the charset
+will be added to create the <tt class="rst-docutils literal">content_type</tt>.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">content​_type</span></td><td class="fieldArgDesc">The full content type of the response.
+Overrides building the value from <tt class="rst-docutils literal">mimetype</tt>.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">direct​_passthrough</span></td><td class="fieldArgDesc">Pass the response body directly through
+as the WSGI iterable. This can be used when the body is a binary
+file or other iterator of bytes, to skip some unnecessary
+checks. Use <code>~werkzeug.utils.send_file</code> instead of setting
+this manually.</td></tr></table></div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id21877">
+  
+  
+  <tr class="classmethod">
+    
+    <td>Class Method</td>
+    <td><code><a href="#force_type" class="internal-link" title="werkzeug.wrappers.response.Response.force_type">force​_type</a></code></td>
+    <td><span class="undocumented">No summary</span></td>
+  </tr><tr class="classmethod">
+    
+    <td>Class Method</td>
+    <td><code><a href="#from_app" class="internal-link" title="werkzeug.wrappers.response.Response.from_app">from​_app</a></code></td>
+    <td><span class="undocumented">No summary</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__call__" class="internal-link" title="werkzeug.wrappers.response.Response.__call__">__call__</a></code></td>
+    <td>Process this response as WSGI application.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__enter__" class="internal-link" title="werkzeug.wrappers.response.Response.__enter__">__enter__</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__exit__" class="internal-link" title="werkzeug.wrappers.response.Response.__exit__">__exit__</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__init__" class="internal-link" title="werkzeug.wrappers.response.Response.__init__">__init__</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__repr__" class="internal-link" title="werkzeug.wrappers.response.Response.__repr__">__repr__</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#add_etag" class="internal-link" title="werkzeug.wrappers.response.Response.add_etag">add​_etag</a></code></td>
+    <td>Add an etag for the current response if there is none yet.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#calculate_content_length" class="internal-link" title="werkzeug.wrappers.response.Response.calculate_content_length">calculate​_content​_length</a></code></td>
+    <td>Returns the content length if available or <code>None</code> otherwise.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#call_on_close" class="internal-link" title="werkzeug.wrappers.response.Response.call_on_close">call​_on​_close</a></code></td>
+    <td><span class="undocumented">No summary</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#close" class="internal-link" title="werkzeug.wrappers.response.Response.close">close</a></code></td>
+    <td>Close the wrapped response if possible.  You can also use the object in a with statement which will automatically close it.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#freeze" class="internal-link" title="werkzeug.wrappers.response.Response.freeze">freeze</a></code></td>
+    <td>Make the response object ready to be pickled. Does the following:</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#get_app_iter" class="internal-link" title="werkzeug.wrappers.response.Response.get_app_iter">get​_app​_iter</a></code></td>
+    <td>Returns the application iterator for the given environ.  Depending on the request method and the current status code the return value might be an empty response rather than the one from the response.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#get_data" class="internal-link" title="werkzeug.wrappers.response.Response.get_data">get​_data</a></code></td>
+    <td>The string representation of the response body.  Whenever you call this property the response iterable is encoded and flattened.  This can lead to unwanted behavior if you stream big data.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#get_json" class="internal-link" title="werkzeug.wrappers.response.Response.get_json">get​_json</a></code></td>
+    <td>Parse <code><a href="#data" class="internal-link" title="werkzeug.wrappers.response.Response.data">data</a></code> as JSON. Useful during testing.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#get_wsgi_headers" class="internal-link" title="werkzeug.wrappers.response.Response.get_wsgi_headers">get​_wsgi​_headers</a></code></td>
+    <td><span class="undocumented">No summary</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#get_wsgi_response" class="internal-link" title="werkzeug.wrappers.response.Response.get_wsgi_response">get​_wsgi​_response</a></code></td>
+    <td><span class="undocumented">No summary</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#iter_encoded" class="internal-link" title="werkzeug.wrappers.response.Response.iter_encoded">iter​_encoded</a></code></td>
+    <td><span class="undocumented">No summary</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#make_conditional" class="internal-link" title="werkzeug.wrappers.response.Response.make_conditional">make​_conditional</a></code></td>
+    <td><span class="undocumented">No summary</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#make_sequence" class="internal-link" title="werkzeug.wrappers.response.Response.make_sequence">make​_sequence</a></code></td>
+    <td><span class="undocumented">No summary</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#set_data" class="internal-link" title="werkzeug.wrappers.response.Response.set_data">set​_data</a></code></td>
+    <td>Sets a new string as response.  The value must be a string or bytes. If a string is set it's encoded to the charset of the response (utf-8 by default).</td>
+  </tr><tr class="classvariable">
+    
+    <td>Class Variable</td>
+    <td><code><a href="#autocorrect_location_header" class="internal-link" title="werkzeug.wrappers.response.Response.autocorrect_location_header">autocorrect​_location​_header</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="classvariable">
+    
+    <td>Class Variable</td>
+    <td><code><a href="#automatically_set_content_length" class="internal-link" title="werkzeug.wrappers.response.Response.automatically_set_content_length">automatically​_set​_content​_length</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="classvariable">
+    
+    <td>Class Variable</td>
+    <td><code><a href="#data" class="internal-link" title="werkzeug.wrappers.response.Response.data">data</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="classvariable">
+    
+    <td>Class Variable</td>
+    <td><code><a href="#implicit_sequence_conversion" class="internal-link" title="werkzeug.wrappers.response.Response.implicit_sequence_conversion">implicit​_sequence​_conversion</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#content_range" class="internal-link" title="werkzeug.wrappers.response.Response.content_range">content​_range</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#direct_passthrough" class="internal-link" title="werkzeug.wrappers.response.Response.direct_passthrough">direct​_passthrough</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#response" class="internal-link" title="werkzeug.wrappers.response.Response.response">response</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#status_code" class="internal-link" title="werkzeug.wrappers.response.Response.status_code">status​_code</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="property">
+    
+    <td>Property</td>
+    <td><code><a href="#is_sequence" class="internal-link" title="werkzeug.wrappers.response.Response.is_sequence">is​_sequence</a></code></td>
+    <td>If the iterator is buffered, this property will be <code>True</code>.  A response object will consider an iterator to be buffered if the response attribute is a list or tuple.</td>
+  </tr><tr class="property">
+    
+    <td>Property</td>
+    <td><code><a href="#is_streamed" class="internal-link" title="werkzeug.wrappers.response.Response.is_streamed">is​_streamed</a></code></td>
+    <td><span class="undocumented">No summary</span></td>
+  </tr><tr class="property">
+    
+    <td>Property</td>
+    <td><code><a href="#json" class="internal-link" title="werkzeug.wrappers.response.Response.json">json</a></code></td>
+    <td>The parsed JSON data if <code>mimetype</code> indicates JSON (<a href="#system-message-1"><span class="rst-problematic" id="rst-problematic-1">:mimetype:`application/json`</span></a>, see <code>is_json</code>).</td>
+  </tr><tr class="property">
+    
+    <td>Property</td>
+    <td><code><a href="#stream" class="internal-link" title="werkzeug.wrappers.response.Response.stream">stream</a></code></td>
+    <td>The response iterable as write-only stream.</td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_ensure_sequence" class="internal-link" title="werkzeug.wrappers.response.Response._ensure_sequence">​_ensure​_sequence</a></code></td>
+    <td>This method can be called by methods that need a sequence.  If <code>mutable</code> is true, it will also ensure that the response sequence is a standard Python list.</td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_is_range_request_processable" class="internal-link" title="werkzeug.wrappers.response.Response._is_range_request_processable">​_is​_range​_request​_processable</a></code></td>
+    <td>Return <tt class="rst-docutils literal">True</tt> if <code><a href="werkzeug.datastructures.Range.html" class="internal-link" title="werkzeug.datastructures.Range">Range</a></code> header is present and if underlying resource is considered unchanged when compared with <code>If-Range</code> header.</td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_process_range_request" class="internal-link" title="werkzeug.wrappers.response.Response._process_range_request">​_process​_range​_request</a></code></td>
+    <td><span class="undocumented">No summary</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_wrap_range_response" class="internal-link" title="werkzeug.wrappers.response.Response._wrap_range_response">​_wrap​_range​_response</a></code></td>
+    <td>Wrap existing Response in case of Range Request context.</td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#_on_close" class="internal-link" title="werkzeug.wrappers.response.Response._on_close">​_on​_close</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+        
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="baseclassmethod">
+  
+  
+  <a name="werkzeug.wrappers.response.Response.force_type">
+    
+  </a>
+  <a name="force_type">
+    
+  </a>
+  <div class="functionHeader">
+    @classmethod<br />
+    <span class="py-keyword">def</span> <span class="py-defname">force_type</span>(cls, response, environ=None):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Enforce that the WSGI response is a response object of the current
+type.  Werkzeug will use the <code><a href="werkzeug.wrappers.response.Response.html" class="internal-link" title="werkzeug.wrappers.response.Response">Response</a></code> internally in many
+situations like the exceptions.  If you call <code>get_response</code> on an
+exception you will get back a regular <code><a href="werkzeug.wrappers.response.Response.html" class="internal-link" title="werkzeug.wrappers.response.Response">Response</a></code> object, even
+if you are using a custom subclass.</p>
+<p>This method can enforce a given response type, and it will also
+convert arbitrary WSGI callables into response objects if an environ
+is provided:</p>
+<pre class="rst-literal-block">
+# convert a Werkzeug response object into an instance of the
+# MyResponseClass subclass.
+response = MyResponseClass.force_type(response)
+
+# convert any WSGI application into a response object
+response = MyResponseClass.force_type(response, environ)
+</pre>
+<p>This is especially useful if you want to post-process responses in
+the main dispatcher and use functionality provided by your subclass.</p>
+<p>Keep in mind that this will modify response objects in place if
+possible!</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">response:</span><code><a href="werkzeug.wrappers.response.Response.html" class="internal-link" title="werkzeug.wrappers.response.Response">Response</a></code></td><td class="fieldArgDesc">a response object or wsgi application.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">environ:</span><code>t.Optional[<wbr></wbr>WSGIEnvironment]</code></td><td class="fieldArgDesc">a WSGI environment object.</td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="werkzeug.wrappers.response.Response.html" class="internal-link" title="werkzeug.wrappers.response.Response">Response</a></code></td><td class="fieldArgDesc">a response object.</td></tr></table></div>
+  </div>
+</div><div class="baseclassmethod">
+  
+  
+  <a name="werkzeug.wrappers.response.Response.from_app">
+    
+  </a>
+  <a name="from_app">
+    
+  </a>
+  <div class="functionHeader">
+    @classmethod<br />
+    <span class="py-keyword">def</span> <span class="py-defname">from_app</span>(cls, app, environ, buffered=False):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Create a new response object from an application output.  This
+works best if you pass it an application that returns a generator all
+the time.  Sometimes applications may use the <code><a href="werkzeug.wrappers.response.ResponseStream.html#write" class="internal-link" title="werkzeug.wrappers.response.ResponseStream.write">write()</a></code> callable
+returned by the <code>start_response</code> function.  This tries to resolve such
+edge cases automatically.  But if you don't get the expected output
+you should set <code>buffered</code> to <code>True</code> which enforces buffering.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">app:</span><code>WSGIApplication</code></td><td class="fieldArgDesc">the WSGI application to execute.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">environ:</span><code>WSGIEnvironment</code></td><td class="fieldArgDesc">the WSGI environment to execute against.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">buffered:</span><code>bool</code></td><td class="fieldArgDesc">set to <code>True</code> to enforce buffering.</td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="werkzeug.wrappers.response.Response.html" class="internal-link" title="werkzeug.wrappers.response.Response">Response</a></code></td><td class="fieldArgDesc">a response object.</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="werkzeug.wrappers.response.Response.__call__">
+    
+  </a>
+  <a name="__call__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__call__</span>(self, environ, start_response):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Process this response as WSGI application.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">environ:</span><code>WSGIEnvironment</code></td><td class="fieldArgDesc">the WSGI environment.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">start​_response:</span><code>StartResponse</code></td><td class="fieldArgDesc">the response callable provided by the WSGI
+server.</td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code>t.Iterable[<wbr></wbr>bytes]</code></td><td class="fieldArgDesc">an application iterator</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="werkzeug.wrappers.response.Response.__enter__">
+    
+  </a>
+  <a name="__enter__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__enter__</span>(self):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="werkzeug.wrappers.response.Response.html" class="internal-link" title="werkzeug.wrappers.response.Response">Response</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="werkzeug.wrappers.response.Response.__exit__">
+    
+  </a>
+  <a name="__exit__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__exit__</span>(self, exc_type, exc_value, tb):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="werkzeug.wrappers.response.Response.__init__">
+    
+  </a>
+  <a name="__init__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__init__</span>(self, response=None, status=None, headers=None, mimetype=None, content_type=None, direct_passthrough=False):
+    
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="werkzeug.test.TestResponse.html" class="internal-link">werkzeug.test.TestResponse</a></code>, <code><a href="werkzeug.wrappers.base_response.BaseResponse.html" class="internal-link">werkzeug.wrappers.base_response.BaseResponse</a></code></div>
+    
+    <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">response:</span><code>t.Optional[<wbr></wbr>t.Union[<wbr></wbr>t.Iterable[<wbr></wbr>bytes], <wbr></wbr>bytes, <wbr></wbr>t.Iterable[<wbr></wbr>str], <wbr></wbr>str]]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">status:</span><code>t.Optional[<wbr></wbr>t.Union[<wbr></wbr>int, <wbr></wbr>str, <wbr></wbr>HTTPStatus]]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">headers:</span><code>t.Optional[<wbr></wbr>t.Union[<wbr></wbr>t.Mapping[<wbr></wbr>str, <wbr></wbr>t.Union[<wbr></wbr>str, <wbr></wbr>int, <wbr></wbr>t.Iterable[<wbr></wbr>t.Union[<wbr></wbr>str, <wbr></wbr>int]]]], <wbr></wbr>t.Iterable[<wbr></wbr>t.Tuple[<wbr></wbr>str, <wbr></wbr>t.Union[<wbr></wbr>str, <wbr></wbr>int]]]]]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">mimetype:</span><code>t.Optional[<wbr></wbr>str]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">content​_type:</span><code>t.Optional[<wbr></wbr>str]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">direct​_passthrough:</span><code>bool</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="werkzeug.wrappers.response.Response.__repr__">
+    
+  </a>
+  <a name="__repr__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__repr__</span>(self):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code>str</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="werkzeug.wrappers.response.Response.add_etag">
+    
+  </a>
+  <a name="add_etag">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">add_etag</span>(self, overwrite=False, weak=False):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Add an etag for the current response if there is none yet.</p>
+<div class="rst-versionchanged">
+<span class="rst-versionmodified rst-changed">Changed in version 2.0: </span><span>SHA-1 is used to generate the value. MD5 may not be
+available in some environments.</span></div>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">overwrite:</span><code>bool</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">weak:</span><code>bool</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="werkzeug.wrappers.response.Response.calculate_content_length">
+    
+  </a>
+  <a name="calculate_content_length">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">calculate_content_length</span>(self):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Returns the content length if available or <code>None</code> otherwise.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code>t.Optional[<wbr></wbr>int]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="werkzeug.wrappers.response.Response.call_on_close">
+    
+  </a>
+  <a name="call_on_close">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">call_on_close</span>(self, func):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Adds a function to the internal list of functions that should
+be called as part of closing down the response.  Since 0.7 this
+function also returns the function that was passed so that this
+can be used as a decorator.</p>
+<div class="rst-versionadded">
+<span class="rst-versionmodified rst-added">New in version 0.6.</span></div>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">func:</span><code>t.Callable[<wbr></wbr>[], <wbr></wbr>t.Any]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code>t.Callable[<wbr></wbr>[], <wbr></wbr>t.Any]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="werkzeug.wrappers.response.Response.close">
+    
+  </a>
+  <a name="close">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">close</span>(self):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Close the wrapped response if possible.  You can also use the object
+in a with statement which will automatically close it.</p>
+<div class="rst-versionadded">
+<span class="rst-versionmodified rst-added">New in version 0.9: </span><span>Can now be used in a with statement.</span></div>
+</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="werkzeug.wrappers.response.Response.freeze">
+    
+  </a>
+  <a name="freeze">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">freeze</span>(self, no_etag=None):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Make the response object ready to be pickled. Does the
+following:</p>
+<ul class="rst-simple">
+<li>Buffer the response into a list, ignoring
+<code>implicity_sequence_conversion</code> and
+<code><a href="#direct_passthrough" class="internal-link" title="werkzeug.wrappers.response.Response.direct_passthrough">direct_passthrough</a></code>.</li>
+<li>Set the <tt class="rst-docutils literal"><span class="pre">Content-Length</span></tt> header.</li>
+<li>Generate an <tt class="rst-docutils literal">ETag</tt> header if one is not already set.</li>
+</ul>
+<div class="rst-versionchanged">
+<span class="rst-versionmodified rst-changed">Changed in version 2.0: </span><span>An <tt class="rst-docutils literal">ETag</tt> header is added, the <tt class="rst-docutils literal">no_etag</tt> parameter is
+deprecated and will be removed in Werkzeug 2.1.</span></div>
+<div class="rst-versionchanged">
+<span class="rst-versionmodified rst-changed">Changed in version 0.6: </span><span>The <tt class="rst-docutils literal"><span class="pre">Content-Length</span></tt> header is set.</span></div>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">no​_etag:</span><code>None</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="werkzeug.wrappers.response.Response.get_app_iter">
+    
+  </a>
+  <a name="get_app_iter">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">get_app_iter</span>(self, environ):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Returns the application iterator for the given environ.  Depending
+on the request method and the current status code the return value
+might be an empty response rather than the one from the response.</p>
+<p>If the request method is <code>HEAD</code> or the status code is in a range
+where the HTTP specification requires an empty response, an empty
+iterable is returned.</p>
+<div class="rst-versionadded">
+<span class="rst-versionmodified rst-added">New in version 0.6.</span></div>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">environ:</span><code>WSGIEnvironment</code></td><td class="fieldArgDesc">the WSGI environment of the request.</td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code>t.Iterable[<wbr></wbr>bytes]</code></td><td class="fieldArgDesc">a response iterable.</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="werkzeug.wrappers.response.Response.get_data">
+    
+  </a>
+  <a name="get_data">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">get_data</span>(self, as_text=False):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>The string representation of the response body.  Whenever you call
+this property the response iterable is encoded and flattened.  This
+can lead to unwanted behavior if you stream big data.</p>
+<p>This behavior can be disabled by setting
+<code><a href="#implicit_sequence_conversion" class="internal-link" title="werkzeug.wrappers.response.Response.implicit_sequence_conversion">implicit_sequence_conversion</a></code> to <code>False</code>.</p>
+<p>If <code>as_text</code> is set to <code>True</code> the return value will be a decoded
+string.</p>
+<div class="rst-versionadded">
+<span class="rst-versionmodified rst-added">New in version 0.9.</span></div>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">as​_text:</span><code>bool</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code>t.Union[<wbr></wbr>bytes, <wbr></wbr>str]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="werkzeug.wrappers.response.Response.get_json">
+    
+  </a>
+  <a name="get_json">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">get_json</span>(self, force=False, silent=False):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Parse <code><a href="#data" class="internal-link" title="werkzeug.wrappers.response.Response.data">data</a></code> as JSON. Useful during testing.</p>
+<p>If the mimetype does not indicate JSON
+(<a href="#system-message-1"><span class="rst-problematic" id="rst-problematic-1">:mimetype:`application/json`</span></a>, see <code>is_json</code>), this
+returns <tt class="rst-docutils literal">None</tt>.</p>
+<p>Unlike <code><a href="werkzeug.wrappers.request.Request.html#get_json" class="internal-link" title="werkzeug.wrappers.request.Request.get_json">Request.get_json</a></code>, the result is not cached.</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">force:</span><code>bool</code></td><td class="fieldArgDesc">Ignore the mimetype and always try to parse JSON.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">silent:</span><code>bool</code></td><td class="fieldArgDesc">Silence parsing errors and return <tt class="rst-docutils literal">None</tt>
+instead.</td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code>t.Optional[<wbr></wbr>t.Any]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="werkzeug.wrappers.response.Response.get_wsgi_headers">
+    
+  </a>
+  <a name="get_wsgi_headers">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">get_wsgi_headers</span>(self, environ):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>This is automatically called right before the response is started
+and returns headers modified for the given environment.  It returns a
+copy of the headers from the response with some modifications applied
+if necessary.</p>
+<p>For example the location header (if present) is joined with the root
+URL of the environment.  Also the content length is automatically set
+to zero here for certain status codes.</p>
+<div class="rst-versionchanged">
+<p><span class="rst-versionmodified rst-changed">Changed in version 0.6: </span><span>Previously that function was called <code>fix_headers</code> and modified
+the response object in place.  Also since 0.6, IRIs in location
+and content-location headers are handled properly.</span></p>
+<p>Also starting with 0.6, Werkzeug will attempt to set the content
+length if it is able to figure it out on its own.  This is the
+case if all the strings in the response iterable are already
+encoded and the iterable is buffered.</p>
+</div>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">environ:</span><code>WSGIEnvironment</code></td><td class="fieldArgDesc">the WSGI environment of the request.</td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="werkzeug.datastructures.Headers.html" class="internal-link" title="werkzeug.datastructures.Headers">Headers</a></code></td><td class="fieldArgDesc">returns a new <code>~werkzeug.datastructures.Headers</code>
+object.</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="werkzeug.wrappers.response.Response.get_wsgi_response">
+    
+  </a>
+  <a name="get_wsgi_response">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">get_wsgi_response</span>(self, environ):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Returns the final WSGI response as tuple.  The first item in
+the tuple is the application iterator, the second the status and
+the third the list of headers.  The response returned is created
+specially for the given environment.  For example if the request
+method in the WSGI environment is <tt class="rst-docutils literal">'HEAD'</tt> the response will
+be empty and only the headers and status code will be present.</p>
+<div class="rst-versionadded">
+<span class="rst-versionmodified rst-added">New in version 0.6.</span></div>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">environ:</span><code>WSGIEnvironment</code></td><td class="fieldArgDesc">the WSGI environment of the request.</td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code>t.Tuple[<wbr></wbr>t.Iterable[<wbr></wbr>bytes], <wbr></wbr>str, <wbr></wbr>t.List[<wbr></wbr>t.Tuple[<wbr></wbr>str, <wbr></wbr>str]]]</code></td><td class="fieldArgDesc">an <tt class="rst-docutils literal">(app_iter, status, headers)</tt> tuple.</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="werkzeug.wrappers.response.Response.iter_encoded">
+    
+  </a>
+  <a name="iter_encoded">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">iter_encoded</span>(self):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Iter the response encoded with the encoding of the response.
+If the response object is invoked as WSGI application the return
+value of this method is used as application iterator unless
+<code><a href="#direct_passthrough" class="internal-link" title="werkzeug.wrappers.response.Response.direct_passthrough">direct_passthrough</a></code> was activated.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code>t.Iterator[<wbr></wbr>bytes]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="werkzeug.wrappers.response.Response.make_conditional">
+    
+  </a>
+  <a name="make_conditional">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">make_conditional</span>(self, request_or_environ, accept_ranges=False, complete_length=None):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Make the response conditional to the request.  This method works
+best if an etag was defined for the response already.  The <code><a href="#add_etag" class="internal-link" title="werkzeug.wrappers.response.Response.add_etag">add_etag</a></code>
+method can be used to do that.  If called without etag just the date
+header is set.</p>
+<p>This does nothing if the request method in the request or environ is
+anything but GET or HEAD.</p>
+<p>For optimal performance when handling range requests, it's recommended
+that your response data object implements <code>seekable</code>, <code>seek</code> and <code><a href="werkzeug.wrappers.response.ResponseStream.html#tell" class="internal-link" title="werkzeug.wrappers.response.ResponseStream.tell">tell</a></code>
+methods as described by <code>io.IOBase</code>.  Objects returned by
+<code>~werkzeug.wsgi.wrap_file</code> automatically implement those methods.</p>
+<p>It does not remove the body of the response because that's something
+the <code><a href="#__call__" class="internal-link" title="werkzeug.wrappers.response.Response.__call__">__call__</a></code> function does for us automatically.</p>
+<p>Returns self so that you can do <tt class="rst-docutils literal">return resp.make_conditional(req)</tt>
+but modifies the object in-place.</p>
+<div class="rst-versionchanged">
+<span class="rst-versionmodified rst-changed">Changed in version 2.0: </span><span>Range processing is skipped if length is 0 instead of
+raising a 416 Range Not Satisfiable error.</span></div>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">request​_or​_environ:</span><code>t.Union[<wbr></wbr>WSGIEnvironment, <wbr></wbr><a href="werkzeug.wrappers.request.Request.html" class="internal-link" title="werkzeug.wrappers.request.Request">Request</a>]</code></td><td class="fieldArgDesc">a request object or WSGI environment to be
+used to make the response conditional
+against.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">accept​_ranges:</span><code>t.Union[<wbr></wbr>bool, <wbr></wbr>str]</code></td><td class="fieldArgDesc">This parameter dictates the value of
+<code>Accept-Ranges</code> header. If <tt class="rst-docutils literal">False</tt> (default),
+the header is not set. If <tt class="rst-docutils literal">True</tt>, it will be set
+to <tt class="rst-docutils literal">"bytes"</tt>. If <tt class="rst-docutils literal">None</tt>, it will be set to
+<tt class="rst-docutils literal">"none"</tt>. If it's a string, it will use this
+value.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">complete​_length:</span><code>t.Optional[<wbr></wbr>int]</code></td><td class="fieldArgDesc">Will be used only in valid Range Requests.
+It will set <code>Content-Range</code> complete length
+value and compute <code>Content-Length</code> real value.
+This parameter is mandatory for successful
+Range Requests completion.</td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="werkzeug.wrappers.response.Response.html" class="internal-link" title="werkzeug.wrappers.response.Response">Response</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Raises</td></tr><tr><td class="fieldArgContainer"><code><span class="undocumented">Unknown exception</span></code></td><td><code>~werkzeug.exceptions.RequestedRangeNotSatisfiable</code>
+if <code><a href="werkzeug.datastructures.Range.html" class="internal-link" title="werkzeug.datastructures.Range">Range</a></code> header could not be parsed or satisfied.</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="werkzeug.wrappers.response.Response.make_sequence">
+    
+  </a>
+  <a name="make_sequence">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">make_sequence</span>(self):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Converts the response iterator in a list.  By default this happens
+automatically if required.  If <code><a href="#implicit_sequence_conversion" class="internal-link" title="werkzeug.wrappers.response.Response.implicit_sequence_conversion">implicit_sequence_conversion</a></code> is
+disabled, this method is not automatically called and some properties
+might raise exceptions.  This also encodes all the items.</p>
+<div class="rst-versionadded">
+<span class="rst-versionmodified rst-added">New in version 0.6.</span></div>
+</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="werkzeug.wrappers.response.Response.set_data">
+    
+  </a>
+  <a name="set_data">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">set_data</span>(self, value):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Sets a new string as response.  The value must be a string or
+bytes. If a string is set it's encoded to the charset of the
+response (utf-8 by default).</p>
+<div class="rst-versionadded">
+<span class="rst-versionmodified rst-added">New in version 0.9.</span></div>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">value:</span><code>t.Union[<wbr></wbr>bytes, <wbr></wbr>str]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="baseclassvariable">
+  
+  
+  <a name="werkzeug.wrappers.response.Response.autocorrect_location_header">
+    
+  </a>
+  <a name="autocorrect_location_header">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">autocorrect_location_header</span>: <code>bool</code> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseclassvariable">
+  
+  
+  <a name="werkzeug.wrappers.response.Response.automatically_set_content_length">
+    
+  </a>
+  <a name="automatically_set_content_length">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">automatically_set_content_length</span>: <code>bool</code> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseclassvariable">
+  
+  
+  <a name="werkzeug.wrappers.response.Response.data">
+    
+  </a>
+  <a name="data">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">data</span> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseclassvariable">
+  
+  
+  <a name="werkzeug.wrappers.response.Response.implicit_sequence_conversion">
+    
+  </a>
+  <a name="implicit_sequence_conversion">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">implicit_sequence_conversion</span>: <code>bool</code> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="werkzeug.wrappers.response.Response.content_range">
+    
+  </a>
+  <a name="content_range">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">content_range</span> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="werkzeug.wrappers.response.Response.direct_passthrough">
+    
+  </a>
+  <a name="direct_passthrough">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">direct_passthrough</span> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="werkzeug.wrappers.response.Response.response">
+    
+  </a>
+  <a name="response">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">response</span> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="werkzeug.wrappers.response.Response.status_code">
+    
+  </a>
+  <a name="status_code">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">status_code</span>: <code>int</code> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseproperty">
+  
+  
+  <a name="werkzeug.wrappers.response.Response.is_sequence">
+    
+  </a>
+  <a name="is_sequence">
+    
+  </a>
+  <div class="functionHeader">
+    @property<br />
+    <span class="py-defname">is_sequence</span>: <code>bool</code> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p>If the iterator is buffered, this property will be <code>True</code>.  A
+response object will consider an iterator to be buffered if the
+response attribute is a list or tuple.</p>
+<div class="rst-versionadded">
+<span class="rst-versionmodified rst-added">New in version 0.6.</span></div>
+</div>
+    
+  </div>
+</div><div class="baseproperty">
+  
+  
+  <a name="werkzeug.wrappers.response.Response.is_streamed">
+    
+  </a>
+  <a name="is_streamed">
+    
+  </a>
+  <div class="functionHeader">
+    @property<br />
+    <span class="py-defname">is_streamed</span>: <code>bool</code> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p>If the response is streamed (the response is not an iterable with
+a length information) this property is <code>True</code>.  In this case streamed
+means that there is no information about the number of iterations.
+This is usually <code>True</code> if a generator is passed to the response object.</p>
+<p>This is useful for checking before applying some sort of post
+filtering that should not take place for streamed responses.</p>
+</div>
+    
+  </div>
+</div><div class="baseproperty">
+  
+  
+  <a name="werkzeug.wrappers.response.Response.json">
+    
+  </a>
+  <a name="json">
+    
+  </a>
+  <div class="functionHeader">
+    @property<br />
+    <span class="py-defname">json</span>: <code>t.Optional[<wbr></wbr>t.Any]</code> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p>The parsed JSON data if <code>mimetype</code> indicates JSON
+(<a href="#system-message-1"><span class="rst-problematic" id="rst-problematic-1">:mimetype:`application/json`</span></a>, see <code>is_json</code>).</p>
+<p>Calls <code><a href="#get_json" class="internal-link" title="werkzeug.wrappers.response.Response.get_json">get_json</a></code> with default arguments.</p>
+</div>
+    
+  </div>
+</div><div class="baseproperty">
+  
+  
+  <a name="werkzeug.wrappers.response.Response.stream">
+    
+  </a>
+  <a name="stream">
+    
+  </a>
+  <div class="functionHeader">
+    @<a href="werkzeug.utils.cached_property.html" class="internal-link" title="werkzeug.utils.cached_property">cached_property</a><br />
+    <span class="py-defname">stream</span>: <code><a href="werkzeug.wrappers.response.ResponseStream.html" class="internal-link" title="werkzeug.wrappers.response.ResponseStream">ResponseStream</a></code> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div>The response iterable as write-only stream.</div>
+    
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="werkzeug.wrappers.response.Response._ensure_sequence">
+    
+  </a>
+  <a name="_ensure_sequence">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_ensure_sequence</span>(self, mutable=False):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>This method can be called by methods that need a sequence.  If
+<code>mutable</code> is true, it will also ensure that the response sequence
+is a standard Python list.</p>
+<div class="rst-versionadded">
+<span class="rst-versionmodified rst-added">New in version 0.6.</span></div>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">mutable:</span><code>bool</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="werkzeug.wrappers.response.Response._is_range_request_processable">
+    
+  </a>
+  <a name="_is_range_request_processable">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_is_range_request_processable</span>(self, environ):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Return <tt class="rst-docutils literal">True</tt> if <code><a href="werkzeug.datastructures.Range.html" class="internal-link" title="werkzeug.datastructures.Range">Range</a></code> header is present and if underlying
+resource is considered unchanged when compared with <code>If-Range</code> header.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">environ:</span><code>WSGIEnvironment</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code>bool</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="werkzeug.wrappers.response.Response._process_range_request">
+    
+  </a>
+  <a name="_process_range_request">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_process_range_request</span>(self, environ, complete_length=None, accept_ranges=None):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Handle Range Request related headers (RFC7233).  If <code>Accept-Ranges</code>
+header is valid, and Range Request is processable, we set the headers
+as described by the RFC, and wrap the underlying response in a
+RangeWrapper.</p>
+<p>Returns <tt class="rst-docutils literal">True</tt> if Range Request can be fulfilled, <tt class="rst-docutils literal">False</tt> otherwise.</p>
+<div class="rst-versionchanged">
+<span class="rst-versionmodified rst-changed">Changed in version 2.0: </span><span>Returns <tt class="rst-docutils literal">False</tt> if the length is 0.</span></div>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">environ:</span><code>WSGIEnvironment</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">complete​_length:</span><code>t.Optional[<wbr></wbr>int]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">accept​_ranges:</span><code>t.Optional[<wbr></wbr>t.Union[<wbr></wbr>bool, <wbr></wbr>str]]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code>bool</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Raises</td></tr><tr><td class="fieldArgContainer"><code><span class="undocumented">Unknown exception</span></code></td><td><code>~werkzeug.exceptions.RequestedRangeNotSatisfiable</code>
+if <code><a href="werkzeug.datastructures.Range.html" class="internal-link" title="werkzeug.datastructures.Range">Range</a></code> header could not be parsed or satisfied.</td></tr></table></div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="werkzeug.wrappers.response.Response._wrap_range_response">
+    
+  </a>
+  <a name="_wrap_range_response">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_wrap_range_response</span>(self, start, length):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Wrap existing Response in case of Range Request context.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">start:</span><code>int</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">length:</span><code>int</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  
+  <a name="werkzeug.wrappers.response.Response._on_close">
+    
+  </a>
+  <a name="_on_close">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_on_close</span>: <code>t.List[<wbr></wbr>t.Callable[<wbr></wbr>[], <wbr></wbr>t.Any]]</code> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div>
+
+      </div>
+    </div>
+
+    <footer class="navbar navbar-default">
+  
+  <div class="container">
+    <a href="index.html">API Documentation</a> for werkzeug,
+  generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
+    22.2.0 at 2022-02-23 04:47:03.
+  </div>
+</footer>
+
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+  </body>
+</html>

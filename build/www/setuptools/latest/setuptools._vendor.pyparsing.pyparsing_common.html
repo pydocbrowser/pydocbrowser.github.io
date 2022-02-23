@@ -1,0 +1,1010 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  
+
+  <head>
+    
+    <title>setuptools._vendor.pyparsing.pyparsing_common</title>
+    <meta name="generator" content="pydoctor 22.2.0"> 
+        
+    </meta>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=0.75" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+    <link rel="stylesheet" type="text/css" href="extra.css" />
+</head>
+
+  <body>
+
+    
+
+    <nav class="navbar navbar-default">
+  
+  <div class="container">
+
+    <div class="navbar-header">
+      
+      <div class="navlinks">
+          <span class="navbar-brand">
+            setuptools <a href="index.html">API Documentation</a>
+          </span>
+
+          <a href="moduleIndex.html">
+            Modules
+          </a>
+
+          <a href="classIndex.html">
+            Classes
+          </a>
+
+          <a href="nameIndex.html">
+            Names
+          </a>
+      </div>
+
+    </div>
+  </div>
+</nav>
+
+    
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="class"><code><code><a href="index.html" class="internal-link">setuptools</a></code><wbr></wbr>.<code><a href="setuptools._vendor.html" class="internal-link" title="setuptools._vendor">_vendor</a></code><wbr></wbr>.<code><a href="setuptools._vendor.pyparsing.html" class="internal-link" title="setuptools._vendor.pyparsing">pyparsing</a></code><wbr></wbr>.<code><a href="setuptools._vendor.pyparsing.pyparsing_common.html" class="internal-link" title="setuptools._vendor.pyparsing.pyparsing_common">pyparsing_common</a></code></code></h1>
+        <div id="showPrivate">
+          <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+        </div>
+      </div>
+
+      <div class="categoryHeader">
+        class documentation
+      </div>
+
+      <div class="extrasDocstring">
+        <p><code><span class="py-keyword">class</span> <span class="py-defname">pyparsing_common</span>:</code></p>
+        <p><a href="classIndex.html#setuptools._vendor.pyparsing.pyparsing_common">View In Hierarchy</a></p>
+      </div>
+
+      <div class="moduleDocstring">
+        <div><dl class="rst-docutils">
+<dt>Here are some common low-level expressions that may be useful in jump-starting parser development:</dt>
+<dd><ul class="rst-first rst-last rst-simple">
+<li>numeric forms (L{integers&lt;integer&gt;}, L{reals&lt;real&gt;}, L{scientific notation&lt;sci_real&gt;})</li>
+<li>common L{programming identifiers&lt;identifier&gt;}</li>
+<li>network addresses (L{MAC&lt;mac_address&gt;}, L{IPv4&lt;ipv4_address&gt;}, L{IPv6&lt;ipv6_address&gt;})</li>
+<li>ISO8601 L{dates&lt;iso8601_date&gt;} and L{datetime&lt;iso8601_datetime&gt;}</li>
+<li>L{UUID&lt;uuid&gt;}</li>
+<li>L{comma-separated list&lt;comma_separated_list&gt;}</li>
+</ul>
+</dd>
+<dt>Parse actions:</dt>
+<dd><ul class="rst-first rst-last rst-simple">
+<li>C{L{convertToInteger}}</li>
+<li>C{L{convertToFloat}}</li>
+<li>C{L{convertToDate}}</li>
+<li>C{L{convertToDatetime}}</li>
+<li>C{L{stripHTMLTags}}</li>
+<li>C{L{upcaseTokens}}</li>
+<li>C{L{downcaseTokens}}</li>
+</ul>
+</dd>
+<dt>Example::</dt>
+<dd><dl class="rst-first rst-docutils">
+<dt>pyparsing_common.number.runTests('''</dt>
+<dd># any int or real number, returned as the appropriate type
+100
+-100
++100
+3.14159
+6.02e23
+1e-12
+''')</dd>
+<dt>pyparsing_common.fnumber.runTests('''</dt>
+<dd># any int or real number, returned as float
+100
+-100
++100
+3.14159
+6.02e23
+1e-12
+''')</dd>
+<dt>pyparsing_common.hex_integer.runTests('''</dt>
+<dd># hex numbers
+100
+FF
+''')</dd>
+<dt>pyparsing_common.fraction.runTests('''</dt>
+<dd># fractions
+1/2
+-3/4
+''')</dd>
+<dt>pyparsing_common.mixed_integer.runTests('''</dt>
+<dd># mixed fractions
+1
+1/2
+-3/4
+1-3/4
+''')</dd>
+</dl>
+<p>import uuid
+pyparsing_common.uuid.setParseAction(tokenMap(uuid.UUID))
+pyparsing_common.uuid.runTests('''</p>
+<blockquote class="rst-last">
+# uuid
+12345678-1234-5678-1234-567812345678
+''')</blockquote>
+</dd>
+<dt>prints::</dt>
+<dd><p class="rst-first"># any int or real number, returned as the appropriate type
+100
+[100]</p>
+<p>-100
+[-100]</p>
+<p>+100
+[100]</p>
+<p>3.14159
+[3.14159]</p>
+<p>6.02e23
+[6.02e+23]</p>
+<p>1e-12
+[1e-12]</p>
+<p># any int or real number, returned as float
+100
+[100.0]</p>
+<p>-100
+[-100.0]</p>
+<p>+100
+[100.0]</p>
+<p>3.14159
+[3.14159]</p>
+<p>6.02e23
+[6.02e+23]</p>
+<p>1e-12
+[1e-12]</p>
+<p># hex numbers
+100
+[256]</p>
+<p>FF
+[255]</p>
+<p># fractions
+1/2
+[0.5]</p>
+<p>-3/4
+[-0.75]</p>
+<p># mixed fractions
+1
+[1]</p>
+<p>1/2
+[0.5]</p>
+<p>-3/4
+[-0.75]</p>
+<p>1-3/4
+[1.75]</p>
+<p class="rst-last"># uuid
+12345678-1234-5678-1234-567812345678
+[UUID('12345678-1234-5678-1234-567812345678')]</p>
+</dd>
+</dl>
+</div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id12289">
+  
+  
+  <tr class="staticmethod">
+    
+    <td>Static Method</td>
+    <td><code><a href="#convertToDate" class="internal-link" title="setuptools._vendor.pyparsing.pyparsing_common.convertToDate">convert​To​Date</a></code></td>
+    <td>Helper to create a parse action for converting parsed date string to Python datetime.date</td>
+  </tr><tr class="staticmethod">
+    
+    <td>Static Method</td>
+    <td><code><a href="#convertToDatetime" class="internal-link" title="setuptools._vendor.pyparsing.pyparsing_common.convertToDatetime">convert​To​Datetime</a></code></td>
+    <td>Helper to create a parse action for converting parsed datetime string to Python datetime.datetime</td>
+  </tr><tr class="staticmethod">
+    
+    <td>Static Method</td>
+    <td><code><a href="#stripHTMLTags" class="internal-link" title="setuptools._vendor.pyparsing.pyparsing_common.stripHTMLTags">strip​HTMLTags</a></code></td>
+    <td>Parse action to remove HTML tags from web page HTML source</td>
+  </tr><tr class="classvariable">
+    
+    <td>Class Variable</td>
+    <td><code><a href="#comma_separated_list" class="internal-link" title="setuptools._vendor.pyparsing.pyparsing_common.comma_separated_list">comma​_separated​_list</a></code></td>
+    <td>Predefined expression of 1 or more printable words or quoted strings, separated by commas.</td>
+  </tr><tr class="classvariable">
+    
+    <td>Class Variable</td>
+    <td><code><a href="#convertToFloat" class="internal-link" title="setuptools._vendor.pyparsing.pyparsing_common.convertToFloat">convert​To​Float</a></code></td>
+    <td>Parse action for converting parsed numbers to Python float</td>
+  </tr><tr class="classvariable">
+    
+    <td>Class Variable</td>
+    <td><code><a href="#convertToInteger" class="internal-link" title="setuptools._vendor.pyparsing.pyparsing_common.convertToInteger">convert​To​Integer</a></code></td>
+    <td>Parse action for converting parsed integers to Python int</td>
+  </tr><tr class="classvariable">
+    
+    <td>Class Variable</td>
+    <td><code><a href="#downcaseTokens" class="internal-link" title="setuptools._vendor.pyparsing.pyparsing_common.downcaseTokens">downcase​Tokens</a></code></td>
+    <td>Parse action to convert tokens to lower case.</td>
+  </tr><tr class="classvariable">
+    
+    <td>Class Variable</td>
+    <td><code><a href="#fnumber" class="internal-link" title="setuptools._vendor.pyparsing.pyparsing_common.fnumber">fnumber</a></code></td>
+    <td>any int or real number, returned as float</td>
+  </tr><tr class="classvariable">
+    
+    <td>Class Variable</td>
+    <td><code><a href="#fraction" class="internal-link" title="setuptools._vendor.pyparsing.pyparsing_common.fraction">fraction</a></code></td>
+    <td>fractional expression of an integer divided by an integer, returns a float</td>
+  </tr><tr class="classvariable">
+    
+    <td>Class Variable</td>
+    <td><code><a href="#hex_integer" class="internal-link" title="setuptools._vendor.pyparsing.pyparsing_common.hex_integer">hex​_integer</a></code></td>
+    <td>expression that parses a hexadecimal integer, returns an int</td>
+  </tr><tr class="classvariable">
+    
+    <td>Class Variable</td>
+    <td><code><a href="#identifier" class="internal-link" title="setuptools._vendor.pyparsing.pyparsing_common.identifier">identifier</a></code></td>
+    <td>typical code identifier (leading alpha or '_', followed by 0 or more alphas, nums, or '_')</td>
+  </tr><tr class="classvariable">
+    
+    <td>Class Variable</td>
+    <td><code><a href="#integer" class="internal-link" title="setuptools._vendor.pyparsing.pyparsing_common.integer">integer</a></code></td>
+    <td>expression that parses an unsigned integer, returns an int</td>
+  </tr><tr class="classvariable">
+    
+    <td>Class Variable</td>
+    <td><code><a href="#ipv4_address" class="internal-link" title="setuptools._vendor.pyparsing.pyparsing_common.ipv4_address">ipv4​_address</a></code></td>
+    <td>IPv4 address (C{0.0.0.0 - 255.255.255.255})</td>
+  </tr><tr class="classvariable">
+    
+    <td>Class Variable</td>
+    <td><code><a href="#ipv6_address" class="internal-link" title="setuptools._vendor.pyparsing.pyparsing_common.ipv6_address">ipv6​_address</a></code></td>
+    <td>IPv6 address (long, short, or mixed form)</td>
+  </tr><tr class="classvariable">
+    
+    <td>Class Variable</td>
+    <td><code><a href="#iso8601_date" class="internal-link" title="setuptools._vendor.pyparsing.pyparsing_common.iso8601_date">iso8601​_date</a></code></td>
+    <td>ISO8601 date (C{yyyy-mm-dd})</td>
+  </tr><tr class="classvariable">
+    
+    <td>Class Variable</td>
+    <td><code><a href="#iso8601_datetime" class="internal-link" title="setuptools._vendor.pyparsing.pyparsing_common.iso8601_datetime">iso8601​_datetime</a></code></td>
+    <td>ISO8601 datetime (C{yyyy-mm-ddThh:mm:ss.s(Z|+-00:00)}) - trailing seconds, milliseconds, and timezone optional; accepts separating C{'T'} or C{' '}</td>
+  </tr><tr class="classvariable">
+    
+    <td>Class Variable</td>
+    <td><code><a href="#mac_address" class="internal-link" title="setuptools._vendor.pyparsing.pyparsing_common.mac_address">mac​_address</a></code></td>
+    <td>MAC address xx:xx:xx:xx:xx (may also have '-' or '.' delimiters)</td>
+  </tr><tr class="classvariable">
+    
+    <td>Class Variable</td>
+    <td><code><a href="#mixed_integer" class="internal-link" title="setuptools._vendor.pyparsing.pyparsing_common.mixed_integer">mixed​_integer</a></code></td>
+    <td>mixed integer of the form 'integer - fraction', with optional leading integer, returns float</td>
+  </tr><tr class="classvariable">
+    
+    <td>Class Variable</td>
+    <td><code><a href="#number" class="internal-link" title="setuptools._vendor.pyparsing.pyparsing_common.number">number</a></code></td>
+    <td>any numeric expression, returns the corresponding Python type</td>
+  </tr><tr class="classvariable">
+    
+    <td>Class Variable</td>
+    <td><code><a href="#real" class="internal-link" title="setuptools._vendor.pyparsing.pyparsing_common.real">real</a></code></td>
+    <td>expression that parses a floating point number and returns a float</td>
+  </tr><tr class="classvariable">
+    
+    <td>Class Variable</td>
+    <td><code><a href="#sci_real" class="internal-link" title="setuptools._vendor.pyparsing.pyparsing_common.sci_real">sci​_real</a></code></td>
+    <td>expression that parses a floating point number with optional scientific notation and returns a float</td>
+  </tr><tr class="classvariable">
+    
+    <td>Class Variable</td>
+    <td><code><a href="#signed_integer" class="internal-link" title="setuptools._vendor.pyparsing.pyparsing_common.signed_integer">signed​_integer</a></code></td>
+    <td>expression that parses an integer with optional leading sign, returns an int</td>
+  </tr><tr class="classvariable">
+    
+    <td>Class Variable</td>
+    <td><code><a href="#upcaseTokens" class="internal-link" title="setuptools._vendor.pyparsing.pyparsing_common.upcaseTokens">upcase​Tokens</a></code></td>
+    <td>Parse action to convert tokens to upper case.</td>
+  </tr><tr class="classvariable">
+    
+    <td>Class Variable</td>
+    <td><code><a href="#uuid" class="internal-link" title="setuptools._vendor.pyparsing.pyparsing_common.uuid">uuid</a></code></td>
+    <td>UUID (C{xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx})</td>
+  </tr><tr class="classvariable private">
+    
+    <td>Class Variable</td>
+    <td><code><a href="#_commasepitem" class="internal-link" title="setuptools._vendor.pyparsing.pyparsing_common._commasepitem">​_commasepitem</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="classvariable private">
+    
+    <td>Class Variable</td>
+    <td><code><a href="#_full_ipv6_address" class="internal-link" title="setuptools._vendor.pyparsing.pyparsing_common._full_ipv6_address">​_full​_ipv6​_address</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="classvariable private">
+    
+    <td>Class Variable</td>
+    <td><code><a href="#_html_stripper" class="internal-link" title="setuptools._vendor.pyparsing.pyparsing_common._html_stripper">​_html​_stripper</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="classvariable private">
+    
+    <td>Class Variable</td>
+    <td><code><a href="#_ipv6_part" class="internal-link" title="setuptools._vendor.pyparsing.pyparsing_common._ipv6_part">​_ipv6​_part</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="classvariable private">
+    
+    <td>Class Variable</td>
+    <td><code><a href="#_mixed_ipv6_address" class="internal-link" title="setuptools._vendor.pyparsing.pyparsing_common._mixed_ipv6_address">​_mixed​_ipv6​_address</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="classvariable private">
+    
+    <td>Class Variable</td>
+    <td><code><a href="#_short_ipv6_address" class="internal-link" title="setuptools._vendor.pyparsing.pyparsing_common._short_ipv6_address">​_short​_ipv6​_address</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+        
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="basestaticmethod">
+  
+  
+  <a name="setuptools._vendor.pyparsing.pyparsing_common.convertToDate">
+    
+  </a>
+  <a name="convertToDate">
+    
+  </a>
+  <div class="functionHeader">
+    @staticmethod<br />
+    <span class="py-keyword">def</span> <span class="py-defname">convertToDate</span>(fmt=<span class="rst-variable-quote">'</span><span class="rst-variable-string">%Y-%m-%d</span><span class="rst-variable-quote">'</span>):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Helper to create a parse action for converting parsed date string to Python datetime.date</p>
+<dl class="rst-docutils">
+<dt>Params -</dt>
+<dd><ul class="rst-first rst-last rst-simple">
+<li>fmt - format to be passed to datetime.strptime (default=C{"%Y-%m-%d"})</li>
+</ul>
+</dd>
+<dt>Example::</dt>
+<dd>date_expr = pyparsing_common.iso8601_date.copy()
+date_expr.setParseAction(pyparsing_common.convertToDate())
+print(date_expr.parseString("1999-12-31"))</dd>
+<dt>prints::</dt>
+<dd>[datetime.date(1999, 12, 31)]</dd>
+</dl>
+</div>
+  </div>
+</div><div class="basestaticmethod">
+  
+  
+  <a name="setuptools._vendor.pyparsing.pyparsing_common.convertToDatetime">
+    
+  </a>
+  <a name="convertToDatetime">
+    
+  </a>
+  <div class="functionHeader">
+    @staticmethod<br />
+    <span class="py-keyword">def</span> <span class="py-defname">convertToDatetime</span>(fmt=<span class="rst-variable-quote">'</span><span class="rst-variable-string">%Y-%m-%dT%H:%M:%S.%f</span><span class="rst-variable-quote">'</span>):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Helper to create a parse action for converting parsed datetime string to Python datetime.datetime</p>
+<dl class="rst-docutils">
+<dt>Params -</dt>
+<dd><ul class="rst-first rst-last rst-simple">
+<li>fmt - format to be passed to datetime.strptime (default=C{"%Y-%m-%dT%H:%M:%S.%f"})</li>
+</ul>
+</dd>
+<dt>Example::</dt>
+<dd>dt_expr = pyparsing_common.iso8601_datetime.copy()
+dt_expr.setParseAction(pyparsing_common.convertToDatetime())
+print(dt_expr.parseString("1999-12-31T23:59:59.999"))</dd>
+<dt>prints::</dt>
+<dd>[datetime.datetime(1999, 12, 31, 23, 59, 59, 999000)]</dd>
+</dl>
+</div>
+  </div>
+</div><div class="basestaticmethod">
+  
+  
+  <a name="setuptools._vendor.pyparsing.pyparsing_common.stripHTMLTags">
+    
+  </a>
+  <a name="stripHTMLTags">
+    
+  </a>
+  <div class="functionHeader">
+    @staticmethod<br />
+    <span class="py-keyword">def</span> <span class="py-defname">stripHTMLTags</span>(s, l, tokens):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Parse action to remove HTML tags from web page HTML source</p>
+<dl class="rst-docutils">
+<dt>Example::</dt>
+<dd><p class="rst-first"># strip HTML links from normal text
+text = '&lt;td&gt;More info at the &lt;a href="<a class="rst-reference external" href="http://pyparsing.wikispaces.com" target="_top">http://pyparsing.wikispaces.com</a>"&gt;pyparsing&lt;/a&gt; wiki page&lt;/td&gt;'
+td,td_end = makeHTMLTags("TD")
+table_text = td + SkipTo(td_end).setParseAction(pyparsing_common.stripHTMLTags)("body") + td_end</p>
+<p class="rst-last">print(table_text.parseString(text).body) # -&gt; 'More info at the pyparsing wiki page'</p>
+</dd>
+</dl>
+</div>
+  </div>
+</div><div class="baseclassvariable">
+  
+  
+  <a name="setuptools._vendor.pyparsing.pyparsing_common.comma_separated_list">
+    
+  </a>
+  <a name="comma_separated_list">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">comma_separated_list</span> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div>Predefined expression of 1 or more printable words or quoted strings, separated by commas.</div>
+    
+  </div>
+</div><div class="baseclassvariable">
+  
+  
+  <a name="setuptools._vendor.pyparsing.pyparsing_common.convertToFloat">
+    
+  </a>
+  <a name="convertToFloat">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">convertToFloat</span> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div>Parse action for converting parsed numbers to Python float</div>
+    
+  </div>
+</div><div class="baseclassvariable">
+  
+  
+  <a name="setuptools._vendor.pyparsing.pyparsing_common.convertToInteger">
+    
+  </a>
+  <a name="convertToInteger">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">convertToInteger</span> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div>Parse action for converting parsed integers to Python int</div>
+    
+  </div>
+</div><div class="baseclassvariable">
+  
+  
+  <a name="setuptools._vendor.pyparsing.pyparsing_common.downcaseTokens">
+    
+  </a>
+  <a name="downcaseTokens">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">downcaseTokens</span> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div>Parse action to convert tokens to lower case.</div>
+    
+  </div>
+</div><div class="baseclassvariable">
+  
+  
+  <a name="setuptools._vendor.pyparsing.pyparsing_common.fnumber">
+    
+  </a>
+  <a name="fnumber">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">fnumber</span> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div>any int or real number, returned as float</div>
+    
+  </div>
+</div><div class="baseclassvariable">
+  
+  
+  <a name="setuptools._vendor.pyparsing.pyparsing_common.fraction">
+    
+  </a>
+  <a name="fraction">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">fraction</span> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div>fractional expression of an integer divided by an integer, returns a float</div>
+    
+  </div>
+</div><div class="baseclassvariable">
+  
+  
+  <a name="setuptools._vendor.pyparsing.pyparsing_common.hex_integer">
+    
+  </a>
+  <a name="hex_integer">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">hex_integer</span> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div>expression that parses a hexadecimal integer, returns an int</div>
+    
+  </div>
+</div><div class="baseclassvariable">
+  
+  
+  <a name="setuptools._vendor.pyparsing.pyparsing_common.identifier">
+    
+  </a>
+  <a name="identifier">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">identifier</span> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div>typical code identifier (leading alpha or '_', followed by 0 or more alphas, nums, or '_')</div>
+    
+  </div>
+</div><div class="baseclassvariable">
+  
+  
+  <a name="setuptools._vendor.pyparsing.pyparsing_common.integer">
+    
+  </a>
+  <a name="integer">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">integer</span> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div>expression that parses an unsigned integer, returns an int</div>
+    
+  </div>
+</div><div class="baseclassvariable">
+  
+  
+  <a name="setuptools._vendor.pyparsing.pyparsing_common.ipv4_address">
+    
+  </a>
+  <a name="ipv4_address">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">ipv4_address</span> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div>IPv4 address (C{0.0.0.0 - 255.255.255.255})</div>
+    
+  </div>
+</div><div class="baseclassvariable">
+  
+  
+  <a name="setuptools._vendor.pyparsing.pyparsing_common.ipv6_address">
+    
+  </a>
+  <a name="ipv6_address">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">ipv6_address</span> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div>IPv6 address (long, short, or mixed form)</div>
+    
+  </div>
+</div><div class="baseclassvariable">
+  
+  
+  <a name="setuptools._vendor.pyparsing.pyparsing_common.iso8601_date">
+    
+  </a>
+  <a name="iso8601_date">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">iso8601_date</span> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div>ISO8601 date (C{yyyy-mm-dd})</div>
+    
+  </div>
+</div><div class="baseclassvariable">
+  
+  
+  <a name="setuptools._vendor.pyparsing.pyparsing_common.iso8601_datetime">
+    
+  </a>
+  <a name="iso8601_datetime">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">iso8601_datetime</span> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div>ISO8601 datetime (C{yyyy-mm-ddThh:mm:ss.s(Z|+-00:00)}) - trailing seconds, milliseconds, and timezone optional; accepts separating C{'T'} or C{' '}</div>
+    
+  </div>
+</div><div class="baseclassvariable">
+  
+  
+  <a name="setuptools._vendor.pyparsing.pyparsing_common.mac_address">
+    
+  </a>
+  <a name="mac_address">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">mac_address</span> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div>MAC address xx:xx:xx:xx:xx (may also have '-' or '.' delimiters)</div>
+    
+  </div>
+</div><div class="baseclassvariable">
+  
+  
+  <a name="setuptools._vendor.pyparsing.pyparsing_common.mixed_integer">
+    
+  </a>
+  <a name="mixed_integer">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">mixed_integer</span> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div>mixed integer of the form 'integer - fraction', with optional leading integer, returns float</div>
+    
+  </div>
+</div><div class="baseclassvariable">
+  
+  
+  <a name="setuptools._vendor.pyparsing.pyparsing_common.number">
+    
+  </a>
+  <a name="number">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">number</span> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div>any numeric expression, returns the corresponding Python type</div>
+    
+  </div>
+</div><div class="baseclassvariable">
+  
+  
+  <a name="setuptools._vendor.pyparsing.pyparsing_common.real">
+    
+  </a>
+  <a name="real">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">real</span> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div>expression that parses a floating point number and returns a float</div>
+    
+  </div>
+</div><div class="baseclassvariable">
+  
+  
+  <a name="setuptools._vendor.pyparsing.pyparsing_common.sci_real">
+    
+  </a>
+  <a name="sci_real">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">sci_real</span> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div>expression that parses a floating point number with optional scientific notation and returns a float</div>
+    
+  </div>
+</div><div class="baseclassvariable">
+  
+  
+  <a name="setuptools._vendor.pyparsing.pyparsing_common.signed_integer">
+    
+  </a>
+  <a name="signed_integer">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">signed_integer</span> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div>expression that parses an integer with optional leading sign, returns an int</div>
+    
+  </div>
+</div><div class="baseclassvariable">
+  
+  
+  <a name="setuptools._vendor.pyparsing.pyparsing_common.upcaseTokens">
+    
+  </a>
+  <a name="upcaseTokens">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">upcaseTokens</span> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div>Parse action to convert tokens to upper case.</div>
+    
+  </div>
+</div><div class="baseclassvariable">
+  
+  
+  <a name="setuptools._vendor.pyparsing.pyparsing_common.uuid">
+    
+  </a>
+  <a name="uuid">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">uuid</span> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div>UUID (C{xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx})</div>
+    
+  </div>
+</div><div class="baseclassvariable private">
+  
+  
+  <a name="setuptools._vendor.pyparsing.pyparsing_common._commasepitem">
+    
+  </a>
+  <a name="_commasepitem">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_commasepitem</span> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseclassvariable private">
+  
+  
+  <a name="setuptools._vendor.pyparsing.pyparsing_common._full_ipv6_address">
+    
+  </a>
+  <a name="_full_ipv6_address">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_full_ipv6_address</span> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseclassvariable private">
+  
+  
+  <a name="setuptools._vendor.pyparsing.pyparsing_common._html_stripper">
+    
+  </a>
+  <a name="_html_stripper">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_html_stripper</span> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseclassvariable private">
+  
+  
+  <a name="setuptools._vendor.pyparsing.pyparsing_common._ipv6_part">
+    
+  </a>
+  <a name="_ipv6_part">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_ipv6_part</span> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseclassvariable private">
+  
+  
+  <a name="setuptools._vendor.pyparsing.pyparsing_common._mixed_ipv6_address">
+    
+  </a>
+  <a name="_mixed_ipv6_address">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_mixed_ipv6_address</span> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseclassvariable private">
+  
+  
+  <a name="setuptools._vendor.pyparsing.pyparsing_common._short_ipv6_address">
+    
+  </a>
+  <a name="_short_ipv6_address">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_short_ipv6_address</span> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div>
+
+      </div>
+    </div>
+
+    <footer class="navbar navbar-default">
+  
+  <div class="container">
+    <a href="index.html">API Documentation</a> for setuptools,
+  generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
+    22.2.0 at 2022-02-23 04:39:29.
+  </div>
+</footer>
+
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+  </body>
+</html>

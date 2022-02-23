@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  
+
+  <head>
+    
+    <title>sqlalchemy.types.ExternalType</title>
+    <meta name="generator" content="pydoctor 22.2.0"> 
+        
+    </meta>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=0.75" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+    <link rel="stylesheet" type="text/css" href="extra.css" />
+</head>
+
+  <body>
+
+    
+
+    <nav class="navbar navbar-default">
+  
+  <div class="container">
+
+    <div class="navbar-header">
+      
+      <div class="navlinks">
+          <span class="navbar-brand">
+            sqlalchemy <a href="index.html">API Documentation</a>
+          </span>
+
+          <a href="moduleIndex.html">
+            Modules
+          </a>
+
+          <a href="classIndex.html">
+            Classes
+          </a>
+
+          <a href="nameIndex.html">
+            Names
+          </a>
+      </div>
+
+    </div>
+  </div>
+</nav>
+
+    
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="class"><code><code><a href="index.html" class="internal-link">sqlalchemy</a></code><wbr></wbr>.<code><a href="sqlalchemy.types.html" class="internal-link" title="sqlalchemy.types">types</a></code><wbr></wbr>.<code><a href="sqlalchemy.types.ExternalType.html" class="internal-link" title="sqlalchemy.types.ExternalType">ExternalType</a></code></code></h1>
+        <div id="showPrivate">
+          <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+        </div>
+      </div>
+
+      <div class="categoryHeader">
+        class documentation
+      </div>
+
+      <div class="extrasDocstring">
+        <p><code><span class="py-keyword">class</span> <span class="py-defname">ExternalType</span>(object):</code></p><p>Known subclasses: <code><a href="sqlalchemy.types.TypeDecorator.html" class="internal-link">sqlalchemy.types.TypeDecorator</a></code></p>
+        <p><a href="classIndex.html#sqlalchemy.types.ExternalType">View In Hierarchy</a></p>
+      </div>
+
+      <div class="moduleDocstring">
+        <div><p>mixin that defines attributes and behaviors specific to third-party
+datatypes.</p>
+<p>"Third party" refers to datatypes that are defined outside the scope
+of SQLAlchemy within either end-user application code or within
+external extensions to SQLAlchemy.</p>
+<p>Subclasses currently include <code>.TypeDecorator</code> and
+<code>.UserDefinedType</code>.</p>
+<div class="rst-versionadded">
+<span class="rst-versionmodified rst-added">New in version 1.4.28.</span></div>
+</div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id21458">
+  
+  
+  <tr class="classvariable">
+    
+    <td>Class Variable</td>
+    <td><code><a href="#cache_ok" class="internal-link" title="sqlalchemy.types.ExternalType.cache_ok">cache​_ok</a></code></td>
+    <td>Indicate if statements using this <code>.ExternalType</code> are "safe to cache".</td>
+  </tr><tr class="property private">
+    
+    <td>Property</td>
+    <td><code><a href="#_static_cache_key" class="internal-link" title="sqlalchemy.types.ExternalType._static_cache_key">​_static​_cache​_key</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+        
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="baseclassvariable">
+  
+  
+  <a name="sqlalchemy.types.ExternalType.cache_ok">
+    
+  </a>
+  <a name="cache_ok">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">cache_ok</span> =
+    
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="sqlalchemy.dialects.mssql.information_schema.CoerceUnicode.html" class="internal-link">sqlalchemy.dialects.mssql.information_schema.CoerceUnicode</a></code>, <code><a href="sqlalchemy.dialects.mssql.information_schema.IdentitySqlVariant.html" class="internal-link">sqlalchemy.dialects.mssql.information_schema.IdentitySqlVariant</a></code>, <code><a href="sqlalchemy.sql.type_api.Variant.html" class="internal-link">sqlalchemy.sql.type_api.Variant</a></code>, <code><a href="sqlalchemy.types.Interval.html" class="internal-link">sqlalchemy.types.Interval</a></code>, <code><a href="sqlalchemy.types.PickleType.html" class="internal-link">sqlalchemy.types.PickleType</a></code></div>
+    
+    <div><p>Indicate if statements using this <code>.ExternalType</code> are "safe to
+cache".</p>
+<p>The default value <tt class="rst-docutils literal">None</tt> will emit a warning and then not allow caching
+of a statement which includes this type.   Set to <tt class="rst-docutils literal">False</tt> to disable
+statements using this type from being cached at all without a warning.
+When set to <tt class="rst-docutils literal">True</tt>, the object's class and selected elements from its
+state will be used as part of the cache key.  For example, using a
+<code>.TypeDecorator</code>:</p>
+<pre class="rst-literal-block">
+class MyType(TypeDecorator):
+    impl = String
+
+    cache_ok = True
+
+    def __init__(self, choices):
+        self.choices = tuple(choices)
+        self.internal_only = True
+</pre>
+<p>The cache key for the above type would be equivalent to:</p>
+<pre class="rst-literal-block">
+&gt;&gt;&gt; MyType(["a", "b", "c"])._static_cache_key
+(&lt;class '__main__.MyType'&gt;, ('choices', ('a', 'b', 'c')))
+</pre>
+<p>The caching scheme will extract attributes from the type that correspond
+to the names of parameters in the <tt class="rst-docutils literal">__init__()</tt> method.  Above, the
+"choices" attribute becomes part of the cache key but "internal_only"
+does not, because there is no parameter named "internal_only".</p>
+<p>The requirements for cacheable elements is that they are hashable
+and also that they indicate the same SQL rendered for expressions using
+this type every time for a given cache value.</p>
+<p>To accommodate for datatypes that refer to unhashable structures such
+as dictionaries, sets and lists, these objects can be made "cacheable"
+by assigning hashable structures to the attributes whose names
+correspond with the names of the arguments.  For example, a datatype
+which accepts a dictionary of lookup values may publish this as a sorted
+series of tuples.   Given a previously un-cacheable type as:</p>
+<pre class="rst-literal-block">
+class LookupType(UserDefinedType):
+    '''a custom type that accepts a dictionary as a parameter.
+
+    this is the non-cacheable version, as "self.lookup" is not
+    hashable.
+
+    '''
+
+    def __init__(self, lookup):
+        self.lookup = lookup
+
+    def get_col_spec(self, **kw):
+        return "VARCHAR(255)"
+
+    def bind_processor(self, dialect):
+        # ...  works with "self.lookup" ...
+</pre>
+<p>Where "lookup" is a dictionary.  The type will not be able to generate
+a cache key:</p>
+<pre class="rst-literal-block">
+&gt;&gt;&gt; type_ = LookupType({"a": 10, "b": 20})
+&gt;&gt;&gt; type_._static_cache_key
+&lt;stdin&gt;:1: SAWarning: UserDefinedType LookupType({'a': 10, 'b': 20}) will not
+produce a cache key because the ``cache_ok`` flag is not set to True.
+Set this flag to True if this type object's state is safe to use
+in a cache key, or False to disable this warning.
+symbol('no_cache')
+</pre>
+<p>If we <strong>did</strong> set up such a cache key, it wouldn't be usable. We would
+get a tuple structure that contains a dictionary inside of it, which
+cannot itself be used as a key in a "cache dictionary" such as SQLAlchemy's
+statement cache, since Python dictionaries aren't hashable:</p>
+<pre class="rst-literal-block">
+&gt;&gt;&gt; # set cache_ok = True
+&gt;&gt;&gt; type_.cache_ok = True
+
+&gt;&gt;&gt; # this is the cache key it would generate
+&gt;&gt;&gt; key = type_._static_cache_key
+&gt;&gt;&gt; key
+(&lt;class '__main__.LookupType'&gt;, ('lookup', {'a': 10, 'b': 20}))
+
+&gt;&gt;&gt; # however this key is not hashable, will fail when used with
+&gt;&gt;&gt; # SQLAlchemy statement cache
+&gt;&gt;&gt; some_cache = {key: "some sql value"}
+Traceback (most recent call last): File "&lt;stdin&gt;", line 1,
+in &lt;module&gt; TypeError: unhashable type: 'dict'
+</pre>
+<p>The type may be made cacheable by assigning a sorted tuple of tuples
+to the ".lookup" attribute:</p>
+<pre class="rst-literal-block">
+class LookupType(UserDefinedType):
+    '''a custom type that accepts a dictionary as a parameter.
+
+    The dictionary is stored both as itself in a private variable,
+    and published in a public variable as a sorted tuple of tuples,
+    which is hashable and will also return the same value for any
+    two equivalent dictionaries.  Note it assumes the keys and
+    values of the dictionary are themselves hashable.
+
+    '''
+
+    cache_ok = True
+
+    def __init__(self, lookup):
+        self._lookup = lookup
+
+        # assume keys/values of "lookup" are hashable; otherwise
+        # they would also need to be converted in some way here
+        self.lookup = tuple(
+            (key, lookup[key]) for key in sorted(lookup)
+        )
+
+    def get_col_spec(self, **kw):
+        return "VARCHAR(255)"
+
+    def bind_processor(self, dialect):
+        # ...  works with "self._lookup" ...
+</pre>
+<p>Where above, the cache key for <tt class="rst-docutils literal"><span class="pre">LookupType({"a":</span> 10, "b": 20})</tt> will be:</p>
+<pre class="rst-literal-block">
+&gt;&gt;&gt; LookupType({"a": 10, "b": 20})._static_cache_key
+(&lt;class '__main__.LookupType'&gt;, ('lookup', (('a', 10), ('b', 20))))
+</pre>
+<div class="rst-versionadded">
+<span class="rst-versionmodified rst-added">New in version 1.4.14: </span><span>- added the <tt class="rst-docutils literal">cache_ok</tt> flag to allow
+some configurability of caching for <code>.TypeDecorator</code> classes.</span></div>
+<div class="rst-versionadded">
+<span class="rst-versionmodified rst-added">New in version 1.4.28: </span><span>- added the <code>.ExternalType</code> mixin which
+generalizes the <tt class="rst-docutils literal">cache_ok</tt> flag to both the <code>.TypeDecorator</code>
+and <code>.UserDefinedType</code> classes.</span></div>
+<div class="rst-admonition seealso">
+<p class="rst-first rst-admonition-title">See Also</p>
+<p class="rst-last"><a href="#system-message-1"><span class="rst-problematic" id="rst-problematic-1">:ref:`sql_caching`</span></a></p>
+</div>
+</div>
+    
+  </div>
+</div><div class="baseproperty private">
+  
+  
+  <a name="sqlalchemy.types.ExternalType._static_cache_key">
+    
+  </a>
+  <a name="_static_cache_key">
+    
+  </a>
+  <div class="functionHeader">
+    @property<br />
+    <span class="py-defname">_static_cache_key</span> =
+    
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="sqlalchemy.sql.type_api.Variant.html" class="internal-link">sqlalchemy.sql.type_api.Variant</a></code></div>
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div>
+
+      </div>
+    </div>
+
+    <footer class="navbar navbar-default">
+  
+  <div class="container">
+    <a href="index.html">API Documentation</a> for sqlalchemy,
+  generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
+    22.2.0 at 2022-02-23 04:41:59.
+  </div>
+</footer>
+
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+  </body>
+</html>

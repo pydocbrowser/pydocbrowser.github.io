@@ -1,0 +1,935 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  
+
+  <head>
+    
+    <title>django.contrib.gis.geos.mutable_list.ListMixin</title>
+    <meta name="generator" content="pydoctor 22.2.0"> 
+        
+    </meta>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=0.75" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+    <link rel="stylesheet" type="text/css" href="extra.css" />
+</head>
+
+  <body>
+
+    
+
+    <nav class="navbar navbar-default">
+  
+  <div class="container">
+
+    <div class="navbar-header">
+      
+      <div class="navlinks">
+          <span class="navbar-brand">
+            django <a href="index.html">API Documentation</a>
+          </span>
+
+          <a href="moduleIndex.html">
+            Modules
+          </a>
+
+          <a href="classIndex.html">
+            Classes
+          </a>
+
+          <a href="nameIndex.html">
+            Names
+          </a>
+      </div>
+
+    </div>
+  </div>
+</nav>
+
+    
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="class"><code><code><a href="index.html" class="internal-link">django</a></code><wbr></wbr>.<code><a href="django.contrib.html" class="internal-link" title="django.contrib">contrib</a></code><wbr></wbr>.<code><a href="django.contrib.gis.html" class="internal-link" title="django.contrib.gis">gis</a></code><wbr></wbr>.<code><a href="django.contrib.gis.geos.html" class="internal-link" title="django.contrib.gis.geos">geos</a></code><wbr></wbr>.<code><a href="django.contrib.gis.geos.mutable_list.html" class="internal-link" title="django.contrib.gis.geos.mutable_list">mutable_list</a></code><wbr></wbr>.<code><a href="django.contrib.gis.geos.mutable_list.ListMixin.html" class="internal-link" title="django.contrib.gis.geos.mutable_list.ListMixin">ListMixin</a></code></code></h1>
+        <div id="showPrivate">
+          <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+        </div>
+      </div>
+
+      <div class="categoryHeader">
+        class documentation
+      </div>
+
+      <div class="extrasDocstring">
+        <p><code><span class="py-keyword">class</span> <span class="py-defname">ListMixin</span>:</code></p><p>Known subclasses: <code><a href="django.contrib.gis.geos.geometry.GEOSGeometry.html" class="internal-link">django.contrib.gis.geos.geometry.GEOSGeometry</a></code></p>
+        <p><a href="classIndex.html#django.contrib.gis.geos.mutable_list.ListMixin">View In Hierarchy</a></p>
+      </div>
+
+      <div class="moduleDocstring">
+        <div><p>A base class which provides complete list interface.
+Derived classes must call ListMixin's __init__() function
+and implement the following:</p>
+<dl class="rst-docutils">
+<dt>function _get_single_external(self, i):</dt>
+<dd>Return single item with index i for general use.
+The index i will always satisfy 0 &lt;= i &lt; len(self).</dd>
+<dt>function _get_single_internal(self, i):</dt>
+<dd>Same as above, but for use within the class [Optional]
+Note that if _get_single_internal and _get_single_internal return
+different types of objects, _set_list must distinguish
+between the two and handle each appropriately.</dd>
+<dt>function _set_list(self, length, items):</dt>
+<dd><p class="rst-first">Recreate the entire object.</p>
+<p>NOTE: items may be a generator which calls _get_single_internal.
+Therefore, it is necessary to cache the values in a temporary:</p>
+<blockquote>
+temp = list(items)</blockquote>
+<p class="rst-last">before clobbering the original storage.</p>
+</dd>
+<dt>function _set_single(self, i, value):</dt>
+<dd>Set the single item at index i to value [Optional]
+If left undefined, all mutations will result in rebuilding
+the object using _set_list.</dd>
+<dt>function __len__(self):</dt>
+<dd>Return the length</dd>
+<dt>int _minlength:</dt>
+<dd>The minimum legal length [Optional]</dd>
+<dt>int _maxlength:</dt>
+<dd>The maximum legal length [Optional]</dd>
+<dt>type or tuple _allowed:</dt>
+<dd>A type or tuple of allowed item types [Optional]</dd>
+</dl>
+</div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id1952">
+  
+  
+  <tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__add__" class="internal-link" title="django.contrib.gis.geos.mutable_list.ListMixin.__add__">__add__</a></code></td>
+    <td>add another list-like object</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__delitem__" class="internal-link" title="django.contrib.gis.geos.mutable_list.ListMixin.__delitem__">__delitem__</a></code></td>
+    <td>Delete the item(s) at the specified index/slice.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__eq__" class="internal-link" title="django.contrib.gis.geos.mutable_list.ListMixin.__eq__">__eq__</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__getitem__" class="internal-link" title="django.contrib.gis.geos.mutable_list.ListMixin.__getitem__">__getitem__</a></code></td>
+    <td>Get the item(s) at the specified index/slice.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__iadd__" class="internal-link" title="django.contrib.gis.geos.mutable_list.ListMixin.__iadd__">__iadd__</a></code></td>
+    <td>add another list-like object to self</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__imul__" class="internal-link" title="django.contrib.gis.geos.mutable_list.ListMixin.__imul__">__imul__</a></code></td>
+    <td>multiply</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__init__" class="internal-link" title="django.contrib.gis.geos.mutable_list.ListMixin.__init__">__init__</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__lt__" class="internal-link" title="django.contrib.gis.geos.mutable_list.ListMixin.__lt__">__lt__</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__mul__" class="internal-link" title="django.contrib.gis.geos.mutable_list.ListMixin.__mul__">__mul__</a></code></td>
+    <td>multiply</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__radd__" class="internal-link" title="django.contrib.gis.geos.mutable_list.ListMixin.__radd__">__radd__</a></code></td>
+    <td>add to another list-like object</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__rmul__" class="internal-link" title="django.contrib.gis.geos.mutable_list.ListMixin.__rmul__">__rmul__</a></code></td>
+    <td>multiply</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__setitem__" class="internal-link" title="django.contrib.gis.geos.mutable_list.ListMixin.__setitem__">__setitem__</a></code></td>
+    <td>Set the item(s) at the specified index/slice.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#append" class="internal-link" title="django.contrib.gis.geos.mutable_list.ListMixin.append">append</a></code></td>
+    <td>Standard list append method</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#count" class="internal-link" title="django.contrib.gis.geos.mutable_list.ListMixin.count">count</a></code></td>
+    <td>Standard list count method</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#extend" class="internal-link" title="django.contrib.gis.geos.mutable_list.ListMixin.extend">extend</a></code></td>
+    <td>Standard list extend method</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#index" class="internal-link" title="django.contrib.gis.geos.mutable_list.ListMixin.index">index</a></code></td>
+    <td>Standard list index method</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#insert" class="internal-link" title="django.contrib.gis.geos.mutable_list.ListMixin.insert">insert</a></code></td>
+    <td>Standard list insert method</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#pop" class="internal-link" title="django.contrib.gis.geos.mutable_list.ListMixin.pop">pop</a></code></td>
+    <td>Standard list pop method</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#remove" class="internal-link" title="django.contrib.gis.geos.mutable_list.ListMixin.remove">remove</a></code></td>
+    <td>Standard list remove method</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#reverse" class="internal-link" title="django.contrib.gis.geos.mutable_list.ListMixin.reverse">reverse</a></code></td>
+    <td>Standard list reverse method</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#sort" class="internal-link" title="django.contrib.gis.geos.mutable_list.ListMixin.sort">sort</a></code></td>
+    <td>Standard list sort method</td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_assign_extended_slice" class="internal-link" title="django.contrib.gis.geos.mutable_list.ListMixin._assign_extended_slice">​_assign​_extended​_slice</a></code></td>
+    <td>Assign an extended slice by re-assigning individual items</td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_assign_extended_slice_rebuild" class="internal-link" title="django.contrib.gis.geos.mutable_list.ListMixin._assign_extended_slice_rebuild">​_assign​_extended​_slice​_rebuild</a></code></td>
+    <td>Assign an extended slice by rebuilding entire list</td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_assign_simple_slice" class="internal-link" title="django.contrib.gis.geos.mutable_list.ListMixin._assign_simple_slice">​_assign​_simple​_slice</a></code></td>
+    <td>Assign a simple slice; Can assign slice of any length</td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_check_allowed" class="internal-link" title="django.contrib.gis.geos.mutable_list.ListMixin._check_allowed">​_check​_allowed</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_checkindex" class="internal-link" title="django.contrib.gis.geos.mutable_list.ListMixin._checkindex">​_checkindex</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_rebuild" class="internal-link" title="django.contrib.gis.geos.mutable_list.ListMixin._rebuild">​_rebuild</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_set_single_rebuild" class="internal-link" title="django.contrib.gis.geos.mutable_list.ListMixin._set_single_rebuild">​_set​_single​_rebuild</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_set_slice" class="internal-link" title="django.contrib.gis.geos.mutable_list.ListMixin._set_slice">​_set​_slice</a></code></td>
+    <td>Assign values to a slice of the object</td>
+  </tr><tr class="classvariable private">
+    
+    <td>Class Variable</td>
+    <td><code><a href="#_maxlength" class="internal-link" title="django.contrib.gis.geos.mutable_list.ListMixin._maxlength">​_maxlength</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="classvariable private">
+    
+    <td>Class Variable</td>
+    <td><code><a href="#_minlength" class="internal-link" title="django.contrib.gis.geos.mutable_list.ListMixin._minlength">​_minlength</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#_get_single_internal" class="internal-link" title="django.contrib.gis.geos.mutable_list.ListMixin._get_single_internal">​_get​_single​_internal</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#_set_single" class="internal-link" title="django.contrib.gis.geos.mutable_list.ListMixin._set_single">​_set​_single</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+        
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="basemethod">
+  
+  
+  <a name="django.contrib.gis.geos.mutable_list.ListMixin.__add__">
+    
+  </a>
+  <a name="__add__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__add__</span>(self, other):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>add another list-like object</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="django.contrib.gis.geos.mutable_list.ListMixin.__delitem__">
+    
+  </a>
+  <a name="__delitem__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__delitem__</span>(self, index):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Delete the item(s) at the specified index/slice.</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="django.contrib.gis.geos.mutable_list.ListMixin.__eq__">
+    
+  </a>
+  <a name="__eq__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__eq__</span>(self, other):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="django.contrib.gis.geos.mutable_list.ListMixin.__getitem__">
+    
+  </a>
+  <a name="__getitem__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__getitem__</span>(self, index):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Get the item(s) at the specified index/slice.</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="django.contrib.gis.geos.mutable_list.ListMixin.__iadd__">
+    
+  </a>
+  <a name="__iadd__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__iadd__</span>(self, other):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>add another list-like object to self</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="django.contrib.gis.geos.mutable_list.ListMixin.__imul__">
+    
+  </a>
+  <a name="__imul__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__imul__</span>(self, n):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>multiply</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="django.contrib.gis.geos.mutable_list.ListMixin.__init__">
+    
+  </a>
+  <a name="__init__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__init__</span>(self, *args, **kwargs):
+    
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="django.contrib.gis.geos.geometry.GEOSGeometry.html" class="internal-link">django.contrib.gis.geos.geometry.GEOSGeometry</a></code></div>
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="django.contrib.gis.geos.mutable_list.ListMixin.__lt__">
+    
+  </a>
+  <a name="__lt__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__lt__</span>(self, other):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="django.contrib.gis.geos.mutable_list.ListMixin.__mul__">
+    
+  </a>
+  <a name="__mul__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__mul__</span>(self, n):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>multiply</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="django.contrib.gis.geos.mutable_list.ListMixin.__radd__">
+    
+  </a>
+  <a name="__radd__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__radd__</span>(self, other):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>add to another list-like object</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="django.contrib.gis.geos.mutable_list.ListMixin.__rmul__">
+    
+  </a>
+  <a name="__rmul__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__rmul__</span>(self, n):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>multiply</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="django.contrib.gis.geos.mutable_list.ListMixin.__setitem__">
+    
+  </a>
+  <a name="__setitem__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__setitem__</span>(self, index, val):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Set the item(s) at the specified index/slice.</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="django.contrib.gis.geos.mutable_list.ListMixin.append">
+    
+  </a>
+  <a name="append">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">append</span>(self, val):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Standard list append method</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="django.contrib.gis.geos.mutable_list.ListMixin.count">
+    
+  </a>
+  <a name="count">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">count</span>(self, val):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Standard list count method</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="django.contrib.gis.geos.mutable_list.ListMixin.extend">
+    
+  </a>
+  <a name="extend">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">extend</span>(self, vals):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Standard list extend method</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="django.contrib.gis.geos.mutable_list.ListMixin.index">
+    
+  </a>
+  <a name="index">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">index</span>(self, val):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Standard list index method</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="django.contrib.gis.geos.mutable_list.ListMixin.insert">
+    
+  </a>
+  <a name="insert">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">insert</span>(self, index, val):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Standard list insert method</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="django.contrib.gis.geos.mutable_list.ListMixin.pop">
+    
+  </a>
+  <a name="pop">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">pop</span>(self, index=-1):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Standard list pop method</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="django.contrib.gis.geos.mutable_list.ListMixin.remove">
+    
+  </a>
+  <a name="remove">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">remove</span>(self, val):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Standard list remove method</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="django.contrib.gis.geos.mutable_list.ListMixin.reverse">
+    
+  </a>
+  <a name="reverse">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">reverse</span>(self):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Standard list reverse method</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="django.contrib.gis.geos.mutable_list.ListMixin.sort">
+    
+  </a>
+  <a name="sort">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">sort</span>(self, key=None, reverse=False):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Standard list sort method</div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="django.contrib.gis.geos.mutable_list.ListMixin._assign_extended_slice">
+    
+  </a>
+  <a name="_assign_extended_slice">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_assign_extended_slice</span>(self, start, stop, step, valueList):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Assign an extended slice by re-assigning individual items</div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="django.contrib.gis.geos.mutable_list.ListMixin._assign_extended_slice_rebuild">
+    
+  </a>
+  <a name="_assign_extended_slice_rebuild">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_assign_extended_slice_rebuild</span>(self, start, stop, step, valueList):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Assign an extended slice by rebuilding entire list</div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="django.contrib.gis.geos.mutable_list.ListMixin._assign_simple_slice">
+    
+  </a>
+  <a name="_assign_simple_slice">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_assign_simple_slice</span>(self, start, stop, valueList):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Assign a simple slice; Can assign slice of any length</div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="django.contrib.gis.geos.mutable_list.ListMixin._check_allowed">
+    
+  </a>
+  <a name="_check_allowed">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_check_allowed</span>(self, items):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="django.contrib.gis.geos.mutable_list.ListMixin._checkindex">
+    
+  </a>
+  <a name="_checkindex">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_checkindex</span>(self, index):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="django.contrib.gis.geos.mutable_list.ListMixin._rebuild">
+    
+  </a>
+  <a name="_rebuild">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_rebuild</span>(self, newLen, newItems):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="django.contrib.gis.geos.mutable_list.ListMixin._set_single_rebuild">
+    
+  </a>
+  <a name="_set_single_rebuild">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_set_single_rebuild</span>(self, index, value):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="django.contrib.gis.geos.mutable_list.ListMixin._set_slice">
+    
+  </a>
+  <a name="_set_slice">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_set_slice</span>(self, index, values):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Assign values to a slice of the object</div>
+  </div>
+</div><div class="baseclassvariable private">
+  
+  
+  <a name="django.contrib.gis.geos.mutable_list.ListMixin._maxlength">
+    
+  </a>
+  <a name="_maxlength">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_maxlength</span> =
+    
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="django.contrib.gis.geos.point.Point.html" class="internal-link">django.contrib.gis.geos.point.Point</a></code></div>
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseclassvariable private">
+  
+  
+  <a name="django.contrib.gis.geos.mutable_list.ListMixin._minlength">
+    
+  </a>
+  <a name="_minlength">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_minlength</span>: <code>int</code> =
+    
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="django.contrib.gis.geos.linestring.LineString.html" class="internal-link">django.contrib.gis.geos.linestring.LineString</a></code>, <code><a href="django.contrib.gis.geos.point.Point.html" class="internal-link">django.contrib.gis.geos.point.Point</a></code>, <code><a href="django.contrib.gis.geos.polygon.Polygon.html" class="internal-link">django.contrib.gis.geos.polygon.Polygon</a></code></div>
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  
+  <a name="django.contrib.gis.geos.mutable_list.ListMixin._get_single_internal">
+    
+  </a>
+  <a name="_get_single_internal">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_get_single_internal</span> =
+    
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="django.contrib.gis.geos.collections.GeometryCollection.html" class="internal-link">django.contrib.gis.geos.collections.GeometryCollection</a></code>, <code><a href="django.contrib.gis.geos.polygon.Polygon.html" class="internal-link">django.contrib.gis.geos.polygon.Polygon</a></code></div>
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  
+  <a name="django.contrib.gis.geos.mutable_list.ListMixin._set_single">
+    
+  </a>
+  <a name="_set_single">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_set_single</span> =
+    
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="django.contrib.gis.geos.linestring.LineString.html" class="internal-link">django.contrib.gis.geos.linestring.LineString</a></code>, <code><a href="django.contrib.gis.geos.point.Point.html" class="internal-link">django.contrib.gis.geos.point.Point</a></code></div>
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div>
+
+      </div>
+    </div>
+
+    <footer class="navbar navbar-default">
+  
+  <div class="container">
+    <a href="index.html">API Documentation</a> for django,
+  generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
+    22.2.0 at 2022-02-23 04:30:39.
+  </div>
+</footer>
+
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+  </body>
+</html>

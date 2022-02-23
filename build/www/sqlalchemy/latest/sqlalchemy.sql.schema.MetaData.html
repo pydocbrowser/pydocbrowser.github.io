@@ -1,0 +1,1071 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  
+
+  <head>
+    
+    <title>sqlalchemy.sql.schema.MetaData</title>
+    <meta name="generator" content="pydoctor 22.2.0"> 
+        
+    </meta>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=0.75" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+    <link rel="stylesheet" type="text/css" href="extra.css" />
+</head>
+
+  <body>
+
+    
+
+    <nav class="navbar navbar-default">
+  
+  <div class="container">
+
+    <div class="navbar-header">
+      
+      <div class="navlinks">
+          <span class="navbar-brand">
+            sqlalchemy <a href="index.html">API Documentation</a>
+          </span>
+
+          <a href="moduleIndex.html">
+            Modules
+          </a>
+
+          <a href="classIndex.html">
+            Classes
+          </a>
+
+          <a href="nameIndex.html">
+            Names
+          </a>
+      </div>
+
+    </div>
+  </div>
+</nav>
+
+    
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="class"><code><code><a href="index.html" class="internal-link">sqlalchemy</a></code><wbr></wbr>.<code><a href="sqlalchemy.sql.html" class="internal-link" title="sqlalchemy.sql">sql</a></code><wbr></wbr>.<code><a href="sqlalchemy.sql.schema.html" class="internal-link" title="sqlalchemy.sql.schema">schema</a></code><wbr></wbr>.<code><a href="sqlalchemy.sql.schema.MetaData.html" class="internal-link" title="sqlalchemy.sql.schema.MetaData">MetaData</a></code></code></h1>
+        <div id="showPrivate">
+          <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+        </div>
+      </div>
+
+      <div class="categoryHeader">
+        class documentation
+      </div>
+
+      <div class="extrasDocstring">
+        <p><code><span class="py-keyword">class</span> <span class="py-defname">MetaData</span>(<a href="sqlalchemy.sql.schema.SchemaItem.html" class="internal-link" title="sqlalchemy.sql.schema.SchemaItem">SchemaItem</a>):</code></p><p>Known subclasses: <code><a href="sqlalchemy.sql.schema.ThreadLocalMetaData.html" class="internal-link">sqlalchemy.sql.schema.ThreadLocalMetaData</a></code></p>
+        <p><a href="classIndex.html#sqlalchemy.sql.schema.MetaData">View In Hierarchy</a></p>
+      </div>
+
+      <div class="moduleDocstring">
+        <div><p>A collection of <code>_schema.Table</code>
+objects and their associated schema
+constructs.</p>
+<p>Holds a collection of <code>_schema.Table</code> objects as well as
+an optional binding to an <code>_engine.Engine</code> or
+<code>_engine.Connection</code>.  If bound, the <code>_schema.Table</code> objects
+in the collection and their columns may participate in implicit SQL
+execution.</p>
+<p>The <code>_schema.Table</code> objects themselves are stored in the
+<code>_schema.MetaData.tables</code> dictionary.</p>
+<p><code>_schema.MetaData</code> is a thread-safe object for read operations.
+Construction of new tables within a single <code>_schema.MetaData</code>
+object,
+either explicitly or via reflection, may not be completely thread-safe.</p>
+<div class="rst-admonition seealso">
+<p class="rst-first rst-admonition-title">See Also</p>
+<p class="rst-last"><a href="#system-message-1"><span class="rst-problematic" id="rst-problematic-1">:ref:`metadata_describing`</span></a> - Introduction to database metadata</p>
+</div>
+</div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id20307">
+  
+  
+  <tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__contains__" class="internal-link" title="sqlalchemy.sql.schema.MetaData.__contains__">__contains__</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__getstate__" class="internal-link" title="sqlalchemy.sql.schema.MetaData.__getstate__">__getstate__</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__init__" class="internal-link" title="sqlalchemy.sql.schema.MetaData.__init__">__init__</a></code></td>
+    <td>Create a new MetaData object.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__repr__" class="internal-link" title="sqlalchemy.sql.schema.MetaData.__repr__">__repr__</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__setstate__" class="internal-link" title="sqlalchemy.sql.schema.MetaData.__setstate__">__setstate__</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#bind" class="internal-link" title="sqlalchemy.sql.schema.MetaData.bind">bind</a></code></td>
+    <td>An <code>_engine.Engine</code> or <code>_engine.Connection</code> to which this <code>_schema.MetaData</code> is bound.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#clear" class="internal-link" title="sqlalchemy.sql.schema.MetaData.clear">clear</a></code></td>
+    <td>Clear all Table objects from this MetaData.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#create_all" class="internal-link" title="sqlalchemy.sql.schema.MetaData.create_all">create​_all</a></code></td>
+    <td>Create all tables stored in this metadata.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#drop_all" class="internal-link" title="sqlalchemy.sql.schema.MetaData.drop_all">drop​_all</a></code></td>
+    <td>Drop all tables stored in this metadata.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#is_bound" class="internal-link" title="sqlalchemy.sql.schema.MetaData.is_bound">is​_bound</a></code></td>
+    <td>True if this MetaData is bound to an Engine or Connection.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#reflect" class="internal-link" title="sqlalchemy.sql.schema.MetaData.reflect">reflect</a></code></td>
+    <td>Load all available table definitions from the database.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#remove" class="internal-link" title="sqlalchemy.sql.schema.MetaData.remove">remove</a></code></td>
+    <td>Remove the given Table object from this MetaData.</td>
+  </tr><tr class="classvariable">
+    
+    <td>Class Variable</td>
+    <td><code><a href="#__visit_name__" class="internal-link" title="sqlalchemy.sql.schema.MetaData.__visit_name__">__visit​_name__</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#info" class="internal-link" title="sqlalchemy.sql.schema.MetaData.info">info</a></code></td>
+    <td>Info dictionary associated with the object, allowing user-defined data to be associated with this <code>.SchemaItem</code>.</td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#naming_convention" class="internal-link" title="sqlalchemy.sql.schema.MetaData.naming_convention">naming​_convention</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#schema" class="internal-link" title="sqlalchemy.sql.schema.MetaData.schema">schema</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#tables" class="internal-link" title="sqlalchemy.sql.schema.MetaData.tables">tables</a></code></td>
+    <td>A dictionary of <code>_schema.Table</code> objects keyed to their name or "table key".</td>
+  </tr><tr class="property">
+    
+    <td>Property</td>
+    <td><code><a href="#sorted_tables" class="internal-link" title="sqlalchemy.sql.schema.MetaData.sorted_tables">sorted​_tables</a></code></td>
+    <td>Returns a list of <code>_schema.Table</code> objects sorted in order of foreign key dependency.</td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_add_table" class="internal-link" title="sqlalchemy.sql.schema.MetaData._add_table">​_add​_table</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_bind_to" class="internal-link" title="sqlalchemy.sql.schema.MetaData._bind_to">​_bind​_to</a></code></td>
+    <td>Bind this MetaData to an Engine, Connection, string or URL.</td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_remove_table" class="internal-link" title="sqlalchemy.sql.schema.MetaData._remove_table">​_remove​_table</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#_bind" class="internal-link" title="sqlalchemy.sql.schema.MetaData._bind">​_bind</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#_fk_memos" class="internal-link" title="sqlalchemy.sql.schema.MetaData._fk_memos">​_fk​_memos</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#_schemas" class="internal-link" title="sqlalchemy.sql.schema.MetaData._schemas">​_schemas</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#_sequences" class="internal-link" title="sqlalchemy.sql.schema.MetaData._sequences">​_sequences</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+        
+          <p class="inheritedFrom">
+            Inherited from <code><a href="sqlalchemy.sql.schema.SchemaItem.html" class="internal-link" title="sqlalchemy.sql.schema.SchemaItem">SchemaItem</a></code>:
+          </p>
+          <table class="children sortable" id="id20308">
+  
+  
+  <tr class="baseclassvariable">
+    
+    <td>Class Variable</td>
+    <td><code><a href="sqlalchemy.sql.schema.SchemaItem.html#create_drop_stringify_dialect" class="internal-link" title="sqlalchemy.sql.schema.SchemaItem.create_drop_stringify_dialect">create​_drop​_stringify​_dialect</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod private">
+    
+    <td>Method</td>
+    <td><code><a href="sqlalchemy.sql.schema.SchemaItem.html#_init_items" class="internal-link" title="sqlalchemy.sql.schema.SchemaItem._init_items">​_init​_items</a></code></td>
+    <td>Initialize the list of child items for this SchemaItem.</td>
+  </tr><tr class="basemethod private">
+    
+    <td>Method</td>
+    <td><code><a href="sqlalchemy.sql.schema.SchemaItem.html#_schema_item_copy" class="internal-link" title="sqlalchemy.sql.schema.SchemaItem._schema_item_copy">​_schema​_item​_copy</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="baseclassvariable private">
+    
+    <td>Class Variable</td>
+    <td><code><a href="sqlalchemy.sql.schema.SchemaItem.html#_use_schema_map" class="internal-link" title="sqlalchemy.sql.schema.SchemaItem._use_schema_map">​_use​_schema​_map</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+          
+          <p class="inheritedFrom">
+            Inherited from <code><a href="sqlalchemy.sql.base.SchemaEventTarget.html" class="internal-link" title="sqlalchemy.sql.base.SchemaEventTarget">SchemaEventTarget</a></code> (via <code><a href="sqlalchemy.sql.schema.SchemaItem.html" class="internal-link" title="sqlalchemy.sql.schema.SchemaItem">SchemaItem</a></code>):
+          </p>
+          <table class="children sortable" id="id20309">
+  
+  
+  <tr class="basemethod private">
+    
+    <td>Method</td>
+    <td><code><a href="sqlalchemy.sql.base.SchemaEventTarget.html#_set_parent" class="internal-link" title="sqlalchemy.sql.base.SchemaEventTarget._set_parent">​_set​_parent</a></code></td>
+    <td>Associate with this SchemaEvent's parent object.</td>
+  </tr><tr class="basemethod private">
+    
+    <td>Method</td>
+    <td><code><a href="sqlalchemy.sql.base.SchemaEventTarget.html#_set_parent_with_dispatch" class="internal-link" title="sqlalchemy.sql.base.SchemaEventTarget._set_parent_with_dispatch">​_set​_parent​_with​_dispatch</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+          
+          <p class="inheritedFrom">
+            Inherited from <code><a href="sqlalchemy.sql.visitors.Traversible.html" class="internal-link" title="sqlalchemy.sql.visitors.Traversible">Traversible</a></code> (via <code><a href="sqlalchemy.sql.schema.SchemaItem.html" class="internal-link" title="sqlalchemy.sql.schema.SchemaItem">SchemaItem</a></code>):
+          </p>
+          <table class="children sortable" id="id20310">
+  
+  
+  <tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="sqlalchemy.sql.visitors.Traversible.html#__class_getitem__" class="internal-link" title="sqlalchemy.sql.visitors.Traversible.__class_getitem__">__class​_getitem__</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="sqlalchemy.sql.visitors.Traversible.html#get_children" class="internal-link" title="sqlalchemy.sql.visitors.Traversible.get_children">get​_children</a></code></td>
+    <td>Return immediate child <code>.visitors.Traversible</code> elements of this <code>.visitors.Traversible</code>.</td>
+  </tr>
+</table>
+          
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="basemethod">
+  
+  
+  <a name="sqlalchemy.sql.schema.MetaData.__contains__">
+    
+  </a>
+  <a name="__contains__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__contains__</span>(self, table_or_key):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.sql.schema.MetaData.__getstate__">
+    
+  </a>
+  <a name="__getstate__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__getstate__</span>(self):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.sql.schema.MetaData.__init__">
+    
+  </a>
+  <a name="__init__">
+    
+  </a>
+  <div class="functionHeader">
+    @<a href="sqlalchemy.util.deprecations.html#deprecated_params" class="internal-link" title="sqlalchemy.util.deprecations.deprecated_params">util.deprecated_params</a>(<wbr></wbr>bind=(<wbr></wbr><span class="rst-variable-quote">'</span><span class="rst-variable-string">2.0</span><span class="rst-variable-quote">'</span>, <wbr></wbr><span class="rst-variable-quote">'</span><span class="rst-variable-string">The :paramref:`_schema.MetaData.bind` argument is deprecated and will be removed in SQLAlchemy 2.0.</span><span class="rst-variable-quote">'</span>))<br />
+    <span class="py-keyword">def</span> <span class="py-defname">__init__</span>(self, bind=None, schema=None, quote_schema=None, naming_convention=None, info=None):
+    
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="sqlalchemy.sql.schema.ThreadLocalMetaData.html" class="internal-link">sqlalchemy.sql.schema.ThreadLocalMetaData</a></code></div>
+    
+    <div>Create a new MetaData object.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">bind</span></td><td class="fieldArgDesc">An Engine or Connection to bind to.  May also be a string or URL
+instance, these are passed to <code>_sa.create_engine</code> and
+this <code>_schema.MetaData</code> will
+be bound to the resulting engine.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">schema</span></td><td class="fieldArgDesc"><p>The default schema to use for the <code>_schema.Table</code>,
+<code>.Sequence</code>, and potentially other objects associated with
+this <code>_schema.MetaData</code>. Defaults to <tt class="rst-docutils literal">None</tt>.</p>
+<div class="rst-admonition seealso">
+<p class="rst-first rst-admonition-title">See Also</p>
+<p><a href="#system-message-1"><span class="rst-problematic" id="rst-problematic-1">:ref:`schema_metadata_schema_name`</span></a> - details on how the
+<a href="#system-message-2"><span class="rst-problematic" id="rst-problematic-2">:paramref:`_schema.MetaData.schema`</span></a> parameter is used.</p>
+<p><a href="#system-message-3"><span class="rst-problematic" id="rst-problematic-3">:paramref:`_schema.Table.schema`</span></a></p>
+<p class="rst-last"><a href="#system-message-4"><span class="rst-problematic" id="rst-problematic-4">:paramref:`.Sequence.schema`</span></a></p>
+</div>
+</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">quote​_schema</span></td><td class="fieldArgDesc">Sets the <tt class="rst-docutils literal">quote_schema</tt> flag for those <code>_schema.Table</code>,
+<code>.Sequence</code>, and other objects which make usage of the
+local <tt class="rst-docutils literal">schema</tt> name.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">naming​_convention</span></td><td class="fieldArgDesc"><p>a dictionary referring to values which
+will establish default naming conventions for <code>.Constraint</code>
+and <code>.Index</code> objects, for those objects which are not given
+a name explicitly.</p>
+<p>The keys of this dictionary may be:</p>
+<ul class="rst-simple">
+<li>a constraint or Index class, e.g. the <code>.UniqueConstraint</code>,
+<code>_schema.ForeignKeyConstraint</code> class, the <code>.Index</code>
+class</li>
+<li>a string mnemonic for one of the known constraint classes;
+<tt class="rst-docutils literal">"fk"</tt>, <tt class="rst-docutils literal">"pk"</tt>, <tt class="rst-docutils literal">"ix"</tt>, <tt class="rst-docutils literal">"ck"</tt>, <tt class="rst-docutils literal">"uq"</tt> for foreign key,
+primary key, index, check, and unique constraint, respectively.</li>
+<li>the string name of a user-defined "token" that can be used
+to define new naming tokens.</li>
+</ul>
+<p>The values associated with each "constraint class" or "constraint
+mnemonic" key are string naming templates, such as
+<tt class="rst-docutils literal"><span class="pre">"uq_%(table_name)s_%(column_0_name)s"</span></tt>,
+which describe how the name should be composed.  The values
+associated with user-defined "token" keys should be callables of the
+form <tt class="rst-docutils literal">fn(constraint, table)</tt>, which accepts the constraint/index
+object and <code>_schema.Table</code> as arguments, returning a string
+result.</p>
+<p>The built-in names are as follows, some of which may only be
+available for certain types of constraint:</p>
+<blockquote>
+<ul class="rst-simple">
+<li><tt class="rst-docutils literal">%(table_name)s</tt> - the name of the <code>_schema.Table</code>
+object
+associated with the constraint.</li>
+<li><tt class="rst-docutils literal">%(referred_table_name)s</tt> - the name of the
+<code>_schema.Table</code>
+object associated with the referencing target of a
+<code>_schema.ForeignKeyConstraint</code>.</li>
+<li><tt class="rst-docutils literal">%(column_0_name)s</tt> - the name of the <code>_schema.Column</code>
+at
+index position "0" within the constraint.</li>
+<li><tt class="rst-docutils literal">%(column_0N_name)s</tt> - the name of all <code>_schema.Column</code>
+objects in order within the constraint, joined without a
+separator.</li>
+<li><tt class="rst-docutils literal">%(column_0_N_name)s</tt> - the name of all
+<code>_schema.Column</code>
+objects in order within the constraint, joined with an
+underscore as a separator.</li>
+<li><tt class="rst-docutils literal">%(column_0_label)s</tt>, <tt class="rst-docutils literal">%(column_0N_label)s</tt>,
+<tt class="rst-docutils literal">%(column_0_N_label)s</tt> - the label of either the zeroth
+<code>_schema.Column</code> or all <code>.Columns</code>, separated with
+or without an underscore</li>
+<li><tt class="rst-docutils literal">%(column_0_key)s</tt>, <tt class="rst-docutils literal">%(column_0N_key)s</tt>,
+<tt class="rst-docutils literal">%(column_0_N_key)s</tt> - the key of either the zeroth
+<code>_schema.Column</code> or all <code>.Columns</code>, separated with
+or without an underscore</li>
+<li><tt class="rst-docutils literal">%(referred_column_0_name)s</tt>, <tt class="rst-docutils literal">%(referred_column_0N_name)s</tt>
+<tt class="rst-docutils literal">%(referred_column_0_N_name)s</tt>,  <tt class="rst-docutils literal">%(referred_column_0_key)s</tt>,
+<tt class="rst-docutils literal">%(referred_column_0N_key)s</tt>, ...  column tokens which
+render the names/keys/labels of columns that are referenced
+by a  <code>_schema.ForeignKeyConstraint</code>.</li>
+<li><tt class="rst-docutils literal">%(constraint_name)s</tt> - a special key that refers to the
+existing name given to the constraint.  When this key is
+present, the <code>.Constraint</code> object's existing name will be
+replaced with one that is composed from template string that
+uses this token. When this token is present, it is required that
+the <code>.Constraint</code> is given an explicit name ahead of time.</li>
+<li>user-defined: any additional token may be implemented by passing
+it along with a <tt class="rst-docutils literal">fn(constraint, table)</tt> callable to the
+naming_convention dictionary.</li>
+</ul>
+</blockquote>
+<div class="rst-versionadded">
+<span class="rst-versionmodified rst-added">New in version 1.3.0: </span><span>- added new <tt class="rst-docutils literal">%(column_0N_name)s</tt>,
+<tt class="rst-docutils literal">%(column_0_N_name)s</tt>, and related tokens that produce
+concatenations of names, keys, or labels for all columns referred
+to by a given constraint.</span></div>
+<div class="rst-admonition seealso">
+<p class="rst-first rst-admonition-title">See Also</p>
+<p class="rst-last"><a href="#system-message-5"><span class="rst-problematic" id="rst-problematic-5">:ref:`constraint_naming_conventions`</span></a> - for detailed usage
+examples.</p>
+</div>
+</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">info</span></td><td class="fieldArgDesc"><p>Optional data dictionary which will be populated into the
+<code>.SchemaItem.info</code> attribute of this object.</p>
+<div class="rst-versionadded">
+<span class="rst-versionmodified rst-added">New in version 1.0.0.</span></div>
+</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.sql.schema.MetaData.__repr__">
+    
+  </a>
+  <a name="__repr__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__repr__</span>(self):
+    
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overrides <code><a href="sqlalchemy.sql.schema.SchemaItem.html#__repr__" class="internal-link">sqlalchemy.sql.schema.SchemaItem.__repr__</a></code></div>
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.sql.schema.MetaData.__setstate__">
+    
+  </a>
+  <a name="__setstate__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__setstate__</span>(self, state):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.sql.schema.MetaData.bind">
+    
+  </a>
+  <a name="bind">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">bind</span>(self):
+    
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="sqlalchemy.sql.schema.ThreadLocalMetaData.html" class="internal-link">sqlalchemy.sql.schema.ThreadLocalMetaData</a></code></div>
+    
+    <div><p>An <code>_engine.Engine</code> or <code>_engine.Connection</code>
+to which this
+<code>_schema.MetaData</code> is bound.</p>
+<p>Typically, a <code>_engine.Engine</code> is assigned to this attribute
+so that "implicit execution" may be used, or alternatively
+as a means of providing engine binding information to an
+ORM <code>.Session</code> object:</p>
+<pre class="rst-literal-block">
+engine = create_engine("someurl://")
+metadata.bind = engine
+</pre>
+<div class="rst-deprecated">
+<span class="rst-versionmodified rst-deprecated">Deprecated since version 1.4: </span><span>The metadata.bind attribute, as part of the deprecated system
+of "implicit execution", is itself deprecated and will be
+removed in SQLAlchemy 2.0.</span></div>
+<div class="rst-admonition seealso">
+<p class="rst-first rst-admonition-title">See Also</p>
+<p class="rst-last"><a href="#system-message-1"><span class="rst-problematic" id="rst-problematic-1">:ref:`dbengine_implicit`</span></a> - background on "bound metadata"</p>
+</div>
+</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.sql.schema.MetaData.clear">
+    
+  </a>
+  <a name="clear">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">clear</span>(self):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Clear all Table objects from this MetaData.</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.sql.schema.MetaData.create_all">
+    
+  </a>
+  <a name="create_all">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">create_all</span>(self, bind=None, tables=None, checkfirst=True):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Create all tables stored in this metadata.</p>
+<p>Conditional by default, will not attempt to recreate tables already
+present in the target database.</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">bind</span></td><td class="fieldArgDesc"><p>A <code>.Connectable</code> used to access the
+database; if None, uses the existing bind on this <tt class="rst-docutils literal">MetaData</tt>, if
+any.</p>
+<div class="rst-admonition note">
+<p class="rst-first rst-admonition-title">Note</p>
+<p class="rst-last">the "bind" argument will be required in
+SQLAlchemy 2.0.</p>
+</div>
+</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">tables</span></td><td class="fieldArgDesc">Optional list of <tt class="rst-docutils literal">Table</tt> objects, which is a subset of the total
+tables in the <tt class="rst-docutils literal">MetaData</tt> (others are ignored).</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">checkfirst</span></td><td class="fieldArgDesc">Defaults to True, don't issue CREATEs for tables already present
+in the target database.</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.sql.schema.MetaData.drop_all">
+    
+  </a>
+  <a name="drop_all">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">drop_all</span>(self, bind=None, tables=None, checkfirst=True):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Drop all tables stored in this metadata.</p>
+<p>Conditional by default, will not attempt to drop tables not present in
+the target database.</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">bind</span></td><td class="fieldArgDesc"><p>A <code>.Connectable</code> used to access the
+database; if None, uses the existing bind on this <tt class="rst-docutils literal">MetaData</tt>, if
+any.</p>
+<div class="rst-admonition note">
+<p class="rst-first rst-admonition-title">Note</p>
+<p class="rst-last">the "bind" argument will be required in
+SQLAlchemy 2.0.</p>
+</div>
+</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">tables</span></td><td class="fieldArgDesc">Optional list of <tt class="rst-docutils literal">Table</tt> objects, which is a subset of the
+total tables in the <tt class="rst-docutils literal">MetaData</tt> (others are ignored).</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">checkfirst</span></td><td class="fieldArgDesc">Defaults to True, only issue DROPs for tables confirmed to be
+present in the target database.</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.sql.schema.MetaData.is_bound">
+    
+  </a>
+  <a name="is_bound">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">is_bound</span>(self):
+    
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="sqlalchemy.sql.schema.ThreadLocalMetaData.html" class="internal-link">sqlalchemy.sql.schema.ThreadLocalMetaData</a></code></div>
+    
+    <div>True if this MetaData is bound to an Engine or Connection.</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.sql.schema.MetaData.reflect">
+    
+  </a>
+  <a name="reflect">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">reflect</span>(self, bind=None, schema=None, views=False, only=None, extend_existing=False, autoload_replace=True, resolve_fks=True, **dialect_kwargs):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Load all available table definitions from the database.</p>
+<p>Automatically creates <tt class="rst-docutils literal">Table</tt> entries in this <tt class="rst-docutils literal">MetaData</tt> for any
+table available in the database but not yet present in the
+<tt class="rst-docutils literal">MetaData</tt>.  May be called multiple times to pick up tables recently
+added to the database, however no special action is taken if a table
+in this <tt class="rst-docutils literal">MetaData</tt> no longer exists in the database.</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">bind</span></td><td class="fieldArgDesc"><p>A <code>.Connectable</code> used to access the database; if None, uses
+the existing bind on this <tt class="rst-docutils literal">MetaData</tt>, if any.</p>
+<div class="rst-admonition note">
+<p class="rst-first rst-admonition-title">Note</p>
+<p class="rst-last">the "bind" argument will be required in
+SQLAlchemy 2.0.</p>
+</div>
+</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">schema</span></td><td class="fieldArgDesc">Optional, query and reflect tables from an alternate schema.
+If None, the schema associated with this <code>_schema.MetaData</code>
+is used, if any.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">views</span></td><td class="fieldArgDesc">If True, also reflect views.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">only</span></td><td class="fieldArgDesc"><p>Optional.  Load only a sub-set of available named tables.  May be
+specified as a sequence of names or a callable.</p>
+<p>If a sequence of names is provided, only those tables will be
+reflected.  An error is raised if a table is requested but not
+available.  Named tables already present in this <tt class="rst-docutils literal">MetaData</tt> are
+ignored.</p>
+<p>If a callable is provided, it will be used as a boolean predicate to
+filter the list of potential table names.  The callable is called
+with a table name and this <tt class="rst-docutils literal">MetaData</tt> instance as positional
+arguments and should return a true value for any table to reflect.</p>
+</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">extend​_existing</span></td><td class="fieldArgDesc"><p>Passed along to each <code>_schema.Table</code> as
+<a href="#system-message-1"><span class="rst-problematic" id="rst-problematic-1">:paramref:`_schema.Table.extend_existing`</span></a>.</p>
+<div class="rst-versionadded">
+<span class="rst-versionmodified rst-added">New in version 0.9.1.</span></div>
+</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">autoload​_replace</span></td><td class="fieldArgDesc"><p>Passed along to each <code>_schema.Table</code>
+as
+<a href="#system-message-2"><span class="rst-problematic" id="rst-problematic-2">:paramref:`_schema.Table.autoload_replace`</span></a>.</p>
+<div class="rst-versionadded">
+<span class="rst-versionmodified rst-added">New in version 0.9.1.</span></div>
+</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">resolve​_fks</span></td><td class="fieldArgDesc"><p>if True, reflect <code>_schema.Table</code>
+objects linked
+to <code>_schema.ForeignKey</code> objects located in each
+<code>_schema.Table</code>.
+For <code>_schema.MetaData.reflect</code>,
+this has the effect of reflecting
+related tables that might otherwise not be in the list of tables
+being reflected, for example if the referenced table is in a
+different schema or is omitted via the
+<a href="#system-message-3"><span class="rst-problematic" id="rst-problematic-3">:paramref:`.MetaData.reflect.only`</span></a> parameter.  When False,
+<code>_schema.ForeignKey</code> objects are not followed to the
+<code>_schema.Table</code>
+in which they link, however if the related table is also part of the
+list of tables that would be reflected in any case, the
+<code>_schema.ForeignKey</code> object will still resolve to its related
+<code>_schema.Table</code> after the <code>_schema.MetaData.reflect</code>
+operation is
+complete.   Defaults to True.</p>
+<div class="rst-versionadded">
+<span class="rst-versionmodified rst-added">New in version 1.3.0.</span></div>
+<div class="rst-admonition seealso">
+<p class="rst-first rst-admonition-title">See Also</p>
+<p class="rst-last"><a href="#system-message-4"><span class="rst-problematic" id="rst-problematic-4">:paramref:`_schema.Table.resolve_fks`</span></a></p>
+</div>
+</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">**dialect​_kwargs</span></td><td class="fieldArgDesc"><p>Additional keyword arguments not mentioned
+above are dialect specific, and passed in the form
+<tt class="rst-docutils literal">&lt;dialectname&gt;_&lt;argname&gt;</tt>.  See the documentation regarding an
+individual dialect at <a href="#system-message-5"><span class="rst-problematic" id="rst-problematic-5">:ref:`dialect_toplevel`</span></a> for detail on
+documented arguments.</p>
+<blockquote>
+<div class="rst-versionadded">
+<span class="rst-versionmodified rst-added">New in version 0.9.2: </span><span>- Added
+<a href="#system-message-6"><span class="rst-problematic" id="rst-problematic-6">:paramref:`.MetaData.reflect.**dialect_kwargs`</span></a> to support
+dialect-level reflection options for all <code>_schema.Table</code>
+objects reflected.</span></div>
+</blockquote>
+</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.sql.schema.MetaData.remove">
+    
+  </a>
+  <a name="remove">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">remove</span>(self, table):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Remove the given Table object from this MetaData.</div>
+  </div>
+</div><div class="baseclassvariable">
+  
+  
+  <a name="sqlalchemy.sql.schema.MetaData.__visit_name__">
+    
+  </a>
+  <a name="__visit_name__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">__visit_name__</span>: <code>str</code> =
+    
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">overrides <code><a href="sqlalchemy.sql.schema.SchemaItem.html#__visit_name__" class="internal-link">sqlalchemy.sql.schema.SchemaItem.__visit_name__</a></code></div><div class="interfaceinfo">overridden in <code><a href="sqlalchemy.sql.schema.ThreadLocalMetaData.html" class="internal-link">sqlalchemy.sql.schema.ThreadLocalMetaData</a></code></div>
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="sqlalchemy.sql.schema.MetaData.info">
+    
+  </a>
+  <a name="info">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">info</span> =
+    
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">overrides <code><a href="sqlalchemy.sql.schema.SchemaItem.html#info" class="internal-link">sqlalchemy.sql.schema.SchemaItem.info</a></code></div>
+    
+    <div><p>Info dictionary associated with the object, allowing user-defined
+data to be associated with this <code>.SchemaItem</code>.</p>
+<p>The dictionary is automatically generated when first accessed.
+It can also be specified in the constructor of some objects,
+such as <code>_schema.Table</code> and <code>_schema.Column</code>.</p>
+</div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="sqlalchemy.sql.schema.MetaData.naming_convention">
+    
+  </a>
+  <a name="naming_convention">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">naming_convention</span> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="sqlalchemy.sql.schema.MetaData.schema">
+    
+  </a>
+  <a name="schema">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">schema</span> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="sqlalchemy.sql.schema.MetaData.tables">
+    
+  </a>
+  <a name="tables">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">tables</span> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p>A dictionary of <code>_schema.Table</code>
+objects keyed to their name or "table key".</p>
+<p>The exact key is that determined by the <code>_schema.Table.key</code>
+attribute;
+for a table with no <code>_schema.Table.schema</code> attribute,
+this is the same
+as <code>_schema.Table.name</code>.  For a table with a schema,
+it is typically of the
+form <tt class="rst-docutils literal">schemaname.tablename</tt>.</p>
+<div class="rst-admonition seealso">
+<p class="rst-first rst-admonition-title">See Also</p>
+<p class="rst-last"><code>_schema.MetaData.sorted_tables</code></p>
+</div>
+</div>
+    
+  </div>
+</div><div class="baseproperty">
+  
+  
+  <a name="sqlalchemy.sql.schema.MetaData.sorted_tables">
+    
+  </a>
+  <a name="sorted_tables">
+    
+  </a>
+  <div class="functionHeader">
+    @property<br />
+    <span class="py-defname">sorted_tables</span> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p>Returns a list of <code>_schema.Table</code> objects sorted in order of
+foreign key dependency.</p>
+<p>The sorting will place <code>_schema.Table</code>
+objects that have dependencies
+first, before the dependencies themselves, representing the
+order in which they can be created.   To get the order in which
+the tables would be dropped, use the <tt class="rst-docutils literal">reversed()</tt> Python built-in.</p>
+<div class="rst-admonition warning">
+<p class="rst-first rst-admonition-title">Warning</p>
+<p>The <code>.MetaData.sorted_tables</code> attribute cannot by itself
+accommodate automatic resolution of dependency cycles between
+tables, which are usually caused by mutually dependent foreign key
+constraints. When these cycles are detected, the foreign keys
+of these tables are omitted from consideration in the sort.
+A warning is emitted when this condition occurs, which will be an
+exception raise in a future release.   Tables which are not part
+of the cycle will still be returned in dependency order.</p>
+<p>To resolve these cycles, the
+<a href="#system-message-1"><span class="rst-problematic" id="rst-problematic-1">:paramref:`_schema.ForeignKeyConstraint.use_alter`</span></a> parameter may be
+applied to those constraints which create a cycle.  Alternatively,
+the <code>_schema.sort_tables_and_constraints</code> function will
+automatically return foreign key constraints in a separate
+collection when cycles are detected so that they may be applied
+to a schema separately.</p>
+<div class="rst-last rst-versionchanged">
+<span class="rst-versionmodified rst-changed">Changed in version 1.3.17: </span><span>- a warning is emitted when
+<code>.MetaData.sorted_tables</code> cannot perform a proper sort
+due to cyclical dependencies.  This will be an exception in a
+future release.  Additionally, the sort will continue to return
+other tables not involved in the cycle in dependency order which
+was not the case previously.</span></div>
+</div>
+<div class="rst-admonition seealso">
+<p class="rst-first rst-admonition-title">See Also</p>
+<p><code>_schema.sort_tables</code></p>
+<p><code>_schema.sort_tables_and_constraints</code></p>
+<p><code>_schema.MetaData.tables</code></p>
+<p><code>_reflection.Inspector.get_table_names</code></p>
+<p class="rst-last"><code>_reflection.Inspector.get_sorted_table_and_fkc_names</code></p>
+</div>
+</div>
+    
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="sqlalchemy.sql.schema.MetaData._add_table">
+    
+  </a>
+  <a name="_add_table">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_add_table</span>(self, name, schema, table):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="sqlalchemy.sql.schema.MetaData._bind_to">
+    
+  </a>
+  <a name="_bind_to">
+    
+  </a>
+  <div class="functionHeader">
+    @util.preload_module(<wbr></wbr><span class="rst-variable-quote">'</span><span class="rst-variable-string">sqlalchemy.engine.url</span><span class="rst-variable-quote">'</span>)<br />
+    <span class="py-keyword">def</span> <span class="py-defname">_bind_to</span>(self, bind):
+    
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="sqlalchemy.sql.schema.ThreadLocalMetaData.html" class="internal-link">sqlalchemy.sql.schema.ThreadLocalMetaData</a></code></div>
+    
+    <div>Bind this MetaData to an Engine, Connection, string or URL.</div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="sqlalchemy.sql.schema.MetaData._remove_table">
+    
+  </a>
+  <a name="_remove_table">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_remove_table</span>(self, name, schema):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  
+  <a name="sqlalchemy.sql.schema.MetaData._bind">
+    
+  </a>
+  <a name="_bind">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_bind</span> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  
+  <a name="sqlalchemy.sql.schema.MetaData._fk_memos">
+    
+  </a>
+  <a name="_fk_memos">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_fk_memos</span> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  
+  <a name="sqlalchemy.sql.schema.MetaData._schemas">
+    
+  </a>
+  <a name="_schemas">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_schemas</span> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  
+  <a name="sqlalchemy.sql.schema.MetaData._sequences">
+    
+  </a>
+  <a name="_sequences">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_sequences</span> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div>
+
+      </div>
+    </div>
+
+    <footer class="navbar navbar-default">
+  
+  <div class="container">
+    <a href="index.html">API Documentation</a> for sqlalchemy,
+  generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
+    22.2.0 at 2022-02-23 04:41:59.
+  </div>
+</footer>
+
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+  </body>
+</html>

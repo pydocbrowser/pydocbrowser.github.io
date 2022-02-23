@@ -1,0 +1,620 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  
+
+  <head>
+    
+    <title>setuptools._distutils.extension.Extension</title>
+    <meta name="generator" content="pydoctor 22.2.0"> 
+        
+    </meta>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=0.75" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+    <link rel="stylesheet" type="text/css" href="extra.css" />
+</head>
+
+  <body>
+
+    
+
+    <nav class="navbar navbar-default">
+  
+  <div class="container">
+
+    <div class="navbar-header">
+      
+      <div class="navlinks">
+          <span class="navbar-brand">
+            setuptools <a href="index.html">API Documentation</a>
+          </span>
+
+          <a href="moduleIndex.html">
+            Modules
+          </a>
+
+          <a href="classIndex.html">
+            Classes
+          </a>
+
+          <a href="nameIndex.html">
+            Names
+          </a>
+      </div>
+
+    </div>
+  </div>
+</nav>
+
+    
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="class"><code><code><a href="index.html" class="internal-link">setuptools</a></code><wbr></wbr>.<code><a href="setuptools._distutils.html" class="internal-link" title="setuptools._distutils">_distutils</a></code><wbr></wbr>.<code><a href="setuptools._distutils.extension.html" class="internal-link" title="setuptools._distutils.extension">extension</a></code><wbr></wbr>.<code><a href="setuptools._distutils.extension.Extension.html" class="internal-link" title="setuptools._distutils.extension.Extension">Extension</a></code></code></h1>
+        <div id="showPrivate">
+          <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+        </div>
+      </div>
+
+      <div class="categoryHeader">
+        class documentation
+      </div>
+
+      <div class="extrasDocstring">
+        <p><code><span class="py-keyword">class</span> <span class="py-defname">Extension</span>:</code></p>
+        <p><a href="classIndex.html#setuptools._distutils.extension.Extension">View In Hierarchy</a></p>
+      </div>
+
+      <div class="moduleDocstring">
+        <div><p>Just a collection of attributes that describes an extension
+module and everything needed to build it (hopefully in a portable
+way, but there are hooks that let you be as unportable as you need).</p>
+<dl class="rst-docutils">
+<dt>Instance attributes:</dt>
+<dd><dl class="rst-first rst-last rst-docutils">
+<dt>name <span class="classifier-delimiter">:</span> <span class="rst-classifier">string</span></dt>
+<dd>the full name of the extension, including any packages -- ie.
+<em>not</em> a filename or pathname, but Python dotted name</dd>
+<dt>sources <span class="classifier-delimiter">:</span> <span class="rst-classifier">[string]</span></dt>
+<dd>list of source filenames, relative to the distribution root
+(where the setup script lives), in Unix form (slash-separated)
+for portability.  Source files may be C, C++, SWIG (.i),
+platform-specific resource files, or whatever else is recognized
+by the "build_ext" command as source for a Python extension.</dd>
+<dt>include_dirs <span class="classifier-delimiter">:</span> <span class="rst-classifier">[string]</span></dt>
+<dd>list of directories to search for C/C++ header files (in Unix
+form for portability)</dd>
+<dt>define_macros <span class="classifier-delimiter">:</span> <span class="rst-classifier">[(name</span> <span class="classifier-delimiter">:</span> <span class="rst-classifier">string, value</span> <span class="classifier-delimiter">:</span> <span class="rst-classifier">string|None)]</span></dt>
+<dd>list of macros to define; each macro is defined using a 2-tuple,
+where 'value' is either the string to define it to or None to
+define it without a particular value (equivalent of "#define
+FOO" in source or -DFOO on Unix C compiler command line)</dd>
+<dt>undef_macros <span class="classifier-delimiter">:</span> <span class="rst-classifier">[string]</span></dt>
+<dd>list of macros to undefine explicitly</dd>
+<dt>library_dirs <span class="classifier-delimiter">:</span> <span class="rst-classifier">[string]</span></dt>
+<dd>list of directories to search for C/C++ libraries at link time</dd>
+<dt>libraries <span class="classifier-delimiter">:</span> <span class="rst-classifier">[string]</span></dt>
+<dd>list of library names (not filenames or paths) to link against</dd>
+<dt>runtime_library_dirs <span class="classifier-delimiter">:</span> <span class="rst-classifier">[string]</span></dt>
+<dd>list of directories to search for C/C++ libraries at run time
+(for shared extensions, this is when the extension is loaded)</dd>
+<dt>extra_objects <span class="classifier-delimiter">:</span> <span class="rst-classifier">[string]</span></dt>
+<dd>list of extra files to link with (eg. object files not implied
+by 'sources', static library that must be explicitly specified,
+binary resource files, etc.)</dd>
+<dt>extra_compile_args <span class="classifier-delimiter">:</span> <span class="rst-classifier">[string]</span></dt>
+<dd>any extra platform- and compiler-specific information to use
+when compiling the source files in 'sources'.  For platforms and
+compilers where "command line" makes sense, this is typically a
+list of command-line arguments, but for other platforms it could
+be anything.</dd>
+<dt>extra_link_args <span class="classifier-delimiter">:</span> <span class="rst-classifier">[string]</span></dt>
+<dd>any extra platform- and compiler-specific information to use
+when linking object files together to create the extension (or
+to create a new static Python interpreter).  Similar
+interpretation as for 'extra_compile_args'.</dd>
+<dt>export_symbols <span class="classifier-delimiter">:</span> <span class="rst-classifier">[string]</span></dt>
+<dd>list of symbols to be exported from a shared extension.  Not
+used on all platforms, and not generally necessary for Python
+extensions, which typically export exactly one symbol: "init" +
+extension_name.</dd>
+<dt>swig_opts <span class="classifier-delimiter">:</span> <span class="rst-classifier">[string]</span></dt>
+<dd>any extra options to pass to SWIG if a source file has the .i
+extension.</dd>
+<dt>depends <span class="classifier-delimiter">:</span> <span class="rst-classifier">[string]</span></dt>
+<dd>list of files that the extension depends on</dd>
+<dt>language <span class="classifier-delimiter">:</span> <span class="rst-classifier">string</span></dt>
+<dd>extension language (i.e. "c", "c++", "objc"). Will be detected
+from the source extensions if not provided.</dd>
+<dt>optional <span class="classifier-delimiter">:</span> <span class="rst-classifier">boolean</span></dt>
+<dd>specifies that a build failure in the extension should not abort the
+build process, but simply not install the failing extension.</dd>
+</dl>
+</dd>
+</dl>
+</div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id11784">
+  
+  
+  <tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__init__" class="internal-link" title="setuptools._distutils.extension.Extension.__init__">__init__</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__repr__" class="internal-link" title="setuptools._distutils.extension.Extension.__repr__">__repr__</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#define_macros" class="internal-link" title="setuptools._distutils.extension.Extension.define_macros">define​_macros</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#depends" class="internal-link" title="setuptools._distutils.extension.Extension.depends">depends</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#export_symbols" class="internal-link" title="setuptools._distutils.extension.Extension.export_symbols">export​_symbols</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#extra_compile_args" class="internal-link" title="setuptools._distutils.extension.Extension.extra_compile_args">extra​_compile​_args</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#extra_link_args" class="internal-link" title="setuptools._distutils.extension.Extension.extra_link_args">extra​_link​_args</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#extra_objects" class="internal-link" title="setuptools._distutils.extension.Extension.extra_objects">extra​_objects</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#include_dirs" class="internal-link" title="setuptools._distutils.extension.Extension.include_dirs">include​_dirs</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#language" class="internal-link" title="setuptools._distutils.extension.Extension.language">language</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#libraries" class="internal-link" title="setuptools._distutils.extension.Extension.libraries">libraries</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#library_dirs" class="internal-link" title="setuptools._distutils.extension.Extension.library_dirs">library​_dirs</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#name" class="internal-link" title="setuptools._distutils.extension.Extension.name">name</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#optional" class="internal-link" title="setuptools._distutils.extension.Extension.optional">optional</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#runtime_library_dirs" class="internal-link" title="setuptools._distutils.extension.Extension.runtime_library_dirs">runtime​_library​_dirs</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#sources" class="internal-link" title="setuptools._distutils.extension.Extension.sources">sources</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#swig_opts" class="internal-link" title="setuptools._distutils.extension.Extension.swig_opts">swig​_opts</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#undef_macros" class="internal-link" title="setuptools._distutils.extension.Extension.undef_macros">undef​_macros</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+        
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="basemethod">
+  
+  
+  <a name="setuptools._distutils.extension.Extension.__init__">
+    
+  </a>
+  <a name="__init__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__init__</span>(self, name, sources, include_dirs=None, define_macros=None, undef_macros=None, library_dirs=None, libraries=None, runtime_library_dirs=None, extra_objects=None, extra_compile_args=None, extra_link_args=None, export_symbols=None, swig_opts=None, depends=None, language=None, optional=None, **kw):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="setuptools._distutils.extension.Extension.__repr__">
+    
+  </a>
+  <a name="__repr__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__repr__</span>(self):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="setuptools._distutils.extension.Extension.define_macros">
+    
+  </a>
+  <a name="define_macros">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">define_macros</span> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="setuptools._distutils.extension.Extension.depends">
+    
+  </a>
+  <a name="depends">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">depends</span> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="setuptools._distutils.extension.Extension.export_symbols">
+    
+  </a>
+  <a name="export_symbols">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">export_symbols</span> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="setuptools._distutils.extension.Extension.extra_compile_args">
+    
+  </a>
+  <a name="extra_compile_args">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">extra_compile_args</span> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="setuptools._distutils.extension.Extension.extra_link_args">
+    
+  </a>
+  <a name="extra_link_args">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">extra_link_args</span> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="setuptools._distutils.extension.Extension.extra_objects">
+    
+  </a>
+  <a name="extra_objects">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">extra_objects</span> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="setuptools._distutils.extension.Extension.include_dirs">
+    
+  </a>
+  <a name="include_dirs">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">include_dirs</span> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="setuptools._distutils.extension.Extension.language">
+    
+  </a>
+  <a name="language">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">language</span> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="setuptools._distutils.extension.Extension.libraries">
+    
+  </a>
+  <a name="libraries">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">libraries</span> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="setuptools._distutils.extension.Extension.library_dirs">
+    
+  </a>
+  <a name="library_dirs">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">library_dirs</span> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="setuptools._distutils.extension.Extension.name">
+    
+  </a>
+  <a name="name">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">name</span> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="setuptools._distutils.extension.Extension.optional">
+    
+  </a>
+  <a name="optional">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">optional</span> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="setuptools._distutils.extension.Extension.runtime_library_dirs">
+    
+  </a>
+  <a name="runtime_library_dirs">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">runtime_library_dirs</span> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="setuptools._distutils.extension.Extension.sources">
+    
+  </a>
+  <a name="sources">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">sources</span> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="setuptools._distutils.extension.Extension.swig_opts">
+    
+  </a>
+  <a name="swig_opts">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">swig_opts</span> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="setuptools._distutils.extension.Extension.undef_macros">
+    
+  </a>
+  <a name="undef_macros">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">undef_macros</span> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div>
+
+      </div>
+    </div>
+
+    <footer class="navbar navbar-default">
+  
+  <div class="container">
+    <a href="index.html">API Documentation</a> for setuptools,
+  generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
+    22.2.0 at 2022-02-23 04:39:29.
+  </div>
+</footer>
+
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+  </body>
+</html>

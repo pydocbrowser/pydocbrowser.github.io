@@ -1,0 +1,436 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  
+
+  <head>
+    
+    <title>werkzeug.exceptions</title>
+    <meta name="generator" content="pydoctor 22.2.0"> 
+        
+    </meta>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=0.75" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+    <link rel="stylesheet" type="text/css" href="extra.css" />
+</head>
+
+  <body>
+
+    
+
+    <nav class="navbar navbar-default">
+  
+  <div class="container">
+
+    <div class="navbar-header">
+      
+      <div class="navlinks">
+          <span class="navbar-brand">
+            werkzeug <a href="index.html">API Documentation</a>
+          </span>
+
+          <a href="moduleIndex.html">
+            Modules
+          </a>
+
+          <a href="classIndex.html">
+            Classes
+          </a>
+
+          <a href="nameIndex.html">
+            Names
+          </a>
+      </div>
+
+    </div>
+  </div>
+</nav>
+
+    
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="module"><code><code><a href="index.html" class="internal-link">werkzeug</a></code><wbr></wbr>.<code><a href="werkzeug.exceptions.html" class="internal-link" title="werkzeug.exceptions">exceptions</a></code></code></h1>
+        <div id="showPrivate">
+          <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+        </div>
+      </div>
+
+      <div class="categoryHeader">
+        module documentation
+      </div>
+
+      <div class="extrasDocstring">
+        
+        <p></p>
+      </div>
+
+      <div class="moduleDocstring">
+        <div><p>Implements a number of Python exceptions which can be raised from within
+a view to trigger a standard HTTP non-200 response.</p>
+<div class="rst-section" id="rst-usage-example">
+<h2 class="heading">Usage Example</h2>
+<pre class="rst-code rst-python rst-literal-block">
+from werkzeug.wrappers.request import Request
+from werkzeug.exceptions import HTTPException, NotFound
+
+def view(request):
+    raise NotFound()
+
+@Request.application
+def application(request):
+    try:
+        return view(request)
+    except HTTPException as e:
+        return e
+</pre>
+<p>As you can see from this example those exceptions are callable WSGI
+applications. However, they are not Werkzeug response objects. You
+can get a response object by calling <tt class="rst-docutils literal">get_response()</tt> on a HTTP
+exception.</p>
+<p>Keep in mind that you may have to pass an environ (WSGI) or scope
+(ASGI) to <tt class="rst-docutils literal">get_response()</tt> because some errors fetch additional
+information relating to the request.</p>
+<p>If you want to hook in a different exception page to say, a 404 status
+code, you can add a second except for a specific subclass of an error:</p>
+<pre class="rst-code rst-python rst-literal-block">
+@Request.application
+def application(request):
+    try:
+        return view(request)
+    except NotFound as e:
+        return not_found(request)
+    except HTTPException as e:
+        return e
+</pre>
+</div>
+</div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id21635">
+  
+  
+  <tr class="class">
+    
+    <td>Class</td>
+    <td><code><a href="werkzeug.exceptions.Aborter.html" class="internal-link" title="werkzeug.exceptions.Aborter">​Aborter</a></code></td>
+    <td><span class="undocumented">No summary</span></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><code><a href="werkzeug.exceptions.BadGateway.html" class="internal-link" title="werkzeug.exceptions.BadGateway">​Bad​Gateway</a></code></td>
+    <td><em>502</em> <code>Bad Gateway</code></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><code><a href="werkzeug.exceptions.BadHost.html" class="internal-link" title="werkzeug.exceptions.BadHost">​Bad​Host</a></code></td>
+    <td>Raised if the submitted host is badly formatted.</td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><code><a href="werkzeug.exceptions.BadRequest.html" class="internal-link" title="werkzeug.exceptions.BadRequest">​Bad​Request</a></code></td>
+    <td><em>400</em> <code>Bad Request</code></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><code><a href="werkzeug.exceptions.BadRequestKeyError.html" class="internal-link" title="werkzeug.exceptions.BadRequestKeyError">​Bad​Request​Key​Error</a></code></td>
+    <td>An exception that is used to signal both a <code>KeyError</code> and a <code><a href="werkzeug.exceptions.BadRequest.html" class="internal-link" title="werkzeug.exceptions.BadRequest">BadRequest</a></code>. Used by many of the datastructures.</td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><code><a href="werkzeug.exceptions.ClientDisconnected.html" class="internal-link" title="werkzeug.exceptions.ClientDisconnected">​Client​Disconnected</a></code></td>
+    <td><span class="undocumented">No summary</span></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><code><a href="werkzeug.exceptions.Conflict.html" class="internal-link" title="werkzeug.exceptions.Conflict">​Conflict</a></code></td>
+    <td><em>409</em> <code><a href="werkzeug.exceptions.Conflict.html" class="internal-link" title="werkzeug.exceptions.Conflict">Conflict</a></code></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><code><a href="werkzeug.exceptions.ExpectationFailed.html" class="internal-link" title="werkzeug.exceptions.ExpectationFailed">​Expectation​Failed</a></code></td>
+    <td><em>417</em> <code>Expectation Failed</code></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><code><a href="werkzeug.exceptions.FailedDependency.html" class="internal-link" title="werkzeug.exceptions.FailedDependency">​Failed​Dependency</a></code></td>
+    <td><em>424</em> <code>Failed Dependency</code></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><code><a href="werkzeug.exceptions.Forbidden.html" class="internal-link" title="werkzeug.exceptions.Forbidden">​Forbidden</a></code></td>
+    <td><em>403</em> <code><a href="werkzeug.exceptions.Forbidden.html" class="internal-link" title="werkzeug.exceptions.Forbidden">Forbidden</a></code></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><code><a href="werkzeug.exceptions.GatewayTimeout.html" class="internal-link" title="werkzeug.exceptions.GatewayTimeout">​Gateway​Timeout</a></code></td>
+    <td><em>504</em> <code>Gateway Timeout</code></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><code><a href="werkzeug.exceptions.Gone.html" class="internal-link" title="werkzeug.exceptions.Gone">​Gone</a></code></td>
+    <td><em>410</em> <code><a href="werkzeug.exceptions.Gone.html" class="internal-link" title="werkzeug.exceptions.Gone">Gone</a></code></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><code><a href="werkzeug.exceptions.HTTPException.html" class="internal-link" title="werkzeug.exceptions.HTTPException">​HTTPException</a></code></td>
+    <td>The base class for all HTTP exceptions. This exception can be called as a WSGI application to render a default error page or you can catch the subclasses of it independently and render nicer error messages.</td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><code><a href="werkzeug.exceptions.HTTPVersionNotSupported.html" class="internal-link" title="werkzeug.exceptions.HTTPVersionNotSupported">​HTTPVersion​Not​Supported</a></code></td>
+    <td><em>505</em> <code>HTTP Version Not Supported</code></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><code><a href="werkzeug.exceptions.ImATeapot.html" class="internal-link" title="werkzeug.exceptions.ImATeapot">​Im​ATeapot</a></code></td>
+    <td><em>418</em> <code>I'm a teapot</code></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><code><a href="werkzeug.exceptions.InternalServerError.html" class="internal-link" title="werkzeug.exceptions.InternalServerError">​Internal​Server​Error</a></code></td>
+    <td><em>500</em> <code>Internal Server Error</code></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><code><a href="werkzeug.exceptions.LengthRequired.html" class="internal-link" title="werkzeug.exceptions.LengthRequired">​Length​Required</a></code></td>
+    <td><em>411</em> <code>Length Required</code></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><code><a href="werkzeug.exceptions.Locked.html" class="internal-link" title="werkzeug.exceptions.Locked">​Locked</a></code></td>
+    <td><em>423</em> <code><a href="werkzeug.exceptions.Locked.html" class="internal-link" title="werkzeug.exceptions.Locked">Locked</a></code></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><code><a href="werkzeug.exceptions.MethodNotAllowed.html" class="internal-link" title="werkzeug.exceptions.MethodNotAllowed">​Method​Not​Allowed</a></code></td>
+    <td><em>405</em> <code>Method Not Allowed</code></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><code><a href="werkzeug.exceptions.NotAcceptable.html" class="internal-link" title="werkzeug.exceptions.NotAcceptable">​Not​Acceptable</a></code></td>
+    <td><em>406</em> <code>Not Acceptable</code></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><code><a href="werkzeug.exceptions.NotFound.html" class="internal-link" title="werkzeug.exceptions.NotFound">​Not​Found</a></code></td>
+    <td><em>404</em> <code>Not Found</code></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><code><a href="werkzeug.exceptions.NotImplemented.html" class="internal-link" title="werkzeug.exceptions.NotImplemented">​Not​Implemented</a></code></td>
+    <td><em>501</em> <code>Not Implemented</code></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><code><a href="werkzeug.exceptions.PreconditionFailed.html" class="internal-link" title="werkzeug.exceptions.PreconditionFailed">​Precondition​Failed</a></code></td>
+    <td><em>412</em> <code>Precondition Failed</code></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><code><a href="werkzeug.exceptions.PreconditionRequired.html" class="internal-link" title="werkzeug.exceptions.PreconditionRequired">​Precondition​Required</a></code></td>
+    <td><em>428</em> <code>Precondition Required</code></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><code><a href="werkzeug.exceptions.RequestedRangeNotSatisfiable.html" class="internal-link" title="werkzeug.exceptions.RequestedRangeNotSatisfiable">​Requested​Range​Not​Satisfiable</a></code></td>
+    <td><em>416</em> <code>Requested Range Not Satisfiable</code></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><code><a href="werkzeug.exceptions.RequestEntityTooLarge.html" class="internal-link" title="werkzeug.exceptions.RequestEntityTooLarge">​Request​Entity​Too​Large</a></code></td>
+    <td><em>413</em> <code>Request Entity Too Large</code></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><code><a href="werkzeug.exceptions.RequestHeaderFieldsTooLarge.html" class="internal-link" title="werkzeug.exceptions.RequestHeaderFieldsTooLarge">​Request​Header​Fields​Too​Large</a></code></td>
+    <td><em>431</em> <code>Request Header Fields Too Large</code></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><code><a href="werkzeug.exceptions.RequestTimeout.html" class="internal-link" title="werkzeug.exceptions.RequestTimeout">​Request​Timeout</a></code></td>
+    <td><em>408</em> <code>Request Timeout</code></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><code><a href="werkzeug.exceptions.RequestURITooLarge.html" class="internal-link" title="werkzeug.exceptions.RequestURITooLarge">​Request​URIToo​Large</a></code></td>
+    <td><em>414</em> <code>Request URI Too Large</code></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><code><a href="werkzeug.exceptions.SecurityError.html" class="internal-link" title="werkzeug.exceptions.SecurityError">​Security​Error</a></code></td>
+    <td>Raised if something triggers a security error.  This is otherwise exactly like a bad request error.</td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><code><a href="werkzeug.exceptions.ServiceUnavailable.html" class="internal-link" title="werkzeug.exceptions.ServiceUnavailable">​Service​Unavailable</a></code></td>
+    <td><em>503</em> <code>Service Unavailable</code></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><code><a href="werkzeug.exceptions.TooManyRequests.html" class="internal-link" title="werkzeug.exceptions.TooManyRequests">​Too​Many​Requests</a></code></td>
+    <td><em>429</em> <code>Too Many Requests</code></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><code><a href="werkzeug.exceptions.Unauthorized.html" class="internal-link" title="werkzeug.exceptions.Unauthorized">​Unauthorized</a></code></td>
+    <td><em>401</em> <tt class="rst-docutils literal">Unauthorized</tt></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><code><a href="werkzeug.exceptions.UnavailableForLegalReasons.html" class="internal-link" title="werkzeug.exceptions.UnavailableForLegalReasons">​Unavailable​For​Legal​Reasons</a></code></td>
+    <td><em>451</em> <code>Unavailable For Legal Reasons</code></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><code><a href="werkzeug.exceptions.UnprocessableEntity.html" class="internal-link" title="werkzeug.exceptions.UnprocessableEntity">​Unprocessable​Entity</a></code></td>
+    <td><em>422</em> <code>Unprocessable Entity</code></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><code><a href="werkzeug.exceptions.UnsupportedMediaType.html" class="internal-link" title="werkzeug.exceptions.UnsupportedMediaType">​Unsupported​Media​Type</a></code></td>
+    <td><em>415</em> <code>Unsupported Media Type</code></td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#abort" class="internal-link" title="werkzeug.exceptions.abort">abort</a></code></td>
+    <td>Raises an <code><a href="werkzeug.exceptions.HTTPException.html" class="internal-link" title="werkzeug.exceptions.HTTPException">HTTPException</a></code> for the given status code or WSGI application.</td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><code><a href="#default_exceptions" class="internal-link" title="werkzeug.exceptions.default_exceptions">default​_exceptions</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="class private">
+    
+    <td>Class</td>
+    <td><code><a href="werkzeug.exceptions._RetryAfter.html" class="internal-link" title="werkzeug.exceptions._RetryAfter">_​Retry​After</a></code></td>
+    <td>Adds an optional <tt class="rst-docutils literal">retry_after</tt> parameter which will set the <tt class="rst-docutils literal"><span class="pre">Retry-After</span></tt> header. May be an <code>int</code> number of seconds or a <code>~datetime.datetime</code>.</td>
+  </tr><tr class="function private">
+    
+    <td>Function</td>
+    <td><code><a href="#_find_exceptions" class="internal-link" title="werkzeug.exceptions._find_exceptions">​_find​_exceptions</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable private">
+    
+    <td>Variable</td>
+    <td><code><a href="#_aborter" class="internal-link" title="werkzeug.exceptions._aborter">​_aborter</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+        
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="basefunction">
+  
+  
+  <a name="werkzeug.exceptions.abort">
+    
+  </a>
+  <a name="abort">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">abort</span>(status, *args, **kwargs):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Raises an <code><a href="werkzeug.exceptions.HTTPException.html" class="internal-link" title="werkzeug.exceptions.HTTPException">HTTPException</a></code> for the given status code or WSGI
+application.</p>
+<p>If a status code is given, it will be looked up in the list of
+exceptions and will raise that exception.  If passed a WSGI application,
+it will wrap it in a proxy WSGI exception and raise that:</p>
+<pre class="rst-literal-block">
+abort(404)  # 404 Not Found
+abort(Response('Hello World'))
+</pre>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">status:</span><code>t.Union[<wbr></wbr>int, <wbr></wbr><a href="werkzeug.sansio.response.Response.html" class="internal-link" title="werkzeug.sansio.response.Response">Response</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">*args:</span><code>t.Any</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">**kwargs:</span><code>t.Any</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code>te.NoReturn</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basevariable">
+  
+  
+  <a name="werkzeug.exceptions.default_exceptions">
+    
+  </a>
+  <a name="default_exceptions">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">default_exceptions</span>: <code>t.Dict[<wbr></wbr>int, <wbr></wbr>t.Type[<wbr></wbr><a href="werkzeug.exceptions.HTTPException.html" class="internal-link" title="werkzeug.exceptions.HTTPException">HTTPException</a>]]</code> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="basefunction private">
+  
+  
+  <a name="werkzeug.exceptions._find_exceptions">
+    
+  </a>
+  <a name="_find_exceptions">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_find_exceptions</span>():
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basevariable private">
+  
+  
+  <a name="werkzeug.exceptions._aborter">
+    
+  </a>
+  <a name="_aborter">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_aborter</span>: <code><a href="werkzeug.exceptions.Aborter.html" class="internal-link" title="werkzeug.exceptions.Aborter">Aborter</a></code> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div>
+
+      </div>
+    </div>
+
+    <footer class="navbar navbar-default">
+  
+  <div class="container">
+    <a href="index.html">API Documentation</a> for werkzeug,
+  generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
+    22.2.0 at 2022-02-23 04:47:03.
+  </div>
+</footer>
+
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+  </body>
+</html>

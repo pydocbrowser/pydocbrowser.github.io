@@ -1,0 +1,553 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  
+
+  <head>
+    
+    <title>sphinx.ext.apidoc</title>
+    <meta name="generator" content="pydoctor 22.2.0"> 
+        
+    </meta>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=0.75" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+    <link rel="stylesheet" type="text/css" href="extra.css" />
+</head>
+
+  <body>
+
+    
+
+    <nav class="navbar navbar-default">
+  
+  <div class="container">
+
+    <div class="navbar-header">
+      
+      <div class="navlinks">
+          <span class="navbar-brand">
+            sphinx <a href="index.html">API Documentation</a>
+          </span>
+
+          <a href="moduleIndex.html">
+            Modules
+          </a>
+
+          <a href="classIndex.html">
+            Classes
+          </a>
+
+          <a href="nameIndex.html">
+            Names
+          </a>
+      </div>
+
+    </div>
+  </div>
+</nav>
+
+    
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="module"><code><code><a href="index.html" class="internal-link">sphinx</a></code><wbr></wbr>.<code><a href="sphinx.ext.html" class="internal-link" title="sphinx.ext">ext</a></code><wbr></wbr>.<code><a href="sphinx.ext.apidoc.html" class="internal-link" title="sphinx.ext.apidoc">apidoc</a></code></code></h1>
+        <div id="showPrivate">
+          <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+        </div>
+      </div>
+
+      <div class="categoryHeader">
+        module documentation
+      </div>
+
+      <div class="extrasDocstring">
+        
+        <p></p>
+      </div>
+
+      <div class="moduleDocstring">
+        <div><p>Parses a directory tree looking for Python modules and packages and creates
+ReST files appropriately to create code documentation with Sphinx.  It also
+creates a modules index (named modules.&lt;suffix&gt;).</p>
+<p>This is derived from the "sphinx-autopackage" script, which is:
+Copyright 2008 Société des arts technologiques (SAT),
+<a class="rst-reference external" href="https://sat.qc.ca/" target="_top">https://sat.qc.ca/</a></p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Unknown Field: copyright</td></tr><tr><td colspan="2">Copyright 2007-2022 by the Sphinx team, see AUTHORS.</td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Unknown Field: license</td></tr><tr><td colspan="2">BSD, see LICENSE for details.</td></tr></table></div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id13382">
+  
+  
+  <tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#create_module_file" class="internal-link" title="sphinx.ext.apidoc.create_module_file">create​_module​_file</a></code></td>
+    <td>Build the text of the file and write the file.</td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#create_modules_toc_file" class="internal-link" title="sphinx.ext.apidoc.create_modules_toc_file">create​_modules​_toc​_file</a></code></td>
+    <td>Create the module's index.</td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#create_package_file" class="internal-link" title="sphinx.ext.apidoc.create_package_file">create​_package​_file</a></code></td>
+    <td>Build the text of the file and write the file.</td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#get_parser" class="internal-link" title="sphinx.ext.apidoc.get_parser">get​_parser</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#has_child_module" class="internal-link" title="sphinx.ext.apidoc.has_child_module">has​_child​_module</a></code></td>
+    <td>Check the given directory contains child module/s (at least one).</td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#is_excluded" class="internal-link" title="sphinx.ext.apidoc.is_excluded">is​_excluded</a></code></td>
+    <td>Check if the directory is in the exclude list.</td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#is_initpy" class="internal-link" title="sphinx.ext.apidoc.is_initpy">is​_initpy</a></code></td>
+    <td>Check <em>filename</em> is __init__ file or not.</td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#is_packagedir" class="internal-link" title="sphinx.ext.apidoc.is_packagedir">is​_packagedir</a></code></td>
+    <td>Check given <em>files</em> contains __init__ file.</td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#is_skipped_module" class="internal-link" title="sphinx.ext.apidoc.is_skipped_module">is​_skipped​_module</a></code></td>
+    <td>Check if we want to skip this module.</td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#is_skipped_package" class="internal-link" title="sphinx.ext.apidoc.is_skipped_package">is​_skipped​_package</a></code></td>
+    <td>Check if we want to skip this module.</td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#main" class="internal-link" title="sphinx.ext.apidoc.main">main</a></code></td>
+    <td>Parse and check the command line arguments.</td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#module_join" class="internal-link" title="sphinx.ext.apidoc.module_join">module​_join</a></code></td>
+    <td>Join module names with dots.</td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#recurse_tree" class="internal-link" title="sphinx.ext.apidoc.recurse_tree">recurse​_tree</a></code></td>
+    <td>Look for every file in the directory tree and create the corresponding ReST files.</td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#walk" class="internal-link" title="sphinx.ext.apidoc.walk">walk</a></code></td>
+    <td>Walk through the directory and list files and subdirectories up.</td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#write_file" class="internal-link" title="sphinx.ext.apidoc.write_file">write​_file</a></code></td>
+    <td>Write the output file for module/package &lt;name&gt;.</td>
+  </tr><tr class="constant">
+    
+    <td>Constant</td>
+    <td><code><a href="#OPTIONS" class="internal-link" title="sphinx.ext.apidoc.OPTIONS">OPTIONS</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="constant">
+    
+    <td>Constant</td>
+    <td><code><a href="#PY_SUFFIXES" class="internal-link" title="sphinx.ext.apidoc.PY_SUFFIXES">PY​_SUFFIXES</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><code><a href="#template_dir" class="internal-link" title="sphinx.ext.apidoc.template_dir">template​_dir</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+        
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="basefunction">
+  
+  
+  <a name="sphinx.ext.apidoc.create_module_file">
+    
+  </a>
+  <a name="create_module_file">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">create_module_file</span>(package, basename, opts, user_template_dir=None):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Build the text of the file and write the file.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">package:</span><code>str</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">basename:</span><code>str</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">opts:</span><code>Any</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">user​_template​_dir:</span><code>str</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="sphinx.ext.apidoc.create_modules_toc_file">
+    
+  </a>
+  <a name="create_modules_toc_file">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">create_modules_toc_file</span>(modules, opts, name=<span class="rst-variable-quote">'</span><span class="rst-variable-string">modules</span><span class="rst-variable-quote">'</span>, user_template_dir=None):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Create the module's index.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">modules:</span><code>List[<wbr></wbr>str]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">opts:</span><code>Any</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">name:</span><code>str</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">user​_template​_dir:</span><code>str</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="sphinx.ext.apidoc.create_package_file">
+    
+  </a>
+  <a name="create_package_file">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">create_package_file</span>(root, master_package, subroot, py_files, opts, subs, is_namespace, excludes=[], user_template_dir=None):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Build the text of the file and write the file.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">root:</span><code>str</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">master​_package:</span><code>str</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">subroot:</span><code>str</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">py​_files:</span><code>List[<wbr></wbr>str]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">opts:</span><code>Any</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">subs:</span><code>List[<wbr></wbr>str]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">is​_namespace:</span><code>bool</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">excludes:</span><code>List[<wbr></wbr>str]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">user​_template​_dir:</span><code>str</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="sphinx.ext.apidoc.get_parser">
+    
+  </a>
+  <a name="get_parser">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">get_parser</span>():
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code>argparse.ArgumentParser</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="sphinx.ext.apidoc.has_child_module">
+    
+  </a>
+  <a name="has_child_module">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">has_child_module</span>(rootpath, excludes, opts):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Check the given directory contains child module/s (at least one).<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">rootpath:</span><code>str</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">excludes:</span><code>List[<wbr></wbr>str]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">opts:</span><code>Any</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code>bool</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="sphinx.ext.apidoc.is_excluded">
+    
+  </a>
+  <a name="is_excluded">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">is_excluded</span>(root, excludes):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Check if the directory is in the exclude list.</p>
+<dl class="rst-docutils">
+<dt>Note: by having trailing slashes, we avoid common prefix issues, like</dt>
+<dd>e.g. an exclude "foo" also accidentally excluding "foobar".</dd>
+</dl>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">root:</span><code>str</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">excludes:</span><code>List[<wbr></wbr>str]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code>bool</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="sphinx.ext.apidoc.is_initpy">
+    
+  </a>
+  <a name="is_initpy">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">is_initpy</span>(filename):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Check <em>filename</em> is __init__ file or not.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">filename:</span><code>str</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code>bool</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="sphinx.ext.apidoc.is_packagedir">
+    
+  </a>
+  <a name="is_packagedir">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">is_packagedir</span>(dirname=None, files=None):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Check given <em>files</em> contains __init__ file.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">dirname:</span><code>str</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">files:</span><code>List[<wbr></wbr>str]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code>bool</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="sphinx.ext.apidoc.is_skipped_module">
+    
+  </a>
+  <a name="is_skipped_module">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">is_skipped_module</span>(filename, opts, excludes):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Check if we want to skip this module.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">filename:</span><code>str</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">opts:</span><code>Any</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">excludes:</span><code>List[<wbr></wbr>str]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code>bool</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="sphinx.ext.apidoc.is_skipped_package">
+    
+  </a>
+  <a name="is_skipped_package">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">is_skipped_package</span>(dirname, opts, excludes=[]):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Check if we want to skip this module.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">dirname:</span><code>str</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">opts:</span><code>Any</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">excludes:</span><code>List[<wbr></wbr>str]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code>bool</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="sphinx.ext.apidoc.main">
+    
+  </a>
+  <a name="main">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">main</span>(argv=sys.argv[<wbr></wbr>1:]):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Parse and check the command line arguments.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">argv:</span><code>List[<wbr></wbr>str]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code>int</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="sphinx.ext.apidoc.module_join">
+    
+  </a>
+  <a name="module_join">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">module_join</span>(*modnames):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Join module names with dots.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">*modnames:</span><code>str</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code>str</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="sphinx.ext.apidoc.recurse_tree">
+    
+  </a>
+  <a name="recurse_tree">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">recurse_tree</span>(rootpath, excludes, opts, user_template_dir=None):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Look for every file in the directory tree and create the corresponding
+ReST files.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">rootpath:</span><code>str</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">excludes:</span><code>List[<wbr></wbr>str]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">opts:</span><code>Any</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">user​_template​_dir:</span><code>str</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code>List[<wbr></wbr>str]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="sphinx.ext.apidoc.walk">
+    
+  </a>
+  <a name="walk">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">walk</span>(rootpath, excludes, opts):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Walk through the directory and list files and subdirectories up.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">rootpath:</span><code>str</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">excludes:</span><code>List[<wbr></wbr>str]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">opts:</span><code>Any</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code>Generator[<wbr></wbr>Tuple[<wbr></wbr>str, <wbr></wbr>List[<wbr></wbr>str], <wbr></wbr>List[<wbr></wbr>str]], <wbr></wbr>None, <wbr></wbr>None]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="sphinx.ext.apidoc.write_file">
+    
+  </a>
+  <a name="write_file">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">write_file</span>(name, text, opts):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Write the output file for module/package &lt;name&gt;.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">name:</span><code>str</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">text:</span><code>str</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">opts:</span><code>Any</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="baseconstant">
+  
+  
+  <a name="sphinx.ext.apidoc.OPTIONS">
+    
+  </a>
+  <a name="OPTIONS">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">OPTIONS</span> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    <table class="valueTable"><tr class="fieldStart"><td class="fieldName">Value</td></tr><tr><td><pre class="constant-value"><code>os.environ['SPHINX_APIDOC_OPTIONS'].split(<wbr></wbr><span class="rst-variable-quote">'</span><span class="rst-variable-string">,</span><span class="rst-variable-quote">'</span>)</code></pre></td></tr></table>
+  </div>
+</div><div class="baseconstant">
+  
+  
+  <a name="sphinx.ext.apidoc.PY_SUFFIXES">
+    
+  </a>
+  <a name="PY_SUFFIXES">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">PY_SUFFIXES</span> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    <table class="valueTable"><tr class="fieldStart"><td class="fieldName">Value</td></tr><tr><td><pre class="constant-value"><code>(<wbr></wbr><span class="rst-variable-quote">'</span><span class="rst-variable-string">.py</span><span class="rst-variable-quote">'</span>, <wbr></wbr><span class="rst-variable-quote">'</span><span class="rst-variable-string">.pyx</span><span class="rst-variable-quote">'</span>)+tuple(<wbr></wbr>EXTENSION_SUFFIXES)</code></pre></td></tr></table>
+  </div>
+</div><div class="basevariable">
+  
+  
+  <a name="sphinx.ext.apidoc.template_dir">
+    
+  </a>
+  <a name="template_dir">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">template_dir</span> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div>
+
+      </div>
+    </div>
+
+    <footer class="navbar navbar-default">
+  
+  <div class="container">
+    <a href="index.html">API Documentation</a> for sphinx,
+  generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
+    22.2.0 at 2022-02-23 04:40:29.
+  </div>
+</footer>
+
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+  </body>
+</html>

@@ -1,0 +1,804 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  
+
+  <head>
+    
+    <title>pygments.formatters.latex.LatexFormatter</title>
+    <meta name="generator" content="pydoctor 22.2.0"> 
+        
+    </meta>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=0.75" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+    <link rel="stylesheet" type="text/css" href="extra.css" />
+</head>
+
+  <body>
+
+    
+
+    <nav class="navbar navbar-default">
+  
+  <div class="container">
+
+    <div class="navbar-header">
+      
+      <div class="navlinks">
+          <span class="navbar-brand">
+            pygments <a href="index.html">API Documentation</a>
+          </span>
+
+          <a href="moduleIndex.html">
+            Modules
+          </a>
+
+          <a href="classIndex.html">
+            Classes
+          </a>
+
+          <a href="nameIndex.html">
+            Names
+          </a>
+      </div>
+
+    </div>
+  </div>
+</nav>
+
+    
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="class"><code><code><a href="index.html" class="internal-link">pygments</a></code><wbr></wbr>.<code><a href="pygments.formatters.html" class="internal-link" title="pygments.formatters">formatters</a></code><wbr></wbr>.<code><a href="pygments.formatters.latex.html" class="internal-link" title="pygments.formatters.latex">latex</a></code><wbr></wbr>.<code><a href="pygments.formatters.latex.LatexFormatter.html" class="internal-link" title="pygments.formatters.latex.LatexFormatter">LatexFormatter</a></code></code></h1>
+        <div id="showPrivate">
+          <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+        </div>
+      </div>
+
+      <div class="categoryHeader">
+        class documentation
+      </div>
+
+      <div class="extrasDocstring">
+        <p><code><span class="py-keyword">class</span> <span class="py-defname">LatexFormatter</span>(<a href="pygments.formatter.Formatter.html" class="internal-link" title="pygments.formatter.Formatter">Formatter</a>):</code></p>
+        <p><a href="classIndex.html#pygments.formatters.latex.LatexFormatter">View In Hierarchy</a></p>
+      </div>
+
+      <div class="moduleDocstring">
+        <div><p>Format tokens as LaTeX code. This needs the <code>fancyvrb</code> and <code>color</code>
+standard packages.</p>
+<p>Without the <code>full</code> option, code is formatted as one <tt class="rst-docutils literal">Verbatim</tt>
+environment, like this:</p>
+<pre class="rst-code rst-latex rst-literal-block">
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k}{def }\PY{n+nf}{foo}(\PY{n}{bar}):
+    \PY{k}{pass}
+\end{Verbatim}
+</pre>
+<p>The special command used here (<tt class="rst-docutils literal">\PY</tt>) and all the other macros it needs
+are output by the <code><a href="#get_style_defs" class="internal-link" title="pygments.formatters.latex.LatexFormatter.get_style_defs">get_style_defs</a></code> method.</p>
+<p>With the <code>full</code> option, a complete LaTeX document is output, including
+the command definitions in the preamble.</p>
+<p>The <code><a href="#get_style_defs" class="internal-link" title="pygments.formatters.latex.LatexFormatter.get_style_defs">get_style_defs()</a></code> method of a <code><a href="pygments.formatters.latex.LatexFormatter.html" class="internal-link" title="pygments.formatters.latex.LatexFormatter">LatexFormatter</a></code> returns a string
+containing <tt class="rst-docutils literal">\def</tt> commands defining the macros needed inside the
+<tt class="rst-docutils literal">Verbatim</tt> environments.</p>
+<p>Additional options accepted:</p>
+<dl class="rst-docutils">
+<dt><code><a href="pygments.style.html" class="internal-link" title="pygments.style">style</a></code></dt>
+<dd>The style to use, can be a string or a Style subclass (default:
+<tt class="rst-docutils literal">'default'</tt>).</dd>
+<dt><code>full</code></dt>
+<dd>Tells the formatter to output a "full" document, i.e. a complete
+self-contained document (default: <tt class="rst-docutils literal">False</tt>).</dd>
+<dt><code>title</code></dt>
+<dd>If <code>full</code> is true, the title that should be used to caption the
+document (default: <tt class="rst-docutils literal">''</tt>).</dd>
+<dt><code><a href="#docclass" class="internal-link" title="pygments.formatters.latex.LatexFormatter.docclass">docclass</a></code></dt>
+<dd>If the <code>full</code> option is enabled, this is the document class to use
+(default: <tt class="rst-docutils literal">'article'</tt>).</dd>
+<dt><code><a href="#preamble" class="internal-link" title="pygments.formatters.latex.LatexFormatter.preamble">preamble</a></code></dt>
+<dd>If the <code>full</code> option is enabled, this can be further preamble commands,
+e.g. <tt class="rst-docutils literal">\usepackage</tt> (default: <tt class="rst-docutils literal">''</tt>).</dd>
+<dt><code><a href="#linenos" class="internal-link" title="pygments.formatters.latex.LatexFormatter.linenos">linenos</a></code></dt>
+<dd>If set to <tt class="rst-docutils literal">True</tt>, output line numbers (default: <tt class="rst-docutils literal">False</tt>).</dd>
+<dt><code><a href="#linenostart" class="internal-link" title="pygments.formatters.latex.LatexFormatter.linenostart">linenostart</a></code></dt>
+<dd>The line number for the first line (default: <tt class="rst-docutils literal">1</tt>).</dd>
+<dt><code><a href="#linenostep" class="internal-link" title="pygments.formatters.latex.LatexFormatter.linenostep">linenostep</a></code></dt>
+<dd>If set to a number n &gt; 1, only every nth line number is printed.</dd>
+<dt><code><a href="#verboptions" class="internal-link" title="pygments.formatters.latex.LatexFormatter.verboptions">verboptions</a></code></dt>
+<dd>Additional options given to the Verbatim environment (see the <em>fancyvrb</em>
+docs for possible values) (default: <tt class="rst-docutils literal">''</tt>).</dd>
+<dt><code><a href="#commandprefix" class="internal-link" title="pygments.formatters.latex.LatexFormatter.commandprefix">commandprefix</a></code></dt>
+<dd><p class="rst-first">The LaTeX commands used to produce colored output are constructed
+using this prefix and some letters (default: <tt class="rst-docutils literal">'PY'</tt>).</p>
+<div class="rst-versionadded">
+<span class="rst-versionmodified rst-added">New in version 0.7.</span></div>
+<div class="rst-last rst-versionchanged">
+<span class="rst-versionmodified rst-changed">Changed in version 0.10: </span><span>The default is now <tt class="rst-docutils literal">'PY'</tt> instead of <tt class="rst-docutils literal">'C'</tt>.</span></div>
+</dd>
+<dt><code><a href="#texcomments" class="internal-link" title="pygments.formatters.latex.LatexFormatter.texcomments">texcomments</a></code></dt>
+<dd><p class="rst-first">If set to <tt class="rst-docutils literal">True</tt>, enables LaTeX comment lines.  That is, LaTex markup
+in comment tokens is not escaped so that LaTeX can render it (default:
+<tt class="rst-docutils literal">False</tt>).</p>
+<div class="rst-last rst-versionadded">
+<span class="rst-versionmodified rst-added">New in version 1.2.</span></div>
+</dd>
+<dt><code><a href="#mathescape" class="internal-link" title="pygments.formatters.latex.LatexFormatter.mathescape">mathescape</a></code></dt>
+<dd><p class="rst-first">If set to <tt class="rst-docutils literal">True</tt>, enables LaTeX math mode escape in comments. That
+is, <tt class="rst-docutils literal"><span class="pre">'$...$'</span></tt> inside a comment will trigger math mode (default:
+<tt class="rst-docutils literal">False</tt>).</p>
+<div class="rst-last rst-versionadded">
+<span class="rst-versionmodified rst-added">New in version 1.2.</span></div>
+</dd>
+<dt><code><a href="#escapeinside" class="internal-link" title="pygments.formatters.latex.LatexFormatter.escapeinside">escapeinside</a></code></dt>
+<dd><p class="rst-first">If set to a string of length 2, enables escaping to LaTeX. Text
+delimited by these 2 characters is read as LaTeX code and
+typeset accordingly. It has no effect in string literals. It has
+no effect in comments if <code><a href="#texcomments" class="internal-link" title="pygments.formatters.latex.LatexFormatter.texcomments">texcomments</a></code> or <code><a href="#mathescape" class="internal-link" title="pygments.formatters.latex.LatexFormatter.mathescape">mathescape</a></code> is
+set. (default: <tt class="rst-docutils literal">''</tt>).</p>
+<div class="rst-last rst-versionadded">
+<span class="rst-versionmodified rst-added">New in version 2.0.</span></div>
+</dd>
+<dt><code><a href="#envname" class="internal-link" title="pygments.formatters.latex.LatexFormatter.envname">envname</a></code></dt>
+<dd><p class="rst-first">Allows you to pick an alternative environment name replacing Verbatim.
+The alternate environment still has to support Verbatim's option syntax.
+(default: <tt class="rst-docutils literal">'Verbatim'</tt>).</p>
+<div class="rst-last rst-versionadded">
+<span class="rst-versionmodified rst-added">New in version 2.0.</span></div>
+</dd>
+</dl>
+</div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id9145">
+  
+  
+  <tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__init__" class="internal-link" title="pygments.formatters.latex.LatexFormatter.__init__">__init__</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#format_unencoded" class="internal-link" title="pygments.formatters.latex.LatexFormatter.format_unencoded">format​_unencoded</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#get_style_defs" class="internal-link" title="pygments.formatters.latex.LatexFormatter.get_style_defs">get​_style​_defs</a></code></td>
+    <td>Return the command sequences needed to define the commands used to format text in the verbatim environment. <tt class="rst-docutils literal">arg</tt> is ignored.</td>
+  </tr><tr class="classvariable">
+    
+    <td>Class Variable</td>
+    <td><code><a href="#aliases" class="internal-link" title="pygments.formatters.latex.LatexFormatter.aliases">aliases</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="classvariable">
+    
+    <td>Class Variable</td>
+    <td><code><a href="#filenames" class="internal-link" title="pygments.formatters.latex.LatexFormatter.filenames">filenames</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="classvariable">
+    
+    <td>Class Variable</td>
+    <td><code><a href="#name" class="internal-link" title="pygments.formatters.latex.LatexFormatter.name">name</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#cmd2def" class="internal-link" title="pygments.formatters.latex.LatexFormatter.cmd2def">cmd2def</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#commandprefix" class="internal-link" title="pygments.formatters.latex.LatexFormatter.commandprefix">commandprefix</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#docclass" class="internal-link" title="pygments.formatters.latex.LatexFormatter.docclass">docclass</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#envname" class="internal-link" title="pygments.formatters.latex.LatexFormatter.envname">envname</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#escapeinside" class="internal-link" title="pygments.formatters.latex.LatexFormatter.escapeinside">escapeinside</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#left" class="internal-link" title="pygments.formatters.latex.LatexFormatter.left">left</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#linenos" class="internal-link" title="pygments.formatters.latex.LatexFormatter.linenos">linenos</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#linenostart" class="internal-link" title="pygments.formatters.latex.LatexFormatter.linenostart">linenostart</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#linenostep" class="internal-link" title="pygments.formatters.latex.LatexFormatter.linenostep">linenostep</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#mathescape" class="internal-link" title="pygments.formatters.latex.LatexFormatter.mathescape">mathescape</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#nobackground" class="internal-link" title="pygments.formatters.latex.LatexFormatter.nobackground">nobackground</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#preamble" class="internal-link" title="pygments.formatters.latex.LatexFormatter.preamble">preamble</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#right" class="internal-link" title="pygments.formatters.latex.LatexFormatter.right">right</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#texcomments" class="internal-link" title="pygments.formatters.latex.LatexFormatter.texcomments">texcomments</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#ttype2name" class="internal-link" title="pygments.formatters.latex.LatexFormatter.ttype2name">ttype2name</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#verboptions" class="internal-link" title="pygments.formatters.latex.LatexFormatter.verboptions">verboptions</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_create_stylesheet" class="internal-link" title="pygments.formatters.latex.LatexFormatter._create_stylesheet">​_create​_stylesheet</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+        
+          <p class="inheritedFrom">
+            Inherited from <code><a href="pygments.formatter.Formatter.html" class="internal-link" title="pygments.formatter.Formatter">Formatter</a></code>:
+          </p>
+          <table class="children sortable" id="id9146">
+  
+  
+  <tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="pygments.formatter.Formatter.html#format" class="internal-link" title="pygments.formatter.Formatter.format">format</a></code></td>
+    <td>Format <tt class="rst-docutils literal">tokensource</tt>, an iterable of <tt class="rst-docutils literal">(tokentype, tokenstring)</tt> tuples and write it into <tt class="rst-docutils literal">outfile</tt>.</td>
+  </tr><tr class="baseclassvariable">
+    
+    <td>Class Variable</td>
+    <td><code><a href="pygments.formatter.Formatter.html#unicodeoutput" class="internal-link" title="pygments.formatter.Formatter.unicodeoutput">unicodeoutput</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="baseinstancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="pygments.formatter.Formatter.html#encoding" class="internal-link" title="pygments.formatter.Formatter.encoding">encoding</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="baseinstancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="pygments.formatter.Formatter.html#full" class="internal-link" title="pygments.formatter.Formatter.full">full</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="baseinstancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="pygments.formatter.Formatter.html#options" class="internal-link" title="pygments.formatter.Formatter.options">options</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="baseinstancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="pygments.formatter.Formatter.html#style" class="internal-link" title="pygments.formatter.Formatter.style">style</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="baseinstancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="pygments.formatter.Formatter.html#title" class="internal-link" title="pygments.formatter.Formatter.title">title</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+          
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="basemethod">
+  
+  
+  <a name="pygments.formatters.latex.LatexFormatter.__init__">
+    
+  </a>
+  <a name="__init__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__init__</span>(self, **options):
+    
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overrides <code><a href="pygments.formatter.Formatter.html#__init__" class="internal-link">pygments.formatter.Formatter.__init__</a></code></div>
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="pygments.formatters.latex.LatexFormatter.format_unencoded">
+    
+  </a>
+  <a name="format_unencoded">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">format_unencoded</span>(self, tokensource, outfile):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="pygments.formatters.latex.LatexFormatter.get_style_defs">
+    
+  </a>
+  <a name="get_style_defs">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">get_style_defs</span>(self, arg=<span class="rst-variable-quote">'</span><span class="rst-variable-string"></span><span class="rst-variable-quote">'</span>):
+    
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overrides <code><a href="pygments.formatter.Formatter.html#get_style_defs" class="internal-link">pygments.formatter.Formatter.get_style_defs</a></code></div>
+    
+    <div>Return the command sequences needed to define the commands
+used to format text in the verbatim environment. <tt class="rst-docutils literal">arg</tt> is ignored.</div>
+  </div>
+</div><div class="baseclassvariable">
+  
+  
+  <a name="pygments.formatters.latex.LatexFormatter.aliases">
+    
+  </a>
+  <a name="aliases">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">aliases</span>: <code>list[<wbr></wbr>str]</code> =
+    
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">overrides <code><a href="pygments.formatter.Formatter.html#aliases" class="internal-link">pygments.formatter.Formatter.aliases</a></code></div>
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseclassvariable">
+  
+  
+  <a name="pygments.formatters.latex.LatexFormatter.filenames">
+    
+  </a>
+  <a name="filenames">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">filenames</span>: <code>list[<wbr></wbr>str]</code> =
+    
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">overrides <code><a href="pygments.formatter.Formatter.html#filenames" class="internal-link">pygments.formatter.Formatter.filenames</a></code></div>
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseclassvariable">
+  
+  
+  <a name="pygments.formatters.latex.LatexFormatter.name">
+    
+  </a>
+  <a name="name">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">name</span>: <code>str</code> =
+    
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">overrides <code><a href="pygments.formatter.Formatter.html#name" class="internal-link">pygments.formatter.Formatter.name</a></code></div>
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="pygments.formatters.latex.LatexFormatter.cmd2def">
+    
+  </a>
+  <a name="cmd2def">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">cmd2def</span>: <code>dict</code> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="pygments.formatters.latex.LatexFormatter.commandprefix">
+    
+  </a>
+  <a name="commandprefix">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">commandprefix</span> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="pygments.formatters.latex.LatexFormatter.docclass">
+    
+  </a>
+  <a name="docclass">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">docclass</span> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="pygments.formatters.latex.LatexFormatter.envname">
+    
+  </a>
+  <a name="envname">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">envname</span> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="pygments.formatters.latex.LatexFormatter.escapeinside">
+    
+  </a>
+  <a name="escapeinside">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">escapeinside</span> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="pygments.formatters.latex.LatexFormatter.left">
+    
+  </a>
+  <a name="left">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">left</span> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="pygments.formatters.latex.LatexFormatter.linenos">
+    
+  </a>
+  <a name="linenos">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">linenos</span> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="pygments.formatters.latex.LatexFormatter.linenostart">
+    
+  </a>
+  <a name="linenostart">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">linenostart</span> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="pygments.formatters.latex.LatexFormatter.linenostep">
+    
+  </a>
+  <a name="linenostep">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">linenostep</span> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="pygments.formatters.latex.LatexFormatter.mathescape">
+    
+  </a>
+  <a name="mathescape">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">mathescape</span> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="pygments.formatters.latex.LatexFormatter.nobackground">
+    
+  </a>
+  <a name="nobackground">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">nobackground</span> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="pygments.formatters.latex.LatexFormatter.preamble">
+    
+  </a>
+  <a name="preamble">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">preamble</span> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="pygments.formatters.latex.LatexFormatter.right">
+    
+  </a>
+  <a name="right">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">right</span> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="pygments.formatters.latex.LatexFormatter.texcomments">
+    
+  </a>
+  <a name="texcomments">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">texcomments</span> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="pygments.formatters.latex.LatexFormatter.ttype2name">
+    
+  </a>
+  <a name="ttype2name">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">ttype2name</span> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="pygments.formatters.latex.LatexFormatter.verboptions">
+    
+  </a>
+  <a name="verboptions">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">verboptions</span> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="pygments.formatters.latex.LatexFormatter._create_stylesheet">
+    
+  </a>
+  <a name="_create_stylesheet">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_create_stylesheet</span>(self):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div>
+
+      </div>
+    </div>
+
+    <footer class="navbar navbar-default">
+  
+  <div class="container">
+    <a href="index.html">API Documentation</a> for pygments,
+  generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
+    22.2.0 at 2022-02-23 04:37:46.
+  </div>
+</footer>
+
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+  </body>
+</html>

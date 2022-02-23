@@ -1,0 +1,470 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  
+
+  <head>
+    
+    <title>flask.config.Config</title>
+    <meta name="generator" content="pydoctor 22.2.0"> 
+        
+    </meta>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=0.75" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+    <link rel="stylesheet" type="text/css" href="extra.css" />
+</head>
+
+  <body>
+
+    
+
+    <nav class="navbar navbar-default">
+  
+  <div class="container">
+
+    <div class="navbar-header">
+      
+      <div class="navlinks">
+          <span class="navbar-brand">
+            flask <a href="index.html">API Documentation</a>
+          </span>
+
+          <a href="moduleIndex.html">
+            Modules
+          </a>
+
+          <a href="classIndex.html">
+            Classes
+          </a>
+
+          <a href="nameIndex.html">
+            Names
+          </a>
+      </div>
+
+    </div>
+  </div>
+</nav>
+
+    
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="class"><code><code><a href="index.html" class="internal-link">flask</a></code><wbr></wbr>.<code><a href="flask.config.html" class="internal-link" title="flask.config">config</a></code><wbr></wbr>.<code><a href="flask.config.Config.html" class="internal-link" title="flask.config.Config">Config</a></code></code></h1>
+        <div id="showPrivate">
+          <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+        </div>
+      </div>
+
+      <div class="categoryHeader">
+        class documentation
+      </div>
+
+      <div class="extrasDocstring">
+        <p><code><span class="py-keyword">class</span> <span class="py-defname">Config</span>(dict):</code></p>
+        <p><a href="classIndex.html#flask.config.Config">View In Hierarchy</a></p>
+      </div>
+
+      <div class="moduleDocstring">
+        <div><p>Works exactly like a dict but provides ways to fill it from files
+or special dictionaries.  There are two common patterns to populate the
+config.</p>
+<p>Either you can fill the config from a config file:</p>
+<pre class="rst-literal-block">
+app.config.from_pyfile('yourconfig.cfg')
+</pre>
+<p>Or alternatively you can define the configuration options in the
+module that calls <code><a href="#from_object" class="internal-link" title="flask.config.Config.from_object">from_object</a></code> or provide an import path to
+a module that should be loaded.  It is also possible to tell it to
+use the same module and with that provide the configuration values
+just before the call:</p>
+<pre class="rst-literal-block">
+DEBUG = True
+SECRET_KEY = 'development key'
+app.config.from_object(__name__)
+</pre>
+<p>In both cases (loading from any Python file or loading from modules),
+only uppercase keys are added to the config.  This makes it possible to use
+lowercase values in the config file for temporary values that are not added
+to the config or to define the config keys in the same file that implements
+the application.</p>
+<p>Probably the most interesting way to load configurations is from an
+environment variable pointing to a file:</p>
+<pre class="rst-literal-block">
+app.config.from_envvar('YOURAPPLICATION_SETTINGS')
+</pre>
+<p>In this case before launching the application you have to set this
+environment variable to the file you want to use.  On Linux and OS X
+use the export statement:</p>
+<pre class="rst-literal-block">
+export YOURAPPLICATION_SETTINGS='/path/to/config/file'
+</pre>
+<p>On windows use <code>set</code> instead.</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">root​_path</span></td><td class="fieldArgDesc">path to which files are read relative from.  When the
+config object is created by the application, this is
+the application's <code>~flask.Flask.root_path</code>.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">defaults</span></td><td class="fieldArgDesc">an optional dictionary of default values</td></tr></table></div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id7449">
+  
+  
+  <tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__init__" class="internal-link" title="flask.config.Config.__init__">__init__</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__repr__" class="internal-link" title="flask.config.Config.__repr__">__repr__</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#from_envvar" class="internal-link" title="flask.config.Config.from_envvar">from​_envvar</a></code></td>
+    <td>Loads a configuration from an environment variable pointing to a configuration file.  This is basically just a shortcut with nicer error messages for this line of code:</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#from_file" class="internal-link" title="flask.config.Config.from_file">from​_file</a></code></td>
+    <td>Update the values in the config from a file that is loaded using the <tt class="rst-docutils literal">load</tt> parameter. The loaded data is passed to the <code><a href="#from_mapping" class="internal-link" title="flask.config.Config.from_mapping">from_mapping</a></code> method.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#from_json" class="internal-link" title="flask.config.Config.from_json">from​_json</a></code></td>
+    <td>Update the values in the config from a JSON file. The loaded data is passed to the <code><a href="#from_mapping" class="internal-link" title="flask.config.Config.from_mapping">from_mapping</a></code> method.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#from_mapping" class="internal-link" title="flask.config.Config.from_mapping">from​_mapping</a></code></td>
+    <td>Updates the config like <code>update</code> ignoring items with non-upper keys. :return: Always returns <tt class="rst-docutils literal">True</tt>.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#from_object" class="internal-link" title="flask.config.Config.from_object">from​_object</a></code></td>
+    <td>Updates the values from the given object.  An object can be of one of the following two types:</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#from_pyfile" class="internal-link" title="flask.config.Config.from_pyfile">from​_pyfile</a></code></td>
+    <td>Updates the values in the config from a Python file.  This function behaves as if the file was imported as module with the <code><a href="#from_object" class="internal-link" title="flask.config.Config.from_object">from_object</a></code> function.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#get_namespace" class="internal-link" title="flask.config.Config.get_namespace">get​_namespace</a></code></td>
+    <td>Returns a dictionary containing a subset of configuration options that match the specified namespace/prefix. Example usage:</td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#root_path" class="internal-link" title="flask.config.Config.root_path">root​_path</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+        
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="basemethod">
+  
+  
+  <a name="flask.config.Config.__init__">
+    
+  </a>
+  <a name="__init__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__init__</span>(self, root_path, defaults=None):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">root​_path:</span><code>str</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">defaults:</span><code>t.Optional[<wbr></wbr>dict]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="flask.config.Config.__repr__">
+    
+  </a>
+  <a name="__repr__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__repr__</span>(self):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code>str</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="flask.config.Config.from_envvar">
+    
+  </a>
+  <a name="from_envvar">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">from_envvar</span>(self, variable_name, silent=False):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Loads a configuration from an environment variable pointing to
+a configuration file.  This is basically just a shortcut with nicer
+error messages for this line of code:</p>
+<pre class="rst-literal-block">
+app.config.from_pyfile(os.environ['YOURAPPLICATION_SETTINGS'])
+</pre>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">variable​_name:</span><code>str</code></td><td class="fieldArgDesc">name of the environment variable</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">silent:</span><code>bool</code></td><td class="fieldArgDesc">set to <tt class="rst-docutils literal">True</tt> if you want silent failure for missing
+files.</td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code>bool</code></td><td class="fieldArgDesc"><tt class="rst-docutils literal">True</tt> if the file was loaded successfully.</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="flask.config.Config.from_file">
+    
+  </a>
+  <a name="from_file">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">from_file</span>(self, filename, load, silent=False):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Update the values in the config from a file that is loaded
+using the <tt class="rst-docutils literal">load</tt> parameter. The loaded data is passed to the
+<code><a href="#from_mapping" class="internal-link" title="flask.config.Config.from_mapping">from_mapping</a></code> method.</p>
+<pre class="rst-code rst-python rst-literal-block">
+import toml
+app.config.from_file("config.toml", load=toml.load)
+</pre>
+<div class="rst-versionadded">
+<span class="rst-versionmodified rst-added">New in version 2.0.</span></div>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">filename:</span><code>str</code></td><td class="fieldArgDesc">The path to the data file. This can be an
+absolute path or relative to the config root path.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">load:</span><tt class="rst-docutils literal"><span class="pre">Callable[[Reader],</span> Mapping]</tt> where <tt class="rst-docutils literal">Reader</tt>
+implements a <tt class="rst-docutils literal">read</tt> method.</td><td class="fieldArgDesc">A callable that takes a file handle and returns a
+mapping of loaded data from the file.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">silent:</span><code>bool</code></td><td class="fieldArgDesc">Ignore the file if it doesn't exist.</td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code>bool</code></td><td class="fieldArgDesc"><tt class="rst-docutils literal">True</tt> if the file was loaded successfully.</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="flask.config.Config.from_json">
+    
+  </a>
+  <a name="from_json">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">from_json</span>(self, filename, silent=False):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Update the values in the config from a JSON file. The loaded
+data is passed to the <code><a href="#from_mapping" class="internal-link" title="flask.config.Config.from_mapping">from_mapping</a></code> method.</p>
+<div class="rst-deprecated">
+<span class="rst-versionmodified rst-deprecated">Deprecated since version 2.0.0: </span><span>Will be removed in Flask 2.1. Use <code><a href="#from_file" class="internal-link" title="flask.config.Config.from_file">from_file</a></code> instead.
+This was removed early in 2.0.0, was added back in 2.0.1.</span></div>
+<div class="rst-versionadded">
+<span class="rst-versionmodified rst-added">New in version 0.11.</span></div>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">filename:</span><code>str</code></td><td class="fieldArgDesc">The path to the JSON file. This can be an
+absolute path or relative to the config root path.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">silent:</span><code>bool</code></td><td class="fieldArgDesc">Ignore the file if it doesn't exist.</td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code>bool</code></td><td class="fieldArgDesc"><tt class="rst-docutils literal">True</tt> if the file was loaded successfully.</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="flask.config.Config.from_mapping">
+    
+  </a>
+  <a name="from_mapping">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">from_mapping</span>(self, mapping=None, **kwargs):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Updates the config like <code>update</code> ignoring items with non-upper
+keys.
+:return: Always returns <tt class="rst-docutils literal">True</tt>.</p>
+<div class="rst-versionadded">
+<span class="rst-versionmodified rst-added">New in version 0.11.</span></div>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">mapping:</span><code>t.Optional[<wbr></wbr>t.Mapping[<wbr></wbr>str, <wbr></wbr>t.Any]]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">**kwargs:</span><code>t.Any</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code>bool</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="flask.config.Config.from_object">
+    
+  </a>
+  <a name="from_object">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">from_object</span>(self, obj):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Updates the values from the given object.  An object can be of one
+of the following two types:</p>
+<ul class="rst-simple">
+<li>a string: in this case the object with that name will be imported</li>
+<li>an actual object reference: that object is used directly</li>
+</ul>
+<p>Objects are usually either modules or classes. <code><a href="#from_object" class="internal-link" title="flask.config.Config.from_object">from_object</a></code>
+loads only the uppercase attributes of the module/class. A <tt class="rst-docutils literal">dict</tt>
+object will not work with <code><a href="#from_object" class="internal-link" title="flask.config.Config.from_object">from_object</a></code> because the keys of a
+<tt class="rst-docutils literal">dict</tt> are not attributes of the <tt class="rst-docutils literal">dict</tt> class.</p>
+<p>Example of module-based configuration:</p>
+<pre class="rst-literal-block">
+app.config.from_object('yourapplication.default_config')
+from yourapplication import default_config
+app.config.from_object(default_config)
+</pre>
+<p>Nothing is done to the object before loading. If the object is a
+class and has <tt class="rst-docutils literal">@property</tt> attributes, it needs to be
+instantiated before being passed to this method.</p>
+<p>You should not use this function to load the actual configuration but
+rather configuration defaults.  The actual config should be loaded
+with <code><a href="#from_pyfile" class="internal-link" title="flask.config.Config.from_pyfile">from_pyfile</a></code> and ideally from a location not within the
+package because the package might be installed system wide.</p>
+<p>See <a href="#system-message-1"><span class="rst-problematic" id="rst-problematic-1">:ref:`config-dev-prod`</span></a> for an example of class-based configuration
+using <code><a href="#from_object" class="internal-link" title="flask.config.Config.from_object">from_object</a></code>.</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">obj:</span><code>t.Union[<wbr></wbr>object, <wbr></wbr>str]</code></td><td class="fieldArgDesc">an import name or object</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="flask.config.Config.from_pyfile">
+    
+  </a>
+  <a name="from_pyfile">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">from_pyfile</span>(self, filename, silent=False):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Updates the values in the config from a Python file.  This function
+behaves as if the file was imported as module with the
+<code><a href="#from_object" class="internal-link" title="flask.config.Config.from_object">from_object</a></code> function.</p>
+<div class="rst-versionadded">
+<span class="rst-versionmodified rst-added">New in version 0.7: </span><span><code>silent</code> parameter.</span></div>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">filename:</span><code>str</code></td><td class="fieldArgDesc">the filename of the config.  This can either be an
+absolute filename or a filename relative to the
+root path.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">silent:</span><code>bool</code></td><td class="fieldArgDesc">set to <tt class="rst-docutils literal">True</tt> if you want silent failure for missing
+files.</td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code>bool</code></td><td class="fieldArgDesc"><tt class="rst-docutils literal">True</tt> if the file was loaded successfully.</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="flask.config.Config.get_namespace">
+    
+  </a>
+  <a name="get_namespace">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">get_namespace</span>(self, namespace, lowercase=True, trim_namespace=True):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Returns a dictionary containing a subset of configuration options
+that match the specified namespace/prefix. Example usage:</p>
+<pre class="rst-literal-block">
+app.config['IMAGE_STORE_TYPE'] = 'fs'
+app.config['IMAGE_STORE_PATH'] = '/var/app/images'
+app.config['IMAGE_STORE_BASE_URL'] = 'http://img.website.com'
+image_store_config = app.config.get_namespace('IMAGE_STORE_')
+</pre>
+<p>The resulting dictionary <code>image_store_config</code> would look like:</p>
+<pre class="rst-literal-block">
+{
+    'type': 'fs',
+    'path': '/var/app/images',
+    'base_url': 'http://img.website.com'
+}
+</pre>
+<p>This is often useful when configuration options map directly to
+keyword arguments in functions or class constructors.</p>
+<div class="rst-versionadded">
+<span class="rst-versionmodified rst-added">New in version 0.11.</span></div>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">namespace:</span><code>str</code></td><td class="fieldArgDesc">a configuration namespace</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">lowercase:</span><code>bool</code></td><td class="fieldArgDesc">a flag indicating if the keys of the resulting
+dictionary should be lowercase</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">trim​_namespace:</span><code>bool</code></td><td class="fieldArgDesc">a flag indicating if the keys of the resulting
+dictionary should not include the namespace</td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code>t.Dict[<wbr></wbr>str, <wbr></wbr>t.Any]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="flask.config.Config.root_path">
+    
+  </a>
+  <a name="root_path">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">root_path</span> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div>
+
+      </div>
+    </div>
+
+    <footer class="navbar navbar-default">
+  
+  <div class="container">
+    <a href="index.html">API Documentation</a> for flask,
+  generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
+    22.2.0 at 2022-02-23 04:36:01.
+  </div>
+</footer>
+
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+  </body>
+</html>

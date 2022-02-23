@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  
+
+  <head>
+    
+    <title>sqlalchemy.ext.declarative.DeferredReflection</title>
+    <meta name="generator" content="pydoctor 22.2.0"> 
+        
+    </meta>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=0.75" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+    <link rel="stylesheet" type="text/css" href="extra.css" />
+</head>
+
+  <body>
+
+    
+
+    <nav class="navbar navbar-default">
+  
+  <div class="container">
+
+    <div class="navbar-header">
+      
+      <div class="navlinks">
+          <span class="navbar-brand">
+            sqlalchemy <a href="index.html">API Documentation</a>
+          </span>
+
+          <a href="moduleIndex.html">
+            Modules
+          </a>
+
+          <a href="classIndex.html">
+            Classes
+          </a>
+
+          <a href="nameIndex.html">
+            Names
+          </a>
+      </div>
+
+    </div>
+  </div>
+</nav>
+
+    
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="class"><code><code><a href="index.html" class="internal-link">sqlalchemy</a></code><wbr></wbr>.<code><a href="sqlalchemy.ext.html" class="internal-link" title="sqlalchemy.ext">ext</a></code><wbr></wbr>.<code><a href="sqlalchemy.ext.declarative.html" class="internal-link" title="sqlalchemy.ext.declarative">declarative</a></code><wbr></wbr>.<code><a href="sqlalchemy.ext.declarative.DeferredReflection.html" class="internal-link" title="sqlalchemy.ext.declarative.DeferredReflection">DeferredReflection</a></code></code></h1>
+        <div id="showPrivate">
+          <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+        </div>
+      </div>
+
+      <div class="categoryHeader">
+        class documentation
+      </div>
+
+      <div class="extrasDocstring">
+        <p><code><span class="py-keyword">class</span> <span class="py-defname">DeferredReflection</span>(object):</code></p>
+        <p><a href="classIndex.html#sqlalchemy.ext.declarative.DeferredReflection">View In Hierarchy</a></p>
+      </div>
+
+      <div class="moduleDocstring">
+        <div><p>A helper class for construction of mappings based on
+a deferred reflection step.</p>
+<p>Normally, declarative can be used with reflection by
+setting a <code>_schema.Table</code> object using autoload_with=engine
+as the <tt class="rst-docutils literal">__table__</tt> attribute on a declarative class.
+The caveat is that the <code>_schema.Table</code> must be fully
+reflected, or at the very least have a primary key column,
+at the point at which a normal declarative mapping is
+constructed, meaning the <code>_engine.Engine</code> must be available
+at class declaration time.</p>
+<p>The <code>.DeferredReflection</code> mixin moves the construction
+of mappers to be at a later point, after a specific
+method is called which first reflects all <code>_schema.Table</code>
+objects created so far.   Classes can define it as such:</p>
+<pre class="rst-literal-block">
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.ext.declarative import DeferredReflection
+Base = declarative_base()
+
+class MyClass(DeferredReflection, Base):
+    __tablename__ = 'mytable'
+</pre>
+<p>Above, <tt class="rst-docutils literal">MyClass</tt> is not yet mapped.   After a series of
+classes have been defined in the above fashion, all tables
+can be reflected and mappings created using
+<code>.prepare</code>:</p>
+<pre class="rst-literal-block">
+engine = create_engine("someengine://...")
+DeferredReflection.prepare(engine)
+</pre>
+<p>The <code>.DeferredReflection</code> mixin can be applied to individual
+classes, used as the base for the declarative base itself,
+or used in a custom abstract class.   Using an abstract base
+allows that only a subset of classes to be prepared for a
+particular prepare step, which is necessary for applications
+that use more than one engine.  For example, if an application
+has two engines, you might use two bases, and prepare each
+separately, e.g.:</p>
+<pre class="rst-literal-block">
+class ReflectedOne(DeferredReflection, Base):
+    __abstract__ = True
+
+class ReflectedTwo(DeferredReflection, Base):
+    __abstract__ = True
+
+class MyClass(ReflectedOne):
+    __tablename__ = 'mytable'
+
+class MyOtherClass(ReflectedOne):
+    __tablename__ = 'myothertable'
+
+class YetAnotherClass(ReflectedTwo):
+    __tablename__ = 'yetanothertable'
+
+# ... etc.
+</pre>
+<p>Above, the class hierarchies for <tt class="rst-docutils literal">ReflectedOne</tt> and
+<tt class="rst-docutils literal">ReflectedTwo</tt> can be configured separately:</p>
+<pre class="rst-literal-block">
+ReflectedOne.prepare(engine_one)
+ReflectedTwo.prepare(engine_two)
+</pre>
+</div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id16574">
+  
+  
+  <tr class="classmethod">
+    
+    <td>Class Method</td>
+    <td><code><a href="#prepare" class="internal-link" title="sqlalchemy.ext.declarative.DeferredReflection.prepare">prepare</a></code></td>
+    <td>Reflect all <code>_schema.Table</code> objects for all current <code>.DeferredReflection</code> subclasses</td>
+  </tr><tr class="classmethod private">
+    
+    <td>Class Method</td>
+    <td><code><a href="#_reflect_table" class="internal-link" title="sqlalchemy.ext.declarative.DeferredReflection._reflect_table">​_reflect​_table</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="classmethod private">
+    
+    <td>Class Method</td>
+    <td><code><a href="#_sa_decl_prepare" class="internal-link" title="sqlalchemy.ext.declarative.DeferredReflection._sa_decl_prepare">​_sa​_decl​_prepare</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="classmethod private">
+    
+    <td>Class Method</td>
+    <td><code><a href="#_sa_deferred_table_resolver" class="internal-link" title="sqlalchemy.ext.declarative.DeferredReflection._sa_deferred_table_resolver">​_sa​_deferred​_table​_resolver</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="classmethod private">
+    
+    <td>Class Method</td>
+    <td><code><a href="#_sa_raise_deferred_config" class="internal-link" title="sqlalchemy.ext.declarative.DeferredReflection._sa_raise_deferred_config">​_sa​_raise​_deferred​_config</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+        
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="baseclassmethod">
+  
+  
+  <a name="sqlalchemy.ext.declarative.DeferredReflection.prepare">
+    
+  </a>
+  <a name="prepare">
+    
+  </a>
+  <div class="functionHeader">
+    @classmethod<br />
+    <span class="py-keyword">def</span> <span class="py-defname">prepare</span>(cls, engine):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Reflect all <code>_schema.Table</code> objects for all current
+<code>.DeferredReflection</code> subclasses</div>
+  </div>
+</div><div class="baseclassmethod private">
+  
+  
+  <a name="sqlalchemy.ext.declarative.DeferredReflection._reflect_table">
+    
+  </a>
+  <a name="_reflect_table">
+    
+  </a>
+  <div class="functionHeader">
+    @classmethod<br />
+    <span class="py-keyword">def</span> <span class="py-defname">_reflect_table</span>(cls, table, inspector):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="baseclassmethod private">
+  
+  
+  <a name="sqlalchemy.ext.declarative.DeferredReflection._sa_decl_prepare">
+    
+  </a>
+  <a name="_sa_decl_prepare">
+    
+  </a>
+  <div class="functionHeader">
+    @classmethod<br />
+    <span class="py-keyword">def</span> <span class="py-defname">_sa_decl_prepare</span>(cls, local_table, inspector):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="baseclassmethod private">
+  
+  
+  <a name="sqlalchemy.ext.declarative.DeferredReflection._sa_deferred_table_resolver">
+    
+  </a>
+  <a name="_sa_deferred_table_resolver">
+    
+  </a>
+  <div class="functionHeader">
+    @classmethod<br />
+    <span class="py-keyword">def</span> <span class="py-defname">_sa_deferred_table_resolver</span>(cls, inspector, metadata):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="baseclassmethod private">
+  
+  
+  <a name="sqlalchemy.ext.declarative.DeferredReflection._sa_raise_deferred_config">
+    
+  </a>
+  <a name="_sa_raise_deferred_config">
+    
+  </a>
+  <div class="functionHeader">
+    @classmethod<br />
+    <span class="py-keyword">def</span> <span class="py-defname">_sa_raise_deferred_config</span>(cls):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div>
+
+      </div>
+    </div>
+
+    <footer class="navbar navbar-default">
+  
+  <div class="container">
+    <a href="index.html">API Documentation</a> for sqlalchemy,
+  generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
+    22.2.0 at 2022-02-23 04:41:59.
+  </div>
+</footer>
+
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+  </body>
+</html>
