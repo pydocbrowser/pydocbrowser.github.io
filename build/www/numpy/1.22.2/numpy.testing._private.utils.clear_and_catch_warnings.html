@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  
+
+  <head>
+    
+    <title>numpy.testing._private.utils.clear_and_catch_warnings</title>
+    <meta name="generator" content="pydoctor 22.2.1"> 
+        
+    </meta>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=0.75" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+    <link rel="stylesheet" type="text/css" href="extra.css" />
+</head>
+
+  <body>
+
+    <div id="banner">    
+    <div>
+        <a href="/">Home</a>
+        &gt; numpy-1.22.2 <!-- This is a placeholder -->
+        
+        <!-- (<a href=""&gt;show all versions</a&gt;) -->
+    </div>
+</div>
+
+    <nav class="navbar navbar-default">
+  
+  <div class="container">
+
+    <div class="navbar-header">
+      
+      <div class="navlinks">
+          <span class="navbar-brand">
+            numpy <a href="index.html">API Documentation</a>
+          </span>
+
+          <a href="moduleIndex.html">
+            Modules
+          </a>
+
+          <a href="classIndex.html">
+            Classes
+          </a>
+
+          <a href="nameIndex.html">
+            Names
+          </a>
+      </div>
+
+    </div>
+  </div>
+</nav>
+
+    
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="class"><code><code><a href="index.html" class="internal-link">numpy</a></code><wbr></wbr>.<code><a href="numpy.testing.html" class="internal-link" title="numpy.testing">testing</a></code><wbr></wbr>.<code><a href="numpy.testing._private.html" class="internal-link" title="numpy.testing._private">_private</a></code><wbr></wbr>.<code><a href="numpy.testing._private.utils.html" class="internal-link" title="numpy.testing._private.utils">utils</a></code><wbr></wbr>.<code><a href="numpy.testing._private.utils.clear_and_catch_warnings.html" class="internal-link" title="numpy.testing._private.utils.clear_and_catch_warnings">clear_and_catch_warnings</a></code></code></h1>
+        <div id="showPrivate">
+          <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+        </div>
+      </div>
+
+      <div class="categoryHeader">
+        class documentation
+      </div>
+
+      <div class="extrasDocstring">
+        <p><code><span class="py-keyword">class</span> <span class="py-defname">clear_and_catch_warnings</span>(<a href="https://docs.python.org/3/library/warnings.html#warnings.catch_warnings" class="intersphinx-link" title="warnings.catch_warnings">warnings.catch_warnings</a>): <a href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.22.2//numpy/testing/_private/utils.py#L1964" class="sourceLink">(source)</a></code></p>
+        <p><a href="classIndex.html#numpy.testing._private.utils.clear_and_catch_warnings">View In Hierarchy</a></p>
+      </div>
+
+      <div class="moduleDocstring">
+        <div><p>Context manager that resets warning registry for catching warnings</p>
+<p>Warnings can be slippery, because, whenever a warning is triggered, Python
+adds a <tt class="rst-docutils literal">__warningregistry__</tt> member to the <em>calling</em> module.  This makes
+it impossible to retrigger the warning in this module, whatever you put in
+the warnings filters.  This context manager accepts a sequence of <code><a href="#modules" class="internal-link" title="numpy.testing._private.utils.clear_and_catch_warnings.modules">modules</a></code>
+as a keyword argument to its constructor and:</p>
+<ul class="rst-simple">
+<li>stores and removes any <tt class="rst-docutils literal">__warningregistry__</tt> entries in given <code><a href="#modules" class="internal-link" title="numpy.testing._private.utils.clear_and_catch_warnings.modules">modules</a></code>
+on entry;</li>
+<li>resets <tt class="rst-docutils literal">__warningregistry__</tt> to its previous state on exit.</li>
+</ul>
+<p>This makes it possible to trigger any warning afresh inside the context
+manager without disturbing the state of warnings outside.</p>
+<p>For compatibility with Python 3.0, please consider all arguments to be
+keyword-only.</p>
+<div class="rst-admonition rst-admonition-examples">
+<p class="rst-first rst-admonition-title">Examples</p>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">import</span> warnings
+<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">with</span> np.testing.clear_and_catch_warnings(
+<span class="py-more">... </span>        modules=[np.core.fromnumeric]):
+<span class="py-more">... </span>    warnings.simplefilter(<span class="py-string">'always'</span>)
+<span class="py-more">... </span>    warnings.filterwarnings(<span class="py-string">'ignore'</span>, module=<span class="py-string">'np.core.fromnumeric'</span>)
+<span class="py-more">... </span>    <span class="py-comment"># do something that raises a warning but ignore those in</span>
+<span class="py-more">... </span>    <span class="py-comment"># np.core.fromnumeric</span></pre></div>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">record</span></td><td class="fieldArgDesc">Specifies whether warnings should be captured by a custom
+implementation of <tt class="rst-docutils literal">warnings.showwarning()</tt> and be appended to a list
+returned by the context manager. Otherwise None is returned by the
+context manager. The objects appended to the list are arguments whose
+attributes mirror the arguments to <tt class="rst-docutils literal">showwarning()</tt>.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">modules</span></td><td class="fieldArgDesc">Sequence of modules for which to reset warnings registry on entry and
+restore on exit. To work correctly, all 'ignore' filters should
+filter by one of these modules.</td></tr></table></div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id2269">
+  
+  
+  <tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__enter__" class="internal-link" title="numpy.testing._private.utils.clear_and_catch_warnings.__enter__">__enter__</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__exit__" class="internal-link" title="numpy.testing._private.utils.clear_and_catch_warnings.__exit__">__exit__</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__init__" class="internal-link" title="numpy.testing._private.utils.clear_and_catch_warnings.__init__">__init__</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="classvariable">
+    
+    <td>Class Variable</td>
+    <td><code><a href="#class_modules" class="internal-link" title="numpy.testing._private.utils.clear_and_catch_warnings.class_modules">class​_modules</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#modules" class="internal-link" title="numpy.testing._private.utils.clear_and_catch_warnings.modules">modules</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#_warnreg_copies" class="internal-link" title="numpy.testing._private.utils.clear_and_catch_warnings._warnreg_copies">​_warnreg​_copies</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+        
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="basemethod">
+  
+  
+  <a name="numpy.testing._private.utils.clear_and_catch_warnings.__enter__">
+    
+  </a>
+  <a name="__enter__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__enter__</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.22.2//numpy/testing/_private/utils.py#L2013">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="numpy.testing._private.utils.clear_and_catch_warnings.__exit__">
+    
+  </a>
+  <a name="__exit__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__exit__</span>(self, *exc_info):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.22.2//numpy/testing/_private/utils.py#L2021">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="numpy.testing._private.utils.clear_and_catch_warnings.__init__">
+    
+  </a>
+  <a name="__init__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__init__</span>(self, record=<a href="https://docs.python.org/3/library/constants.html#False" class="intersphinx-link">False</a>, modules=()):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.22.2//numpy/testing/_private/utils.py#L2008">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="baseclassvariable">
+  
+  
+  <a name="numpy.testing._private.utils.clear_and_catch_warnings.class_modules">
+    
+  </a>
+  <a name="class_modules">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">class_modules</span>: <code><a href="https://docs.python.org/3/library/stdtypes.html#tuple" class="intersphinx-link">tuple</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.22.2//numpy/testing/_private/utils.py#L2006">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="numpy.testing._private.utils.clear_and_catch_warnings.modules">
+    
+  </a>
+  <a name="modules">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">modules</span>: <code>sequence</code>, <em>optional</em> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.22.2//numpy/testing/_private/utils.py#L1992">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  
+  <a name="numpy.testing._private.utils.clear_and_catch_warnings._warnreg_copies">
+    
+  </a>
+  <a name="_warnreg_copies">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_warnreg_copies</span>: <code><a href="https://docs.python.org/3/library/stdtypes.html#dict" class="intersphinx-link">dict</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.22.2//numpy/testing/_private/utils.py#L2010">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div>
+
+      </div>
+    </div>
+
+    <footer class="navbar navbar-default">
+  
+  <div class="container">
+    <a href="index.html">API Documentation</a> for numpy,
+  generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
+    22.2.1 at 2022-02-23 16:52:13.
+  </div>
+</footer>
+
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+  </body>
+</html>

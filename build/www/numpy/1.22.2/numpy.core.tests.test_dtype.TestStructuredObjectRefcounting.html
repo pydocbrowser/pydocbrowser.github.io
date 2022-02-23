@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  
+
+  <head>
+    
+    <title>numpy.core.tests.test_dtype.TestStructuredObjectRefcounting</title>
+    <meta name="generator" content="pydoctor 22.2.1"> 
+        
+    </meta>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=0.75" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+    <link rel="stylesheet" type="text/css" href="extra.css" />
+</head>
+
+  <body>
+
+    <div id="banner">    
+    <div>
+        <a href="/">Home</a>
+        &gt; numpy-1.22.2 <!-- This is a placeholder -->
+        
+        <!-- (<a href=""&gt;show all versions</a&gt;) -->
+    </div>
+</div>
+
+    <nav class="navbar navbar-default">
+  
+  <div class="container">
+
+    <div class="navbar-header">
+      
+      <div class="navlinks">
+          <span class="navbar-brand">
+            numpy <a href="index.html">API Documentation</a>
+          </span>
+
+          <a href="moduleIndex.html">
+            Modules
+          </a>
+
+          <a href="classIndex.html">
+            Classes
+          </a>
+
+          <a href="nameIndex.html">
+            Names
+          </a>
+      </div>
+
+    </div>
+  </div>
+</nav>
+
+    
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="class"><code><code><a href="index.html" class="internal-link">numpy</a></code><wbr></wbr>.<code><a href="numpy.core.html" class="internal-link" title="numpy.core">core</a></code><wbr></wbr>.<code><a href="numpy.core.tests.html" class="internal-link" title="numpy.core.tests">tests</a></code><wbr></wbr>.<code><a href="numpy.core.tests.test_dtype.html" class="internal-link" title="numpy.core.tests.test_dtype">test_dtype</a></code><wbr></wbr>.<code><a href="numpy.core.tests.test_dtype.TestStructuredObjectRefcounting.html" class="internal-link" title="numpy.core.tests.test_dtype.TestStructuredObjectRefcounting">TestStructuredObjectRefcounting</a></code></code></h1>
+        <div id="showPrivate">
+          <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+        </div>
+      </div>
+
+      <div class="categoryHeader">
+        class documentation
+      </div>
+
+      <div class="extrasDocstring">
+        <p><code><span class="py-keyword">class</span> <span class="py-defname">TestStructuredObjectRefcounting</span>: <a href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.22.2//numpy/core/tests/test_dtype.py#L674" class="sourceLink">(source)</a></code></p>
+        <p><a href="classIndex.html#numpy.core.tests.test_dtype.TestStructuredObjectRefcounting">View In Hierarchy</a></p>
+      </div>
+
+      <div class="moduleDocstring">
+        <div>These tests cover various uses of complicated structured types which
+include objects and thus require reference counting.</div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id313">
+  
+  
+  <tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#test_structured_object_create_delete" class="internal-link" title="numpy.core.tests.test_dtype.TestStructuredObjectRefcounting.test_structured_object_create_delete">test​_structured​_object​_create​_delete</a></code></td>
+    <td>Structured object reference counting in creation and deletion</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#test_structured_object_indexing" class="internal-link" title="numpy.core.tests.test_dtype.TestStructuredObjectRefcounting.test_structured_object_indexing">test​_structured​_object​_indexing</a></code></td>
+    <td>Structured object reference counting for advanced indexing.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#test_structured_object_item_setting" class="internal-link" title="numpy.core.tests.test_dtype.TestStructuredObjectRefcounting.test_structured_object_item_setting">test​_structured​_object​_item​_setting</a></code></td>
+    <td>Structured object reference counting for simple item setting</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#test_structured_object_take_and_repeat" class="internal-link" title="numpy.core.tests.test_dtype.TestStructuredObjectRefcounting.test_structured_object_take_and_repeat">test​_structured​_object​_take​_and​_repeat</a></code></td>
+    <td>Structured object reference counting for specialized functions. The older functions such as take and repeat use different code paths then item setting (when writing this).</td>
+  </tr>
+</table>
+        
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="basemethod">
+  
+  
+  <a name="numpy.core.tests.test_dtype.TestStructuredObjectRefcounting.test_structured_object_create_delete">
+    
+  </a>
+  <a name="test_structured_object_create_delete">
+    
+  </a>
+  <div class="functionHeader">
+    @pytest.mark.parametrize(<wbr></wbr>[<wbr></wbr><span class="rst-variable-quote">'</span><span class="rst-variable-string">dt</span><span class="rst-variable-quote">'</span>, <wbr></wbr><span class="rst-variable-quote">'</span><span class="rst-variable-string">pat</span><span class="rst-variable-quote">'</span>, <wbr></wbr><span class="rst-variable-quote">'</span><span class="rst-variable-string">count</span><span class="rst-variable-quote">'</span>, <wbr></wbr><span class="rst-variable-quote">'</span><span class="rst-variable-string">singleton</span><span class="rst-variable-quote">'</span>], <wbr></wbr><a href="numpy.core.tests.test_dtype.html#iter_struct_object_dtypes" class="internal-link" title="numpy.core.tests.test_dtype.iter_struct_object_dtypes">iter_struct_object_dtypes</a>())<br />@pytest.mark.parametrize(<wbr></wbr>[<wbr></wbr><span class="rst-variable-quote">'</span><span class="rst-variable-string">creation_func</span><span class="rst-variable-quote">'</span>, <wbr></wbr><span class="rst-variable-quote">'</span><span class="rst-variable-string">creation_obj</span><span class="rst-variable-quote">'</span>], <wbr></wbr>[<wbr></wbr>pytest.param(<wbr></wbr>np.empty, <wbr></wbr><a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, <wbr></wbr>marks=pytest.mark.skip(<wbr></wbr><span class="rst-variable-quote">'</span><span class="rst-variable-string">unreliable due to python\'s behaviour</span><span class="rst-variable-quote">'</span>)), <wbr></wbr>(<wbr></wbr>np.ones, <wbr></wbr>1), <wbr></wbr>(<wbr></wbr>np.zeros, <wbr></wbr>0)])<br />
+    <span class="py-keyword">def</span> <span class="py-defname">test_structured_object_create_delete</span>(self, dt, pat, count, singleton, creation_func, creation_obj):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.22.2//numpy/core/tests/test_dtype.py#L679">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Structured object reference counting in creation and deletion</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="numpy.core.tests.test_dtype.TestStructuredObjectRefcounting.test_structured_object_indexing">
+    
+  </a>
+  <a name="test_structured_object_indexing">
+    
+  </a>
+  <div class="functionHeader">
+    @pytest.mark.parametrize(<wbr></wbr>[<wbr></wbr><span class="rst-variable-quote">'</span><span class="rst-variable-string">dt</span><span class="rst-variable-quote">'</span>, <wbr></wbr><span class="rst-variable-quote">'</span><span class="rst-variable-string">pat</span><span class="rst-variable-quote">'</span>, <wbr></wbr><span class="rst-variable-quote">'</span><span class="rst-variable-string">count</span><span class="rst-variable-quote">'</span>, <wbr></wbr><span class="rst-variable-quote">'</span><span class="rst-variable-string">singleton</span><span class="rst-variable-quote">'</span>], <wbr></wbr><a href="numpy.core.tests.test_dtype.html#iter_struct_object_dtypes" class="internal-link" title="numpy.core.tests.test_dtype.iter_struct_object_dtypes">iter_struct_object_dtypes</a>())<br />@pytest.mark.parametrize(<wbr></wbr>[<wbr></wbr><span class="rst-variable-quote">'</span><span class="rst-variable-string">shape</span><span class="rst-variable-quote">'</span>, <wbr></wbr><span class="rst-variable-quote">'</span><span class="rst-variable-string">index</span><span class="rst-variable-quote">'</span>, <wbr></wbr><span class="rst-variable-quote">'</span><span class="rst-variable-string">items_changed</span><span class="rst-variable-quote">'</span>], <wbr></wbr>[<wbr></wbr>(<wbr></wbr>(<wbr></wbr>3), <wbr></wbr>(<wbr></wbr>[<wbr></wbr>0, <wbr></wbr>2]), <wbr></wbr>2), <wbr></wbr>(<wbr></wbr>(<wbr></wbr>3, <wbr></wbr>2), <wbr></wbr>(<wbr></wbr>[<wbr></wbr>0, <wbr></wbr>2], <wbr></wbr><a href="https://docs.python.org/3/library/functions.html#slice" class="intersphinx-link">slice</a>(<wbr></wbr><a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>)), <wbr></wbr>4), <wbr></wbr>(<wbr></wbr>(<wbr></wbr>3, <wbr></wbr>2), <wbr></wbr>(<wbr></wbr>[<wbr></wbr>0, <wbr></wbr>2], <wbr></wbr>[<wbr></wbr>1]), <wbr></wbr>2), <wbr></wbr>(<wbr></wbr>(<wbr></wbr>3), <wbr></wbr>[<wbr></wbr><a href="https://docs.python.org/3/library/constants.html#True" class="intersphinx-link">True</a>, <wbr></wbr><a href="https://docs.python.org/3/library/constants.html#False" class="intersphinx-link">False</a>, <wbr></wbr><a href="https://docs.python.org/3/library/constants.html#True" class="intersphinx-link">True</a>], <wbr></wbr>2)])<br />
+    <span class="py-keyword">def</span> <span class="py-defname">test_structured_object_indexing</span>(self, shape, index, items_changed, dt, pat, count, singleton):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.22.2//numpy/core/tests/test_dtype.py#L721">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Structured object reference counting for advanced indexing.</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="numpy.core.tests.test_dtype.TestStructuredObjectRefcounting.test_structured_object_item_setting">
+    
+  </a>
+  <a name="test_structured_object_item_setting">
+    
+  </a>
+  <div class="functionHeader">
+    @pytest.mark.parametrize(<wbr></wbr>[<wbr></wbr><span class="rst-variable-quote">'</span><span class="rst-variable-string">dt</span><span class="rst-variable-quote">'</span>, <wbr></wbr><span class="rst-variable-quote">'</span><span class="rst-variable-string">pat</span><span class="rst-variable-quote">'</span>, <wbr></wbr><span class="rst-variable-quote">'</span><span class="rst-variable-string">count</span><span class="rst-variable-quote">'</span>, <wbr></wbr><span class="rst-variable-quote">'</span><span class="rst-variable-string">singleton</span><span class="rst-variable-quote">'</span>], <wbr></wbr><a href="numpy.core.tests.test_dtype.html#iter_struct_object_dtypes" class="internal-link" title="numpy.core.tests.test_dtype.iter_struct_object_dtypes">iter_struct_object_dtypes</a>())<br />
+    <span class="py-keyword">def</span> <span class="py-defname">test_structured_object_item_setting</span>(self, dt, pat, count, singleton):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.22.2//numpy/core/tests/test_dtype.py#L701">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Structured object reference counting for simple item setting</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="numpy.core.tests.test_dtype.TestStructuredObjectRefcounting.test_structured_object_take_and_repeat">
+    
+  </a>
+  <a name="test_structured_object_take_and_repeat">
+    
+  </a>
+  <div class="functionHeader">
+    @pytest.mark.parametrize(<wbr></wbr>[<wbr></wbr><span class="rst-variable-quote">'</span><span class="rst-variable-string">dt</span><span class="rst-variable-quote">'</span>, <wbr></wbr><span class="rst-variable-quote">'</span><span class="rst-variable-string">pat</span><span class="rst-variable-quote">'</span>, <wbr></wbr><span class="rst-variable-quote">'</span><span class="rst-variable-string">count</span><span class="rst-variable-quote">'</span>, <wbr></wbr><span class="rst-variable-quote">'</span><span class="rst-variable-string">singleton</span><span class="rst-variable-quote">'</span>], <wbr></wbr><a href="numpy.core.tests.test_dtype.html#iter_struct_object_dtypes" class="internal-link" title="numpy.core.tests.test_dtype.iter_struct_object_dtypes">iter_struct_object_dtypes</a>())<br />
+    <span class="py-keyword">def</span> <span class="py-defname">test_structured_object_take_and_repeat</span>(self, dt, pat, count, singleton):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.22.2//numpy/core/tests/test_dtype.py#L757">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Structured object reference counting for specialized functions.
+The older functions such as take and repeat use different code paths
+then item setting (when writing this).</div>
+  </div>
+</div>
+
+      </div>
+    </div>
+
+    <footer class="navbar navbar-default">
+  
+  <div class="container">
+    <a href="index.html">API Documentation</a> for numpy,
+  generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
+    22.2.1 at 2022-02-23 16:52:13.
+  </div>
+</footer>
+
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+  </body>
+</html>

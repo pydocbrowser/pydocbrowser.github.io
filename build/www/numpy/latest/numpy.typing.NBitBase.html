@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  
+
+  <head>
+    
+    <title>numpy.typing.NBitBase</title>
+    <meta name="generator" content="pydoctor 22.2.1"> 
+        
+    </meta>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=0.75" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+    <link rel="stylesheet" type="text/css" href="extra.css" />
+</head>
+
+  <body>
+
+    <div id="banner">    
+    <div>
+        <a href="/">Home</a>
+        &gt; numpy-1.22.2 <!-- This is a placeholder -->
+        
+        <!-- (<a href=""&gt;show all versions</a&gt;) -->
+    </div>
+</div>
+
+    <nav class="navbar navbar-default">
+  
+  <div class="container">
+
+    <div class="navbar-header">
+      
+      <div class="navlinks">
+          <span class="navbar-brand">
+            numpy <a href="index.html">API Documentation</a>
+          </span>
+
+          <a href="moduleIndex.html">
+            Modules
+          </a>
+
+          <a href="classIndex.html">
+            Classes
+          </a>
+
+          <a href="nameIndex.html">
+            Names
+          </a>
+      </div>
+
+    </div>
+  </div>
+</nav>
+
+    
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="class"><code><code><a href="index.html" class="internal-link">numpy</a></code><wbr></wbr>.<code><a href="numpy.typing.html" class="internal-link" title="numpy.typing">typing</a></code><wbr></wbr>.<code><a href="numpy.typing.NBitBase.html" class="internal-link" title="numpy.typing.NBitBase">NBitBase</a></code></code></h1>
+        <div id="showPrivate">
+          <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+        </div>
+      </div>
+
+      <div class="categoryHeader">
+        class documentation
+      </div>
+
+      <div class="extrasDocstring">
+        <p><code><span class="py-keyword">class</span> <span class="py-defname">NBitBase</span>: <a href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.22.2//numpy/typing/__init__.py#L176" class="sourceLink">(source)</a></code></p><p>Known subclasses: <code><a href="numpy.typing._256Bit.html" class="internal-link">numpy.typing._256Bit</a></code></p>
+        <p><a href="classIndex.html#numpy.typing.NBitBase">View In Hierarchy</a></p>
+      </div>
+
+      <div class="moduleDocstring">
+        <div><p>A type representing <code>numpy.number</code> precision during static type checking.</p>
+<p>Used exclusively for the purpose static type checking, <code><a href="numpy.typing.NBitBase.html" class="internal-link" title="numpy.typing.NBitBase">NBitBase</a></code>
+represents the base of a hierarchical set of subclasses.
+Each subsequent subclass is herein used for representing a lower level
+of precision, <em>e.g.</em> <tt class="rst-docutils literal">64Bit &gt; 32Bit &gt; 16Bit</tt>.</p>
+<div class="rst-versionadded">
+<span class="rst-versionmodified rst-added">New in version 1.20.</span></div>
+<div class="rst-admonition rst-admonition-examples">
+<p class="rst-first rst-admonition-title">Examples</p>
+<p>Below is a typical usage example: <code><a href="numpy.typing.NBitBase.html" class="internal-link" title="numpy.typing.NBitBase">NBitBase</a></code> is herein used for annotating
+a function that takes a float and integer of arbitrary precision
+as arguments and returns a new float of whichever precision is largest
+(<em>e.g.</em> <tt class="rst-docutils literal">np.float16 + np.int64 <span class="pre">-&gt;</span> np.float64</tt>).</p>
+<pre class="rst-code rst-python rst-last rst-literal-block">
+&gt;&gt;&gt; from __future__ import annotations
+&gt;&gt;&gt; from typing import TypeVar, TYPE_CHECKING
+&gt;&gt;&gt; import numpy as np
+&gt;&gt;&gt; import numpy.typing as npt
+
+&gt;&gt;&gt; T1 = TypeVar("T1", bound=npt.NBitBase)
+&gt;&gt;&gt; T2 = TypeVar("T2", bound=npt.NBitBase)
+
+&gt;&gt;&gt; def add(a: np.floating[T1], b: np.integer[T2]) -&gt; np.floating[T1 | T2]:
+...     return a + b
+
+&gt;&gt;&gt; a = np.float16()
+&gt;&gt;&gt; b = np.int64()
+&gt;&gt;&gt; out = add(a, b)
+
+&gt;&gt;&gt; if TYPE_CHECKING:
+...     reveal_locals()
+...     # note: Revealed local types are:
+...     # note:     a: numpy.floating[numpy.typing._16Bit*]
+...     # note:     b: numpy.signedinteger[numpy.typing._64Bit*]
+...     # note:     out: numpy.floating[numpy.typing._64Bit*]
+</pre>
+</div>
+</div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id2343">
+  
+  
+  <tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__init_subclass__" class="internal-link" title="numpy.typing.NBitBase.__init_subclass__">__init​_subclass__</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+        
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="basemethod">
+  
+  
+  <a name="numpy.typing.NBitBase.__init_subclass__">
+    
+  </a>
+  <a name="__init_subclass__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__init_subclass__</span>(cls):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.22.2//numpy/typing/__init__.py#L221">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div>
+
+      </div>
+    </div>
+
+    <footer class="navbar navbar-default">
+  
+  <div class="container">
+    <a href="index.html">API Documentation</a> for numpy,
+  generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
+    22.2.1 at 2022-02-23 16:52:13.
+  </div>
+</footer>
+
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+  </body>
+</html>
