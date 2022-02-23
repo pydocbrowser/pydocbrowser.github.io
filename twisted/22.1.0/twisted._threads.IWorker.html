@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  
+
+  <head>
+    
+    <title>twisted._threads.IWorker</title>
+    <meta name="generator" content="pydoctor 22.2.1"> 
+        
+    </meta>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=0.75" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+    <link rel="stylesheet" type="text/css" href="extra.css" />
+</head>
+
+  <body>
+
+    <div id="banner">    
+    <div>
+        <a href="/">Home</a>
+        &gt; twisted-22.1.0 <!-- This is a placeholder -->
+        
+        <!-- (<a href=""&gt;show all versions</a&gt;) -->
+    </div>
+</div>
+
+    <nav class="navbar navbar-default">
+  
+  <div class="container">
+
+    <div class="navbar-header">
+      
+      <div class="navlinks">
+          <span class="navbar-brand">
+            twisted <a href="index.html">API Documentation</a>
+          </span>
+
+          <a href="moduleIndex.html">
+            Modules
+          </a>
+
+          <a href="classIndex.html">
+            Classes
+          </a>
+
+          <a href="nameIndex.html">
+            Names
+          </a>
+      </div>
+
+    </div>
+  </div>
+</nav>
+
+    
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="interface"><code><code><a href="index.html" class="internal-link">twisted</a></code><wbr></wbr>.<code><a href="twisted._threads.html" class="internal-link" title="twisted._threads">_threads</a></code><wbr></wbr>.<code><a href="twisted._threads.IWorker.html" class="internal-link" title="twisted._threads.IWorker">IWorker</a></code></code></h1>
+        <div id="showPrivate">
+          <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+        </div>
+      </div>
+
+      <div class="categoryHeader">
+        interface documentation
+      </div>
+
+      <div class="extrasDocstring">
+        <p><code><span class="py-keyword">class</span> <span class="py-defname">IWorker</span>(Interface): <a href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/_threads/_ithreads.py#L19" class="sourceLink">(source)</a></code></p><p>Known subclasses: <code><a href="twisted._threads._ithreads.IExclusiveWorker.html" class="internal-link">twisted._threads._ithreads.IExclusiveWorker</a></code></p><p>Known implementations: <code><a href="twisted._threads._memory.MemoryWorker.html" class="internal-link">twisted._threads._memory.MemoryWorker</a></code>, <code><a href="twisted._threads.Team.html" class="internal-link">twisted._threads.Team</a></code></p>
+        <p><a href="classIndex.html#twisted._threads.IWorker">View In Hierarchy</a></p>
+      </div>
+
+      <div class="moduleDocstring">
+        <div><p>A worker that can perform some work concurrently.</p>
+<p>All methods on this interface must be thread-safe.</p>
+</div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id37">
+  
+  
+  <tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#do" class="internal-link" title="twisted._threads.IWorker.do">do</a></code></td>
+    <td>Perform the given task.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#quit" class="internal-link" title="twisted._threads.IWorker.quit">quit</a></code></td>
+    <td>Free any resources associated with this <code><a href="twisted._threads.IWorker.html" class="internal-link" title="twisted._threads.IWorker">IWorker</a></code> and cause it to reject all future work.</td>
+  </tr>
+</table>
+        
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="basemethod">
+  
+  
+  <a name="twisted._threads.IWorker.do">
+    
+  </a>
+  <a name="do">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">do</span>(task):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/_threads/_ithreads.py#L26">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Perform the given task.</p>
+<p>As an interface, this method makes no specific claims about concurrent execution.  An <code><a href="twisted._threads.IWorker.html" class="internal-link" title="twisted._threads.IWorker">IWorker</a></code>'s <tt class="rst-docutils literal">do</tt> implementation may defer execution for later on the same thread, immediately on a different thread, or some combination of the two.  It is valid for a <tt class="rst-docutils literal">do</tt> method to schedule <tt class="rst-docutils literal">task</tt> in such a way that it may never be executed.</p>
+<p>It is important for some implementations to provide specific properties with respect to where <tt class="rst-docutils literal">task</tt> is executed, of course, and client code may rely on a more specific implementation of <tt class="rst-docutils literal">do</tt> than <code><a href="twisted._threads.IWorker.html" class="internal-link" title="twisted._threads.IWorker">IWorker</a></code>.</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">task:</span>0-argument callable</td><td class="fieldArgDesc">a task to call in a thread or other concurrent context.</td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Raises</td></tr><tr><td class="fieldArgContainer"><code><a href="twisted._threads.AlreadyQuit.html" class="internal-link" title="twisted._threads.AlreadyQuit">AlreadyQuit</a></code></td><td>if <tt class="rst-docutils literal">quit</tt> has been called.</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted._threads.IWorker.quit">
+    
+  </a>
+  <a name="quit">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">quit</span>():
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/_threads/_ithreads.py#L46">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Free any resources associated with this <code><a href="twisted._threads.IWorker.html" class="internal-link" title="twisted._threads.IWorker">IWorker</a></code> and cause it to reject all future work.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Raises</td></tr><tr><td class="fieldArgContainer"><code><a href="twisted._threads.AlreadyQuit.html" class="internal-link" title="twisted._threads.AlreadyQuit">AlreadyQuit</a></code></td><td>if this method has already been called.</td></tr></table></div>
+  </div>
+</div>
+
+      </div>
+    </div>
+
+    <footer class="navbar navbar-default">
+  
+  <div class="container">
+    <a href="index.html">API Documentation</a> for twisted,
+  generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
+    22.2.1 at 2022-02-23 21:40:09.
+  </div>
+</footer>
+
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+  </body>
+</html>

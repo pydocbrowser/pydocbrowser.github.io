@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  
+
+  <head>
+    
+    <title>twisted.internet.tcp._IFileDescriptorReservation</title>
+    <meta name="generator" content="pydoctor 22.2.1"> 
+        
+    </meta>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=0.75" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+    <link rel="stylesheet" type="text/css" href="extra.css" />
+</head>
+
+  <body>
+
+    <div id="banner">    
+    <div>
+        <a href="/">Home</a>
+        &gt; twisted-22.1.0 <!-- This is a placeholder -->
+        
+        <!-- (<a href=""&gt;show all versions</a&gt;) -->
+    </div>
+</div>
+
+    <nav class="navbar navbar-default">
+  
+  <div class="container">
+
+    <div class="navbar-header">
+      
+      <div class="navlinks">
+          <span class="navbar-brand">
+            twisted <a href="index.html">API Documentation</a>
+          </span>
+
+          <a href="moduleIndex.html">
+            Modules
+          </a>
+
+          <a href="classIndex.html">
+            Classes
+          </a>
+
+          <a href="nameIndex.html">
+            Names
+          </a>
+      </div>
+
+    </div>
+  </div>
+</nav>
+
+    
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="interface private"><code><code><a href="index.html" class="internal-link">twisted</a></code><wbr></wbr>.<code><a href="twisted.internet.html" class="internal-link" title="twisted.internet">internet</a></code><wbr></wbr>.<code><a href="twisted.internet.tcp.html" class="internal-link" title="twisted.internet.tcp">tcp</a></code><wbr></wbr>.<code><a href="twisted.internet.tcp._IFileDescriptorReservation.html" class="internal-link" title="twisted.internet.tcp._IFileDescriptorReservation">_IFileDescriptorReservation</a></code></code></h1>
+        <div id="showPrivate">
+          <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+        </div>
+      </div>
+
+      <div class="categoryHeader">
+        interface documentation
+      </div>
+
+      <div class="extrasDocstring">
+        <p><code><span class="py-keyword">class</span> <span class="py-defname">_IFileDescriptorReservation</span>(Interface): <a href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/internet/tcp.py#L878" class="sourceLink">(source)</a></code></p><p>Known implementations: <code><a href="twisted.internet.tcp._FileDescriptorReservation.html" class="internal-link">twisted.internet.tcp._FileDescriptorReservation</a></code>, <code><a href="twisted.internet.tcp._NullFileDescriptorReservation.html" class="internal-link">twisted.internet.tcp._NullFileDescriptorReservation</a></code></p>
+        <p><a href="classIndex.html#twisted.internet.tcp._IFileDescriptorReservation">View In Hierarchy</a></p>
+      </div>
+
+      <div class="moduleDocstring">
+        <div><p>An open file that represents an emergency reservation in the process' file descriptor table.  If <code><a href="twisted.internet.tcp.Port.html" class="internal-link" title="twisted.internet.tcp.Port">Port</a></code> encounters <tt class="rst-docutils literal">EMFILE</tt> on <tt class="rst-docutils literal">accept(2)</tt>, it can close this file descriptor, retry the <tt class="rst-docutils literal">accept</tt> so that the incoming connection occupies this file descriptor's space, and then close that connection and reopen this one.</p>
+<p>Calling <code><a href="#reserve" class="internal-link" title="twisted.internet.tcp._IFileDescriptorReservation.reserve">_IFileDescriptorReservation.reserve</a></code> attempts to open the reserve file descriptor if it is not already open. <code><a href="#available" class="internal-link" title="twisted.internet.tcp._IFileDescriptorReservation.available">_IFileDescriptorReservation.available</a></code> returns <code><a href="https://docs.python.org/3/library/constants.html#True" class="intersphinx-link">True</a></code> if the underlying file is open and its descriptor claimed.</p>
+<p><code><a href="twisted.internet.tcp._IFileDescriptorReservation.html" class="internal-link" title="twisted.internet.tcp._IFileDescriptorReservation">_IFileDescriptorReservation</a></code> instances are context managers; entering them releases the underlying file descriptor, while exiting them attempts to reacquire it.  The block can take advantage of the free slot in the process' file descriptor table accept and close a client connection.</p>
+<p>Because another thread might open a file descriptor between the time the context manager is entered and the time <tt class="rst-docutils literal">accept</tt> is called, opening the reserve descriptor is best-effort only.</p>
+</div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id2382">
+  
+  
+  <tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__enter__" class="internal-link" title="twisted.internet.tcp._IFileDescriptorReservation.__enter__">__enter__</a></code></td>
+    <td>Release the underlying file descriptor so that code within the context manager can open a new file.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__exit__" class="internal-link" title="twisted.internet.tcp._IFileDescriptorReservation.__exit__">__exit__</a></code></td>
+    <td>Attempt to re-open the reserved file descriptor.  See <code><a href="#reserve" class="internal-link" title="twisted.internet.tcp._IFileDescriptorReservation.reserve">reserve</a></code> for caveats.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#available" class="internal-link" title="twisted.internet.tcp._IFileDescriptorReservation.available">available</a></code></td>
+    <td>Is the reservation available?</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#reserve" class="internal-link" title="twisted.internet.tcp._IFileDescriptorReservation.reserve">reserve</a></code></td>
+    <td>Attempt to open the reserved file descriptor; if this fails because of <tt class="rst-docutils literal">EMFILE</tt>, internal state is reset so that another reservation attempt can be made.</td>
+  </tr>
+</table>
+        
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="basemethod">
+  
+  
+  <a name="twisted.internet.tcp._IFileDescriptorReservation.__enter__">
+    
+  </a>
+  <a name="__enter__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__enter__</span>():
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/internet/tcp.py#L922">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Release the underlying file descriptor so that code within the context manager can open a new file.</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.internet.tcp._IFileDescriptorReservation.__exit__">
+    
+  </a>
+  <a name="__exit__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__exit__</span>(excType, excValue, traceback):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/internet/tcp.py#L928">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Attempt to re-open the reserved file descriptor.  See <code><a href="#reserve" class="internal-link" title="twisted.internet.tcp._IFileDescriptorReservation.reserve">reserve</a></code> for caveats.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">exc​Type</span></td><td class="fieldArgDesc">See <code><a href="https://docs.python.org/3/reference/datamodel.html#object.__exit__" class="intersphinx-link">object.__exit__</a></code></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">exc​Value</span></td><td class="fieldArgDesc">See <code><a href="https://docs.python.org/3/reference/datamodel.html#object.__exit__" class="intersphinx-link">object.__exit__</a></code></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">traceback</span></td><td class="fieldArgDesc">See <code><a href="https://docs.python.org/3/reference/datamodel.html#object.__exit__" class="intersphinx-link">object.__exit__</a></code></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.internet.tcp._IFileDescriptorReservation.available">
+    
+  </a>
+  <a name="available">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">available</span>():
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/internet/tcp.py#L903">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Is the reservation available?<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td colspan="2"><code><a href="https://docs.python.org/3/library/constants.html#True" class="intersphinx-link">True</a></code> if the reserved file descriptor is open and can thus be closed to allow a new file to be opened in its place; <code><a href="https://docs.python.org/3/library/constants.html#False" class="intersphinx-link">False</a></code> if it is not open.</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.internet.tcp._IFileDescriptorReservation.reserve">
+    
+  </a>
+  <a name="reserve">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">reserve</span>():
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/internet/tcp.py#L912">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Attempt to open the reserved file descriptor; if this fails because of <tt class="rst-docutils literal">EMFILE</tt>, internal state is reset so that another reservation attempt can be made.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Raises</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/exceptions.html#Exception" class="intersphinx-link">Exception</a></code></td><td>Any exception except an <code><a href="https://docs.python.org/3/library/exceptions.html#OSError" class="intersphinx-link">OSError</a></code> whose errno is <code>EMFILE</code>.</td></tr></table></div>
+  </div>
+</div>
+
+      </div>
+    </div>
+
+    <footer class="navbar navbar-default">
+  
+  <div class="container">
+    <a href="index.html">API Documentation</a> for twisted,
+  generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
+    22.2.1 at 2022-02-23 21:40:09.
+  </div>
+</footer>
+
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+  </body>
+</html>
