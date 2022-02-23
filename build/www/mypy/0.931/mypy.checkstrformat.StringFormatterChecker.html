@@ -1,0 +1,872 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  
+
+  <head>
+    
+    <title>mypy.checkstrformat.StringFormatterChecker</title>
+    <meta name="generator" content="pydoctor 22.2.0"> 
+        
+    </meta>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=0.75" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+    <link rel="stylesheet" type="text/css" href="extra.css" />
+</head>
+
+  <body>
+
+    
+
+    <nav class="navbar navbar-default">
+  
+  <div class="container">
+
+    <div class="navbar-header">
+      
+      <div class="navlinks">
+          <span class="navbar-brand">
+            mypy <a href="index.html">API Documentation</a>
+          </span>
+
+          <a href="moduleIndex.html">
+            Modules
+          </a>
+
+          <a href="classIndex.html">
+            Classes
+          </a>
+
+          <a href="nameIndex.html">
+            Names
+          </a>
+      </div>
+
+    </div>
+  </div>
+</nav>
+
+    
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="class"><code><code><a href="index.html" class="internal-link">mypy</a></code><wbr></wbr>.<code><a href="mypy.checkstrformat.html" class="internal-link" title="mypy.checkstrformat">checkstrformat</a></code><wbr></wbr>.<code><a href="mypy.checkstrformat.StringFormatterChecker.html" class="internal-link" title="mypy.checkstrformat.StringFormatterChecker">StringFormatterChecker</a></code></code></h1>
+        <div id="showPrivate">
+          <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+        </div>
+      </div>
+
+      <div class="categoryHeader">
+        class documentation
+      </div>
+
+      <div class="extrasDocstring">
+        <p><code><span class="py-keyword">class</span> <span class="py-defname">StringFormatterChecker</span>:</code></p>
+        <p><a href="classIndex.html#mypy.checkstrformat.StringFormatterChecker">View In Hierarchy</a></p>
+      </div>
+
+      <div class="moduleDocstring">
+        <div><p>String interpolation/formatter type checker.</p>
+<p>This class works closely together with checker.ExpressionChecker.</p>
+</div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id37">
+  
+  
+  <tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__init__" class="internal-link" title="mypy.checkstrformat.StringFormatterChecker.__init__">__init__</a></code></td>
+    <td>Construct an expression type checker.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#accept" class="internal-link" title="mypy.checkstrformat.StringFormatterChecker.accept">accept</a></code></td>
+    <td>Type check a node. Alias for TypeChecker.accept.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#analyze_conversion_specifiers" class="internal-link" title="mypy.checkstrformat.StringFormatterChecker.analyze_conversion_specifiers">analyze​_conversion​_specifiers</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#apply_field_accessors" class="internal-link" title="mypy.checkstrformat.StringFormatterChecker.apply_field_accessors">apply​_field​_accessors</a></code></td>
+    <td>Transform and validate expr in '{.attr[item]}'.format(expr) into expr.attr['item'].</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#auto_generate_keys" class="internal-link" title="mypy.checkstrformat.StringFormatterChecker.auto_generate_keys">auto​_generate​_keys</a></code></td>
+    <td>Translate '{} {name} {}' to '{0} {name} {1}'.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#build_dict_type" class="internal-link" title="mypy.checkstrformat.StringFormatterChecker.build_dict_type">build​_dict​_type</a></code></td>
+    <td>Build expected mapping type for right operand in % formatting.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#build_replacement_checkers" class="internal-link" title="mypy.checkstrformat.StringFormatterChecker.build_replacement_checkers">build​_replacement​_checkers</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#check_mapping_str_interpolation" class="internal-link" title="mypy.checkstrformat.StringFormatterChecker.check_mapping_str_interpolation">check​_mapping​_str​_interpolation</a></code></td>
+    <td>Check % string interpolation with names specifiers '%(name)s' % {'name': 'John'}.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#check_placeholder_type" class="internal-link" title="mypy.checkstrformat.StringFormatterChecker.check_placeholder_type">check​_placeholder​_type</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#check_s_special_cases" class="internal-link" title="mypy.checkstrformat.StringFormatterChecker.check_s_special_cases">check​_s​_special​_cases</a></code></td>
+    <td>Additional special cases for %s in bytes vs string context.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#check_simple_str_interpolation" class="internal-link" title="mypy.checkstrformat.StringFormatterChecker.check_simple_str_interpolation">check​_simple​_str​_interpolation</a></code></td>
+    <td>Check % string interpolation with positional specifiers '%s, %d' % ('yes, 42').</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#check_specs_in_format_call" class="internal-link" title="mypy.checkstrformat.StringFormatterChecker.check_specs_in_format_call">check​_specs​_in​_format​_call</a></code></td>
+    <td>Perform pairwise checks for conversion specifiers vs their replacements.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#check_str_format_call" class="internal-link" title="mypy.checkstrformat.StringFormatterChecker.check_str_format_call">check​_str​_format​_call</a></code></td>
+    <td>Perform more precise checks for str.format() calls when possible.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#check_str_interpolation" class="internal-link" title="mypy.checkstrformat.StringFormatterChecker.check_str_interpolation">check​_str​_interpolation</a></code></td>
+    <td>Check the types of the 'replacements' in a string interpolation expression: str % replacements.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#checkers_for_c_type" class="internal-link" title="mypy.checkstrformat.StringFormatterChecker.checkers_for_c_type">checkers​_for​_c​_type</a></code></td>
+    <td>Returns a tuple of check functions that check whether, respectively, a node or a type is compatible with 'type' that is a character type.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#checkers_for_regular_type" class="internal-link" title="mypy.checkstrformat.StringFormatterChecker.checkers_for_regular_type">checkers​_for​_regular​_type</a></code></td>
+    <td>Returns a tuple of check functions that check whether, respectively, a node or a type is compatible with 'type'. Return None in case of an error.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#checkers_for_star" class="internal-link" title="mypy.checkstrformat.StringFormatterChecker.checkers_for_star">checkers​_for​_star</a></code></td>
+    <td>Returns a tuple of check functions that check whether, respectively, a node or a type is compatible with a star in a conversion specifier.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#conversion_type" class="internal-link" title="mypy.checkstrformat.StringFormatterChecker.conversion_type">conversion​_type</a></code></td>
+    <td>Return the type that is accepted for a string interpolation conversion specifier type.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#find_replacements_in_call" class="internal-link" title="mypy.checkstrformat.StringFormatterChecker.find_replacements_in_call">find​_replacements​_in​_call</a></code></td>
+    <td>Find replacement expression for every specifier in str.format() call.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#get_expr_by_name" class="internal-link" title="mypy.checkstrformat.StringFormatterChecker.get_expr_by_name">get​_expr​_by​_name</a></code></td>
+    <td>Get named replacement expression from '{name}'.format(name=...) call.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#get_expr_by_position" class="internal-link" title="mypy.checkstrformat.StringFormatterChecker.get_expr_by_position">get​_expr​_by​_position</a></code></td>
+    <td>Get positional replacement expression from '{0}, {1}'.format(x, y, ...) call.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#named_type" class="internal-link" title="mypy.checkstrformat.StringFormatterChecker.named_type">named​_type</a></code></td>
+    <td>Return an instance type with type given by the name and no type arguments. Alias for TypeChecker.named_type.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#perform_special_format_checks" class="internal-link" title="mypy.checkstrformat.StringFormatterChecker.perform_special_format_checks">perform​_special​_format​_checks</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#replacement_checkers" class="internal-link" title="mypy.checkstrformat.StringFormatterChecker.replacement_checkers">replacement​_checkers</a></code></td>
+    <td>Returns a list of tuples of two functions that check whether a replacement is of the right type for the specifier. The first function takes a node and checks its type in the right type context. The second function just checks a type.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#validate_and_transform_accessors" class="internal-link" title="mypy.checkstrformat.StringFormatterChecker.validate_and_transform_accessors">validate​_and​_transform​_accessors</a></code></td>
+    <td>Validate and transform (in-place) format field accessors.</td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#chk" class="internal-link" title="mypy.checkstrformat.StringFormatterChecker.chk">chk</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#exprchk" class="internal-link" title="mypy.checkstrformat.StringFormatterChecker.exprchk">exprchk</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#msg" class="internal-link" title="mypy.checkstrformat.StringFormatterChecker.msg">msg</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#unicode_upcast" class="internal-link" title="mypy.checkstrformat.StringFormatterChecker.unicode_upcast">unicode​_upcast</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+        
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="basemethod">
+  
+  
+  <a name="mypy.checkstrformat.StringFormatterChecker.__init__">
+    
+  </a>
+  <a name="__init__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__init__</span>(self, exprchk, chk, msg):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Construct an expression type checker.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">exprchk:</span><code><a href="mypy.checkexpr.ExpressionChecker.html" class="internal-link">mypy.checkexpr.ExpressionChecker</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">chk:</span><code><a href="mypy.checker.TypeChecker.html" class="internal-link">mypy.checker.TypeChecker</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">msg:</span><code><a href="mypy.messages.MessageBuilder.html" class="internal-link" title="mypy.messages.MessageBuilder">MessageBuilder</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="mypy.checkstrformat.StringFormatterChecker.accept">
+    
+  </a>
+  <a name="accept">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">accept</span>(self, expr, context=None):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Type check a node. Alias for TypeChecker.accept.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">expr:</span><code><a href="mypy.nodes.Expression.html" class="internal-link" title="mypy.nodes.Expression">Expression</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">context:</span><code>Optional[<wbr></wbr><a href="mypy.types.Type.html" class="internal-link" title="mypy.types.Type">Type</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="mypy.types.Type.html" class="internal-link" title="mypy.types.Type">Type</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="mypy.checkstrformat.StringFormatterChecker.analyze_conversion_specifiers">
+    
+  </a>
+  <a name="analyze_conversion_specifiers">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">analyze_conversion_specifiers</span>(self, specifiers, context):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">specifiers:</span><code>List[<wbr></wbr><a href="mypy.checkstrformat.ConversionSpecifier.html" class="internal-link" title="mypy.checkstrformat.ConversionSpecifier">ConversionSpecifier</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">context:</span><code><a href="mypy.nodes.Context.html" class="internal-link" title="mypy.nodes.Context">Context</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code>Optional[<wbr></wbr>bool]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="mypy.checkstrformat.StringFormatterChecker.apply_field_accessors">
+    
+  </a>
+  <a name="apply_field_accessors">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">apply_field_accessors</span>(self, spec, repl, ctx):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Transform and validate expr in '{.attr[item]}'.format(expr) into expr.attr['item'].</p>
+<p>If validation fails, return TempNode(AnyType).</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">spec:</span><code><a href="mypy.checkstrformat.ConversionSpecifier.html" class="internal-link" title="mypy.checkstrformat.ConversionSpecifier">ConversionSpecifier</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">repl:</span><code><a href="mypy.nodes.Expression.html" class="internal-link" title="mypy.nodes.Expression">Expression</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">ctx:</span><code><a href="mypy.nodes.Context.html" class="internal-link" title="mypy.nodes.Context">Context</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="mypy.nodes.Expression.html" class="internal-link" title="mypy.nodes.Expression">Expression</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="mypy.checkstrformat.StringFormatterChecker.auto_generate_keys">
+    
+  </a>
+  <a name="auto_generate_keys">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">auto_generate_keys</span>(self, all_specs, ctx):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Translate '{} {name} {}' to '{0} {name} {1}'.</p>
+<p>Return True if generation was successful, otherwise report an error and return false.</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">all​_specs:</span><code>List[<wbr></wbr><a href="mypy.checkstrformat.ConversionSpecifier.html" class="internal-link" title="mypy.checkstrformat.ConversionSpecifier">ConversionSpecifier</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">ctx:</span><code><a href="mypy.nodes.Context.html" class="internal-link" title="mypy.nodes.Context">Context</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code>bool</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="mypy.checkstrformat.StringFormatterChecker.build_dict_type">
+    
+  </a>
+  <a name="build_dict_type">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">build_dict_type</span>(self, expr):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Build expected mapping type for right operand in % formatting.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">expr:</span><code><a href="mypy.checkstrformat.html#FormatStringExpr" class="internal-link" title="mypy.checkstrformat.FormatStringExpr">FormatStringExpr</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="mypy.types.Type.html" class="internal-link" title="mypy.types.Type">Type</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="mypy.checkstrformat.StringFormatterChecker.build_replacement_checkers">
+    
+  </a>
+  <a name="build_replacement_checkers">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">build_replacement_checkers</span>(self, specifiers, context, expr):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">specifiers:</span><code>List[<wbr></wbr><a href="mypy.checkstrformat.ConversionSpecifier.html" class="internal-link" title="mypy.checkstrformat.ConversionSpecifier">ConversionSpecifier</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">context:</span><code><a href="mypy.nodes.Context.html" class="internal-link" title="mypy.nodes.Context">Context</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">expr:</span><code><a href="mypy.checkstrformat.html#FormatStringExpr" class="internal-link" title="mypy.checkstrformat.FormatStringExpr">FormatStringExpr</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code>Optional[<wbr></wbr>List[<wbr></wbr><a href="mypy.checkstrformat.html#Checkers" class="internal-link" title="mypy.checkstrformat.Checkers">Checkers</a>]]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="mypy.checkstrformat.StringFormatterChecker.check_mapping_str_interpolation">
+    
+  </a>
+  <a name="check_mapping_str_interpolation">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">check_mapping_str_interpolation</span>(self, specifiers, replacements, expr):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Check % string interpolation with names specifiers '%(name)s' % {'name': 'John'}.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">specifiers:</span><code>List[<wbr></wbr><a href="mypy.checkstrformat.ConversionSpecifier.html" class="internal-link" title="mypy.checkstrformat.ConversionSpecifier">ConversionSpecifier</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">replacements:</span><code><a href="mypy.nodes.Expression.html" class="internal-link" title="mypy.nodes.Expression">Expression</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">expr:</span><code><a href="mypy.checkstrformat.html#FormatStringExpr" class="internal-link" title="mypy.checkstrformat.FormatStringExpr">FormatStringExpr</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="mypy.checkstrformat.StringFormatterChecker.check_placeholder_type">
+    
+  </a>
+  <a name="check_placeholder_type">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">check_placeholder_type</span>(self, typ, expected_type, context):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">typ:</span><code><a href="mypy.types.Type.html" class="internal-link" title="mypy.types.Type">Type</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">expected​_type:</span><code><a href="mypy.types.Type.html" class="internal-link" title="mypy.types.Type">Type</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">context:</span><code><a href="mypy.nodes.Context.html" class="internal-link" title="mypy.nodes.Context">Context</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code>bool</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="mypy.checkstrformat.StringFormatterChecker.check_s_special_cases">
+    
+  </a>
+  <a name="check_s_special_cases">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">check_s_special_cases</span>(self, expr, typ, context):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Additional special cases for %s in bytes vs string context.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">expr:</span><code><a href="mypy.checkstrformat.html#FormatStringExpr" class="internal-link" title="mypy.checkstrformat.FormatStringExpr">FormatStringExpr</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">typ:</span><code><a href="mypy.types.Type.html" class="internal-link" title="mypy.types.Type">Type</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">context:</span><code><a href="mypy.nodes.Context.html" class="internal-link" title="mypy.nodes.Context">Context</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code>bool</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="mypy.checkstrformat.StringFormatterChecker.check_simple_str_interpolation">
+    
+  </a>
+  <a name="check_simple_str_interpolation">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">check_simple_str_interpolation</span>(self, specifiers, replacements, expr):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Check % string interpolation with positional specifiers '%s, %d' % ('yes, 42').<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">specifiers:</span><code>List[<wbr></wbr><a href="mypy.checkstrformat.ConversionSpecifier.html" class="internal-link" title="mypy.checkstrformat.ConversionSpecifier">ConversionSpecifier</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">replacements:</span><code><a href="mypy.nodes.Expression.html" class="internal-link" title="mypy.nodes.Expression">Expression</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">expr:</span><code><a href="mypy.checkstrformat.html#FormatStringExpr" class="internal-link" title="mypy.checkstrformat.FormatStringExpr">FormatStringExpr</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="mypy.checkstrformat.StringFormatterChecker.check_specs_in_format_call">
+    
+  </a>
+  <a name="check_specs_in_format_call">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">check_specs_in_format_call</span>(self, call, specs, format_value):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Perform pairwise checks for conversion specifiers vs their replacements.</p>
+<p>The core logic for format checking is implemented in this method.</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">call:</span><code><a href="mypy.nodes.CallExpr.html" class="internal-link" title="mypy.nodes.CallExpr">CallExpr</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">specs:</span><code>List[<wbr></wbr><a href="mypy.checkstrformat.ConversionSpecifier.html" class="internal-link" title="mypy.checkstrformat.ConversionSpecifier">ConversionSpecifier</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">format​_value:</span><code>str</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="mypy.checkstrformat.StringFormatterChecker.check_str_format_call">
+    
+  </a>
+  <a name="check_str_format_call">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">check_str_format_call</span>(self, call, format_value):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Perform more precise checks for str.format() calls when possible.</p>
+<dl class="rst-docutils">
+<dt>Currently the checks are performed for:</dt>
+<dd><ul class="rst-first rst-last rst-simple">
+<li>Actual string literals</li>
+<li>Literal types with string values</li>
+<li>Final names with string values</li>
+</ul>
+</dd>
+<dt>The checks that we currently perform:</dt>
+<dd><ul class="rst-first rst-last rst-simple">
+<li>Check generic validity (e.g. unmatched { or }, and {} in invalid positions)</li>
+<li>Check consistency of specifiers' auto-numbering</li>
+<li>Verify that replacements can be found for all conversion specifiers,
+and all arguments were used</li>
+<li>Non-standard format specs are only allowed for types with custom __format__</li>
+<li>Type check replacements with accessors applied (if any).</li>
+<li>Verify that specifier type is known and matches replacement type</li>
+<li>Perform special checks for some specifier types:
+- 'c' requires a single character string
+- 's' must not accept bytes
+- non-empty flags are only allowed for numeric types</li>
+</ul>
+</dd>
+</dl>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">call:</span><code><a href="mypy.nodes.CallExpr.html" class="internal-link" title="mypy.nodes.CallExpr">CallExpr</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">format​_value:</span><code>str</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="mypy.checkstrformat.StringFormatterChecker.check_str_interpolation">
+    
+  </a>
+  <a name="check_str_interpolation">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">check_str_interpolation</span>(self, expr, replacements):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Check the types of the 'replacements' in a string interpolation
+expression: str % replacements.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">expr:</span><code><a href="mypy.checkstrformat.html#FormatStringExpr" class="internal-link" title="mypy.checkstrformat.FormatStringExpr">FormatStringExpr</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">replacements:</span><code><a href="mypy.nodes.Expression.html" class="internal-link" title="mypy.nodes.Expression">Expression</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="mypy.types.Type.html" class="internal-link" title="mypy.types.Type">Type</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="mypy.checkstrformat.StringFormatterChecker.checkers_for_c_type">
+    
+  </a>
+  <a name="checkers_for_c_type">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">checkers_for_c_type</span>(self, type, context, format_expr):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Returns a tuple of check functions that check whether, respectively,
+a node or a type is compatible with 'type' that is a character type.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">type:</span><code>str</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">context:</span><code><a href="mypy.nodes.Context.html" class="internal-link" title="mypy.nodes.Context">Context</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">format​_expr:</span><code><a href="mypy.checkstrformat.html#FormatStringExpr" class="internal-link" title="mypy.checkstrformat.FormatStringExpr">FormatStringExpr</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code>Optional[<wbr></wbr><a href="mypy.checkstrformat.html#Checkers" class="internal-link" title="mypy.checkstrformat.Checkers">Checkers</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="mypy.checkstrformat.StringFormatterChecker.checkers_for_regular_type">
+    
+  </a>
+  <a name="checkers_for_regular_type">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">checkers_for_regular_type</span>(self, conv_type, context, expr):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Returns a tuple of check functions that check whether, respectively,
+a node or a type is compatible with 'type'. Return None in case of an error.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">conv​_type:</span><code>str</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">context:</span><code><a href="mypy.nodes.Context.html" class="internal-link" title="mypy.nodes.Context">Context</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">expr:</span><code><a href="mypy.checkstrformat.html#FormatStringExpr" class="internal-link" title="mypy.checkstrformat.FormatStringExpr">FormatStringExpr</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code>Optional[<wbr></wbr><a href="mypy.checkstrformat.html#Checkers" class="internal-link" title="mypy.checkstrformat.Checkers">Checkers</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="mypy.checkstrformat.StringFormatterChecker.checkers_for_star">
+    
+  </a>
+  <a name="checkers_for_star">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">checkers_for_star</span>(self, context):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Returns a tuple of check functions that check whether, respectively,
+a node or a type is compatible with a star in a conversion specifier.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">context:</span><code><a href="mypy.nodes.Context.html" class="internal-link" title="mypy.nodes.Context">Context</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="mypy.checkstrformat.html#Checkers" class="internal-link" title="mypy.checkstrformat.Checkers">Checkers</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="mypy.checkstrformat.StringFormatterChecker.conversion_type">
+    
+  </a>
+  <a name="conversion_type">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">conversion_type</span>(self, p, context, expr, format_call=False):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Return the type that is accepted for a string interpolation conversion specifier type.</p>
+<p>Note that both Python's float (e.g. %f) and integer (e.g. %d)
+specifier types accept both float and integers.</p>
+<p>The 'format_call' argument indicates whether this type came from % interpolation or from
+a str.format() call, the meaning of few formatting types are different.</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">p:</span><code>str</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">context:</span><code><a href="mypy.nodes.Context.html" class="internal-link" title="mypy.nodes.Context">Context</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">expr:</span><code><a href="mypy.checkstrformat.html#FormatStringExpr" class="internal-link" title="mypy.checkstrformat.FormatStringExpr">FormatStringExpr</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">format​_call:</span><code>bool</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code>Optional[<wbr></wbr><a href="mypy.types.Type.html" class="internal-link" title="mypy.types.Type">Type</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="mypy.checkstrformat.StringFormatterChecker.find_replacements_in_call">
+    
+  </a>
+  <a name="find_replacements_in_call">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">find_replacements_in_call</span>(self, call, keys):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Find replacement expression for every specifier in str.format() call.</p>
+<p>In case of an error use TempNode(AnyType).</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">call:</span><code><a href="mypy.nodes.CallExpr.html" class="internal-link" title="mypy.nodes.CallExpr">CallExpr</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">keys:</span><code>List[<wbr></wbr>str]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code>List[<wbr></wbr><a href="mypy.nodes.Expression.html" class="internal-link" title="mypy.nodes.Expression">Expression</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="mypy.checkstrformat.StringFormatterChecker.get_expr_by_name">
+    
+  </a>
+  <a name="get_expr_by_name">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">get_expr_by_name</span>(self, key, call):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Get named replacement expression from '{name}'.format(name=...) call.</p>
+<p>If the type is from <a href="#system-message-1"><span class="rst-problematic" id="rst-problematic-1">**</span></a>kwargs, return TempNode(&lt;item type&gt;). Return None in case of
+an error.</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">key:</span><code>str</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">call:</span><code><a href="mypy.nodes.CallExpr.html" class="internal-link" title="mypy.nodes.CallExpr">CallExpr</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code>Optional[<wbr></wbr><a href="mypy.nodes.Expression.html" class="internal-link" title="mypy.nodes.Expression">Expression</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="mypy.checkstrformat.StringFormatterChecker.get_expr_by_position">
+    
+  </a>
+  <a name="get_expr_by_position">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">get_expr_by_position</span>(self, pos, call):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Get positional replacement expression from '{0}, {1}'.format(x, y, ...) call.</p>
+<p>If the type is from <a href="#system-message-1"><span class="rst-problematic" id="rst-problematic-1">*</span></a>args, return TempNode(&lt;item type&gt;). Return None in case of
+an error.</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">pos:</span><code>int</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">call:</span><code><a href="mypy.nodes.CallExpr.html" class="internal-link" title="mypy.nodes.CallExpr">CallExpr</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code>Optional[<wbr></wbr><a href="mypy.nodes.Expression.html" class="internal-link" title="mypy.nodes.Expression">Expression</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="mypy.checkstrformat.StringFormatterChecker.named_type">
+    
+  </a>
+  <a name="named_type">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">named_type</span>(self, name):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Return an instance type with type given by the name and no type
+arguments. Alias for TypeChecker.named_type.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">name:</span><code>str</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="mypy.types.Instance.html" class="internal-link" title="mypy.types.Instance">Instance</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="mypy.checkstrformat.StringFormatterChecker.perform_special_format_checks">
+    
+  </a>
+  <a name="perform_special_format_checks">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">perform_special_format_checks</span>(self, spec, call, repl, actual_type, expected_type):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">spec:</span><code><a href="mypy.checkstrformat.ConversionSpecifier.html" class="internal-link" title="mypy.checkstrformat.ConversionSpecifier">ConversionSpecifier</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">call:</span><code><a href="mypy.nodes.CallExpr.html" class="internal-link" title="mypy.nodes.CallExpr">CallExpr</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">repl:</span><code><a href="mypy.nodes.Expression.html" class="internal-link" title="mypy.nodes.Expression">Expression</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">actual​_type:</span><code><a href="mypy.types.Type.html" class="internal-link" title="mypy.types.Type">Type</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">expected​_type:</span><code><a href="mypy.types.Type.html" class="internal-link" title="mypy.types.Type">Type</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="mypy.checkstrformat.StringFormatterChecker.replacement_checkers">
+    
+  </a>
+  <a name="replacement_checkers">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">replacement_checkers</span>(self, specifier, context, expr):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Returns a list of tuples of two functions that check whether a replacement is
+of the right type for the specifier. The first function takes a node and checks
+its type in the right type context. The second function just checks a type.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">specifier:</span><code><a href="mypy.checkstrformat.ConversionSpecifier.html" class="internal-link" title="mypy.checkstrformat.ConversionSpecifier">ConversionSpecifier</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">context:</span><code><a href="mypy.nodes.Context.html" class="internal-link" title="mypy.nodes.Context">Context</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">expr:</span><code><a href="mypy.checkstrformat.html#FormatStringExpr" class="internal-link" title="mypy.checkstrformat.FormatStringExpr">FormatStringExpr</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code>Optional[<wbr></wbr>List[<wbr></wbr><a href="mypy.checkstrformat.html#Checkers" class="internal-link" title="mypy.checkstrformat.Checkers">Checkers</a>]]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="mypy.checkstrformat.StringFormatterChecker.validate_and_transform_accessors">
+    
+  </a>
+  <a name="validate_and_transform_accessors">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">validate_and_transform_accessors</span>(self, temp_ast, original_repl, spec, ctx):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Validate and transform (in-place) format field accessors.</p>
+<p>On error, report it and return False. The transformations include replacing the dummy
+variable with actual replacement expression and translating any name expressions in an
+index into strings, so that this will work:</p>
+<blockquote>
+<dl class="rst-docutils">
+<dt>class User(TypedDict):</dt>
+<dd>name: str
+id: int</dd>
+</dl>
+<p>u: User
+'{[id]:d} -&gt; {[name]}'.format(u)</p>
+</blockquote>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">temp​_ast:</span><code><a href="mypy.nodes.Expression.html" class="internal-link" title="mypy.nodes.Expression">Expression</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">original​_repl:</span><code><a href="mypy.nodes.Expression.html" class="internal-link" title="mypy.nodes.Expression">Expression</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">spec:</span><code><a href="mypy.checkstrformat.ConversionSpecifier.html" class="internal-link" title="mypy.checkstrformat.ConversionSpecifier">ConversionSpecifier</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">ctx:</span><code><a href="mypy.nodes.Context.html" class="internal-link" title="mypy.nodes.Context">Context</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code>bool</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="mypy.checkstrformat.StringFormatterChecker.chk">
+    
+  </a>
+  <a name="chk">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">chk</span> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="mypy.checkstrformat.StringFormatterChecker.exprchk">
+    
+  </a>
+  <a name="exprchk">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">exprchk</span> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="mypy.checkstrformat.StringFormatterChecker.msg">
+    
+  </a>
+  <a name="msg">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">msg</span> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="mypy.checkstrformat.StringFormatterChecker.unicode_upcast">
+    
+  </a>
+  <a name="unicode_upcast">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">unicode_upcast</span>: <code>bool</code> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div>
+
+      </div>
+    </div>
+
+    <footer class="navbar navbar-default">
+  
+  <div class="container">
+    <a href="index.html">API Documentation</a> for mypy,
+  generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
+    22.2.0 at 2022-02-23 05:21:28.
+  </div>
+</footer>
+
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+  </body>
+</html>

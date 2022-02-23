@@ -1,0 +1,491 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  
+
+  <head>
+    
+    <title>mypy.plugin</title>
+    <meta name="generator" content="pydoctor 22.2.0"> 
+        
+    </meta>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=0.75" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+    <link rel="stylesheet" type="text/css" href="extra.css" />
+</head>
+
+  <body>
+
+    
+
+    <nav class="navbar navbar-default">
+  
+  <div class="container">
+
+    <div class="navbar-header">
+      
+      <div class="navlinks">
+          <span class="navbar-brand">
+            mypy <a href="index.html">API Documentation</a>
+          </span>
+
+          <a href="moduleIndex.html">
+            Modules
+          </a>
+
+          <a href="classIndex.html">
+            Classes
+          </a>
+
+          <a href="nameIndex.html">
+            Names
+          </a>
+      </div>
+
+    </div>
+  </div>
+</nav>
+
+    
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="module"><code><code><a href="index.html" class="internal-link">mypy</a></code><wbr></wbr>.<code><a href="mypy.plugin.html" class="internal-link" title="mypy.plugin">plugin</a></code></code></h1>
+        <div id="showPrivate">
+          <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+        </div>
+      </div>
+
+      <div class="categoryHeader">
+        module documentation
+      </div>
+
+      <div class="extrasDocstring">
+        
+        <p></p>
+      </div>
+
+      <div class="moduleDocstring">
+        <div><p>Plugin system for extending mypy.</p>
+<p>At large scale the plugin system works as following:</p>
+<ul class="rst-simple">
+<li>Plugins are collected from the corresponding mypy config file option
+(either via paths to Python files, or installed Python modules)
+and imported using importlib.</li>
+<li>Every module should get an entry point function (called 'plugin' by default,
+but may be overridden in the config file) that should accept a single string
+argument that is a full mypy version (includes git commit hash for dev
+versions) and return a subclass of mypy.plugins.Plugin.</li>
+<li>All plugin class constructors should match the signature of mypy.plugin.Plugin
+(i.e. should accept an mypy.options.Options object), and <em>must</em> call
+super().__init__().</li>
+<li>At several steps during semantic analysis and type checking mypy calls
+special <code>get_xxx</code> methods on user plugins with a single string argument that
+is a fully qualified name (full name) of a relevant definition
+(see mypy.plugin.Plugin method docstrings for details).</li>
+<li>The plugins are called in the order they are passed in the config option.
+Every plugin must decide whether to act on a given full name. The first
+plugin that returns non-None object will be used.</li>
+<li>The above decision should be made using the limited common API specified by
+mypy.plugin.CommonPluginApi.</li>
+<li>The callback returned by the plugin will be called with a larger context that
+includes relevant current state (e.g. a default return type, or a default
+attribute type) and a wider relevant API provider (e.g.
+SemanticAnalyzerPluginInterface or CheckerPluginInterface).</li>
+<li>The result of this is used for further processing. See various <code>XxxContext</code>
+named tuples for details about which information is given to each hook.</li>
+</ul>
+<p>Plugin developers should ensure that their plugins work well in incremental and
+daemon modes. In particular, plugins should not hold global state, and should
+always call add_plugin_dependency() in plugin hooks called during semantic
+analysis. See the method docstring for more details.</p>
+<p>There is no dedicated cache storage for plugins, but plugins can store
+per-TypeInfo data in a special .metadata attribute that is serialized to the
+mypy caches between incremental runs. To avoid collisions between plugins, they
+are encouraged to store their state under a dedicated key coinciding with
+plugin name in the metadata dictionary. Every value stored there must be
+JSON-serializable.</p>
+<p>## Notes about the semantic analyzer</p>
+<p>Mypy 0.710 introduced a new semantic analyzer that changed how plugins are
+expected to work in several notable ways (from mypy 0.730 the old semantic
+analyzer is no longer available):</p>
+<ol class="rst-arabic">
+<li><p class="rst-first">The order of processing AST nodes in modules is different. The old semantic
+analyzer processed modules in textual order, one module at a time. The new
+semantic analyzer first processes the module top levels, including bodies of
+any top-level classes and classes nested within classes. ("Top-level" here
+means "not nested within a function/method".) Functions and methods are
+processed only after module top levels have been finished. If there is an
+import cycle, all module top levels in the cycle are processed before
+processing any functions or methods. Each unit of processing (a module top
+level or a function/method) is called a <em>target</em>.</p>
+<p>This also means that function signatures in the same module have not been
+analyzed yet when analyzing the module top level. If you need access to
+a function signature, you'll need to explicitly analyze the signature first
+using <code><a href="mypy.plugin.SemanticAnalyzerPluginInterface.html#anal_type" class="internal-link" title="mypy.plugin.SemanticAnalyzerPluginInterface.anal_type">anal_type()</a></code>.</p>
+</li>
+<li><p class="rst-first">Each target can be processed multiple times. This may happen if some forward
+references are not ready yet, for example. This means that semantic analyzer
+related plugin hooks can be called multiple times for the same full name.
+These plugin methods must thus be idempotent.</p>
+</li>
+<li><p class="rst-first">The <code><a href="mypy.plugin.SemanticAnalyzerPluginInterface.html#anal_type" class="internal-link" title="mypy.plugin.SemanticAnalyzerPluginInterface.anal_type">anal_type</a></code> API function returns None if some part of the type is not
+available yet. If this happens, the current target being analyzed will be
+<em>deferred</em>, which means that it will be processed again soon, in the hope
+that additional dependencies will be available. This may happen if there are
+forward references to types or inter-module references to types within an
+import cycle.</p>
+<p>Note that if there is a circular definition, mypy may decide to stop
+processing to avoid an infinite number of iterations. When this happens,
+<code><a href="mypy.plugin.SemanticAnalyzerPluginInterface.html#anal_type" class="internal-link" title="mypy.plugin.SemanticAnalyzerPluginInterface.anal_type">anal_type</a></code> will generate an error and return an <code><a href="mypy.types.AnyType.html" class="internal-link" title="mypy.types.AnyType">AnyType</a></code> type object
+during the final iteration (instead of None).</p>
+</li>
+<li><p class="rst-first">There is a new API method <code><a href="mypy.plugin.SemanticAnalyzerPluginInterface.html#defer" class="internal-link" title="mypy.plugin.SemanticAnalyzerPluginInterface.defer">defer()</a></code>. This can be used to explicitly request
+the current target to be reprocessed one more time. You don't need this
+to call this if <code><a href="mypy.plugin.SemanticAnalyzerPluginInterface.html#anal_type" class="internal-link" title="mypy.plugin.SemanticAnalyzerPluginInterface.anal_type">anal_type</a></code> returns None, however.</p>
+</li>
+<li><p class="rst-first">There is a new API property <code><a href="mypy.plugin.SemanticAnalyzerPluginInterface.html#final_iteration" class="internal-link" title="mypy.plugin.SemanticAnalyzerPluginInterface.final_iteration">final_iteration</a></code>, which is true once mypy
+detected no progress during the previous iteration or if the maximum
+semantic analysis iteration count has been reached. You must never
+defer during the final iteration, as it will cause a crash.</p>
+</li>
+<li><p class="rst-first">The <code>node</code> attribute of SymbolTableNode objects may contain a reference to
+a PlaceholderNode object. This object means that this definition has not
+been fully processed yet. If you encounter a PlaceholderNode, you should
+defer unless it's the final iteration. If it's the final iteration, you
+should generate an error message. It usually means that there's a cyclic
+definition that cannot be resolved by mypy. PlaceholderNodes can only refer
+to references inside an import cycle. If you are looking up things from
+another module, such as the builtins, that is outside the current module or
+import cycle, you can safely assume that you won't receive a placeholder.</p>
+</li>
+</ol>
+<p>When testing your plugin, you should have a test case that forces a module top
+level to be processed multiple times. The easiest way to do this is to include
+a forward reference to a class in a top-level annotation. Example:</p>
+<blockquote>
+c: C  # Forward reference causes second analysis pass
+class C: pass</blockquote>
+<p>Note that a forward reference in a function signature won't trigger another
+pass, since all functions are processed only after the top level has been fully
+analyzed.</p>
+<p>You can use <code>api.options.new_semantic_analyzer</code> to check whether the new
+semantic analyzer is enabled (it's always true in mypy 0.730 and later).</p>
+</div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id447">
+  
+  
+  <tr class="class">
+    
+    <td>Class</td>
+    <td><code><a href="mypy.plugin.ChainedPlugin.html" class="internal-link" title="mypy.plugin.ChainedPlugin">​Chained​Plugin</a></code></td>
+    <td>A plugin that represents a sequence of chained plugins.</td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><code><a href="mypy.plugin.CheckerPluginInterface.html" class="internal-link" title="mypy.plugin.CheckerPluginInterface">​Checker​Plugin​Interface</a></code></td>
+    <td>Interface for accessing type checker functionality in plugins.</td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><code><a href="mypy.plugin.CommonPluginApi.html" class="internal-link" title="mypy.plugin.CommonPluginApi">​Common​Plugin​Api</a></code></td>
+    <td>A common plugin API (shared between semantic analysis and type checking phases) that all plugin hooks get independently of the context.</td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><code><a href="mypy.plugin.Plugin.html" class="internal-link" title="mypy.plugin.Plugin">​Plugin</a></code></td>
+    <td>Base class of all type checker plugins.</td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><code><a href="mypy.plugin.SemanticAnalyzerPluginInterface.html" class="internal-link" title="mypy.plugin.SemanticAnalyzerPluginInterface">​Semantic​Analyzer​Plugin​Interface</a></code></td>
+    <td>Interface for accessing semantic analyzer functionality in plugins.</td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><code><a href="mypy.plugin.TypeAnalyzerPluginInterface.html" class="internal-link" title="mypy.plugin.TypeAnalyzerPluginInterface">​Type​Analyzer​Plugin​Interface</a></code></td>
+    <td>Interface for accessing semantic analyzer functionality in plugins.</td>
+  </tr><tr class="constant">
+    
+    <td>Constant</td>
+    <td><code><a href="#T" class="internal-link" title="mypy.plugin.T">T</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><code><a href="#AnalyzeTypeContext" class="internal-link" title="mypy.plugin.AnalyzeTypeContext">​Analyze​Type​Context</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><code><a href="#AttributeContext" class="internal-link" title="mypy.plugin.AttributeContext">​Attribute​Context</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><code><a href="#ClassDefContext" class="internal-link" title="mypy.plugin.ClassDefContext">​Class​Def​Context</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><code><a href="#DynamicClassDefContext" class="internal-link" title="mypy.plugin.DynamicClassDefContext">​Dynamic​Class​Def​Context</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><code><a href="#FunctionContext" class="internal-link" title="mypy.plugin.FunctionContext">​Function​Context</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><code><a href="#FunctionSigContext" class="internal-link" title="mypy.plugin.FunctionSigContext">​Function​Sig​Context</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><code><a href="#MethodContext" class="internal-link" title="mypy.plugin.MethodContext">​Method​Context</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><code><a href="#MethodSigContext" class="internal-link" title="mypy.plugin.MethodSigContext">​Method​Sig​Context</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><code><a href="#ReportConfigContext" class="internal-link" title="mypy.plugin.ReportConfigContext">​Report​Config​Context</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+        
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="baseconstant">
+  
+  
+  <a name="mypy.plugin.T">
+    
+  </a>
+  <a name="T">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">T</span> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    <table class="valueTable"><tr class="fieldStart"><td class="fieldName">Value</td></tr><tr><td><pre class="constant-value"><code>TypeVar(<wbr></wbr><span class="rst-variable-quote">'</span><span class="rst-variable-string">T</span><span class="rst-variable-quote">'</span>)</code></pre></td></tr></table>
+  </div>
+</div><div class="basevariable">
+  
+  
+  <a name="mypy.plugin.AnalyzeTypeContext">
+    
+  </a>
+  <a name="AnalyzeTypeContext">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">AnalyzeTypeContext</span> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="basevariable">
+  
+  
+  <a name="mypy.plugin.AttributeContext">
+    
+  </a>
+  <a name="AttributeContext">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">AttributeContext</span> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="basevariable">
+  
+  
+  <a name="mypy.plugin.ClassDefContext">
+    
+  </a>
+  <a name="ClassDefContext">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">ClassDefContext</span> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="basevariable">
+  
+  
+  <a name="mypy.plugin.DynamicClassDefContext">
+    
+  </a>
+  <a name="DynamicClassDefContext">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">DynamicClassDefContext</span> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="basevariable">
+  
+  
+  <a name="mypy.plugin.FunctionContext">
+    
+  </a>
+  <a name="FunctionContext">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">FunctionContext</span> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="basevariable">
+  
+  
+  <a name="mypy.plugin.FunctionSigContext">
+    
+  </a>
+  <a name="FunctionSigContext">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">FunctionSigContext</span> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="basevariable">
+  
+  
+  <a name="mypy.plugin.MethodContext">
+    
+  </a>
+  <a name="MethodContext">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">MethodContext</span> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="basevariable">
+  
+  
+  <a name="mypy.plugin.MethodSigContext">
+    
+  </a>
+  <a name="MethodSigContext">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">MethodSigContext</span> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="basevariable">
+  
+  
+  <a name="mypy.plugin.ReportConfigContext">
+    
+  </a>
+  <a name="ReportConfigContext">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">ReportConfigContext</span> =
+    
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div>
+
+      </div>
+    </div>
+
+    <footer class="navbar navbar-default">
+  
+  <div class="container">
+    <a href="index.html">API Documentation</a> for mypy,
+  generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
+    22.2.0 at 2022-02-23 05:21:28.
+  </div>
+</footer>
+
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+  </body>
+</html>
