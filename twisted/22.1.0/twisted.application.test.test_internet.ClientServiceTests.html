@@ -1,0 +1,1287 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  
+
+  <head>
+    
+    <title>twisted.application.test.test_internet.ClientServiceTests</title>
+    <meta name="generator" content="pydoctor 22.2.0"> 
+        
+    </meta>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=0.75" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+    <link rel="stylesheet" type="text/css" href="extra.css" />
+</head>
+
+  <body>
+
+    <div id="banner">    
+    <div>
+        <a href="/">Home</a>
+        &gt; twisted-22.1.0 <!-- This is a placeholder -->
+        
+        <!-- (<a href=""&gt;show all versions</a&gt;) -->
+    </div>
+</div>
+
+    <nav class="navbar navbar-default">
+  
+  <div class="container">
+
+    <div class="navbar-header">
+      
+      <div class="navlinks">
+          <span class="navbar-brand">
+            twisted <a href="index.html">API Documentation</a>
+          </span>
+
+          <a href="moduleIndex.html">
+            Modules
+          </a>
+
+          <a href="classIndex.html">
+            Classes
+          </a>
+
+          <a href="nameIndex.html">
+            Names
+          </a>
+      </div>
+
+    </div>
+  </div>
+</nav>
+
+    
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="class"><code><code><a href="index.html" class="internal-link">twisted</a></code><wbr></wbr>.<code><a href="twisted.application.html" class="internal-link" title="twisted.application">application</a></code><wbr></wbr>.<code><a href="twisted.application.test.html" class="internal-link" title="twisted.application.test">test</a></code><wbr></wbr>.<code><a href="twisted.application.test.test_internet.html" class="internal-link" title="twisted.application.test.test_internet">test_internet</a></code><wbr></wbr>.<code><a href="twisted.application.test.test_internet.ClientServiceTests.html" class="internal-link" title="twisted.application.test.test_internet.ClientServiceTests">ClientServiceTests</a></code></code></h1>
+        <div id="showPrivate">
+          <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+        </div>
+      </div>
+
+      <div class="categoryHeader">
+        class documentation
+      </div>
+
+      <div class="extrasDocstring">
+        <p><code><span class="py-keyword">class</span> <span class="py-defname">ClientServiceTests</span>(<a href="twisted.trial.unittest.SynchronousTestCase.html" class="internal-link" title="twisted.trial.unittest.SynchronousTestCase">SynchronousTestCase</a>): <a href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/application/test/test_internet.py#L510" class="sourceLink">(source)</a></code></p>
+        <p><a href="classIndex.html#twisted.application.test.test_internet.ClientServiceTests">View In Hierarchy</a></p>
+      </div>
+
+      <div class="moduleDocstring">
+        <div>Tests for L{ClientService}.</div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id1394">
+  
+  
+  <tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#makeReconnector" class="internal-link" title="twisted.application.test.test_internet.ClientServiceTests.makeReconnector">make​Reconnector</a></code></td>
+    <td>Create a L{ClientService} along with a L{ConnectInformation} indicating the connections in progress on its endpoint.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#test_clientConnected" class="internal-link" title="twisted.application.test.test_internet.ClientServiceTests.test_clientConnected">test_client​Connected</a></code></td>
+    <td>When a client connects, the service keeps a reference to the new protocol and resets the delay.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#test_clientConnectionFailed" class="internal-link" title="twisted.application.test.test_internet.ClientServiceTests.test_clientConnectionFailed">test_client​Connection​Failed</a></code></td>
+    <td>When a client connection fails, the service removes its reference to the protocol and tries again after a timeout.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#test_clientConnectionLost" class="internal-link" title="twisted.application.test.test_internet.ClientServiceTests.test_clientConnectionLost">test_client​Connection​Lost</a></code></td>
+    <td>When a client connection is lost, the service removes its reference to the protocol and calls retry.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#test_clientConnectionLostWhileStopping" class="internal-link" title="twisted.application.test.test_internet.ClientServiceTests.test_clientConnectionLostWhileStopping">test_client​Connection​Lost​While​Stopping</a></code></td>
+    <td>When a client connection is lost while the service is stopping, the protocol stopping deferred is called and the reference to the protocol is removed.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#test_interfacesForTransport" class="internal-link" title="twisted.application.test.test_internet.ClientServiceTests.test_interfacesForTransport">test_interfaces​For​Transport</a></code></td>
+    <td><span class="undocumented">No summary</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#test_prepareConnectionCalledAfterConnectionMade" class="internal-link" title="twisted.application.test.test_internet.ClientServiceTests.test_prepareConnectionCalledAfterConnectionMade">test_prepare​Connection​Called​After​Connection​Made</a></code></td>
+    <td>The C{prepareConnection} callback is invoked only once a connection is made.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#test_prepareConnectionCalledOnReconnect" class="internal-link" title="twisted.application.test.test_internet.ClientServiceTests.test_prepareConnectionCalledOnReconnect">test_prepare​Connection​Called​On​Reconnect</a></code></td>
+    <td>The C{prepareConnection} callback is invoked each time a connection is made, including on reconnection.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#test_prepareConnectionCalledWhenServiceStarts" class="internal-link" title="twisted.application.test.test_internet.ClientServiceTests.test_prepareConnectionCalledWhenServiceStarts">test_prepare​Connection​Called​When​Service​Starts</a></code></td>
+    <td>The C{prepareConnection} callable is called after L{ClientService.startService} once the connection is made.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#test_prepareConnectionCalledWithProtocol" class="internal-link" title="twisted.application.test.test_internet.ClientServiceTests.test_prepareConnectionCalledWithProtocol">test_prepare​Connection​Called​With​Protocol</a></code></td>
+    <td>The C{prepareConnection} callable is passed the connected protocol instance.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#test_prepareConnectionReturningADeferred" class="internal-link" title="twisted.application.test.test_internet.ClientServiceTests.test_prepareConnectionReturningADeferred">test_prepare​Connection​Returning​ADeferred</a></code></td>
+    <td>The C{prepareConnection} callable returns a deferred and calls to L{ClientService.whenConnected} wait until it fires.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#test_prepareConnectionReturnValueIgnored" class="internal-link" title="twisted.application.test.test_internet.ClientServiceTests.test_prepareConnectionReturnValueIgnored">test_prepare​Connection​Return​Value​Ignored</a></code></td>
+    <td><span class="undocumented">No summary</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#test_prepareConnectionThrows" class="internal-link" title="twisted.application.test.test_internet.ClientServiceTests.test_prepareConnectionThrows">test_prepare​Connection​Throws</a></code></td>
+    <td>The connection attempt counts as a failure when the C{prepareConnection} callable throws.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#test_retryCancelled" class="internal-link" title="twisted.application.test.test_internet.ClientServiceTests.test_retryCancelled">test_retry​Cancelled</a></code></td>
+    <td>When L{ClientService.stopService} is called while waiting between connection attempts, the pending reconnection attempt is cancelled and the service is stopped immediately.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#test_startService" class="internal-link" title="twisted.application.test.test_internet.ClientServiceTests.test_startService">test_start​Service</a></code></td>
+    <td>When the service is started, a connection attempt is made.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#test_startServiceWaitsForDisconnect" class="internal-link" title="twisted.application.test.test_internet.ClientServiceTests.test_startServiceWaitsForDisconnect">test_start​Service​Waits​For​Disconnect</a></code></td>
+    <td>When L{ClientService} is restarted after having been connected, it waits to start connecting until after having disconnected.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#test_startServiceWhileStopped" class="internal-link" title="twisted.application.test.test_internet.ClientServiceTests.test_startServiceWhileStopped">test_start​Service​While​Stopped</a></code></td>
+    <td><span class="undocumented">No summary</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#test_startServiceWhileStopping" class="internal-link" title="twisted.application.test.test_internet.ClientServiceTests.test_startServiceWhileStopping">test_start​Service​While​Stopping</a></code></td>
+    <td><span class="undocumented">No summary</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#test_startStopFactory" class="internal-link" title="twisted.application.test.test_internet.ClientServiceTests.test_startStopFactory">test_start​Stop​Factory</a></code></td>
+    <td><span class="undocumented">No summary</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#test_startTwice" class="internal-link" title="twisted.application.test.test_internet.ClientServiceTests.test_startTwice">test_start​Twice</a></code></td>
+    <td>If L{ClientService} is started when it's already started, it will log a complaint and do nothing else (in particular it will not make additional connections).</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#test_stopServiceBeforeStartService" class="internal-link" title="twisted.application.test.test_internet.ClientServiceTests.test_stopServiceBeforeStartService">test_stop​Service​Before​Start​Service</a></code></td>
+    <td>Calling L{ClientService.stopService} before L{ClientService.startService} returns a L{Deferred} that has already fired with L{None}.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#test_stopServiceOnStoppedService" class="internal-link" title="twisted.application.test.test_internet.ClientServiceTests.test_stopServiceOnStoppedService">test_stop​Service​On​Stopped​Service</a></code></td>
+    <td>Calling L{ClientService.stopService} on a stopped service returns a L{Deferred} that has already fired with L{None}.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#test_stopServiceWhileConnected" class="internal-link" title="twisted.application.test.test_internet.ClientServiceTests.test_stopServiceWhileConnected">test_stop​Service​While​Connected</a></code></td>
+    <td>When the service is stopped, no further connect attempts are made.  The returned L{Deferred} fires when all outstanding connections have been stopped.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#test_stopServiceWhileConnecting" class="internal-link" title="twisted.application.test.test_internet.ClientServiceTests.test_stopServiceWhileConnecting">test_stop​Service​While​Connecting</a></code></td>
+    <td>When the service is stopped while initially connecting, the connection attempt is cancelled.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#test_stopServiceWhileDisconnecting" class="internal-link" title="twisted.application.test.test_internet.ClientServiceTests.test_stopServiceWhileDisconnecting">test_stop​Service​While​Disconnecting</a></code></td>
+    <td><span class="undocumented">No summary</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#test_stopServiceWhileRestarting" class="internal-link" title="twisted.application.test.test_internet.ClientServiceTests.test_stopServiceWhileRestarting">test_stop​Service​While​Restarting</a></code></td>
+    <td>Calling L{ClientService.stopService} after calling a reconnection attempt returns a L{Deferred} that fires when the disconnection has completed.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#test_stopServiceWhileRetrying" class="internal-link" title="twisted.application.test.test_internet.ClientServiceTests.test_stopServiceWhileRetrying">test_stop​Service​While​Retrying</a></code></td>
+    <td>When the service is stopped while retrying, the retry is cancelled.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#test_whenConnectedErrbacksOnStopService" class="internal-link" title="twisted.application.test.test_internet.ClientServiceTests.test_whenConnectedErrbacksOnStopService">test_when​Connected​Errbacks​On​Stop​Service</a></code></td>
+    <td><span class="undocumented">No summary</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#test_whenConnectedFails" class="internal-link" title="twisted.application.test.test_internet.ClientServiceTests.test_whenConnectedFails">test_when​Connected​Fails</a></code></td>
+    <td>L{ClientService.whenConnected} returns a L{Deferred} that fails, if asked, when some number of connections have failed.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#test_whenConnectedLater" class="internal-link" title="twisted.application.test.test_internet.ClientServiceTests.test_whenConnectedLater">test_when​Connected​Later</a></code></td>
+    <td>L{ClientService.whenConnected} returns a L{Deferred} that fires when a connection is established.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#test_whenConnectedStopService" class="internal-link" title="twisted.application.test.test_internet.ClientServiceTests.test_whenConnectedStopService">test_when​Connected​Stop​Service</a></code></td>
+    <td>L{ClientService.whenConnected} returns a L{Deferred} that fails when L{ClientService.stopService} is called.</td>
+  </tr>
+</table>
+        
+          <p class="inheritedFrom">
+            Inherited from <code><a href="twisted.trial.unittest.SynchronousTestCase.html" class="internal-link" title="twisted.trial.unittest.SynchronousTestCase">SynchronousTestCase</a></code>:
+          </p>
+          <table class="children sortable" id="id1395">
+  
+  
+  <tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="twisted.trial.unittest.SynchronousTestCase.html#__eq__" class="internal-link" title="twisted.trial.unittest.SynchronousTestCase.__eq__">__eq__</a></code></td>
+    <td><span class="undocumented">No summary</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="twisted.trial.unittest.SynchronousTestCase.html#__hash__" class="internal-link" title="twisted.trial.unittest.SynchronousTestCase.__hash__">__hash__</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="twisted.trial.unittest.SynchronousTestCase.html#__init__" class="internal-link" title="twisted.trial.unittest.SynchronousTestCase.__init__">__init__</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="twisted.trial.unittest.SynchronousTestCase.html#addCleanup" class="internal-link" title="twisted.trial.unittest.SynchronousTestCase.addCleanup">add​Cleanup</a></code></td>
+    <td>Add the given function to a list of functions to be called after the test has run, but before C{tearDown}.</td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="twisted.trial.unittest.SynchronousTestCase.html#callDeprecated" class="internal-link" title="twisted.trial.unittest.SynchronousTestCase.callDeprecated">call​Deprecated</a></code></td>
+    <td>Call a function that should have been deprecated at a specific version and in favor of a specific alternative, and assert that it was thusly deprecated.</td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="twisted.trial.unittest.SynchronousTestCase.html#flushLoggedErrors" class="internal-link" title="twisted.trial.unittest.SynchronousTestCase.flushLoggedErrors">flush​Logged​Errors</a></code></td>
+    <td>Remove stored errors received from the log.</td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="twisted.trial.unittest.SynchronousTestCase.html#flushWarnings" class="internal-link" title="twisted.trial.unittest.SynchronousTestCase.flushWarnings">flush​Warnings</a></code></td>
+    <td>Remove stored warnings from the list of captured warnings and return them.</td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="twisted.trial.unittest.SynchronousTestCase.html#getDeprecatedModuleAttribute" class="internal-link" title="twisted.trial.unittest.SynchronousTestCase.getDeprecatedModuleAttribute">get​Deprecated​Module​Attribute</a></code></td>
+    <td>Retrieve a module attribute which should have been deprecated, and assert that we saw the appropriate deprecation warning.</td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="twisted.trial.unittest.SynchronousTestCase.html#getSkip" class="internal-link" title="twisted.trial.unittest.SynchronousTestCase.getSkip">get​Skip</a></code></td>
+    <td><span class="undocumented">No summary</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="twisted.trial.unittest.SynchronousTestCase.html#getTodo" class="internal-link" title="twisted.trial.unittest.SynchronousTestCase.getTodo">get​Todo</a></code></td>
+    <td><span class="undocumented">No summary</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="twisted.trial.unittest.SynchronousTestCase.html#mktemp" class="internal-link" title="twisted.trial.unittest.SynchronousTestCase.mktemp">mktemp</a></code></td>
+    <td>Create a new path name which can be used for a new file or directory.</td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="twisted.trial.unittest.SynchronousTestCase.html#patch" class="internal-link" title="twisted.trial.unittest.SynchronousTestCase.patch">patch</a></code></td>
+    <td>Monkey patch an object for the duration of the test.</td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="twisted.trial.unittest.SynchronousTestCase.html#run" class="internal-link" title="twisted.trial.unittest.SynchronousTestCase.run">run</a></code></td>
+    <td>Run the test case, storing the results in C{result}.</td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="twisted.trial.unittest.SynchronousTestCase.html#runTest" class="internal-link" title="twisted.trial.unittest.SynchronousTestCase.runTest">run​Test</a></code></td>
+    <td>If no C{methodName} argument is passed to the constructor, L{run} will treat this method as the thing with the actual test inside.</td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="twisted.trial.unittest.SynchronousTestCase.html#shortDescription" class="internal-link" title="twisted.trial.unittest.SynchronousTestCase.shortDescription">short​Description</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod private">
+    
+    <td>Method</td>
+    <td><code><a href="twisted.trial.unittest.SynchronousTestCase.html#_getSkipReason" class="internal-link" title="twisted.trial.unittest.SynchronousTestCase._getSkipReason">_get​Skip​Reason</a></code></td>
+    <td>Return the reason to use for skipping a test method.</td>
+  </tr><tr class="basemethod private">
+    
+    <td>Method</td>
+    <td><code><a href="twisted.trial.unittest.SynchronousTestCase.html#_getSuppress" class="internal-link" title="twisted.trial.unittest.SynchronousTestCase._getSuppress">_get​Suppress</a></code></td>
+    <td><span class="undocumented">No summary</span></td>
+  </tr><tr class="basemethod private">
+    
+    <td>Method</td>
+    <td><code><a href="twisted.trial.unittest.SynchronousTestCase.html#_installObserver" class="internal-link" title="twisted.trial.unittest.SynchronousTestCase._installObserver">_install​Observer</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod private">
+    
+    <td>Method</td>
+    <td><code><a href="twisted.trial.unittest.SynchronousTestCase.html#_removeObserver" class="internal-link" title="twisted.trial.unittest.SynchronousTestCase._removeObserver">_remove​Observer</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod private">
+    
+    <td>Method</td>
+    <td><code><a href="twisted.trial.unittest.SynchronousTestCase.html#_run" class="internal-link" title="twisted.trial.unittest.SynchronousTestCase._run">​_run</a></code></td>
+    <td>Run a single method, either a test method or fixture.</td>
+  </tr><tr class="basemethod private">
+    
+    <td>Method</td>
+    <td><code><a href="twisted.trial.unittest.SynchronousTestCase.html#_runCleanups" class="internal-link" title="twisted.trial.unittest.SynchronousTestCase._runCleanups">_run​Cleanups</a></code></td>
+    <td>Synchronously run any cleanups which have been added.</td>
+  </tr><tr class="basemethod private">
+    
+    <td>Method</td>
+    <td><code><a href="twisted.trial.unittest.SynchronousTestCase.html#_runFixturesAndTest" class="internal-link" title="twisted.trial.unittest.SynchronousTestCase._runFixturesAndTest">_run​Fixtures​And​Test</a></code></td>
+    <td>Run C{setUp}, a test method, test cleanups, and C{tearDown}.</td>
+  </tr><tr class="baseinstancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="twisted.trial.unittest.SynchronousTestCase.html#_cleanups" class="internal-link" title="twisted.trial.unittest.SynchronousTestCase._cleanups">​_cleanups</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="baseinstancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="twisted.trial.unittest.SynchronousTestCase.html#_observer" class="internal-link" title="twisted.trial.unittest.SynchronousTestCase._observer">​_observer</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="baseinstancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="twisted.trial.unittest.SynchronousTestCase.html#_parents" class="internal-link" title="twisted.trial.unittest.SynchronousTestCase._parents">​_parents</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="baseinstancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="twisted.trial.unittest.SynchronousTestCase.html#_passed" class="internal-link" title="twisted.trial.unittest.SynchronousTestCase._passed">​_passed</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="baseinstancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="twisted.trial.unittest.SynchronousTestCase.html#_testMethodName" class="internal-link" title="twisted.trial.unittest.SynchronousTestCase._testMethodName">_test​Method​Name</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="baseinstancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="twisted.trial.unittest.SynchronousTestCase.html#_warnings" class="internal-link" title="twisted.trial.unittest.SynchronousTestCase._warnings">​_warnings</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+          
+          <p class="inheritedFrom">
+            Inherited from <code><a href="twisted.trial._synctest._Assertions.html" class="internal-link" title="twisted.trial._synctest._Assertions">_Assertions</a></code> (via <code><a href="twisted.trial.unittest.SynchronousTestCase.html" class="internal-link" title="twisted.trial.unittest.SynchronousTestCase">SynchronousTestCase</a></code>):
+          </p>
+          <table class="children sortable" id="id1396">
+  
+  
+  <tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="twisted.trial._synctest._Assertions.html#assertAlmostEqual" class="internal-link" title="twisted.trial._synctest._Assertions.assertAlmostEqual">assert​Almost​Equal</a></code></td>
+    <td>Fail if the two objects are unequal as determined by their difference rounded to the given number of decimal places (default 7) and comparing to zero.</td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="twisted.trial._synctest._Assertions.html#assertApproximates" class="internal-link" title="twisted.trial._synctest._Assertions.assertApproximates">assert​Approximates</a></code></td>
+    <td>Fail if C{first} - C{second} &gt; C{tolerance}</td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="twisted.trial._synctest._Assertions.html#assertEqual" class="internal-link" title="twisted.trial._synctest._Assertions.assertEqual">assert​Equal</a></code></td>
+    <td>Fail the test if C{first} and C{second} are not equal.</td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="twisted.trial._synctest._Assertions.html#assertFalse" class="internal-link" title="twisted.trial._synctest._Assertions.assertFalse">assert​False</a></code></td>
+    <td>Fail the test if C{condition} evaluates to True.</td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="twisted.trial._synctest._Assertions.html#assertIn" class="internal-link" title="twisted.trial._synctest._Assertions.assertIn">assert​In</a></code></td>
+    <td>Fail the test if C{containee} is not found in C{container}.</td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="twisted.trial._synctest._Assertions.html#assertIs" class="internal-link" title="twisted.trial._synctest._Assertions.assertIs">assert​Is</a></code></td>
+    <td>Fail the test if C{first} is not C{second}.  This is an obect-identity-equality test, not an object equality (i.e. C{__eq__}) test.</td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="twisted.trial._synctest._Assertions.html#assertIsInstance" class="internal-link" title="twisted.trial._synctest._Assertions.assertIsInstance">assert​Is​Instance</a></code></td>
+    <td>Fail if C{instance} is not an instance of the given class or of one of the given classes.</td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="twisted.trial._synctest._Assertions.html#assertIsNot" class="internal-link" title="twisted.trial._synctest._Assertions.assertIsNot">assert​Is​Not</a></code></td>
+    <td>Fail the test if C{first} is C{second}.  This is an obect-identity-equality test, not an object equality (i.e. C{__eq__}) test.</td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="twisted.trial._synctest._Assertions.html#assertNoResult" class="internal-link" title="twisted.trial._synctest._Assertions.assertNoResult">assert​No​Result</a></code></td>
+    <td>Assert that C{deferred} does not have a result at this point.</td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="twisted.trial._synctest._Assertions.html#assertNotAlmostEqual" class="internal-link" title="twisted.trial._synctest._Assertions.assertNotAlmostEqual">assert​Not​Almost​Equal</a></code></td>
+    <td>Fail if the two objects are equal as determined by their difference rounded to the given number of decimal places (default 7) and comparing to zero.</td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="twisted.trial._synctest._Assertions.html#assertNotEqual" class="internal-link" title="twisted.trial._synctest._Assertions.assertNotEqual">assert​Not​Equal</a></code></td>
+    <td>Fail the test if C{first} == C{second}.</td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="twisted.trial._synctest._Assertions.html#assertNotIn" class="internal-link" title="twisted.trial._synctest._Assertions.assertNotIn">assert​Not​In</a></code></td>
+    <td>Fail the test if C{containee} is found in C{container}.</td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="twisted.trial._synctest._Assertions.html#assertNotIsInstance" class="internal-link" title="twisted.trial._synctest._Assertions.assertNotIsInstance">assert​Not​Is​Instance</a></code></td>
+    <td>Fail if C{instance} is an instance of the given class or of one of the given classes.</td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="twisted.trial._synctest._Assertions.html#assertNotSubstring" class="internal-link" title="twisted.trial._synctest._Assertions.assertNotSubstring">assert​Not​Substring</a></code></td>
+    <td>Fail if C{astring} contains C{substring}.</td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="twisted.trial._synctest._Assertions.html#assertRaises" class="internal-link" title="twisted.trial._synctest._Assertions.assertRaises">assert​Raises</a></code></td>
+    <td>Fail the test unless calling the function C{f} with the given C{args} and C{kwargs} raises C{exception}. The failure will report the traceback and call stack of the unexpected exception.</td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="twisted.trial._synctest._Assertions.html#assertSubstring" class="internal-link" title="twisted.trial._synctest._Assertions.assertSubstring">assert​Substring</a></code></td>
+    <td>Fail if C{substring} does not exist within C{astring}.</td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="twisted.trial._synctest._Assertions.html#assertTrue" class="internal-link" title="twisted.trial._synctest._Assertions.assertTrue">assert​True</a></code></td>
+    <td>Fail the test if C{condition} evaluates to False.</td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="twisted.trial._synctest._Assertions.html#assertWarns" class="internal-link" title="twisted.trial._synctest._Assertions.assertWarns">assert​Warns</a></code></td>
+    <td>Fail if the given function doesn't generate the specified warning when called. It calls the function, checks the warning, and forwards the result of the function if everything is fine.</td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="twisted.trial._synctest._Assertions.html#fail" class="internal-link" title="twisted.trial._synctest._Assertions.fail">fail</a></code></td>
+    <td>Absolutely fail the test.  Do not pass go, do not collect $200.</td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="twisted.trial._synctest._Assertions.html#failureResultOf" class="internal-link" title="twisted.trial._synctest._Assertions.failureResultOf">failure​Result​Of</a></code></td>
+    <td>Return the current failure result of C{deferred} or raise C{self.failureException}.</td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="twisted.trial._synctest._Assertions.html#successResultOf" class="internal-link" title="twisted.trial._synctest._Assertions.successResultOf">success​Result​Of</a></code></td>
+    <td>Return the current success result of C{deferred} or raise C{self.failureException}.</td>
+  </tr>
+</table>
+          
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="basemethod">
+  
+  
+  <a name="twisted.application.test.test_internet.ClientServiceTests.makeReconnector">
+    
+  </a>
+  <a name="makeReconnector">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">makeReconnector</span>(self, fireImmediately=<a href="https://docs.python.org/3/library/constants.html#True" class="intersphinx-link">True</a>, startService=<a href="https://docs.python.org/3/library/constants.html#True" class="intersphinx-link">True</a>, protocolType=<a href="twisted.internet.protocol.Protocol.html" class="internal-link" title="twisted.internet.protocol.Protocol">Protocol</a>, **kw):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/application/test/test_internet.py#L515">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Create a L{ClientService} along with a L{ConnectInformation} indicating
+the connections in progress on its endpoint.</p>
+<dl class="rst-docutils">
+<dt>@param fireImmediately: Should all of the endpoint connection attempts</dt>
+<dd>fire synchronously?</dd>
+</dl>
+<p>@type fireImmediately: L{bool}</p>
+<dl class="rst-docutils">
+<dt>@param startService: Should the L{ClientService} be started before</dt>
+<dd>being returned?</dd>
+</dl>
+<p>@type startService: L{bool}</p>
+<dl class="rst-docutils">
+<dt>@param protocolType: a 0-argument callable returning a new L{IProtocol}</dt>
+<dd>provider to be used for application-level protocol connections.</dd>
+<dt>@param kw: Arbitrary keyword arguments to be passed on to</dt>
+<dd>L{ClientService}</dd>
+<dt>@return: a 2-tuple of L{ConnectInformation} (for information about test</dt>
+<dd>state) and L{ClientService} (the system under test).  The
+L{ConnectInformation} has 2 additional attributes;
+C{applicationFactory} and C{applicationProtocols}, which refer to
+the unwrapped protocol factory and protocol instances passed in to
+L{ClientService} respectively.</dd>
+</dl>
+</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.application.test.test_internet.ClientServiceTests.test_clientConnected">
+    
+  </a>
+  <a name="test_clientConnected">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">test_clientConnected</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/application/test/test_internet.py#L723">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>When a client connects, the service keeps a reference to the new
+protocol and resets the delay.</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.application.test.test_internet.ClientServiceTests.test_clientConnectionFailed">
+    
+  </a>
+  <a name="test_clientConnectionFailed">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">test_clientConnectionFailed</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/application/test/test_internet.py#L736">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>When a client connection fails, the service removes its reference
+to the protocol and tries again after a timeout.</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.application.test.test_internet.ClientServiceTests.test_clientConnectionLost">
+    
+  </a>
+  <a name="test_clientConnectionLost">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">test_clientConnectionLost</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/application/test/test_internet.py#L753">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>When a client connection is lost, the service removes its reference
+to the protocol and calls retry.</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.application.test.test_internet.ClientServiceTests.test_clientConnectionLostWhileStopping">
+    
+  </a>
+  <a name="test_clientConnectionLostWhileStopping">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">test_clientConnectionLostWhileStopping</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/application/test/test_internet.py#L774">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>When a client connection is lost while the service is stopping, the
+protocol stopping deferred is called and the reference to the protocol
+is removed.</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.application.test.test_internet.ClientServiceTests.test_interfacesForTransport">
+    
+  </a>
+  <a name="test_interfacesForTransport">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">test_interfacesForTransport</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/application/test/test_internet.py#L678">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>If the protocol objects returned by the factory given to
+L{ClientService} provide special "marker" interfaces for their
+transport - L{IHalfCloseableProtocol} or L{IFileDescriptorReceiver} -
+those interfaces will be provided by the protocol objects passed on to
+the reactor.</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.application.test.test_internet.ClientServiceTests.test_prepareConnectionCalledAfterConnectionMade">
+    
+  </a>
+  <a name="test_prepareConnectionCalledAfterConnectionMade">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">test_prepareConnectionCalledAfterConnectionMade</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/application/test/test_internet.py#L1041">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>The C{prepareConnection} callback is invoked only once a connection is
+made.</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.application.test.test_internet.ClientServiceTests.test_prepareConnectionCalledOnReconnect">
+    
+  </a>
+  <a name="test_prepareConnectionCalledOnReconnect">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">test_prepareConnectionCalledOnReconnect</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/application/test/test_internet.py#L1064">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>The C{prepareConnection} callback is invoked each time a connection is
+made, including on reconnection.</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.application.test.test_internet.ClientServiceTests.test_prepareConnectionCalledWhenServiceStarts">
+    
+  </a>
+  <a name="test_prepareConnectionCalledWhenServiceStarts">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">test_prepareConnectionCalledWhenServiceStarts</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/application/test/test_internet.py#L1011">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>The C{prepareConnection} callable is called after
+L{ClientService.startService} once the connection is made.</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.application.test.test_internet.ClientServiceTests.test_prepareConnectionCalledWithProtocol">
+    
+  </a>
+  <a name="test_prepareConnectionCalledWithProtocol">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">test_prepareConnectionCalledWithProtocol</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/application/test/test_internet.py#L1026">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>The C{prepareConnection} callable is passed the connected protocol
+instance.</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.application.test.test_internet.ClientServiceTests.test_prepareConnectionReturningADeferred">
+    
+  </a>
+  <a name="test_prepareConnectionReturningADeferred">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">test_prepareConnectionReturningADeferred</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/application/test/test_internet.py#L1106">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>The C{prepareConnection} callable returns a deferred and calls to
+L{ClientService.whenConnected} wait until it fires.</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.application.test.test_internet.ClientServiceTests.test_prepareConnectionReturnValueIgnored">
+    
+  </a>
+  <a name="test_prepareConnectionReturnValueIgnored">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">test_prepareConnectionReturnValueIgnored</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/application/test/test_internet.py#L1087">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>The C{prepareConnection} return value is ignored when it does not
+indicate a failure. Even though the callback participates in the
+internal new-connection L{Deferred} chain for error propagation
+purposes, any successful result does not affect the ultimate return
+value.</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.application.test.test_internet.ClientServiceTests.test_prepareConnectionThrows">
+    
+  </a>
+  <a name="test_prepareConnectionThrows">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">test_prepareConnectionThrows</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/application/test/test_internet.py#L1129">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>The connection attempt counts as a failure when the
+C{prepareConnection} callable throws.</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.application.test.test_internet.ClientServiceTests.test_retryCancelled">
+    
+  </a>
+  <a name="test_retryCancelled">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">test_retryCancelled</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/application/test/test_internet.py#L900">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>When L{ClientService.stopService} is called while waiting between
+connection attempts, the pending reconnection attempt is cancelled and
+the service is stopped immediately.</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.application.test.test_internet.ClientServiceTests.test_startService">
+    
+  </a>
+  <a name="test_startService">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">test_startService</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/application/test/test_internet.py#L582">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>When the service is started, a connection attempt is made.</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.application.test.test_internet.ClientServiceTests.test_startServiceWaitsForDisconnect">
+    
+  </a>
+  <a name="test_startServiceWaitsForDisconnect">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">test_startServiceWaitsForDisconnect</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/application/test/test_internet.py#L617">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>When L{ClientService} is restarted after having been connected, it
+waits to start connecting until after having disconnected.</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.application.test.test_internet.ClientServiceTests.test_startServiceWhileStopped">
+    
+  </a>
+  <a name="test_startServiceWhileStopped">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">test_startServiceWhileStopped</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/application/test/test_internet.py#L661">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>When L{ClientService} is stopped - that is,
+L{ClientService.stopService} has been called and the L{Deferred} it
+returns has fired - calling L{startService} will cause a new connection
+to be made, and new calls to L{whenConnected} to succeed.</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.application.test.test_internet.ClientServiceTests.test_startServiceWhileStopping">
+    
+  </a>
+  <a name="test_startServiceWhileStopping">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">test_startServiceWhileStopping</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/application/test/test_internet.py#L633">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>When L{ClientService} is stopping - that is,
+L{ClientService.stopService} has been called, but the L{Deferred} it
+returns has not fired yet - calling L{startService} will cause a new
+connection to be made, and new calls to L{whenConnected} to succeed.</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.application.test.test_internet.ClientServiceTests.test_startStopFactory">
+    
+  </a>
+  <a name="test_startStopFactory">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">test_startStopFactory</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/application/test/test_internet.py#L589">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Although somewhat obscure, L{IProtocolFactory} includes both C{doStart}
+and C{doStop} methods; ensure that when these methods are called on the
+factory that was passed to the reactor, the factory that was passed
+from the application receives them.</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.application.test.test_internet.ClientServiceTests.test_startTwice">
+    
+  </a>
+  <a name="test_startTwice">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">test_startTwice</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/application/test/test_internet.py#L787">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>If L{ClientService} is started when it's already started, it will log a
+complaint and do nothing else (in particular it will not make
+additional connections).</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.application.test.test_internet.ClientServiceTests.test_stopServiceBeforeStartService">
+    
+  </a>
+  <a name="test_stopServiceBeforeStartService">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">test_stopServiceBeforeStartService</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/application/test/test_internet.py#L913">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Calling L{ClientService.stopService} before
+L{ClientService.startService} returns a L{Deferred} that has
+already fired with L{None}.</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.application.test.test_internet.ClientServiceTests.test_stopServiceOnStoppedService">
+    
+  </a>
+  <a name="test_stopServiceOnStoppedService">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">test_stopServiceOnStoppedService</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/application/test/test_internet.py#L998">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Calling L{ClientService.stopService} on a stopped service
+returns a L{Deferred} that has already fired with L{None}.</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.application.test.test_internet.ClientServiceTests.test_stopServiceWhileConnected">
+    
+  </a>
+  <a name="test_stopServiceWhileConnected">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">test_stopServiceWhileConnected</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/application/test/test_internet.py#L603">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>When the service is stopped, no further connect attempts are made.  The
+returned L{Deferred} fires when all outstanding connections have been
+stopped.</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.application.test.test_internet.ClientServiceTests.test_stopServiceWhileConnecting">
+    
+  </a>
+  <a name="test_stopServiceWhileConnecting">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">test_stopServiceWhileConnecting</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/application/test/test_internet.py#L711">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>When the service is stopped while initially connecting, the connection
+attempt is cancelled.</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.application.test.test_internet.ClientServiceTests.test_stopServiceWhileDisconnecting">
+    
+  </a>
+  <a name="test_stopServiceWhileDisconnecting">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">test_stopServiceWhileDisconnecting</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/application/test/test_internet.py#L951">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Calling L{ClientService.stopService} twice after it has
+connected (that is, stopping it while it is disconnecting)
+returns a L{Deferred} each time that fires when the
+disconnection has completed.</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.application.test.test_internet.ClientServiceTests.test_stopServiceWhileRestarting">
+    
+  </a>
+  <a name="test_stopServiceWhileRestarting">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">test_stopServiceWhileRestarting</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/application/test/test_internet.py#L974">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Calling L{ClientService.stopService} after calling a
+reconnection attempt returns a L{Deferred} that fires when the
+disconnection has completed.</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.application.test.test_internet.ClientServiceTests.test_stopServiceWhileRetrying">
+    
+  </a>
+  <a name="test_stopServiceWhileRetrying">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">test_stopServiceWhileRetrying</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/application/test/test_internet.py#L698">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>When the service is stopped while retrying, the retry is cancelled.</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.application.test.test_internet.ClientServiceTests.test_whenConnectedErrbacksOnStopService">
+    
+  </a>
+  <a name="test_whenConnectedErrbacksOnStopService">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">test_whenConnectedErrbacksOnStopService</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/application/test/test_internet.py#L926">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>L{ClientService.whenConnected} returns a L{Deferred} that
+errbacks with L{CancelledError} if
+L{ClientService.stopService} is called between connection
+attempts.</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.application.test.test_internet.ClientServiceTests.test_whenConnectedFails">
+    
+  </a>
+  <a name="test_whenConnectedFails">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">test_whenConnectedFails</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/application/test/test_internet.py#L823">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>L{ClientService.whenConnected} returns a L{Deferred} that fails, if
+asked, when some number of connections have failed.</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.application.test.test_internet.ClientServiceTests.test_whenConnectedLater">
+    
+  </a>
+  <a name="test_whenConnectedLater">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">test_whenConnectedLater</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/application/test/test_internet.py#L802">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>L{ClientService.whenConnected} returns a L{Deferred} that fires when a
+connection is established.</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.application.test.test_internet.ClientServiceTests.test_whenConnectedStopService">
+    
+  </a>
+  <a name="test_whenConnectedStopService">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">test_whenConnectedStopService</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/application/test/test_internet.py#L881">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>L{ClientService.whenConnected} returns a L{Deferred} that fails when
+L{ClientService.stopService} is called.</div>
+  </div>
+</div>
+
+      </div>
+    </div>
+
+    <footer class="navbar navbar-default">
+  
+  <div class="container">
+    <a href="index.html">API Documentation</a> for twisted,
+  generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
+    22.2.0 at 2022-02-23 16:05:07.
+  </div>
+</footer>
+
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+  </body>
+</html>

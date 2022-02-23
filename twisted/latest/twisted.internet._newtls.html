@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  
+
+  <head>
+    
+    <title>twisted.internet._newtls</title>
+    <meta name="generator" content="pydoctor 22.2.0"> 
+        
+    </meta>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=0.75" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+    <link rel="stylesheet" type="text/css" href="extra.css" />
+</head>
+
+  <body>
+
+    <div id="banner">    
+    <div>
+        <a href="/">Home</a>
+        &gt; twisted-22.1.0 <!-- This is a placeholder -->
+        
+        <!-- (<a href=""&gt;show all versions</a&gt;) -->
+    </div>
+</div>
+
+    <nav class="navbar navbar-default">
+  
+  <div class="container">
+
+    <div class="navbar-header">
+      
+      <div class="navlinks">
+          <span class="navbar-brand">
+            twisted <a href="index.html">API Documentation</a>
+          </span>
+
+          <a href="moduleIndex.html">
+            Modules
+          </a>
+
+          <a href="classIndex.html">
+            Classes
+          </a>
+
+          <a href="nameIndex.html">
+            Names
+          </a>
+      </div>
+
+    </div>
+  </div>
+</nav>
+
+    
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="module private"><code><code><a href="index.html" class="internal-link">twisted</a></code><wbr></wbr>.<code><a href="twisted.internet.html" class="internal-link" title="twisted.internet">internet</a></code><wbr></wbr>.<code><a href="twisted.internet._newtls.html" class="internal-link" title="twisted.internet._newtls">_newtls</a></code></code></h1>
+        <div id="showPrivate">
+          <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+        </div>
+      </div>
+
+      <div class="categoryHeader">
+        module documentation
+      </div>
+
+      <div class="extrasDocstring">
+        <a href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/internet/_newtls.py" class="sourceLink">(source)</a>
+        <p></p>
+      </div>
+
+      <div class="moduleDocstring">
+        <div><p>This module implements memory BIO based TLS support.  It is the preferred
+implementation and will be used whenever pyOpenSSL 0.10 or newer is installed
+(whenever L{twisted.protocols.tls} is importable).</p>
+<p>@since: 11.1</p>
+</div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id2964">
+  
+  
+  <tr class="class">
+    
+    <td>Class</td>
+    <td><code><a href="twisted.internet._newtls.ClientMixin.html" class="internal-link" title="twisted.internet._newtls.ClientMixin">​Client​Mixin</a></code></td>
+    <td>A mixin for L{twisted.internet.tcp.Client} which just marks it as a client for the purposes of the default TLS handshake.</td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><code><a href="twisted.internet._newtls.ConnectionMixin.html" class="internal-link" title="twisted.internet._newtls.ConnectionMixin">​Connection​Mixin</a></code></td>
+    <td>A mixin for L{twisted.internet.abstract.FileDescriptor} which adds an L{ITLSTransport} implementation.</td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><code><a href="twisted.internet._newtls.ServerMixin.html" class="internal-link" title="twisted.internet._newtls.ServerMixin">​Server​Mixin</a></code></td>
+    <td>A mixin for L{twisted.internet.tcp.Server} which just marks it as a server for the purposes of the default TLS handshake.</td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#startTLS" class="internal-link" title="twisted.internet._newtls.startTLS">start​TLS</a></code></td>
+    <td>Add a layer of SSL to a transport.</td>
+  </tr><tr class="class private">
+    
+    <td>Class</td>
+    <td><code><a href="twisted.internet._newtls._BypassTLS.html" class="internal-link" title="twisted.internet._newtls._BypassTLS">_​Bypass​TLS</a></code></td>
+    <td>L{_BypassTLS} is used as the transport object for the TLS protocol object used to implement C{startTLS}.  Its methods skip any TLS logic which C{startTLS} enables.</td>
+  </tr>
+</table>
+        
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="basefunction">
+  
+  
+  <a name="twisted.internet._newtls.startTLS">
+    
+  </a>
+  <a name="startTLS">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">startTLS</span>(transport, contextFactory, normal, bypass):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/internet/_newtls.py#L81">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Add a layer of SSL to a transport.</p>
+<dl class="rst-docutils">
+<dt>@param transport: The transport which will be modified.  This can either by</dt>
+<dd><p class="rst-first">a L{FileDescriptor&lt;twisted.internet.abstract.FileDescriptor&gt;} or a
+L{FileHandle&lt;twisted.internet.iocpreactor.abstract.FileHandle&gt;}.  The
+actual requirements of this instance are that it have:</p>
+<blockquote class="rst-last">
+<ul class="rst-simple">
+<li>a C{_tlsClientDefault} attribute indicating whether the transport is
+a client (C{True}) or a server (C{False})</li>
+<li>a settable C{TLS} attribute which can be used to mark the fact
+that SSL has been started</li>
+<li>settable C{getHandle} and C{getPeerCertificate} attributes so
+these L{ISSLTransport} methods can be added to it</li>
+<li>a C{protocol} attribute referring to the L{IProtocol} currently
+connected to the transport, which can also be set to a new
+L{IProtocol} for the transport to deliver data to</li>
+</ul>
+</blockquote>
+</dd>
+<dt>@param contextFactory: An SSL context factory defining SSL parameters for</dt>
+<dd>the new SSL layer.</dd>
+</dl>
+<p>@type contextFactory: L{twisted.internet.interfaces.IOpenSSLContextFactory}</p>
+<dl class="rst-docutils">
+<dt>@param normal: A flag indicating whether SSL will go in the same direction</dt>
+<dd>as the underlying transport goes.  That is, if the SSL client will be
+the underlying client and the SSL server will be the underlying server.
+C{True} means it is the same, C{False} means they are switched.</dd>
+</dl>
+<p>@type normal: L{bool}</p>
+<dl class="rst-docutils">
+<dt>@param bypass: A transport base class to call methods on to bypass the new</dt>
+<dd>SSL layer (so that the SSL layer itself can send its bytes).</dd>
+</dl>
+<p>@type bypass: L{type}</p>
+</div>
+  </div>
+</div>
+
+      </div>
+    </div>
+
+    <footer class="navbar navbar-default">
+  
+  <div class="container">
+    <a href="index.html">API Documentation</a> for twisted,
+  generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
+    22.2.0 at 2022-02-23 16:05:07.
+  </div>
+</footer>
+
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+  </body>
+</html>

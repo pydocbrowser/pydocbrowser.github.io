@@ -1,0 +1,967 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  
+
+  <head>
+    
+    <title>twisted.python._shellcomp.ZshArgumentsGenerator</title>
+    <meta name="generator" content="pydoctor 22.2.0"> 
+        
+    </meta>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=0.75" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+    <link rel="stylesheet" type="text/css" href="extra.css" />
+</head>
+
+  <body>
+
+    <div id="banner">    
+    <div>
+        <a href="/">Home</a>
+        &gt; twisted-22.1.0 <!-- This is a placeholder -->
+        
+        <!-- (<a href=""&gt;show all versions</a&gt;) -->
+    </div>
+</div>
+
+    <nav class="navbar navbar-default">
+  
+  <div class="container">
+
+    <div class="navbar-header">
+      
+      <div class="navlinks">
+          <span class="navbar-brand">
+            twisted <a href="index.html">API Documentation</a>
+          </span>
+
+          <a href="moduleIndex.html">
+            Modules
+          </a>
+
+          <a href="classIndex.html">
+            Classes
+          </a>
+
+          <a href="nameIndex.html">
+            Names
+          </a>
+      </div>
+
+    </div>
+  </div>
+</nav>
+
+    
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="class"><code><code><a href="index.html" class="internal-link">twisted</a></code><wbr></wbr>.<code><a href="twisted.python.html" class="internal-link" title="twisted.python">python</a></code><wbr></wbr>.<code><a href="twisted.python._shellcomp.html" class="internal-link" title="twisted.python._shellcomp">_shellcomp</a></code><wbr></wbr>.<code><a href="twisted.python._shellcomp.ZshArgumentsGenerator.html" class="internal-link" title="twisted.python._shellcomp.ZshArgumentsGenerator">ZshArgumentsGenerator</a></code></code></h1>
+        <div id="showPrivate">
+          <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+        </div>
+      </div>
+
+      <div class="categoryHeader">
+        class documentation
+      </div>
+
+      <div class="extrasDocstring">
+        <p><code><span class="py-keyword">class</span> <span class="py-defname">ZshArgumentsGenerator</span>: <a href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/python/_shellcomp.py#L227" class="sourceLink">(source)</a></code></p>
+        <p><a href="classIndex.html#twisted.python._shellcomp.ZshArgumentsGenerator">View In Hierarchy</a></p>
+      </div>
+
+      <div class="moduleDocstring">
+        <div><p>Generate a call to the zsh _arguments completion function
+based on data in a usage.Options instance</p>
+<p>The first three instance variables are populated based on constructor
+arguments. The remaining non-constructor variables are populated by this
+class with data gathered from the C{Options} instance passed in, and its
+base classes.</p>
+<p>@type options: L{twisted.python.usage.Options}
+@ivar options: The L{twisted.python.usage.Options} instance to generate for</p>
+<p>@type cmdName: C{str}
+@ivar cmdName: The name of the command we're generating completions for.</p>
+<p>@type file: C{file}
+@ivar file: The C{file} to write the completion function to.  The C{file}</p>
+<blockquote>
+must have L{bytes} I/O semantics.</blockquote>
+<p>@type descriptions: C{dict}
+@ivar descriptions: A dict mapping long option names to alternate</p>
+<blockquote>
+descriptions. When this variable is defined, the descriptions
+contained here will override those descriptions provided in the
+optFlags and optParameters variables.</blockquote>
+<p>@type multiUse: C{list}
+@ivar multiUse: An iterable containing those long option names which may</p>
+<blockquote>
+appear on the command line more than once. By default, options will
+only be completed one time.</blockquote>
+<p>@type mutuallyExclusive: C{list} of C{tuple}
+@ivar mutuallyExclusive: A sequence of sequences, with each sub-sequence</p>
+<blockquote>
+containing those long option names that are mutually exclusive. That is,
+those options that cannot appear on the command line together.</blockquote>
+<p>@type optActions: C{dict}
+@ivar optActions: A dict mapping long option names to shell "actions".</p>
+<blockquote>
+<p>These actions define what may be completed as the argument to the
+given option, and should be given as instances of
+L{twisted.python.usage.Completer}.</p>
+<p>Callables may instead be given for the values in this dict. The
+callable should accept no arguments, and return a C{Completer}
+instance used as the action.</p>
+</blockquote>
+<p>@type extraActions: C{list} of C{twisted.python.usage.Completer}
+@ivar extraActions: Extra arguments are those arguments typically</p>
+<blockquote>
+appearing at the end of the command-line, which are not associated
+with any particular named option. That is, the arguments that are
+given to the parseArgs() method of your usage.Options subclass.</blockquote>
+</div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id7231">
+  
+  
+  <tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__init__" class="internal-link" title="twisted.python._shellcomp.ZshArgumentsGenerator.__init__">__init__</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#addAdditionalOptions" class="internal-link" title="twisted.python._shellcomp.ZshArgumentsGenerator.addAdditionalOptions">add​Additional​Options</a></code></td>
+    <td>Add additional options to the optFlags and optParams lists. These will be defined by 'opt_foo' methods of the Options subclass @return: L{None}</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#excludeStr" class="internal-link" title="twisted.python._shellcomp.ZshArgumentsGenerator.excludeStr">exclude​Str</a></code></td>
+    <td>Generate an "exclusion string" for the given option</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#getAction" class="internal-link" title="twisted.python._shellcomp.ZshArgumentsGenerator.getAction">get​Action</a></code></td>
+    <td>Return a zsh "action" string for the given argument @return: C{str}</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#getDescription" class="internal-link" title="twisted.python._shellcomp.ZshArgumentsGenerator.getDescription">get​Description</a></code></td>
+    <td>Return the description to be used for this argument @return: C{str}</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#getShortOption" class="internal-link" title="twisted.python._shellcomp.ZshArgumentsGenerator.getShortOption">get​Short​Option</a></code></td>
+    <td>Return the short option letter or None @return: C{str} or L{None}</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#makeExcludesDict" class="internal-link" title="twisted.python._shellcomp.ZshArgumentsGenerator.makeExcludesDict">make​Excludes​Dict</a></code></td>
+    <td>@return: A C{dict} that maps each option name appearing in self.mutuallyExclusive to a set of those option names that is it mutually exclusive with (can't appear on the cmd line with).</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#verifyZshNames" class="internal-link" title="twisted.python._shellcomp.ZshArgumentsGenerator.verifyZshNames">verify​Zsh​Names</a></code></td>
+    <td>Ensure that none of the option names given in the metadata are typoed @return: L{None} @raise ValueError: If unknown option names have been found.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#write" class="internal-link" title="twisted.python._shellcomp.ZshArgumentsGenerator.write">write</a></code></td>
+    <td>Write the zsh completion code to the file given to __init__ @return: L{None}</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#writeExtras" class="internal-link" title="twisted.python._shellcomp.ZshArgumentsGenerator.writeExtras">write​Extras</a></code></td>
+    <td><span class="undocumented">No summary</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#writeFooter" class="internal-link" title="twisted.python._shellcomp.ZshArgumentsGenerator.writeFooter">write​Footer</a></code></td>
+    <td>Write the last bit of code that finishes the call to _arguments @return: L{None}</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#writeHeader" class="internal-link" title="twisted.python._shellcomp.ZshArgumentsGenerator.writeHeader">write​Header</a></code></td>
+    <td>This is the start of the code that calls _arguments @return: L{None}</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#writeOpt" class="internal-link" title="twisted.python._shellcomp.ZshArgumentsGenerator.writeOpt">write​Opt</a></code></td>
+    <td>Write out the zsh code for the given argument. This is just part of the one big call to _arguments</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#writeOptions" class="internal-link" title="twisted.python._shellcomp.ZshArgumentsGenerator.writeOptions">write​Options</a></code></td>
+    <td>Write out zsh code for each option in this command @return: L{None}</td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#allOptionsNameToDefinition" class="internal-link" title="twisted.python._shellcomp.ZshArgumentsGenerator.allOptionsNameToDefinition">all​Options​Name​To​Definition</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#cmdName" class="internal-link" title="twisted.python._shellcomp.ZshArgumentsGenerator.cmdName">cmd​Name</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#descriptions" class="internal-link" title="twisted.python._shellcomp.ZshArgumentsGenerator.descriptions">descriptions</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#excludes" class="internal-link" title="twisted.python._shellcomp.ZshArgumentsGenerator.excludes">excludes</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#extraActions" class="internal-link" title="twisted.python._shellcomp.ZshArgumentsGenerator.extraActions">extra​Actions</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#file" class="internal-link" title="twisted.python._shellcomp.ZshArgumentsGenerator.file">file</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#flagNameToDefinition" class="internal-link" title="twisted.python._shellcomp.ZshArgumentsGenerator.flagNameToDefinition">flag​Name​To​Definition</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#multiUse" class="internal-link" title="twisted.python._shellcomp.ZshArgumentsGenerator.multiUse">multi​Use</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#mutuallyExclusive" class="internal-link" title="twisted.python._shellcomp.ZshArgumentsGenerator.mutuallyExclusive">mutually​Exclusive</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#optActions" class="internal-link" title="twisted.python._shellcomp.ZshArgumentsGenerator.optActions">opt​Actions</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#optFlags" class="internal-link" title="twisted.python._shellcomp.ZshArgumentsGenerator.optFlags">opt​Flags</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#options" class="internal-link" title="twisted.python._shellcomp.ZshArgumentsGenerator.options">options</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#optParams" class="internal-link" title="twisted.python._shellcomp.ZshArgumentsGenerator.optParams">opt​Params</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#paramNameToDefinition" class="internal-link" title="twisted.python._shellcomp.ZshArgumentsGenerator.paramNameToDefinition">param​Name​To​Definition</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+        
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="basemethod">
+  
+  
+  <a name="twisted.python._shellcomp.ZshArgumentsGenerator.__init__">
+    
+  </a>
+  <a name="__init__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__init__</span>(self, options, cmdName, file):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/python/_shellcomp.py#L280">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.python._shellcomp.ZshArgumentsGenerator.addAdditionalOptions">
+    
+  </a>
+  <a name="addAdditionalOptions">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">addAdditionalOptions</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/python/_shellcomp.py#L619">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Add additional options to the optFlags and optParams lists.
+These will be defined by 'opt_foo' methods of the Options subclass
+@return: L{None}</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.python._shellcomp.ZshArgumentsGenerator.excludeStr">
+    
+  </a>
+  <a name="excludeStr">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">excludeStr</span>(self, longname, buildShort=<a href="https://docs.python.org/3/library/constants.html#False" class="intersphinx-link">False</a>):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/python/_shellcomp.py#L429">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Generate an "exclusion string" for the given option</p>
+<p>@type longname: C{str}
+@param longname: The long option name (e.g. "verbose" instead of "v")</p>
+<p>@type buildShort: C{bool}
+@param buildShort: May be True to indicate we're building an excludes</p>
+<blockquote>
+string for the short option that corresponds to the given long opt.</blockquote>
+<p>@return: The generated C{str}</p>
+</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.python._shellcomp.ZshArgumentsGenerator.getAction">
+    
+  </a>
+  <a name="getAction">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">getAction</span>(self, longname):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/python/_shellcomp.py#L564">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Return a zsh "action" string for the given argument
+@return: C{str}</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.python._shellcomp.ZshArgumentsGenerator.getDescription">
+    
+  </a>
+  <a name="getDescription">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">getDescription</span>(self, longname):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/python/_shellcomp.py#L580">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Return the description to be used for this argument
+@return: C{str}</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.python._shellcomp.ZshArgumentsGenerator.getShortOption">
+    
+  </a>
+  <a name="getShortOption">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">getShortOption</span>(self, longname):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/python/_shellcomp.py#L611">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Return the short option letter or None
+@return: C{str} or L{None}</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.python._shellcomp.ZshArgumentsGenerator.makeExcludesDict">
+    
+  </a>
+  <a name="makeExcludesDict">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">makeExcludesDict</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/python/_shellcomp.py#L471">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><dl class="rst-docutils">
+<dt>@return: A C{dict} that maps each option name appearing in</dt>
+<dd>self.mutuallyExclusive to a set of those option names that is it
+mutually exclusive with (can't appear on the cmd line with).</dd>
+</dl>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Dict" class="intersphinx-link">Dict</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>, <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Set" class="intersphinx-link">Set</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.python._shellcomp.ZshArgumentsGenerator.verifyZshNames">
+    
+  </a>
+  <a name="verifyZshNames">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">verifyZshNames</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/python/_shellcomp.py#L407">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Ensure that none of the option names given in the metadata are typoed
+@return: L{None}
+@raise ValueError: If unknown option names have been found.</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.python._shellcomp.ZshArgumentsGenerator.write">
+    
+  </a>
+  <a name="write">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">write</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/python/_shellcomp.py#L348">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Write the zsh completion code to the file given to __init__
+@return: L{None}</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.python._shellcomp.ZshArgumentsGenerator.writeExtras">
+    
+  </a>
+  <a name="writeExtras">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">writeExtras</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/python/_shellcomp.py#L378">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Write out completion information for extra arguments appearing on the
+command-line. These are extra positional arguments not associated
+with a named option. That is, the stuff that gets passed to
+Options.parseArgs().</p>
+<p>@return: L{None}</p>
+<dl class="rst-docutils">
+<dt>@raise ValueError: If C{Completer} with C{repeat=True} is found and</dt>
+<dd>is not the last item in the C{extraActions} list.</dd>
+</dl>
+</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.python._shellcomp.ZshArgumentsGenerator.writeFooter">
+    
+  </a>
+  <a name="writeFooter">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">writeFooter</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/python/_shellcomp.py#L400">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Write the last bit of code that finishes the call to _arguments
+@return: L{None}</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.python._shellcomp.ZshArgumentsGenerator.writeHeader">
+    
+  </a>
+  <a name="writeHeader">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">writeHeader</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/python/_shellcomp.py#L358">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>This is the start of the code that calls _arguments
+@return: L{None}</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.python._shellcomp.ZshArgumentsGenerator.writeOpt">
+    
+  </a>
+  <a name="writeOpt">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">writeOpt</span>(self, longname):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/python/_shellcomp.py#L498">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Write out the zsh code for the given argument. This is just part of the
+one big call to _arguments</p>
+<p>@type longname: C{str}
+@param longname: The long option name (e.g. "verbose" instead of "v")</p>
+<p>@return: L{None}</p>
+</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.python._shellcomp.ZshArgumentsGenerator.writeOptions">
+    
+  </a>
+  <a name="writeOptions">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">writeOptions</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/python/_shellcomp.py#L368">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Write out zsh code for each option in this command
+@return: L{None}</div>
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="twisted.python._shellcomp.ZshArgumentsGenerator.allOptionsNameToDefinition">
+    
+  </a>
+  <a name="allOptionsNameToDefinition">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">allOptionsNameToDefinition</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/python/_shellcomp.py#L338">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="twisted.python._shellcomp.ZshArgumentsGenerator.cmdName">
+    
+  </a>
+  <a name="cmdName">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">cmdName</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/python/_shellcomp.py#L282">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="twisted.python._shellcomp.ZshArgumentsGenerator.descriptions">
+    
+  </a>
+  <a name="descriptions">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">descriptions</span>: <code><a href="https://docs.python.org/3/library/stdtypes.html#dict" class="intersphinx-link">dict</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/python/_shellcomp.py#L285">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="twisted.python._shellcomp.ZshArgumentsGenerator.excludes">
+    
+  </a>
+  <a name="excludes">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">excludes</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/python/_shellcomp.py#L346">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="twisted.python._shellcomp.ZshArgumentsGenerator.extraActions">
+    
+  </a>
+  <a name="extraActions">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">extraActions</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/python/_shellcomp.py#L289">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="twisted.python._shellcomp.ZshArgumentsGenerator.file">
+    
+  </a>
+  <a name="file">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">file</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/python/_shellcomp.py#L283">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="twisted.python._shellcomp.ZshArgumentsGenerator.flagNameToDefinition">
+    
+  </a>
+  <a name="flagNameToDefinition">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">flagNameToDefinition</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/python/_shellcomp.py#L333">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="twisted.python._shellcomp.ZshArgumentsGenerator.multiUse">
+    
+  </a>
+  <a name="multiUse">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">multiUse</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/python/_shellcomp.py#L286">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="twisted.python._shellcomp.ZshArgumentsGenerator.mutuallyExclusive">
+    
+  </a>
+  <a name="mutuallyExclusive">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">mutuallyExclusive</span>: <code><a href="https://docs.python.org/3/library/stdtypes.html#list" class="intersphinx-link">list</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/python/_shellcomp.py#L287">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="twisted.python._shellcomp.ZshArgumentsGenerator.optActions">
+    
+  </a>
+  <a name="optActions">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">optActions</span>: <code><a href="https://docs.python.org/3/library/stdtypes.html#dict" class="intersphinx-link">dict</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/python/_shellcomp.py#L288">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="twisted.python._shellcomp.ZshArgumentsGenerator.optFlags">
+    
+  </a>
+  <a name="optFlags">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">optFlags</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/python/_shellcomp.py#L322">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="twisted.python._shellcomp.ZshArgumentsGenerator.options">
+    
+  </a>
+  <a name="options">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">options</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/python/_shellcomp.py#L281">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="twisted.python._shellcomp.ZshArgumentsGenerator.optParams">
+    
+  </a>
+  <a name="optParams">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">optParams</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/python/_shellcomp.py#L323">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="twisted.python._shellcomp.ZshArgumentsGenerator.paramNameToDefinition">
+    
+  </a>
+  <a name="paramNameToDefinition">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">paramNameToDefinition</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/python/_shellcomp.py#L328">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div>
+
+      </div>
+    </div>
+
+    <footer class="navbar navbar-default">
+  
+  <div class="container">
+    <a href="index.html">API Documentation</a> for twisted,
+  generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
+    22.2.0 at 2022-02-23 16:05:07.
+  </div>
+</footer>
+
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+  </body>
+</html>

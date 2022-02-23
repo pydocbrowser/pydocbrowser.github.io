@@ -1,0 +1,2243 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  
+
+  <head>
+    
+    <title>twisted.mail.pop3.AdvancedPOP3Client</title>
+    <meta name="generator" content="pydoctor 22.2.0"> 
+        
+    </meta>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=0.75" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+    <link rel="stylesheet" type="text/css" href="extra.css" />
+</head>
+
+  <body>
+
+    <div id="banner">    
+    <div>
+        <a href="/">Home</a>
+        &gt; twisted-22.1.0 <!-- This is a placeholder -->
+        
+        <!-- (<a href=""&gt;show all versions</a&gt;) -->
+    </div>
+</div>
+
+    <nav class="navbar navbar-default">
+  
+  <div class="container">
+
+    <div class="navbar-header">
+      
+      <div class="navlinks">
+          <span class="navbar-brand">
+            twisted <a href="index.html">API Documentation</a>
+          </span>
+
+          <a href="moduleIndex.html">
+            Modules
+          </a>
+
+          <a href="classIndex.html">
+            Classes
+          </a>
+
+          <a href="nameIndex.html">
+            Names
+          </a>
+      </div>
+
+    </div>
+  </div>
+</nav>
+
+    
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="class"><code><code><a href="index.html" class="internal-link">twisted</a></code><wbr></wbr>.<code><a href="twisted.mail.html" class="internal-link" title="twisted.mail">mail</a></code><wbr></wbr>.<code><a href="twisted.mail.pop3.html" class="internal-link" title="twisted.mail.pop3">pop3</a></code><wbr></wbr>.<code><a href="twisted.mail.pop3.AdvancedPOP3Client.html" class="internal-link" title="twisted.mail.pop3.AdvancedPOP3Client">AdvancedPOP3Client</a></code></code></h1>
+        <div id="showPrivate">
+          <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+        </div>
+      </div>
+
+      <div class="categoryHeader">
+        class documentation
+      </div>
+
+      <div class="extrasDocstring">
+        <p><code><span class="py-keyword">class</span> <span class="py-defname">AdvancedPOP3Client</span>(<a href="twisted.protocols.basic.LineOnlyReceiver.html" class="internal-link" title="twisted.protocols.basic.LineOnlyReceiver">basic.LineOnlyReceiver</a>, <a href="twisted.protocols.policies.TimeoutMixin.html" class="internal-link" title="twisted.protocols.policies.TimeoutMixin">policies.TimeoutMixin</a>): <a href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/mail/_pop3client.py#L161" class="sourceLink">(source)</a></code></p><p>Known subclasses: <code><a href="twisted.mail.test.test_pop3client.SimpleClient.html" class="internal-link">twisted.mail.test.test_pop3client.SimpleClient</a></code></p>
+        <p><a href="classIndex.html#twisted.mail.pop3.AdvancedPOP3Client">View In Hierarchy</a></p>
+      </div>
+
+      <div class="moduleDocstring">
+        <div><p>A POP3 client protocol.</p>
+<p>Instances of this class provide a convenient, efficient API for
+retrieving and deleting messages from a POP3 server.</p>
+<p>This API provides a pipelining interface but POP3 pipelining
+on the network is not yet supported.</p>
+<p>@type startedTLS: L{bool}
+@ivar startedTLS: An indication of whether TLS has been negotiated</p>
+<blockquote>
+successfully.</blockquote>
+<p>@type allowInsecureLogin: L{bool}
+@ivar allowInsecureLogin: An indication of whether plaintext login should</p>
+<blockquote>
+be allowed when the server offers no authentication challenge and the
+transport does not offer any protection via encryption.</blockquote>
+<p>@type serverChallenge: L{bytes} or L{None}
+@ivar serverChallenge: The challenge received in the server greeting.</p>
+<p>@type timeout: L{int}
+@ivar timeout: The number of seconds to wait on a response from the server</p>
+<blockquote>
+before timing out a connection.  If the number is &lt;= 0, no timeout
+checking will be performed.</blockquote>
+<dl class="rst-docutils">
+<dt>@type _capCache: L{None} or L{dict} mapping L{bytes}</dt>
+<dd>to L{list} of L{bytes} and/or L{bytes} to L{None}</dd>
+<dt>@ivar _capCache: The cached server capabilities.  Capabilities are not</dt>
+<dd>allowed to change during the session (except when TLS is negotiated),
+so the first response to a capabilities command can be used for
+later lookups.</dd>
+</dl>
+<p>@type _challengeMagicRe: L{Pattern &lt;re.Pattern.search&gt;}
+@ivar _challengeMagicRe: A regular expression which matches the</p>
+<blockquote>
+challenge in the server greeting.</blockquote>
+<dl class="rst-docutils">
+<dt>@type _blockedQueue: L{None} or L{list} of 3-L{tuple}</dt>
+<dd>of (0) L{Deferred &lt;defer.Deferred&gt;}, (1) callable which results
+in a L{Deferred &lt;defer.Deferred&gt;}, (2) L{tuple}</dd>
+<dt>@ivar _blockedQueue: A list of blocked commands.  While a command is</dt>
+<dd>awaiting a response from the server, other commands are blocked.  When
+no command is outstanding, C{_blockedQueue} is set to L{None}.
+Otherwise, it contains a list of information about blocked commands.
+Each list entry provides the following information about a blocked
+command: the deferred that should be called when the response to the
+command is received, the function that sends the command, and the
+arguments to the function.</dd>
+<dt>@type _waiting: L{Deferred &lt;defer.Deferred&gt;} or</dt>
+<dd>L{None}</dd>
+<dt>@ivar _waiting: A deferred which fires when the response to the</dt>
+<dd>outstanding command is received from the server.</dd>
+</dl>
+<p>@type _timedOut: L{bool}
+@ivar _timedOut: An indication of whether the connection was dropped</p>
+<blockquote>
+because of a timeout.</blockquote>
+<p>@type _greetingError: L{bytes} or L{None}
+@ivar _greetingError: The server greeting minus the status indicator, when</p>
+<blockquote>
+the connection was dropped because of an error in the server greeting.
+Otherwise, L{None}.</blockquote>
+<p>@type state: L{bytes}
+@ivar state: The state which indicates what type of response is expected</p>
+<blockquote>
+from the server.  Valid states are: 'WELCOME', 'WAITING', 'SHORT',
+'LONG_INITIAL', 'LONG'.</blockquote>
+<dl class="rst-docutils">
+<dt>@type _xform: L{None} or callable that takes L{bytes}</dt>
+<dd>and returns L{object}</dd>
+<dt>@ivar _xform: The transform function which is used to convert each</dt>
+<dd>line of a multi-line response into usable values for use by the
+consumer function.  If L{None}, each line of the multi-line response
+is sent directly to the consumer function.</dd>
+</dl>
+<p>@type _consumer: callable that takes L{object}
+@ivar _consumer: The consumer function which is used to store the</p>
+<blockquote>
+values derived by the transform function from each line of a
+multi-line response into a list.</blockquote>
+</div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id4919">
+  
+  
+  <tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#apop" class="internal-link" title="twisted.mail.pop3.AdvancedPOP3Client.apop">apop</a></code></td>
+    <td>Send an APOP command to perform authenticated login.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#capabilities" class="internal-link" title="twisted.mail.pop3.AdvancedPOP3Client.capabilities">capabilities</a></code></td>
+    <td>Send a CAPA command to retrieve the capabilities supported by the server.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#connectionLost" class="internal-link" title="twisted.mail.pop3.AdvancedPOP3Client.connectionLost">connection​Lost</a></code></td>
+    <td>Clean up when the connection has been lost.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#connectionMade" class="internal-link" title="twisted.mail.pop3.AdvancedPOP3Client.connectionMade">connection​Made</a></code></td>
+    <td>Wait for a greeting from the server after the connection has been made.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#delete" class="internal-link" title="twisted.mail.pop3.AdvancedPOP3Client.delete">delete</a></code></td>
+    <td>Send a DELE command to delete a message from the server.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#lineLengthExceeded" class="internal-link" title="twisted.mail.pop3.AdvancedPOP3Client.lineLengthExceeded">line​Length​Exceeded</a></code></td>
+    <td>Drop the connection when a server response exceeds the maximum line length (L{LineOnlyReceiver.MAX_LENGTH}).</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#lineReceived" class="internal-link" title="twisted.mail.pop3.AdvancedPOP3Client.lineReceived">line​Received</a></code></td>
+    <td>Pass a received line to a state machine function and transition to the next state.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#listSize" class="internal-link" title="twisted.mail.pop3.AdvancedPOP3Client.listSize">list​Size</a></code></td>
+    <td>Send a LIST command to retrieve the sizes of all messages on the server.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#listUID" class="internal-link" title="twisted.mail.pop3.AdvancedPOP3Client.listUID">list​UID</a></code></td>
+    <td>Send a UIDL command to retrieve the UIDs of all messages on the server.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#login" class="internal-link" title="twisted.mail.pop3.AdvancedPOP3Client.login">login</a></code></td>
+    <td>Log in to the server.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#noop" class="internal-link" title="twisted.mail.pop3.AdvancedPOP3Client.noop">noop</a></code></td>
+    <td>Send a NOOP command asking the server to do nothing but respond.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#password" class="internal-link" title="twisted.mail.pop3.AdvancedPOP3Client.password">password</a></code></td>
+    <td>Send a PASS command to perform the second half of plaintext login.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#quit" class="internal-link" title="twisted.mail.pop3.AdvancedPOP3Client.quit">quit</a></code></td>
+    <td>Send a QUIT command to disconnect from the server.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#reset" class="internal-link" title="twisted.mail.pop3.AdvancedPOP3Client.reset">reset</a></code></td>
+    <td>Send a RSET command to unmark any messages that have been flagged for deletion on the server.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#retrieve" class="internal-link" title="twisted.mail.pop3.AdvancedPOP3Client.retrieve">retrieve</a></code></td>
+    <td>Send a RETR or TOP command to retrieve all or part of a message from the server.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#sendLong" class="internal-link" title="twisted.mail.pop3.AdvancedPOP3Client.sendLong">send​Long</a></code></td>
+    <td>Send a POP3 command to which a multi-line response is expected.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#sendShort" class="internal-link" title="twisted.mail.pop3.AdvancedPOP3Client.sendShort">send​Short</a></code></td>
+    <td>Send a POP3 command to which a short response is expected.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#serverGreeting" class="internal-link" title="twisted.mail.pop3.AdvancedPOP3Client.serverGreeting">server​Greeting</a></code></td>
+    <td>Handle the server greeting.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#startTLS" class="internal-link" title="twisted.mail.pop3.AdvancedPOP3Client.startTLS">start​TLS</a></code></td>
+    <td>Switch to encrypted communication using TLS.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#stat" class="internal-link" title="twisted.mail.pop3.AdvancedPOP3Client.stat">stat</a></code></td>
+    <td>Send a STAT command to get information about the size of the mailbox.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#state_LONG" class="internal-link" title="twisted.mail.pop3.AdvancedPOP3Client.state_LONG">state_​LONG</a></code></td>
+    <td>Handle server responses for the LONG state in which the server is expected to send a non-initial line of a multi-line response.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#state_LONG_INITIAL" class="internal-link" title="twisted.mail.pop3.AdvancedPOP3Client.state_LONG_INITIAL">state_​LONG_​INITIAL</a></code></td>
+    <td>Handle server responses for the LONG_INITIAL state in which the server is expected to send the first line of a multi-line response.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#state_SHORT" class="internal-link" title="twisted.mail.pop3.AdvancedPOP3Client.state_SHORT">state_​SHORT</a></code></td>
+    <td>Handle server responses for the SHORT state in which the server is expected to send a single line response.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#state_WAITING" class="internal-link" title="twisted.mail.pop3.AdvancedPOP3Client.state_WAITING">state_​WAITING</a></code></td>
+    <td>Log an error for server responses received in the WAITING state during which the server is not expected to send anything.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#state_WELCOME" class="internal-link" title="twisted.mail.pop3.AdvancedPOP3Client.state_WELCOME">state_​WELCOME</a></code></td>
+    <td>Handle server responses for the WELCOME state in which the server greeting is expected.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#timeoutConnection" class="internal-link" title="twisted.mail.pop3.AdvancedPOP3Client.timeoutConnection">timeout​Connection</a></code></td>
+    <td>Drop the connection when the server does not respond in time.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#user" class="internal-link" title="twisted.mail.pop3.AdvancedPOP3Client.user">user</a></code></td>
+    <td>Send a USER command to perform the first half of plaintext login.</td>
+  </tr><tr class="classvariable">
+    
+    <td>Class Variable</td>
+    <td><code><a href="#allowInsecureLogin" class="internal-link" title="twisted.mail.pop3.AdvancedPOP3Client.allowInsecureLogin">allow​Insecure​Login</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="classvariable">
+    
+    <td>Class Variable</td>
+    <td><code><a href="#serverChallenge" class="internal-link" title="twisted.mail.pop3.AdvancedPOP3Client.serverChallenge">server​Challenge</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="classvariable">
+    
+    <td>Class Variable</td>
+    <td><code><a href="#timeout" class="internal-link" title="twisted.mail.pop3.AdvancedPOP3Client.timeout">timeout</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#startedTLS" class="internal-link" title="twisted.mail.pop3.AdvancedPOP3Client.startedTLS">started​TLS</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#state" class="internal-link" title="twisted.mail.pop3.AdvancedPOP3Client.state">state</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#transport" class="internal-link" title="twisted.mail.pop3.AdvancedPOP3Client.transport">transport</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_apop" class="internal-link" title="twisted.mail.pop3.AdvancedPOP3Client._apop">​_apop</a></code></td>
+    <td>Perform an APOP login.</td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_blocked" class="internal-link" title="twisted.mail.pop3.AdvancedPOP3Client._blocked">​_blocked</a></code></td>
+    <td>Block a command, if necessary.</td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_consumeOrAppend" class="internal-link" title="twisted.mail.pop3.AdvancedPOP3Client._consumeOrAppend">_consume​Or​Append</a></code></td>
+    <td>Send a command to which a long response is expected and process the multi-line response into a list.</td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_consumeOrSetItem" class="internal-link" title="twisted.mail.pop3.AdvancedPOP3Client._consumeOrSetItem">_consume​Or​Set​Item</a></code></td>
+    <td>Send a command to which a long response is expected and process the multi-line response into a list accounting for deleted messages.</td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_getContextFactory" class="internal-link" title="twisted.mail.pop3.AdvancedPOP3Client._getContextFactory">_get​Context​Factory</a></code></td>
+    <td>Get a context factory with which to negotiate TLS.</td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_login" class="internal-link" title="twisted.mail.pop3.AdvancedPOP3Client._login">​_login</a></code></td>
+    <td>Continue the process of logging in to the server.</td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_loginTLS" class="internal-link" title="twisted.mail.pop3.AdvancedPOP3Client._loginTLS">_login​TLS</a></code></td>
+    <td>Do a plaintext login over an encrypted transport.</td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_plaintext" class="internal-link" title="twisted.mail.pop3.AdvancedPOP3Client._plaintext">​_plaintext</a></code></td>
+    <td>Perform a plaintext login.</td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_startedTLS" class="internal-link" title="twisted.mail.pop3.AdvancedPOP3Client._startedTLS">_started​TLS</a></code></td>
+    <td>Complete the process of switching to encrypted communication.</td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_startTLS" class="internal-link" title="twisted.mail.pop3.AdvancedPOP3Client._startTLS">_start​TLS</a></code></td>
+    <td>Continue the process of switching to encrypted communication.</td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_unblock" class="internal-link" title="twisted.mail.pop3.AdvancedPOP3Client._unblock">​_unblock</a></code></td>
+    <td>Send the next blocked command.</td>
+  </tr><tr class="classvariable private">
+    
+    <td>Class Variable</td>
+    <td><code><a href="#_challengeMagicRe" class="internal-link" title="twisted.mail.pop3.AdvancedPOP3Client._challengeMagicRe">_challenge​Magic​Re</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#_blockedQueue" class="internal-link" title="twisted.mail.pop3.AdvancedPOP3Client._blockedQueue">_blocked​Queue</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#_capCache" class="internal-link" title="twisted.mail.pop3.AdvancedPOP3Client._capCache">_cap​Cache</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#_consumer" class="internal-link" title="twisted.mail.pop3.AdvancedPOP3Client._consumer">​_consumer</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#_greetingError" class="internal-link" title="twisted.mail.pop3.AdvancedPOP3Client._greetingError">_greeting​Error</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#_timedOut" class="internal-link" title="twisted.mail.pop3.AdvancedPOP3Client._timedOut">_timed​Out</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#_waiting" class="internal-link" title="twisted.mail.pop3.AdvancedPOP3Client._waiting">​_waiting</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#_xform" class="internal-link" title="twisted.mail.pop3.AdvancedPOP3Client._xform">​_xform</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+        
+          <p class="inheritedFrom">
+            Inherited from <code><a href="twisted.protocols.basic.LineOnlyReceiver.html" class="internal-link" title="twisted.protocols.basic.LineOnlyReceiver">LineOnlyReceiver</a></code>:
+          </p>
+          <table class="children sortable" id="id4920">
+  
+  
+  <tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="twisted.protocols.basic.LineOnlyReceiver.html#dataReceived" class="internal-link" title="twisted.protocols.basic.LineOnlyReceiver.dataReceived">data​Received</a></code></td>
+    <td>Translates bytes into lines, and calls lineReceived.</td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="twisted.protocols.basic.LineOnlyReceiver.html#sendLine" class="internal-link" title="twisted.protocols.basic.LineOnlyReceiver.sendLine">send​Line</a></code></td>
+    <td>Sends a line to the other end of the connection.</td>
+  </tr><tr class="baseconstant">
+    
+    <td>Constant</td>
+    <td><code><a href="twisted.protocols.basic.LineOnlyReceiver.html#MAX_LENGTH" class="internal-link" title="twisted.protocols.basic.LineOnlyReceiver.MAX_LENGTH">MAX​_LENGTH</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="baseclassvariable">
+    
+    <td>Class Variable</td>
+    <td><code><a href="twisted.protocols.basic.LineOnlyReceiver.html#delimiter" class="internal-link" title="twisted.protocols.basic.LineOnlyReceiver.delimiter">delimiter</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="baseinstancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="twisted.protocols.basic.LineOnlyReceiver.html#_buffer" class="internal-link" title="twisted.protocols.basic.LineOnlyReceiver._buffer">​_buffer</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+          
+          <p class="inheritedFrom">
+            Inherited from <code><a href="twisted.internet.protocol.Protocol.html" class="internal-link" title="twisted.internet.protocol.Protocol">Protocol</a></code> (via <code><a href="twisted.protocols.basic.LineOnlyReceiver.html" class="internal-link" title="twisted.protocols.basic.LineOnlyReceiver">LineOnlyReceiver</a></code>):
+          </p>
+          <table class="children sortable" id="id4921">
+  
+  
+  <tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="twisted.internet.protocol.Protocol.html#logPrefix" class="internal-link" title="twisted.internet.protocol.Protocol.logPrefix">log​Prefix</a></code></td>
+    <td>Return a prefix matching the class name, to identify log messages related to this protocol instance.</td>
+  </tr><tr class="baseclassvariable">
+    
+    <td>Class Variable</td>
+    <td><code><a href="twisted.internet.protocol.Protocol.html#factory" class="internal-link" title="twisted.internet.protocol.Protocol.factory">factory</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+          
+          <p class="inheritedFrom">
+            Inherited from <code><a href="twisted.internet.protocol.BaseProtocol.html" class="internal-link" title="twisted.internet.protocol.BaseProtocol">BaseProtocol</a></code> (via <code><a href="twisted.protocols.basic.LineOnlyReceiver.html" class="internal-link" title="twisted.protocols.basic.LineOnlyReceiver">LineOnlyReceiver</a></code>, <code><a href="twisted.internet.protocol.Protocol.html" class="internal-link" title="twisted.internet.protocol.Protocol">Protocol</a></code>):
+          </p>
+          <table class="children sortable" id="id4922">
+  
+  
+  <tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="twisted.internet.protocol.BaseProtocol.html#makeConnection" class="internal-link" title="twisted.internet.protocol.BaseProtocol.makeConnection">make​Connection</a></code></td>
+    <td>Make a connection to a transport and a server.</td>
+  </tr><tr class="baseinstancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="twisted.internet.protocol.BaseProtocol.html#connected" class="internal-link" title="twisted.internet.protocol.BaseProtocol.connected">connected</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+          
+          <p class="inheritedFrom">
+            Inherited from <code><a href="twisted.protocols.policies.TimeoutMixin.html" class="internal-link" title="twisted.protocols.policies.TimeoutMixin">TimeoutMixin</a></code>:
+          </p>
+          <table class="children sortable" id="id4923">
+  
+  
+  <tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="twisted.protocols.policies.TimeoutMixin.html#callLater" class="internal-link" title="twisted.protocols.policies.TimeoutMixin.callLater">call​Later</a></code></td>
+    <td>Wrapper around L{reactor.callLater&lt;twisted.internet.interfaces.IReactorTime.callLater&gt;} for test purpose.</td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="twisted.protocols.policies.TimeoutMixin.html#resetTimeout" class="internal-link" title="twisted.protocols.policies.TimeoutMixin.resetTimeout">reset​Timeout</a></code></td>
+    <td>Reset the timeout count down.</td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="twisted.protocols.policies.TimeoutMixin.html#setTimeout" class="internal-link" title="twisted.protocols.policies.TimeoutMixin.setTimeout">set​Timeout</a></code></td>
+    <td>Change the timeout period</td>
+  </tr><tr class="baseinstancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="twisted.protocols.policies.TimeoutMixin.html#timeOut" class="internal-link" title="twisted.protocols.policies.TimeoutMixin.timeOut">time​Out</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod private">
+    
+    <td>Method</td>
+    <td><code><a href="twisted.protocols.policies.TimeoutMixin.html#__timedOut" class="internal-link" title="twisted.protocols.policies.TimeoutMixin.__timedOut">__timed​Out</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="baseinstancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="twisted.protocols.policies.TimeoutMixin.html#__timeoutCall" class="internal-link" title="twisted.protocols.policies.TimeoutMixin.__timeoutCall">__timeout​Call</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+          
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="basemethod">
+  
+  
+  <a name="twisted.mail.pop3.AdvancedPOP3Client.apop">
+    
+  </a>
+  <a name="apop">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">apop</span>(self, username, digest):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/mail/_pop3client.py#L888">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Send an APOP command to perform authenticated login.</p>
+<p>This should be used in special circumstances only, when it is
+known that the server supports APOP authentication, and APOP
+authentication is absolutely required.  For the common case,
+use L{login} instead.</p>
+<p>@type username: L{bytes}
+@param username: The username with which to log in.</p>
+<p>@type digest: L{bytes}
+@param digest: The challenge response to authenticate with.</p>
+<dl class="rst-docutils">
+<dt>@rtype: L{Deferred &lt;defer.Deferred&gt;} which successfully fires with</dt>
+<dd>L{bytes} or fails with L{ServerErrorResponse}</dd>
+<dt>@return: A deferred which fires when the server response is received.</dt>
+<dd>On an OK response, the deferred succeeds with the server
+response minus the status indicator.  On an ERR response, the
+deferred fails with a server error response failure.</dd>
+</dl>
+</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.mail.pop3.AdvancedPOP3Client.capabilities">
+    
+  </a>
+  <a name="capabilities">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">capabilities</span>(self, useCache=<a href="https://docs.python.org/3/library/constants.html#True" class="intersphinx-link">True</a>):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/mail/_pop3client.py#L1038">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Send a CAPA command to retrieve the capabilities supported by
+the server.</p>
+<p>Not all servers support this command.  If the server does not
+support this, it is treated as though it returned a successful
+response listing no capabilities.  At some future time, this may be
+changed to instead seek out information about a server's
+capabilities in some other fashion (only if it proves useful to do
+so, and only if there are servers still in use which do not support
+CAPA but which do support POP3 extensions that are useful).</p>
+<p>@type useCache: L{bool}
+@param useCache: A flag that determines whether previously retrieved</p>
+<blockquote>
+results should be used if available.</blockquote>
+<dl class="rst-docutils">
+<dt>@rtype: L{Deferred &lt;defer.Deferred&gt;} which successfully results in</dt>
+<dd>L{dict} mapping L{bytes} to L{list} of L{bytes} and/or L{bytes} to
+L{None}</dd>
+</dl>
+<p>@return: A deferred which fires with a mapping of capability name to
+parameters.  For example:</p>
+<pre class="rst-literal-block">
+C: CAPA
+S: +OK Capability list follows
+S: TOP
+S: USER
+S: SASL CRAM-MD5 KERBEROS_V4
+S: RESP-CODES
+S: LOGIN-DELAY 900
+S: PIPELINING
+S: EXPIRE 60
+S: UIDL
+S: IMPLEMENTATION Shlemazle-Plotz-v302
+S: .
+</pre>
+<p>will be lead to a result of:</p>
+<pre class="rst-literal-block">
+| {'TOP': None,
+|  'USER': None,
+|  'SASL': ['CRAM-MD5', 'KERBEROS_V4'],
+|  'RESP-CODES': None,
+|  'LOGIN-DELAY': ['900'],
+|  'PIPELINING': None,
+|  'EXPIRE': ['60'],
+|  'UIDL': None,
+|  'IMPLEMENTATION': ['Shlemazle-Plotz-v302']}
+</pre>
+</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.mail.pop3.AdvancedPOP3Client.connectionLost">
+    
+  </a>
+  <a name="connectionLost">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">connectionLost</span>(self, reason):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/mail/_pop3client.py#L405">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <code><a href="twisted.internet.interfaces.IProtocol.html#connectionLost" class="internal-link" title="twisted.internet.interfaces.IProtocol.connectionLost">twisted.internet.interfaces.IProtocol</a></code></div><div class="interfaceinfo">overrides <code><a href="twisted.internet.protocol.Protocol.html#connectionLost" class="internal-link">twisted.internet.protocol.Protocol.connectionLost</a></code></div>
+    
+    <div><p>Clean up when the connection has been lost.</p>
+<p>When the loss of connection was initiated by the client due to a
+timeout, the L{_timedOut} flag will be set.  When it was initiated by
+the client due to an error in the server greeting, L{_greetingError}
+will be set to the server response minus the status indicator.</p>
+<p>@type reason: L{Failure &lt;twisted.python.failure.Failure&gt;}
+@param reason: The reason the connection was terminated.</p>
+</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.mail.pop3.AdvancedPOP3Client.connectionMade">
+    
+  </a>
+  <a name="connectionMade">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">connectionMade</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/mail/_pop3client.py#L386">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <code><a href="twisted.internet.interfaces.IProtocol.html#connectionMade" class="internal-link" title="twisted.internet.interfaces.IProtocol.connectionMade">twisted.internet.interfaces.IProtocol</a></code></div><div class="interfaceinfo">overrides <code><a href="twisted.internet.protocol.BaseProtocol.html#connectionMade" class="internal-link">twisted.internet.protocol.BaseProtocol.connectionMade</a></code></div>
+    
+    <div><p>Wait for a greeting from the server after the connection has been made.</p>
+<p>Start the connection in the WELCOME state.</p>
+</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.mail.pop3.AdvancedPOP3Client.delete">
+    
+  </a>
+  <a name="delete">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">delete</span>(self, index):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/mail/_pop3client.py#L948">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Send a DELE command to delete a message from the server.</p>
+<p>@type index: L{int}
+@param index: The 0-based index of the message to delete.</p>
+<dl class="rst-docutils">
+<dt>@rtype: L{Deferred &lt;defer.Deferred&gt;} which successfully fires with</dt>
+<dd>L{bytes} or fails with L{ServerErrorResponse}</dd>
+<dt>@return: A deferred which fires when the server response is received.</dt>
+<dd>On an OK response, the deferred succeeds with the server
+response minus the status indicator.  On an ERR response, the
+deferred fails with a server error response failure.</dd>
+</dl>
+</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.mail.pop3.AdvancedPOP3Client.lineLengthExceeded">
+    
+  </a>
+  <a name="lineLengthExceeded">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">lineLengthExceeded</span>(self, buffer):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/mail/_pop3client.py#L452">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overrides <code><a href="twisted.protocols.basic.LineOnlyReceiver.html#lineLengthExceeded" class="internal-link">twisted.protocols.basic.LineOnlyReceiver.lineLengthExceeded</a></code></div>
+    
+    <div><p>Drop the connection when a server response exceeds the maximum line
+length (L{LineOnlyReceiver.MAX_LENGTH}).</p>
+<p>@type buffer: L{bytes}
+@param buffer: A received line which exceeds the maximum line length.</p>
+</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.mail.pop3.AdvancedPOP3Client.lineReceived">
+    
+  </a>
+  <a name="lineReceived">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">lineReceived</span>(self, line):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/mail/_pop3client.py#L435">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overrides <code><a href="twisted.protocols.basic.LineOnlyReceiver.html#lineReceived" class="internal-link">twisted.protocols.basic.LineOnlyReceiver.lineReceived</a></code></div>
+    
+    <div><p>Pass a received line to a state machine function and
+transition to the next state.</p>
+<p>@type line: L{bytes}
+@param line: A received line.</p>
+</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.mail.pop3.AdvancedPOP3Client.listSize">
+    
+  </a>
+  <a name="listSize">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">listSize</span>(self, consumer=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/mail/_pop3client.py#L1185">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Send a LIST command to retrieve the sizes of all messages on the
+server.</p>
+<dl class="rst-docutils">
+<dt>@type consumer: L{None} or callable that takes</dt>
+<dd>2-L{tuple} of (0) L{int}, (1) L{int}</dd>
+<dt>@param consumer: A function which consumes the 0-based message index</dt>
+<dd>and message size derived from the server response.</dd>
+<dt>@rtype: L{Deferred &lt;defer.Deferred&gt;} which fires L{list} of L{int} or</dt>
+<dd>callable that takes 2-L{tuple} of (0) L{int}, (1) L{int}</dd>
+<dt>@return: A deferred which fires when the entire response has been</dt>
+<dd>received.  When a consumer is not provided, the return value is a
+list of message sizes.  Otherwise, it returns the consumer itself.</dd>
+</dl>
+</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.mail.pop3.AdvancedPOP3Client.listUID">
+    
+  </a>
+  <a name="listUID">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">listUID</span>(self, consumer=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/mail/_pop3client.py#L1203">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Send a UIDL command to retrieve the UIDs of all messages on the server.</p>
+<dl class="rst-docutils">
+<dt>@type consumer: L{None} or callable that takes</dt>
+<dd>2-L{tuple} of (0) L{int}, (1) L{bytes}</dd>
+<dt>@param consumer: A function which consumes the 0-based message index</dt>
+<dd>and UID derived from the server response.</dd>
+<dt>@rtype: L{Deferred &lt;defer.Deferred&gt;} which fires with L{list} of</dt>
+<dd>L{object} or callable that takes 2-L{tuple} of (0) L{int},
+(1) L{bytes}</dd>
+<dt>@return: A deferred which fires when the entire response has been</dt>
+<dd>received.  When a consumer is not provided, the return value is a
+list of message sizes.  Otherwise, it returns the consumer itself.</dd>
+</dl>
+</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.mail.pop3.AdvancedPOP3Client.login">
+    
+  </a>
+  <a name="login">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">login</span>(self, username, password):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/mail/_pop3client.py#L738">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Log in to the server.</p>
+<p>If APOP is available it will be used.  Otherwise, if TLS is
+available, an encrypted session will be started and plaintext
+login will proceed.  Otherwise, if L{allowInsecureLogin} is set,
+insecure plaintext login will proceed.  Otherwise,
+L{InsecureAuthenticationDisallowed} will be raised.</p>
+<p>The first step of logging into the server is obtaining the server's
+capabilities.  When that is complete, the L{_login} callback function
+continues the login process.</p>
+<p>@type username: L{bytes}
+@param username: The username with which to log in.</p>
+<p>@type password: L{bytes}
+@param password: The password with which to log in.</p>
+<dl class="rst-docutils">
+<dt>@rtype: L{Deferred &lt;defer.Deferred&gt;} which successfully fires with</dt>
+<dd>L{bytes}</dd>
+<dt>@return: A deferred which fires when the login process is complete.</dt>
+<dd>On a successful login, it returns the server's response minus the
+status indicator.</dd>
+</dl>
+</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.mail.pop3.AdvancedPOP3Client.noop">
+    
+  </a>
+  <a name="noop">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">noop</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/mail/_pop3client.py#L1110">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Send a NOOP command asking the server to do nothing but respond.</p>
+<dl class="rst-docutils">
+<dt>@rtype: L{Deferred &lt;defer.Deferred&gt;} which successfully fires with</dt>
+<dd>L{bytes} or fails with L{ServerErrorResponse}</dd>
+<dt>@return: A deferred which fires when the server response is received.</dt>
+<dd>On an OK response, the deferred succeeds with the server
+response minus the status indicator.  On an ERR response, the
+deferred fails with a server error response failure.</dd>
+</dl>
+</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.mail.pop3.AdvancedPOP3Client.password">
+    
+  </a>
+  <a name="password">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">password</span>(self, password):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/mail/_pop3client.py#L930">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Send a PASS command to perform the second half of plaintext login.</p>
+<p>Unless this is absolutely required, use the L{login} method instead.</p>
+<p>@type password: L{bytes}
+@param password: The plaintext password with which to authenticate.</p>
+<dl class="rst-docutils">
+<dt>@rtype: L{Deferred &lt;defer.Deferred&gt;} which successfully fires with</dt>
+<dd>L{bytes} or fails with L{ServerErrorResponse}</dd>
+<dt>@return: A deferred which fires when the server response is received.</dt>
+<dd>On an OK response, the deferred succeeds with the server
+response minus the status indicator.  On an ERR response, the
+deferred fails with a server error response failure.</dd>
+</dl>
+</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.mail.pop3.AdvancedPOP3Client.quit">
+    
+  </a>
+  <a name="quit">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">quit</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/mail/_pop3client.py#L1221">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Send a QUIT command to disconnect from the server.</p>
+<dl class="rst-docutils">
+<dt>@rtype: L{Deferred &lt;defer.Deferred&gt;} which successfully fires with</dt>
+<dd>L{bytes} or fails with L{ServerErrorResponse}</dd>
+<dt>@return: A deferred which fires when the server response is received.</dt>
+<dd>On an OK response, the deferred succeeds with the server
+response minus the status indicator.  On an ERR response, the
+deferred fails with a server error response failure.</dd>
+</dl>
+</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.mail.pop3.AdvancedPOP3Client.reset">
+    
+  </a>
+  <a name="reset">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">reset</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/mail/_pop3client.py#L1123">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Send a RSET command to unmark any messages that have been flagged
+for deletion on the server.</p>
+<dl class="rst-docutils">
+<dt>@rtype: L{Deferred &lt;defer.Deferred&gt;} which successfully fires with</dt>
+<dd>L{bytes} or fails with L{ServerErrorResponse}</dd>
+<dt>@return: A deferred which fires when the server response is received.</dt>
+<dd>On an OK response, the deferred succeeds with the server
+response minus the status indicator.  On an ERR response, the
+deferred fails with a server error response failure.</dd>
+</dl>
+</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.mail.pop3.AdvancedPOP3Client.retrieve">
+    
+  </a>
+  <a name="retrieve">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">retrieve</span>(self, index, consumer=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, lines=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/mail/_pop3client.py#L1137">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Send a RETR or TOP command to retrieve all or part of a message from
+the server.</p>
+<p>@type index: L{int}
+@param index: A 0-based message index.</p>
+<dl class="rst-docutils">
+<dt>@type consumer: L{None} or callable that takes</dt>
+<dd>L{bytes}</dd>
+<dt>@param consumer: A function which consumes each transformed line from a</dt>
+<dd>multi-line response as it is received.</dd>
+</dl>
+<p>@type lines: L{None} or L{int}
+@param lines: If specified, the number of lines of the message to be</p>
+<blockquote>
+retrieved.  Otherwise, the entire message is retrieved.</blockquote>
+<dl class="rst-docutils">
+<dt>@rtype: L{Deferred &lt;defer.Deferred&gt;} which fires with L{list} of</dt>
+<dd>L{bytes}, or callable that takes 2-L{tuple} of (0) L{int},
+(1) L{object}</dd>
+<dt>@return: A deferred which fires when the entire response has been</dt>
+<dd>received.  When a consumer is not provided, the return value is a
+list of the transformed lines.  Otherwise, it returns the consumer
+itself.</dd>
+</dl>
+</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.mail.pop3.AdvancedPOP3Client.sendLong">
+    
+  </a>
+  <a name="sendLong">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">sendLong</span>(self, cmd, args, consumer, xform):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/mail/_pop3client.py#L338">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Send a POP3 command to which a multi-line response is expected.</p>
+<p>Block all further commands from being sent until the entire response is
+received.  Transition the state to LONG_INITIAL.</p>
+<p>@type cmd: L{bytes}
+@param cmd: A POP3 command.</p>
+<p>@type args: L{bytes}
+@param args: The command arguments.</p>
+<p>@type consumer: callable that takes L{object}
+@param consumer: A consumer function which should be used to put</p>
+<blockquote>
+the values derived by a transform function from each line of the
+multi-line response into a list.</blockquote>
+<dl class="rst-docutils">
+<dt>@type xform: L{None} or callable that takes</dt>
+<dd>L{bytes} and returns L{object}</dd>
+<dt>@param xform: A transform function which should be used to transform</dt>
+<dd>each line of the multi-line response into usable values for use by
+a consumer function.  If L{None}, each line of the multi-line
+response should be sent directly to the consumer function.</dd>
+<dt>@rtype: L{Deferred &lt;defer.Deferred&gt;} which successfully fires with</dt>
+<dd>callable that takes L{object} and fails with L{ServerErrorResponse}</dd>
+<dt>@return: A deferred which fires when the entire response is received.</dt>
+<dd>On an OK response, it returns the consumer function.  On an ERR
+response, it issues a server error response failure with the
+response from the server minus the status indicator and the
+consumer function.</dd>
+</dl>
+</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.mail.pop3.AdvancedPOP3Client.sendShort">
+    
+  </a>
+  <a name="sendShort">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">sendShort</span>(self, cmd, args):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/mail/_pop3client.py#L305">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Send a POP3 command to which a short response is expected.</p>
+<p>Block all further commands from being sent until the response is
+received.  Transition the state to SHORT.</p>
+<p>@type cmd: L{bytes}
+@param cmd: A POP3 command.</p>
+<p>@type args: L{bytes}
+@param args: The command arguments.</p>
+<dl class="rst-docutils">
+<dt>@rtype: L{Deferred &lt;defer.Deferred&gt;} which successfully fires with</dt>
+<dd>L{bytes} or fails with L{ServerErrorResponse}</dd>
+<dt>@return: A deferred which fires when the entire response is received.</dt>
+<dd>On an OK response, it returns the response from the server minus
+the status indicator.  On an ERR response, it issues a server
+error response failure with the response from the server minus the
+status indicator.</dd>
+</dl>
+</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.mail.pop3.AdvancedPOP3Client.serverGreeting">
+    
+  </a>
+  <a name="serverGreeting">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">serverGreeting</span>(self, greeting):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/mail/_pop3client.py#L587">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="twisted.mail.test.test_pop3client.SimpleClient.html" class="internal-link">twisted.mail.test.test_pop3client.SimpleClient</a></code></div>
+    
+    <div><p>Handle the server greeting.</p>
+<p>@type greeting: L{bytes}
+@param greeting: The server greeting minus the status indicator.</p>
+<blockquote>
+For servers implementing APOP authentication, this will contain a
+challenge string.</blockquote>
+</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.mail.pop3.AdvancedPOP3Client.startTLS">
+    
+  </a>
+  <a name="startTLS">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">startTLS</span>(self, contextFactory=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/mail/_pop3client.py#L598">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Switch to encrypted communication using TLS.</p>
+<p>The first step of switching to encrypted communication is obtaining
+the server's capabilities.  When that is complete, the L{_startTLS}
+callback function continues the switching process.</p>
+<dl class="rst-docutils">
+<dt>@type contextFactory: L{None} or</dt>
+<dd>L{ClientContextFactory &lt;twisted.internet.ssl.ClientContextFactory&gt;}</dd>
+<dt>@param contextFactory: The context factory with which to negotiate TLS.</dt>
+<dd>If not provided, try to create a new one.</dd>
+<dt>@rtype: L{Deferred &lt;defer.Deferred&gt;} which successfully results in</dt>
+<dd>L{dict} mapping L{bytes} to L{list} of L{bytes} and/or L{bytes} to
+L{None} or fails with L{TLSError}</dd>
+<dt>@return: A deferred which fires when the transport has been</dt>
+<dd>secured according to the given context factory with the server
+capabilities, or which fails with a TLS error if the transport
+cannot be secured.</dd>
+</dl>
+</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.mail.pop3.AdvancedPOP3Client.stat">
+    
+  </a>
+  <a name="stat">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">stat</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/mail/_pop3client.py#L1170">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Send a STAT command to get information about the size of the mailbox.</p>
+<dl class="rst-docutils">
+<dt>@rtype: L{Deferred &lt;defer.Deferred&gt;} which successfully fires with</dt>
+<dd>a 2-tuple of (0) L{int}, (1) L{int} or fails with
+L{ServerErrorResponse}</dd>
+<dt>@return: A deferred which fires when the server response is received.</dt>
+<dd>On an OK response, the deferred succeeds with the number of
+messages in the mailbox and the size of the mailbox in octets.
+On an ERR response, the deferred fails with a server error
+response failure.</dd>
+</dl>
+</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.mail.pop3.AdvancedPOP3Client.state_LONG">
+    
+  </a>
+  <a name="state_LONG">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">state_LONG</span>(self, line):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/mail/_pop3client.py#L555">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Handle server responses for the LONG state in which the server is
+expected to send a non-initial line of a multi-line response.</p>
+<p>On receipt of the last line of the response, clean up, fire the
+deferred which is waiting on receipt of a complete response, and
+transition the state to WAITING. Otherwise, pass the line to the
+transform function, if provided, and then the consumer function.</p>
+<p>@type line: L{bytes}
+@param line: A line received from the server.</p>
+<p>@rtype: L{bytes}
+@return: The next state.</p>
+</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.mail.pop3.AdvancedPOP3Client.state_LONG_INITIAL">
+    
+  </a>
+  <a name="state_LONG_INITIAL">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">state_LONG_INITIAL</span>(self, line):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/mail/_pop3client.py#L530">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Handle server responses for the LONG_INITIAL state in which the server
+is expected to send the first line of a multi-line response.</p>
+<p>Parse the response.  On an OK response, transition the state to
+LONG.  On an ERR response, cleanup and transition the state to
+WAITING.</p>
+<p>@type line: L{bytes}
+@param line: A line received from the server.</p>
+<p>@rtype: L{bytes}
+@return: The next state.</p>
+</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.mail.pop3.AdvancedPOP3Client.state_SHORT">
+    
+  </a>
+  <a name="state_SHORT">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">state_SHORT</span>(self, line):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/mail/_pop3client.py#L507">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Handle server responses for the SHORT state in which the server is
+expected to send a single line response.</p>
+<p>Parse the response and fire the deferred which is waiting on receipt of
+a complete response.  Transition the state back to WAITING.</p>
+<p>@type line: L{bytes}
+@param line: A line received from the server.</p>
+<p>@rtype: L{bytes}
+@return: The next state.</p>
+</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.mail.pop3.AdvancedPOP3Client.state_WAITING">
+    
+  </a>
+  <a name="state_WAITING">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">state_WAITING</span>(self, line):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/mail/_pop3client.py#L497">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Log an error for server responses received in the WAITING state during
+which the server is not expected to send anything.</p>
+<p>@type line: L{bytes}
+@param line: A line received from the server.</p>
+</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.mail.pop3.AdvancedPOP3Client.state_WELCOME">
+    
+  </a>
+  <a name="state_WELCOME">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">state_WELCOME</span>(self, line):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/mail/_pop3client.py#L467">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Handle server responses for the WELCOME state in which the server
+greeting is expected.</p>
+<p>WELCOME is the first state.  The server should send one line of text
+with a greeting and possibly an APOP challenge.  Transition the state
+to WAITING.</p>
+<p>@type line: L{bytes}
+@param line: A line received from the server.</p>
+<p>@rtype: L{bytes}
+@return: The next state.</p>
+</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.mail.pop3.AdvancedPOP3Client.timeoutConnection">
+    
+  </a>
+  <a name="timeoutConnection">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">timeoutConnection</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/mail/_pop3client.py#L398">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overrides <code><a href="twisted.protocols.policies.TimeoutMixin.html#timeoutConnection" class="internal-link">twisted.protocols.policies.TimeoutMixin.timeoutConnection</a></code></div>
+    
+    <div>Drop the connection when the server does not respond in time.</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.mail.pop3.AdvancedPOP3Client.user">
+    
+  </a>
+  <a name="user">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">user</span>(self, username):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/mail/_pop3client.py#L912">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Send a USER command to perform the first half of plaintext login.</p>
+<p>Unless this is absolutely required, use the L{login} method instead.</p>
+<p>@type username: L{bytes}
+@param username: The username with which to log in.</p>
+<dl class="rst-docutils">
+<dt>@rtype: L{Deferred &lt;defer.Deferred&gt;} which successfully fires with</dt>
+<dd>L{bytes} or fails with L{ServerErrorResponse}</dd>
+<dt>@return: A deferred which fires when the server response is received.</dt>
+<dd>On an OK response, the deferred succeeds with the server
+response minus the status indicator.  On an ERR response, the
+deferred fails with a server error response failure.</dd>
+</dl>
+</div>
+  </div>
+</div><div class="baseclassvariable">
+  
+  
+  <a name="twisted.mail.pop3.AdvancedPOP3Client.allowInsecureLogin">
+    
+  </a>
+  <a name="allowInsecureLogin">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">allowInsecureLogin</span>: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/mail/_pop3client.py#L244">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="twisted.mail.test.test_pop3client.SimpleClient.html" class="internal-link">twisted.mail.test.test_pop3client.SimpleClient</a></code></div>
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseclassvariable">
+  
+  
+  <a name="twisted.mail.pop3.AdvancedPOP3Client.serverChallenge">
+    
+  </a>
+  <a name="serverChallenge">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">serverChallenge</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/mail/_pop3client.py#L246">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseclassvariable">
+  
+  
+  <a name="twisted.mail.pop3.AdvancedPOP3Client.timeout">
+    
+  </a>
+  <a name="timeout">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">timeout</span>: <code><a href="https://docs.python.org/3/library/functions.html#int" class="intersphinx-link">int</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/mail/_pop3client.py#L245">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="twisted.mail.pop3.AdvancedPOP3Client.startedTLS">
+    
+  </a>
+  <a name="startedTLS">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">startedTLS</span>: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/mail/_pop3client.py#L243">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="twisted.mail.pop3.AdvancedPOP3Client.state">
+    
+  </a>
+  <a name="state">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">state</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/mail/_pop3client.py#L334">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="twisted.mail.pop3.AdvancedPOP3Client.transport">
+    
+  </a>
+  <a name="transport">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">transport</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/mail/_pop3client.py#L714">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">overrides <code><a href="twisted.internet.protocol.BaseProtocol.html#transport" class="internal-link">twisted.internet.protocol.BaseProtocol.transport</a></code></div>
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="twisted.mail.pop3.AdvancedPOP3Client._apop">
+    
+  </a>
+  <a name="_apop">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_apop</span>(self, username, password, challenge):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/mail/_pop3client.py#L866">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Perform an APOP login.</p>
+<p>@type username: L{bytes}
+@param username: The username with which to log in.</p>
+<p>@type password: L{bytes}
+@param password: The password with which to log in.</p>
+<p>@type challenge: L{bytes}
+@param challenge: A challenge string.</p>
+<dl class="rst-docutils">
+<dt>@rtype: L{Deferred &lt;defer.Deferred&gt;} which successfully fires with</dt>
+<dd>L{bytes} or fails with L{ServerErrorResponse}</dd>
+<dt>@return: A deferred which fires when the server response is received.</dt>
+<dd>On a successful login, it returns the server response minus
+the status indicator.</dd>
+</dl>
+</div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="twisted.mail.pop3.AdvancedPOP3Client._blocked">
+    
+  </a>
+  <a name="_blocked">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_blocked</span>(self, f, *a):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/mail/_pop3client.py#L255">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Block a command, if necessary.</p>
+<p>If commands are being blocked, append information about the function
+which sends the command to a list and return a deferred that will be
+chained with the return value of the function when it eventually runs.
+Otherwise, set up for subsequent commands to be blocked and return
+L{None}.</p>
+<p>@type f: callable
+@param f: A function which sends a command.</p>
+<p>@type a: L{tuple}
+@param a: Arguments to the function.</p>
+<p>@rtype: L{None} or L{Deferred &lt;defer.Deferred&gt;}
+@return: L{None} if the command can run immediately.  Otherwise,</p>
+<blockquote>
+a deferred that will eventually trigger with the return value of
+the function.</blockquote>
+</div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="twisted.mail.pop3.AdvancedPOP3Client._consumeOrAppend">
+    
+  </a>
+  <a name="_consumeOrAppend">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_consumeOrAppend</span>(self, cmd, args, consumer, xform):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/mail/_pop3client.py#L1002">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Send a command to which a long response is expected and process the
+multi-line response into a list.</p>
+<p>@type cmd: L{bytes}
+@param cmd: A POP3 command which expects a long response.</p>
+<p>@type args: L{bytes}
+@param args: The command arguments.</p>
+<dl class="rst-docutils">
+<dt>@type consumer: L{None} or callable that takes</dt>
+<dd>L{object}</dd>
+<dt>@param consumer: L{None} or a function that consumes the output from the</dt>
+<dd>transform function.</dd>
+<dt>@type xform: L{None} or callable that takes</dt>
+<dd>L{bytes} and returns L{object}</dd>
+<dt>@param xform: A function that transforms a line from a multi-line</dt>
+<dd>response into usable form for input to the consumer function.  If
+no transform function is specified, the line is used as is.</dd>
+<dt>@rtype: L{Deferred &lt;defer.Deferred&gt;} which fires with L{list} of</dt>
+<dd>2-L{tuple} of (0) L{int}, (1) L{object} or callable that
+takes 2-L{tuple} of (0) L{int}, (1) L{object}</dd>
+<dt>@return: A deferred which fires when the entire response has been</dt>
+<dd>received.  When a consumer is not provided, the return value is a
+list of the transformed lines.  Otherwise, it returns the consumer
+itself.</dd>
+</dl>
+</div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="twisted.mail.pop3.AdvancedPOP3Client._consumeOrSetItem">
+    
+  </a>
+  <a name="_consumeOrSetItem">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_consumeOrSetItem</span>(self, cmd, args, consumer, xform):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/mail/_pop3client.py#L964">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Send a command to which a long response is expected and process the
+multi-line response into a list accounting for deleted messages.</p>
+<p>@type cmd: L{bytes}
+@param cmd: A POP3 command to which a long response is expected.</p>
+<p>@type args: L{bytes}
+@param args: The command arguments.</p>
+<dl class="rst-docutils">
+<dt>@type consumer: L{None} or callable that takes</dt>
+<dd>L{object}</dd>
+<dt>@param consumer: L{None} or a function that consumes the output from</dt>
+<dd>the transform function.</dd>
+<dt>@type xform: L{None}, callable that takes</dt>
+<dd>L{bytes} and returns 2-L{tuple} of (0) L{int}, (1) L{object},
+or callable that takes L{bytes} and returns L{object}</dd>
+<dt>@param xform: A function that parses a line from a multi-line response</dt>
+<dd>and transforms the values into usable form for input to the
+consumer function.  If no consumer function is specified, the
+output must be a message index and corresponding value.  If no
+transform function is specified, the line is used as is.</dd>
+<dt>@rtype: L{Deferred &lt;defer.Deferred&gt;} which fires with L{list} of</dt>
+<dd>L{object} or callable that takes L{list} of L{object}</dd>
+<dt>@return: A deferred which fires when the entire response has been</dt>
+<dd>received.  When a consumer is not provided, the return value is a
+list of the value for each message or L{None} for deleted messages.
+Otherwise, it returns the consumer itself.</dd>
+</dl>
+</div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="twisted.mail.pop3.AdvancedPOP3Client._getContextFactory">
+    
+  </a>
+  <a name="_getContextFactory">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_getContextFactory</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/mail/_pop3client.py#L720">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Get a context factory with which to negotiate TLS.</p>
+<dl class="rst-docutils">
+<dt>@rtype: L{None} or</dt>
+<dd>L{ClientContextFactory &lt;twisted.internet.ssl.ClientContextFactory&gt;}</dd>
+<dt>@return: A context factory or L{None} if TLS is not supported on the</dt>
+<dd>client.</dd>
+</dl>
+</div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="twisted.mail.pop3.AdvancedPOP3Client._login">
+    
+  </a>
+  <a name="_login">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_login</span>(self, caps, username, password):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/mail/_pop3client.py#L768">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Continue the process of logging in to the server.</p>
+<p>This callback function runs after the server capabilities are received.</p>
+<p>If the server provided a challenge in the greeting, proceed with an
+APOP login.  Otherwise, if the server and the transport support
+encrypted communication, try to switch to TLS and then complete
+the login process with the L{_loginTLS} callback function.  Otherwise,
+if insecure authentication is allowed, do a plaintext login.
+Otherwise, fail with an L{InsecureAuthenticationDisallowed} error.</p>
+<dl class="rst-docutils">
+<dt>@type caps: L{dict} mapping L{bytes} to L{list} of L{bytes} and/or</dt>
+<dd>L{bytes} to L{None}</dd>
+</dl>
+<p>@param caps: The server capabilities.</p>
+<p>@type username: L{bytes}
+@param username: The username with which to log in.</p>
+<p>@type password: L{bytes}
+@param password: The password with which to log in.</p>
+<dl class="rst-docutils">
+<dt>@rtype: L{Deferred &lt;defer.Deferred&gt;} which successfully fires with</dt>
+<dd>L{bytes}</dd>
+<dt>@return: A deferred which fires when the login process is complete.</dt>
+<dd>On a successful login, it returns the server's response minus the
+status indicator.</dd>
+</dl>
+</div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="twisted.mail.pop3.AdvancedPOP3Client._loginTLS">
+    
+  </a>
+  <a name="_loginTLS">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_loginTLS</span>(self, res, username, password):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/mail/_pop3client.py#L821">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Do a plaintext login over an encrypted transport.</p>
+<p>This callback function runs after the transport switches to encrypted
+communication.</p>
+<dl class="rst-docutils">
+<dt>@type res: L{dict} mapping L{bytes} to L{list} of L{bytes} and/or</dt>
+<dd>L{bytes} to L{None}</dd>
+</dl>
+<p>@param res: The server capabilities.</p>
+<p>@type username: L{bytes}
+@param username: The username with which to log in.</p>
+<p>@type password: L{bytes}
+@param password: The password with which to log in.</p>
+<dl class="rst-docutils">
+<dt>@rtype: L{Deferred &lt;defer.Deferred&gt;} which successfully fires with</dt>
+<dd>L{bytes} or fails with L{ServerErrorResponse}</dd>
+<dt>@return: A deferred which fires when the server accepts the username</dt>
+<dd>and password or fails when the server rejects either.  On a
+successful login, it returns the server's response minus the
+status indicator.</dd>
+</dl>
+</div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="twisted.mail.pop3.AdvancedPOP3Client._plaintext">
+    
+  </a>
+  <a name="_plaintext">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_plaintext</span>(self, username, password):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/mail/_pop3client.py#L847">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Perform a plaintext login.</p>
+<p>@type username: L{bytes}
+@param username: The username with which to log in.</p>
+<p>@type password: L{bytes}
+@param password: The password with which to log in.</p>
+<dl class="rst-docutils">
+<dt>@rtype: L{Deferred &lt;defer.Deferred&gt;} which successfully fires with</dt>
+<dd>L{bytes} or fails with L{ServerErrorResponse}</dd>
+<dt>@return: A deferred which fires when the server accepts the username</dt>
+<dd>and password or fails when the server rejects either.  On a
+successful login, it returns the server's response minus the
+status indicator.</dd>
+</dl>
+</div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="twisted.mail.pop3.AdvancedPOP3Client._startedTLS">
+    
+  </a>
+  <a name="_startedTLS">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_startedTLS</span>(self, result, context, tls):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/mail/_pop3client.py#L689">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Complete the process of switching to encrypted communication.</p>
+<p>This callback function runs after the response to the STLS command has
+been received.</p>
+<p>The final steps are discarding the cached capabilities and initiating
+TLS negotiation on the transport.</p>
+<dl class="rst-docutils">
+<dt>@type result: L{dict} mapping L{bytes} to L{list} of L{bytes} and/or</dt>
+<dd>L{bytes} to L{None}</dd>
+</dl>
+<p>@param result: The server capabilities.</p>
+<dl class="rst-docutils">
+<dt>@type context: L{ClientContextFactory</dt>
+<dd>&lt;twisted.internet.ssl.ClientContextFactory&gt;}</dd>
+</dl>
+<p>@param context: A context factory with which to negotiate TLS.</p>
+<p>@type tls: L{ITLSTransport &lt;interfaces.ITLSTransport&gt;}
+@param tls: A TCP transport that supports switching to TLS midstream.</p>
+<dl class="rst-docutils">
+<dt>@rtype: L{dict} mapping L{bytes} to L{list} of L{bytes} and/or L{bytes}</dt>
+<dd>to L{None}</dd>
+</dl>
+<p>@return: The server capabilities.</p>
+</div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="twisted.mail.pop3.AdvancedPOP3Client._startTLS">
+    
+  </a>
+  <a name="_startTLS">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_startTLS</span>(self, caps, contextFactory, tls):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/mail/_pop3client.py#L643">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Continue the process of switching to encrypted communication.</p>
+<p>This callback function runs after the server capabilities are received.</p>
+<p>The next step is sending the server an STLS command to request a
+switch to encrypted communication.  When an OK response is received,
+the L{_startedTLS} callback function completes the switch to encrypted
+communication. Then, the new server capabilities are requested.</p>
+<dl class="rst-docutils">
+<dt>@type caps: L{dict} mapping L{bytes} to L{list} of L{bytes} and/or</dt>
+<dd>L{bytes} to L{None}</dd>
+</dl>
+<p>@param caps: The server capabilities.</p>
+<dl class="rst-docutils">
+<dt>@type contextFactory: L{ClientContextFactory</dt>
+<dd>&lt;twisted.internet.ssl.ClientContextFactory&gt;}</dd>
+</dl>
+<p>@param contextFactory: A context factory with which to negotiate TLS.</p>
+<p>@type tls: L{ITLSTransport &lt;interfaces.ITLSTransport&gt;}
+@param tls: A TCP transport that supports switching to TLS midstream.</p>
+<dl class="rst-docutils">
+<dt>@rtype: L{Deferred &lt;defer.Deferred&gt;} which successfully triggers with</dt>
+<dd>L{dict} mapping L{bytes} to L{list} of L{bytes} and/or L{bytes} to
+L{None} or fails with L{TLSNotSupportedError}</dd>
+<dt>@return: A deferred which successfully fires when the response from</dt>
+<dd>the server to the request to start TLS has been received and the
+new server capabilities have been received or fails when the server
+does not support TLS.</dd>
+</dl>
+</div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="twisted.mail.pop3.AdvancedPOP3Client._unblock">
+    
+  </a>
+  <a name="_unblock">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_unblock</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/mail/_pop3client.py#L283">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Send the next blocked command.</p>
+<p>If there are no more commands in the blocked queue, set up for the next
+command to be sent immediately.</p>
+</div>
+  </div>
+</div><div class="baseclassvariable private">
+  
+  
+  <a name="twisted.mail.pop3.AdvancedPOP3Client._challengeMagicRe">
+    
+  </a>
+  <a name="_challengeMagicRe">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_challengeMagicRe</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/mail/_pop3client.py#L249">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  
+  <a name="twisted.mail.pop3.AdvancedPOP3Client._blockedQueue">
+    
+  </a>
+  <a name="_blockedQueue">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_blockedQueue</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/mail/_pop3client.py#L250">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  
+  <a name="twisted.mail.pop3.AdvancedPOP3Client._capCache">
+    
+  </a>
+  <a name="_capCache">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_capCache</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/mail/_pop3client.py#L248">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  
+  <a name="twisted.mail.pop3.AdvancedPOP3Client._consumer">
+    
+  </a>
+  <a name="_consumer">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_consumer</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/mail/_pop3client.py#L381">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  
+  <a name="twisted.mail.pop3.AdvancedPOP3Client._greetingError">
+    
+  </a>
+  <a name="_greetingError">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_greetingError</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/mail/_pop3client.py#L253">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  
+  <a name="twisted.mail.pop3.AdvancedPOP3Client._timedOut">
+    
+  </a>
+  <a name="_timedOut">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_timedOut</span>: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/mail/_pop3client.py#L252">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  
+  <a name="twisted.mail.pop3.AdvancedPOP3Client._waiting">
+    
+  </a>
+  <a name="_waiting">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_waiting</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/mail/_pop3client.py#L251">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  
+  <a name="twisted.mail.pop3.AdvancedPOP3Client._xform">
+    
+  </a>
+  <a name="_xform">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_xform</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/mail/_pop3client.py#L380">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div>
+
+      </div>
+    </div>
+
+    <footer class="navbar navbar-default">
+  
+  <div class="container">
+    <a href="index.html">API Documentation</a> for twisted,
+  generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
+    22.2.0 at 2022-02-23 16:05:07.
+  </div>
+</footer>
+
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+  </body>
+</html>

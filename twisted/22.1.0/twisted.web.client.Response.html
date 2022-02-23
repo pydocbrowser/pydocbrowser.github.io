@@ -1,0 +1,1018 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  
+
+  <head>
+    
+    <title>twisted.web.client.Response</title>
+    <meta name="generator" content="pydoctor 22.2.0"> 
+        
+    </meta>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=0.75" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+    <link rel="stylesheet" type="text/css" href="extra.css" />
+</head>
+
+  <body>
+
+    <div id="banner">    
+    <div>
+        <a href="/">Home</a>
+        &gt; twisted-22.1.0 <!-- This is a placeholder -->
+        
+        <!-- (<a href=""&gt;show all versions</a&gt;) -->
+    </div>
+</div>
+
+    <nav class="navbar navbar-default">
+  
+  <div class="container">
+
+    <div class="navbar-header">
+      
+      <div class="navlinks">
+          <span class="navbar-brand">
+            twisted <a href="index.html">API Documentation</a>
+          </span>
+
+          <a href="moduleIndex.html">
+            Modules
+          </a>
+
+          <a href="classIndex.html">
+            Classes
+          </a>
+
+          <a href="nameIndex.html">
+            Names
+          </a>
+      </div>
+
+    </div>
+  </div>
+</nav>
+
+    
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="class"><code><code><a href="index.html" class="internal-link">twisted</a></code><wbr></wbr>.<code><a href="twisted.web.html" class="internal-link" title="twisted.web">web</a></code><wbr></wbr>.<code><a href="twisted.web.client.html" class="internal-link" title="twisted.web.client">client</a></code><wbr></wbr>.<code><a href="twisted.web.client.Response.html" class="internal-link" title="twisted.web.client.Response">Response</a></code></code></h1>
+        <div id="showPrivate">
+          <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+        </div>
+      </div>
+
+      <div class="categoryHeader">
+        class documentation
+      </div>
+
+      <div class="extrasDocstring">
+        <p><code><span class="py-keyword">class</span> <span class="py-defname">Response</span>: <a href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/web/_newclient.py#L1056" class="sourceLink">(source)</a></code></p><p>Implements interfaces: <code><a href="twisted.web.iweb.IResponse.html" class="internal-link">twisted.web.iweb.IResponse</a></code></p>
+        <p><a href="classIndex.html#twisted.web.client.Response">View In Hierarchy</a></p>
+      </div>
+
+      <div class="moduleDocstring">
+        <div><p>A L{Response} instance describes an HTTP response received from an HTTP
+server.</p>
+<p>L{Response} should not be subclassed or instantiated.</p>
+<p>@ivar _transport: See L{__init__}.</p>
+<dl class="rst-docutils">
+<dt>@ivar _bodyProtocol: The L{IProtocol} provider to which the body is</dt>
+<dd>delivered.  L{None} before one has been registered with
+C{deliverBody}.</dd>
+<dt>@ivar _bodyBuffer: A C{list} of the strings passed to C{bodyDataReceived}</dt>
+<dd>before C{deliverBody} is called.  L{None} afterwards.</dd>
+<dt>@ivar _state: Indicates what state this L{Response} instance is in,</dt>
+<dd><p class="rst-first">particularly with respect to delivering bytes from the response body
+to an application-supplied protocol object.  This may be one of
+C{'INITIAL'}, C{'CONNECTED'}, C{'DEFERRED_CLOSE'}, or C{'FINISHED'},
+with the following meanings:</p>
+<blockquote class="rst-last">
+<ul class="rst-simple">
+<li>INITIAL: This is the state L{Response} objects start in.  No
+protocol has yet been provided and the underlying transport may
+still have bytes to deliver to it.</li>
+<li>DEFERRED_CLOSE: If the underlying transport indicates all bytes
+have been delivered but no application-provided protocol is yet
+available, the L{Response} moves to this state.  Data is
+buffered and waiting for a protocol to be delivered to.</li>
+<li>CONNECTED: If a protocol is provided when the state is INITIAL,
+the L{Response} moves to this state.  Any buffered data is
+delivered and any data which arrives from the transport
+subsequently is given directly to the protocol.</li>
+<li>FINISHED: If a protocol is provided in the DEFERRED_CLOSE state,
+the L{Response} moves to this state after delivering all
+buffered data to the protocol.  Otherwise, if the L{Response} is
+in the CONNECTED state, if the transport indicates there is no
+more data, the L{Response} moves to this state.  Nothing else
+can happen once the L{Response} is in this state.</li>
+</ul>
+</blockquote>
+</dd>
+</dl>
+<p>@type _state: C{str}</p>
+</div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id11880">
+  
+  
+  <tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__init__" class="internal-link" title="twisted.web.client.Response.__init__">__init__</a></code></td>
+    <td>@param version: HTTP version components protocol, major, minor. E.g. C{(b'HTTP', 1, 1)} to mean C{b'HTTP/1.1'}.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#deliverBody" class="internal-link" title="twisted.web.client.Response.deliverBody">deliver​Body</a></code></td>
+    <td>Dispatch the given L{IProtocol} depending of the current state of the response.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#setPreviousResponse" class="internal-link" title="twisted.web.client.Response.setPreviousResponse">set​Previous​Response</a></code></td>
+    <td>Set the reference to the previous L{IResponse}.</td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#code" class="internal-link" title="twisted.web.client.Response.code">code</a></code></td>
+    <td>The HTTP status code of this response, as a L{int}.</td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#headers" class="internal-link" title="twisted.web.client.Response.headers">headers</a></code></td>
+    <td>The HTTP response L{Headers} of this response.</td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#phrase" class="internal-link" title="twisted.web.client.Response.phrase">phrase</a></code></td>
+    <td>The HTTP reason phrase of this response, as a L{str}.</td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#previousResponse" class="internal-link" title="twisted.web.client.Response.previousResponse">previous​Response</a></code></td>
+    <td>The previous L{IResponse} from a redirect, or L{None} if there was no previous response. This can be used to walk the response or request history for redirections.</td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#request" class="internal-link" title="twisted.web.client.Response.request">request</a></code></td>
+    <td>The L{IClientRequest} that resulted in this response.</td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#version" class="internal-link" title="twisted.web.client.Response.version">version</a></code></td>
+    <td>A three-tuple describing the protocol and protocol version of the response.  The first element is of type L{str}, the second and third are of type L{int}.  For example, C{(b'HTTP', 1, 1)}.</td>
+  </tr><tr class="classmethod private">
+    
+    <td>Class Method</td>
+    <td><code><a href="#_construct" class="internal-link" title="twisted.web.client.Response._construct">​_construct</a></code></td>
+    <td>Private constructor.</td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_bodyDataFinished" class="internal-link" title="twisted.web.client.Response._bodyDataFinished">_body​Data​Finished</a></code></td>
+    <td>Called by HTTPClientParser when no more body data is available.  If the optional reason is supplied, this indicates a problem or potential problem receiving all of the response body.</td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_bodyDataFinished_CONNECTED" class="internal-link" title="twisted.web.client.Response._bodyDataFinished_CONNECTED">_body​Data​Finished_​CONNECTED</a></code></td>
+    <td>Disconnect the protocol and move to the C{'FINISHED'} state.</td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_bodyDataFinished_DEFERRED_CLOSE" class="internal-link" title="twisted.web.client.Response._bodyDataFinished_DEFERRED_CLOSE">_body​Data​Finished_​DEFERRED_​CLOSE</a></code></td>
+    <td>It is invalid to attempt to notify the L{Response} of the end of the response body data more than once.</td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_bodyDataFinished_FINISHED" class="internal-link" title="twisted.web.client.Response._bodyDataFinished_FINISHED">_body​Data​Finished_​FINISHED</a></code></td>
+    <td>It is invalid to attempt to notify the L{Response} of the end of the response body data more than once.</td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_bodyDataFinished_INITIAL" class="internal-link" title="twisted.web.client.Response._bodyDataFinished_INITIAL">_body​Data​Finished_​INITIAL</a></code></td>
+    <td>Move to the C{'DEFERRED_CLOSE'} state to wait for a protocol to which to deliver the response body.</td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_bodyDataReceived" class="internal-link" title="twisted.web.client.Response._bodyDataReceived">_body​Data​Received</a></code></td>
+    <td>Called by HTTPClientParser with chunks of data from the response body. They will be buffered or delivered to the protocol passed to deliverBody.</td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_bodyDataReceived_CONNECTED" class="internal-link" title="twisted.web.client.Response._bodyDataReceived_CONNECTED">_body​Data​Received_​CONNECTED</a></code></td>
+    <td>Deliver any data received to the protocol to which this L{Response} is connected.</td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_bodyDataReceived_DEFERRED_CLOSE" class="internal-link" title="twisted.web.client.Response._bodyDataReceived_DEFERRED_CLOSE">_body​Data​Received_​DEFERRED_​CLOSE</a></code></td>
+    <td>It is invalid for data to be delivered after it has been indicated that the response body has been completely delivered.</td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_bodyDataReceived_FINISHED" class="internal-link" title="twisted.web.client.Response._bodyDataReceived_FINISHED">_body​Data​Received_​FINISHED</a></code></td>
+    <td>It is invalid for data to be delivered after the response body has been delivered to a protocol.</td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_bodyDataReceived_INITIAL" class="internal-link" title="twisted.web.client.Response._bodyDataReceived_INITIAL">_body​Data​Received_​INITIAL</a></code></td>
+    <td>Buffer any data received for later delivery to a protocol passed to C{deliverBody}.</td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_deliverBody_CONNECTED" class="internal-link" title="twisted.web.client.Response._deliverBody_CONNECTED">_deliver​Body_​CONNECTED</a></code></td>
+    <td>It is invalid to attempt to deliver data to a protocol when it is already being delivered to another protocol.</td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_deliverBody_DEFERRED_CLOSE" class="internal-link" title="twisted.web.client.Response._deliverBody_DEFERRED_CLOSE">_deliver​Body_​DEFERRED_​CLOSE</a></code></td>
+    <td>Deliver any buffered data to C{protocol} and then disconnect the protocol.  Move to the C{'FINISHED'} state.</td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_deliverBody_FINISHED" class="internal-link" title="twisted.web.client.Response._deliverBody_FINISHED">_deliver​Body_​FINISHED</a></code></td>
+    <td>It is invalid to attempt to deliver data to a protocol after the response body has been delivered to another protocol.</td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_deliverBody_INITIAL" class="internal-link" title="twisted.web.client.Response._deliverBody_INITIAL">_deliver​Body_​INITIAL</a></code></td>
+    <td>Deliver any buffered data to C{protocol} and prepare to deliver any future data to it.  Move to the C{'CONNECTED'} state.</td>
+  </tr><tr class="classvariable private">
+    
+    <td>Class Variable</td>
+    <td><code><a href="#_bodyFinished" class="internal-link" title="twisted.web.client.Response._bodyFinished">_body​Finished</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#_bodyBuffer" class="internal-link" title="twisted.web.client.Response._bodyBuffer">_body​Buffer</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#_bodyProtocol" class="internal-link" title="twisted.web.client.Response._bodyProtocol">_body​Protocol</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#_reason" class="internal-link" title="twisted.web.client.Response._reason">​_reason</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#_state" class="internal-link" title="twisted.web.client.Response._state">​_state</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#_transport" class="internal-link" title="twisted.web.client.Response._transport">​_transport</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+        
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="basemethod">
+  
+  
+  <a name="twisted.web.client.Response.__init__">
+    
+  </a>
+  <a name="__init__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__init__</span>(self, version, code, phrase, headers, _transport):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/web/_newclient.py#L1107">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><dl class="rst-docutils">
+<dt>@param version: HTTP version components protocol, major, minor. E.g.</dt>
+<dd>C{(b'HTTP', 1, 1)} to mean C{b'HTTP/1.1'}.</dd>
+</dl>
+<p>@param code: HTTP status code.
+@type code: L{int}</p>
+<dl class="rst-docutils">
+<dt>@param phrase: HTTP reason phrase, intended to give a short description</dt>
+<dd>of the HTTP status code.</dd>
+</dl>
+<p>@param headers: HTTP response headers.
+@type headers: L{twisted.web.http_headers.Headers}</p>
+<p>@param _transport: The transport which is delivering this response.</p>
+</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.web.client.Response.deliverBody">
+    
+  </a>
+  <a name="deliverBody">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">deliverBody</span>(self, protocol):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/web/_newclient.py#L1154">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <code><a href="twisted.web.iweb.IResponse.html#deliverBody" class="internal-link" title="twisted.web.iweb.IResponse.deliverBody">twisted.web.iweb.IResponse</a></code></div>
+    
+    <div>Dispatch the given L{IProtocol} depending of the current state of the
+response.</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.web.client.Response.setPreviousResponse">
+    
+  </a>
+  <a name="setPreviousResponse">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">setPreviousResponse</span>(self, previousResponse):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/web/_newclient.py#L1151">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <code><a href="twisted.web.iweb.IResponse.html#setPreviousResponse" class="internal-link" title="twisted.web.iweb.IResponse.setPreviousResponse">twisted.web.iweb.IResponse</a></code></div>
+    
+    <div><p>Set the reference to the previous L{IResponse}.</p>
+<p>The value of the previous response can be read via
+L{IResponse.previousResponse}.</p>
+</div>
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="twisted.web.client.Response.code">
+    
+  </a>
+  <a name="code">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">code</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/web/_newclient.py#L1124">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">from <code><a href="twisted.web.iweb.IResponse.html#code" class="internal-link" title="twisted.web.iweb.IResponse.code">twisted.web.iweb.IResponse</a></code></div>
+    
+    <div>The HTTP status code of this response, as a L{int}.</div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="twisted.web.client.Response.headers">
+    
+  </a>
+  <a name="headers">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">headers</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/web/_newclient.py#L1126">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">from <code><a href="twisted.web.iweb.IResponse.html#headers" class="internal-link" title="twisted.web.iweb.IResponse.headers">twisted.web.iweb.IResponse</a></code></div>
+    
+    <div>The HTTP response L{Headers} of this response.</div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="twisted.web.client.Response.phrase">
+    
+  </a>
+  <a name="phrase">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">phrase</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/web/_newclient.py#L1125">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">from <code><a href="twisted.web.iweb.IResponse.html#phrase" class="internal-link" title="twisted.web.iweb.IResponse.phrase">twisted.web.iweb.IResponse</a></code></div>
+    
+    <div>The HTTP reason phrase of this response, as a L{str}.</div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="twisted.web.client.Response.previousResponse">
+    
+  </a>
+  <a name="previousResponse">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">previousResponse</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/web/_newclient.py#L1131">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">from <code><a href="twisted.web.iweb.IResponse.html#previousResponse" class="internal-link" title="twisted.web.iweb.IResponse.previousResponse">twisted.web.iweb.IResponse</a></code></div>
+    
+    <div>The previous L{IResponse} from a redirect, or L{None} if there was no previous response. This can be used to walk the response or request history for redirections.</div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="twisted.web.client.Response.request">
+    
+  </a>
+  <a name="request">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">request</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/web/_newclient.py#L1130">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">from <code><a href="twisted.web.iweb.IResponse.html#request" class="internal-link" title="twisted.web.iweb.IResponse.request">twisted.web.iweb.IResponse</a></code></div>
+    
+    <div>The L{IClientRequest} that resulted in this response.</div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="twisted.web.client.Response.version">
+    
+  </a>
+  <a name="version">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">version</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/web/_newclient.py#L1123">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">from <code><a href="twisted.web.iweb.IResponse.html#version" class="internal-link" title="twisted.web.iweb.IResponse.version">twisted.web.iweb.IResponse</a></code></div>
+    
+    <div>A three-tuple describing the protocol and protocol version of the response.  The first element is of type L{str}, the second and third are of type L{int}.  For example, C{(b'HTTP', 1, 1)}.</div>
+    
+  </div>
+</div><div class="baseclassmethod private">
+  
+  
+  <a name="twisted.web.client.Response._construct">
+    
+  </a>
+  <a name="_construct">
+    
+  </a>
+  <div class="functionHeader">
+    @<a href="https://docs.python.org/3/library/functions.html#classmethod" class="intersphinx-link">classmethod</a><br />
+    <span class="py-keyword">def</span> <span class="py-defname">_construct</span>(cls, version, code, phrase, headers, _transport, request):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/web/_newclient.py#L1133">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Private constructor.</p>
+<p>@param version: See L{__init__}.
+@param code: See L{__init__}.
+@param phrase: See L{__init__}.
+@param headers: See L{__init__}.
+@param _transport: See L{__init__}.
+@param request: See L{IResponse.request}.</p>
+<p>@return: L{Response} instance.</p>
+</div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="twisted.web.client.Response._bodyDataFinished">
+    
+  </a>
+  <a name="_bodyDataFinished">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_bodyDataFinished</span>(self, reason=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/web/_newclient.py#L1258">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Called by HTTPClientParser when no more body data is available.  If the
+optional reason is supplied, this indicates a problem or potential
+problem receiving all of the response body.</div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="twisted.web.client.Response._bodyDataFinished_CONNECTED">
+    
+  </a>
+  <a name="_bodyDataFinished_CONNECTED">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_bodyDataFinished_CONNECTED</span>(self, reason=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/web/_newclient.py#L1277">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Disconnect the protocol and move to the C{'FINISHED'} state.</div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="twisted.web.client.Response._bodyDataFinished_DEFERRED_CLOSE">
+    
+  </a>
+  <a name="_bodyDataFinished_DEFERRED_CLOSE">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_bodyDataFinished_DEFERRED_CLOSE</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/web/_newclient.py#L1287">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>It is invalid to attempt to notify the L{Response} of the end of the
+response body data more than once.</div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="twisted.web.client.Response._bodyDataFinished_FINISHED">
+    
+  </a>
+  <a name="_bodyDataFinished_FINISHED">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_bodyDataFinished_FINISHED</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/web/_newclient.py#L1294">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>It is invalid to attempt to notify the L{Response} of the end of the
+response body data more than once.</div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="twisted.web.client.Response._bodyDataFinished_INITIAL">
+    
+  </a>
+  <a name="_bodyDataFinished_INITIAL">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_bodyDataFinished_INITIAL</span>(self, reason=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/web/_newclient.py#L1267">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Move to the C{'DEFERRED_CLOSE'} state to wait for a protocol to
+which to deliver the response body.</div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="twisted.web.client.Response._bodyDataReceived">
+    
+  </a>
+  <a name="_bodyDataReceived">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_bodyDataReceived</span>(self, data):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/web/_newclient.py#L1217">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Called by HTTPClientParser with chunks of data from the response body.
+They will be buffered or delivered to the protocol passed to
+deliverBody.</div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="twisted.web.client.Response._bodyDataReceived_CONNECTED">
+    
+  </a>
+  <a name="_bodyDataReceived_CONNECTED">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_bodyDataReceived_CONNECTED</span>(self, data):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/web/_newclient.py#L1237">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Deliver any data received to the protocol to which this L{Response}
+is connected.</div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="twisted.web.client.Response._bodyDataReceived_DEFERRED_CLOSE">
+    
+  </a>
+  <a name="_bodyDataReceived_DEFERRED_CLOSE">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_bodyDataReceived_DEFERRED_CLOSE</span>(self, data):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/web/_newclient.py#L1244">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>It is invalid for data to be delivered after it has been indicated
+that the response body has been completely delivered.</div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="twisted.web.client.Response._bodyDataReceived_FINISHED">
+    
+  </a>
+  <a name="_bodyDataReceived_FINISHED">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_bodyDataReceived_FINISHED</span>(self, data):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/web/_newclient.py#L1251">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>It is invalid for data to be delivered after the response body has
+been delivered to a protocol.</div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="twisted.web.client.Response._bodyDataReceived_INITIAL">
+    
+  </a>
+  <a name="_bodyDataReceived_INITIAL">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_bodyDataReceived_INITIAL</span>(self, data):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/web/_newclient.py#L1226">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Buffer any data received for later delivery to a protocol passed to
+C{deliverBody}.</p>
+<p>Little or no data should be buffered by this method, since the
+transport has been paused and will not be resumed until a protocol
+is supplied.</p>
+</div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="twisted.web.client.Response._deliverBody_CONNECTED">
+    
+  </a>
+  <a name="_deliverBody_CONNECTED">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_deliverBody_CONNECTED</span>(self, protocol):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/web/_newclient.py#L1182">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>It is invalid to attempt to deliver data to a protocol when it is
+already being delivered to another protocol.</div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="twisted.web.client.Response._deliverBody_DEFERRED_CLOSE">
+    
+  </a>
+  <a name="_deliverBody_DEFERRED_CLOSE">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_deliverBody_DEFERRED_CLOSE</span>(self, protocol):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/web/_newclient.py#L1192">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Deliver any buffered data to C{protocol} and then disconnect the
+protocol.  Move to the C{'FINISHED'} state.</div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="twisted.web.client.Response._deliverBody_FINISHED">
+    
+  </a>
+  <a name="_deliverBody_FINISHED">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_deliverBody_FINISHED</span>(self, protocol):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/web/_newclient.py#L1210">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>It is invalid to attempt to deliver data to a protocol after the
+response body has been delivered to another protocol.</div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="twisted.web.client.Response._deliverBody_INITIAL">
+    
+  </a>
+  <a name="_deliverBody_INITIAL">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_deliverBody_INITIAL</span>(self, protocol):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/web/_newclient.py#L1162">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Deliver any buffered data to C{protocol} and prepare to deliver any
+future data to it.  Move to the C{'CONNECTED'} state.</div>
+  </div>
+</div><div class="baseclassvariable private">
+  
+  
+  <a name="twisted.web.client.Response._bodyFinished">
+    
+  </a>
+  <a name="_bodyFinished">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_bodyFinished</span>: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/web/_newclient.py#L1105">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  
+  <a name="twisted.web.client.Response._bodyBuffer">
+    
+  </a>
+  <a name="_bodyBuffer">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_bodyBuffer</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/web/_newclient.py#L1128">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  
+  <a name="twisted.web.client.Response._bodyProtocol">
+    
+  </a>
+  <a name="_bodyProtocol">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_bodyProtocol</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/web/_newclient.py#L1104">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  
+  <a name="twisted.web.client.Response._reason">
+    
+  </a>
+  <a name="_reason">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_reason</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/web/_newclient.py#L1275">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  
+  <a name="twisted.web.client.Response._state">
+    
+  </a>
+  <a name="_state">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_state</span>: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/web/_newclient.py#L1129">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  
+  <a name="twisted.web.client.Response._transport">
+    
+  </a>
+  <a name="_transport">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_transport</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/web/_newclient.py#L1127">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div>
+
+      </div>
+    </div>
+
+    <footer class="navbar navbar-default">
+  
+  <div class="container">
+    <a href="index.html">API Documentation</a> for twisted,
+  generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
+    22.2.0 at 2022-02-23 16:05:07.
+  </div>
+</footer>
+
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+  </body>
+</html>

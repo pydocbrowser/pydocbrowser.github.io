@@ -1,0 +1,475 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  
+
+  <head>
+    
+    <title>treq.testing.RequestSequence</title>
+    <meta name="generator" content="pydoctor 22.2.0"> 
+        
+    </meta>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=0.75" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+    <link rel="stylesheet" type="text/css" href="extra.css" />
+</head>
+
+  <body>
+
+    <div id="banner">    
+    <div>
+        <a href="/">Home</a>
+        &gt; treq-22.2.0 <!-- This is a placeholder -->
+        
+        <!-- (<a href=""&gt;show all versions</a&gt;) -->
+    </div>
+</div>
+
+    <nav class="navbar navbar-default">
+  
+  <div class="container">
+
+    <div class="navbar-header">
+      
+      <div class="navlinks">
+          <span class="navbar-brand">
+            treq <a href="index.html">API Documentation</a>
+          </span>
+
+          <a href="moduleIndex.html">
+            Modules
+          </a>
+
+          <a href="classIndex.html">
+            Classes
+          </a>
+
+          <a href="nameIndex.html">
+            Names
+          </a>
+      </div>
+
+    </div>
+  </div>
+</nav>
+
+    
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="class"><code><code><a href="index.html" class="internal-link">treq</a></code><wbr></wbr>.<code><a href="treq.testing.html" class="internal-link" title="treq.testing">testing</a></code><wbr></wbr>.<code><a href="treq.testing.RequestSequence.html" class="internal-link" title="treq.testing.RequestSequence">RequestSequence</a></code></code></h1>
+        <div id="showPrivate">
+          <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+        </div>
+      </div>
+
+      <div class="categoryHeader">
+        class documentation
+      </div>
+
+      <div class="extrasDocstring">
+        <p><code><span class="py-keyword">class</span> <span class="py-defname">RequestSequence</span>: <a href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/treq-22.2.0//src/treq/testing.py#L369" class="sourceLink">(source)</a></code></p>
+        <p><a href="classIndex.html#treq.testing.RequestSequence">View In Hierarchy</a></p>
+      </div>
+
+      <div class="moduleDocstring">
+        <div><p>For an example usage, see <code><a href="#consume" class="internal-link" title="treq.testing.RequestSequence.consume">RequestSequence.consume</a></code>.</p>
+<p>Takes a sequence of:</p>
+<pre class="rst-literal-block">
+[((method, url, params, headers, data), (code, headers, body)),
+ ...]
+</pre>
+<p>Expects the requests to arrive in sequence order.  If there are no more
+responses, or the request's parameters do not match the next item's
+expected request parameters, calls <code>sync_failure_reporter</code> or
+<code><a href="#async_failure_reporter" class="internal-link" title="treq.testing.RequestSequence.async_failure_reporter">async_failure_reporter</a></code>.</p>
+<p>For the expected request tuples:</p>
+<ul class="rst-simple">
+<li><tt class="rst-docutils literal">method</tt> should be <code><a href="https://docs.python.org/3/library/stdtypes.html#bytes" class="intersphinx-link">bytes</a></code> normalized to lowercase.</li>
+<li><tt class="rst-docutils literal">url</tt> should be a <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code> normalized as per the <a class="rst-reference external" href="https://en.wikipedia.org/wiki/URL_normalization" target="_top">transformations in that
+(usually) preserve semantics</a>.  A URL to
+<code>http://something-that-looks-like-a-directory</code> would be normalized to
+<code>http://something-that-looks-like-a-directory/</code>
+and a URL to <code>http://something-that-looks-like-a-page/page.html</code>
+remains unchanged.</li>
+<li><tt class="rst-docutils literal">params</tt> is a dictionary mapping <code><a href="https://docs.python.org/3/library/stdtypes.html#bytes" class="intersphinx-link">bytes</a></code> to <code><a href="https://docs.python.org/3/library/stdtypes.html#list" class="intersphinx-link">list</a></code> of
+<code><a href="https://docs.python.org/3/library/stdtypes.html#bytes" class="intersphinx-link">bytes</a></code>.</li>
+<li><tt class="rst-docutils literal">headers</tt> is a dictionary mapping <code><a href="https://docs.python.org/3/library/stdtypes.html#bytes" class="intersphinx-link">bytes</a></code> to <code><a href="https://docs.python.org/3/library/stdtypes.html#list" class="intersphinx-link">list</a></code> of
+<code><a href="https://docs.python.org/3/library/stdtypes.html#bytes" class="intersphinx-link">bytes</a></code> -- note that <code>twisted.web.client.Agent</code> may add its
+own headers which are not guaranteed to be present (for instance,
+<code>user-agent</code> or <code>content-length</code>), so it's better to use some kind of
+matcher like <code><a href="treq.testing.HasHeaders.html" class="internal-link" title="treq.testing.HasHeaders">HasHeaders</a></code>.</li>
+<li><tt class="rst-docutils literal">data</tt> is a <code><a href="https://docs.python.org/3/library/stdtypes.html#bytes" class="intersphinx-link">bytes</a></code>.</li>
+</ul>
+<p>For the response tuples:</p>
+<ul class="rst-simple">
+<li><tt class="rst-docutils literal">code</tt> is an integer representing the HTTP status code to return.</li>
+<li><tt class="rst-docutils literal">headers</tt> is a dictionary mapping <code><a href="https://docs.python.org/3/library/stdtypes.html#bytes" class="intersphinx-link">bytes</a></code> to <code><a href="https://docs.python.org/3/library/stdtypes.html#bytes" class="intersphinx-link">bytes</a></code> or
+<code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code>. Note that the value is <em>not</em> a list.</li>
+<li><tt class="rst-docutils literal">body</tt> is a <code><a href="https://docs.python.org/3/library/stdtypes.html#bytes" class="intersphinx-link">bytes</a></code>.</li>
+</ul>
+<p>When the <code><a href="#async_failure_reporter" class="internal-link" title="treq.testing.RequestSequence.async_failure_reporter">async_failure_reporter</a></code> parameter is not passed, async failures
+will be reported via a <code>twisted.logger.Logger</code> instance, which
+Trial's test case classes (<code>twisted.trial.unittest.TestCase</code> and
+<code>~twisted.trial.unittest.SynchronousTestCase</code>) will translate into
+a test failure.</p>
+<div class="rst-admonition note">
+<p class="rst-first rst-admonition-title">Note</p>
+<p class="rst-last">Some versions of
+<code>twisted.trial.unittest.SynchronousTestCase</code> report
+logged errors on the wrong test: see <a class="rst-reference external" href="https://twistedmatrix.com/trac/ticket/9267" target="_top">Twisted #9267</a>.</p>
+</div>
+<!-- TODO Update the above note to say what version of
+SynchronousTestCase is fixed once Twisted &gt;17.5.0 is released. -->
+<p>When not subclassing Trial's classes you must pass <code><a href="#async_failure_reporter" class="internal-link" title="treq.testing.RequestSequence.async_failure_reporter">async_failure_reporter</a></code>
+and implement equivalent behavior or errors will pass silently. For
+example:</p>
+<pre class="rst-literal-block">
+async_failures = []
+sequence_stubs = RequestSequence([...], async_failures.append)
+stub_treq = StubTreq(StringStubbingResource(sequence_stubs))
+with sequence_stubs.consume(self.fail):  # self = unittest.TestCase
+    stub_treq.get('http://fakeurl.com')
+
+self.assertEqual([], async_failures)
+</pre>
+</div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id1212">
+  
+  
+  <tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__call__" class="internal-link" title="treq.testing.RequestSequence.__call__">__call__</a></code></td>
+    <td></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__init__" class="internal-link" title="treq.testing.RequestSequence.__init__">__init__</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#consume" class="internal-link" title="treq.testing.RequestSequence.consume">consume</a></code></td>
+    <td>Usage:</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#consumed" class="internal-link" title="treq.testing.RequestSequence.consumed">consumed</a></code></td>
+    <td></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#async_failure_reporter" class="internal-link" title="treq.testing.RequestSequence.async_failure_reporter">async​_failure​_reporter</a></code></td>
+    <td>An optional callable that takes
+a <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code> message indicating a failure. It's asynchronous because
+it cannot just raise an exception—if it does, <code>Resource.render</code> will just convert that into
+a 500 response, and there will be no other failure reporting mechanism.</td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#list%20sequence" class="internal-link" title="treq.testing.RequestSequence.list sequence">list sequence</a></code></td>
+    <td>A sequence of (request tuple, response tuple)
+two-tuples, as described above.</td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_log_async_error" class="internal-link" title="treq.testing.RequestSequence._log_async_error">​_log​_async​_error</a></code></td>
+    <td>The default async failure reporter—see <code><a href="#async_failure_reporter" class="internal-link" title="treq.testing.RequestSequence.async_failure_reporter">async_failure_reporter</a></code>. Logs a failure which wraps an <a href="#system-message-1"><span class="rst-problematic" id="rst-problematic-1">:ex:`AssertionError`</span></a>.</td>
+  </tr><tr class="classvariable private">
+    
+    <td>Class Variable</td>
+    <td><code><a href="#_log" class="internal-link" title="treq.testing.RequestSequence._log">​_log</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#_async_reporter" class="internal-link" title="treq.testing.RequestSequence._async_reporter">​_async​_reporter</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#_sequence" class="internal-link" title="treq.testing.RequestSequence._sequence">​_sequence</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+        
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="basemethod">
+  
+  
+  <a name="treq.testing.RequestSequence.__call__">
+    
+  </a>
+  <a name="__call__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__call__</span>(self, method, url, params, headers, data):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/treq-22.2.0//src/treq/testing.py#L504">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td colspan="2">the next response in the sequence, provided that the
+parameters match the next in the sequence.</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="treq.testing.RequestSequence.__init__">
+    
+  </a>
+  <a name="__init__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__init__</span>(self, sequence, async_failure_reporter=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/treq-22.2.0//src/treq/testing.py#L447">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="treq.testing.RequestSequence.consume">
+    
+  </a>
+  <a name="consume">
+    
+  </a>
+  <div class="functionHeader">
+    @<a href="https://docs.python.org/3/library/contextlib.html#contextlib.contextmanager" class="intersphinx-link">contextmanager</a><br />
+    <span class="py-keyword">def</span> <span class="py-defname">consume</span>(self, sync_failure_reporter):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/treq-22.2.0//src/treq/testing.py#L474">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Usage:</p>
+<pre class="rst-literal-block">
+sequence_stubs = RequestSequence([...])
+stub_treq = StubTreq(StringStubbingResource(sequence_stubs))
+# self = twisted.trial.unittest.SynchronousTestCase
+with sequence_stubs.consume(self.fail):
+    stub_treq.get('http://fakeurl.com')
+    stub_treq.get('http://another-fake-url.com')
+</pre>
+<p>If there are still remaining expected requests to be made in the
+sequence, fails the provided test case.</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">sync​_failure​_reporter</span></td><td class="fieldArgDesc">A callable that takes a single message
+reporting failures.  This can just raise an exception - it does
+not need to be asynchronous, since the exception would not get
+raised within a Resource.</td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td colspan="2">a context manager that can be used to ensure all expected
+requests have been made.</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="treq.testing.RequestSequence.consumed">
+    
+  </a>
+  <a name="consumed">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">consumed</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/treq-22.2.0//src/treq/testing.py#L466">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td colspan="2"><code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code> representing whether the entire sequence has been
+consumed.  This is useful in tests to assert that the expected
+requests have all been made.</td></tr></table></div>
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="treq.testing.RequestSequence.async_failure_reporter">
+    
+  </a>
+  <a name="async_failure_reporter">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">async_failure_reporter</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/treq-22.2.0//src/treq/testing.py#L411">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div>An optional callable that takes
+a <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code> message indicating a failure. It's asynchronous because
+it cannot just raise an exception—if it does, <code>Resource.render</code> will just convert that into
+a 500 response, and there will be no other failure reporting mechanism.</div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="treq.testing.RequestSequence.list sequence">
+    
+  </a>
+  <a name="list sequence">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">list sequence</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/treq-22.2.0//src/treq/testing.py#L409">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div>A sequence of (request tuple, response tuple)
+two-tuples, as described above.</div>
+    
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="treq.testing.RequestSequence._log_async_error">
+    
+  </a>
+  <a name="_log_async_error">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_log_async_error</span>(self, message):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/treq-22.2.0//src/treq/testing.py#L451">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>The default async failure reporter—see <code><a href="#async_failure_reporter" class="internal-link" title="treq.testing.RequestSequence.async_failure_reporter">async_failure_reporter</a></code>. Logs
+a failure which wraps an <a href="#system-message-1"><span class="rst-problematic" id="rst-problematic-1">:ex:`AssertionError`</span></a>.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">message</span></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">str message</span></td><td class="fieldArgDesc">Failure message</td></tr></table></div>
+  </div>
+</div><div class="baseclassvariable private">
+  
+  
+  <a name="treq.testing.RequestSequence._log">
+    
+  </a>
+  <a name="_log">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_log</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/treq-22.2.0//src/treq/testing.py#L445">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  
+  <a name="treq.testing.RequestSequence._async_reporter">
+    
+  </a>
+  <a name="_async_reporter">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_async_reporter</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/treq-22.2.0//src/treq/testing.py#L449">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  
+  <a name="treq.testing.RequestSequence._sequence">
+    
+  </a>
+  <a name="_sequence">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_sequence</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/treq-22.2.0//src/treq/testing.py#L448">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div>
+
+      </div>
+    </div>
+
+    <footer class="navbar navbar-default">
+  
+  <div class="container">
+    <a href="index.html">API Documentation</a> for treq,
+  generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
+    22.2.0 at 2022-02-23 16:04:59.
+  </div>
+</footer>
+
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+  </body>
+</html>

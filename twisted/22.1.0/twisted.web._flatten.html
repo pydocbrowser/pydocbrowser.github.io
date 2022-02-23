@@ -1,0 +1,595 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  
+
+  <head>
+    
+    <title>twisted.web._flatten</title>
+    <meta name="generator" content="pydoctor 22.2.0"> 
+        
+    </meta>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=0.75" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+    <link rel="stylesheet" type="text/css" href="extra.css" />
+</head>
+
+  <body>
+
+    <div id="banner">    
+    <div>
+        <a href="/">Home</a>
+        &gt; twisted-22.1.0 <!-- This is a placeholder -->
+        
+        <!-- (<a href=""&gt;show all versions</a&gt;) -->
+    </div>
+</div>
+
+    <nav class="navbar navbar-default">
+  
+  <div class="container">
+
+    <div class="navbar-header">
+      
+      <div class="navlinks">
+          <span class="navbar-brand">
+            twisted <a href="index.html">API Documentation</a>
+          </span>
+
+          <a href="moduleIndex.html">
+            Modules
+          </a>
+
+          <a href="classIndex.html">
+            Classes
+          </a>
+
+          <a href="nameIndex.html">
+            Names
+          </a>
+      </div>
+
+    </div>
+  </div>
+</nav>
+
+    
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="module private"><code><code><a href="index.html" class="internal-link">twisted</a></code><wbr></wbr>.<code><a href="twisted.web.html" class="internal-link" title="twisted.web">web</a></code><wbr></wbr>.<code><a href="twisted.web._flatten.html" class="internal-link" title="twisted.web._flatten">_flatten</a></code></code></h1>
+        <div id="showPrivate">
+          <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+        </div>
+      </div>
+
+      <div class="categoryHeader">
+        module documentation
+      </div>
+
+      <div class="extrasDocstring">
+        <a href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/web/_flatten.py" class="sourceLink">(source)</a>
+        <p></p>
+      </div>
+
+      <div class="moduleDocstring">
+        <div>Context-free flattener/serializer for rendering Python objects, possibly
+complex or arbitrarily nested, as strings.</div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id11836">
+  
+  
+  <tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#attributeEscapingDoneOutside" class="internal-link" title="twisted.web._flatten.attributeEscapingDoneOutside">attribute​Escaping​Done​Outside</a></code></td>
+    <td><span class="undocumented">No summary</span></td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#escapedCDATA" class="internal-link" title="twisted.web._flatten.escapedCDATA">escaped​CDATA</a></code></td>
+    <td>Escape CDATA for inclusion in a document.</td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#escapedComment" class="internal-link" title="twisted.web._flatten.escapedComment">escaped​Comment</a></code></td>
+    <td>Escape a comment for inclusion in a document.</td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#escapeForContent" class="internal-link" title="twisted.web._flatten.escapeForContent">escape​For​Content</a></code></td>
+    <td>Escape some character or UTF-8 byte data for inclusion in an HTML or XML document, by replacing metacharacters (C{&amp;&lt;&gt;}) with their entity equivalents (C{&amp;amp;&amp;lt;&amp;gt;}).</td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#flatten" class="internal-link" title="twisted.web._flatten.flatten">flatten</a></code></td>
+    <td>Incrementally write out a string representation of C{root} using C{write}.</td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#flattenString" class="internal-link" title="twisted.web._flatten.flattenString">flatten​String</a></code></td>
+    <td>Collate a string representation of C{root} into a single string.</td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#writeWithAttributeEscaping" class="internal-link" title="twisted.web._flatten.writeWithAttributeEscaping">write​With​Attribute​Escaping</a></code></td>
+    <td>Decorate a C{write} callable so that all output written is properly quoted for inclusion within an XML attribute value.</td>
+  </tr><tr class="constant">
+    
+    <td>Constant</td>
+    <td><code><a href="#T" class="internal-link" title="twisted.web._flatten.T">T</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><code><a href="#Flattenable" class="internal-link" title="twisted.web._flatten.Flattenable">​Flattenable</a></code></td>
+    <td>Type alias containing all types that can be flattened by L{flatten()}.</td>
+  </tr><tr class="function private">
+    
+    <td>Function</td>
+    <td><code><a href="#_flattenElement" class="internal-link" title="twisted.web._flatten._flattenElement">_flatten​Element</a></code></td>
+    <td>Make C{root} slightly more flat by yielding all its immediate contents as strings, deferreds or generators that are recursive calls to itself.</td>
+  </tr><tr class="function private">
+    
+    <td>Async Function</td>
+    <td><code><a href="#_flattenTree" class="internal-link" title="twisted.web._flatten._flattenTree">_flatten​Tree</a></code></td>
+    <td>Make C{root} into an iterable of L{bytes} and L{Deferred} by doing a depth first traversal of the tree.</td>
+  </tr><tr class="function private">
+    
+    <td>Function</td>
+    <td><code><a href="#_fork" class="internal-link" title="twisted.web._flatten._fork">​_fork</a></code></td>
+    <td>Create a new L{Deferred} based on C{d} that will fire and fail with C{d}'s result or error, but will not modify C{d}'s callback type.</td>
+  </tr><tr class="function private">
+    
+    <td>Function</td>
+    <td><code><a href="#_getSlotValue" class="internal-link" title="twisted.web._flatten._getSlotValue">_get​Slot​Value</a></code></td>
+    <td>Find the value of the named slot in the given stack of slot data.</td>
+  </tr>
+</table>
+        
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="basefunction">
+  
+  
+  <a name="twisted.web._flatten.attributeEscapingDoneOutside">
+    
+  </a>
+  <a name="attributeEscapingDoneOutside">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">attributeEscapingDoneOutside</span>(data):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/web/_flatten.py#L86">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Escape some character or UTF-8 byte data for inclusion in the top level of
+an attribute.  L{attributeEscapingDoneOutside} actually passes the data
+through unchanged, because L{writeWithAttributeEscaping} handles the
+quoting of the text within attributes outside the generator returned by
+L{_flattenElement}; this is used as the C{dataEscaper} argument to that
+L{_flattenElement} call so that that generator does not redundantly escape
+its text output.</p>
+<p>@param data: The string to escape.</p>
+<p>@return: The string, unchanged, except for encoding.</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">data:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Union" class="intersphinx-link">Union</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#bytes" class="intersphinx-link">bytes</a>, <wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/stdtypes.html#bytes" class="intersphinx-link">bytes</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="twisted.web._flatten.escapedCDATA">
+    
+  </a>
+  <a name="escapedCDATA">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">escapedCDATA</span>(data):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/web/_flatten.py#L152">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Escape CDATA for inclusion in a document.</p>
+<p>@param data: The string to escape.</p>
+<dl class="rst-docutils">
+<dt>@return: The quoted form of C{data}. If C{data} is unicode, return a utf-8</dt>
+<dd>encoded string.</dd>
+</dl>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">data:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Union" class="intersphinx-link">Union</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#bytes" class="intersphinx-link">bytes</a>, <wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/stdtypes.html#bytes" class="intersphinx-link">bytes</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="twisted.web._flatten.escapedComment">
+    
+  </a>
+  <a name="escapedComment">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">escapedComment</span>(data):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/web/_flatten.py#L166">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Escape a comment for inclusion in a document.</p>
+<p>@param data: The string to escape.</p>
+<dl class="rst-docutils">
+<dt>@return: The quoted form of C{data}. If C{data} is unicode, return a utf-8</dt>
+<dd>encoded string.</dd>
+</dl>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">data:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Union" class="intersphinx-link">Union</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#bytes" class="intersphinx-link">bytes</a>, <wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/stdtypes.html#bytes" class="intersphinx-link">bytes</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="twisted.web._flatten.escapeForContent">
+    
+  </a>
+  <a name="escapeForContent">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">escapeForContent</span>(data):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/web/_flatten.py#L67">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Escape some character or UTF-8 byte data for inclusion in an HTML or XML
+document, by replacing metacharacters (C{&amp;&lt;&gt;}) with their entity
+equivalents (C{&amp;amp;&amp;lt;&amp;gt;}).</p>
+<p>This is used as an input to L{_flattenElement}'s C{dataEscaper} parameter.</p>
+<p>@param data: The string to escape.</p>
+<dl class="rst-docutils">
+<dt>@return: The quoted form of C{data}.  If C{data} is L{str}, return a utf-8</dt>
+<dd>encoded string.</dd>
+</dl>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">data:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Union" class="intersphinx-link">Union</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#bytes" class="intersphinx-link">bytes</a>, <wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/stdtypes.html#bytes" class="intersphinx-link">bytes</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="twisted.web._flatten.flatten">
+    
+  </a>
+  <a name="flatten">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">flatten</span>(request, root, write):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/web/_flatten.py#L406">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Incrementally write out a string representation of C{root} using C{write}.</p>
+<p>In order to create a string representation, C{root} will be decomposed into
+simpler objects which will themselves be decomposed and so on until strings
+or objects which can easily be converted to strings are encountered.</p>
+<dl class="rst-docutils">
+<dt>@param request: A request object which will be passed to the C{render}</dt>
+<dd>method of any L{IRenderable} provider which is encountered.</dd>
+<dt>@param root: An object to be made flatter.  This may be of type L{str},</dt>
+<dd>L{bytes}, L{slot}, L{Tag &lt;twisted.web.template.Tag&gt;}, L{tuple},
+L{list}, L{types.GeneratorType}, L{Deferred}, or something that
+provides L{IRenderable}.</dd>
+<dt>@param write: A callable which will be invoked with each L{bytes} produced</dt>
+<dd>by flattening C{root}.</dd>
+<dt>@return: A L{Deferred} which will be called back with C{None} when C{root}</dt>
+<dd>has been completely flattened into C{write} or which will be errbacked
+if an unexpected exception occurs.</dd>
+</dl>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">request:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">Optional</a>[<wbr></wbr><a href="twisted.web.iweb.IRequest.html" class="internal-link" title="twisted.web.iweb.IRequest">IRequest</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">root:</span><code><a href="#Flattenable" class="internal-link" title="twisted.web._flatten.Flattenable">Flattenable</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">write:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Callable" class="intersphinx-link">Callable</a>[<wbr></wbr>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#bytes" class="intersphinx-link">bytes</a>], <wbr></wbr><a href="https://docs.python.org/3/library/functions.html#object" class="intersphinx-link">object</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="twisted.internet.defer.Deferred.html" class="internal-link" title="twisted.internet.defer.Deferred">Deferred</a>[<wbr></wbr><a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="twisted.web._flatten.flattenString">
+    
+  </a>
+  <a name="flattenString">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">flattenString</span>(request, root):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/web/_flatten.py#L434">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Collate a string representation of C{root} into a single string.</p>
+<p>This is basically gluing L{flatten} to an L{io.BytesIO} and returning
+the results. See L{flatten} for the exact meanings of C{request} and
+C{root}.</p>
+<dl class="rst-docutils">
+<dt>@return: A L{Deferred} which will be called back with a single UTF-8 encoded</dt>
+<dd>string as its result when C{root} has been completely flattened or which
+will be errbacked if an unexpected exception occurs.</dd>
+</dl>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">request:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">Optional</a>[<wbr></wbr><a href="twisted.web.iweb.IRequest.html" class="internal-link" title="twisted.web.iweb.IRequest">IRequest</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">root:</span><code><a href="#Flattenable" class="internal-link" title="twisted.web._flatten.Flattenable">Flattenable</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="twisted.internet.defer.Deferred.html" class="internal-link" title="twisted.internet.defer.Deferred">Deferred</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#bytes" class="intersphinx-link">bytes</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="twisted.web._flatten.writeWithAttributeEscaping">
+    
+  </a>
+  <a name="writeWithAttributeEscaping">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">writeWithAttributeEscaping</span>(write):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/web/_flatten.py#L105">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Decorate a C{write} callable so that all output written is properly quoted
+for inclusion within an XML attribute value.</p>
+<p>If a L{Tag &lt;twisted.web.template.Tag&gt;} C{x} is flattened within the context
+of the contents of another L{Tag &lt;twisted.web.template.Tag&gt;} C{y}, the
+metacharacters (C{&lt;&gt;&amp;"}) delimiting C{x} should be passed through
+unchanged, but the textual content of C{x} should still be quoted, as
+usual.  For example: C{&lt;y&gt;&lt;x&gt;&amp;amp;&lt;/x&gt;&lt;/y&gt;}.  That is the default behavior
+of L{_flattenElement} when L{escapeForContent} is passed as the
+C{dataEscaper}.</p>
+<p>However, when a L{Tag &lt;twisted.web.template.Tag&gt;} C{x} is flattened within
+the context of an I{attribute} of another L{Tag &lt;twisted.web.template.Tag&gt;}
+C{y}, then the metacharacters delimiting C{x} should be quoted so that it
+can be parsed from the attribute's value.  In the DOM itself, this is not a
+valid thing to do, but given that renderers and slots may be freely moved
+around in a L{twisted.web.template} template, it is a condition which may
+arise in a document and must be handled in a way which produces valid
+output.  So, for example, you should be able to get C{&lt;y attr="&amp;lt;x /&amp;gt;"
+/&gt;}.  This should also be true for other XML/HTML meta-constructs such as
+comments and CDATA, so if you were to serialize a L{comment
+&lt;twisted.web.template.Comment&gt;} in an attribute you should get C{&lt;y
+attr="&amp;lt;-- comment --&amp;gt;" /&gt;}.  Therefore in order to capture these
+meta-characters, flattening is done with C{write} callable that is wrapped
+with L{writeWithAttributeEscaping}.</p>
+<p>The final case, and hopefully the much more common one as compared to
+serializing L{Tag &lt;twisted.web.template.Tag&gt;} and arbitrary L{IRenderable}
+objects within an attribute, is to serialize a simple string, and those
+should be passed through for L{writeWithAttributeEscaping} to quote
+without applying a second, redundant level of quoting.</p>
+<p>@param write: A callable which will be invoked with the escaped L{bytes}.</p>
+<p>@return: A callable that writes data with escaping.</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">write:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Callable" class="intersphinx-link">Callable</a>[<wbr></wbr>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#bytes" class="intersphinx-link">bytes</a>], <wbr></wbr><a href="https://docs.python.org/3/library/functions.html#object" class="intersphinx-link">object</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Callable" class="intersphinx-link">Callable</a>[<wbr></wbr>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#bytes" class="intersphinx-link">bytes</a>], <wbr></wbr><a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="baseconstant">
+  
+  
+  <a name="twisted.web._flatten.T">
+    
+  </a>
+  <a name="T">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">T</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/web/_flatten.py#L38">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    <table class="valueTable"><tr class="fieldStart"><td class="fieldName">Value</td></tr><tr><td><pre class="constant-value"><code><a href="https://docs.python.org/3/library/typing.html#typing.TypeVar" class="intersphinx-link">TypeVar</a>(<wbr></wbr><span class="rst-variable-quote">'</span><span class="rst-variable-string">T</span><span class="rst-variable-quote">'</span>)</code></pre></td></tr></table>
+  </div>
+</div><div class="basevariable">
+  
+  
+  <a name="twisted.web._flatten.Flattenable">
+    
+  </a>
+  <a name="Flattenable">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">Flattenable</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/web/_flatten.py#L47">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div>Type alias containing all types that can be flattened by L{flatten()}.</div>
+    
+  </div>
+</div><div class="basefunction private">
+  
+  
+  <a name="twisted.web._flatten._flattenElement">
+    
+  </a>
+  <a name="_flattenElement">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_flattenElement</span>(request, root, write, slotData, renderFactory, dataEscaper):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/web/_flatten.py#L219">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Make C{root} slightly more flat by yielding all its immediate contents as
+strings, deferreds or generators that are recursive calls to itself.</p>
+<dl class="rst-docutils">
+<dt>@param request: A request object which will be passed to</dt>
+<dd>L{IRenderable.render}.</dd>
+<dt>@param root: An object to be made flatter.  This may be of type C{unicode},</dt>
+<dd>L{str}, L{slot}, L{Tag &lt;twisted.web.template.Tag&gt;}, L{tuple}, L{list},
+L{types.GeneratorType}, L{Deferred}, or an object that implements
+L{IRenderable}.</dd>
+<dt>@param write: A callable which will be invoked with each L{bytes} produced</dt>
+<dd>by flattening C{root}.</dd>
+<dt>@param slotData: A L{list} of L{dict} mapping L{str} slot names to data</dt>
+<dd>with which those slots will be replaced.</dd>
+<dt>@param renderFactory: If not L{None}, an object that provides</dt>
+<dd>L{IRenderable}.</dd>
+<dt>@param dataEscaper: A 1-argument callable which takes L{bytes} or</dt>
+<dd>L{unicode} and returns L{bytes}, quoted as appropriate for the
+rendering context.  This is really only one of two values:
+L{attributeEscapingDoneOutside} or L{escapeForContent}, depending on
+whether the rendering context is within an attribute or not.  See the
+explanation in L{writeWithAttributeEscaping}.</dd>
+<dt>@return: An iterator that eventually writes L{bytes} to C{write}.</dt>
+<dd>It can yield other iterators or L{Deferred}s; if it yields another
+iterator, the caller will iterate it; if it yields a L{Deferred},
+the result of that L{Deferred} will be another generator, in which
+case it is iterated.  See L{_flattenTree} for the trampoline that
+consumes said values.</dd>
+</dl>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">request:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">Optional</a>[<wbr></wbr><a href="twisted.web.iweb.IRequest.html" class="internal-link" title="twisted.web.iweb.IRequest">IRequest</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">root:</span><code><a href="#Flattenable" class="internal-link" title="twisted.web._flatten.Flattenable">Flattenable</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">write:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Callable" class="intersphinx-link">Callable</a>[<wbr></wbr>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#bytes" class="intersphinx-link">bytes</a>], <wbr></wbr><a href="https://docs.python.org/3/library/functions.html#object" class="intersphinx-link">object</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">slot​Data:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.List" class="intersphinx-link">List</a>[<wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Mapping" class="intersphinx-link">Mapping</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>, <wbr></wbr><a href="#Flattenable" class="internal-link" title="twisted.web._flatten.Flattenable">Flattenable</a>]]]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">render​Factory:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">Optional</a>[<wbr></wbr><a href="twisted.web.iweb.IRenderable.html" class="internal-link" title="twisted.web.iweb.IRenderable">IRenderable</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">data​Escaper:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Callable" class="intersphinx-link">Callable</a>[<wbr></wbr>[<wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Union" class="intersphinx-link">Union</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#bytes" class="intersphinx-link">bytes</a>, <wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]], <wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#bytes" class="intersphinx-link">bytes</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Generator" class="intersphinx-link">Generator</a>[<wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Union" class="intersphinx-link">Union</a>[<wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Generator" class="intersphinx-link">Generator</a>, <wbr></wbr><a href="twisted.internet.defer.Deferred.html" class="internal-link" title="twisted.internet.defer.Deferred">Deferred</a>[<wbr></wbr><a href="#Flattenable" class="internal-link" title="twisted.web._flatten.Flattenable">Flattenable</a>]], <wbr></wbr><a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, <wbr></wbr><a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basefunction private">
+  
+  
+  <a name="twisted.web._flatten._flattenTree">
+    
+  </a>
+  <a name="_flattenTree">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">async def</span> <span class="py-defname">_flattenTree</span>(request, root, write):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/web/_flatten.py#L364">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Make C{root} into an iterable of L{bytes} and L{Deferred} by doing a depth
+first traversal of the tree.</p>
+<dl class="rst-docutils">
+<dt>@param request: A request object which will be passed to</dt>
+<dd>L{IRenderable.render}.</dd>
+<dt>@param root: An object to be made flatter.  This may be of type C{unicode},</dt>
+<dd>L{bytes}, L{slot}, L{Tag &lt;twisted.web.template.Tag&gt;}, L{tuple},
+L{list}, L{types.GeneratorType}, L{Deferred}, or something providing
+L{IRenderable}.</dd>
+<dt>@param write: A callable which will be invoked with each L{bytes} produced</dt>
+<dd>by flattening C{root}.</dd>
+</dl>
+<p>@return: A C{Deferred}-returning coroutine that resolves to C{None}.</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">request:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">Optional</a>[<wbr></wbr><a href="twisted.web.iweb.IRequest.html" class="internal-link" title="twisted.web.iweb.IRequest">IRequest</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">root:</span><code><a href="#Flattenable" class="internal-link" title="twisted.web._flatten.Flattenable">Flattenable</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">write:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Callable" class="intersphinx-link">Callable</a>[<wbr></wbr>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#bytes" class="intersphinx-link">bytes</a>], <wbr></wbr><a href="https://docs.python.org/3/library/functions.html#object" class="intersphinx-link">object</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basefunction private">
+  
+  
+  <a name="twisted.web._flatten._fork">
+    
+  </a>
+  <a name="_fork">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_fork</span>(d):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/web/_flatten.py#L200">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Create a new L{Deferred} based on C{d} that will fire and fail with C{d}'s
+result or error, but will not modify C{d}'s callback type.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">d:</span><code><a href="twisted.internet.defer.Deferred.html" class="internal-link" title="twisted.internet.defer.Deferred">Deferred</a>[<wbr></wbr><a href="#T" class="internal-link" title="twisted.web._flatten.T">T</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="twisted.internet.defer.Deferred.html" class="internal-link" title="twisted.internet.defer.Deferred">Deferred</a>[<wbr></wbr><a href="#T" class="internal-link" title="twisted.web._flatten.T">T</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basefunction private">
+  
+  
+  <a name="twisted.web._flatten._getSlotValue">
+    
+  </a>
+  <a name="_getSlotValue">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_getSlotValue</span>(name, slotData, default=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/web/_flatten.py#L183">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Find the value of the named slot in the given stack of slot data.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">name:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">slot​Data:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Sequence" class="intersphinx-link">Sequence</a>[<wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Mapping" class="intersphinx-link">Mapping</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>, <wbr></wbr><a href="#Flattenable" class="internal-link" title="twisted.web._flatten.Flattenable">Flattenable</a>]]]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">default:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">Optional</a>[<wbr></wbr><a href="#Flattenable" class="internal-link" title="twisted.web._flatten.Flattenable">Flattenable</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="#Flattenable" class="internal-link" title="twisted.web._flatten.Flattenable">Flattenable</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div>
+
+      </div>
+    </div>
+
+    <footer class="navbar navbar-default">
+  
+  <div class="container">
+    <a href="index.html">API Documentation</a> for twisted,
+  generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
+    22.2.0 at 2022-02-23 16:05:07.
+  </div>
+</footer>
+
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+  </body>
+</html>

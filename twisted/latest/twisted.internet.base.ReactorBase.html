@@ -1,0 +1,1925 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  
+
+  <head>
+    
+    <title>twisted.internet.base.ReactorBase</title>
+    <meta name="generator" content="pydoctor 22.2.0"> 
+        
+    </meta>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=0.75" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+    <link rel="stylesheet" type="text/css" href="extra.css" />
+</head>
+
+  <body>
+
+    <div id="banner">    
+    <div>
+        <a href="/">Home</a>
+        &gt; twisted-22.1.0 <!-- This is a placeholder -->
+        
+        <!-- (<a href=""&gt;show all versions</a&gt;) -->
+    </div>
+</div>
+
+    <nav class="navbar navbar-default">
+  
+  <div class="container">
+
+    <div class="navbar-header">
+      
+      <div class="navlinks">
+          <span class="navbar-brand">
+            twisted <a href="index.html">API Documentation</a>
+          </span>
+
+          <a href="moduleIndex.html">
+            Modules
+          </a>
+
+          <a href="classIndex.html">
+            Classes
+          </a>
+
+          <a href="nameIndex.html">
+            Names
+          </a>
+      </div>
+
+    </div>
+  </div>
+</nav>
+
+    
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="class"><code><code><a href="index.html" class="internal-link">twisted</a></code><wbr></wbr>.<code><a href="twisted.internet.html" class="internal-link" title="twisted.internet">internet</a></code><wbr></wbr>.<code><a href="twisted.internet.base.html" class="internal-link" title="twisted.internet.base">base</a></code><wbr></wbr>.<code><a href="twisted.internet.base.ReactorBase.html" class="internal-link" title="twisted.internet.base.ReactorBase">ReactorBase</a></code></code></h1>
+        <div id="showPrivate">
+          <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+        </div>
+      </div>
+
+      <div class="categoryHeader">
+        class documentation
+      </div>
+
+      <div class="extrasDocstring">
+        <p><code><span class="py-keyword">class</span> <span class="py-defname">ReactorBase</span>(<a href="twisted.internet.base.PluggableResolverMixin.html" class="internal-link" title="twisted.internet.base.PluggableResolverMixin">PluggableResolverMixin</a>): <a href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/internet/base.py#L569" class="sourceLink">(source)</a></code></p><p>Known subclasses: <code><a href="twisted.internet.iocpreactor.reactor.IOCPReactor.html" class="internal-link">twisted.internet.iocpreactor.reactor.IOCPReactor</a></code>, <code><a href="twisted.internet.posixbase.PosixReactorBase.html" class="internal-link">twisted.internet.posixbase.PosixReactorBase</a></code>, <code><a href="twisted.internet.test.test_base.TestSpySignalCapturingReactor.html" class="internal-link">twisted.internet.test.test_base.TestSpySignalCapturingReactor</a></code>, <code><a href="twisted.internet.test.test_resolver.JustEnoughReactor.html" class="internal-link">twisted.internet.test.test_resolver.JustEnoughReactor</a></code></p><p>Implements interfaces: <code><a href="twisted.internet.interfaces._ISupportsExitSignalCapturing.html" class="internal-link">twisted.internet.interfaces._ISupportsExitSignalCapturing</a></code>, <code><a href="twisted.internet.interfaces.IReactorCore.html" class="internal-link">twisted.internet.interfaces.IReactorCore</a></code>, <code><a href="twisted.internet.interfaces.IReactorThreads.html" class="internal-link">twisted.internet.interfaces.IReactorThreads</a></code>, <code><a href="twisted.internet.interfaces.IReactorTime.html" class="internal-link">twisted.internet.interfaces.IReactorTime</a></code></p>
+        <p><a href="classIndex.html#twisted.internet.base.ReactorBase">View In Hierarchy</a></p>
+      </div>
+
+      <div class="moduleDocstring">
+        <div><p>Default base class for Reactors.</p>
+<dl class="rst-docutils">
+<dt>@ivar _stopped: A flag which is true between paired calls to C{reactor.run}</dt>
+<dd>and C{reactor.stop}.  This should be replaced with an explicit state
+machine.</dd>
+<dt>@ivar _justStopped: A flag which is true between the time C{reactor.stop}</dt>
+<dd>is called and the time the shutdown system event is fired.  This is
+used to determine whether that event should be fired after each
+iteration through the mainloop.  This should be replaced with an
+explicit state machine.</dd>
+<dt>@ivar _started: A flag which is true from the time C{reactor.run} is called</dt>
+<dd>until the time C{reactor.run} returns.  This is used to prevent calls
+to C{reactor.run} on a running reactor.  This should be replaced with
+an explicit state machine.</dd>
+</dl>
+<p>@ivar running: See L{IReactorCore.running}
+@ivar _registerAsIOThread: A flag controlling whether the reactor will</p>
+<blockquote>
+register the thread it is running in as the I/O thread when it starts.
+If C{True}, registration will be done, otherwise it will not be.</blockquote>
+<p>@ivar _exitSignal: See L{_ISupportsExitSignalCapturing._exitSignal}</p>
+</div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id3034">
+  
+  
+  <tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__init__" class="internal-link" title="twisted.internet.base.ReactorBase.__init__">__init__</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#addReader" class="internal-link" title="twisted.internet.base.ReactorBase.addReader">add​Reader</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#addSystemEventTrigger" class="internal-link" title="twisted.internet.base.ReactorBase.addSystemEventTrigger">add​System​Event​Trigger</a></code></td>
+    <td>See twisted.internet.interfaces.IReactorCore.addSystemEventTrigger.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#addWriter" class="internal-link" title="twisted.internet.base.ReactorBase.addWriter">add​Writer</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#callFromThread" class="internal-link" title="twisted.internet.base.ReactorBase.callFromThread">call​From​Thread</a></code></td>
+    <td>See L{twisted.internet.interfaces.IReactorFromThreads.callFromThread}.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#callInThread" class="internal-link" title="twisted.internet.base.ReactorBase.callInThread">call​In​Thread</a></code></td>
+    <td>See L{twisted.internet.interfaces.IReactorInThreads.callInThread}.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#callLater" class="internal-link" title="twisted.internet.base.ReactorBase.callLater">call​Later</a></code></td>
+    <td>See twisted.internet.interfaces.IReactorTime.callLater.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#callWhenRunning" class="internal-link" title="twisted.internet.base.ReactorBase.callWhenRunning">call​When​Running</a></code></td>
+    <td>See twisted.internet.interfaces.IReactorCore.callWhenRunning.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#crash" class="internal-link" title="twisted.internet.base.ReactorBase.crash">crash</a></code></td>
+    <td>See twisted.internet.interfaces.IReactorCore.crash.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#disconnectAll" class="internal-link" title="twisted.internet.base.ReactorBase.disconnectAll">disconnect​All</a></code></td>
+    <td>Disconnect every reader, and writer in the system.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#doIteration" class="internal-link" title="twisted.internet.base.ReactorBase.doIteration">do​Iteration</a></code></td>
+    <td>Do one iteration over the readers and writers which have been added.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#fireSystemEvent" class="internal-link" title="twisted.internet.base.ReactorBase.fireSystemEvent">fire​System​Event</a></code></td>
+    <td>See twisted.internet.interfaces.IReactorCore.fireSystemEvent.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#getDelayedCalls" class="internal-link" title="twisted.internet.base.ReactorBase.getDelayedCalls">get​Delayed​Calls</a></code></td>
+    <td>See L{twisted.internet.interfaces.IReactorTime.getDelayedCalls}</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#getReaders" class="internal-link" title="twisted.internet.base.ReactorBase.getReaders">get​Readers</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#getThreadPool" class="internal-link" title="twisted.internet.base.ReactorBase.getThreadPool">get​Thread​Pool</a></code></td>
+    <td>See L{twisted.internet.interfaces.IReactorThreads.getThreadPool}.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#getWriters" class="internal-link" title="twisted.internet.base.ReactorBase.getWriters">get​Writers</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#installWaker" class="internal-link" title="twisted.internet.base.ReactorBase.installWaker">install​Waker</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#iterate" class="internal-link" title="twisted.internet.base.ReactorBase.iterate">iterate</a></code></td>
+    <td>See twisted.internet.interfaces.IReactorCore.iterate.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#removeAll" class="internal-link" title="twisted.internet.base.ReactorBase.removeAll">remove​All</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#removeReader" class="internal-link" title="twisted.internet.base.ReactorBase.removeReader">remove​Reader</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#removeSystemEventTrigger" class="internal-link" title="twisted.internet.base.ReactorBase.removeSystemEventTrigger">remove​System​Event​Trigger</a></code></td>
+    <td>See twisted.internet.interfaces.IReactorCore.removeSystemEventTrigger.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#removeWriter" class="internal-link" title="twisted.internet.base.ReactorBase.removeWriter">remove​Writer</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#resolve" class="internal-link" title="twisted.internet.base.ReactorBase.resolve">resolve</a></code></td>
+    <td>Return a Deferred that will resolve a hostname.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#run" class="internal-link" title="twisted.internet.base.ReactorBase.run">run</a></code></td>
+    <td>Fire 'startup' System Events, move the reactor to the 'running' state, then run the main loop until it is stopped with C{stop()} or C{crash()}.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#runUntilCurrent" class="internal-link" title="twisted.internet.base.ReactorBase.runUntilCurrent">run​Until​Current</a></code></td>
+    <td>Run all pending timed calls.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#sigBreak" class="internal-link" title="twisted.internet.base.ReactorBase.sigBreak">sig​Break</a></code></td>
+    <td>Handle a SIGBREAK interrupt.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#sigInt" class="internal-link" title="twisted.internet.base.ReactorBase.sigInt">sig​Int</a></code></td>
+    <td>Handle a SIGINT interrupt.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#sigTerm" class="internal-link" title="twisted.internet.base.ReactorBase.sigTerm">sig​Term</a></code></td>
+    <td>Handle a SIGTERM interrupt.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#startRunning" class="internal-link" title="twisted.internet.base.ReactorBase.startRunning">start​Running</a></code></td>
+    <td>Method called when reactor starts: do some initialization and fire startup events.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#stop" class="internal-link" title="twisted.internet.base.ReactorBase.stop">stop</a></code></td>
+    <td>See twisted.internet.interfaces.IReactorCore.stop.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#suggestThreadPoolSize" class="internal-link" title="twisted.internet.base.ReactorBase.suggestThreadPoolSize">suggest​Thread​Pool​Size</a></code></td>
+    <td>See L{twisted.internet.interfaces.IReactorThreads.suggestThreadPoolSize}.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#timeout" class="internal-link" title="twisted.internet.base.ReactorBase.timeout">timeout</a></code></td>
+    <td>Determine the longest time the reactor may sleep (waiting on I/O notification, perhaps) before it must wake up to service a time-related event.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#wakeUp" class="internal-link" title="twisted.internet.base.ReactorBase.wakeUp">wake​Up</a></code></td>
+    <td>Wake up the event loop.</td>
+  </tr><tr class="classvariable">
+    
+    <td>Class Variable</td>
+    <td><code><a href="#__name__" class="internal-link" title="twisted.internet.base.ReactorBase.__name__">__name__</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="classvariable">
+    
+    <td>Class Variable</td>
+    <td><code><a href="#installed" class="internal-link" title="twisted.internet.base.ReactorBase.installed">installed</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="classvariable">
+    
+    <td>Class Variable</td>
+    <td><code><a href="#seconds" class="internal-link" title="twisted.internet.base.ReactorBase.seconds">seconds</a></code></td>
+    <td>Get the current time in seconds.</td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#running" class="internal-link" title="twisted.internet.base.ReactorBase.running">running</a></code></td>
+    <td>A C{bool} which is C{True} from I{during startup} to I{during shutdown} and C{False} the rest of the time.</td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#threadCallQueue" class="internal-link" title="twisted.internet.base.ReactorBase.threadCallQueue">thread​Call​Queue</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#threadpool" class="internal-link" title="twisted.internet.base.ReactorBase.threadpool">threadpool</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#threadpoolShutdownID" class="internal-link" title="twisted.internet.base.ReactorBase.threadpoolShutdownID">threadpool​Shutdown​ID</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#usingThreads" class="internal-link" title="twisted.internet.base.ReactorBase.usingThreads">using​Threads</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#waker" class="internal-link" title="twisted.internet.base.ReactorBase.waker">waker</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_cancelCallLater" class="internal-link" title="twisted.internet.base.ReactorBase._cancelCallLater">_cancel​Call​Later</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_initThreadPool" class="internal-link" title="twisted.internet.base.ReactorBase._initThreadPool">_init​Thread​Pool</a></code></td>
+    <td>Create the threadpool accessible with callFromThread.</td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_initThreads" class="internal-link" title="twisted.internet.base.ReactorBase._initThreads">_init​Threads</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_insertNewDelayedCalls" class="internal-link" title="twisted.internet.base.ReactorBase._insertNewDelayedCalls">_insert​New​Delayed​Calls</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_moveCallLaterSooner" class="internal-link" title="twisted.internet.base.ReactorBase._moveCallLaterSooner">_move​Call​Later​Sooner</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_reallyStartRunning" class="internal-link" title="twisted.internet.base.ReactorBase._reallyStartRunning">_really​Start​Running</a></code></td>
+    <td>Method called to transition to the running state.  This should happen in the I{during startup} event trigger phase.</td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_stopThreadPool" class="internal-link" title="twisted.internet.base.ReactorBase._stopThreadPool">_stop​Thread​Pool</a></code></td>
+    <td><span class="undocumented">No summary</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_uninstallHandler" class="internal-link" title="twisted.internet.base.ReactorBase._uninstallHandler">_uninstall​Handler</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="classvariable private">
+    
+    <td>Class Variable</td>
+    <td><code><a href="#_lock" class="internal-link" title="twisted.internet.base.ReactorBase._lock">​_lock</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="classvariable private">
+    
+    <td>Class Variable</td>
+    <td><code><a href="#_registerAsIOThread" class="internal-link" title="twisted.internet.base.ReactorBase._registerAsIOThread">_register​As​IOThread</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#_cancellations" class="internal-link" title="twisted.internet.base.ReactorBase._cancellations">​_cancellations</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#_eventTriggers" class="internal-link" title="twisted.internet.base.ReactorBase._eventTriggers">_event​Triggers</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#_exitSignal" class="internal-link" title="twisted.internet.base.ReactorBase._exitSignal">_exit​Signal</a></code></td>
+    <td>C{int} or C{None}, the integer exit signal delivered to the application, or None if no signal was delivered.</td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#_internalReaders" class="internal-link" title="twisted.internet.base.ReactorBase._internalReaders">_internal​Readers</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#_justStopped" class="internal-link" title="twisted.internet.base.ReactorBase._justStopped">_just​Stopped</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#_newTimedCalls" class="internal-link" title="twisted.internet.base.ReactorBase._newTimedCalls">_new​Timed​Calls</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#_pendingTimedCalls" class="internal-link" title="twisted.internet.base.ReactorBase._pendingTimedCalls">_pending​Timed​Calls</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#_started" class="internal-link" title="twisted.internet.base.ReactorBase._started">​_started</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#_startedBefore" class="internal-link" title="twisted.internet.base.ReactorBase._startedBefore">_started​Before</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#_stopped" class="internal-link" title="twisted.internet.base.ReactorBase._stopped">​_stopped</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#_threadpoolStartupID" class="internal-link" title="twisted.internet.base.ReactorBase._threadpoolStartupID">_threadpool​Startup​ID</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+        
+          <p class="inheritedFrom">
+            Inherited from <code><a href="twisted.internet.base.PluggableResolverMixin.html" class="internal-link" title="twisted.internet.base.PluggableResolverMixin">PluggableResolverMixin</a></code>:
+          </p>
+          <table class="children sortable" id="id3035">
+  
+  
+  <tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="twisted.internet.base.PluggableResolverMixin.html#installNameResolver" class="internal-link" title="twisted.internet.base.PluggableResolverMixin.installNameResolver">install​Name​Resolver</a></code></td>
+    <td>See L{IReactorPluggableNameResolver}.</td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="twisted.internet.base.PluggableResolverMixin.html#installResolver" class="internal-link" title="twisted.internet.base.PluggableResolverMixin.installResolver">install​Resolver</a></code></td>
+    <td>See L{IReactorPluggableResolver}.</td>
+  </tr><tr class="baseinstancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="twisted.internet.base.PluggableResolverMixin.html#resolver" class="internal-link" title="twisted.internet.base.PluggableResolverMixin.resolver">resolver</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="baseproperty">
+    
+    <td>Property</td>
+    <td><code><a href="twisted.internet.base.PluggableResolverMixin.html#nameResolver" class="internal-link" title="twisted.internet.base.PluggableResolverMixin.nameResolver">name​Resolver</a></code></td>
+    <td>Implementation of read-only L{IReactorPluggableNameResolver.nameResolver}.</td>
+  </tr><tr class="baseinstancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="twisted.internet.base.PluggableResolverMixin.html#_nameResolver" class="internal-link" title="twisted.internet.base.PluggableResolverMixin._nameResolver">_name​Resolver</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+          
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="basemethod">
+  
+  
+  <a name="twisted.internet.base.ReactorBase.__init__">
+    
+  </a>
+  <a name="__init__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__init__</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/internet/base.py#L602">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="twisted.internet._glibbase.GlibReactorBase.html" class="internal-link">twisted.internet._glibbase.GlibReactorBase</a></code>, <code><a href="twisted.internet._threadedselect.ThreadedSelectReactor.html" class="internal-link">twisted.internet._threadedselect.ThreadedSelectReactor</a></code>, <code><a href="twisted.internet.asyncioreactor.AsyncioSelectorReactor.html" class="internal-link">twisted.internet.asyncioreactor.AsyncioSelectorReactor</a></code>, <code><a href="twisted.internet.cfreactor.CFReactor.html" class="internal-link">twisted.internet.cfreactor.CFReactor</a></code>, <code><a href="twisted.internet.epollreactor.EPollReactor.html" class="internal-link">twisted.internet.epollreactor.EPollReactor</a></code>, <code><a href="twisted.internet.iocpreactor.reactor.IOCPReactor.html" class="internal-link">twisted.internet.iocpreactor.reactor.IOCPReactor</a></code>, <code><a href="twisted.internet.kqreactor.KQueueReactor.html" class="internal-link">twisted.internet.kqreactor.KQueueReactor</a></code>, <code><a href="twisted.internet.pollreactor.PollReactor.html" class="internal-link">twisted.internet.pollreactor.PollReactor</a></code>, <code><a href="twisted.internet.selectreactor.SelectReactor.html" class="internal-link">twisted.internet.selectreactor.SelectReactor</a></code>, <code><a href="twisted.internet.test.test_posixbase.TimeoutReportReactor.html" class="internal-link">twisted.internet.test.test_posixbase.TimeoutReportReactor</a></code>, <code><a href="twisted.internet.test.test_posixbase.TrivialReactor.html" class="internal-link">twisted.internet.test.test_posixbase.TrivialReactor</a></code>, <code><a href="twisted.internet.win32eventreactor.Win32Reactor.html" class="internal-link">twisted.internet.win32eventreactor.Win32Reactor</a></code></div>
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.internet.base.ReactorBase.addReader">
+    
+  </a>
+  <a name="addReader">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">addReader</span>(self, reader):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/internet/base.py#L655">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="twisted.internet._glibbase.GlibReactorBase.html" class="internal-link">twisted.internet._glibbase.GlibReactorBase</a></code>, <code><a href="twisted.internet._threadedselect.ThreadedSelectReactor.html" class="internal-link">twisted.internet._threadedselect.ThreadedSelectReactor</a></code>, <code><a href="twisted.internet.asyncioreactor.AsyncioSelectorReactor.html" class="internal-link">twisted.internet.asyncioreactor.AsyncioSelectorReactor</a></code>, <code><a href="twisted.internet.cfreactor.CFReactor.html" class="internal-link">twisted.internet.cfreactor.CFReactor</a></code>, <code><a href="twisted.internet.epollreactor.EPollReactor.html" class="internal-link">twisted.internet.epollreactor.EPollReactor</a></code>, <code><a href="twisted.internet.kqreactor.KQueueReactor.html" class="internal-link">twisted.internet.kqreactor.KQueueReactor</a></code>, <code><a href="twisted.internet.pollreactor.PollReactor.html" class="internal-link">twisted.internet.pollreactor.PollReactor</a></code>, <code><a href="twisted.internet.selectreactor.SelectReactor.html" class="internal-link">twisted.internet.selectreactor.SelectReactor</a></code>, <code><a href="twisted.internet.test.test_posixbase.TimeoutReportReactor.html" class="internal-link">twisted.internet.test.test_posixbase.TimeoutReportReactor</a></code>, <code><a href="twisted.internet.test.test_posixbase.TrivialReactor.html" class="internal-link">twisted.internet.test.test_posixbase.TrivialReactor</a></code>, <code><a href="twisted.internet.win32eventreactor.Win32Reactor.html" class="internal-link">twisted.internet.win32eventreactor.Win32Reactor</a></code></div>
+    
+    <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">reader:</span><code><a href="twisted.internet.interfaces.IReadDescriptor.html" class="internal-link" title="twisted.internet.interfaces.IReadDescriptor">IReadDescriptor</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.internet.base.ReactorBase.addSystemEventTrigger">
+    
+  </a>
+  <a name="addSystemEventTrigger">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">addSystemEventTrigger</span>(self, phase, eventType, callable, *args, **kwargs):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/internet/base.py#L781">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <code><a href="twisted.internet.interfaces.IReactorCore.html#addSystemEventTrigger" class="internal-link" title="twisted.internet.interfaces.IReactorCore.addSystemEventTrigger">twisted.internet.interfaces.IReactorCore</a></code></div>
+    
+    <div>See twisted.internet.interfaces.IReactorCore.addSystemEventTrigger.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">phase:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">event​Type:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">callable:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Callable" class="intersphinx-link">Callable</a>[<wbr></wbr><span class="rst-variable-ellipsis">...</span>, <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">Any</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">*args:</span><code><a href="https://docs.python.org/3/library/functions.html#object" class="intersphinx-link">object</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">**kwargs:</span><code><a href="https://docs.python.org/3/library/functions.html#object" class="intersphinx-link">object</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="twisted.internet.base.html#_SystemEventID" class="internal-link" title="twisted.internet.base._SystemEventID">_SystemEventID</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.internet.base.ReactorBase.addWriter">
+    
+  </a>
+  <a name="addWriter">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">addWriter</span>(self, writer):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/internet/base.py#L660">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="twisted.internet._glibbase.GlibReactorBase.html" class="internal-link">twisted.internet._glibbase.GlibReactorBase</a></code>, <code><a href="twisted.internet._threadedselect.ThreadedSelectReactor.html" class="internal-link">twisted.internet._threadedselect.ThreadedSelectReactor</a></code>, <code><a href="twisted.internet.asyncioreactor.AsyncioSelectorReactor.html" class="internal-link">twisted.internet.asyncioreactor.AsyncioSelectorReactor</a></code>, <code><a href="twisted.internet.cfreactor.CFReactor.html" class="internal-link">twisted.internet.cfreactor.CFReactor</a></code>, <code><a href="twisted.internet.epollreactor.EPollReactor.html" class="internal-link">twisted.internet.epollreactor.EPollReactor</a></code>, <code><a href="twisted.internet.kqreactor.KQueueReactor.html" class="internal-link">twisted.internet.kqreactor.KQueueReactor</a></code>, <code><a href="twisted.internet.pollreactor.PollReactor.html" class="internal-link">twisted.internet.pollreactor.PollReactor</a></code>, <code><a href="twisted.internet.selectreactor.SelectReactor.html" class="internal-link">twisted.internet.selectreactor.SelectReactor</a></code>, <code><a href="twisted.internet.test.test_posixbase.TrivialReactor.html" class="internal-link">twisted.internet.test.test_posixbase.TrivialReactor</a></code>, <code><a href="twisted.internet.win32eventreactor.Win32Reactor.html" class="internal-link">twisted.internet.win32eventreactor.Win32Reactor</a></code></div>
+    
+    <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">writer:</span><code><a href="twisted.internet.interfaces.IWriteDescriptor.html" class="internal-link" title="twisted.internet.interfaces.IWriteDescriptor">IWriteDescriptor</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.internet.base.ReactorBase.callFromThread">
+    
+  </a>
+  <a name="callFromThread">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">callFromThread</span>(self, f, *args, **kwargs):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/internet/base.py#L1036">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <code><a href="twisted.internet.interfaces.IReactorFromThreads.html#callFromThread" class="internal-link" title="twisted.internet.interfaces.IReactorFromThreads.callFromThread">twisted.internet.interfaces.IReactorFromThreads</a></code></div><div class="interfaceinfo">overridden in <code><a href="twisted.internet.asyncioreactor.AsyncioSelectorReactor.html" class="internal-link">twisted.internet.asyncioreactor.AsyncioSelectorReactor</a></code></div>
+    
+    <div>See
+L{twisted.internet.interfaces.IReactorFromThreads.callFromThread}.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">f:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Callable" class="intersphinx-link">Callable</a>[<wbr></wbr><span class="rst-variable-ellipsis">...</span>, <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">Any</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">*args:</span><code><a href="https://docs.python.org/3/library/functions.html#object" class="intersphinx-link">object</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">**kwargs:</span><code><a href="https://docs.python.org/3/library/functions.html#object" class="intersphinx-link">object</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.internet.base.ReactorBase.callInThread">
+    
+  </a>
+  <a name="callInThread">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">callInThread</span>(self, _callable, *args, **kwargs):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/internet/base.py#L1094">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <code><a href="twisted.internet.interfaces.IReactorInThreads.html#callInThread" class="internal-link" title="twisted.internet.interfaces.IReactorInThreads.callInThread">twisted.internet.interfaces.IReactorInThreads</a></code></div>
+    
+    <div>See L{twisted.internet.interfaces.IReactorInThreads.callInThread}.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">​_callable:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Callable" class="intersphinx-link">Callable</a>[<wbr></wbr><span class="rst-variable-ellipsis">...</span>, <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">Any</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">*args:</span><code><a href="https://docs.python.org/3/library/functions.html#object" class="intersphinx-link">object</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">**kwargs:</span><code><a href="https://docs.python.org/3/library/functions.html#object" class="intersphinx-link">object</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.internet.base.ReactorBase.callLater">
+    
+  </a>
+  <a name="callLater">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">callLater</span>(self, delay, callable, *args, **kw):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/internet/base.py#L862">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <code><a href="twisted.internet.interfaces.IReactorTime.html#callLater" class="internal-link" title="twisted.internet.interfaces.IReactorTime.callLater">twisted.internet.interfaces.IReactorTime</a></code></div><div class="interfaceinfo">overridden in <code><a href="twisted.internet._glibbase.GlibReactorBase.html" class="internal-link">twisted.internet._glibbase.GlibReactorBase</a></code>, <code><a href="twisted.internet._threadedselect.ThreadedSelectReactor.html" class="internal-link">twisted.internet._threadedselect.ThreadedSelectReactor</a></code>, <code><a href="twisted.internet.asyncioreactor.AsyncioSelectorReactor.html" class="internal-link">twisted.internet.asyncioreactor.AsyncioSelectorReactor</a></code>, <code><a href="twisted.internet.cfreactor.CFReactor.html" class="internal-link">twisted.internet.cfreactor.CFReactor</a></code></div>
+    
+    <div>See twisted.internet.interfaces.IReactorTime.callLater.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">delay:</span><code><a href="https://docs.python.org/3/library/functions.html#float" class="intersphinx-link">float</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">callable:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Callable" class="intersphinx-link">Callable</a>[<wbr></wbr><span class="rst-variable-ellipsis">...</span>, <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">Any</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">*args:</span><code><a href="https://docs.python.org/3/library/functions.html#object" class="intersphinx-link">object</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">**kw:</span><code><a href="https://docs.python.org/3/library/functions.html#object" class="intersphinx-link">object</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="twisted.internet.base.DelayedCall.html" class="internal-link" title="twisted.internet.base.DelayedCall">DelayedCall</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.internet.base.ReactorBase.callWhenRunning">
+    
+  </a>
+  <a name="callWhenRunning">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">callWhenRunning</span>(self, callable, *args, **kwargs):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/internet/base.py#L811">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <code><a href="twisted.internet.interfaces.IReactorCore.html#callWhenRunning" class="internal-link" title="twisted.internet.interfaces.IReactorCore.callWhenRunning">twisted.internet.interfaces.IReactorCore</a></code></div>
+    
+    <div>See twisted.internet.interfaces.IReactorCore.callWhenRunning.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">callable:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Callable" class="intersphinx-link">Callable</a>[<wbr></wbr><span class="rst-variable-ellipsis">...</span>, <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">Any</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">*args:</span><code><a href="https://docs.python.org/3/library/functions.html#object" class="intersphinx-link">object</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">**kwargs:</span><code><a href="https://docs.python.org/3/library/functions.html#object" class="intersphinx-link">object</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">Optional</a>[<wbr></wbr><a href="twisted.internet.base.html#_SystemEventID" class="internal-link" title="twisted.internet.base._SystemEventID">_SystemEventID</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.internet.base.ReactorBase.crash">
+    
+  </a>
+  <a name="crash">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">crash</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/internet/base.py#L713">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <code><a href="twisted.internet.interfaces.IReactorCore.html#crash" class="internal-link" title="twisted.internet.interfaces.IReactorCore.crash">twisted.internet.interfaces.IReactorCore</a></code></div><div class="interfaceinfo">overridden in <code><a href="twisted.internet._glibbase.GlibReactorBase.html" class="internal-link">twisted.internet._glibbase.GlibReactorBase</a></code>, <code><a href="twisted.internet._glibbase.PortableGlibReactorBase.html" class="internal-link">twisted.internet._glibbase.PortableGlibReactorBase</a></code>, <code><a href="twisted.internet.asyncioreactor.AsyncioSelectorReactor.html" class="internal-link">twisted.internet.asyncioreactor.AsyncioSelectorReactor</a></code>, <code><a href="twisted.internet.cfreactor.CFReactor.html" class="internal-link">twisted.internet.cfreactor.CFReactor</a></code></div>
+    
+    <div><p>See twisted.internet.interfaces.IReactorCore.crash.</p>
+<p>Reset reactor state tracking attributes and re-initialize certain
+state-transition helpers which were set up in C{__init__} but later
+destroyed (through use).</p>
+</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.internet.base.ReactorBase.disconnectAll">
+    
+  </a>
+  <a name="disconnectAll">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">disconnectAll</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/internet/base.py#L758">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Disconnect every reader, and writer in the system.</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.internet.base.ReactorBase.doIteration">
+    
+  </a>
+  <a name="doIteration">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">doIteration</span>(self, delay):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/internet/base.py#L647">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="twisted.internet.iocpreactor.reactor.IOCPReactor.html" class="internal-link">twisted.internet.iocpreactor.reactor.IOCPReactor</a></code>, <code><a href="twisted.internet.test.test_posixbase.TimeoutReportReactor.html" class="internal-link">twisted.internet.test.test_posixbase.TimeoutReportReactor</a></code></div>
+    
+    <div>Do one iteration over the readers and writers which have been added.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">delay:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/functions.html#float" class="intersphinx-link">float</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.internet.base.ReactorBase.fireSystemEvent">
+    
+  </a>
+  <a name="fireSystemEvent">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">fireSystemEvent</span>(self, eventType):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/internet/base.py#L773">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <code><a href="twisted.internet.interfaces.IReactorCore.html#fireSystemEvent" class="internal-link" title="twisted.internet.interfaces.IReactorCore.fireSystemEvent">twisted.internet.interfaces.IReactorCore</a></code></div>
+    
+    <div>See twisted.internet.interfaces.IReactorCore.fireSystemEvent.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">event​Type:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.internet.base.ReactorBase.getDelayedCalls">
+    
+  </a>
+  <a name="getDelayedCalls">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">getDelayedCalls</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/internet/base.py#L905">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <code><a href="twisted.internet.interfaces.IReactorTime.html#getDelayedCalls" class="internal-link" title="twisted.internet.interfaces.IReactorTime.getDelayedCalls">twisted.internet.interfaces.IReactorTime</a></code></div>
+    
+    <div>See L{twisted.internet.interfaces.IReactorTime.getDelayedCalls}<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Sequence" class="intersphinx-link">Sequence</a>[<wbr></wbr><a href="twisted.internet.interfaces.IDelayedCall.html" class="internal-link" title="twisted.internet.interfaces.IDelayedCall">IDelayedCall</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.internet.base.ReactorBase.getReaders">
+    
+  </a>
+  <a name="getReaders">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">getReaders</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/internet/base.py#L680">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="twisted.internet._glibbase.GlibReactorBase.html" class="internal-link">twisted.internet._glibbase.GlibReactorBase</a></code>, <code><a href="twisted.internet._threadedselect.ThreadedSelectReactor.html" class="internal-link">twisted.internet._threadedselect.ThreadedSelectReactor</a></code>, <code><a href="twisted.internet.asyncioreactor.AsyncioSelectorReactor.html" class="internal-link">twisted.internet.asyncioreactor.AsyncioSelectorReactor</a></code>, <code><a href="twisted.internet.cfreactor.CFReactor.html" class="internal-link">twisted.internet.cfreactor.CFReactor</a></code>, <code><a href="twisted.internet.epollreactor.EPollReactor.html" class="internal-link">twisted.internet.epollreactor.EPollReactor</a></code>, <code><a href="twisted.internet.kqreactor.KQueueReactor.html" class="internal-link">twisted.internet.kqreactor.KQueueReactor</a></code>, <code><a href="twisted.internet.pollreactor.PollReactor.html" class="internal-link">twisted.internet.pollreactor.PollReactor</a></code>, <code><a href="twisted.internet.selectreactor.SelectReactor.html" class="internal-link">twisted.internet.selectreactor.SelectReactor</a></code>, <code><a href="twisted.internet.win32eventreactor.Win32Reactor.html" class="internal-link">twisted.internet.win32eventreactor.Win32Reactor</a></code></div>
+    
+    <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.List" class="intersphinx-link">List</a>[<wbr></wbr><a href="twisted.internet.interfaces.IReadDescriptor.html" class="internal-link" title="twisted.internet.interfaces.IReadDescriptor">IReadDescriptor</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.internet.base.ReactorBase.getThreadPool">
+    
+  </a>
+  <a name="getThreadPool">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">getThreadPool</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/internet/base.py#L1082">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <code><a href="twisted.internet.interfaces.IReactorThreads.html#getThreadPool" class="internal-link" title="twisted.internet.interfaces.IReactorThreads.getThreadPool">twisted.internet.interfaces.IReactorThreads</a></code></div>
+    
+    <div>See L{twisted.internet.interfaces.IReactorThreads.getThreadPool}.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="twisted.python.threadpool.ThreadPool.html" class="internal-link" title="twisted.python.threadpool.ThreadPool">ThreadPool</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.internet.base.ReactorBase.getWriters">
+    
+  </a>
+  <a name="getWriters">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">getWriters</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/internet/base.py#L685">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="twisted.internet._glibbase.GlibReactorBase.html" class="internal-link">twisted.internet._glibbase.GlibReactorBase</a></code>, <code><a href="twisted.internet._threadedselect.ThreadedSelectReactor.html" class="internal-link">twisted.internet._threadedselect.ThreadedSelectReactor</a></code>, <code><a href="twisted.internet.asyncioreactor.AsyncioSelectorReactor.html" class="internal-link">twisted.internet.asyncioreactor.AsyncioSelectorReactor</a></code>, <code><a href="twisted.internet.cfreactor.CFReactor.html" class="internal-link">twisted.internet.cfreactor.CFReactor</a></code>, <code><a href="twisted.internet.epollreactor.EPollReactor.html" class="internal-link">twisted.internet.epollreactor.EPollReactor</a></code>, <code><a href="twisted.internet.kqreactor.KQueueReactor.html" class="internal-link">twisted.internet.kqreactor.KQueueReactor</a></code>, <code><a href="twisted.internet.pollreactor.PollReactor.html" class="internal-link">twisted.internet.pollreactor.PollReactor</a></code>, <code><a href="twisted.internet.selectreactor.SelectReactor.html" class="internal-link">twisted.internet.selectreactor.SelectReactor</a></code>, <code><a href="twisted.internet.win32eventreactor.Win32Reactor.html" class="internal-link">twisted.internet.win32eventreactor.Win32Reactor</a></code></div>
+    
+    <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.List" class="intersphinx-link">List</a>[<wbr></wbr><a href="twisted.internet.interfaces.IWriteDescriptor.html" class="internal-link" title="twisted.internet.interfaces.IWriteDescriptor">IWriteDescriptor</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.internet.base.ReactorBase.installWaker">
+    
+  </a>
+  <a name="installWaker">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">installWaker</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/internet/base.py#L633">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="twisted.internet.iocpreactor.reactor.IOCPReactor.html" class="internal-link">twisted.internet.iocpreactor.reactor.IOCPReactor</a></code>, <code><a href="twisted.internet.posixbase.PosixReactorBase.html" class="internal-link">twisted.internet.posixbase.PosixReactorBase</a></code>, <code><a href="twisted.internet.test.test_base.TestSpySignalCapturingReactor.html" class="internal-link">twisted.internet.test.test_base.TestSpySignalCapturingReactor</a></code>, <code><a href="twisted.internet.test.test_resolver.JustEnoughReactor.html" class="internal-link">twisted.internet.test.test_resolver.JustEnoughReactor</a></code></div>
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.internet.base.ReactorBase.iterate">
+    
+  </a>
+  <a name="iterate">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">iterate</span>(self, delay=0.0):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/internet/base.py#L766">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <code><a href="twisted.internet.interfaces.IReactorCore.html#iterate" class="internal-link" title="twisted.internet.interfaces.IReactorCore.iterate">twisted.internet.interfaces.IReactorCore</a></code></div><div class="interfaceinfo">overridden in <code><a href="twisted.internet._glibbase.GlibReactorBase.html" class="internal-link">twisted.internet._glibbase.GlibReactorBase</a></code>, <code><a href="twisted.internet.asyncioreactor.AsyncioSelectorReactor.html" class="internal-link">twisted.internet.asyncioreactor.AsyncioSelectorReactor</a></code>, <code><a href="twisted.internet.cfreactor.CFReactor.html" class="internal-link">twisted.internet.cfreactor.CFReactor</a></code></div>
+    
+    <div>See twisted.internet.interfaces.IReactorCore.iterate.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">delay:</span><code><a href="https://docs.python.org/3/library/functions.html#float" class="intersphinx-link">float</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.internet.base.ReactorBase.removeAll">
+    
+  </a>
+  <a name="removeAll">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">removeAll</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/internet/base.py#L675">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="twisted.internet._glibbase.GlibReactorBase.html" class="internal-link">twisted.internet._glibbase.GlibReactorBase</a></code>, <code><a href="twisted.internet._threadedselect.ThreadedSelectReactor.html" class="internal-link">twisted.internet._threadedselect.ThreadedSelectReactor</a></code>, <code><a href="twisted.internet.asyncioreactor.AsyncioSelectorReactor.html" class="internal-link">twisted.internet.asyncioreactor.AsyncioSelectorReactor</a></code>, <code><a href="twisted.internet.cfreactor.CFReactor.html" class="internal-link">twisted.internet.cfreactor.CFReactor</a></code>, <code><a href="twisted.internet.epollreactor.EPollReactor.html" class="internal-link">twisted.internet.epollreactor.EPollReactor</a></code>, <code><a href="twisted.internet.iocpreactor.reactor.IOCPReactor.html" class="internal-link">twisted.internet.iocpreactor.reactor.IOCPReactor</a></code>, <code><a href="twisted.internet.kqreactor.KQueueReactor.html" class="internal-link">twisted.internet.kqreactor.KQueueReactor</a></code>, <code><a href="twisted.internet.pollreactor.PollReactor.html" class="internal-link">twisted.internet.pollreactor.PollReactor</a></code>, <code><a href="twisted.internet.selectreactor.SelectReactor.html" class="internal-link">twisted.internet.selectreactor.SelectReactor</a></code>, <code><a href="twisted.internet.test.test_posixbase.TimeoutReportReactor.html" class="internal-link">twisted.internet.test.test_posixbase.TimeoutReportReactor</a></code>, <code><a href="twisted.internet.win32eventreactor.Win32Reactor.html" class="internal-link">twisted.internet.win32eventreactor.Win32Reactor</a></code></div>
+    
+    <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.List" class="intersphinx-link">List</a>[<wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Union" class="intersphinx-link">Union</a>[<wbr></wbr><a href="twisted.internet.interfaces.IReadDescriptor.html" class="internal-link" title="twisted.internet.interfaces.IReadDescriptor">IReadDescriptor</a>, <wbr></wbr><a href="twisted.internet.interfaces.IWriteDescriptor.html" class="internal-link" title="twisted.internet.interfaces.IWriteDescriptor">IWriteDescriptor</a>]]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.internet.base.ReactorBase.removeReader">
+    
+  </a>
+  <a name="removeReader">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">removeReader</span>(self, reader):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/internet/base.py#L665">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="twisted.internet._glibbase.GlibReactorBase.html" class="internal-link">twisted.internet._glibbase.GlibReactorBase</a></code>, <code><a href="twisted.internet._threadedselect.ThreadedSelectReactor.html" class="internal-link">twisted.internet._threadedselect.ThreadedSelectReactor</a></code>, <code><a href="twisted.internet.asyncioreactor.AsyncioSelectorReactor.html" class="internal-link">twisted.internet.asyncioreactor.AsyncioSelectorReactor</a></code>, <code><a href="twisted.internet.cfreactor.CFReactor.html" class="internal-link">twisted.internet.cfreactor.CFReactor</a></code>, <code><a href="twisted.internet.epollreactor.EPollReactor.html" class="internal-link">twisted.internet.epollreactor.EPollReactor</a></code>, <code><a href="twisted.internet.kqreactor.KQueueReactor.html" class="internal-link">twisted.internet.kqreactor.KQueueReactor</a></code>, <code><a href="twisted.internet.pollreactor.PollReactor.html" class="internal-link">twisted.internet.pollreactor.PollReactor</a></code>, <code><a href="twisted.internet.selectreactor.SelectReactor.html" class="internal-link">twisted.internet.selectreactor.SelectReactor</a></code>, <code><a href="twisted.internet.test.test_posixbase.TrivialReactor.html" class="internal-link">twisted.internet.test.test_posixbase.TrivialReactor</a></code>, <code><a href="twisted.internet.win32eventreactor.Win32Reactor.html" class="internal-link">twisted.internet.win32eventreactor.Win32Reactor</a></code></div>
+    
+    <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">reader:</span><code><a href="twisted.internet.interfaces.IReadDescriptor.html" class="internal-link" title="twisted.internet.interfaces.IReadDescriptor">IReadDescriptor</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.internet.base.ReactorBase.removeSystemEventTrigger">
+    
+  </a>
+  <a name="removeSystemEventTrigger">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">removeSystemEventTrigger</span>(self, triggerID):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/internet/base.py#L804">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <code><a href="twisted.internet.interfaces.IReactorCore.html#removeSystemEventTrigger" class="internal-link" title="twisted.internet.interfaces.IReactorCore.removeSystemEventTrigger">twisted.internet.interfaces.IReactorCore</a></code></div>
+    
+    <div>See twisted.internet.interfaces.IReactorCore.removeSystemEventTrigger.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">trigger​ID:</span><code><a href="twisted.internet.base.html#_SystemEventID" class="internal-link" title="twisted.internet.base._SystemEventID">_SystemEventID</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.internet.base.ReactorBase.removeWriter">
+    
+  </a>
+  <a name="removeWriter">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">removeWriter</span>(self, writer):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/internet/base.py#L670">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="twisted.internet._glibbase.GlibReactorBase.html" class="internal-link">twisted.internet._glibbase.GlibReactorBase</a></code>, <code><a href="twisted.internet._threadedselect.ThreadedSelectReactor.html" class="internal-link">twisted.internet._threadedselect.ThreadedSelectReactor</a></code>, <code><a href="twisted.internet.asyncioreactor.AsyncioSelectorReactor.html" class="internal-link">twisted.internet.asyncioreactor.AsyncioSelectorReactor</a></code>, <code><a href="twisted.internet.cfreactor.CFReactor.html" class="internal-link">twisted.internet.cfreactor.CFReactor</a></code>, <code><a href="twisted.internet.epollreactor.EPollReactor.html" class="internal-link">twisted.internet.epollreactor.EPollReactor</a></code>, <code><a href="twisted.internet.kqreactor.KQueueReactor.html" class="internal-link">twisted.internet.kqreactor.KQueueReactor</a></code>, <code><a href="twisted.internet.pollreactor.PollReactor.html" class="internal-link">twisted.internet.pollreactor.PollReactor</a></code>, <code><a href="twisted.internet.selectreactor.SelectReactor.html" class="internal-link">twisted.internet.selectreactor.SelectReactor</a></code>, <code><a href="twisted.internet.test.test_posixbase.TrivialReactor.html" class="internal-link">twisted.internet.test.test_posixbase.TrivialReactor</a></code>, <code><a href="twisted.internet.win32eventreactor.Win32Reactor.html" class="internal-link">twisted.internet.win32eventreactor.Win32Reactor</a></code></div>
+    
+    <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">writer:</span><code><a href="twisted.internet.interfaces.IWriteDescriptor.html" class="internal-link" title="twisted.internet.interfaces.IWriteDescriptor">IWriteDescriptor</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.internet.base.ReactorBase.resolve">
+    
+  </a>
+  <a name="resolve">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">resolve</span>(self, name, timeout=(<wbr></wbr>1, <wbr></wbr>3, <wbr></wbr>11, <wbr></wbr>45)):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/internet/base.py#L691">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <code><a href="twisted.internet.interfaces.IReactorCore.html#resolve" class="internal-link" title="twisted.internet.interfaces.IReactorCore.resolve">twisted.internet.interfaces.IReactorCore</a></code></div>
+    
+    <div>Return a Deferred that will resolve a hostname.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">name:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">timeout:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Sequence" class="intersphinx-link">Sequence</a>[<wbr></wbr><a href="https://docs.python.org/3/library/functions.html#int" class="intersphinx-link">int</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="twisted.internet.defer.Deferred.html" class="internal-link" title="twisted.internet.defer.Deferred">Deferred</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.internet.base.ReactorBase.run">
+    
+  </a>
+  <a name="run">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">run</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/internet/base.py#L854">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <code><a href="twisted.internet.interfaces.IReactorCore.html#run" class="internal-link" title="twisted.internet.interfaces.IReactorCore.run">twisted.internet.interfaces.IReactorCore</a></code></div><div class="interfaceinfo">overridden in <code><a href="twisted.internet._glibbase.GlibReactorBase.html" class="internal-link">twisted.internet._glibbase.GlibReactorBase</a></code>, <code><a href="twisted.internet._glibbase.PortableGlibReactorBase.html" class="internal-link">twisted.internet._glibbase.PortableGlibReactorBase</a></code>, <code><a href="twisted.internet._threadedselect.ThreadedSelectReactor.html" class="internal-link">twisted.internet._threadedselect.ThreadedSelectReactor</a></code>, <code><a href="twisted.internet.asyncioreactor.AsyncioSelectorReactor.html" class="internal-link">twisted.internet.asyncioreactor.AsyncioSelectorReactor</a></code></div>
+    
+    <div>Fire 'startup' System Events, move the reactor to the 'running'
+state, then run the main loop until it is stopped with C{stop()} or
+C{crash()}.</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.internet.base.ReactorBase.runUntilCurrent">
+    
+  </a>
+  <a name="runUntilCurrent">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">runUntilCurrent</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/internet/base.py#L952">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Run all pending timed calls.</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.internet.base.ReactorBase.sigBreak">
+    
+  </a>
+  <a name="sigBreak">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">sigBreak</span>(self, number, frame=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/internet/base.py#L736">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Handle a SIGBREAK interrupt.</p>
+<p>@param number: See handler specification in L{signal.signal}
+@param frame: See handler specification in L{signal.signal}</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">number:</span><code><a href="https://docs.python.org/3/library/functions.html#int" class="intersphinx-link">int</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">frame:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/types.html#types.FrameType" class="intersphinx-link">FrameType</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.internet.base.ReactorBase.sigInt">
+    
+  </a>
+  <a name="sigInt">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">sigInt</span>(self, number, frame=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/internet/base.py#L725">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Handle a SIGINT interrupt.</p>
+<p>@param number: See handler specification in L{signal.signal}
+@param frame: See handler specification in L{signal.signal}</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">number:</span><code><a href="https://docs.python.org/3/library/functions.html#int" class="intersphinx-link">int</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">frame:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/types.html#types.FrameType" class="intersphinx-link">FrameType</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.internet.base.ReactorBase.sigTerm">
+    
+  </a>
+  <a name="sigTerm">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">sigTerm</span>(self, number, frame=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/internet/base.py#L747">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Handle a SIGTERM interrupt.</p>
+<p>@param number: See handler specification in L{signal.signal}
+@param frame: See handler specification in L{signal.signal}</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">number:</span><code><a href="https://docs.python.org/3/library/functions.html#int" class="intersphinx-link">int</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">frame:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/types.html#types.FrameType" class="intersphinx-link">FrameType</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.internet.base.ReactorBase.startRunning">
+    
+  </a>
+  <a name="startRunning">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">startRunning</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/internet/base.py#L825">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Method called when reactor starts: do some initialization and fire
+startup events.</p>
+<p>Don't call this directly, call reactor.run() instead: it should take
+care of calling this.</p>
+<p>This method is somewhat misnamed.  The reactor will not necessarily be
+in the running state by the time this method returns.  The only
+guarantee is that it will be on its way to the running state.</p>
+</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.internet.base.ReactorBase.stop">
+    
+  </a>
+  <a name="stop">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">stop</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/internet/base.py#L703">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <code><a href="twisted.internet.interfaces.IReactorCore.html#stop" class="internal-link" title="twisted.internet.interfaces.IReactorCore.stop">twisted.internet.interfaces.IReactorCore</a></code></div><div class="interfaceinfo">overridden in <code><a href="twisted.internet._glibbase.GlibReactorBase.html" class="internal-link">twisted.internet._glibbase.GlibReactorBase</a></code>, <code><a href="twisted.internet._threadedselect.ThreadedSelectReactor.html" class="internal-link">twisted.internet._threadedselect.ThreadedSelectReactor</a></code>, <code><a href="twisted.internet.asyncioreactor.AsyncioSelectorReactor.html" class="internal-link">twisted.internet.asyncioreactor.AsyncioSelectorReactor</a></code>, <code><a href="twisted.internet.cfreactor.CFReactor.html" class="internal-link">twisted.internet.cfreactor.CFReactor</a></code></div>
+    
+    <div>See twisted.internet.interfaces.IReactorCore.stop.</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.internet.base.ReactorBase.suggestThreadPoolSize">
+    
+  </a>
+  <a name="suggestThreadPoolSize">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">suggestThreadPoolSize</span>(self, size):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/internet/base.py#L1102">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <code><a href="twisted.internet.interfaces.IReactorThreads.html#suggestThreadPoolSize" class="internal-link" title="twisted.internet.interfaces.IReactorThreads.suggestThreadPoolSize">twisted.internet.interfaces.IReactorThreads</a></code></div>
+    
+    <div>See L{twisted.internet.interfaces.IReactorThreads.suggestThreadPoolSize}.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">size:</span><code><a href="https://docs.python.org/3/library/functions.html#int" class="intersphinx-link">int</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.internet.base.ReactorBase.timeout">
+    
+  </a>
+  <a name="timeout">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">timeout</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/internet/base.py#L924">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Determine the longest time the reactor may sleep (waiting on I/O
+notification, perhaps) before it must wake up to service a time-related
+event.</p>
+<p>@return: The maximum number of seconds the reactor may sleep.</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/functions.html#float" class="intersphinx-link">float</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.internet.base.ReactorBase.wakeUp">
+    
+  </a>
+  <a name="wakeUp">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">wakeUp</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/internet/base.py#L638">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="twisted.internet._threadedselect.ThreadedSelectReactor.html" class="internal-link">twisted.internet._threadedselect.ThreadedSelectReactor</a></code>, <code><a href="twisted.internet.iocpreactor.reactor.IOCPReactor.html" class="internal-link">twisted.internet.iocpreactor.reactor.IOCPReactor</a></code></div>
+    
+    <div>Wake up the event loop.</div>
+  </div>
+</div><div class="baseclassvariable">
+  
+  
+  <a name="twisted.internet.base.ReactorBase.__name__">
+    
+  </a>
+  <a name="__name__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">__name__</span>: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/internet/base.py#L600">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseclassvariable">
+  
+  
+  <a name="twisted.internet.base.ReactorBase.installed">
+    
+  </a>
+  <a name="installed">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">installed</span>: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/internet/base.py#L596">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseclassvariable">
+  
+  
+  <a name="twisted.internet.base.ReactorBase.seconds">
+    
+  </a>
+  <a name="seconds">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">seconds</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/internet/base.py#L860">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">from <code><a href="twisted.internet.interfaces.IReactorTime.html#seconds" class="internal-link" title="twisted.internet.interfaces.IReactorTime.seconds">twisted.internet.interfaces.IReactorTime</a></code></div><div class="interfaceinfo">overridden in <code><a href="twisted.internet.test.test_posixbase.TimeoutReportReactor.html" class="internal-link">twisted.internet.test.test_posixbase.TimeoutReportReactor</a></code></div>
+    
+    <div><p>Get the current time in seconds.</p>
+<p>@return: A number-like object of some sort.</p>
+</div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="twisted.internet.base.ReactorBase.running">
+    
+  </a>
+  <a name="running">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">running</span>: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/internet/base.py#L609">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">from <code><a href="twisted.internet.interfaces.IReactorCore.html#running" class="internal-link" title="twisted.internet.interfaces.IReactorCore.running">twisted.internet.interfaces.IReactorCore</a></code></div>
+    
+    <div>A C{bool} which is C{True} from I{during startup} to I{during shutdown} and C{False} the rest of the time.</div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="twisted.internet.base.ReactorBase.threadCallQueue">
+    
+  </a>
+  <a name="threadCallQueue">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">threadCallQueue</span>: <code><a href="https://docs.python.org/3/library/typing.html#typing.List" class="intersphinx-link">List</a>[<wbr></wbr><a href="twisted.internet.base.html#_ThreadCall" class="internal-link" title="twisted.internet.base._ThreadCall">_ThreadCall</a>]</code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/internet/base.py#L604">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="twisted.internet.base.ReactorBase.threadpool">
+    
+  </a>
+  <a name="threadpool">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">threadpool</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/internet/base.py#L1023">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="twisted.internet.base.ReactorBase.threadpoolShutdownID">
+    
+  </a>
+  <a name="threadpoolShutdownID">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">threadpoolShutdownID</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/internet/base.py#L1027">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="twisted.internet.base.ReactorBase.usingThreads">
+    
+  </a>
+  <a name="usingThreads">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">usingThreads</span>: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/internet/base.py#L597">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="twisted.internet.base.ReactorBase.waker">
+    
+  </a>
+  <a name="waker">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">waker</span>: <code><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">Any</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/internet/base.py#L616">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="twisted.internet.posixbase.PosixReactorBase.html" class="internal-link">twisted.internet.posixbase.PosixReactorBase</a></code></div>
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="twisted.internet.base.ReactorBase._cancelCallLater">
+    
+  </a>
+  <a name="_cancelCallLater">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_cancelCallLater</span>(self, delayedCall):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/internet/base.py#L902">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">delayed​Call:</span><code><a href="twisted.internet.base.DelayedCall.html" class="internal-link" title="twisted.internet.base.DelayedCall">DelayedCall</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="twisted.internet.base.ReactorBase._initThreadPool">
+    
+  </a>
+  <a name="_initThreadPool">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_initThreadPool</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/internet/base.py#L1050">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Create the threadpool accessible with callFromThread.</div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="twisted.internet.base.ReactorBase._initThreads">
+    
+  </a>
+  <a name="_initThreads">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_initThreads</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/internet/base.py#L1029">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="twisted.internet.base.ReactorBase._insertNewDelayedCalls">
+    
+  </a>
+  <a name="_insertNewDelayedCalls">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_insertNewDelayedCalls</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/internet/base.py#L915">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="twisted.internet.base.ReactorBase._moveCallLaterSooner">
+    
+  </a>
+  <a name="_moveCallLaterSooner">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_moveCallLaterSooner</span>(self, delayedCall):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/internet/base.py#L882">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="twisted.internet.asyncioreactor.AsyncioSelectorReactor.html" class="internal-link">twisted.internet.asyncioreactor.AsyncioSelectorReactor</a></code>, <code><a href="twisted.internet.cfreactor.CFReactor.html" class="internal-link">twisted.internet.cfreactor.CFReactor</a></code></div>
+    
+    <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">delayed​Call:</span><code><a href="twisted.internet.base.DelayedCall.html" class="internal-link" title="twisted.internet.base.DelayedCall">DelayedCall</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="twisted.internet.base.ReactorBase._reallyStartRunning">
+    
+  </a>
+  <a name="_reallyStartRunning">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_reallyStartRunning</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/internet/base.py#L847">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Method called to transition to the running state.  This should happen
+in the I{during startup} event trigger phase.</div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="twisted.internet.base.ReactorBase._stopThreadPool">
+    
+  </a>
+  <a name="_stopThreadPool">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_stopThreadPool</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/internet/base.py#L1063">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Stop the reactor threadpool.  This method is only valid if there
+is currently a threadpool (created by L{_initThreadPool}).  It
+is not intended to be called directly; instead, it will be
+called by a shutdown trigger created in L{_initThreadPool}.</div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="twisted.internet.base.ReactorBase._uninstallHandler">
+    
+  </a>
+  <a name="_uninstallHandler">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_uninstallHandler</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/internet/base.py#L1060">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="twisted.internet.posixbase.PosixReactorBase.html" class="internal-link">twisted.internet.posixbase.PosixReactorBase</a></code></div>
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="baseclassvariable private">
+  
+  
+  <a name="twisted.internet.base.ReactorBase._lock">
+    
+  </a>
+  <a name="_lock">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_lock</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/internet/base.py#L631">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseclassvariable private">
+  
+  
+  <a name="twisted.internet.base.ReactorBase._registerAsIOThread">
+    
+  </a>
+  <a name="_registerAsIOThread">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_registerAsIOThread</span>: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/internet/base.py#L593">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  
+  <a name="twisted.internet.base.ReactorBase._cancellations">
+    
+  </a>
+  <a name="_cancellations">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_cancellations</span>: <code><a href="https://docs.python.org/3/library/functions.html#int" class="intersphinx-link">int</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/internet/base.py#L608">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  
+  <a name="twisted.internet.base.ReactorBase._eventTriggers">
+    
+  </a>
+  <a name="_eventTriggers">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_eventTriggers</span>: <code><a href="https://docs.python.org/3/library/typing.html#typing.Dict" class="intersphinx-link">Dict</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>, <wbr></wbr><a href="twisted.internet.base._ThreePhaseEvent.html" class="internal-link" title="twisted.internet.base._ThreePhaseEvent">_ThreePhaseEvent</a>]</code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/internet/base.py#L605">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  
+  <a name="twisted.internet.base.ReactorBase._exitSignal">
+    
+  </a>
+  <a name="_exitSignal">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_exitSignal</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/internet/base.py#L598">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">from <code><a href="twisted.internet.interfaces._ISupportsExitSignalCapturing.html#_exitSignal" class="internal-link" title="twisted.internet.interfaces._ISupportsExitSignalCapturing._exitSignal">twisted.internet.interfaces._ISupportsExitSignalCapturing</a></code></div>
+    
+    <div>C{int} or C{None}, the integer exit signal delivered to the
+application, or None if no signal was delivered.</div>
+    
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  
+  <a name="twisted.internet.base.ReactorBase._internalReaders">
+    
+  </a>
+  <a name="_internalReaders">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_internalReaders</span>: <code><a href="https://docs.python.org/3/library/typing.html#typing.Set" class="intersphinx-link">Set</a>[<wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">Any</a>]</code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/internet/base.py#L615">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  
+  <a name="twisted.internet.base.ReactorBase._justStopped">
+    
+  </a>
+  <a name="_justStopped">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_justStopped</span>: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/internet/base.py#L611">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="twisted.internet.asyncioreactor.AsyncioSelectorReactor.html" class="internal-link">twisted.internet.asyncioreactor.AsyncioSelectorReactor</a></code></div>
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  
+  <a name="twisted.internet.base.ReactorBase._newTimedCalls">
+    
+  </a>
+  <a name="_newTimedCalls">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_newTimedCalls</span>: <code><a href="https://docs.python.org/3/library/stdtypes.html#list" class="intersphinx-link">list</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/internet/base.py#L607">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  
+  <a name="twisted.internet.base.ReactorBase._pendingTimedCalls">
+    
+  </a>
+  <a name="_pendingTimedCalls">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_pendingTimedCalls</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/internet/base.py#L606">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  
+  <a name="twisted.internet.base.ReactorBase._started">
+    
+  </a>
+  <a name="_started">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_started</span>: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/internet/base.py#L610">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  
+  <a name="twisted.internet.base.ReactorBase._startedBefore">
+    
+  </a>
+  <a name="_startedBefore">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_startedBefore</span>: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/internet/base.py#L612">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  
+  <a name="twisted.internet.base.ReactorBase._stopped">
+    
+  </a>
+  <a name="_stopped">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_stopped</span>: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/internet/base.py#L595">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  
+  <a name="twisted.internet.base.ReactorBase._threadpoolStartupID">
+    
+  </a>
+  <a name="_threadpoolStartupID">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_threadpoolStartupID</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/internet/base.py#L1025">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div>
+
+      </div>
+    </div>
+
+    <footer class="navbar navbar-default">
+  
+  <div class="container">
+    <a href="index.html">API Documentation</a> for twisted,
+  generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
+    22.2.0 at 2022-02-23 16:05:07.
+  </div>
+</footer>
+
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+  </body>
+</html>

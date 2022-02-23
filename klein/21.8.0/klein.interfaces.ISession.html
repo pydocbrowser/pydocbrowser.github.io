@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  
+
+  <head>
+    
+    <title>klein.interfaces.ISession</title>
+    <meta name="generator" content="pydoctor 22.2.0"> 
+        
+    </meta>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=0.75" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+    <link rel="stylesheet" type="text/css" href="extra.css" />
+</head>
+
+  <body>
+
+    <div id="banner">    
+    <div>
+        <a href="/">Home</a>
+        &gt; klein-21.8.0 <!-- This is a placeholder -->
+        
+        <!-- (<a href=""&gt;show all versions</a&gt;) -->
+    </div>
+</div>
+
+    <nav class="navbar navbar-default">
+  
+  <div class="container">
+
+    <div class="navbar-header">
+      
+      <div class="navlinks">
+          <span class="navbar-brand">
+            klein <a href="index.html">API Documentation</a>
+          </span>
+
+          <a href="moduleIndex.html">
+            Modules
+          </a>
+
+          <a href="classIndex.html">
+            Classes
+          </a>
+
+          <a href="nameIndex.html">
+            Names
+          </a>
+      </div>
+
+    </div>
+  </div>
+</nav>
+
+    
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="interface"><code><code><a href="index.html" class="internal-link">klein</a></code><wbr></wbr>.<code><a href="klein.interfaces.html" class="internal-link" title="klein.interfaces">interfaces</a></code><wbr></wbr>.<code><a href="klein.interfaces.ISession.html" class="internal-link" title="klein.interfaces.ISession">ISession</a></code></code></h1>
+        <div id="showPrivate">
+          <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+        </div>
+      </div>
+
+      <div class="categoryHeader">
+        interface documentation
+      </div>
+
+      <div class="extrasDocstring">
+        <p><code><span class="py-keyword">class</span> <span class="py-defname">ISession</span>(Interface): <a href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/klein-21.8.0//src/klein/_isession.py#L55" class="sourceLink">(source)</a></code></p><p>Known implementations: <code><a href="klein.storage._memory.MemorySession.html" class="internal-link">klein.storage._memory.MemorySession</a></code></p>
+        <p><a href="classIndex.html#klein.interfaces.ISession">View In Hierarchy</a></p>
+      </div>
+
+      <div class="moduleDocstring">
+        <div>An L{ISession} provider contains an identifier for the session, information
+about how the session was negotiated with the client software, and</div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id64">
+  
+  
+  <tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#authorize" class="internal-link" title="klein.interfaces.ISession.authorize">authorize</a></code></td>
+    <td>Retrieve other objects from this session.</td>
+  </tr><tr class="attribute">
+    
+    <td>Attribute</td>
+    <td><code><a href="#authenticatedBy" class="internal-link" title="klein.interfaces.ISession.authenticatedBy">authenticated​By</a></code></td>
+    <td>A L{SessionMechanism} indicating what mechanism was used to authenticate this session.</td>
+  </tr><tr class="attribute">
+    
+    <td>Attribute</td>
+    <td><code><a href="#identifier" class="internal-link" title="klein.interfaces.ISession.identifier">identifier</a></code></td>
+    <td>L{str} identifying a session.</td>
+  </tr><tr class="attribute">
+    
+    <td>Attribute</td>
+    <td><code><a href="#isConfidential" class="internal-link" title="klein.interfaces.ISession.isConfidential">is​Confidential</a></code></td>
+    <td><span class="undocumented">No summary</span></td>
+  </tr>
+</table>
+        
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="basemethod">
+  
+  
+  <a name="klein.interfaces.ISession.authorize">
+    
+  </a>
+  <a name="authorize">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">authorize</span>(interfaces):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/klein-21.8.0//src/klein/_isession.py#L93">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Retrieve other objects from this session.</p>
+<p>This method is how you can retrieve application-specific objects from
+the general-purpose session; define interfaces for each facet of
+something accessible to a session, then pass it here and to the
+L{ISessionStore} implementation you're using.</p>
+<p>@param interfaces: A list of interfaces.</p>
+<p>@return: all of the providers that could be retrieved from the session.
+@rtype: L{Deferred} firing with L{dict} mapping</p>
+<blockquote>
+L{zope.interface.interfaces.IInterface} to providers of each
+interface.  Interfaces which cannot be authorized will not be
+present as keys in this dictionary.</blockquote>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">interfaces:</span><code>Iterable[<wbr></wbr>Type[<wbr></wbr>Interface]]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code>Deferred</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="baseattribute">
+  
+  
+  <a name="klein.interfaces.ISession.authenticatedBy">
+    
+  </a>
+  <a name="authenticatedBy">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">authenticatedBy</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/klein-21.8.0//src/klein/_isession.py#L86">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div>A L{SessionMechanism} indicating what mechanism was used to
+authenticate this session.</div>
+    
+  </div>
+</div><div class="baseattribute">
+  
+  
+  <a name="klein.interfaces.ISession.identifier">
+    
+  </a>
+  <a name="identifier">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">identifier</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/klein-21.8.0//src/klein/_isession.py#L61">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p>L{str} identifying a session.</p>
+<p>This value should be:</p>
+<blockquote>
+<ol class="rst-arabic simple">
+<li>I{unique} - no two sessions have the same identifier</li>
+<li>I{unpredictable} - no one but the receipient of the session
+should be able to guess what it is</li>
+<li>I{opaque} - it should contain no interesting information</li>
+</ol>
+</blockquote>
+</div>
+    
+  </div>
+</div><div class="baseattribute">
+  
+  
+  <a name="klein.interfaces.ISession.isConfidential">
+    
+  </a>
+  <a name="isConfidential">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">isConfidential</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/klein-21.8.0//src/klein/_isession.py#L76">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div>A L{bool} indicating whether this session mechanism transmitted over an
+encrypted transport, i.e., HTTPS.  If C{True}, this means that this
+session can be used for sensitive information; otherwise, the
+information contained in it should be considered to be available to
+attackers.</div>
+    
+  </div>
+</div>
+
+      </div>
+    </div>
+
+    <footer class="navbar navbar-default">
+  
+  <div class="container">
+    <a href="index.html">API Documentation</a> for klein,
+  generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
+    22.2.0 at 2022-02-23 16:04:10.
+  </div>
+</footer>
+
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+  </body>
+</html>
