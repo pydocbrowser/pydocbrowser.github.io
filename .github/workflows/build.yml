@@ -33,10 +33,9 @@ jobs:
       - name: Build
         run: |
             set +e
-            
             # For testing, it will create many jobs, a values more like 200 should be set for production
             python -m pydocbrowser --build-timeout 1
-
+            set -e
             # Exit code 21 means it stopped generating docs because of the build timeout
             if [[ $? -eq 21 ]]; then
               echo 'Sending signal to build docs again'
