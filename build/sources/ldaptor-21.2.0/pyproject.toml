@@ -1,0 +1,110 @@
+[build-system]
+requires = [ "setuptools >= 35.0.2", "wheel >= 0.29.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.coverage.run]
+branch = true
+source_pkgs = ["ldaptor"]
+parallel = true
+
+[tool.coverage.paths]
+source = [
+    "ldaptor",
+    "*/site-packages/ldaptor",
+    '*\site-packages\ldaptor',
+]
+
+
+[tool.tox]
+legacy_tox_ini = """
+; tox configuration file for running tests on local dev env and CI.
+;
+; The local dev environment will be executed against latest released Twisted.
+; The coverage is reported only and local dev and not on CI as there
+; we have separate reported (ex codecov.io)
+
+[tox]
+minversion=3.20.0
+requires=
+    virtualenv >= 20.1.0
+    tox-wheel >= 0.5.0
+    tox-gh-actions >= 2.0.0
+;
+; Tags explanation:
+; * test - run trial tests
+; * dev - run things in local dev mode
+envlist =
+    py{35,36,37,38,39,py3}-test-{twlatest,twtrunk,dev}
+    py39-linters,
+    documentation,
+
+
+[testenv]
+wheel = True
+wheel_pep517 = True
+wheel_build_env = build
+parallel_show_output = True
+deps = 
+    coverage[toml] >= 5.3
+    pyparsing
+    passlib
+    twlatest: Twisted[tls]
+    twtrunk: Twisted[tls] @ https://github.com/twisted/twisted/archive/trunk.tar.gz
+    ; Dependecies for local dev environment.
+    dev: Twisted[tls]
+    dev: diff_cover
+    ; Linters are installed both on local dev and the dedicated env.
+    {dev,linters}: pre-commit
+
+; All environment variables are passed.
+passenv = *
+
+; Each command should have an associated tag as we use the same config for
+; all the environments.
+; This is done in order to reuse
+commands =
+    {envpython} --version
+    test: trial --version
+    test: coverage run --rcfile={toxinidir}/pyproject.toml -m twisted.trial --temp-directory={envtmpdir}/_trial_temp {posargs:ldaptor}
+
+    ; Only run on local dev env.
+    dev: coverage report --show-missing
+    dev: coverage xml -o {toxinidir}/build/coverage.xml
+    dev: coverage html -d build/coverage-html
+    dev: diff-cover --fail-under 100 --html-report {toxinidir}/build/coverage-diff.html {toxinidir}/build/coverage.xml
+    dev: pre-commit run --all-files --show-diff-on-failure
+    linters: pre-commit {posargs:run --all-files --show-diff-on-failure}
+
+[testenv:build]
+# empty environment to build universal wheel once per tox invocation
+# https://github.com/ionelmc/tox-wheel#build-configuration
+
+[testenv:documentation]
+deps = sphinx
+basepython=python3.9
+changedir = {envtmpdir}
+whitelist_externals = cp
+commands =
+    sphinx-build -b html -Ean -j 2 -w sphinx-errors \
+        {toxinidir}/docs/source ./docs/
+    cp -r . {toxinidir}/build
+
+[testenv:release]
+deps = pep517
+whitelist_externals =
+    cp
+    rm
+commands =
+    rm -rf {toxinidir}/dist
+    cp -r {distdir} {toxinidir}/dist # copy the wheel built by tox-wheel
+    {envpython} -m pep517.build --source --out-dir={toxinidir}/dist {toxinidir}
+
+[testenv:publishcov]
+passenv = GITHUB_*
+deps =
+  codecov
+  coverage[toml]>=5.3
+commands =
+    codecov --required
+depends = py{,35,36,37,38,39,py3}-test-{twlatest,twtrunk,dev}
+"""

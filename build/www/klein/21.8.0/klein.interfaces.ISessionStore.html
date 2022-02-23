@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  
+
+  <head>
+    
+    <title>klein.interfaces.ISessionStore</title>
+    <meta name="generator" content="pydoctor 22.2.0"> 
+        
+    </meta>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=0.75" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+    <link rel="stylesheet" type="text/css" href="extra.css" />
+</head>
+
+  <body>
+
+    <div id="banner">    
+    <div>
+        <a href="/">Home</a>
+        &gt; klein-21.8.0 <!-- This is a placeholder -->
+        
+        <!-- (<a href=""&gt;show all versions</a&gt;) -->
+    </div>
+</div>
+
+    <nav class="navbar navbar-default">
+  
+  <div class="container">
+
+    <div class="navbar-header">
+      
+      <div class="navlinks">
+          <span class="navbar-brand">
+            klein <a href="index.html">API Documentation</a>
+          </span>
+
+          <a href="moduleIndex.html">
+            Modules
+          </a>
+
+          <a href="classIndex.html">
+            Classes
+          </a>
+
+          <a href="nameIndex.html">
+            Names
+          </a>
+      </div>
+
+    </div>
+  </div>
+</nav>
+
+    
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="interface"><code><code><a href="index.html" class="internal-link">klein</a></code><wbr></wbr>.<code><a href="klein.interfaces.html" class="internal-link" title="klein.interfaces">interfaces</a></code><wbr></wbr>.<code><a href="klein.interfaces.ISessionStore.html" class="internal-link" title="klein.interfaces.ISessionStore">ISessionStore</a></code></code></h1>
+        <div id="showPrivate">
+          <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+        </div>
+      </div>
+
+      <div class="categoryHeader">
+        interface documentation
+      </div>
+
+      <div class="extrasDocstring">
+        <p><code><span class="py-keyword">class</span> <span class="py-defname">ISessionStore</span>(Interface): <a href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/klein-21.8.0//src/klein/_isession.py#L112" class="sourceLink">(source)</a></code></p><p>Known implementations: <code><a href="klein.storage.memory.MemorySessionStore.html" class="internal-link">klein.storage.memory.MemorySessionStore</a></code></p>
+        <p><a href="classIndex.html#klein.interfaces.ISessionStore">View In Hierarchy</a></p>
+      </div>
+
+      <div class="moduleDocstring">
+        <div>Backing storage for sessions.</div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id66">
+  
+  
+  <tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#loadSession" class="internal-link" title="klein.interfaces.ISessionStore.loadSession">load​Session</a></code></td>
+    <td>Load a session given the given identifier and security properties.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#newSession" class="internal-link" title="klein.interfaces.ISessionStore.newSession">new​Session</a></code></td>
+    <td>Create a new L{ISession}.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#sentInsecurely" class="internal-link" title="klein.interfaces.ISessionStore.sentInsecurely">sent​Insecurely</a></code></td>
+    <td>The transport layer has detected that the given identifiers have been sent over an unauthenticated transport.</td>
+  </tr>
+</table>
+        
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="basemethod">
+  
+  
+  <a name="klein.interfaces.ISessionStore.loadSession">
+    
+  </a>
+  <a name="loadSession">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">loadSession</span>(identifier, isConfidential, authenticatedBy):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/klein-21.8.0//src/klein/_isession.py#L128">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Load a session given the given identifier and security properties.</p>
+<p>As an optimization for session stores where the back-end can generate
+session identifiers when the presented one is not found in the same
+round-trip to a data store, this method may return a L{Session} object
+with an C{identifier} attribute that does not match C{identifier}.
+However, please keep in mind when implementing L{ISessionStore} that
+this behavior is only necessary for requests where C{authenticatedBy}
+is L{SessionMechanism.Cookie}; an unauthenticated
+L{SessionMechanism.Header} session is from an API client and its
+session should be valid already.</p>
+<p>@return: an existing session with the given identifier.
+@rtype: L{Deferred} firing with L{ISession} or failing with</p>
+<blockquote>
+L{NoSuchSession}.</blockquote>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">identifier:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">is​Confidential:</span><code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">authenticated​By:</span><code><a href="klein.interfaces.SessionMechanism.html" class="internal-link" title="klein.interfaces.SessionMechanism">SessionMechanism</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code>Deferred</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="klein.interfaces.ISessionStore.newSession">
+    
+  </a>
+  <a name="newSession">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">newSession</span>(isConfidential, authenticatedBy):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/klein-21.8.0//src/klein/_isession.py#L117">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Create a new L{ISession}.</p>
+<p>@return: a new session with a new identifier.
+@rtype: L{Deferred} firing with L{ISession}.</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">is​Confidential:</span><code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">authenticated​By:</span><code><a href="klein.interfaces.SessionMechanism.html" class="internal-link" title="klein.interfaces.SessionMechanism">SessionMechanism</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code>Deferred</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="klein.interfaces.ISessionStore.sentInsecurely">
+    
+  </a>
+  <a name="sentInsecurely">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">sentInsecurely</span>(identifiers):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/klein-21.8.0//src/klein/_isession.py#L151">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>The transport layer has detected that the given identifiers have been
+sent over an unauthenticated transport.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">identifiers:</span><code>Sequence[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div>
+
+      </div>
+    </div>
+
+    <footer class="navbar navbar-default">
+  
+  <div class="container">
+    <a href="index.html">API Documentation</a> for klein,
+  generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
+    22.2.0 at 2022-02-23 16:04:10.
+  </div>
+</footer>
+
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+  </body>
+</html>

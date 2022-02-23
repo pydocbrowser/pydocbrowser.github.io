@@ -1,0 +1,616 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  
+
+  <head>
+    
+    <title>treq.multipart.MultiPartProducer</title>
+    <meta name="generator" content="pydoctor 22.2.0"> 
+        
+    </meta>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=0.75" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+    <link rel="stylesheet" type="text/css" href="extra.css" />
+</head>
+
+  <body>
+
+    <div id="banner">    
+    <div>
+        <a href="/">Home</a>
+        &gt; treq-22.2.0 <!-- This is a placeholder -->
+        
+        <!-- (<a href=""&gt;show all versions</a&gt;) -->
+    </div>
+</div>
+
+    <nav class="navbar navbar-default">
+  
+  <div class="container">
+
+    <div class="navbar-header">
+      
+      <div class="navlinks">
+          <span class="navbar-brand">
+            treq <a href="index.html">API Documentation</a>
+          </span>
+
+          <a href="moduleIndex.html">
+            Modules
+          </a>
+
+          <a href="classIndex.html">
+            Classes
+          </a>
+
+          <a href="nameIndex.html">
+            Names
+          </a>
+      </div>
+
+    </div>
+  </div>
+</nav>
+
+    
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="class"><code><code><a href="index.html" class="internal-link">treq</a></code><wbr></wbr>.<code><a href="treq.multipart.html" class="internal-link" title="treq.multipart">multipart</a></code><wbr></wbr>.<code><a href="treq.multipart.MultiPartProducer.html" class="internal-link" title="treq.multipart.MultiPartProducer">MultiPartProducer</a></code></code></h1>
+        <div id="showPrivate">
+          <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+        </div>
+      </div>
+
+      <div class="categoryHeader">
+        class documentation
+      </div>
+
+      <div class="extrasDocstring">
+        <p><code><span class="py-keyword">class</span> <span class="py-defname">MultiPartProducer</span>: <a href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/treq-22.2.0//src/treq/multipart.py#L16" class="sourceLink">(source)</a></code></p><p>Implements interfaces: twisted.web.iweb.IBodyProducer</p>
+        <p><a href="classIndex.html#treq.multipart.MultiPartProducer">View In Hierarchy</a></p>
+      </div>
+
+      <div class="moduleDocstring">
+        <div><p><code><a href="treq.multipart.MultiPartProducer.html" class="internal-link" title="treq.multipart.MultiPartProducer">MultiPartProducer</a></code> takes parameters for a HTTP request and
+produces bytes in multipart/form-data format defined in <a class="rst-reference external" href="http://tools.ietf.org/html/rfc2388.html" target="_top">RFC 2388</a> and
+<a class="rst-reference external" href="http://tools.ietf.org/html/rfc2046.html" target="_top">RFC 2046</a>.</p>
+<p>The encoded request is produced incrementally and the bytes are
+written to a consumer.</p>
+<p>Fields should have form: <tt class="rst-docutils literal">[(parameter name, value), <span class="pre">...]</span></tt></p>
+<p>Accepted values:</p>
+<ul class="rst-simple">
+<li>Unicode strings (in this case parameter will be encoded with utf-8)</li>
+<li>Tuples with (file name, content-type,
+<code>~twisted.web.iweb.IBodyProducer</code> objects)</li>
+</ul>
+<p>Since <code><a href="treq.multipart.MultiPartProducer.html" class="internal-link" title="treq.multipart.MultiPartProducer">MultiPartProducer</a></code> can accept objects like
+<code>~twisted.web.iweb.IBodyProducer</code> which cannot be read from in an
+event-driven manner it uses uses a
+<code>~twisted.internet.task.Cooperator</code> instance to schedule reads
+from the underlying producers. Reading is also paused and resumed based on
+notifications from the <code>IConsumer</code> provider being written to.</p>
+</div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id1131">
+  
+  
+  <tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__init__" class="internal-link" title="treq.multipart.MultiPartProducer.__init__">__init__</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#pauseProducing" class="internal-link" title="treq.multipart.MultiPartProducer.pauseProducing">pause​Producing</a></code></td>
+    <td>Temporarily suspend copying bytes from the input file to the consumer by pausing the <code>CooperativeTask</code> which drives that activity.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#resumeProducing" class="internal-link" title="treq.multipart.MultiPartProducer.resumeProducing">resume​Producing</a></code></td>
+    <td>Undo the effects of a previous <code><a href="#pauseProducing" class="internal-link" title="treq.multipart.MultiPartProducer.pauseProducing">pauseProducing</a></code> and resume copying bytes to the consumer by resuming the <code>CooperativeTask</code> which drives the write activity.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#startProducing" class="internal-link" title="treq.multipart.MultiPartProducer.startProducing">start​Producing</a></code></td>
+    <td>Start a cooperative task which will read bytes from the input file and write them to <code>consumer</code>.  Return a <code>Deferred</code> which fires after all bytes have been written.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#stopProducing" class="internal-link" title="treq.multipart.MultiPartProducer.stopProducing">stop​Producing</a></code></td>
+    <td>Permanently stop writing bytes from the file to the consumer by stopping the underlying <code>CooperativeTask</code>.</td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#boundary" class="internal-link" title="treq.multipart.MultiPartProducer.boundary">boundary</a></code></td>
+    <td>The generated boundary used in form-data encoding</td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#length" class="internal-link" title="treq.multipart.MultiPartProducer.length">length</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_calculateLength" class="internal-link" title="treq.multipart.MultiPartProducer._calculateLength">_calculate​Length</a></code></td>
+    <td><span class="undocumented">No summary</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_getBoundary" class="internal-link" title="treq.multipart.MultiPartProducer._getBoundary">_get​Boundary</a></code></td>
+    <td>Returns a boundary line, either final (the one that ends the form data request or a regular, the one that separates the boundaries)</td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_writeField" class="internal-link" title="treq.multipart.MultiPartProducer._writeField">_write​Field</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_writeFile" class="internal-link" title="treq.multipart.MultiPartProducer._writeFile">_write​File</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_writeLoop" class="internal-link" title="treq.multipart.MultiPartProducer._writeLoop">_write​Loop</a></code></td>
+    <td>Return an iterator which generates the multipart/form-data request including the encoded objects and writes them to the consumer for each time it is iterated.</td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_writeString" class="internal-link" title="treq.multipart.MultiPartProducer._writeString">_write​String</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#_cooperate" class="internal-link" title="treq.multipart.MultiPartProducer._cooperate">​_cooperate</a></code></td>
+    <td>A method like <code>Cooperator.cooperate</code> which is used to
+schedule all reads.</td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#_currentProducer" class="internal-link" title="treq.multipart.MultiPartProducer._currentProducer">_current​Producer</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#_fields" class="internal-link" title="treq.multipart.MultiPartProducer._fields">​_fields</a></code></td>
+    <td>Sorted parameters, where all strings are enforced to be
+unicode and file objects stacked on bottom (to produce a human readable
+form-data request)</td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#_task" class="internal-link" title="treq.multipart.MultiPartProducer._task">​_task</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+        
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="basemethod">
+  
+  
+  <a name="treq.multipart.MultiPartProducer.__init__">
+    
+  </a>
+  <a name="__init__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__init__</span>(self, fields, boundary=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, cooperator=task):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/treq-22.2.0//src/treq/multipart.py#L52">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="treq.multipart.MultiPartProducer.pauseProducing">
+    
+  </a>
+  <a name="pauseProducing">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">pauseProducing</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/treq-22.2.0//src/treq/multipart.py#L90">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Temporarily suspend copying bytes from the input file to the consumer
+by pausing the <code>CooperativeTask</code> which drives that activity.</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="treq.multipart.MultiPartProducer.resumeProducing">
+    
+  </a>
+  <a name="resumeProducing">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">resumeProducing</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/treq-22.2.0//src/treq/multipart.py#L106">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Undo the effects of a previous <code><a href="#pauseProducing" class="internal-link" title="treq.multipart.MultiPartProducer.pauseProducing">pauseProducing</a></code> and resume copying
+bytes to the consumer by resuming the <code>CooperativeTask</code> which drives
+the write activity.</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="treq.multipart.MultiPartProducer.startProducing">
+    
+  </a>
+  <a name="startProducing">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">startProducing</span>(self, consumer):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/treq-22.2.0//src/treq/multipart.py#L64">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Start a cooperative task which will read bytes from the input file and
+write them to <code>consumer</code>.  Return a <code>Deferred</code> which fires after all
+bytes have been written.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">consumer</span></td><td class="fieldArgDesc">Any <code>IConsumer</code> provider</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="treq.multipart.MultiPartProducer.stopProducing">
+    
+  </a>
+  <a name="stopProducing">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">stopProducing</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/treq-22.2.0//src/treq/multipart.py#L81">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Permanently stop writing bytes from the file to the consumer by
+stopping the underlying <code>CooperativeTask</code>.</div>
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="treq.multipart.MultiPartProducer.boundary">
+    
+  </a>
+  <a name="boundary">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">boundary</span>: <code><a href="https://docs.python.org/3/library/stdtypes.html#bytes" class="intersphinx-link">bytes</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/treq-22.2.0//src/treq/multipart.py#L48">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div>The generated boundary used in form-data encoding</div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="treq.multipart.MultiPartProducer.length">
+    
+  </a>
+  <a name="length">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">length</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/treq-22.2.0//src/treq/multipart.py#L62">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="treq.multipart.MultiPartProducer._calculateLength">
+    
+  </a>
+  <a name="_calculateLength">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_calculateLength</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/treq-22.2.0//src/treq/multipart.py#L117">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Determine how many bytes the overall form post would consume.
+The easiest way is to calculate is to generate of <code>fObj</code>
+(assuming it is not modified from this point on).
+If the determination cannot be made, return <code>UNKNOWN_LENGTH</code>.</div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="treq.multipart.MultiPartProducer._getBoundary">
+    
+  </a>
+  <a name="_getBoundary">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_getBoundary</span>(self, final=<a href="https://docs.python.org/3/library/constants.html#False" class="intersphinx-link">False</a>):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/treq-22.2.0//src/treq/multipart.py#L129">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Returns a boundary line, either final (the one that ends the
+form data request or a regular, the one that separates the boundaries)</p>
+<p>--this-is-my-boundary</p>
+</div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="treq.multipart.MultiPartProducer._writeField">
+    
+  </a>
+  <a name="_writeField">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_writeField</span>(self, name, value, consumer):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/treq-22.2.0//src/treq/multipart.py#L167">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="treq.multipart.MultiPartProducer._writeFile">
+    
+  </a>
+  <a name="_writeFile">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_writeFile</span>(self, name, filename, content_type, producer, consumer):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/treq-22.2.0//src/treq/multipart.py#L184">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="treq.multipart.MultiPartProducer._writeLoop">
+    
+  </a>
+  <a name="_writeLoop">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_writeLoop</span>(self, consumer):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/treq-22.2.0//src/treq/multipart.py#L139">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Return an iterator which generates the multipart/form-data
+request including the encoded objects
+and writes them to the consumer for each time it is iterated.</div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="treq.multipart.MultiPartProducer._writeString">
+    
+  </a>
+  <a name="_writeString">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_writeString</span>(self, name, value, consumer):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/treq-22.2.0//src/treq/multipart.py#L175">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  
+  <a name="treq.multipart.MultiPartProducer._cooperate">
+    
+  </a>
+  <a name="_cooperate">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_cooperate</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/treq-22.2.0//src/treq/multipart.py#L45">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div>A method like <code>Cooperator.cooperate</code> which is used to
+schedule all reads.</div>
+    
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  
+  <a name="treq.multipart.MultiPartProducer._currentProducer">
+    
+  </a>
+  <a name="_currentProducer">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_currentProducer</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/treq-22.2.0//src/treq/multipart.py#L54">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  
+  <a name="treq.multipart.MultiPartProducer._fields">
+    
+  </a>
+  <a name="_fields">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_fields</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/treq-22.2.0//src/treq/multipart.py#L41">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div>Sorted parameters, where all strings are enforced to be
+unicode and file objects stacked on bottom (to produce a human readable
+form-data request)</div>
+    
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  
+  <a name="treq.multipart.MultiPartProducer._task">
+    
+  </a>
+  <a name="_task">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_task</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/treq-22.2.0//src/treq/multipart.py#L72">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div>
+
+      </div>
+    </div>
+
+    <footer class="navbar navbar-default">
+  
+  <div class="container">
+    <a href="index.html">API Documentation</a> for treq,
+  generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
+    22.2.0 at 2022-02-23 16:04:59.
+  </div>
+</footer>
+
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+  </body>
+</html>

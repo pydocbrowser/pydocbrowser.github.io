@@ -1,0 +1,1069 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  
+
+  <head>
+    
+    <title>twisted.names.server.DNSServerFactory</title>
+    <meta name="generator" content="pydoctor 22.2.0"> 
+        
+    </meta>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=0.75" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+    <link rel="stylesheet" type="text/css" href="extra.css" />
+</head>
+
+  <body>
+
+    <div id="banner">    
+    <div>
+        <a href="/">Home</a>
+        &gt; twisted-22.1.0 <!-- This is a placeholder -->
+        
+        <!-- (<a href=""&gt;show all versions</a&gt;) -->
+    </div>
+</div>
+
+    <nav class="navbar navbar-default">
+  
+  <div class="container">
+
+    <div class="navbar-header">
+      
+      <div class="navlinks">
+          <span class="navbar-brand">
+            twisted <a href="index.html">API Documentation</a>
+          </span>
+
+          <a href="moduleIndex.html">
+            Modules
+          </a>
+
+          <a href="classIndex.html">
+            Classes
+          </a>
+
+          <a href="nameIndex.html">
+            Names
+          </a>
+      </div>
+
+    </div>
+  </div>
+</nav>
+
+    
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="class"><code><code><a href="index.html" class="internal-link">twisted</a></code><wbr></wbr>.<code><a href="twisted.names.html" class="internal-link" title="twisted.names">names</a></code><wbr></wbr>.<code><a href="twisted.names.server.html" class="internal-link" title="twisted.names.server">server</a></code><wbr></wbr>.<code><a href="twisted.names.server.DNSServerFactory.html" class="internal-link" title="twisted.names.server.DNSServerFactory">DNSServerFactory</a></code></code></h1>
+        <div id="showPrivate">
+          <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+        </div>
+      </div>
+
+      <div class="categoryHeader">
+        class documentation
+      </div>
+
+      <div class="extrasDocstring">
+        <p><code><span class="py-keyword">class</span> <span class="py-defname">DNSServerFactory</span>(<a href="twisted.internet.protocol.ServerFactory.html" class="internal-link" title="twisted.internet.protocol.ServerFactory">protocol.ServerFactory</a>): <a href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/names/server.py#L27" class="sourceLink">(source)</a></code></p><p>Known subclasses: <code><a href="twisted.names.test.test_server.NoResponseDNSServerFactory.html" class="internal-link">twisted.names.test.test_server.NoResponseDNSServerFactory</a></code>, <code><a href="twisted.names.test.test_server.RaisingDNSServerFactory.html" class="internal-link">twisted.names.test.test_server.RaisingDNSServerFactory</a></code></p>
+        <p><a href="classIndex.html#twisted.names.server.DNSServerFactory">View In Hierarchy</a></p>
+      </div>
+
+      <div class="moduleDocstring">
+        <div><p>Server factory and tracker for L{DNSProtocol} connections.  This class also
+provides records for responses to DNS queries.</p>
+<dl class="rst-docutils">
+<dt>@ivar cache: A L{Cache&lt;twisted.names.cache.CacheResolver&gt;} instance whose</dt>
+<dd>C{cacheResult} method is called when a response is received from one of
+C{clients}. Defaults to L{None} if no caches are specified. See
+C{caches} of L{__init__} for more details.</dd>
+</dl>
+<p>@type cache: L{Cache&lt;twisted.names.cache.CacheResolver&gt;} or L{None}</p>
+<dl class="rst-docutils">
+<dt>@ivar canRecurse: A flag indicating whether this server is capable of</dt>
+<dd>performing recursive DNS resolution.</dd>
+</dl>
+<p>@type canRecurse: L{bool}</p>
+<dl class="rst-docutils">
+<dt>@ivar resolver: A L{resolve.ResolverChain} containing an ordered list of</dt>
+<dd>C{authorities}, C{caches} and C{clients} to which queries will be
+dispatched.</dd>
+</dl>
+<p>@type resolver: L{resolve.ResolverChain}</p>
+<p>@ivar verbose: See L{__init__}</p>
+<dl class="rst-docutils">
+<dt>@ivar connections: A list of all the connected L{DNSProtocol} instances</dt>
+<dd>using this object as their controller.</dd>
+</dl>
+<p>@type connections: C{list} of L{DNSProtocol} instances</p>
+<dl class="rst-docutils">
+<dt>@ivar protocol: A callable used for building a DNS stream protocol. Called</dt>
+<dd>by L{DNSServerFactory.buildProtocol} and passed the L{DNSServerFactory}
+instance as the one and only positional argument.  Defaults to
+L{dns.DNSProtocol}.</dd>
+</dl>
+<p>@type protocol: L{IProtocolFactory} constructor</p>
+<dl class="rst-docutils">
+<dt>@ivar _messageFactory: A response message constructor with an initializer</dt>
+<dd>signature matching L{dns.Message.__init__}.</dd>
+</dl>
+<p>@type _messageFactory: C{callable}</p>
+</div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id5888">
+  
+  
+  <tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__init__" class="internal-link" title="twisted.names.server.DNSServerFactory.__init__">__init__</a></code></td>
+    <td>@param authorities: Resolvers which provide authoritative answers. @type authorities: L{list} of L{IResolver} providers</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#allowQuery" class="internal-link" title="twisted.names.server.DNSServerFactory.allowQuery">allow​Query</a></code></td>
+    <td>Called by L{DNSServerFactory.messageReceived} to decide whether to process a received message or to reply with C{dns.EREFUSED}.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#buildProtocol" class="internal-link" title="twisted.names.server.DNSServerFactory.buildProtocol">build​Protocol</a></code></td>
+    <td>Create an instance of a subclass of Protocol.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#connectionLost" class="internal-link" title="twisted.names.server.DNSServerFactory.connectionLost">connection​Lost</a></code></td>
+    <td>Stop tracking a no-longer connected L{DNSProtocol}.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#connectionMade" class="internal-link" title="twisted.names.server.DNSServerFactory.connectionMade">connection​Made</a></code></td>
+    <td>Track a newly connected L{DNSProtocol}.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#gotResolverError" class="internal-link" title="twisted.names.server.DNSServerFactory.gotResolverError">got​Resolver​Error</a></code></td>
+    <td>A callback used by L{DNSServerFactory.handleQuery} for handling deferred errors from C{self.resolver.query}.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#gotResolverResponse" class="internal-link" title="twisted.names.server.DNSServerFactory.gotResolverResponse">got​Resolver​Response</a></code></td>
+    <td>A callback used by L{DNSServerFactory.handleQuery} for handling the deferred response from C{self.resolver.query}.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#handleInverseQuery" class="internal-link" title="twisted.names.server.DNSServerFactory.handleInverseQuery">handle​Inverse​Query</a></code></td>
+    <td>Called by L{DNSServerFactory.messageReceived} when an inverse query message is received.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#handleNotify" class="internal-link" title="twisted.names.server.DNSServerFactory.handleNotify">handle​Notify</a></code></td>
+    <td>Called by L{DNSServerFactory.messageReceived} when a notify message is received.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#handleOther" class="internal-link" title="twisted.names.server.DNSServerFactory.handleOther">handle​Other</a></code></td>
+    <td>Called by L{DNSServerFactory.messageReceived} when a message with unrecognised I{OPCODE} is received.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#handleQuery" class="internal-link" title="twisted.names.server.DNSServerFactory.handleQuery">handle​Query</a></code></td>
+    <td>Called by L{DNSServerFactory.messageReceived} when a query message is received.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#handleStatus" class="internal-link" title="twisted.names.server.DNSServerFactory.handleStatus">handle​Status</a></code></td>
+    <td>Called by L{DNSServerFactory.messageReceived} when a status message is received.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#messageReceived" class="internal-link" title="twisted.names.server.DNSServerFactory.messageReceived">message​Received</a></code></td>
+    <td><span class="undocumented">No summary</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#sendReply" class="internal-link" title="twisted.names.server.DNSServerFactory.sendReply">send​Reply</a></code></td>
+    <td>Send a response C{message} to a given C{address} via the supplied C{protocol}.</td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#cache" class="internal-link" title="twisted.names.server.DNSServerFactory.cache">cache</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#canRecurse" class="internal-link" title="twisted.names.server.DNSServerFactory.canRecurse">can​Recurse</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#connections" class="internal-link" title="twisted.names.server.DNSServerFactory.connections">connections</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#resolver" class="internal-link" title="twisted.names.server.DNSServerFactory.resolver">resolver</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#verbose" class="internal-link" title="twisted.names.server.DNSServerFactory.verbose">verbose</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_responseFromMessage" class="internal-link" title="twisted.names.server.DNSServerFactory._responseFromMessage">_response​From​Message</a></code></td>
+    <td>Generate a L{Message} instance suitable for use as the response to C{message}.</td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_verboseLog" class="internal-link" title="twisted.names.server.DNSServerFactory._verboseLog">_verbose​Log</a></code></td>
+    <td>Log a message only if verbose logging is enabled.</td>
+  </tr>
+</table>
+        
+          <p class="inheritedFrom">
+            Inherited from <code><a href="twisted.internet.protocol.Factory.html" class="internal-link" title="twisted.internet.protocol.Factory">Factory</a></code> (via <code><a href="twisted.internet.protocol.ServerFactory.html" class="internal-link" title="twisted.internet.protocol.ServerFactory">ServerFactory</a></code>):
+          </p>
+          <table class="children sortable" id="id5889">
+  
+  
+  <tr class="baseclassmethod">
+    
+    <td>Class Method</td>
+    <td><code><a href="twisted.internet.protocol.Factory.html#forProtocol" class="internal-link" title="twisted.internet.protocol.Factory.forProtocol">for​Protocol</a></code></td>
+    <td>Create a factory for the given protocol.</td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="twisted.internet.protocol.Factory.html#doStart" class="internal-link" title="twisted.internet.protocol.Factory.doStart">do​Start</a></code></td>
+    <td>Make sure startFactory is called.</td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="twisted.internet.protocol.Factory.html#doStop" class="internal-link" title="twisted.internet.protocol.Factory.doStop">do​Stop</a></code></td>
+    <td>Make sure stopFactory is called.</td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="twisted.internet.protocol.Factory.html#logPrefix" class="internal-link" title="twisted.internet.protocol.Factory.logPrefix">log​Prefix</a></code></td>
+    <td>Describe this factory for log messages.</td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="twisted.internet.protocol.Factory.html#startFactory" class="internal-link" title="twisted.internet.protocol.Factory.startFactory">start​Factory</a></code></td>
+    <td>This will be called before I begin listening on a Port or Connector.</td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="twisted.internet.protocol.Factory.html#stopFactory" class="internal-link" title="twisted.internet.protocol.Factory.stopFactory">stop​Factory</a></code></td>
+    <td>This will be called before I stop listening on all Ports/Connectors.</td>
+  </tr><tr class="baseclassvariable">
+    
+    <td>Class Variable</td>
+    <td><code><a href="twisted.internet.protocol.Factory.html#noisy" class="internal-link" title="twisted.internet.protocol.Factory.noisy">noisy</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="baseclassvariable">
+    
+    <td>Class Variable</td>
+    <td><code><a href="twisted.internet.protocol.Factory.html#protocol" class="internal-link" title="twisted.internet.protocol.Factory.protocol">protocol</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="baseinstancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="twisted.internet.protocol.Factory.html#numPorts" class="internal-link" title="twisted.internet.protocol.Factory.numPorts">num​Ports</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+          
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="basemethod">
+  
+  
+  <a name="twisted.names.server.DNSServerFactory.__init__">
+    
+  </a>
+  <a name="__init__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__init__</span>(self, authorities=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, caches=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, clients=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, verbose=0):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/names/server.py#L69">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>@param authorities: Resolvers which provide authoritative answers.
+@type authorities: L{list} of L{IResolver} providers</p>
+<dl class="rst-docutils">
+<dt>@param caches: Resolvers which provide cached non-authoritative</dt>
+<dd>answers. The first cache instance is assigned to
+C{DNSServerFactory.cache} and its C{cacheResult} method will be
+called when a response is received from one of C{clients}.</dd>
+</dl>
+<p>@type caches: L{list} of L{Cache&lt;twisted.names.cache.CacheResolver&gt;} instances</p>
+<dl class="rst-docutils">
+<dt>@param clients: Resolvers which are capable of performing recursive DNS</dt>
+<dd>lookups.</dd>
+</dl>
+<p>@type clients: L{list} of L{IResolver} providers</p>
+<dl class="rst-docutils">
+<dt>@param verbose: An integer controlling the verbosity of logging of</dt>
+<dd>queries and responses. Default is C{0} which means no logging. Set
+to C{2} to enable logging of full query and response messages.</dd>
+</dl>
+<p>@type verbose: L{int}</p>
+</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.names.server.DNSServerFactory.allowQuery">
+    
+  </a>
+  <a name="allowQuery">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">allowQuery</span>(self, message, protocol, address):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/names/server.py#L544">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="twisted.names.test.test_server.NoResponseDNSServerFactory.html" class="internal-link">twisted.names.test.test_server.NoResponseDNSServerFactory</a></code>, <code><a href="twisted.names.test.test_server.RaisingDNSServerFactory.html" class="internal-link">twisted.names.test.test_server.RaisingDNSServerFactory</a></code></div>
+    
+    <div><p>Called by L{DNSServerFactory.messageReceived} to decide whether to
+process a received message or to reply with C{dns.EREFUSED}.</p>
+<p>This default implementation permits anything but empty queries.</p>
+<p>Override in a subclass to implement alternative policies.</p>
+<p>@param message: The DNS message that was received.
+@type message: L{dns.Message}</p>
+<p>@param protocol: The DNS protocol instance which received the message
+@type protocol: L{dns.DNSDatagramProtocol} or L{dns.DNSProtocol}</p>
+<dl class="rst-docutils">
+<dt>@param address: The address from which the message was received. Only</dt>
+<dd>provided for messages received by datagram protocols. The origin of
+Messages received from stream protocols can be gleaned from the
+protocol C{transport} attribute.</dd>
+</dl>
+<p>@type address: L{tuple} or L{None}</p>
+<dl class="rst-docutils">
+<dt>@return: L{True} if the received message contained one or more queries,</dt>
+<dd>else L{False}.</dd>
+</dl>
+<p>@rtype: L{bool}</p>
+</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.names.server.DNSServerFactory.buildProtocol">
+    
+  </a>
+  <a name="buildProtocol">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">buildProtocol</span>(self, addr):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/names/server.py#L114">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <code><a href="twisted.internet.interfaces.IProtocolFactory.html#buildProtocol" class="internal-link" title="twisted.internet.interfaces.IProtocolFactory.buildProtocol">twisted.internet.interfaces.IProtocolFactory</a></code></div><div class="interfaceinfo">overrides <code><a href="twisted.internet.protocol.Factory.html#buildProtocol" class="internal-link">twisted.internet.protocol.Factory.buildProtocol</a></code></div>
+    
+    <div><p>Create an instance of a subclass of Protocol.</p>
+<p>The returned instance will handle input on an incoming server
+connection, and an attribute "factory" pointing to the creating
+factory.</p>
+<p>Alternatively, L{None} may be returned to immediately close the
+new connection.</p>
+<p>Override this method to alter how Protocol instances get created.</p>
+<p>@param addr: an object implementing L{IAddress}</p>
+</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.names.server.DNSServerFactory.connectionLost">
+    
+  </a>
+  <a name="connectionLost">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">connectionLost</span>(self, protocol):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/names/server.py#L128">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Stop tracking a no-longer connected L{DNSProtocol}.</p>
+<dl class="rst-docutils">
+<dt>@param protocol: The tracked protocol instance to be which has been</dt>
+<dd>lost.</dd>
+</dl>
+<p>@type protocol: L{dns.DNSProtocol}</p>
+</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.names.server.DNSServerFactory.connectionMade">
+    
+  </a>
+  <a name="connectionMade">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">connectionMade</span>(self, protocol):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/names/server.py#L119">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Track a newly connected L{DNSProtocol}.</p>
+<p>@param protocol: The protocol instance to be tracked.
+@type protocol: L{dns.DNSProtocol}</p>
+</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.names.server.DNSServerFactory.gotResolverError">
+    
+  </a>
+  <a name="gotResolverError">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">gotResolverError</span>(self, failure, protocol, message, address):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/names/server.py#L298">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>A callback used by L{DNSServerFactory.handleQuery} for handling deferred
+errors from C{self.resolver.query}.</p>
+<p>Constructs a response message from the original query message by
+assigning a suitable error code to C{rCode}.</p>
+<p>An error message will be logged if C{DNSServerFactory.verbose} is C{&gt;1}.</p>
+<dl class="rst-docutils">
+<dt>@param failure: The reason for the failed resolution (as reported by</dt>
+<dd>C{self.resolver.query}).</dd>
+</dl>
+<p>@type failure: L{Failure&lt;twisted.python.failure.Failure&gt;}</p>
+<dl class="rst-docutils">
+<dt>@param protocol: The DNS protocol instance to which to send a response</dt>
+<dd>message.</dd>
+</dl>
+<p>@type protocol: L{dns.DNSDatagramProtocol} or L{dns.DNSProtocol}</p>
+<dl class="rst-docutils">
+<dt>@param message: The original DNS query message for which a response</dt>
+<dd>message will be constructed.</dd>
+</dl>
+<p>@type message: L{dns.Message}</p>
+<dl class="rst-docutils">
+<dt>@param address: The address to which the response message will be sent</dt>
+<dd>or L{None} if C{protocol} is a stream protocol.</dd>
+</dl>
+<p>@type address: L{tuple} or L{None}</p>
+</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.names.server.DNSServerFactory.gotResolverResponse">
+    
+  </a>
+  <a name="gotResolverResponse">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">gotResolverResponse</span>(self, response, protocol, message, address):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/names/server.py#L257">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>A callback used by L{DNSServerFactory.handleQuery} for handling the
+deferred response from C{self.resolver.query}.</p>
+<p>Constructs a response message by combining the original query message
+with the resolved answer, authority and additional records.</p>
+<p>Marks the response message as authoritative if any of the resolved
+answers are found to be authoritative.</p>
+<p>The resolved answers count will be logged if C{DNSServerFactory.verbose}
+is C{&gt;1}.</p>
+<p>@param response: Answer records, authority records and additional records
+@type response: L{tuple} of L{list} of L{dns.RRHeader} instances</p>
+<dl class="rst-docutils">
+<dt>@param protocol: The DNS protocol instance to which to send a response</dt>
+<dd>message.</dd>
+</dl>
+<p>@type protocol: L{dns.DNSDatagramProtocol} or L{dns.DNSProtocol}</p>
+<dl class="rst-docutils">
+<dt>@param message: The original DNS query message for which a response</dt>
+<dd>message will be constructed.</dd>
+</dl>
+<p>@type message: L{dns.Message}</p>
+<dl class="rst-docutils">
+<dt>@param address: The address to which the response message will be sent</dt>
+<dd>or L{None} if C{protocol} is a stream protocol.</dd>
+</dl>
+<p>@type address: L{tuple} or L{None}</p>
+</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.names.server.DNSServerFactory.handleInverseQuery">
+    
+  </a>
+  <a name="handleInverseQuery">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">handleInverseQuery</span>(self, message, protocol, address):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/names/server.py#L376">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Called by L{DNSServerFactory.messageReceived} when an inverse query
+message is received.</p>
+<p>Replies with a I{Not Implemented} error by default.</p>
+<p>An error message will be logged if C{DNSServerFactory.verbose} is C{&gt;1}.</p>
+<p>Override in a subclass.</p>
+<dl class="rst-docutils">
+<dt>@param protocol: The DNS protocol instance to which to send a response</dt>
+<dd>message.</dd>
+</dl>
+<p>@type protocol: L{dns.DNSDatagramProtocol} or L{dns.DNSProtocol}</p>
+<dl class="rst-docutils">
+<dt>@param message: The original DNS query message for which a response</dt>
+<dd>message will be constructed.</dd>
+</dl>
+<p>@type message: L{dns.Message}</p>
+<dl class="rst-docutils">
+<dt>@param address: The address to which the response message will be sent</dt>
+<dd>or L{None} if C{protocol} is a stream protocol.</dd>
+</dl>
+<p>@type address: L{tuple} or L{None}</p>
+</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.names.server.DNSServerFactory.handleNotify">
+    
+  </a>
+  <a name="handleNotify">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">handleNotify</span>(self, message, protocol, address):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/names/server.py#L430">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Called by L{DNSServerFactory.messageReceived} when a notify message is
+received.</p>
+<p>Replies with a I{Not Implemented} error by default.</p>
+<p>An error message will be logged if C{DNSServerFactory.verbose} is C{&gt;1}.</p>
+<p>Override in a subclass.</p>
+<dl class="rst-docutils">
+<dt>@param protocol: The DNS protocol instance to which to send a response</dt>
+<dd>message.</dd>
+</dl>
+<p>@type protocol: L{dns.DNSDatagramProtocol} or L{dns.DNSProtocol}</p>
+<dl class="rst-docutils">
+<dt>@param message: The original DNS query message for which a response</dt>
+<dd>message will be constructed.</dd>
+</dl>
+<p>@type message: L{dns.Message}</p>
+<dl class="rst-docutils">
+<dt>@param address: The address to which the response message will be sent</dt>
+<dd>or L{None} if C{protocol} is a stream protocol.</dd>
+</dl>
+<p>@type address: L{tuple} or L{None}</p>
+</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.names.server.DNSServerFactory.handleOther">
+    
+  </a>
+  <a name="handleOther">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">handleOther</span>(self, message, protocol, address):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/names/server.py#L457">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Called by L{DNSServerFactory.messageReceived} when a message with
+unrecognised I{OPCODE} is received.</p>
+<p>Replies with a I{Not Implemented} error by default.</p>
+<p>An error message will be logged if C{DNSServerFactory.verbose} is C{&gt;1}.</p>
+<p>Override in a subclass.</p>
+<dl class="rst-docutils">
+<dt>@param protocol: The DNS protocol instance to which to send a response</dt>
+<dd>message.</dd>
+</dl>
+<p>@type protocol: L{dns.DNSDatagramProtocol} or L{dns.DNSProtocol}</p>
+<dl class="rst-docutils">
+<dt>@param message: The original DNS query message for which a response</dt>
+<dd>message will be constructed.</dd>
+</dl>
+<p>@type message: L{dns.Message}</p>
+<dl class="rst-docutils">
+<dt>@param address: The address to which the response message will be sent</dt>
+<dd>or L{None} if C{protocol} is a stream protocol.</dd>
+</dl>
+<p>@type address: L{tuple} or L{None}</p>
+</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.names.server.DNSServerFactory.handleQuery">
+    
+  </a>
+  <a name="handleQuery">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">handleQuery</span>(self, message, protocol, address):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/names/server.py#L335">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Called by L{DNSServerFactory.messageReceived} when a query message is
+received.</p>
+<p>Takes the first query from the received message and dispatches it to
+C{self.resolver.query}.</p>
+<p>Adds callbacks L{DNSServerFactory.gotResolverResponse} and
+L{DNSServerFactory.gotResolverError} to the resulting deferred.</p>
+<p>Note: Multiple queries in a single message are not supported because
+there is no standard way to respond with multiple rCodes, auth,
+etc. This is consistent with other DNS server implementations. See
+U{<a class="rst-reference external" href="http://tools.ietf.org/html/draft-ietf-dnsext-edns1-03" target="_top">http://tools.ietf.org/html/draft-ietf-dnsext-edns1-03</a>} for a proposed
+solution.</p>
+<dl class="rst-docutils">
+<dt>@param protocol: The DNS protocol instance to which to send a response</dt>
+<dd>message.</dd>
+</dl>
+<p>@type protocol: L{dns.DNSDatagramProtocol} or L{dns.DNSProtocol}</p>
+<dl class="rst-docutils">
+<dt>@param message: The original DNS query message for which a response</dt>
+<dd>message will be constructed.</dd>
+</dl>
+<p>@type message: L{dns.Message}</p>
+<dl class="rst-docutils">
+<dt>@param address: The address to which the response message will be sent</dt>
+<dd>or L{None} if C{protocol} is a stream protocol.</dd>
+</dl>
+<p>@type address: L{tuple} or L{None}</p>
+<dl class="rst-docutils">
+<dt>@return: A C{deferred} which fires with the resolved result or error of</dt>
+<dd>the first query in C{message}.</dd>
+</dl>
+<p>@rtype: L{Deferred&lt;twisted.internet.defer.Deferred&gt;}</p>
+</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.names.server.DNSServerFactory.handleStatus">
+    
+  </a>
+  <a name="handleStatus">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">handleStatus</span>(self, message, protocol, address):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/names/server.py#L403">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Called by L{DNSServerFactory.messageReceived} when a status message is
+received.</p>
+<p>Replies with a I{Not Implemented} error by default.</p>
+<p>An error message will be logged if C{DNSServerFactory.verbose} is C{&gt;1}.</p>
+<p>Override in a subclass.</p>
+<dl class="rst-docutils">
+<dt>@param protocol: The DNS protocol instance to which to send a response</dt>
+<dd>message.</dd>
+</dl>
+<p>@type protocol: L{dns.DNSDatagramProtocol} or L{dns.DNSProtocol}</p>
+<dl class="rst-docutils">
+<dt>@param message: The original DNS query message for which a response</dt>
+<dd>message will be constructed.</dd>
+</dl>
+<p>@type message: L{dns.Message}</p>
+<dl class="rst-docutils">
+<dt>@param address: The address to which the response message will be sent</dt>
+<dd>or L{None} if C{protocol} is a stream protocol.</dd>
+</dl>
+<p>@type address: L{tuple} or L{None}</p>
+</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.names.server.DNSServerFactory.messageReceived">
+    
+  </a>
+  <a name="messageReceived">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">messageReceived</span>(self, message, proto, address=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/names/server.py#L484">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>L{DNSServerFactory.messageReceived} is called by protocols which are
+under the control of this L{DNSServerFactory} whenever they receive a
+DNS query message or an unexpected / duplicate / late DNS response
+message.</p>
+<p>L{DNSServerFactory.allowQuery} is called with the received message,
+protocol and origin address. If it returns L{False}, a C{dns.EREFUSED}
+response is sent back to the client.</p>
+<p>Otherwise the received message is dispatched to one of
+L{DNSServerFactory.handleQuery}, L{DNSServerFactory.handleInverseQuery},
+L{DNSServerFactory.handleStatus}, L{DNSServerFactory.handleNotify}, or
+L{DNSServerFactory.handleOther} depending on the I{OPCODE} of the
+received message.</p>
+<p>If C{DNSServerFactory.verbose} is C{&gt;0} all received messages will be
+logged in more or less detail depending on the value of C{verbose}.</p>
+<p>@param message: The DNS message that was received.
+@type message: L{dns.Message}</p>
+<p>@param proto: The DNS protocol instance which received the message
+@type proto: L{dns.DNSDatagramProtocol} or L{dns.DNSProtocol}</p>
+<dl class="rst-docutils">
+<dt>@param address: The address from which the message was received. Only</dt>
+<dd>provided for messages received by datagram protocols. The origin of
+Messages received from stream protocols can be gleaned from the
+protocol C{transport} attribute.</dd>
+</dl>
+<p>@type address: L{tuple} or L{None}</p>
+</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.names.server.DNSServerFactory.sendReply">
+    
+  </a>
+  <a name="sendReply">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">sendReply</span>(self, protocol, message, address):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/names/server.py#L138">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="twisted.names.test.test_server.NoResponseDNSServerFactory.html" class="internal-link">twisted.names.test.test_server.NoResponseDNSServerFactory</a></code></div>
+    
+    <div><p>Send a response C{message} to a given C{address} via the supplied
+C{protocol}.</p>
+<p>Message payload will be logged if C{DNSServerFactory.verbose} is C{&gt;1}.</p>
+<p>@param protocol: The DNS protocol instance to which to send the message.
+@type protocol: L{dns.DNSDatagramProtocol} or L{dns.DNSProtocol}</p>
+<p>@param message: The DNS message to be sent.
+@type message: L{dns.Message}</p>
+<dl class="rst-docutils">
+<dt>@param address: The address to which the message will be sent or L{None}</dt>
+<dd>if C{protocol} is a stream protocol.</dd>
+</dl>
+<p>@type address: L{tuple} or L{None}</p>
+</div>
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="twisted.names.server.DNSServerFactory.cache">
+    
+  </a>
+  <a name="cache">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">cache</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/names/server.py#L66">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="twisted.names.server.DNSServerFactory.canRecurse">
+    
+  </a>
+  <a name="canRecurse">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">canRecurse</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/names/server.py#L97">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="twisted.names.server.DNSServerFactory.connections">
+    
+  </a>
+  <a name="connections">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">connections</span>: <code><a href="https://docs.python.org/3/library/stdtypes.html#list" class="intersphinx-link">list</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/names/server.py#L102">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="twisted.names.server.DNSServerFactory.resolver">
+    
+  </a>
+  <a name="resolver">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">resolver</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/names/server.py#L98">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="twisted.names.server.DNSServerFactory.verbose">
+    
+  </a>
+  <a name="verbose">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">verbose</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/names/server.py#L99">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="twisted.names.server.DNSServerFactory._responseFromMessage">
+    
+  </a>
+  <a name="_responseFromMessage">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_responseFromMessage</span>(self, message, rCode=<a href="twisted.names.dns.html#OK" class="internal-link" title="twisted.names.dns.OK">dns.OK</a>, answers=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, authority=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, additional=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/names/server.py#L175">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Generate a L{Message} instance suitable for use as the response to
+C{message}.</p>
+<p>C{queries} will be copied from the request to the response.</p>
+<p>C{rCode}, C{answers}, C{authority} and C{additional} will be assigned to
+the response, if supplied.</p>
+<p>The C{recAv} flag will be set on the response if the C{canRecurse} flag
+on this L{DNSServerFactory} is set to L{True}.</p>
+<p>The C{auth} flag will be set on the response if <em>any</em> of the supplied
+C{answers} have their C{auth} flag set to L{True}.</p>
+<p>The response will have the same C{maxSize} as the request.</p>
+<p>Additionally, the response will have a C{timeReceived} attribute whose
+value is that of the original request and the</p>
+<p>@see: L{dns._responseFromMessage}</p>
+<p>@param message: The request message
+@type message: L{Message}</p>
+<p>@param rCode: The response code which will be assigned to the response.
+@type message: L{int}</p>
+<dl class="rst-docutils">
+<dt>@param answers: An optional list of answer records which will be</dt>
+<dd>assigned to the response.</dd>
+</dl>
+<p>@type answers: L{list} of L{dns.RRHeader}</p>
+<dl class="rst-docutils">
+<dt>@param authority: An optional list of authority records which will be</dt>
+<dd>assigned to the response.</dd>
+</dl>
+<p>@type authority: L{list} of L{dns.RRHeader}</p>
+<dl class="rst-docutils">
+<dt>@param additional: An optional list of additional records which will be</dt>
+<dd>assigned to the response.</dd>
+</dl>
+<p>@type additional: L{list} of L{dns.RRHeader}</p>
+<p>@return: A response L{Message} instance.
+@rtype: L{Message}</p>
+</div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="twisted.names.server.DNSServerFactory._verboseLog">
+    
+  </a>
+  <a name="_verboseLog">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_verboseLog</span>(self, *args, **kwargs):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/names/server.py#L104">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Log a message only if verbose logging is enabled.</p>
+<p>@param args: Positional arguments which will be passed to C{log.msg}
+@param kwargs: Keyword arguments which will be passed to C{log.msg}</p>
+</div>
+  </div>
+</div>
+
+      </div>
+    </div>
+
+    <footer class="navbar navbar-default">
+  
+  <div class="container">
+    <a href="index.html">API Documentation</a> for twisted,
+  generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
+    22.2.0 at 2022-02-23 16:05:07.
+  </div>
+</footer>
+
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+  </body>
+</html>

@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  
+
+  <head>
+    
+    <title>twisted.internet.fdesc</title>
+    <meta name="generator" content="pydoctor 22.2.0"> 
+        
+    </meta>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=0.75" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+    <link rel="stylesheet" type="text/css" href="extra.css" />
+</head>
+
+  <body>
+
+    <div id="banner">    
+    <div>
+        <a href="/">Home</a>
+        &gt; twisted-22.1.0 <!-- This is a placeholder -->
+        
+        <!-- (<a href=""&gt;show all versions</a&gt;) -->
+    </div>
+</div>
+
+    <nav class="navbar navbar-default">
+  
+  <div class="container">
+
+    <div class="navbar-header">
+      
+      <div class="navlinks">
+          <span class="navbar-brand">
+            twisted <a href="index.html">API Documentation</a>
+          </span>
+
+          <a href="moduleIndex.html">
+            Modules
+          </a>
+
+          <a href="classIndex.html">
+            Classes
+          </a>
+
+          <a href="nameIndex.html">
+            Names
+          </a>
+      </div>
+
+    </div>
+  </div>
+</nav>
+
+    
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="module"><code><code><a href="index.html" class="internal-link">twisted</a></code><wbr></wbr>.<code><a href="twisted.internet.html" class="internal-link" title="twisted.internet">internet</a></code><wbr></wbr>.<code><a href="twisted.internet.fdesc.html" class="internal-link" title="twisted.internet.fdesc">fdesc</a></code></code></h1>
+        <div id="showPrivate">
+          <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+        </div>
+      </div>
+
+      <div class="categoryHeader">
+        module documentation
+      </div>
+
+      <div class="extrasDocstring">
+        <a href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/internet/fdesc.py" class="sourceLink">(source)</a>
+        <p></p>
+      </div>
+
+      <div class="moduleDocstring">
+        <div>Utility functions for dealing with POSIX file descriptors.</div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id3164">
+  
+  
+  <tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#readFromFD" class="internal-link" title="twisted.internet.fdesc.readFromFD">read​From​FD</a></code></td>
+    <td>Read from file descriptor, calling callback with resulting data.</td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#setBlocking" class="internal-link" title="twisted.internet.fdesc.setBlocking">set​Blocking</a></code></td>
+    <td>Set the file description of the given file descriptor to blocking.</td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#setNonBlocking" class="internal-link" title="twisted.internet.fdesc.setNonBlocking">set​Non​Blocking</a></code></td>
+    <td>Set the file description of the given file descriptor to non-blocking.</td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#writeToFD" class="internal-link" title="twisted.internet.fdesc.writeToFD">write​To​FD</a></code></td>
+    <td>Write data to file descriptor.</td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><code><a href="#fcntl" class="internal-link" title="twisted.internet.fdesc.fcntl">fcntl</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable private">
+    
+    <td>Variable</td>
+    <td><code><a href="#_setCloseOnExec" class="internal-link" title="twisted.internet.fdesc._setCloseOnExec">_set​Close​On​Exec</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable private">
+    
+    <td>Variable</td>
+    <td><code><a href="#_unsetCloseOnExec" class="internal-link" title="twisted.internet.fdesc._unsetCloseOnExec">_unset​Close​On​Exec</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+        
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="basefunction">
+  
+  
+  <a name="twisted.internet.fdesc.readFromFD">
+    
+  </a>
+  <a name="readFromFD">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">readFromFD</span>(fd, callback):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/internet/fdesc.py#L65">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Read from file descriptor, calling callback with resulting data.</p>
+<p>If successful, call 'callback' with a single argument: the
+resulting data.</p>
+<p>Returns same thing FileDescriptor.doRead would: CONNECTION_LOST,
+CONNECTION_DONE, or None.</p>
+<p>@type fd: C{int}
+@param fd: non-blocking file descriptor to be read from.
+@param callback: a callable which accepts a single argument. If
+data is read from the file descriptor it will be called with this
+data. Handling exceptions from calling the callback is up to the
+caller.</p>
+<p>Note that if the descriptor is still connected but no data is read,
+None will be returned but callback will not be called.</p>
+<p>@return: CONNECTION_LOST on error, CONNECTION_DONE when fd is
+closed, otherwise None.</p>
+</div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="twisted.internet.fdesc.setBlocking">
+    
+  </a>
+  <a name="setBlocking">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">setBlocking</span>(fd):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/internet/fdesc.py#L33">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Set the file description of the given file descriptor to blocking.</div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="twisted.internet.fdesc.setNonBlocking">
+    
+  </a>
+  <a name="setNonBlocking">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">setNonBlocking</span>(fd):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/internet/fdesc.py#L24">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Set the file description of the given file descriptor to non-blocking.</div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="twisted.internet.fdesc.writeToFD">
+    
+  </a>
+  <a name="writeToFD">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">writeToFD</span>(fd, data):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/internet/fdesc.py#L100">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Write data to file descriptor.</p>
+<p>Returns same thing FileDescriptor.writeSomeData would.</p>
+<p>@type fd: C{int}
+@param fd: non-blocking file descriptor to be written to.
+@type data: C{str} or C{buffer}
+@param data: bytes to write to fd.</p>
+<p>@return: number of bytes written, or CONNECTION_LOST.</p>
+</div>
+  </div>
+</div><div class="basevariable">
+  
+  
+  <a name="twisted.internet.fdesc.fcntl">
+    
+  </a>
+  <a name="fcntl">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">fcntl</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/internet/fdesc.py#L16">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="basevariable private">
+  
+  
+  <a name="twisted.internet.fdesc._setCloseOnExec">
+    
+  </a>
+  <a name="_setCloseOnExec">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_setCloseOnExec</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/internet/fdesc.py#L45">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="basevariable private">
+  
+  
+  <a name="twisted.internet.fdesc._unsetCloseOnExec">
+    
+  </a>
+  <a name="_unsetCloseOnExec">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_unsetCloseOnExec</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/internet/fdesc.py#L45">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div>
+
+      </div>
+    </div>
+
+    <footer class="navbar navbar-default">
+  
+  <div class="container">
+    <a href="index.html">API Documentation</a> for twisted,
+  generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
+    22.2.0 at 2022-02-23 16:05:07.
+  </div>
+</footer>
+
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+  </body>
+</html>

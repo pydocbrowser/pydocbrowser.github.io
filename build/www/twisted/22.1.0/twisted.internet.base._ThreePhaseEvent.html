@@ -1,0 +1,486 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  
+
+  <head>
+    
+    <title>twisted.internet.base._ThreePhaseEvent</title>
+    <meta name="generator" content="pydoctor 22.2.0"> 
+        
+    </meta>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=0.75" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+    <link rel="stylesheet" type="text/css" href="extra.css" />
+</head>
+
+  <body>
+
+    <div id="banner">    
+    <div>
+        <a href="/">Home</a>
+        &gt; twisted-22.1.0 <!-- This is a placeholder -->
+        
+        <!-- (<a href=""&gt;show all versions</a&gt;) -->
+    </div>
+</div>
+
+    <nav class="navbar navbar-default">
+  
+  <div class="container">
+
+    <div class="navbar-header">
+      
+      <div class="navlinks">
+          <span class="navbar-brand">
+            twisted <a href="index.html">API Documentation</a>
+          </span>
+
+          <a href="moduleIndex.html">
+            Modules
+          </a>
+
+          <a href="classIndex.html">
+            Classes
+          </a>
+
+          <a href="nameIndex.html">
+            Names
+          </a>
+      </div>
+
+    </div>
+  </div>
+</nav>
+
+    
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="class private"><code><code><a href="index.html" class="internal-link">twisted</a></code><wbr></wbr>.<code><a href="twisted.internet.html" class="internal-link" title="twisted.internet">internet</a></code><wbr></wbr>.<code><a href="twisted.internet.base.html" class="internal-link" title="twisted.internet.base">base</a></code><wbr></wbr>.<code><a href="twisted.internet.base._ThreePhaseEvent.html" class="internal-link" title="twisted.internet.base._ThreePhaseEvent">_ThreePhaseEvent</a></code></code></h1>
+        <div id="showPrivate">
+          <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+        </div>
+      </div>
+
+      <div class="categoryHeader">
+        class documentation
+      </div>
+
+      <div class="extrasDocstring">
+        <p><code><span class="py-keyword">class</span> <span class="py-defname">_ThreePhaseEvent</span>: <a href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/internet/base.py#L373" class="sourceLink">(source)</a></code></p>
+        <p><a href="classIndex.html#twisted.internet.base._ThreePhaseEvent">View In Hierarchy</a></p>
+      </div>
+
+      <div class="moduleDocstring">
+        <div><p>Collection of callables (with arguments) which can be invoked as a group in
+a particular order.</p>
+<p>This provides the underlying implementation for the reactor's system event
+triggers.  An instance of this class tracks triggers for all phases of a
+single type of event.</p>
+<dl class="rst-docutils">
+<dt>@ivar before: A list of the before-phase triggers containing three-tuples</dt>
+<dd>of a callable, a tuple of positional arguments, and a dict of keyword
+arguments</dd>
+<dt>@ivar finishedBefore: A list of the before-phase triggers which have</dt>
+<dd>already been executed.  This is only populated in the C{'BEFORE'} state.</dd>
+<dt>@ivar during: A list of the during-phase triggers containing three-tuples</dt>
+<dd>of a callable, a tuple of positional arguments, and a dict of keyword
+arguments</dd>
+<dt>@ivar after: A list of the after-phase triggers containing three-tuples</dt>
+<dd>of a callable, a tuple of positional arguments, and a dict of keyword
+arguments</dd>
+<dt>@ivar state: A string indicating what is currently going on with this</dt>
+<dd>object.  One of C{'BASE'} (for when nothing in particular is happening;
+this is the initial value), C{'BEFORE'} (when the before-phase triggers
+are in the process of being executed).</dd>
+</dl>
+</div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id3032">
+  
+  
+  <tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__init__" class="internal-link" title="twisted.internet.base._ThreePhaseEvent.__init__">__init__</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#addTrigger" class="internal-link" title="twisted.internet.base._ThreePhaseEvent.addTrigger">add​Trigger</a></code></td>
+    <td>Add a trigger to the indicate phase.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#fireEvent" class="internal-link" title="twisted.internet.base._ThreePhaseEvent.fireEvent">fire​Event</a></code></td>
+    <td>Call the triggers added to this event.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#removeTrigger" class="internal-link" title="twisted.internet.base._ThreePhaseEvent.removeTrigger">remove​Trigger</a></code></td>
+    <td>Remove a previously added trigger callable.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#removeTrigger_BASE" class="internal-link" title="twisted.internet.base._ThreePhaseEvent.removeTrigger_BASE">remove​Trigger_​BASE</a></code></td>
+    <td>Just try to remove the trigger.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#removeTrigger_BEFORE" class="internal-link" title="twisted.internet.base._ThreePhaseEvent.removeTrigger_BEFORE">remove​Trigger_​BEFORE</a></code></td>
+    <td>Remove the trigger if it has yet to be executed, otherwise emit a warning that in the future an exception will be raised when removing an already-executed trigger.</td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#after" class="internal-link" title="twisted.internet.base._ThreePhaseEvent.after">after</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#before" class="internal-link" title="twisted.internet.base._ThreePhaseEvent.before">before</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#during" class="internal-link" title="twisted.internet.base._ThreePhaseEvent.during">during</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#finishedBefore" class="internal-link" title="twisted.internet.base._ThreePhaseEvent.finishedBefore">finished​Before</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#state" class="internal-link" title="twisted.internet.base._ThreePhaseEvent.state">state</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_continueFiring" class="internal-link" title="twisted.internet.base._ThreePhaseEvent._continueFiring">_continue​Firing</a></code></td>
+    <td>Call the during and after phase triggers for this event.</td>
+  </tr>
+</table>
+        
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="basemethod">
+  
+  
+  <a name="twisted.internet.base._ThreePhaseEvent.__init__">
+    
+  </a>
+  <a name="__init__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__init__</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/internet/base.py#L403">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.internet.base._ThreePhaseEvent.addTrigger">
+    
+  </a>
+  <a name="addTrigger">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">addTrigger</span>(self, phase, callable, *args, **kwargs):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/internet/base.py#L409">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Add a trigger to the indicate phase.</p>
+<p>@param phase: One of C{'before'}, C{'during'}, or C{'after'}.</p>
+<p>@param callable: An object to be called when this event is triggered.
+@param args: Positional arguments to pass to C{callable}.
+@param kwargs: Keyword arguments to pass to C{callable}.</p>
+<dl class="rst-docutils">
+<dt>@return: An opaque handle which may be passed to L{removeTrigger} to</dt>
+<dd>reverse the effects of calling this method.</dd>
+</dl>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">phase:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">callable:</span><code><a href="twisted.internet.base.html#_ThreePhaseEventTriggerCallable" class="internal-link" title="twisted.internet.base._ThreePhaseEventTriggerCallable">_ThreePhaseEventTriggerCallable</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">*args:</span><code><a href="https://docs.python.org/3/library/functions.html#object" class="intersphinx-link">object</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">**kwargs:</span><code><a href="https://docs.python.org/3/library/functions.html#object" class="intersphinx-link">object</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="twisted.internet.base.html#_ThreePhaseEventTriggerHandle" class="internal-link" title="twisted.internet.base._ThreePhaseEventTriggerHandle">_ThreePhaseEventTriggerHandle</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.internet.base._ThreePhaseEvent.fireEvent">
+    
+  </a>
+  <a name="fireEvent">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">fireEvent</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/internet/base.py#L481">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Call the triggers added to this event.</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.internet.base._ThreePhaseEvent.removeTrigger">
+    
+  </a>
+  <a name="removeTrigger">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">removeTrigger</span>(self, handle):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/internet/base.py#L433">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Remove a previously added trigger callable.</p>
+<dl class="rst-docutils">
+<dt>@param handle: An object previously returned by L{addTrigger}.  The</dt>
+<dd>trigger added by that call will be removed.</dd>
+<dt>@raise ValueError: If the trigger associated with C{handle} has already</dt>
+<dd>been removed or if C{handle} is not a valid handle.</dd>
+</dl>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">handle:</span><code><a href="twisted.internet.base.html#_ThreePhaseEventTriggerHandle" class="internal-link" title="twisted.internet.base._ThreePhaseEventTriggerHandle">_ThreePhaseEventTriggerHandle</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.internet.base._ThreePhaseEvent.removeTrigger_BASE">
+    
+  </a>
+  <a name="removeTrigger_BASE">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">removeTrigger_BASE</span>(self, handle):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/internet/base.py#L445">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Just try to remove the trigger.</p>
+<p>@see: removeTrigger</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">handle:</span><code><a href="twisted.internet.base.html#_ThreePhaseEventTriggerHandle" class="internal-link" title="twisted.internet.base._ThreePhaseEventTriggerHandle">_ThreePhaseEventTriggerHandle</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.internet.base._ThreePhaseEvent.removeTrigger_BEFORE">
+    
+  </a>
+  <a name="removeTrigger_BEFORE">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">removeTrigger_BEFORE</span>(self, handle):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/internet/base.py#L460">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Remove the trigger if it has yet to be executed, otherwise emit a
+warning that in the future an exception will be raised when removing an
+already-executed trigger.</p>
+<p>@see: removeTrigger</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">handle:</span><code><a href="twisted.internet.base.html#_ThreePhaseEventTriggerHandle" class="internal-link" title="twisted.internet.base._ThreePhaseEventTriggerHandle">_ThreePhaseEventTriggerHandle</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="twisted.internet.base._ThreePhaseEvent.after">
+    
+  </a>
+  <a name="after">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">after</span>: <code><a href="https://docs.python.org/3/library/typing.html#typing.List" class="intersphinx-link">List</a>[<wbr></wbr><a href="twisted.internet.base.html#_ThreePhaseEventTrigger" class="internal-link" title="twisted.internet.base._ThreePhaseEventTrigger">_ThreePhaseEventTrigger</a>]</code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/internet/base.py#L406">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="twisted.internet.base._ThreePhaseEvent.before">
+    
+  </a>
+  <a name="before">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">before</span>: <code><a href="https://docs.python.org/3/library/typing.html#typing.List" class="intersphinx-link">List</a>[<wbr></wbr><a href="twisted.internet.base.html#_ThreePhaseEventTrigger" class="internal-link" title="twisted.internet.base._ThreePhaseEventTrigger">_ThreePhaseEventTrigger</a>]</code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/internet/base.py#L404">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="twisted.internet.base._ThreePhaseEvent.during">
+    
+  </a>
+  <a name="during">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">during</span>: <code><a href="https://docs.python.org/3/library/typing.html#typing.List" class="intersphinx-link">List</a>[<wbr></wbr><a href="twisted.internet.base.html#_ThreePhaseEventTrigger" class="internal-link" title="twisted.internet.base._ThreePhaseEventTrigger">_ThreePhaseEventTrigger</a>]</code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/internet/base.py#L405">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="twisted.internet.base._ThreePhaseEvent.finishedBefore">
+    
+  </a>
+  <a name="finishedBefore">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">finishedBefore</span>: <code><a href="https://docs.python.org/3/library/stdtypes.html#list" class="intersphinx-link">list</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/internet/base.py#L486">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="twisted.internet.base._ThreePhaseEvent.state">
+    
+  </a>
+  <a name="state">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">state</span>: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/internet/base.py#L407">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="twisted.internet.base._ThreePhaseEvent._continueFiring">
+    
+  </a>
+  <a name="_continueFiring">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_continueFiring</span>(self, ignored):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/internet/base.py#L500">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Call the during and after phase triggers for this event.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">ignored:</span><code><a href="https://docs.python.org/3/library/functions.html#object" class="intersphinx-link">object</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div>
+
+      </div>
+    </div>
+
+    <footer class="navbar navbar-default">
+  
+  <div class="container">
+    <a href="index.html">API Documentation</a> for twisted,
+  generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
+    22.2.0 at 2022-02-23 16:05:07.
+  </div>
+</footer>
+
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+  </body>
+</html>

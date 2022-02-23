@@ -1,0 +1,471 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  
+
+  <head>
+    
+    <title>twisted.web.client.FileBodyProducer</title>
+    <meta name="generator" content="pydoctor 22.2.0"> 
+        
+    </meta>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=0.75" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+    <link rel="stylesheet" type="text/css" href="extra.css" />
+</head>
+
+  <body>
+
+    <div id="banner">    
+    <div>
+        <a href="/">Home</a>
+        &gt; twisted-22.1.0 <!-- This is a placeholder -->
+        
+        <!-- (<a href=""&gt;show all versions</a&gt;) -->
+    </div>
+</div>
+
+    <nav class="navbar navbar-default">
+  
+  <div class="container">
+
+    <div class="navbar-header">
+      
+      <div class="navlinks">
+          <span class="navbar-brand">
+            twisted <a href="index.html">API Documentation</a>
+          </span>
+
+          <a href="moduleIndex.html">
+            Modules
+          </a>
+
+          <a href="classIndex.html">
+            Classes
+          </a>
+
+          <a href="nameIndex.html">
+            Names
+          </a>
+      </div>
+
+    </div>
+  </div>
+</nav>
+
+    
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="class"><code><code><a href="index.html" class="internal-link">twisted</a></code><wbr></wbr>.<code><a href="twisted.web.html" class="internal-link" title="twisted.web">web</a></code><wbr></wbr>.<code><a href="twisted.web.client.html" class="internal-link" title="twisted.web.client">client</a></code><wbr></wbr>.<code><a href="twisted.web.client.FileBodyProducer.html" class="internal-link" title="twisted.web.client.FileBodyProducer">FileBodyProducer</a></code></code></h1>
+        <div id="showPrivate">
+          <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+        </div>
+      </div>
+
+      <div class="categoryHeader">
+        class documentation
+      </div>
+
+      <div class="extrasDocstring">
+        <p><code><span class="py-keyword">class</span> <span class="py-defname">FileBodyProducer</span>: <a href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/web/client.py#L509" class="sourceLink">(source)</a></code></p><p>Implements interfaces: <code><a href="twisted.web.iweb.IBodyProducer.html" class="internal-link">twisted.web.iweb.IBodyProducer</a></code></p>
+        <p><a href="classIndex.html#twisted.web.client.FileBodyProducer">View In Hierarchy</a></p>
+      </div>
+
+      <div class="moduleDocstring">
+        <div><p>L{FileBodyProducer} produces bytes from an input file object incrementally
+and writes them to a consumer.</p>
+<p>Since file-like objects cannot be read from in an event-driven manner,
+L{FileBodyProducer} uses a L{Cooperator} instance to schedule reads from
+the file.  This process is also paused and resumed based on notifications
+from the L{IConsumer} provider being written to.</p>
+<p>The file is closed after it has been read, or if the producer is stopped
+early.</p>
+<dl class="rst-docutils">
+<dt>@ivar _inputFile: Any file-like object, bytes read from which will be</dt>
+<dd>written to a consumer.</dd>
+<dt>@ivar _cooperate: A method like L{Cooperator.cooperate} which is used to</dt>
+<dd>schedule all reads.</dd>
+</dl>
+<p>@ivar _readSize: The number of bytes to read from C{_inputFile} at a time.</p>
+</div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id11890">
+  
+  
+  <tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__init__" class="internal-link" title="twisted.web.client.FileBodyProducer.__init__">__init__</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#pauseProducing" class="internal-link" title="twisted.web.client.FileBodyProducer.pauseProducing">pause​Producing</a></code></td>
+    <td>Temporarily suspend copying bytes from the input file to the consumer by pausing the L{CooperativeTask} which drives that activity.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#resumeProducing" class="internal-link" title="twisted.web.client.FileBodyProducer.resumeProducing">resume​Producing</a></code></td>
+    <td>Undo the effects of a previous C{pauseProducing} and resume copying bytes to the consumer by resuming the L{CooperativeTask} which drives the write activity.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#startProducing" class="internal-link" title="twisted.web.client.FileBodyProducer.startProducing">start​Producing</a></code></td>
+    <td><span class="undocumented">No summary</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#stopProducing" class="internal-link" title="twisted.web.client.FileBodyProducer.stopProducing">stop​Producing</a></code></td>
+    <td>Permanently stop writing bytes from the file to the consumer by stopping the underlying L{CooperativeTask}.</td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#length" class="internal-link" title="twisted.web.client.FileBodyProducer.length">length</a></code></td>
+    <td>C{length} is a L{int} indicating how many bytes in total this L{IBodyProducer} will write to the consumer or L{UNKNOWN_LENGTH} if this is not known in advance.</td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_determineLength" class="internal-link" title="twisted.web.client.FileBodyProducer._determineLength">_determine​Length</a></code></td>
+    <td>Determine how many bytes can be read out of C{fObj} (assuming it is not modified from this point on).  If the determination cannot be made, return C{UNKNOWN_LENGTH}.</td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_writeloop" class="internal-link" title="twisted.web.client.FileBodyProducer._writeloop">​_writeloop</a></code></td>
+    <td>Return an iterator which reads one chunk of bytes from the input file and writes them to the consumer for each time it is iterated.</td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#_cooperate" class="internal-link" title="twisted.web.client.FileBodyProducer._cooperate">​_cooperate</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#_inputFile" class="internal-link" title="twisted.web.client.FileBodyProducer._inputFile">_input​File</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#_readSize" class="internal-link" title="twisted.web.client.FileBodyProducer._readSize">_read​Size</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#_task" class="internal-link" title="twisted.web.client.FileBodyProducer._task">​_task</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+        
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="basemethod">
+  
+  
+  <a name="twisted.web.client.FileBodyProducer.__init__">
+    
+  </a>
+  <a name="__init__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__init__</span>(self, inputFile, cooperator=<a href="twisted.internet.task.html" class="internal-link" title="twisted.internet.task">task</a>, readSize=2**16):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/web/client.py#L532">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.web.client.FileBodyProducer.pauseProducing">
+    
+  </a>
+  <a name="pauseProducing">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">pauseProducing</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/web/client.py#L605">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <code><a href="twisted.internet.interfaces.IPushProducer.html#pauseProducing" class="internal-link" title="twisted.internet.interfaces.IPushProducer.pauseProducing">twisted.internet.interfaces.IPushProducer</a></code></div>
+    
+    <div>Temporarily suspend copying bytes from the input file to the consumer
+by pausing the L{CooperativeTask} which drives that activity.</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.web.client.FileBodyProducer.resumeProducing">
+    
+  </a>
+  <a name="resumeProducing">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">resumeProducing</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/web/client.py#L612">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <code><a href="twisted.internet.interfaces.IPushProducer.html#resumeProducing" class="internal-link" title="twisted.internet.interfaces.IPushProducer.resumeProducing">twisted.internet.interfaces.IPushProducer</a></code></div>
+    
+    <div>Undo the effects of a previous C{pauseProducing} and resume copying
+bytes to the consumer by resuming the L{CooperativeTask} which drives
+the write activity.</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.web.client.FileBodyProducer.startProducing">
+    
+  </a>
+  <a name="startProducing">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">startProducing</span>(self, consumer):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/web/client.py#L566">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <code><a href="twisted.web.iweb.IBodyProducer.html#startProducing" class="internal-link" title="twisted.web.iweb.IBodyProducer.startProducing">twisted.web.iweb.IBodyProducer</a></code></div>
+    
+    <div><p>Start a cooperative task which will read bytes from the input file and
+write them to C{consumer}.  Return a L{Deferred} which fires after all
+bytes have been written.  If this L{Deferred} is cancelled before it is
+fired, stop reading and writing bytes.</p>
+<p>@param consumer: Any L{IConsumer} provider</p>
+</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.web.client.FileBodyProducer.stopProducing">
+    
+  </a>
+  <a name="stopProducing">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">stopProducing</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/web/client.py#L555">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <code><a href="twisted.web.iweb.IBodyProducer.html#stopProducing" class="internal-link" title="twisted.web.iweb.IBodyProducer.stopProducing">twisted.web.iweb.IBodyProducer</a></code></div>
+    
+    <div>Permanently stop writing bytes from the file to the consumer by
+stopping the underlying L{CooperativeTask}.</div>
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="twisted.web.client.FileBodyProducer.length">
+    
+  </a>
+  <a name="length">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">length</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/web/client.py#L536">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">from <code><a href="twisted.web.iweb.IBodyProducer.html#length" class="internal-link" title="twisted.web.iweb.IBodyProducer.length">twisted.web.iweb.IBodyProducer</a></code></div>
+    
+    <div>C{length} is a L{int} indicating how many bytes in total this
+L{IBodyProducer} will write to the consumer or L{UNKNOWN_LENGTH}
+if this is not known in advance.</div>
+    
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="twisted.web.client.FileBodyProducer._determineLength">
+    
+  </a>
+  <a name="_determineLength">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_determineLength</span>(self, fObj):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/web/client.py#L538">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Determine how many bytes can be read out of C{fObj} (assuming it is not
+modified from this point on).  If the determination cannot be made,
+return C{UNKNOWN_LENGTH}.</div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="twisted.web.client.FileBodyProducer._writeloop">
+    
+  </a>
+  <a name="_writeloop">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_writeloop</span>(self, consumer):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/web/client.py#L592">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Return an iterator which reads one chunk of bytes from the input file
+and writes them to the consumer for each time it is iterated.</div>
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  
+  <a name="twisted.web.client.FileBodyProducer._cooperate">
+    
+  </a>
+  <a name="_cooperate">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_cooperate</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/web/client.py#L534">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  
+  <a name="twisted.web.client.FileBodyProducer._inputFile">
+    
+  </a>
+  <a name="_inputFile">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_inputFile</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/web/client.py#L533">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  
+  <a name="twisted.web.client.FileBodyProducer._readSize">
+    
+  </a>
+  <a name="_readSize">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_readSize</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/web/client.py#L535">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  
+  <a name="twisted.web.client.FileBodyProducer._task">
+    
+  </a>
+  <a name="_task">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_task</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/web/client.py#L575">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div>
+
+      </div>
+    </div>
+
+    <footer class="navbar navbar-default">
+  
+  <div class="container">
+    <a href="index.html">API Documentation</a> for twisted,
+  generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
+    22.2.0 at 2022-02-23 16:05:07.
+  </div>
+</footer>
+
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+  </body>
+</html>

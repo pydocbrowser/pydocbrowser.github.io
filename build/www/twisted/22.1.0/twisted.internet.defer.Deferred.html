@@ -1,0 +1,1211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  
+
+  <head>
+    
+    <title>twisted.internet.defer.Deferred</title>
+    <meta name="generator" content="pydoctor 22.2.0"> 
+        
+    </meta>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=0.75" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+    <link rel="stylesheet" type="text/css" href="extra.css" />
+</head>
+
+  <body>
+
+    <div id="banner">    
+    <div>
+        <a href="/">Home</a>
+        &gt; twisted-22.1.0 <!-- This is a placeholder -->
+        
+        <!-- (<a href=""&gt;show all versions</a&gt;) -->
+    </div>
+</div>
+
+    <nav class="navbar navbar-default">
+  
+  <div class="container">
+
+    <div class="navbar-header">
+      
+      <div class="navlinks">
+          <span class="navbar-brand">
+            twisted <a href="index.html">API Documentation</a>
+          </span>
+
+          <a href="moduleIndex.html">
+            Modules
+          </a>
+
+          <a href="classIndex.html">
+            Classes
+          </a>
+
+          <a href="nameIndex.html">
+            Names
+          </a>
+      </div>
+
+    </div>
+  </div>
+</nav>
+
+    
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="class"><code><code><a href="index.html" class="internal-link">twisted</a></code><wbr></wbr>.<code><a href="twisted.internet.html" class="internal-link" title="twisted.internet">internet</a></code><wbr></wbr>.<code><a href="twisted.internet.defer.html" class="internal-link" title="twisted.internet.defer">defer</a></code><wbr></wbr>.<code><a href="twisted.internet.defer.Deferred.html" class="internal-link" title="twisted.internet.defer.Deferred">Deferred</a></code></code></h1>
+        <div id="showPrivate">
+          <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+        </div>
+      </div>
+
+      <div class="categoryHeader">
+        class documentation
+      </div>
+
+      <div class="extrasDocstring">
+        <p><code><span class="py-keyword">class</span> <span class="py-defname">Deferred</span>(Awaitable[_DeferredResultT]): <a href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/internet/defer.py#L347" class="sourceLink">(source)</a></code></p>
+        <p><a href="classIndex.html#twisted.internet.defer.Deferred">View In Hierarchy</a></p>
+      </div>
+
+      <div class="moduleDocstring">
+        <div><p>This is a callback which will be put off until later.</p>
+<p>Why do we want this? Well, in cases where a function in a threaded
+program would block until it gets a result, for Twisted it should
+not block. Instead, it should return a L{Deferred}.</p>
+<p>This can be implemented for protocols that run over the network by
+writing an asynchronous protocol for L{twisted.internet}. For methods
+that come from outside packages that are not under our control, we use
+threads (see for example L{twisted.enterprise.adbapi}).</p>
+<p>For more information about Deferreds, see doc/core/howto/defer.html or
+U{<a class="rst-reference external" href="http://twistedmatrix.com/documents/current/core/howto/defer.html" target="_top">http://twistedmatrix.com/documents/current/core/howto/defer.html</a>}</p>
+<p>When creating a Deferred, you may provide a canceller function, which
+will be called by d.cancel() to let you do any clean-up necessary if the
+user decides not to wait for the deferred to complete.</p>
+<dl class="rst-docutils">
+<dt>@ivar called: A flag which is C{False} until either C{callback} or</dt>
+<dd>C{errback} is called and afterwards always C{True}.</dd>
+<dt>@ivar paused: A counter of how many unmatched C{pause} calls have been made</dt>
+<dd>on this instance.</dd>
+<dt>@ivar _suppressAlreadyCalled: A flag used by the cancellation mechanism</dt>
+<dd>which is C{True} if the Deferred has no canceller and has been
+cancelled, C{False} otherwise.  If C{True}, it can be expected that
+C{callback} or C{errback} will eventually be called and the result
+should be silently discarded.</dd>
+<dt>@ivar _runningCallbacks: A flag which is C{True} while this instance is</dt>
+<dd>executing its callback chain, used to stop recursive execution of
+L{_runCallbacks}</dd>
+<dt>@ivar _chainedTo: If this L{Deferred} is waiting for the result of another</dt>
+<dd>L{Deferred}, this is a reference to the other Deferred.  Otherwise,
+L{None}.</dd>
+</dl>
+</div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id3055">
+  
+  
+  <tr class="classmethod">
+    
+    <td>Class Method</td>
+    <td><code><a href="#fromCoroutine" class="internal-link" title="twisted.internet.defer.Deferred.fromCoroutine">from​Coroutine</a></code></td>
+    <td>Schedule the execution of a coroutine that awaits on L{Deferred}s, wrapping it in a L{Deferred} that will fire on success/failure of the coroutine.</td>
+  </tr><tr class="classmethod">
+    
+    <td>Class Method</td>
+    <td><code><a href="#fromFuture" class="internal-link" title="twisted.internet.defer.Deferred.fromFuture">from​Future</a></code></td>
+    <td>Adapt a L{Future} to a L{Deferred}.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__await__" class="internal-link" title="twisted.internet.defer.Deferred.__await__">__await__</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__init__" class="internal-link" title="twisted.internet.defer.Deferred.__init__">__init__</a></code></td>
+    <td>Initialize a L{Deferred}.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__iter__" class="internal-link" title="twisted.internet.defer.Deferred.__iter__">__iter__</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__str__" class="internal-link" title="twisted.internet.defer.Deferred.__str__">__str__</a></code></td>
+    <td>Return a string representation of this L{Deferred}.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#addBoth" class="internal-link" title="twisted.internet.defer.Deferred.addBoth">add​Both</a></code></td>
+    <td>Convenience method for adding a single callable as both a callback and an errback.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#addCallback" class="internal-link" title="twisted.internet.defer.Deferred.addCallback">add​Callback</a></code></td>
+    <td>Convenience method for adding just a callback.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#addCallbacks" class="internal-link" title="twisted.internet.defer.Deferred.addCallbacks">add​Callbacks</a></code></td>
+    <td>Add a pair of callbacks (success and error) to this L{Deferred}.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#addErrback" class="internal-link" title="twisted.internet.defer.Deferred.addErrback">add​Errback</a></code></td>
+    <td>Convenience method for adding just an errback.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#addTimeout" class="internal-link" title="twisted.internet.defer.Deferred.addTimeout">add​Timeout</a></code></td>
+    <td>Time out this L{Deferred} by scheduling it to be cancelled after C{timeout} seconds.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#asFuture" class="internal-link" title="twisted.internet.defer.Deferred.asFuture">as​Future</a></code></td>
+    <td>Adapt this L{Deferred} into a L{Future} which is bound to C{loop}.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#callback" class="internal-link" title="twisted.internet.defer.Deferred.callback">callback</a></code></td>
+    <td>Run all success callbacks that have been added to this L{Deferred}.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#cancel" class="internal-link" title="twisted.internet.defer.Deferred.cancel">cancel</a></code></td>
+    <td>Cancel this L{Deferred}.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#chainDeferred" class="internal-link" title="twisted.internet.defer.Deferred.chainDeferred">chain​Deferred</a></code></td>
+    <td>Chain another L{Deferred} to this L{Deferred}.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#errback" class="internal-link" title="twisted.internet.defer.Deferred.errback">errback</a></code></td>
+    <td>Run all error callbacks that have been added to this L{Deferred}.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#pause" class="internal-link" title="twisted.internet.defer.Deferred.pause">pause</a></code></td>
+    <td>Stop processing on a L{Deferred} until L{unpause}() is called.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#send" class="internal-link" title="twisted.internet.defer.Deferred.send">send</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#unpause" class="internal-link" title="twisted.internet.defer.Deferred.unpause">unpause</a></code></td>
+    <td>Process all callbacks made since L{pause}() was called.</td>
+  </tr><tr class="classvariable">
+    
+    <td>Class Variable</td>
+    <td><code><a href="#debug" class="internal-link" title="twisted.internet.defer.Deferred.debug">debug</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#callbacks" class="internal-link" title="twisted.internet.defer.Deferred.callbacks">callbacks</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#called" class="internal-link" title="twisted.internet.defer.Deferred.called">called</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#paused" class="internal-link" title="twisted.internet.defer.Deferred.paused">paused</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#result" class="internal-link" title="twisted.internet.defer.Deferred.result">result</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_continuation" class="internal-link" title="twisted.internet.defer.Deferred._continuation">​_continuation</a></code></td>
+    <td>Build a tuple of callback and errback with L{_Sentinel._CONTINUE}.</td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_runCallbacks" class="internal-link" title="twisted.internet.defer.Deferred._runCallbacks">_run​Callbacks</a></code></td>
+    <td>Run the chain of callbacks once a result is available.</td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_startRunCallbacks" class="internal-link" title="twisted.internet.defer.Deferred._startRunCallbacks">_start​Run​Callbacks</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="classvariable private">
+    
+    <td>Class Variable</td>
+    <td><code><a href="#_chainedTo" class="internal-link" title="twisted.internet.defer.Deferred._chainedTo">_chained​To</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="classvariable private">
+    
+    <td>Class Variable</td>
+    <td><code><a href="#_runningCallbacks" class="internal-link" title="twisted.internet.defer.Deferred._runningCallbacks">_running​Callbacks</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#_canceller" class="internal-link" title="twisted.internet.defer.Deferred._canceller">​_canceller</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#_debugInfo" class="internal-link" title="twisted.internet.defer.Deferred._debugInfo">_debug​Info</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#_suppressAlreadyCalled" class="internal-link" title="twisted.internet.defer.Deferred._suppressAlreadyCalled">_suppress​Already​Called</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+        
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="baseclassmethod">
+  
+  
+  <a name="twisted.internet.defer.Deferred.fromCoroutine">
+    
+  </a>
+  <a name="fromCoroutine">
+    
+  </a>
+  <div class="functionHeader">
+    @<a href="https://docs.python.org/3/library/functions.html#classmethod" class="intersphinx-link">classmethod</a><br />
+    <span class="py-keyword">def</span> <span class="py-defname">fromCoroutine</span>(cls, coro):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/internet/defer.py#L1058">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Schedule the execution of a coroutine that awaits on L{Deferred}s,
+wrapping it in a L{Deferred} that will fire on success/failure of the
+coroutine.</p>
+<p>Coroutine functions return a coroutine object, similar to how
+generators work. This function turns that coroutine into a Deferred,
+meaning that it can be used in regular Twisted code. For example:</p>
+<pre class="rst-literal-block">
+import treq
+from twisted.internet.defer import Deferred
+from twisted.internet.task import react
+
+async def crawl(pages):
+    results = {}
+    for page in pages:
+        results[page] = await treq.content(await treq.get(page))
+    return results
+
+def main(reactor):
+    pages = [
+        "http://localhost:8080"
+    ]
+    d = Deferred.fromCoroutine(crawl(pages))
+    d.addCallback(print)
+    return d
+
+react(main)
+</pre>
+<p>@since: Twisted 21.2.0</p>
+<p>@param coro: The coroutine object to schedule.</p>
+<p>@raise ValueError: If C{coro} is not a coroutine or generator.</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">coro:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Union" class="intersphinx-link">Union</a>[<wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Coroutine" class="intersphinx-link">Coroutine</a>[<wbr></wbr><a href="twisted.internet.defer.Deferred.html" class="internal-link" title="twisted.internet.defer.Deferred">Deferred</a>[<wbr></wbr><a href="twisted.internet.defer.html#_T" class="internal-link" title="twisted.internet.defer._T">_T</a>], <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">Any</a>, <wbr></wbr><a href="twisted.internet.defer.html#_T" class="internal-link" title="twisted.internet.defer._T">_T</a>], <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Generator" class="intersphinx-link">Generator</a>[<wbr></wbr><a href="twisted.internet.defer.Deferred.html" class="internal-link" title="twisted.internet.defer.Deferred">Deferred</a>[<wbr></wbr><a href="twisted.internet.defer.html#_T" class="internal-link" title="twisted.internet.defer._T">_T</a>], <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">Any</a>, <wbr></wbr><a href="twisted.internet.defer.html#_T" class="internal-link" title="twisted.internet.defer._T">_T</a>]]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="twisted.internet.defer.Deferred.html" class="internal-link" title="twisted.internet.defer.Deferred">Deferred</a>[<wbr></wbr><a href="twisted.internet.defer.html#_T" class="internal-link" title="twisted.internet.defer._T">_T</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="baseclassmethod">
+  
+  
+  <a name="twisted.internet.defer.Deferred.fromFuture">
+    
+  </a>
+  <a name="fromFuture">
+    
+  </a>
+  <div class="functionHeader">
+    @<a href="https://docs.python.org/3/library/functions.html#classmethod" class="intersphinx-link">classmethod</a><br />
+    <span class="py-keyword">def</span> <span class="py-defname">fromFuture</span>(cls, future):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/internet/defer.py#L1008">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Adapt a L{Future} to a L{Deferred}.</p>
+<dl class="rst-docutils">
+<dt>@note: This creates a L{Deferred} from a L{Future}, I{not} from</dt>
+<dd>a C{coroutine}; in other words, you will need to call
+L{asyncio.ensure_future}, L{asyncio.loop.create_task} or create an
+L{asyncio.Task} yourself to get from a C{coroutine} to a
+L{Future} if what you have is an awaitable coroutine and
+not a L{Future}.  (The length of this list of techniques is
+exactly why we have left it to the caller!)</dd>
+</dl>
+<p>@since: Twisted 17.5.0</p>
+<p>@param future: The L{Future} to adapt.</p>
+<p>@return: A L{Deferred} which will fire when the L{Future} fires.</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">future:</span><code><a href="https://docs.python.org/3/library/asyncio-future.html#asyncio.Future" class="intersphinx-link">Future</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="twisted.internet.defer.Deferred.html" class="internal-link" title="twisted.internet.defer.Deferred">Deferred</a>[<wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">Any</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.internet.defer.Deferred.__await__">
+    
+  </a>
+  <a name="__await__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__await__</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/internet/defer.py#L969">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Generator" class="intersphinx-link">Generator</a>[<wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">Any</a>, <wbr></wbr><a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, <wbr></wbr><a href="twisted.internet.defer.html#_DeferredResultT" class="internal-link" title="twisted.internet.defer._DeferredResultT">_DeferredResultT</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.internet.defer.Deferred.__init__">
+    
+  </a>
+  <a name="__init__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__init__</span>(self, canceller=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/internet/defer.py#L400">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Initialize a L{Deferred}.</p>
+<dl class="rst-docutils">
+<dt>@param canceller: a callable used to stop the pending operation</dt>
+<dd><p class="rst-first">scheduled by this L{Deferred} when L{Deferred.cancel} is invoked.
+The canceller will be passed the deferred whose cancellation is
+requested (i.e., C{self}).</p>
+<p>If a canceller is not given, or does not invoke its argument's
+C{callback} or C{errback} method, L{Deferred.cancel} will
+invoke L{Deferred.errback} with a L{CancelledError}.</p>
+<p class="rst-last">Note that if a canceller is not given, C{callback} or
+C{errback} may still be invoked exactly once, even though
+defer.py will have already invoked C{errback}, as described
+above.  This allows clients of code which returns a L{Deferred}
+to cancel it without requiring the L{Deferred} instantiator to
+provide any specific implementation support for cancellation.
+New in 10.1.</p>
+</dd>
+<dt>@type canceller: a 1-argument callable which takes a L{Deferred}. The</dt>
+<dd>return result is ignored.</dd>
+</dl>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">canceller:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Callable" class="intersphinx-link">Callable</a>[<wbr></wbr>[<wbr></wbr><a href="twisted.internet.defer.Deferred.html" class="internal-link" title="twisted.internet.defer.Deferred">Deferred</a>[<wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">Any</a>]], <wbr></wbr><a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>]]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.internet.defer.Deferred.__iter__">
+    
+  </a>
+  <a name="__iter__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__iter__</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/internet/defer.py#L941">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="twisted.internet.defer.Deferred.html" class="internal-link" title="twisted.internet.defer.Deferred">Deferred</a>[<wbr></wbr><a href="twisted.internet.defer.html#_DeferredResultT" class="internal-link" title="twisted.internet.defer._DeferredResultT">_DeferredResultT</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.internet.defer.Deferred.__str__">
+    
+  </a>
+  <a name="__str__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__str__</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/internet/defer.py#L924">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Return a string representation of this L{Deferred}.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.internet.defer.Deferred.addBoth">
+    
+  </a>
+  <a name="addBoth">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">addBoth</span>(self, callback, *args, **kwargs):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/internet/defer.py#L523">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Convenience method for adding a single callable as both a callback
+and an errback.</p>
+<p>See L{addCallbacks}.</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">callback:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Callable" class="intersphinx-link">Callable</a>[<wbr></wbr><span class="rst-variable-ellipsis">...</span>, <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Union" class="intersphinx-link">Union</a>[<wbr></wbr><a href="twisted.internet.defer.html#_NextDeferredResultT" class="internal-link" title="twisted.internet.defer._NextDeferredResultT">_NextDeferredResultT</a>, <wbr></wbr><a href="twisted.internet.defer.Deferred.html" class="internal-link" title="twisted.internet.defer.Deferred">Deferred</a>[<wbr></wbr><a href="twisted.internet.defer.html#_NextDeferredResultT" class="internal-link" title="twisted.internet.defer._NextDeferredResultT">_NextDeferredResultT</a>]]]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">*args:</span><code><a href="https://docs.python.org/3/library/functions.html#object" class="intersphinx-link">object</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">**kwargs:</span><code><a href="https://docs.python.org/3/library/functions.html#object" class="intersphinx-link">object</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="twisted.internet.defer.Deferred.html" class="internal-link" title="twisted.internet.defer.Deferred">Deferred</a>[<wbr></wbr><a href="twisted.internet.defer.html#_NextDeferredResultT" class="internal-link" title="twisted.internet.defer._NextDeferredResultT">_NextDeferredResultT</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.internet.defer.Deferred.addCallback">
+    
+  </a>
+  <a name="addCallback">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">addCallback</span>(self, callback, *args, **kwargs):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/internet/defer.py#L483">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Convenience method for adding just a callback.</p>
+<p>See L{addCallbacks}.</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">callback:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Callable" class="intersphinx-link">Callable</a>[<wbr></wbr><span class="rst-variable-ellipsis">...</span>, <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Union" class="intersphinx-link">Union</a>[<wbr></wbr><a href="twisted.internet.defer.html#_NextDeferredResultT" class="internal-link" title="twisted.internet.defer._NextDeferredResultT">_NextDeferredResultT</a>, <wbr></wbr><a href="twisted.internet.defer.Deferred.html" class="internal-link" title="twisted.internet.defer.Deferred">Deferred</a>[<wbr></wbr><a href="twisted.internet.defer.html#_NextDeferredResultT" class="internal-link" title="twisted.internet.defer._NextDeferredResultT">_NextDeferredResultT</a>]]]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">*args:</span><code><a href="https://docs.python.org/3/library/functions.html#object" class="intersphinx-link">object</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">**kwargs:</span><code><a href="https://docs.python.org/3/library/functions.html#object" class="intersphinx-link">object</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="twisted.internet.defer.Deferred.html" class="internal-link" title="twisted.internet.defer.Deferred">Deferred</a>[<wbr></wbr><a href="twisted.internet.defer.html#_NextDeferredResultT" class="internal-link" title="twisted.internet.defer._NextDeferredResultT">_NextDeferredResultT</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.internet.defer.Deferred.addCallbacks">
+    
+  </a>
+  <a name="addCallbacks">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">addCallbacks</span>(self, callback, errback=<a href="twisted.internet.defer.html#_failthru" class="internal-link" title="twisted.internet.defer._failthru">_failthru</a>, callbackArgs=(), callbackKeywords=<a href="twisted.internet.defer.html#_NONE_KWARGS" class="internal-link" title="twisted.internet.defer._NONE_KWARGS">_NONE_KWARGS</a>, errbackArgs=(), errbackKeywords=<a href="twisted.internet.defer.html#_NONE_KWARGS" class="internal-link" title="twisted.internet.defer._NONE_KWARGS">_NONE_KWARGS</a>):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/internet/defer.py#L432">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Add a pair of callbacks (success and error) to this L{Deferred}.</p>
+<p>These will be executed when the 'master' callback is run.</p>
+<p>@return: C{self}.</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">callback:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Callable" class="intersphinx-link">Callable</a>[<wbr></wbr><span class="rst-variable-ellipsis">...</span>, <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Union" class="intersphinx-link">Union</a>[<wbr></wbr><a href="twisted.internet.defer.html#_NextDeferredResultT" class="internal-link" title="twisted.internet.defer._NextDeferredResultT">_NextDeferredResultT</a>, <wbr></wbr><a href="twisted.internet.defer.Deferred.html" class="internal-link" title="twisted.internet.defer.Deferred">Deferred</a>[<wbr></wbr><a href="twisted.internet.defer.html#_NextDeferredResultT" class="internal-link" title="twisted.internet.defer._NextDeferredResultT">_NextDeferredResultT</a>]]]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">errback:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Callable" class="intersphinx-link">Callable</a>[<wbr></wbr><span class="rst-variable-ellipsis">...</span>, <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Union" class="intersphinx-link">Union</a>[<wbr></wbr><a href="twisted.python.failure.Failure.html" class="internal-link" title="twisted.python.failure.Failure">Failure</a>, <wbr></wbr><a href="twisted.internet.defer.html#_NextDeferredResultT" class="internal-link" title="twisted.internet.defer._NextDeferredResultT">_NextDeferredResultT</a>, <wbr></wbr><a href="twisted.internet.defer.Deferred.html" class="internal-link" title="twisted.internet.defer.Deferred">Deferred</a>[<wbr></wbr><a href="twisted.internet.defer.html#_NextDeferredResultT" class="internal-link" title="twisted.internet.defer._NextDeferredResultT">_NextDeferredResultT</a>]]]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">callback​Args:</span><code><a href="twisted.internet.defer.html#_CallbackOrderedArguments" class="internal-link" title="twisted.internet.defer._CallbackOrderedArguments">_CallbackOrderedArguments</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">callback​Keywords:</span><code><a href="twisted.internet.defer.html#_CallbackKeywordArguments" class="internal-link" title="twisted.internet.defer._CallbackKeywordArguments">_CallbackKeywordArguments</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">errback​Args:</span><code><a href="twisted.internet.defer.html#_CallbackOrderedArguments" class="internal-link" title="twisted.internet.defer._CallbackOrderedArguments">_CallbackOrderedArguments</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">errback​Keywords:</span><code><a href="twisted.internet.defer.html#_CallbackKeywordArguments" class="internal-link" title="twisted.internet.defer._CallbackKeywordArguments">_CallbackKeywordArguments</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="twisted.internet.defer.Deferred.html" class="internal-link" title="twisted.internet.defer.Deferred">Deferred</a>[<wbr></wbr><a href="twisted.internet.defer.html#_NextDeferredResultT" class="internal-link" title="twisted.internet.defer._NextDeferredResultT">_NextDeferredResultT</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.internet.defer.Deferred.addErrback">
+    
+  </a>
+  <a name="addErrback">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">addErrback</span>(self, errback, *args, **kwargs):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/internet/defer.py#L499">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Convenience method for adding just an errback.</p>
+<p>See L{addCallbacks}.</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">errback:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Callable" class="intersphinx-link">Callable</a>[<wbr></wbr><span class="rst-variable-ellipsis">...</span>, <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Union" class="intersphinx-link">Union</a>[<wbr></wbr><a href="twisted.python.failure.Failure.html" class="internal-link" title="twisted.python.failure.Failure">Failure</a>, <wbr></wbr><a href="twisted.internet.defer.html#_NextDeferredResultT" class="internal-link" title="twisted.internet.defer._NextDeferredResultT">_NextDeferredResultT</a>, <wbr></wbr><a href="twisted.internet.defer.Deferred.html" class="internal-link" title="twisted.internet.defer.Deferred">Deferred</a>[<wbr></wbr><a href="twisted.internet.defer.html#_NextDeferredResultT" class="internal-link" title="twisted.internet.defer._NextDeferredResultT">_NextDeferredResultT</a>]]]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">*args:</span><code><a href="https://docs.python.org/3/library/functions.html#object" class="intersphinx-link">object</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">**kwargs:</span><code><a href="https://docs.python.org/3/library/functions.html#object" class="intersphinx-link">object</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="twisted.internet.defer.Deferred.html" class="internal-link" title="twisted.internet.defer.Deferred">Deferred</a>[<wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Union" class="intersphinx-link">Union</a>[<wbr></wbr><a href="twisted.internet.defer.html#_DeferredResultT" class="internal-link" title="twisted.internet.defer._DeferredResultT">_DeferredResultT</a>, <wbr></wbr><a href="twisted.internet.defer.html#_NextDeferredResultT" class="internal-link" title="twisted.internet.defer._NextDeferredResultT">_NextDeferredResultT</a>]]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.internet.defer.Deferred.addTimeout">
+    
+  </a>
+  <a name="addTimeout">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">addTimeout</span>(self, timeout, clock, onTimeoutCancel=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/internet/defer.py#L547">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Time out this L{Deferred} by scheduling it to be cancelled after
+C{timeout} seconds.</p>
+<p>The timeout encompasses all the callbacks and errbacks added to this
+L{defer.Deferred} before the call to L{addTimeout}, and none added
+after the call.</p>
+<p>If this L{Deferred} gets timed out, it errbacks with a L{TimeoutError},
+unless a cancelable function was passed to its initialization or unless
+a different C{onTimeoutCancel} callable is provided.</p>
+<dl class="rst-docutils">
+<dt>@param timeout: number of seconds to wait before timing out this</dt>
+<dd>L{Deferred}</dd>
+</dl>
+<p>@param clock: The object which will be used to schedule the timeout.
+@param onTimeoutCancel: A callable which is called immediately after</p>
+<blockquote>
+this L{Deferred} times out, and not if this L{Deferred} is
+otherwise cancelled before the timeout. It takes an arbitrary
+value, which is the value of this L{Deferred} at that exact point
+in time (probably a L{CancelledError} L{Failure}), and the
+C{timeout}.  The default callable (if C{None} is provided) will
+translate a L{CancelledError} L{Failure} into a L{TimeoutError}.</blockquote>
+<p>@return: C{self}.</p>
+<p>@since: 16.5</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">timeout:</span><code><a href="https://docs.python.org/3/library/functions.html#float" class="intersphinx-link">float</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">clock:</span><code><a href="twisted.internet.interfaces.IReactorTime.html" class="internal-link" title="twisted.internet.interfaces.IReactorTime">IReactorTime</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">on​Timeout​Cancel:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Callable" class="intersphinx-link">Callable</a>[<wbr></wbr>[<wbr></wbr><a href="https://docs.python.org/3/library/functions.html#object" class="intersphinx-link">object</a>, <wbr></wbr><a href="https://docs.python.org/3/library/functions.html#float" class="intersphinx-link">float</a>], <wbr></wbr><a href="https://docs.python.org/3/library/functions.html#object" class="intersphinx-link">object</a>]]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="twisted.internet.defer.Deferred.html" class="internal-link" title="twisted.internet.defer.Deferred">Deferred</a>[<wbr></wbr><a href="twisted.internet.defer.html#_DeferredResultT" class="internal-link" title="twisted.internet.defer._DeferredResultT">_DeferredResultT</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.internet.defer.Deferred.asFuture">
+    
+  </a>
+  <a name="asFuture">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">asFuture</span>(self, loop):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/internet/defer.py#L974">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Adapt this L{Deferred} into a L{Future} which is bound to C{loop}.</p>
+<dl class="rst-docutils">
+<dt>@note: converting a L{Deferred} to an L{Future} consumes both</dt>
+<dd>its result and its errors, so this method implicitly converts
+C{self} into a L{Deferred} firing with L{None}, regardless of what
+its result previously would have been.</dd>
+</dl>
+<p>@since: Twisted 17.5.0</p>
+<p>@param loop: The L{asyncio} event loop to bind the L{Future} to.</p>
+<p>@return: A L{Future} which will fire when the L{Deferred} fires.</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">loop:</span><code><a href="https://docs.python.org/3/library/asyncio-eventloop.html#asyncio.AbstractEventLoop" class="intersphinx-link">AbstractEventLoop</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/asyncio-future.html#asyncio.Future" class="intersphinx-link">Future</a>[<wbr></wbr><a href="twisted.internet.defer.html#_DeferredResultT" class="internal-link" title="twisted.internet.defer._DeferredResultT">_DeferredResultT</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.internet.defer.Deferred.callback">
+    
+  </a>
+  <a name="callback">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">callback</span>(self, result):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/internet/defer.py#L637">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Run all success callbacks that have been added to this L{Deferred}.</p>
+<p>Each callback will have its result passed as the first argument to
+the next; this way, the callbacks act as a 'processing chain'.  If
+the success-callback returns a L{Failure} or raises an L{Exception},
+processing will continue on the <em>error</em> callback chain.  If a
+callback (or errback) returns another L{Deferred}, this L{Deferred}
+will be chained to it (and further callbacks will not run until that
+L{Deferred} has a result).</p>
+<p>An instance of L{Deferred} may only have either L{callback} or
+L{errback} called on it, and only once.</p>
+<dl class="rst-docutils">
+<dt>@param result: The object which will be passed to the first callback</dt>
+<dd>added to this L{Deferred} (via L{addCallback}), unless C{result} is
+a L{Failure}, in which case the behavior is the same as calling
+C{errback(result)}.</dd>
+<dt>@raise AlreadyCalledError: If L{callback} or L{errback} has already been</dt>
+<dd>called on this L{Deferred}.</dd>
+</dl>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">result:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Union" class="intersphinx-link">Union</a>[<wbr></wbr><a href="twisted.internet.defer.html#_DeferredResultT" class="internal-link" title="twisted.internet.defer._DeferredResultT">_DeferredResultT</a>, <wbr></wbr><a href="twisted.python.failure.Failure.html" class="internal-link" title="twisted.python.failure.Failure">Failure</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.internet.defer.Deferred.cancel">
+    
+  </a>
+  <a name="cancel">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">cancel</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/internet/defer.py#L718">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Cancel this L{Deferred}.</p>
+<p>If the L{Deferred} has not yet had its C{errback} or C{callback} method
+invoked, call the canceller function provided to the constructor. If
+that function does not invoke C{callback} or C{errback}, or if no
+canceller function was provided, errback with L{CancelledError}.</p>
+<p>If this L{Deferred} is waiting on another L{Deferred}, forward the
+cancellation to the other L{Deferred}.</p>
+</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.internet.defer.Deferred.chainDeferred">
+    
+  </a>
+  <a name="chainDeferred">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">chainDeferred</span>(self, d):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/internet/defer.py#L610">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Chain another L{Deferred} to this L{Deferred}.</p>
+<p>This method adds callbacks to this L{Deferred} to call C{d}'s callback
+or errback, as appropriate. It is merely a shorthand way of performing
+the following:</p>
+<pre class="rst-literal-block">
+d1.addCallbacks(d2.callback, d2.errback)
+</pre>
+<p>When you chain a deferred C{d2} to another deferred C{d1} with
+C{d1.chainDeferred(d2)}, you are making C{d2} participate in the
+callback chain of C{d1}.
+Thus any event that fires C{d1} will also fire C{d2}.
+However, the converse is B{not} true; if C{d2} is fired, C{d1} will not
+be affected.</p>
+<p>Note that unlike the case where chaining is caused by a L{Deferred}
+being returned from a callback, it is possible to cause the call
+stack size limit to be exceeded by chaining many L{Deferred}s
+together with C{chainDeferred}.</p>
+<p>@return: C{self}.</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">d:</span><code><a href="twisted.internet.defer.Deferred.html" class="internal-link" title="twisted.internet.defer.Deferred">Deferred</a>[<wbr></wbr><a href="twisted.internet.defer.html#_DeferredResultT" class="internal-link" title="twisted.internet.defer._DeferredResultT">_DeferredResultT</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="twisted.internet.defer.Deferred.html" class="internal-link" title="twisted.internet.defer.Deferred">Deferred</a>[<wbr></wbr><a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.internet.defer.Deferred.errback">
+    
+  </a>
+  <a name="errback">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">errback</span>(self, fail=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/internet/defer.py#L663">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Run all error callbacks that have been added to this L{Deferred}.</p>
+<p>Each callback will have its result passed as the first
+argument to the next; this way, the callbacks act as a
+'processing chain'. Also, if the error-callback returns a non-Failure
+or doesn't raise an L{Exception}, processing will continue on the
+<em>success</em>-callback chain.</p>
+<p>If the argument that's passed to me is not a L{Failure} instance,
+it will be embedded in one. If no argument is passed, a
+L{Failure} instance will be created based on the current
+traceback stack.</p>
+<p>Passing a string as <a href="#system-message-1"><span class="rst-problematic" id="rst-problematic-1">`</span></a>fail' is deprecated, and will be punished with
+a warning message.</p>
+<p>An instance of L{Deferred} may only have either L{callback} or
+L{errback} called on it, and only once.</p>
+<dl class="rst-docutils">
+<dt>@param fail: The L{Failure} object which will be passed to the first</dt>
+<dd>errback added to this L{Deferred} (via L{addErrback}).
+Alternatively, a L{Exception} instance from which a L{Failure} will
+be constructed (with no traceback) or L{None} to create a L{Failure}
+instance from the current exception state (with a traceback).</dd>
+<dt>@raise AlreadyCalledError: If L{callback} or L{errback} has already been</dt>
+<dd>called on this L{Deferred}.</dd>
+<dt>@raise NoCurrentExceptionError: If C{fail} is L{None} but there is</dt>
+<dd>no current exception state.</dd>
+</dl>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">fail:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Union" class="intersphinx-link">Union</a>[<wbr></wbr><a href="twisted.python.failure.Failure.html" class="internal-link" title="twisted.python.failure.Failure">Failure</a>, <wbr></wbr><a href="https://docs.python.org/3/library/exceptions.html#BaseException" class="intersphinx-link">BaseException</a>]]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.internet.defer.Deferred.pause">
+    
+  </a>
+  <a name="pause">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">pause</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/internet/defer.py#L702">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Stop processing on a L{Deferred} until L{unpause}() is called.</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.internet.defer.Deferred.send">
+    
+  </a>
+  <a name="send">
+    
+  </a>
+  <div class="functionHeader">
+    @<a href="twisted.python.failure.html#_extraneous" class="internal-link" title="twisted.python.failure._extraneous">_extraneous</a><br />
+    <span class="py-keyword">def</span> <span class="py-defname">send</span>(self, value=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/internet/defer.py#L944">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">value:</span><code><a href="https://docs.python.org/3/library/functions.html#object" class="intersphinx-link">object</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="twisted.internet.defer.Deferred.html" class="internal-link" title="twisted.internet.defer.Deferred">Deferred</a>[<wbr></wbr><a href="twisted.internet.defer.html#_DeferredResultT" class="internal-link" title="twisted.internet.defer._DeferredResultT">_DeferredResultT</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.internet.defer.Deferred.unpause">
+    
+  </a>
+  <a name="unpause">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">unpause</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/internet/defer.py#L708">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Process all callbacks made since L{pause}() was called.</div>
+  </div>
+</div><div class="baseclassvariable">
+  
+  
+  <a name="twisted.internet.defer.Deferred.debug">
+    
+  </a>
+  <a name="debug">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">debug</span>: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/internet/defer.py#L396">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="twisted.internet.defer.Deferred.callbacks">
+    
+  </a>
+  <a name="callbacks">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">callbacks</span>: <code><a href="https://docs.python.org/3/library/typing.html#typing.List" class="intersphinx-link">List</a>[<wbr></wbr><a href="twisted.internet.defer.html#_CallbackChain" class="internal-link" title="twisted.internet.defer._CallbackChain">_CallbackChain</a>]</code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/internet/defer.py#L426">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="twisted.internet.defer.Deferred.called">
+    
+  </a>
+  <a name="called">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">called</span>: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/internet/defer.py#L384">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="twisted.internet.defer.Deferred.paused">
+    
+  </a>
+  <a name="paused">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">paused</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/internet/defer.py#L385">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="twisted.internet.defer.Deferred.result">
+    
+  </a>
+  <a name="result">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">result</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/internet/defer.py#L762">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="twisted.internet.defer.Deferred._continuation">
+    
+  </a>
+  <a name="_continuation">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_continuation</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/internet/defer.py#L765">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Build a tuple of callback and errback with L{_Sentinel._CONTINUE}.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="twisted.internet.defer.html#_CallbackChain" class="internal-link" title="twisted.internet.defer._CallbackChain">_CallbackChain</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="twisted.internet.defer.Deferred._runCallbacks">
+    
+  </a>
+  <a name="_runCallbacks">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_runCallbacks</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/internet/defer.py#L774">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Run the chain of callbacks once a result is available.</p>
+<p>This consists of a simple loop over all of the callbacks, calling each
+with the current result and making the current result equal to the
+return value (or raised exception) of that call.</p>
+<p>If L{_runningCallbacks} is true, this loop won't run at all, since
+it is already running above us on the call stack.  If C{self.paused} is
+true, the loop also won't run, because that's what it means to be
+paused.</p>
+<p>The loop will terminate before processing all of the callbacks if a
+L{Deferred} without a result is encountered.</p>
+<p>If a L{Deferred} I{with} a result is encountered, that result is taken
+and the loop proceeds.</p>
+<dl class="rst-docutils">
+<dt>@note: The implementation is complicated slightly by the fact that</dt>
+<dd>chaining (associating two L{Deferred}s with each other such that one
+will wait for the result of the other, as happens when a Deferred is
+returned from a callback on another L{Deferred}) is supported
+iteratively rather than recursively, to avoid running out of stack
+frames when processing long chains.</dd>
+</dl>
+</div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="twisted.internet.defer.Deferred._startRunCallbacks">
+    
+  </a>
+  <a name="_startRunCallbacks">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_startRunCallbacks</span>(self, result):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/internet/defer.py#L746">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">result:</span><code><a href="https://docs.python.org/3/library/functions.html#object" class="intersphinx-link">object</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="baseclassvariable private">
+  
+  
+  <a name="twisted.internet.defer.Deferred._chainedTo">
+    
+  </a>
+  <a name="_chainedTo">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_chainedTo</span>: <code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">Optional</a>[<wbr></wbr><a href="twisted.internet.defer.Deferred.html" class="internal-link" title="twisted.internet.defer.Deferred">Deferred</a>[<wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">Any</a>]]</code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/internet/defer.py#L398">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseclassvariable private">
+  
+  
+  <a name="twisted.internet.defer.Deferred._runningCallbacks">
+    
+  </a>
+  <a name="_runningCallbacks">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_runningCallbacks</span>: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/internet/defer.py#L392">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  
+  <a name="twisted.internet.defer.Deferred._canceller">
+    
+  </a>
+  <a name="_canceller">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_canceller</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/internet/defer.py#L427">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  
+  <a name="twisted.internet.defer.Deferred._debugInfo">
+    
+  </a>
+  <a name="_debugInfo">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_debugInfo</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/internet/defer.py#L386">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  
+  <a name="twisted.internet.defer.Deferred._suppressAlreadyCalled">
+    
+  </a>
+  <a name="_suppressAlreadyCalled">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_suppressAlreadyCalled</span>: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.1.0//src/twisted/internet/defer.py#L387">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div>
+
+      </div>
+    </div>
+
+    <footer class="navbar navbar-default">
+  
+  <div class="container">
+    <a href="index.html">API Documentation</a> for twisted,
+  generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
+    22.2.0 at 2022-02-23 16:05:07.
+  </div>
+</footer>
+
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+  </body>
+</html>
