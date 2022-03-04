@@ -1,0 +1,407 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  
+
+  <head>
+    
+    <title>twisted.web._newclient.LengthEnforcingConsumer</title>
+    <meta name="generator" content="pydoctor 22.2.2.dev0"> 
+        
+    </meta>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=0.75" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+    <link rel="stylesheet" type="text/css" href="extra.css" />
+</head>
+
+  <body>
+
+    <div id="banner">    
+    <div>
+        <a href="/">Home</a>
+        &gt; twisted-22.2.0 <!-- This is a placeholder -->
+        
+        <!-- (<a href=""&gt;show all versions</a&gt;) -->
+    </div>
+</div>
+
+    <nav class="navbar navbar-default">
+  
+  <div class="container">
+
+    <div class="navbar-header">
+      
+      <div class="navlinks">
+        <span class="navbar-brand">
+          twisted <a href="index.html">API Documentation</a>
+        </span>
+
+        <a href="moduleIndex.html">
+          Modules
+        </a>
+
+        <a href="classIndex.html">
+          Classes
+        </a>
+
+        <a href="nameIndex.html">
+          Names
+        </a>
+
+        <div id="search-box-container">
+          <div class="input-group">
+            <input id="search-box" type="search" name="search-query" placeholder="Search..." aria-label="Search" minlength="2" class="form-control" autocomplete="off" />
+            
+            <span class="input-group-btn">
+              <a style="display: none;" class="btn btn-default" id="search-clear-button" title="Clear" onclick="clearSearch()"><img src="fonts/x-circle.svg" alt="Clear" /></a>
+              <a class="btn btn-default" id="search-help-button" title="Help" onclick="toggleSearchHelpText()"><img src="fonts/info.svg" alt="Help" /></a>
+            </span>
+          </div>
+        </div>
+
+      </div>
+
+      <div id="search-results-container" style="display: none;">
+        <div>
+          <span class="label label-default" id="search-docstrings-button">
+            <a title="Search in docstrings" onclick="toggleSearchInDocstrings()">search in docstrings</a></span>
+        </div>
+
+        <noscript>
+            <h1>Cannot search: JavaScript is not supported/enabled in your browser.</h1>
+        </noscript>
+
+        <div class="hint" id="search-help-box">
+          <p class="rst-last">
+      
+            Search bar offers the following options:
+            <ul>   
+                <li>
+                  <strong>Term presence.</strong> The below example searches for documents that 
+                    must contain “foo”, might contain “bar” and must not contain “baz”: <code>+foo bar -baz</code>
+                </li> 
+
+                <li>
+                  <strong>Wildcards.</strong> The below example searches for documents with words beginning with “foo”: <code>foo*</code>
+                </li> 
+
+                <li>
+                  <strong>Search in specific fields.</strong> The following search matches all objects 
+                  in "twisted.mail" that matches “search”: <code>+qname:twisted.mail.* +search</code>
+
+                  <p>
+                    Possible fields: 'name', 'qname' (fully qualified name), 'docstring', and 'kind'.
+                    Last two fields are only applicable if "search in docstrings" is enabled.
+                  </p>
+                </li>
+
+                <li>
+                  <strong>Fuzzy matches.</strong> The following search matches all documents 
+                  that have a word within 1 edit distance of “foo”: <code>foo~1</code>
+                </li>
+            </ul>
+
+          </p>
+        </div>
+
+        <div id="search-status"> </div>
+        
+        <div class="warning" id="search-warn-box" style="display: none;">
+          <p class="rst-last"><span id="search-warn"></span></p>
+        </div>
+
+        <table id="search-results">
+          <!-- Filled dynamically by JS -->
+        </table>
+        
+        <div style="margin-top: 8px;">
+          <p>Results provided by <a href="https://lunrjs.com">Lunr.js</a></p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="ajax.js" type="text/javascript"></script>
+  <script src="search.js" type="text/javascript"></script>
+
+</nav>
+
+    
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="class"><code><code><a href="index.html" class="internal-link">twisted</a></code><wbr></wbr>.<code><a href="twisted.web.html" class="internal-link" title="twisted.web">web</a></code><wbr></wbr>.<code><a href="twisted.web._newclient.html" class="internal-link" title="twisted.web._newclient">_newclient</a></code><wbr></wbr>.<code><a href="twisted.web._newclient.LengthEnforcingConsumer.html" class="internal-link" title="twisted.web._newclient.LengthEnforcingConsumer">LengthEnforcingConsumer</a></code></code></h1>
+        <div id="showPrivate">
+          <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+        </div>
+      </div>
+
+      <div class="categoryHeader">
+        class documentation
+      </div>
+
+      <div class="extrasDocstring">
+        <p><code><span class="py-keyword">class</span> <span class="py-defname">LengthEnforcingConsumer</span>: <a href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/web/_newclient.py#L951" class="sourceLink">(source)</a></code></p>
+        <p><a href="classIndex.html#twisted.web._newclient.LengthEnforcingConsumer">View In Hierarchy</a></p>
+      </div>
+
+      <div class="moduleDocstring">
+        <div>An <code><a href="https://pydocbrowser.github.io/twisted/latest/twisted.internet.interfaces.IConsumer.html" class="intersphinx-link">IConsumer</a></code> proxy which enforces an exact length requirement on the total data written to it.</div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id10663">
+  
+  
+  <tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__init__" class="internal-link" title="twisted.web._newclient.LengthEnforcingConsumer.__init__">__init__</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#write" class="internal-link" title="twisted.web._newclient.LengthEnforcingConsumer.write">write</a></code></td>
+    <td>Write <tt class="rst-docutils literal">bytes</tt> to the underlying consumer unless <tt class="rst-docutils literal">_noMoreWritesExpected</tt> has been called or there are/have been too many bytes.</td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_allowNoMoreWrites" class="internal-link" title="twisted.web._newclient.LengthEnforcingConsumer._allowNoMoreWrites">_allow​No​More​Writes</a></code></td>
+    <td>Indicate that no additional writes are allowed.  Attempts to write after calling this method will be met with an exception.</td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_noMoreWritesExpected" class="internal-link" title="twisted.web._newclient.LengthEnforcingConsumer._noMoreWritesExpected">_no​More​Writes​Expected</a></code></td>
+    <td>Called to indicate no more bytes will be written to this consumer. Check to see that the correct number have been written.</td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#_consumer" class="internal-link" title="twisted.web._newclient.LengthEnforcingConsumer._consumer">_consumer</a></code></td>
+    <td>The consumer to which at most <tt class="rst-docutils literal">_length</tt> bytes will be forwarded.</td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#_finished" class="internal-link" title="twisted.web._newclient.LengthEnforcingConsumer._finished">_finished</a></code></td>
+    <td>A <code><a href="https://pydocbrowser.github.io/twisted/latest/twisted.internet.defer.Deferred.html" class="intersphinx-link">Deferred</a></code> which will be fired with a <code><a href="https://pydocbrowser.github.io/twisted/latest/twisted.python.failure.Failure.html" class="intersphinx-link">Failure</a></code> if too many bytes are written to this consumer.</td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#_length" class="internal-link" title="twisted.web._newclient.LengthEnforcingConsumer._length">_length</a></code></td>
+    <td>The number of bytes remaining to be written.</td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#_producer" class="internal-link" title="twisted.web._newclient.LengthEnforcingConsumer._producer">_producer</a></code></td>
+    <td>The <code><a href="twisted.web.iweb.IBodyProducer.html" class="internal-link" title="twisted.web.iweb.IBodyProducer">IBodyProducer</a></code> which is writing to this consumer.</td>
+  </tr>
+</table>
+        
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="basemethod">
+  
+  
+  <a name="twisted.web._newclient.LengthEnforcingConsumer.__init__">
+    
+  </a>
+  <a name="__init__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__init__</span>(self, producer, consumer, finished):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/web/_newclient.py#L968">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.web._newclient.LengthEnforcingConsumer.write">
+    
+  </a>
+  <a name="write">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">write</span>(self, bytes):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/web/_newclient.py#L981">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Write <tt class="rst-docutils literal">bytes</tt> to the underlying consumer unless <tt class="rst-docutils literal">_noMoreWritesExpected</tt> has been called or there are/have been too many bytes.</div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="twisted.web._newclient.LengthEnforcingConsumer._allowNoMoreWrites">
+    
+  </a>
+  <a name="_allowNoMoreWrites">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_allowNoMoreWrites</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/web/_newclient.py#L974">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Indicate that no additional writes are allowed.  Attempts to write after calling this method will be met with an exception.</div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="twisted.web._newclient.LengthEnforcingConsumer._noMoreWritesExpected">
+    
+  </a>
+  <a name="_noMoreWritesExpected">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_noMoreWritesExpected</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/web/_newclient.py#L1009">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Called to indicate no more bytes will be written to this consumer. Check to see that the correct number have been written.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Raises</td></tr><tr><td class="fieldArgContainer"><code><a href="twisted.web._newclient.WrongBodyLength.html" class="internal-link" title="twisted.web._newclient.WrongBodyLength">WrongBodyLength</a></code></td><td>If not enough bytes have been written.</td></tr></table></div>
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  
+  <a name="twisted.web._newclient.LengthEnforcingConsumer._consumer">
+    
+  </a>
+  <a name="_consumer">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_consumer</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/web/_newclient.py#L961">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div>The consumer to which at most <tt class="rst-docutils literal">_length</tt> bytes will be forwarded.</div>
+    
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  
+  <a name="twisted.web._newclient.LengthEnforcingConsumer._finished">
+    
+  </a>
+  <a name="_finished">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_finished</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/web/_newclient.py#L964">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div>A <code><a href="https://pydocbrowser.github.io/twisted/latest/twisted.internet.defer.Deferred.html" class="intersphinx-link">Deferred</a></code> which will be fired with a <code><a href="https://pydocbrowser.github.io/twisted/latest/twisted.python.failure.Failure.html" class="intersphinx-link">Failure</a></code> if too many bytes are written to this consumer.</div>
+    
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  
+  <a name="twisted.web._newclient.LengthEnforcingConsumer._length">
+    
+  </a>
+  <a name="_length">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_length</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/web/_newclient.py#L956">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div>The number of bytes remaining to be written.</div>
+    
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  
+  <a name="twisted.web._newclient.LengthEnforcingConsumer._producer">
+    
+  </a>
+  <a name="_producer">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_producer</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/web/_newclient.py#L958">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div>The <code><a href="twisted.web.iweb.IBodyProducer.html" class="internal-link" title="twisted.web.iweb.IBodyProducer">IBodyProducer</a></code> which is writing to this consumer.</div>
+    
+  </div>
+</div>
+
+      </div>
+    </div>
+
+    <footer class="navbar navbar-default">
+  
+  <div class="container">
+    <a href="index.html">API Documentation</a> for twisted,
+  generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
+    22.2.2.dev0 at 2022-03-04 06:14:33.
+  </div>
+</footer>
+
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+  </body>
+</html>
