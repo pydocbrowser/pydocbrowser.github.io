@@ -1,0 +1,1841 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  
+
+  <head>
+    
+    <title>twisted.internet.iocpreactor.abstract.FileHandle</title>
+    <meta name="generator" content="pydoctor 22.2.2.dev0"> 
+        
+    </meta>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=0.75" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+    <link rel="stylesheet" type="text/css" href="extra.css" />
+</head>
+
+  <body>
+
+    <div id="banner">    
+    <div>
+        <a href="/">Home</a>
+        &gt; twisted-22.2.0 <!-- This is a placeholder -->
+        
+        <!-- (<a href=""&gt;show all versions</a&gt;) -->
+    </div>
+</div>
+
+    <nav class="navbar navbar-default">
+  
+  <div class="container">
+
+    <div class="navbar-header">
+      
+      <div class="navlinks">
+        <span class="navbar-brand">
+          twisted <a href="index.html">API Documentation</a>
+        </span>
+
+        <a href="moduleIndex.html">
+          Modules
+        </a>
+
+        <a href="classIndex.html">
+          Classes
+        </a>
+
+        <a href="nameIndex.html">
+          Names
+        </a>
+
+        <div id="search-box-container">
+          <div class="input-group">
+            <input id="search-box" type="search" name="search-query" placeholder="Search..." aria-label="Search" minlength="2" class="form-control" autocomplete="off" />
+            
+            <span class="input-group-btn">
+              <a style="display: none;" class="btn btn-default" id="search-clear-button" title="Clear" onclick="clearSearch()"><img src="fonts/x-circle.svg" alt="Clear" /></a>
+              <a class="btn btn-default" id="search-help-button" title="Help" onclick="toggleSearchHelpText()"><img src="fonts/info.svg" alt="Help" /></a>
+            </span>
+          </div>
+        </div>
+
+      </div>
+
+      <div id="search-results-container" style="display: none;">
+        <div>
+          <span class="label label-default" id="search-docstrings-button">
+            <a title="Search in docstrings" onclick="toggleSearchInDocstrings()">search in docstrings</a></span>
+        </div>
+
+        <noscript>
+            <h1>Cannot search: JavaScript is not supported/enabled in your browser.</h1>
+        </noscript>
+
+        <div class="hint" id="search-help-box">
+          <p class="rst-last">
+      
+            Search bar offers the following options:
+            <ul>   
+                <li>
+                  <strong>Term presence.</strong> The below example searches for documents that 
+                    must contain “foo”, might contain “bar” and must not contain “baz”: <code>+foo bar -baz</code>
+                </li> 
+
+                <li>
+                  <strong>Wildcards.</strong> The below example searches for documents with words beginning with “foo”: <code>foo*</code>
+                </li> 
+
+                <li>
+                  <strong>Search in specific fields.</strong> The following search matches all Functions 
+                  that contains "foo" in their full dotted name and with “bar” in any field: <code>+fullName:*foo* +bar +kind:Function</code>
+
+                  <p>
+                    Possible fields: 'name', 'docstring', 'fullName', 'kind'.
+                  </p>
+                </li>
+
+                <li>
+                  <strong>Fuzzy matches.</strong> The following search matches all documents 
+                  that have a word within 1 edit distance of “foo”: <code>foo~1</code>
+                </li>
+            </ul>
+
+          </p>
+        </div>
+
+        <div id="search-status"> </div>
+        
+        <div class="warning" id="search-warn-box" style="display: none;">
+          <p class="rst-last"><span id="search-warn"></span></p>
+        </div>
+
+        <table id="search-results">
+          <!-- Filled dynamically by JS -->
+        </table>
+        
+        <div style="margin-top: 8px;">
+          <p>Results provided by <a href="https://lunrjs.com">Lunr.js</a></p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="ajax.js" type="text/javascript"></script>
+  <script src="search.js" type="text/javascript"></script>
+
+</nav>
+
+    
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="class"><code><code><a href="index.html" class="internal-link">twisted</a></code><wbr></wbr>.<code><a href="twisted.internet.html" class="internal-link" title="twisted.internet">internet</a></code><wbr></wbr>.<code><a href="twisted.internet.iocpreactor.html" class="internal-link" title="twisted.internet.iocpreactor">iocpreactor</a></code><wbr></wbr>.<code><a href="twisted.internet.iocpreactor.abstract.html" class="internal-link" title="twisted.internet.iocpreactor.abstract">abstract</a></code><wbr></wbr>.<code><a href="twisted.internet.iocpreactor.abstract.FileHandle.html" class="internal-link" title="twisted.internet.iocpreactor.abstract.FileHandle">FileHandle</a></code></code></h1>
+        <div id="showPrivate">
+          <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+        </div>
+      </div>
+
+      <div class="categoryHeader">
+        class documentation
+      </div>
+
+      <div class="extrasDocstring">
+        <p><code><span class="py-keyword">class</span> <span class="py-defname">FileHandle</span>(<a href="twisted.internet.abstract._ConsumerMixin.html" class="internal-link" title="twisted.internet.abstract._ConsumerMixin">_ConsumerMixin</a>, <a href="twisted.internet.abstract._LogOwner.html" class="internal-link" title="twisted.internet.abstract._LogOwner">_LogOwner</a>): <a href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/internet/iocpreactor/abstract.py#L19" class="sourceLink">(source)</a></code></p><p>Known subclasses: <code><a href="twisted.internet.iocpreactor.tcp.Connection.html" class="internal-link">twisted.internet.iocpreactor.tcp.Connection</a></code>, <code><a href="twisted.internet.iocpreactor.udp.Port.html" class="internal-link">twisted.internet.iocpreactor.udp.Port</a></code></p><p>Implements interfaces: <code><a href="twisted.internet.interfaces.IConsumer.html" class="internal-link">twisted.internet.interfaces.IConsumer</a></code>, <code><a href="twisted.internet.interfaces.IHalfCloseableDescriptor.html" class="internal-link">twisted.internet.interfaces.IHalfCloseableDescriptor</a></code>, <code><a href="twisted.internet.interfaces.IPushProducer.html" class="internal-link">twisted.internet.interfaces.IPushProducer</a></code>, <code><a href="twisted.internet.interfaces.ITransport.html" class="internal-link">twisted.internet.interfaces.ITransport</a></code></p>
+        <p><a href="classIndex.html#twisted.internet.iocpreactor.abstract.FileHandle">View In Hierarchy</a></p>
+      </div>
+
+      <div class="moduleDocstring">
+        <div>File handle that can read and write asynchronously</div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id2123">
+  
+  
+  <tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__init__" class="internal-link" title="twisted.internet.iocpreactor.abstract.FileHandle.__init__">__init__</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#connectionLost" class="internal-link" title="twisted.internet.iocpreactor.abstract.FileHandle.connectionLost">connection​Lost</a></code></td>
+    <td>The connection was lost.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#dataReceived" class="internal-link" title="twisted.internet.iocpreactor.abstract.FileHandle.dataReceived">data​Received</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#doRead" class="internal-link" title="twisted.internet.iocpreactor.abstract.FileHandle.doRead">do​Read</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#doWrite" class="internal-link" title="twisted.internet.iocpreactor.abstract.FileHandle.doWrite">do​Write</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#getFileHandle" class="internal-link" title="twisted.internet.iocpreactor.abstract.FileHandle.getFileHandle">get​File​Handle</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#getHost" class="internal-link" title="twisted.internet.iocpreactor.abstract.FileHandle.getHost">get​Host</a></code></td>
+    <td>Similar to getPeer, but returns an address describing this side of the connection.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#getPeer" class="internal-link" title="twisted.internet.iocpreactor.abstract.FileHandle.getPeer">get​Peer</a></code></td>
+    <td>Get the remote address of this connection.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#loseConnection" class="internal-link" title="twisted.internet.iocpreactor.abstract.FileHandle.loseConnection">lose​Connection</a></code></td>
+    <td>Close the connection at the next available opportunity.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#loseWriteConnection" class="internal-link" title="twisted.internet.iocpreactor.abstract.FileHandle.loseWriteConnection">lose​Write​Connection</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#pauseProducing" class="internal-link" title="twisted.internet.iocpreactor.abstract.FileHandle.pauseProducing">pause​Producing</a></code></td>
+    <td>Pause producing data.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#readConnectionLost" class="internal-link" title="twisted.internet.iocpreactor.abstract.FileHandle.readConnectionLost">read​Connection​Lost</a></code></td>
+    <td>Indicates read connection was lost.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#readFromHandle" class="internal-link" title="twisted.internet.iocpreactor.abstract.FileHandle.readFromHandle">read​From​Handle</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#resumeProducing" class="internal-link" title="twisted.internet.iocpreactor.abstract.FileHandle.resumeProducing">resume​Producing</a></code></td>
+    <td>Resume producing data.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#startReading" class="internal-link" title="twisted.internet.iocpreactor.abstract.FileHandle.startReading">start​Reading</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#startWriting" class="internal-link" title="twisted.internet.iocpreactor.abstract.FileHandle.startWriting">start​Writing</a></code></td>
+    <td><span class="undocumented">No summary</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#stopConsuming" class="internal-link" title="twisted.internet.iocpreactor.abstract.FileHandle.stopConsuming">stop​Consuming</a></code></td>
+    <td>Stop consuming data.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#stopProducing" class="internal-link" title="twisted.internet.iocpreactor.abstract.FileHandle.stopProducing">stop​Producing</a></code></td>
+    <td>Stop producing data.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#stopReading" class="internal-link" title="twisted.internet.iocpreactor.abstract.FileHandle.stopReading">stop​Reading</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#stopWriting" class="internal-link" title="twisted.internet.iocpreactor.abstract.FileHandle.stopWriting">stop​Writing</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#write" class="internal-link" title="twisted.internet.iocpreactor.abstract.FileHandle.write">write</a></code></td>
+    <td>Reliably write some data.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#writeConnectionLost" class="internal-link" title="twisted.internet.iocpreactor.abstract.FileHandle.writeConnectionLost">write​Connection​Lost</a></code></td>
+    <td>Indicates write connection was lost.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#writeSequence" class="internal-link" title="twisted.internet.iocpreactor.abstract.FileHandle.writeSequence">write​Sequence</a></code></td>
+    <td>Write an iterable of byte strings to the physical connection.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#writeToHandle" class="internal-link" title="twisted.internet.iocpreactor.abstract.FileHandle.writeToHandle">write​To​Handle</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="constant">
+    
+    <td>Constant</td>
+    <td><code><a href="#SEND_LIMIT" class="internal-link" title="twisted.internet.iocpreactor.abstract.FileHandle.SEND_LIMIT">SEND​_LIMIT</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="classvariable">
+    
+    <td>Class Variable</td>
+    <td><code><a href="#disconnecting" class="internal-link" title="twisted.internet.iocpreactor.abstract.FileHandle.disconnecting">disconnecting</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="classvariable">
+    
+    <td>Class Variable</td>
+    <td><code><a href="#dynamicReadBuffers" class="internal-link" title="twisted.internet.iocpreactor.abstract.FileHandle.dynamicReadBuffers">dynamic​Read​Buffers</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="classvariable">
+    
+    <td>Class Variable</td>
+    <td><code><a href="#logstr" class="internal-link" title="twisted.internet.iocpreactor.abstract.FileHandle.logstr">logstr</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="classvariable">
+    
+    <td>Class Variable</td>
+    <td><code><a href="#maxReadBuffers" class="internal-link" title="twisted.internet.iocpreactor.abstract.FileHandle.maxReadBuffers">max​Read​Buffers</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="classvariable">
+    
+    <td>Class Variable</td>
+    <td><code><a href="#readBufferSize" class="internal-link" title="twisted.internet.iocpreactor.abstract.FileHandle.readBufferSize">read​Buffer​Size</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="classvariable">
+    
+    <td>Class Variable</td>
+    <td><code><a href="#writeBufferSize" class="internal-link" title="twisted.internet.iocpreactor.abstract.FileHandle.writeBufferSize">write​Buffer​Size</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#connected" class="internal-link" title="twisted.internet.iocpreactor.abstract.FileHandle.connected">connected</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#dataBuffer" class="internal-link" title="twisted.internet.iocpreactor.abstract.FileHandle.dataBuffer">data​Buffer</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#disconnected" class="internal-link" title="twisted.internet.iocpreactor.abstract.FileHandle.disconnected">disconnected</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#offset" class="internal-link" title="twisted.internet.iocpreactor.abstract.FileHandle.offset">offset</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#producer" class="internal-link" title="twisted.internet.iocpreactor.abstract.FileHandle.producer">producer</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#producerPaused" class="internal-link" title="twisted.internet.iocpreactor.abstract.FileHandle.producerPaused">producer​Paused</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#reactor" class="internal-link" title="twisted.internet.iocpreactor.abstract.FileHandle.reactor">reactor</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#reading" class="internal-link" title="twisted.internet.iocpreactor.abstract.FileHandle.reading">reading</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#writing" class="internal-link" title="twisted.internet.iocpreactor.abstract.FileHandle.writing">writing</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_cbRead" class="internal-link" title="twisted.internet.iocpreactor.abstract.FileHandle._cbRead">_cb​Read</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_cbWrite" class="internal-link" title="twisted.internet.iocpreactor.abstract.FileHandle._cbWrite">_cb​Write</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_closeWriteConnection" class="internal-link" title="twisted.internet.iocpreactor.abstract.FileHandle._closeWriteConnection">_close​Write​Connection</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_dispatchData" class="internal-link" title="twisted.internet.iocpreactor.abstract.FileHandle._dispatchData">_dispatch​Data</a></code></td>
+    <td>Dispatch previously read data. Return True if self.reading and we don't have any more data</td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_handleRead" class="internal-link" title="twisted.internet.iocpreactor.abstract.FileHandle._handleRead">_handle​Read</a></code></td>
+    <td>Returns False if we should stop reading for now</td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_handleWrite" class="internal-link" title="twisted.internet.iocpreactor.abstract.FileHandle._handleWrite">_handle​Write</a></code></td>
+    <td>Returns false if we should stop writing for now</td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_resumeReading" class="internal-link" title="twisted.internet.iocpreactor.abstract.FileHandle._resumeReading">_resume​Reading</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_resumeWriting" class="internal-link" title="twisted.internet.iocpreactor.abstract.FileHandle._resumeWriting">_resume​Writing</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="classvariable private">
+    
+    <td>Class Variable</td>
+    <td><code><a href="#_writeDisconnected" class="internal-link" title="twisted.internet.iocpreactor.abstract.FileHandle._writeDisconnected">_write​Disconnected</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#_readBuffers" class="internal-link" title="twisted.internet.iocpreactor.abstract.FileHandle._readBuffers">_read​Buffers</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#_readNextBuffer" class="internal-link" title="twisted.internet.iocpreactor.abstract.FileHandle._readNextBuffer">_read​Next​Buffer</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#_readScheduled" class="internal-link" title="twisted.internet.iocpreactor.abstract.FileHandle._readScheduled">_read​Scheduled</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#_readScheduledInOS" class="internal-link" title="twisted.internet.iocpreactor.abstract.FileHandle._readScheduledInOS">_read​Scheduled​In​OS</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#_readSize" class="internal-link" title="twisted.internet.iocpreactor.abstract.FileHandle._readSize">_read​Size</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#_tempDataBuffer" class="internal-link" title="twisted.internet.iocpreactor.abstract.FileHandle._tempDataBuffer">_temp​Data​Buffer</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#_tempDataLen" class="internal-link" title="twisted.internet.iocpreactor.abstract.FileHandle._tempDataLen">_temp​Data​Len</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#_writeDisconnecting" class="internal-link" title="twisted.internet.iocpreactor.abstract.FileHandle._writeDisconnecting">_write​Disconnecting</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#_writeScheduled" class="internal-link" title="twisted.internet.iocpreactor.abstract.FileHandle._writeScheduled">_write​Scheduled</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+        
+          <p class="inheritedFrom">
+            Inherited from <code><a href="twisted.internet.abstract._ConsumerMixin.html" class="internal-link" title="twisted.internet.abstract._ConsumerMixin">_ConsumerMixin</a></code>:
+          </p>
+          <table class="children sortable" id="id2124">
+  
+  
+  <tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="twisted.internet.abstract._ConsumerMixin.html#registerProducer" class="internal-link" title="twisted.internet.abstract._ConsumerMixin.registerProducer">register​Producer</a></code></td>
+    <td>Register to receive data from a producer.</td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="twisted.internet.abstract._ConsumerMixin.html#unregisterProducer" class="internal-link" title="twisted.internet.abstract._ConsumerMixin.unregisterProducer">unregister​Producer</a></code></td>
+    <td>Stop consuming data from a producer, without disconnecting.</td>
+  </tr><tr class="baseinstancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="twisted.internet.abstract._ConsumerMixin.html#streamingProducer" class="internal-link" title="twisted.internet.abstract._ConsumerMixin.streamingProducer">streaming​Producer</a></code></td>
+    <td><tt class="rst-docutils literal">bool</tt> or <tt class="rst-docutils literal">int</tt></td>
+  </tr>
+</table>
+          
+          <p class="inheritedFrom">
+            Inherited from <code><a href="twisted.internet.abstract._LogOwner.html" class="internal-link" title="twisted.internet.abstract._LogOwner">_LogOwner</a></code>:
+          </p>
+          <table class="children sortable" id="id2125">
+  
+  
+  <tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="twisted.internet.abstract._LogOwner.html#logPrefix" class="internal-link" title="twisted.internet.abstract._LogOwner.logPrefix">log​Prefix</a></code></td>
+    <td>Override this method to insert custom logging behavior.  Its return value will be inserted in front of every line.  It may be called more times than the number of output lines.</td>
+  </tr><tr class="basemethod private">
+    
+    <td>Method</td>
+    <td><code><a href="twisted.internet.abstract._LogOwner.html#_getLogPrefix" class="internal-link" title="twisted.internet.abstract._LogOwner._getLogPrefix">_get​Log​Prefix</a></code></td>
+    <td>Determine the log prefix to use for messages related to <tt class="rst-docutils literal">applicationObject</tt>, which may or may not be an <code><a href="https://pydocbrowser.github.io/twisted/latest/twisted.internet.interfaces.ILoggingContext.html" class="intersphinx-link">interfaces.ILoggingContext</a></code> provider.</td>
+  </tr>
+</table>
+          
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="basemethod">
+  
+  
+  <a name="twisted.internet.iocpreactor.abstract.FileHandle.__init__">
+    
+  </a>
+  <a name="__init__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__init__</span>(self, reactor=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/internet/iocpreactor/abstract.py#L295">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="twisted.internet.iocpreactor.tcp.Connection.html" class="internal-link">twisted.internet.iocpreactor.tcp.Connection</a></code>, <code><a href="twisted.internet.iocpreactor.udp.Port.html" class="internal-link">twisted.internet.iocpreactor.udp.Port</a></code></div>
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.internet.iocpreactor.abstract.FileHandle.connectionLost">
+    
+  </a>
+  <a name="connectionLost">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">connectionLost</span>(self, reason):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/internet/iocpreactor/abstract.py#L303">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="twisted.internet.iocpreactor.tcp.Connection.html" class="internal-link">twisted.internet.iocpreactor.tcp.Connection</a></code>, <code><a href="twisted.internet.iocpreactor.udp.Port.html" class="internal-link">twisted.internet.iocpreactor.udp.Port</a></code></div>
+    
+    <div><p>The connection was lost.</p>
+<p>This is called when the connection on a selectable object has been lost.  It will be called whether the connection was closed explicitly, an exception occurred in an event handler, or the other end of the connection closed it first.</p>
+<p>Clean up state here, but make sure to call back up to FileDescriptor.</p>
+</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.internet.iocpreactor.abstract.FileHandle.dataReceived">
+    
+  </a>
+  <a name="dataReceived">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">dataReceived</span>(self, data):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/internet/iocpreactor/abstract.py#L137">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="twisted.internet.iocpreactor.tcp.Connection.html" class="internal-link">twisted.internet.iocpreactor.tcp.Connection</a></code></div>
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.internet.iocpreactor.abstract.FileHandle.doRead">
+    
+  </a>
+  <a name="doRead">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">doRead</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/internet/iocpreactor/abstract.py#L123">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="twisted.internet.iocpreactor.udp.Port.html" class="internal-link">twisted.internet.iocpreactor.udp.Port</a></code></div>
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.internet.iocpreactor.abstract.FileHandle.doWrite">
+    
+  </a>
+  <a name="doWrite">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">doWrite</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/internet/iocpreactor/abstract.py#L230">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.internet.iocpreactor.abstract.FileHandle.getFileHandle">
+    
+  </a>
+  <a name="getFileHandle">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">getFileHandle</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/internet/iocpreactor/abstract.py#L324">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.internet.iocpreactor.abstract.FileHandle.getHost">
+    
+  </a>
+  <a name="getHost">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">getHost</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/internet/iocpreactor/abstract.py#L378">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <code><a href="twisted.internet.interfaces.ITransport.html#getHost" class="internal-link" title="twisted.internet.interfaces.ITransport.getHost">twisted.internet.interfaces.ITransport</a></code></div><div class="interfaceinfo">overridden in <code><a href="twisted.internet.iocpreactor.tcp.Connection.html" class="internal-link">twisted.internet.iocpreactor.tcp.Connection</a></code>, <code><a href="twisted.internet.iocpreactor.udp.Port.html" class="internal-link">twisted.internet.iocpreactor.udp.Port</a></code></div>
+    
+    <div>Similar to getPeer, but returns an address describing this side of the connection.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td colspan="2">An <code><a href="https://pydocbrowser.github.io/twisted/latest/twisted.internet.interfaces.IAddress.html" class="intersphinx-link">IAddress</a></code> provider.</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.internet.iocpreactor.abstract.FileHandle.getPeer">
+    
+  </a>
+  <a name="getPeer">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">getPeer</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/internet/iocpreactor/abstract.py#L382">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <code><a href="twisted.internet.interfaces.ITransport.html#getPeer" class="internal-link" title="twisted.internet.interfaces.ITransport.getPeer">twisted.internet.interfaces.ITransport</a></code></div><div class="interfaceinfo">overridden in <code><a href="twisted.internet.iocpreactor.tcp.Connection.html" class="internal-link">twisted.internet.iocpreactor.tcp.Connection</a></code></div>
+    
+    <div><p>Get the remote address of this connection.</p>
+<p>Treat this method with caution.  It is the unfortunate result of the CGI and Jabber standards, but should not be considered reliable for the usual host of reasons; port forwarding, proxying, firewalls, IP masquerading, etc.</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td colspan="2">An <code><a href="https://pydocbrowser.github.io/twisted/latest/twisted.internet.interfaces.IAddress.html" class="intersphinx-link">IAddress</a></code> provider.</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.internet.iocpreactor.abstract.FileHandle.loseConnection">
+    
+  </a>
+  <a name="loseConnection">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">loseConnection</span>(self, _connDone=<a href="twisted.python.failure.Failure.html" class="internal-link" title="twisted.python.failure.Failure">failure.Failure</a>(<wbr></wbr><a href="twisted.internet.main.html#CONNECTION_DONE" class="internal-link" title="twisted.internet.main.CONNECTION_DONE">main.CONNECTION_DONE</a>)):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/internet/iocpreactor/abstract.py#L327">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <code><a href="twisted.internet.interfaces.ITransport.html#loseConnection" class="internal-link" title="twisted.internet.interfaces.ITransport.loseConnection">twisted.internet.interfaces.ITransport</a></code></div><div class="interfaceinfo">overridden in <code><a href="twisted.internet.iocpreactor.tcp.Connection.html" class="internal-link">twisted.internet.iocpreactor.tcp.Connection</a></code>, <code><a href="twisted.internet.iocpreactor.udp.Port.html" class="internal-link">twisted.internet.iocpreactor.udp.Port</a></code></div>
+    
+    <div><p>Close the connection at the next available opportunity.</p>
+<p>Call this to cause this FileDescriptor to lose its connection.  It will first write any data that it has buffered.</p>
+<p>If there is data buffered yet to be written, this method will cause the transport to lose its connection as soon as it's done flushing its write buffer.  If you have a producer registered, the connection won't be closed until the producer is finished. Therefore, make sure you unregister your producer when it's finished, or the connection will never close.</p>
+</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.internet.iocpreactor.abstract.FileHandle.loseWriteConnection">
+    
+  </a>
+  <a name="loseWriteConnection">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">loseWriteConnection</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/internet/iocpreactor/abstract.py#L152">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.internet.iocpreactor.abstract.FileHandle.pauseProducing">
+    
+  </a>
+  <a name="pauseProducing">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">pauseProducing</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/internet/iocpreactor/abstract.py#L372">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <code><a href="twisted.internet.interfaces.IPushProducer.html#pauseProducing" class="internal-link" title="twisted.internet.interfaces.IPushProducer.pauseProducing">twisted.internet.interfaces.IPushProducer</a></code></div>
+    
+    <div><p>Pause producing data.</p>
+<p>Tells a producer that it has produced too much data to process for the time being, and to stop until <tt class="rst-docutils literal">resumeProducing()</tt> is called.</p>
+</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.internet.iocpreactor.abstract.FileHandle.readConnectionLost">
+    
+  </a>
+  <a name="readConnectionLost">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">readConnectionLost</span>(self, reason):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/internet/iocpreactor/abstract.py#L140">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <code><a href="twisted.internet.interfaces.IHalfCloseableDescriptor.html#readConnectionLost" class="internal-link" title="twisted.internet.interfaces.IHalfCloseableDescriptor.readConnectionLost">twisted.internet.interfaces.IHalfCloseableDescriptor</a></code></div><div class="interfaceinfo">overridden in <code><a href="twisted.internet.iocpreactor.tcp.Connection.html" class="internal-link">twisted.internet.iocpreactor.tcp.Connection</a></code></div>
+    
+    <div>Indicates read connection was lost.</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.internet.iocpreactor.abstract.FileHandle.readFromHandle">
+    
+  </a>
+  <a name="readFromHandle">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">readFromHandle</span>(self, bufflist, evt):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/internet/iocpreactor/abstract.py#L134">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="twisted.internet.iocpreactor.tcp.Connection.html" class="internal-link">twisted.internet.iocpreactor.tcp.Connection</a></code></div>
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.internet.iocpreactor.abstract.FileHandle.resumeProducing">
+    
+  </a>
+  <a name="resumeProducing">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">resumeProducing</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/internet/iocpreactor/abstract.py#L368">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <code><a href="twisted.internet.interfaces.IPushProducer.html#resumeProducing" class="internal-link" title="twisted.internet.interfaces.IPushProducer.resumeProducing">twisted.internet.interfaces.IPushProducer</a></code></div>
+    
+    <div><p>Resume producing data.</p>
+<p>This tells a producer to re-add itself to the main loop and produce more data for its consumer.</p>
+</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.internet.iocpreactor.abstract.FileHandle.startReading">
+    
+  </a>
+  <a name="startReading">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">startReading</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/internet/iocpreactor/abstract.py#L40">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.internet.iocpreactor.abstract.FileHandle.startWriting">
+    
+  </a>
+  <a name="startWriting">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">startWriting</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/internet/iocpreactor/abstract.py#L164">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overrides <code><a href="twisted.internet.abstract._ConsumerMixin.html#startWriting" class="internal-link">twisted.internet.abstract._ConsumerMixin.startWriting</a></code></div>
+    
+    <div>Override in a subclass to cause the reactor to monitor this selectable for write events.  This will be called once in <tt class="rst-docutils literal">unregisterProducer</tt> if <tt class="rst-docutils literal">loseConnection</tt> has previously been called, so that the connection can actually close.</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.internet.iocpreactor.abstract.FileHandle.stopConsuming">
+    
+  </a>
+  <a name="stopConsuming">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">stopConsuming</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/internet/iocpreactor/abstract.py#L355">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Stop consuming data.</p>
+<p>This is called when a producer has lost its connection, to tell the consumer to go lose its connection (and break potential circular references).</p>
+</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.internet.iocpreactor.abstract.FileHandle.stopProducing">
+    
+  </a>
+  <a name="stopProducing">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">stopProducing</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/internet/iocpreactor/abstract.py#L375">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <code><a href="twisted.internet.interfaces.IProducer.html#stopProducing" class="internal-link" title="twisted.internet.interfaces.IProducer.stopProducing">twisted.internet.interfaces.IProducer</a></code></div>
+    
+    <div><p>Stop producing data.</p>
+<p>This tells a producer that its consumer has died, so it must stop producing data for good.</p>
+</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.internet.iocpreactor.abstract.FileHandle.stopReading">
+    
+  </a>
+  <a name="stopReading">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">stopReading</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/internet/iocpreactor/abstract.py#L46">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.internet.iocpreactor.abstract.FileHandle.stopWriting">
+    
+  </a>
+  <a name="stopWriting">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">stopWriting</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/internet/iocpreactor/abstract.py#L171">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.internet.iocpreactor.abstract.FileHandle.write">
+    
+  </a>
+  <a name="write">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">write</span>(self, data):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/internet/iocpreactor/abstract.py#L256">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <code><a href="twisted.internet.interfaces.IConsumer.html#write" class="internal-link" title="twisted.internet.interfaces.IConsumer.write">twisted.internet.interfaces.IConsumer</a></code></div><div class="interfaceinfo">overridden in <code><a href="twisted.internet.iocpreactor.tcp.Connection.html" class="internal-link">twisted.internet.iocpreactor.tcp.Connection</a></code>, <code><a href="twisted.internet.iocpreactor.udp.Port.html" class="internal-link">twisted.internet.iocpreactor.udp.Port</a></code></div>
+    
+    <div><p>Reliably write some data.</p>
+<p>The data is buffered until his file descriptor is ready for writing.</p>
+</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.internet.iocpreactor.abstract.FileHandle.writeConnectionLost">
+    
+  </a>
+  <a name="writeConnectionLost">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">writeConnectionLost</span>(self, reason):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/internet/iocpreactor/abstract.py#L160">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <code><a href="twisted.internet.interfaces.IHalfCloseableDescriptor.html#writeConnectionLost" class="internal-link" title="twisted.internet.interfaces.IHalfCloseableDescriptor.writeConnectionLost">twisted.internet.interfaces.IHalfCloseableDescriptor</a></code></div>
+    
+    <div>Indicates write connection was lost.</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.internet.iocpreactor.abstract.FileHandle.writeSequence">
+    
+  </a>
+  <a name="writeSequence">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">writeSequence</span>(self, iovec):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/internet/iocpreactor/abstract.py#L273">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <code><a href="twisted.internet.interfaces.ITransport.html#writeSequence" class="internal-link" title="twisted.internet.interfaces.ITransport.writeSequence">twisted.internet.interfaces.ITransport</a></code></div><div class="interfaceinfo">overridden in <code><a href="twisted.internet.iocpreactor.tcp.Connection.html" class="internal-link">twisted.internet.iocpreactor.tcp.Connection</a></code>, <code><a href="twisted.internet.iocpreactor.udp.Port.html" class="internal-link">twisted.internet.iocpreactor.udp.Port</a></code></div>
+    
+    <div><p>Write an iterable of byte strings to the physical connection.</p>
+<p>If possible, make sure that all of the data is written to the socket at once, without first copying it all into a single byte string.</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">iovec</span></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">data</span></td><td class="fieldArgDesc">The data to write.</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.internet.iocpreactor.abstract.FileHandle.writeToHandle">
+    
+  </a>
+  <a name="writeToHandle">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">writeToHandle</span>(self, buff, evt):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/internet/iocpreactor/abstract.py#L253">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="twisted.internet.iocpreactor.tcp.Connection.html" class="internal-link">twisted.internet.iocpreactor.tcp.Connection</a></code></div>
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="baseconstant">
+  
+  
+  <a name="twisted.internet.iocpreactor.abstract.FileHandle.SEND_LIMIT">
+    
+  </a>
+  <a name="SEND_LIMIT">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">SEND_LIMIT</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/internet/iocpreactor/abstract.py#L293">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    <table class="valueTable"><tr class="fieldStart"><td class="fieldName">Value</td></tr><tr><td><pre class="constant-value"><code>128*1024</code></pre></td></tr></table>
+  </div>
+</div><div class="baseclassvariable">
+  
+  
+  <a name="twisted.internet.iocpreactor.abstract.FileHandle.disconnecting">
+    
+  </a>
+  <a name="disconnecting">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">disconnecting</span>: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/internet/iocpreactor/abstract.py#L290">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseclassvariable">
+  
+  
+  <a name="twisted.internet.iocpreactor.abstract.FileHandle.dynamicReadBuffers">
+    
+  </a>
+  <a name="dynamicReadBuffers">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">dynamicReadBuffers</span>: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/internet/iocpreactor/abstract.py#L34">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="twisted.internet.iocpreactor.udp.Port.html" class="internal-link">twisted.internet.iocpreactor.udp.Port</a></code></div>
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseclassvariable">
+  
+  
+  <a name="twisted.internet.iocpreactor.abstract.FileHandle.logstr">
+    
+  </a>
+  <a name="logstr">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">logstr</span>: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/internet/iocpreactor/abstract.py#L291">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="twisted.internet.iocpreactor.tcp.Server.html" class="internal-link">twisted.internet.iocpreactor.tcp.Server</a></code>, <code><a href="twisted.internet.iocpreactor.udp.Port.html" class="internal-link">twisted.internet.iocpreactor.udp.Port</a></code></div>
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseclassvariable">
+  
+  
+  <a name="twisted.internet.iocpreactor.abstract.FileHandle.maxReadBuffers">
+    
+  </a>
+  <a name="maxReadBuffers">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">maxReadBuffers</span>: <code><a href="https://docs.python.org/3/library/functions.html#int" class="intersphinx-link">int</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/internet/iocpreactor/abstract.py#L31">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseclassvariable">
+  
+  
+  <a name="twisted.internet.iocpreactor.abstract.FileHandle.readBufferSize">
+    
+  </a>
+  <a name="readBufferSize">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">readBufferSize</span>: <code><a href="https://docs.python.org/3/library/functions.html#int" class="intersphinx-link">int</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/internet/iocpreactor/abstract.py#L32">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="twisted.internet.iocpreactor.udp.Port.html" class="internal-link">twisted.internet.iocpreactor.udp.Port</a></code></div>
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseclassvariable">
+  
+  
+  <a name="twisted.internet.iocpreactor.abstract.FileHandle.writeBufferSize">
+    
+  </a>
+  <a name="writeBufferSize">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">writeBufferSize</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/internet/iocpreactor/abstract.py#L150">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="twisted.internet.iocpreactor.abstract.FileHandle.connected">
+    
+  </a>
+  <a name="connected">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">connected</span>: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/internet/iocpreactor/abstract.py#L288">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="twisted.internet.iocpreactor.tcp.Server.html" class="internal-link">twisted.internet.iocpreactor.tcp.Server</a></code>, <code><a href="twisted.internet.iocpreactor.udp.Port.html" class="internal-link">twisted.internet.iocpreactor.udp.Port</a></code></div>
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="twisted.internet.iocpreactor.abstract.FileHandle.dataBuffer">
+    
+  </a>
+  <a name="dataBuffer">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">dataBuffer</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/internet/iocpreactor/abstract.py#L144">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="twisted.internet.iocpreactor.abstract.FileHandle.disconnected">
+    
+  </a>
+  <a name="disconnected">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">disconnected</span>: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/internet/iocpreactor/abstract.py#L289">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="twisted.internet.iocpreactor.abstract.FileHandle.offset">
+    
+  </a>
+  <a name="offset">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">offset</span>: <code><a href="https://docs.python.org/3/library/functions.html#int" class="intersphinx-link">int</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/internet/iocpreactor/abstract.py#L145">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="twisted.internet.iocpreactor.abstract.FileHandle.producer">
+    
+  </a>
+  <a name="producer">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">producer</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/internet/iocpreactor/abstract.py#L319">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">overrides <code><a href="twisted.internet.abstract._ConsumerMixin.html#producer" class="internal-link">twisted.internet.abstract._ConsumerMixin.producer</a></code></div>
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="twisted.internet.iocpreactor.abstract.FileHandle.producerPaused">
+    
+  </a>
+  <a name="producerPaused">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">producerPaused</span>: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/internet/iocpreactor/abstract.py#L269">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">overrides <code><a href="twisted.internet.abstract._ConsumerMixin.html#producerPaused" class="internal-link">twisted.internet.abstract._ConsumerMixin.producerPaused</a></code></div>
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="twisted.internet.iocpreactor.abstract.FileHandle.reactor">
+    
+  </a>
+  <a name="reactor">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">reactor</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/internet/iocpreactor/abstract.py#L298">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="twisted.internet.iocpreactor.tcp.Client.html" class="internal-link">twisted.internet.iocpreactor.tcp.Client</a></code></div>
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="twisted.internet.iocpreactor.abstract.FileHandle.reading">
+    
+  </a>
+  <a name="reading">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">reading</span>: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/internet/iocpreactor/abstract.py#L33">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="twisted.internet.iocpreactor.abstract.FileHandle.writing">
+    
+  </a>
+  <a name="writing">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">writing</span>: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/internet/iocpreactor/abstract.py#L146">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="twisted.internet.iocpreactor.abstract.FileHandle._cbRead">
+    
+  </a>
+  <a name="_cbRead">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_cbRead</span>(self, rc, data, evt):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/internet/iocpreactor/abstract.py#L89">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="twisted.internet.iocpreactor.abstract.FileHandle._cbWrite">
+    
+  </a>
+  <a name="_cbWrite">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_cbWrite</span>(self, rc, numBytesWritten, evt):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/internet/iocpreactor/abstract.py#L181">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="twisted.internet.iocpreactor.abstract.FileHandle._closeWriteConnection">
+    
+  </a>
+  <a name="_closeWriteConnection">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_closeWriteConnection</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/internet/iocpreactor/abstract.py#L156">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="twisted.internet.iocpreactor.tcp.Connection.html" class="internal-link">twisted.internet.iocpreactor.tcp.Connection</a></code></div>
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="twisted.internet.iocpreactor.abstract.FileHandle._dispatchData">
+    
+  </a>
+  <a name="_dispatchData">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_dispatchData</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/internet/iocpreactor/abstract.py#L57">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Dispatch previously read data. Return True if self.reading and we don't have any more data</div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="twisted.internet.iocpreactor.abstract.FileHandle._handleRead">
+    
+  </a>
+  <a name="_handleRead">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_handleRead</span>(self, rc, data, evt):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/internet/iocpreactor/abstract.py#L94">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Returns False if we should stop reading for now</div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="twisted.internet.iocpreactor.abstract.FileHandle._handleWrite">
+    
+  </a>
+  <a name="_handleWrite">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_handleWrite</span>(self, rc, numBytesWritten, evt):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/internet/iocpreactor/abstract.py#L185">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Returns false if we should stop writing for now</div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="twisted.internet.iocpreactor.abstract.FileHandle._resumeReading">
+    
+  </a>
+  <a name="_resumeReading">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_resumeReading</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/internet/iocpreactor/abstract.py#L52">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="twisted.internet.iocpreactor.abstract.FileHandle._resumeWriting">
+    
+  </a>
+  <a name="_resumeWriting">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_resumeWriting</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/internet/iocpreactor/abstract.py#L177">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="baseclassvariable private">
+  
+  
+  <a name="twisted.internet.iocpreactor.abstract.FileHandle._writeDisconnected">
+    
+  </a>
+  <a name="_writeDisconnected">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_writeDisconnected</span>: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/internet/iocpreactor/abstract.py#L149">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  
+  <a name="twisted.internet.iocpreactor.abstract.FileHandle._readBuffers">
+    
+  </a>
+  <a name="_readBuffers">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_readBuffers</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/internet/iocpreactor/abstract.py#L301">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  
+  <a name="twisted.internet.iocpreactor.abstract.FileHandle._readNextBuffer">
+    
+  </a>
+  <a name="_readNextBuffer">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_readNextBuffer</span>: <code><a href="https://docs.python.org/3/library/functions.html#int" class="intersphinx-link">int</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/internet/iocpreactor/abstract.py#L35">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  
+  <a name="twisted.internet.iocpreactor.abstract.FileHandle._readScheduled">
+    
+  </a>
+  <a name="_readScheduled">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_readScheduled</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/internet/iocpreactor/abstract.py#L37">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  
+  <a name="twisted.internet.iocpreactor.abstract.FileHandle._readScheduledInOS">
+    
+  </a>
+  <a name="_readScheduledInOS">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_readScheduledInOS</span>: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/internet/iocpreactor/abstract.py#L38">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  
+  <a name="twisted.internet.iocpreactor.abstract.FileHandle._readSize">
+    
+  </a>
+  <a name="_readSize">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_readSize</span>: <code><a href="https://docs.python.org/3/library/functions.html#int" class="intersphinx-link">int</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/internet/iocpreactor/abstract.py#L36">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  
+  <a name="twisted.internet.iocpreactor.abstract.FileHandle._tempDataBuffer">
+    
+  </a>
+  <a name="_tempDataBuffer">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_tempDataBuffer</span>: <code><a href="https://docs.python.org/3/library/stdtypes.html#list" class="intersphinx-link">list</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/internet/iocpreactor/abstract.py#L238">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  
+  <a name="twisted.internet.iocpreactor.abstract.FileHandle._tempDataLen">
+    
+  </a>
+  <a name="_tempDataLen">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_tempDataLen</span>: <code><a href="https://docs.python.org/3/library/functions.html#int" class="intersphinx-link">int</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/internet/iocpreactor/abstract.py#L239">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  
+  <a name="twisted.internet.iocpreactor.abstract.FileHandle._writeDisconnecting">
+    
+  </a>
+  <a name="_writeDisconnecting">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_writeDisconnecting</span>: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/internet/iocpreactor/abstract.py#L148">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  
+  <a name="twisted.internet.iocpreactor.abstract.FileHandle._writeScheduled">
+    
+  </a>
+  <a name="_writeScheduled">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_writeScheduled</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/internet/iocpreactor/abstract.py#L147">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div>
+
+      </div>
+    </div>
+
+    <footer class="navbar navbar-default">
+  
+  <div class="container">
+    <a href="index.html">API Documentation</a> for twisted,
+  generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
+    22.2.2.dev0 at 2022-03-04 01:02:06.
+  </div>
+</footer>
+
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+  </body>
+</html>
