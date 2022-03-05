@@ -1,0 +1,950 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  
+
+  <head>
+    
+    <title>twisted.names.srvconnect.SRVConnector</title>
+    <meta name="generator" content="pydoctor 22.2.2.dev0"> 
+        
+    </meta>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=0.75" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+    <link rel="stylesheet" type="text/css" href="extra.css" />
+</head>
+
+  <body>
+
+    <div id="banner">    
+    <div>
+        <a href="/">Home</a>
+        &gt; twisted-22.2.0 <!-- This is a placeholder -->
+        
+        <!-- (<a href=""&gt;show all versions</a&gt;) -->
+    </div>
+</div>
+
+    <nav class="navbar navbar-default">
+  
+  <div class="container">
+
+    <div class="navbar-header">
+      
+      <div class="navlinks">
+        <span class="navbar-brand">
+          twisted <a href="index.html">API Documentation</a>
+        </span>
+
+        <a href="moduleIndex.html">
+          Modules
+        </a>
+
+        <a href="classIndex.html">
+          Classes
+        </a>
+
+        <a href="nameIndex.html">
+          Names
+        </a>
+
+        <div id="search-box-container">
+          <div class="input-group">
+            <input id="search-box" type="search" name="search-query" placeholder="Search..." aria-label="Search" minlength="2" class="form-control" autocomplete="off" />
+            
+            <span class="input-group-btn">
+              <a style="display: none;" class="btn btn-default" id="search-clear-button" title="Clear" onclick="clearSearch()"><img src="fonts/x-circle.svg" alt="Clear" /></a>
+              <a class="btn btn-default" id="search-help-button" title="Help" onclick="toggleSearchHelpText()"><img src="fonts/info.svg" alt="Help" /></a>
+            </span>
+          </div>
+        </div>
+
+      </div>
+
+      <div id="search-results-container" style="display: none;">
+        
+        <div id="search-buttons">
+          <span class="label label-default" id="search-docstrings-button">
+          <label class="checkbox-inline">
+            <input type="checkbox" id="toggle-search-in-docstrings-checkbox" value="false" onclick="toggleSearchInDocstrings()">
+              search in docstrings
+            </input>
+          </label>
+          </span>
+          
+        </div>
+        
+        <noscript>
+            <h1>Cannot search: JavaScript is not supported/enabled in your browser.</h1>
+        </noscript>
+
+        <div class="hint" id="search-help-box">
+          <p class="rst-last">
+      
+            Search bar offers the following options:
+            <ul>   
+                <li>
+                  <strong>Term presence.</strong> The below example searches for documents that 
+                    must contain “foo”, might contain “bar” and must not contain “baz”: <code>+foo bar -baz</code>
+                </li> 
+
+                <li>
+                  <strong>Wildcards.</strong> The below example searches for documents with words beginning with “foo”: <code>foo*</code>
+                </li> 
+
+                <li>
+                  <strong>Search in specific fields.</strong> The following search matches all objects 
+                  in "twisted.mail" that matches “search”: <code>+qname:twisted.mail.* +search</code>
+
+                  <p>
+                    Possible fields: 'name', 'qname' (fully qualified name), 'docstring', and 'kind'.
+                    Last two fields are only applicable if "search in docstrings" is enabled.
+                  </p>
+                </li>
+
+                <li>
+                  <strong>Fuzzy matches.</strong> The following search matches all documents 
+                  that have a word within 1 edit distance of “foo”: <code>foo~1</code>
+                </li>
+            </ul>
+
+          </p>
+        </div>
+
+        <div id="search-status"> </div>
+
+        <div class="warning" id="search-warn-box" style="display: none;">
+          <p class="rst-last"><span id="search-warn"></span></p>
+        </div>
+
+        <table id="search-results">
+          <!-- Filled dynamically by JS -->
+        </table>
+        
+        <div style="margin-top: 8px;">
+          <p>Results provided by <a href="https://lunrjs.com">Lunr.js</a></p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</nav>
+
+    
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="class"><code><code><a href="index.html" class="internal-link">twisted</a></code><wbr></wbr>.<code><a href="twisted.names.html" class="internal-link" title="twisted.names">names</a></code><wbr></wbr>.<code><a href="twisted.names.srvconnect.html" class="internal-link" title="twisted.names.srvconnect">srvconnect</a></code><wbr></wbr>.<code><a href="twisted.names.srvconnect.SRVConnector.html" class="internal-link" title="twisted.names.srvconnect.SRVConnector">SRVConnector</a></code></code></h1>
+        <div id="showPrivate">
+          <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+        </div>
+      </div>
+
+      <div class="categoryHeader">
+        class documentation
+      </div>
+
+      <div class="extrasDocstring">
+        <p><code><span class="py-keyword">class</span> <span class="py-defname">SRVConnector</span>: <a href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/names/srvconnect.py#L34" class="sourceLink">(source)</a></code></p><p>Implements interfaces: <code><a href="twisted.internet.interfaces.IConnector.html" class="internal-link">twisted.internet.interfaces.IConnector</a></code></p>
+        <p><a href="classIndex.html#twisted.names.srvconnect.SRVConnector">View In Hierarchy</a></p>
+      </div>
+
+      <div class="moduleDocstring">
+        <div><p>A connector that looks up DNS SRV records.</p>
+<p>RFC 2782 details how SRV records should be interpreted and selected for subsequent connection attempts. The algorithm for using the records' priority and weight is implemented in <code><a href="https://pydocbrowser.github.io/twisted/latest/twisted.names.srvconnect.SRVConnector.html#pickServer" class="intersphinx-link">pickServer</a></code>.</p>
+</div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id4690">
+  
+  
+  <tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__init__" class="internal-link" title="twisted.names.srvconnect.SRVConnector.__init__">__init__</a></code></td>
+    <td></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#connect" class="internal-link" title="twisted.names.srvconnect.SRVConnector.connect">connect</a></code></td>
+    <td>Start connection to remote server.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#connectionFailed" class="internal-link" title="twisted.names.srvconnect.SRVConnector.connectionFailed">connection​Failed</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#connectionLost" class="internal-link" title="twisted.names.srvconnect.SRVConnector.connectionLost">connection​Lost</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#disconnect" class="internal-link" title="twisted.names.srvconnect.SRVConnector.disconnect">disconnect</a></code></td>
+    <td>Disconnect whatever our are state is.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#getDestination" class="internal-link" title="twisted.names.srvconnect.SRVConnector.getDestination">get​Destination</a></code></td>
+    <td>Return destination this will try to connect to.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#pickServer" class="internal-link" title="twisted.names.srvconnect.SRVConnector.pickServer">pick​Server</a></code></td>
+    <td>Pick the next server.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#stopConnecting" class="internal-link" title="twisted.names.srvconnect.SRVConnector.stopConnecting">stop​Connecting</a></code></td>
+    <td>Stop attempting to connect.</td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#connectFuncArgs" class="internal-link" title="twisted.names.srvconnect.SRVConnector.connectFuncArgs">connect​Func​Args</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#connectFuncKwArgs" class="internal-link" title="twisted.names.srvconnect.SRVConnector.connectFuncKwArgs">connect​Func​Kw​Args</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#connectFuncName" class="internal-link" title="twisted.names.srvconnect.SRVConnector.connectFuncName">connect​Func​Name</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#connector" class="internal-link" title="twisted.names.srvconnect.SRVConnector.connector">connector</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#domain" class="internal-link" title="twisted.names.srvconnect.SRVConnector.domain">domain</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#factory" class="internal-link" title="twisted.names.srvconnect.SRVConnector.factory">factory</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#host" class="internal-link" title="twisted.names.srvconnect.SRVConnector.host">host</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#orderedServers" class="internal-link" title="twisted.names.srvconnect.SRVConnector.orderedServers">ordered​Servers</a></code></td>
+    <td>List of server records that have already been tried in this round of connection attempts.</td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#port" class="internal-link" title="twisted.names.srvconnect.SRVConnector.port">port</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#protocol" class="internal-link" title="twisted.names.srvconnect.SRVConnector.protocol">protocol</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#reactor" class="internal-link" title="twisted.names.srvconnect.SRVConnector.reactor">reactor</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#servers" class="internal-link" title="twisted.names.srvconnect.SRVConnector.servers">servers</a></code></td>
+    <td>List of candidate server records for future connection attempts.</td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#service" class="internal-link" title="twisted.names.srvconnect.SRVConnector.service">service</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#stopAfterDNS" class="internal-link" title="twisted.names.srvconnect.SRVConnector.stopAfterDNS">stop​After​DNS</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_cbGotServers" class="internal-link" title="twisted.names.srvconnect.SRVConnector._cbGotServers">_cb​Got​Servers</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_ebGotServers" class="internal-link" title="twisted.names.srvconnect.SRVConnector._ebGotServers">_eb​Got​Servers</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_ebServiceUnknown" class="internal-link" title="twisted.names.srvconnect.SRVConnector._ebServiceUnknown">_eb​Service​Unknown</a></code></td>
+    <td>Connect to the default port when the service name is unknown.</td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_reallyConnect" class="internal-link" title="twisted.names.srvconnect.SRVConnector._reallyConnect">_really​Connect</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#_defaultPort" class="internal-link" title="twisted.names.srvconnect.SRVConnector._defaultPort">_default​Port</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+        
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="basemethod">
+  
+  
+  <a name="twisted.names.srvconnect.SRVConnector.__init__">
+    
+  </a>
+  <a name="__init__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__init__</span>(self, reactor, service, domain, factory, protocol=<span class="rst-variable-quote">'</span><span class="rst-variable-string">tcp</span><span class="rst-variable-quote">'</span>, connectFuncName=<span class="rst-variable-quote">'</span><span class="rst-variable-string">connectTCP</span><span class="rst-variable-quote">'</span>, connectFuncArgs=(), connectFuncKwArgs={}, defaultPort=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/names/srvconnect.py#L54">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">reactor</span></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">service</span></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">domain:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#bytes" class="intersphinx-link">bytes</a></code> or <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc">The domain to connect to.  If passed as a text string, it will be encoded using <tt class="rst-docutils literal">idna</tt> encoding.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">factory</span></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">protocol</span></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">connect​Func​Name</span></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">connect​Func​Args</span></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">connect​Func​Kw​Args</span></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">default​Port:</span><code><a href="https://docs.python.org/3/library/functions.html#int" class="intersphinx-link">int</a></code></td><td class="fieldArgDesc">Optional default port number to be used when SRV lookup fails and the service name is unknown. This should be the port number associated with the service name as defined by the IANA registry.</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.names.srvconnect.SRVConnector.connect">
+    
+  </a>
+  <a name="connect">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">connect</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/names/srvconnect.py#L93">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <code><a href="twisted.internet.interfaces.IConnector.html#connect" class="internal-link" title="twisted.internet.interfaces.IConnector.connect">twisted.internet.interfaces.IConnector</a></code></div>
+    
+    <div>Start connection to remote server.</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.names.srvconnect.SRVConnector.connectionFailed">
+    
+  </a>
+  <a name="connectionFailed">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">connectionFailed</span>(self, reason):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/names/srvconnect.py#L265">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.names.srvconnect.SRVConnector.connectionLost">
+    
+  </a>
+  <a name="connectionLost">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">connectionLost</span>(self, reason):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/names/srvconnect.py#L269">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.names.srvconnect.SRVConnector.disconnect">
+    
+  </a>
+  <a name="disconnect">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">disconnect</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/names/srvconnect.py#L254">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <code><a href="twisted.internet.interfaces.IConnector.html#disconnect" class="internal-link" title="twisted.internet.interfaces.IConnector.disconnect">twisted.internet.interfaces.IConnector</a></code></div>
+    
+    <div>Disconnect whatever our are state is.</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.names.srvconnect.SRVConnector.getDestination">
+    
+  </a>
+  <a name="getDestination">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">getDestination</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/names/srvconnect.py#L261">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <code><a href="twisted.internet.interfaces.IConnector.html#getDestination" class="internal-link" title="twisted.internet.interfaces.IConnector.getDestination">twisted.internet.interfaces.IConnector</a></code></div>
+    
+    <div>Return destination this will try to connect to.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td colspan="2">An object which provides <code><a href="https://pydocbrowser.github.io/twisted/latest/twisted.internet.interfaces.IAddress.html" class="intersphinx-link">IAddress</a></code>.</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.names.srvconnect.SRVConnector.pickServer">
+    
+  </a>
+  <a name="pickServer">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">pickServer</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/names/srvconnect.py#L168">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Pick the next server.</p>
+<p>This selects the next server from the list of SRV records according to their priority and weight values, as set out by the default algorithm specified in RFC 2782.</p>
+<p>At the beginning of a round, <code><a href="https://pydocbrowser.github.io/twisted/latest/twisted.names.srvconnect.SRVConnector.html#servers" class="intersphinx-link">servers</a></code> is populated with <code><a href="https://pydocbrowser.github.io/twisted/latest/twisted.names.srvconnect.SRVConnector.html#orderedServers" class="intersphinx-link">orderedServers</a></code>, and the latter is made empty. <code><a href="https://pydocbrowser.github.io/twisted/latest/twisted.names.srvconnect.SRVConnector.html#servers" class="intersphinx-link">servers</a></code> is the list of candidates, and <code><a href="https://pydocbrowser.github.io/twisted/latest/twisted.names.srvconnect.SRVConnector.html#orderedServers" class="intersphinx-link">orderedServers</a></code> is the list of servers that have already been tried.</p>
+<p>First, all records are ordered by priority and weight in ascending order. Then for each priority level, a running sum is calculated over the sorted list of records for that priority. Then a random value between 0 and the final sum is compared to each record in order. The first record that is greater than or equal to that random value is chosen and removed from the list of candidates for this round.</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/stdtypes.html#tuple" class="intersphinx-link">tuple</a></code> of native <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code> and <code><a href="https://docs.python.org/3/library/functions.html#int" class="intersphinx-link">int</a></code></td><td class="fieldArgDesc">A tuple of target hostname and port from the chosen DNS SRV record.</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.names.srvconnect.SRVConnector.stopConnecting">
+    
+  </a>
+  <a name="stopConnecting">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">stopConnecting</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/names/srvconnect.py#L247">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <code><a href="twisted.internet.interfaces.IConnector.html#stopConnecting" class="internal-link" title="twisted.internet.interfaces.IConnector.stopConnecting">twisted.internet.interfaces.IConnector</a></code></div>
+    
+    <div>Stop attempting to connect.</div>
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="twisted.names.srvconnect.SRVConnector.connectFuncArgs">
+    
+  </a>
+  <a name="connectFuncArgs">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">connectFuncArgs</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/names/srvconnect.py#L84">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="twisted.names.srvconnect.SRVConnector.connectFuncKwArgs">
+    
+  </a>
+  <a name="connectFuncKwArgs">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">connectFuncKwArgs</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/names/srvconnect.py#L85">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="twisted.names.srvconnect.SRVConnector.connectFuncName">
+    
+  </a>
+  <a name="connectFuncName">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">connectFuncName</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/names/srvconnect.py#L83">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="twisted.names.srvconnect.SRVConnector.connector">
+    
+  </a>
+  <a name="connector">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">connector</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/names/srvconnect.py#L88">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="twisted.names.srvconnect.SRVConnector.domain">
+    
+  </a>
+  <a name="domain">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">domain</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/names/srvconnect.py#L79">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="twisted.names.srvconnect.SRVConnector.factory">
+    
+  </a>
+  <a name="factory">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">factory</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/names/srvconnect.py#L80">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="twisted.names.srvconnect.SRVConnector.host">
+    
+  </a>
+  <a name="host">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">host</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/names/srvconnect.py#L234">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="twisted.names.srvconnect.SRVConnector.orderedServers">
+    
+  </a>
+  <a name="orderedServers">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">orderedServers</span>: <code><a href="https://docs.python.org/3/library/stdtypes.html#list" class="intersphinx-link">list</a></code> of <code><a href="https://pydocbrowser.github.io/twisted/latest/twisted.names.dns.Record_SRV.html" class="intersphinx-link">dns.Record_SRV</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/names/srvconnect.py#L47">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div>List of server records that have already been tried in this round of connection attempts.</div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="twisted.names.srvconnect.SRVConnector.port">
+    
+  </a>
+  <a name="port">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">port</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/names/srvconnect.py#L234">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="twisted.names.srvconnect.SRVConnector.protocol">
+    
+  </a>
+  <a name="protocol">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">protocol</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/names/srvconnect.py#L82">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="twisted.names.srvconnect.SRVConnector.reactor">
+    
+  </a>
+  <a name="reactor">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">reactor</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/names/srvconnect.py#L77">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="twisted.names.srvconnect.SRVConnector.servers">
+    
+  </a>
+  <a name="servers">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">servers</span>: <code><a href="https://docs.python.org/3/library/stdtypes.html#list" class="intersphinx-link">list</a></code> of <code><a href="https://pydocbrowser.github.io/twisted/latest/twisted.names.dns.Record_SRV.html" class="intersphinx-link">dns.Record_SRV</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/names/srvconnect.py#L43">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div>List of candidate server records for future connection attempts.</div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="twisted.names.srvconnect.SRVConnector.service">
+    
+  </a>
+  <a name="service">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">service</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/names/srvconnect.py#L78">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="twisted.names.srvconnect.SRVConnector.stopAfterDNS">
+    
+  </a>
+  <a name="stopAfterDNS">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">stopAfterDNS</span>: <code><a href="https://docs.python.org/3/library/functions.html#int" class="intersphinx-link">int</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/names/srvconnect.py#L52">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="twisted.names.srvconnect.SRVConnector._cbGotServers">
+    
+  </a>
+  <a name="_cbGotServers">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_cbGotServers</span>(self, result):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/names/srvconnect.py#L132">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="twisted.names.srvconnect.SRVConnector._ebGotServers">
+    
+  </a>
+  <a name="_ebGotServers">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_ebGotServers</span>(self, failure):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/names/srvconnect.py#L122">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="twisted.names.srvconnect.SRVConnector._ebServiceUnknown">
+    
+  </a>
+  <a name="_ebServiceUnknown">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_ebServiceUnknown</span>(self, failure):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/names/srvconnect.py#L154">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Connect to the default port when the service name is unknown.</p>
+<p>If no SRV records were found, the service name will be passed as the port. If resolving the name fails with <code><a href="https://pydocbrowser.github.io/twisted/latest/twisted.internet.error.ServiceNameUnknownError.html" class="intersphinx-link">error.ServiceNameUnknownError</a></code>, a final attempt is done using the default port.</p>
+</div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="twisted.names.srvconnect.SRVConnector._reallyConnect">
+    
+  </a>
+  <a name="_reallyConnect">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_reallyConnect</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/names/srvconnect.py#L229">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  
+  <a name="twisted.names.srvconnect.SRVConnector._defaultPort">
+    
+  </a>
+  <a name="_defaultPort">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_defaultPort</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/names/srvconnect.py#L86">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div>
+
+      </div>
+    </div>
+
+    <footer class="navbar navbar-default">
+
+  
+  <div class="container">
+    <a href="index.html">API Documentation</a> for twisted,
+  generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
+    22.2.2.dev0 at 2022-03-05 19:44:45.
+  </div>
+
+  <!-- Search related scripts needs to be loaded at the end of HTML 
+    parsing not to introduce overhead and display HTML data asap -->
+  <script src="ajax.js" type="text/javascript"></script>
+  <script src="searchlib.js" type="text/javascript"></script>
+  <script src="search.js" type="text/javascript"></script>
+
+</footer>
+
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+  </body>
+</html>
