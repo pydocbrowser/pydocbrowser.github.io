@@ -1,0 +1,984 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  
+
+  <head>
+    
+    <title>twisted.internet.process.Process</title>
+    <meta name="generator" content="pydoctor 22.2.2.dev0"> 
+        
+    </meta>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=0.75" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+    <link rel="stylesheet" type="text/css" href="extra.css" />
+</head>
+
+  <body>
+
+    <div id="banner">    
+    <div>
+        <a href="/">Home</a>
+        &gt; twisted-22.2.0 <!-- This is a placeholder -->
+        
+        <!-- (<a href=""&gt;show all versions</a&gt;) -->
+    </div>
+</div>
+
+    <nav class="navbar navbar-default">
+  
+  <div class="container">
+
+    <div class="navbar-header">
+      
+      <div class="navlinks">
+        <span class="navbar-brand">
+          twisted <a href="index.html">API Documentation</a>
+        </span>
+
+        <a href="moduleIndex.html">
+          Modules
+        </a>
+
+        <a href="classIndex.html">
+          Classes
+        </a>
+
+        <a href="nameIndex.html">
+          Names
+        </a>
+
+        <div id="search-box-container">
+          <div class="input-group">
+            <input id="search-box" type="search" name="search-query" placeholder="Search..." aria-label="Search" minlength="2" class="form-control" autocomplete="off" />
+            
+            <span class="input-group-btn">
+              <a style="display: none;" class="btn btn-default" id="search-clear-button" title="Clear" onclick="clearSearch()"><img src="fonts/x-circle.svg" alt="Clear" /></a>
+              <a class="btn btn-default" id="search-help-button" title="Help" onclick="toggleSearchHelpText()"><img src="fonts/info.svg" alt="Help" /></a>
+            </span>
+          </div>
+        </div>
+
+      </div>
+
+      <div id="search-results-container" style="display: none;">
+        
+        <div id="search-buttons">
+          <span class="label label-default" id="search-docstrings-button">
+          <label class="checkbox-inline">
+            <input type="checkbox" id="toggle-search-in-docstrings-checkbox" value="false" onclick="toggleSearchInDocstrings()">
+              search in docstrings
+            </input>
+          </label>
+          </span>
+          
+        </div>
+        
+        <noscript>
+            <h1>Cannot search: JavaScript is not supported/enabled in your browser.</h1>
+        </noscript>
+
+        <div class="hint" id="search-help-box">
+          <p class="rst-last">
+      
+            Search bar offers the following options:
+            <ul>   
+                <li>
+                  <strong>Term presence.</strong> The below example searches for documents that 
+                    must contain “foo”, might contain “bar” and must not contain “baz”: <code>+foo bar -baz</code>
+                </li> 
+
+                <li>
+                  <strong>Wildcards.</strong> The below example searches for documents with words beginning with “foo”: <code>foo*</code>
+                </li> 
+
+                <li>
+                  <strong>Search in specific fields.</strong> The following search matches all objects 
+                  in "twisted.mail" that matches “search”: <code>+qname:twisted.mail.* +search</code>
+
+                  <p>
+                    Possible fields: 'name', 'qname' (fully qualified name), 'docstring', and 'kind'.
+                    Last two fields are only applicable if "search in docstrings" is enabled.
+                  </p>
+                </li>
+
+                <li>
+                  <strong>Fuzzy matches.</strong> The following search matches all documents 
+                  that have a word within 1 edit distance of “foo”: <code>foo~1</code>
+                </li>
+            </ul>
+
+          </p>
+        </div>
+
+        <div id="search-status"> </div>
+
+        <div class="warning" id="search-warn-box" style="display: none;">
+          <p class="rst-last"><span id="search-warn"></span></p>
+        </div>
+
+        <table id="search-results">
+          <!-- Filled dynamically by JS -->
+        </table>
+        
+        <div style="margin-top: 8px;">
+          <p>Results provided by <a href="https://lunrjs.com">Lunr.js</a></p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</nav>
+
+    
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="class"><code><code><a href="index.html" class="internal-link">twisted</a></code><wbr></wbr>.<code><a href="twisted.internet.html" class="internal-link" title="twisted.internet">internet</a></code><wbr></wbr>.<code><a href="twisted.internet.process.html" class="internal-link" title="twisted.internet.process">process</a></code><wbr></wbr>.<code><a href="twisted.internet.process.Process.html" class="internal-link" title="twisted.internet.process.Process">Process</a></code></code></h1>
+        <div id="showPrivate">
+          <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+        </div>
+      </div>
+
+      <div class="categoryHeader">
+        class documentation
+      </div>
+
+      <div class="extrasDocstring">
+        <p><code><span class="py-keyword">class</span> <span class="py-defname">Process</span>(<a href="twisted.internet.process._BaseProcess.html" class="internal-link" title="twisted.internet.process._BaseProcess">_BaseProcess</a>): <a href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/internet/process.py#L598" class="sourceLink">(source)</a></code></p><p>Implements interfaces: <code><a href="twisted.internet.interfaces.IProcessTransport.html" class="internal-link">twisted.internet.interfaces.IProcessTransport</a></code></p>
+        <p><a href="classIndex.html#twisted.internet.process.Process">View In Hierarchy</a></p>
+      </div>
+
+      <div class="moduleDocstring">
+        <div><p>An operating-system Process.</p>
+<p>This represents an operating-system process with arbitrary input/output pipes connected to it. Those pipes may represent standard input, standard output, and standard error, or any other file descriptor.</p>
+<p>On UNIX, this is implemented using fork(), exec(), pipe() and fcntl(). These calls may not exist elsewhere so this code is not cross-platform. (also, windows can only select on sockets...)</p>
+</div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id2230">
+  
+  
+  <tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__init__" class="internal-link" title="twisted.internet.process.Process.__init__">__init__</a></code></td>
+    <td>Spawn an operating-system process.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#childConnectionLost" class="internal-link" title="twisted.internet.process.Process.childConnectionLost">child​Connection​Lost</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#childDataReceived" class="internal-link" title="twisted.internet.process.Process.childDataReceived">child​Data​Received</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#closeChildFD" class="internal-link" title="twisted.internet.process.Process.closeChildFD">close​Child​FD</a></code></td>
+    <td>Close a file descriptor which is connected to the child process, identified by its FD in the child process.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#closeStderr" class="internal-link" title="twisted.internet.process.Process.closeStderr">close​Stderr</a></code></td>
+    <td>Close stderr.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#closeStdin" class="internal-link" title="twisted.internet.process.Process.closeStdin">close​Stdin</a></code></td>
+    <td>Call this to close standard input on this process.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#closeStdout" class="internal-link" title="twisted.internet.process.Process.closeStdout">close​Stdout</a></code></td>
+    <td>Close stdout.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#getHost" class="internal-link" title="twisted.internet.process.Process.getHost">get​Host</a></code></td>
+    <td>Similar to getPeer, but returns an address describing this side of the connection.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#getPeer" class="internal-link" title="twisted.internet.process.Process.getPeer">get​Peer</a></code></td>
+    <td>Get the remote address of this connection.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#loseConnection" class="internal-link" title="twisted.internet.process.Process.loseConnection">lose​Connection</a></code></td>
+    <td>Close stdin, stderr and stdout.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#maybeCallProcessEnded" class="internal-link" title="twisted.internet.process.Process.maybeCallProcessEnded">maybe​Call​Process​Ended</a></code></td>
+    <td>Call processEnded on protocol after final cleanup.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#pauseProducing" class="internal-link" title="twisted.internet.process.Process.pauseProducing">pause​Producing</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#registerProducer" class="internal-link" title="twisted.internet.process.Process.registerProducer">register​Producer</a></code></td>
+    <td>Call this to register producer for standard input.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#resumeProducing" class="internal-link" title="twisted.internet.process.Process.resumeProducing">resume​Producing</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#unregisterProducer" class="internal-link" title="twisted.internet.process.Process.unregisterProducer">unregister​Producer</a></code></td>
+    <td>Call this to unregister producer for standard input.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#write" class="internal-link" title="twisted.internet.process.Process.write">write</a></code></td>
+    <td>Call this to write to standard input on this process.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#writeSequence" class="internal-link" title="twisted.internet.process.Process.writeSequence">write​Sequence</a></code></td>
+    <td>Call this to write to standard input on this process.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#writeToChild" class="internal-link" title="twisted.internet.process.Process.writeToChild">write​To​Child</a></code></td>
+    <td>Similar to <code><a href="https://pydocbrowser.github.io/twisted/latest/twisted.internet.interfaces.ITransport.html#write" class="intersphinx-link">ITransport.write</a></code> but also allows the file descriptor in the child process which will receive the bytes to be specified.</td>
+  </tr><tr class="classvariable">
+    
+    <td>Class Variable</td>
+    <td><code><a href="#debug" class="internal-link" title="twisted.internet.process.Process.debug">debug</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="classvariable">
+    
+    <td>Class Variable</td>
+    <td><code><a href="#debug_child" class="internal-link" title="twisted.internet.process.Process.debug_child">debug​_child</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="classvariable">
+    
+    <td>Class Variable</td>
+    <td><code><a href="#pid" class="internal-link" title="twisted.internet.process.Process.pid">pid</a></code></td>
+    <td>From before <code><a href="twisted.internet.interfaces.IProcessProtocol.html#makeConnection" class="internal-link" title="twisted.internet.interfaces.IProcessProtocol.makeConnection">IProcessProtocol.makeConnection</a></code> is called to before <code><a href="twisted.internet.interfaces.IProcessProtocol.html#processEnded" class="internal-link" title="twisted.internet.interfaces.IProcessProtocol.processEnded">IProcessProtocol.processEnded</a></code> is called, <tt class="rst-docutils literal">pid</tt> is an <code><a href="https://docs.python.org/3/library/functions.html#int" class="intersphinx-link">int</a></code> giving the platform process ID of this process.  <tt class="rst-docutils literal">pid</tt> is <code><a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a></code> at all other times.</td>
+  </tr><tr class="classvariable">
+    
+    <td>Class Variable</td>
+    <td><code><a href="#status" class="internal-link" title="twisted.internet.process.Process.status">status</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#pipes" class="internal-link" title="twisted.internet.process.Process.pipes">pipes</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#proto" class="internal-link" title="twisted.internet.process.Process.proto">proto</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_setupChild" class="internal-link" title="twisted.internet.process.Process._setupChild">_setup​Child</a></code></td>
+    <td>fdmap[childFD] = parentFD</td>
+  </tr>
+</table>
+        
+          <p class="inheritedFrom">
+            Inherited from <code><a href="twisted.internet.process._BaseProcess.html" class="internal-link" title="twisted.internet.process._BaseProcess">_BaseProcess</a></code>:
+          </p>
+          <table class="children sortable" id="id2231">
+  
+  
+  <tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="twisted.internet.process._BaseProcess.html#__repr__" class="internal-link" title="twisted.internet.process._BaseProcess.__repr__">__repr__</a></code></td>
+    <td>String representation of a process.</td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="twisted.internet.process._BaseProcess.html#reapProcess" class="internal-link" title="twisted.internet.process._BaseProcess.reapProcess">reap​Process</a></code></td>
+    <td>Try to reap a process (without blocking) via waitpid.</td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="twisted.internet.process._BaseProcess.html#signalProcess" class="internal-link" title="twisted.internet.process._BaseProcess.signalProcess">signal​Process</a></code></td>
+    <td><span class="undocumented">No summary</span></td>
+  </tr><tr class="basemethod private">
+    
+    <td>Method</td>
+    <td><code><a href="twisted.internet.process._BaseProcess.html#_execChild" class="internal-link" title="twisted.internet.process._BaseProcess._execChild">_exec​Child</a></code></td>
+    <td>The exec() which is done in the forked child.</td>
+  </tr><tr class="basemethod private">
+    
+    <td>Method</td>
+    <td><code><a href="twisted.internet.process._BaseProcess.html#_fork" class="internal-link" title="twisted.internet.process._BaseProcess._fork">_fork</a></code></td>
+    <td>Fork and then exec sub-process.</td>
+  </tr><tr class="basemethod private">
+    
+    <td>Method</td>
+    <td><code><a href="twisted.internet.process._BaseProcess.html#_getReason" class="internal-link" title="twisted.internet.process._BaseProcess._getReason">_get​Reason</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod private">
+    
+    <td>Method</td>
+    <td><code><a href="twisted.internet.process._BaseProcess.html#_resetSignalDisposition" class="internal-link" title="twisted.internet.process._BaseProcess._resetSignalDisposition">_reset​Signal​Disposition</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+          
+          <p class="inheritedFrom">
+            Inherited from <code><a href="twisted.internet._baseprocess.BaseProcess.html" class="internal-link" title="twisted.internet._baseprocess.BaseProcess">BaseProcess</a></code> (via <code><a href="twisted.internet.process._BaseProcess.html" class="internal-link" title="twisted.internet.process._BaseProcess">_BaseProcess</a></code>):
+          </p>
+          <table class="children sortable" id="id2232">
+  
+  
+  <tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="twisted.internet._baseprocess.BaseProcess.html#processEnded" class="internal-link" title="twisted.internet._baseprocess.BaseProcess.processEnded">process​Ended</a></code></td>
+    <td>This is called when the child terminates.</td>
+  </tr><tr class="baseclassvariable">
+    
+    <td>Class Variable</td>
+    <td><code><a href="twisted.internet._baseprocess.BaseProcess.html#lostProcess" class="internal-link" title="twisted.internet._baseprocess.BaseProcess.lostProcess">lost​Process</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod private">
+    
+    <td>Method</td>
+    <td><code><a href="twisted.internet._baseprocess.BaseProcess.html#_callProcessExited" class="internal-link" title="twisted.internet._baseprocess.BaseProcess._callProcessExited">_call​Process​Exited</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+          
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="basemethod">
+  
+  
+  <a name="twisted.internet.process.Process.__init__">
+    
+  </a>
+  <a name="__init__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__init__</span>(self, reactor, executable, args, environment, path, proto, uid=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, gid=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, childFDs=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/internet/process.py#L622">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overrides <code><a href="twisted.internet._baseprocess.BaseProcess.html#__init__" class="internal-link">twisted.internet._baseprocess.BaseProcess.__init__</a></code></div>
+    
+    <div><p>Spawn an operating-system process.</p>
+<p>This is where the hard work of disconnecting all currently open files / forking / executing the new process happens.  (This is executed automatically when a Process is instantiated.)</p>
+<p>This will also run the subprocess as a given user ID and group ID, if specified.  (Implementation Note: this doesn't support all the arcane nuances of setXXuid on UNIX: it will assume that either your effective or real UID is 0.)</p>
+</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.internet.process.Process.childConnectionLost">
+    
+  </a>
+  <a name="childConnectionLost">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">childConnectionLost</span>(self, childFD, reason):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/internet/process.py#L915">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.internet.process.Process.childDataReceived">
+    
+  </a>
+  <a name="childDataReceived">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">childDataReceived</span>(self, name, data):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/internet/process.py#L912">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.internet.process.Process.closeChildFD">
+    
+  </a>
+  <a name="closeChildFD">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">closeChildFD</span>(self, childFD):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/internet/process.py#L840">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <code><a href="twisted.internet.interfaces.IProcessTransport.html#closeChildFD" class="internal-link" title="twisted.internet.interfaces.IProcessTransport.closeChildFD">twisted.internet.interfaces.IProcessTransport</a></code></div>
+    
+    <div>Close a file descriptor which is connected to the child process, identified by its FD in the child process.</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.internet.process.Process.closeStderr">
+    
+  </a>
+  <a name="closeStderr">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">closeStderr</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/internet/process.py#L868">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <code><a href="twisted.internet.interfaces.IProcessTransport.html#closeStderr" class="internal-link" title="twisted.internet.interfaces.IProcessTransport.closeStderr">twisted.internet.interfaces.IProcessTransport</a></code></div>
+    
+    <div>Close stderr.</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.internet.process.Process.closeStdin">
+    
+  </a>
+  <a name="closeStdin">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">closeStdin</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/internet/process.py#L859">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <code><a href="twisted.internet.interfaces.IProcessTransport.html#closeStdin" class="internal-link" title="twisted.internet.interfaces.IProcessTransport.closeStdin">twisted.internet.interfaces.IProcessTransport</a></code></div>
+    
+    <div>Call this to close standard input on this process.</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.internet.process.Process.closeStdout">
+    
+  </a>
+  <a name="closeStdout">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">closeStdout</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/internet/process.py#L865">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <code><a href="twisted.internet.interfaces.IProcessTransport.html#closeStdout" class="internal-link" title="twisted.internet.interfaces.IProcessTransport.closeStdout">twisted.internet.interfaces.IProcessTransport</a></code></div>
+    
+    <div>Close stdout.</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.internet.process.Process.getHost">
+    
+  </a>
+  <a name="getHost">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">getHost</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/internet/process.py#L939">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <code><a href="twisted.internet.interfaces.ITransport.html#getHost" class="internal-link" title="twisted.internet.interfaces.ITransport.getHost">twisted.internet.interfaces.ITransport</a></code></div>
+    
+    <div>Similar to getPeer, but returns an address describing this side of the connection.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td colspan="2">An <code><a href="https://pydocbrowser.github.io/twisted/latest/twisted.internet.interfaces.IAddress.html" class="intersphinx-link">IAddress</a></code> provider.</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.internet.process.Process.getPeer">
+    
+  </a>
+  <a name="getPeer">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">getPeer</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/internet/process.py#L943">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <code><a href="twisted.internet.interfaces.ITransport.html#getPeer" class="internal-link" title="twisted.internet.interfaces.ITransport.getPeer">twisted.internet.interfaces.ITransport</a></code></div>
+    
+    <div><p>Get the remote address of this connection.</p>
+<p>Treat this method with caution.  It is the unfortunate result of the CGI and Jabber standards, but should not be considered reliable for the usual host of reasons; port forwarding, proxying, firewalls, IP masquerading, etc.</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td colspan="2">An <code><a href="https://pydocbrowser.github.io/twisted/latest/twisted.internet.interfaces.IAddress.html" class="intersphinx-link">IAddress</a></code> provider.</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.internet.process.Process.loseConnection">
+    
+  </a>
+  <a name="loseConnection">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">loseConnection</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/internet/process.py#L871">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <code><a href="twisted.internet.interfaces.IProcessTransport.html#loseConnection" class="internal-link" title="twisted.internet.interfaces.IProcessTransport.loseConnection">twisted.internet.interfaces.IProcessTransport</a></code></div>
+    
+    <div>Close stdin, stderr and stdout.</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.internet.process.Process.maybeCallProcessEnded">
+    
+  </a>
+  <a name="maybeCallProcessEnded">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">maybeCallProcessEnded</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/internet/process.py#L926">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overrides <code><a href="twisted.internet._baseprocess.BaseProcess.html#maybeCallProcessEnded" class="internal-link">twisted.internet._baseprocess.BaseProcess.maybeCallProcessEnded</a></code></div>
+    
+    <div>Call processEnded on protocol after final cleanup.</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.internet.process.Process.pauseProducing">
+    
+  </a>
+  <a name="pauseProducing">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">pauseProducing</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/internet/process.py#L848">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.internet.process.Process.registerProducer">
+    
+  </a>
+  <a name="registerProducer">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">registerProducer</span>(self, producer, streaming):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/internet/process.py#L885">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Call this to register producer for standard input.</p>
+<p>If there is no standard input producer.stopProducing() will be called immediately.</p>
+</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.internet.process.Process.resumeProducing">
+    
+  </a>
+  <a name="resumeProducing">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">resumeProducing</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/internet/process.py#L853">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.internet.process.Process.unregisterProducer">
+    
+  </a>
+  <a name="unregisterProducer">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">unregisterProducer</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/internet/process.py#L897">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Call this to unregister producer for standard input.</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.internet.process.Process.write">
+    
+  </a>
+  <a name="write">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">write</span>(self, data):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/internet/process.py#L876">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <code><a href="twisted.internet.interfaces.ITransport.html#write" class="internal-link" title="twisted.internet.interfaces.ITransport.write">twisted.internet.interfaces.ITransport</a></code></div>
+    
+    <div><p>Call this to write to standard input on this process.</p>
+<p>NOTE: This will silently lose data if there is no standard input.</p>
+</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.internet.process.Process.writeSequence">
+    
+  </a>
+  <a name="writeSequence">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">writeSequence</span>(self, seq):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/internet/process.py#L903">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <code><a href="twisted.internet.interfaces.ITransport.html#writeSequence" class="internal-link" title="twisted.internet.interfaces.ITransport.writeSequence">twisted.internet.interfaces.ITransport</a></code></div>
+    
+    <div><p>Call this to write to standard input on this process.</p>
+<p>NOTE: This will silently lose data if there is no standard input.</p>
+</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.internet.process.Process.writeToChild">
+    
+  </a>
+  <a name="writeToChild">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">writeToChild</span>(self, childFD, data):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/internet/process.py#L837">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <code><a href="twisted.internet.interfaces.IProcessTransport.html#writeToChild" class="internal-link" title="twisted.internet.interfaces.IProcessTransport.writeToChild">twisted.internet.interfaces.IProcessTransport</a></code></div>
+    
+    <div>Similar to <code><a href="https://pydocbrowser.github.io/twisted/latest/twisted.internet.interfaces.ITransport.html#write" class="intersphinx-link">ITransport.write</a></code> but also allows the file descriptor in the child process which will receive the bytes to be specified.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">child​FD</span></td><td class="fieldArgDesc">The file descriptor to which to write.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">data</span></td><td class="fieldArgDesc">The bytes to write.</td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Raises</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/exceptions.html#KeyError" class="intersphinx-link">KeyError</a></code></td><td>If <tt class="rst-docutils literal">childFD</tt> is not a file descriptor that was mapped in the child when <code><a href="https://pydocbrowser.github.io/twisted/latest/twisted.internet.interfaces.IReactorProcess.html#spawnProcess" class="intersphinx-link">IReactorProcess.spawnProcess</a></code> was used to create it.</td></tr></table></div>
+  </div>
+</div><div class="baseclassvariable">
+  
+  
+  <a name="twisted.internet.process.Process.debug">
+    
+  </a>
+  <a name="debug">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">debug</span>: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/internet/process.py#L613">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseclassvariable">
+  
+  
+  <a name="twisted.internet.process.Process.debug_child">
+    
+  </a>
+  <a name="debug_child">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">debug_child</span>: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/internet/process.py#L614">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseclassvariable">
+  
+  
+  <a name="twisted.internet.process.Process.pid">
+    
+  </a>
+  <a name="pid">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">pid</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/internet/process.py#L617">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">from <code><a href="twisted.internet.interfaces.IProcessTransport.html#pid" class="internal-link" title="twisted.internet.interfaces.IProcessTransport.pid">twisted.internet.interfaces.IProcessTransport</a></code></div><div class="interfaceinfo">overrides <code><a href="twisted.internet.process._BaseProcess.html#pid" class="internal-link">twisted.internet.process._BaseProcess.pid</a></code></div>
+    
+    <div>From before <code><a href="twisted.internet.interfaces.IProcessProtocol.html#makeConnection" class="internal-link" title="twisted.internet.interfaces.IProcessProtocol.makeConnection">IProcessProtocol.makeConnection</a></code> is called to before <code><a href="twisted.internet.interfaces.IProcessProtocol.html#processEnded" class="internal-link" title="twisted.internet.interfaces.IProcessProtocol.processEnded">IProcessProtocol.processEnded</a></code> is called, <tt class="rst-docutils literal">pid</tt> is an <code><a href="https://docs.python.org/3/library/functions.html#int" class="intersphinx-link">int</a></code> giving the platform process ID of this process.  <tt class="rst-docutils literal">pid</tt> is <code><a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a></code> at all other times.</div>
+    
+  </div>
+</div><div class="baseclassvariable">
+  
+  
+  <a name="twisted.internet.process.Process.status">
+    
+  </a>
+  <a name="status">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">status</span>: <code><a href="https://docs.python.org/3/library/functions.html#int" class="intersphinx-link">int</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/internet/process.py#L616">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">overrides <code><a href="twisted.internet.process._BaseProcess.html#status" class="internal-link">twisted.internet.process._BaseProcess.status</a></code></div>
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="twisted.internet.process.Process.pipes">
+    
+  </a>
+  <a name="pipes">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">pipes</span>: <code><a href="https://docs.python.org/3/library/stdtypes.html#dict" class="intersphinx-link">dict</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/internet/process.py#L651">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="twisted.internet.process.Process.proto">
+    
+  </a>
+  <a name="proto">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">proto</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/internet/process.py#L713">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">overrides <code><a href="twisted.internet._baseprocess.BaseProcess.html#proto" class="internal-link">twisted.internet._baseprocess.BaseProcess.proto</a></code></div>
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="twisted.internet.process.Process._setupChild">
+    
+  </a>
+  <a name="_setupChild">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_setupChild</span>(self, fdmap):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/internet/process.py#L741">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overrides <code><a href="twisted.internet.process._BaseProcess.html#_setupChild" class="internal-link">twisted.internet.process._BaseProcess._setupChild</a></code></div>
+    
+    <div><p>fdmap[childFD] = parentFD</p>
+<p>The child wants to end up with 'childFD' attached to what used to be the parent's parentFD. As an example, a bash command run like 'command 2&gt;&amp;1' would correspond to an fdmap of {0:0, 1:1, 2:1}. 'command &gt;foo.txt' would be {0:0, 1:os.open('foo.txt'), 2:2}.</p>
+<p>This is accomplished in two steps:</p>
+<pre class="rst-literal-block">
+    1. close all file descriptors that aren't values of fdmap.  This
+       means 0 .. maxfds (or just the open fds within that range, if
+       the platform supports '/proc/&lt;pid&gt;/fd').
+
+    2. for each childFD::
+
+         - if fdmap[childFD] == childFD, the descriptor is already in
+           place.  Make sure the CLOEXEC flag is not set, then delete
+           the entry from fdmap.
+
+         - if childFD is in fdmap.values(), then the target descriptor
+           is busy. Use os.dup() to move it elsewhere, update all
+           fdmap[childFD] items that point to it, then close the
+           original. Then fall through to the next case.
+
+         - now fdmap[childFD] is not in fdmap.values(), and is free.
+           Use os.dup2() to move it to the right place, then close the
+           original.
+</pre>
+</div>
+  </div>
+</div>
+
+      </div>
+    </div>
+
+    <footer class="navbar navbar-default">
+
+  
+  <div class="container">
+    <a href="index.html">API Documentation</a> for twisted,
+  generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
+    22.2.2.dev0 at 2022-03-05 18:41:53.
+  </div>
+
+  <!-- Search related scripts needs to be loaded at the end of HTML 
+    parsing not to introduce overhead and display HTML data asap -->
+  <script src="ajax.js" type="text/javascript"></script>
+  <script src="searchlib.js" type="text/javascript"></script>
+  <script src="search.js" type="text/javascript"></script>
+
+</footer>
+
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+  </body>
+</html>
