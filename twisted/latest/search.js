@@ -19,6 +19,7 @@ let input = document.getElementById('search-box');
 let results_container = document.getElementById('search-results-container');
 let results_list = document.getElementById('search-results'); 
 let searchInDocstringsButton = document.getElementById('search-docstrings-button'); 
+let searchInDocstringsCheckbox = document.getElementById('toggle-search-in-docstrings-checkbox');
 
 // setTimeout variable to warn when a search takes too long
 var _setLongSearchInfosTimeout = null;
@@ -141,11 +142,11 @@ function clearSearch(){
 
 //////// SEARCH WARPPER FUNCTIONS /////////
 
+var _lastSearchStartTime = null;
+var _lastSearchInput = null;
 /** 
  * Do the actual searching business
  */
-var _lastSearchStartTime = null;
-var _lastSearchInput = null;
 function search(){
   let _searchStartTime = performance.now();
 
@@ -160,10 +161,6 @@ function search(){
       return;
   }
 
-  setWarning('');
-  showResultContainer();
-  setStatus("Searching...");
-
   // Setup query meta infos.
   _lastSearchStartTime = _searchStartTime
   _lastSearchInput = _query;
@@ -172,6 +169,8 @@ function search(){
     resetResultList();
     setStatus('');
     hideResultContainer();
+    // Special case: we need to terminate the worker manualy if user deleted everything is the saerch box
+    terminateSearchWorker();
     return;
   }
 
@@ -181,8 +180,13 @@ function search(){
     setStatus("Cannot search: JavaScript Worker API is not supported in your browser. ");
     return;
   }
-
-  resetResultList();
+  
+  setTimeout(() =>{
+    setWarning('');
+    resetResultList();
+    showResultContainer();
+    setStatus("Searching...");
+  }, 0);
 
   // Determine indexURL
   let indexURL = _isSearchInDocstringsEnabled() ? "fullsearchindex.json" : "searchindex.json";
@@ -191,8 +195,8 @@ function search(){
   //  -> customize query function to include docstring for clauses applicable for all fields
   let _fields = _isSearchInDocstringsEnabled() ? ["name", "names", "qname", "docstring"] : ["name", "names", "qname"];
 
-  // After 4 seconds of searching, warn that this is taking more time than usual.
-  _setLongSearchInfosTimeout = setTimeout(setLongSearchInfos, 4000);
+  // After 7 seconds of searching, warn that this is taking more time than usual.
+  _setLongSearchInfosTimeout = setTimeout(setLongSearchInfos, 7000);
 
   // Search 
   lunrSearch(_query, indexURL, _fields, "lunr.js").then((lunrResults) => { 
@@ -214,7 +218,7 @@ function search(){
       setStatus("One sec...");
 
       // Get result data
-      fetchResultsData(lunrResults, "all-documents.html").then((documentResults) => {
+      return fetchResultsData(lunrResults, "all-documents.html").then((documentResults) => {
 
         // outdated query results
         if (_searchStartTime != _lastSearchStartTime){return;}
@@ -228,11 +232,7 @@ function search(){
           ((performance.now() - _searchStartTime)/1000).toString() + ' seconds.')
 
         // End
-      }).catch((err) => {
-        console.dir(err);
-        setStatus('')
-        setErrorStatus();
-      }); // documentResults promise resolved
+      });
 
   }).catch((err) => {
     console.dir(err);
@@ -295,15 +295,15 @@ function displaySearchResults(_query, documentResults, lunrResults){
  * Called everytime the search bar is edited.
 */
 function launchSearch(){
-  setTimeout(() => {search();});
+  search();
 }
 
 function _isSearchInDocstringsEnabled() {
-  return document.getElementById('toggle-search-in-docstrings-checkbox').checked;
+  return searchInDocstringsCheckbox.checked;
 }
 
 function toggleSearchInDocstrings() {
-  if (document.getElementById('toggle-search-in-docstrings-checkbox').checked){
+  if (searchInDocstringsCheckbox.checked){
     searchInDocstringsButton.classList.add('label-success')
   }
   else{
