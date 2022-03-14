@@ -1,0 +1,368 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  
+
+  <head>
+    
+    <title>twisted.words.xish.utility.CallbackList</title>
+    <meta name="generator" content="pydoctor 22.3.0.dev0"> 
+        
+    </meta>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1 maximum-scale=1" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+    <link rel="stylesheet" type="text/css" href="extra.css" />
+</head>
+
+  <body>
+
+    <div id="banner">    
+    <div>
+        <a href="/">Home</a>
+        &gt; twisted-22.2.0 <!-- This is a placeholder -->
+        
+        <!-- (<a href=""&gt;show all versions</a&gt;) -->
+    </div>
+</div>
+
+    <nav class="navbar navbar-default">
+  
+  <div class="container">
+
+    <div class="navbar-header">
+      
+      <div class="navlinks">
+        <span class="navbar-brand">
+          twisted <a href="index.html">API Documentation</a>
+        </span>
+
+        <a href="moduleIndex.html">
+          Modules
+        </a>
+
+        <a href="classIndex.html">
+          Classes
+        </a>
+
+        <a href="nameIndex.html">
+          Names
+        </a>
+
+        <div id="search-box-container">
+          <div class="input-group">
+            <input id="search-box" type="search" name="search-query" placeholder="Search..." aria-label="Search" minlength="2" class="form-control" autocomplete="off" />
+            
+            <span class="input-group-btn">
+              <a style="display: none;" class="btn btn-default" id="search-clear-button" title="Clear" onclick="clearSearch()"><img src="fonts/x-circle.svg" alt="Clear" /></a>
+              <a class="btn btn-default" id="search-help-button" title="Help" onclick="toggleSearchHelpText()"><img src="fonts/info.svg" alt="Help" /></a>
+            </span>
+          </div>
+        </div>
+
+      </div>
+
+      <div id="search-results-container" style="display: none;">
+        
+        <div id="search-buttons">
+          <span class="label label-default" id="search-docstrings-button">
+          <label class="checkbox-inline">
+            <input type="checkbox" id="toggle-search-in-docstrings-checkbox" value="false" onclick="toggleSearchInDocstrings()">
+              search in docstrings
+            </input>
+          </label>
+          </span>
+          
+        </div>
+        
+        <noscript>
+            <h1>Cannot search: JavaScript is not supported/enabled in your browser.</h1>
+        </noscript>
+
+        <div class="hint" id="search-help-box">
+          <p class="rst-last">
+      
+            Search bar offers the following options:
+            <ul>   
+                <li>
+                  <strong>Term presence.</strong> The below example searches for documents that 
+                    must contain “foo”, might contain “bar” and must not contain “baz”: <code>+foo bar -baz</code>
+                </li> 
+
+                <li>
+                  <strong>Wildcards.</strong> The below example searches for documents with words beginning with “foo”: <code>foo*</code>
+                </li> 
+
+                <li>
+                  <strong>Search in specific fields.</strong> The following search matches all objects 
+                  in "twisted.mail" that matches “search”: <code>+qname:twisted.mail.* +search</code>
+
+                  <p>
+                    Possible fields: 'name', 'qname' (fully qualified name), 'docstring', and 'kind'.
+                    Last two fields are only applicable if "search in docstrings" is enabled.
+                  </p>
+                </li>
+
+                <li>
+                  <strong>Fuzzy matches.</strong> The following search matches all documents 
+                  that have a word within 1 edit distance of “foo”: <code>foo~1</code>
+                </li>
+            </ul>
+
+          </p>
+        </div>
+
+        <div id="search-status"> </div>
+
+        <div class="warning" id="search-warn-box" style="display: none;">
+          <p class="rst-last"><span id="search-warn"></span></p>
+        </div>
+
+        <table id="search-results">
+          <!-- Filled dynamically by JS -->
+        </table>
+        
+        <div style="margin-top: 8px;">
+          <p>Results provided by <a href="https://lunrjs.com">Lunr.js</a></p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</nav>
+
+    
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="class"><code><code><a href="index.html" class="internal-link">twisted</a></code><wbr></wbr>.<code><a href="twisted.words.html" class="internal-link" title="twisted.words">words</a></code><wbr></wbr>.<code><a href="twisted.words.xish.html" class="internal-link" title="twisted.words.xish">xish</a></code><wbr></wbr>.<code><a href="twisted.words.xish.utility.html" class="internal-link" title="twisted.words.xish.utility">utility</a></code><wbr></wbr>.<code><a href="twisted.words.xish.utility.CallbackList.html" class="internal-link" title="twisted.words.xish.utility.CallbackList">CallbackList</a></code></code></h1>
+        <div id="showPrivate">
+          <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+        </div>
+      </div>
+
+      <div class="categoryHeader">
+        class documentation
+      </div>
+
+      <div class="extrasDocstring">
+        <p><code><span class="py-keyword">class</span> <span class="py-defname">CallbackList</span>: <a href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/words/xish/utility.py#L32" class="sourceLink">(source)</a></code></p>
+        <p><a href="classIndex.html#twisted.words.xish.utility.CallbackList">View In Hierarchy</a></p>
+      </div>
+
+      <div class="moduleDocstring">
+        <div><p>Container for callbacks.</p>
+<p>Event queries are linked to lists of callables. When a matching event occurs, these callables are called in sequence. One-time callbacks are removed from the list after the first time the event was triggered.</p>
+<p>Arguments to callbacks are split spread across two sets. The first set, callback specific, is passed to <tt class="rst-docutils literal">addCallback</tt> and is used for all subsequent event triggers.  The second set is passed to <tt class="rst-docutils literal">callback</tt> and is event specific. Positional arguments in the second set come after the positional arguments of the first set. Keyword arguments in the second set override those in the first set.</p>
+</div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id14672">
+  
+  
+  <tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__init__" class="internal-link" title="twisted.words.xish.utility.CallbackList.__init__">__init__</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#addCallback" class="internal-link" title="twisted.words.xish.utility.CallbackList.addCallback">add​Callback</a></code></td>
+    <td>Add callback.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#callback" class="internal-link" title="twisted.words.xish.utility.CallbackList.callback">callback</a></code></td>
+    <td>Call all registered callbacks.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#isEmpty" class="internal-link" title="twisted.words.xish.utility.CallbackList.isEmpty">is​Empty</a></code></td>
+    <td>Return if list of registered callbacks is empty.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#removeCallback" class="internal-link" title="twisted.words.xish.utility.CallbackList.removeCallback">remove​Callback</a></code></td>
+    <td>Remove callback.</td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#callbacks" class="internal-link" title="twisted.words.xish.utility.CallbackList.callbacks">callbacks</a></code></td>
+    <td>The registered callbacks as mapping from the callable to a tuple of a wrapper for that callable that keeps the callback specific arguments and a boolean that signifies if it is to be called only once.</td>
+  </tr>
+</table>
+        
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="basemethod">
+  
+  
+  <a name="twisted.words.xish.utility.CallbackList.__init__">
+    
+  </a>
+  <a name="__init__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__init__</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/words/xish/utility.py#L54">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.words.xish.utility.CallbackList.addCallback">
+    
+  </a>
+  <a name="addCallback">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">addCallback</span>(self, onetime, method, *args, **kwargs):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/words/xish/utility.py#L57">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Add callback.</p>
+<p>The arguments passed are used as callback specific arguments.</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">onetime:</span><tt class="rst-docutils literal">bool</tt></td><td class="fieldArgDesc">If <tt class="rst-docutils literal">True</tt>, this callback is called at most once.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">method</span></td><td class="fieldArgDesc">The callback callable to be added.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">*args:</span><tt class="rst-docutils literal">list</tt></td><td class="fieldArgDesc">Positional arguments to the callable.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">**kwargs:</span><tt class="rst-docutils literal">dict</tt></td><td class="fieldArgDesc">Keyword arguments to the callable.</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.words.xish.utility.CallbackList.callback">
+    
+  </a>
+  <a name="callback">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">callback</span>(self, *args, **kwargs):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/words/xish/utility.py#L85">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Call all registered callbacks.</p>
+<p>The passed arguments are event specific and augment and override the callback specific arguments as described above.</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">*args:</span><tt class="rst-docutils literal">list</tt></td><td class="fieldArgDesc">Positional arguments to the callable.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">**kwargs:</span><tt class="rst-docutils literal">dict</tt></td><td class="fieldArgDesc">Keyword arguments to the callable.</td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Note</td></tr><tr><td colspan="2">Exceptions raised by callbacks are trapped and logged. They will not propagate up to make sure other callbacks will still be called, and the event dispatching always succeeds.</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.words.xish.utility.CallbackList.isEmpty">
+    
+  </a>
+  <a name="isEmpty">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">isEmpty</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/words/xish/utility.py#L111">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Return if list of registered callbacks is empty.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><tt class="rst-docutils literal">bool</tt></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.words.xish.utility.CallbackList.removeCallback">
+    
+  </a>
+  <a name="removeCallback">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">removeCallback</span>(self, method):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/words/xish/utility.py#L75">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Remove callback.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">method</span></td><td class="fieldArgDesc">The callable to be removed.</td></tr></table></div>
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="twisted.words.xish.utility.CallbackList.callbacks">
+    
+  </a>
+  <a name="callbacks">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">callbacks</span>: <tt class="rst-docutils literal">dict</tt> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/words/xish/utility.py#L47">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div>The registered callbacks as mapping from the callable to a tuple of a wrapper for that callable that keeps the callback specific arguments and a boolean that signifies if it is to be called only once.</div>
+    
+  </div>
+</div>
+
+      </div>
+    </div>
+
+    <footer class="navbar navbar-default">
+
+  
+  <div class="container">
+    <a href="index.html">API Documentation</a> for twisted,
+  generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
+    22.3.0.dev0 at 2022-03-14 01:57:55.
+  </div>
+
+  <!-- Search related scripts needs to be loaded at the end of HTML 
+    parsing not to introduce overhead and display HTML data asap -->
+  <script src="ajax.js" type="text/javascript"></script>
+  <script src="searchlib.js" type="text/javascript"></script>
+  <script src="search.js" type="text/javascript"></script>
+
+</footer>
+
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+  </body>
+</html>
