@@ -1,0 +1,708 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  
+
+  <head>
+    
+    <title>sqlalchemy.dialects.postgresql.hstore.HSTORE</title>
+    <meta name="generator" content="pydoctor 22.3.0.dev0"> 
+        
+    </meta>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1 maximum-scale=1" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+    <link rel="stylesheet" type="text/css" href="extra.css" />
+</head>
+
+  <body>
+
+    <div id="banner">    
+    <div>
+        <a href="/">Home</a>
+        &gt; sqlalchemy-1.4.32 <!-- This is a placeholder -->
+        
+        <!-- (<a href=""&gt;show all versions</a&gt;) -->
+    </div>
+</div>
+
+    <nav class="navbar navbar-default">
+  
+  <div class="container">
+
+    <div class="navbar-header">
+      
+      <div class="navlinks">
+        <span class="navbar-brand">
+          sqlalchemy <a href="index.html">API Documentation</a>
+        </span>
+
+        <a href="moduleIndex.html">
+          Modules
+        </a>
+
+        <a href="classIndex.html">
+          Classes
+        </a>
+
+        <a href="nameIndex.html">
+          Names
+        </a>
+
+        <div id="search-box-container">
+          <div class="input-group">
+            <input id="search-box" type="search" name="search-query" placeholder="Search..." aria-label="Search" minlength="2" class="form-control" autocomplete="off" />
+            
+            <span class="input-group-btn">
+              <a style="display: none;" class="btn btn-default" id="search-clear-button" title="Clear" onclick="clearSearch()"><img src="fonts/x-circle.svg" alt="Clear" /></a>
+              <a class="btn btn-default" id="search-help-button" title="Help" onclick="toggleSearchHelpText()"><img src="fonts/info.svg" alt="Help" /></a>
+            </span>
+          </div>
+        </div>
+
+      </div>
+
+      <div id="search-results-container" style="display: none;">
+        
+        <div id="search-buttons">
+          <span class="label label-default" id="search-docstrings-button">
+          <label class="checkbox-inline">
+            <input type="checkbox" id="toggle-search-in-docstrings-checkbox" value="false" onclick="toggleSearchInDocstrings()">
+              search in docstrings
+            </input>
+          </label>
+          </span>
+          
+        </div>
+        
+        <noscript>
+            <h1>Cannot search: JavaScript is not supported/enabled in your browser.</h1>
+        </noscript>
+
+        <div class="hint" id="search-help-box">
+          <p class="rst-last">
+      
+            Search bar offers the following options:
+            <ul>   
+                <li>
+                  <strong>Term presence.</strong> The below example searches for documents that 
+                    must contain “foo”, might contain “bar” and must not contain “baz”: <code>+foo bar -baz</code>
+                </li> 
+
+                <li>
+                  <strong>Wildcards.</strong> The below example searches for documents with words beginning with “foo”: <code>foo*</code>
+                </li> 
+
+                <li>
+                  <strong>Search in specific fields.</strong> The following search matches all objects 
+                  in "twisted.mail" that matches “search”: <code>+qname:twisted.mail.* +search</code>
+
+                  <p>
+                    Possible fields: 'name', 'qname' (fully qualified name), 'docstring', and 'kind'.
+                    Last two fields are only applicable if "search in docstrings" is enabled.
+                  </p>
+                </li>
+
+                <li>
+                  <strong>Fuzzy matches.</strong> The following search matches all documents 
+                  that have a word within 1 edit distance of “foo”: <code>foo~1</code>
+                </li>
+            </ul>
+
+          </p>
+        </div>
+
+        <div id="search-status"> </div>
+
+        <div class="warning" id="search-warn-box" style="display: none;">
+          <p class="rst-last"><span id="search-warn"></span></p>
+        </div>
+
+        <table id="search-results">
+          <!-- Filled dynamically by JS -->
+        </table>
+        
+        <div style="margin-top: 8px;">
+          <p>Results provided by <a href="https://lunrjs.com">Lunr.js</a></p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</nav>
+
+    
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="class"><code><code><a href="index.html" class="internal-link">sqlalchemy</a></code><wbr></wbr>.<code><a href="sqlalchemy.dialects.html" class="internal-link" title="sqlalchemy.dialects">dialects</a></code><wbr></wbr>.<code><a href="sqlalchemy.dialects.postgresql.html" class="internal-link" title="sqlalchemy.dialects.postgresql">postgresql</a></code><wbr></wbr>.<code><a href="sqlalchemy.dialects.postgresql.hstore.html" class="internal-link" title="sqlalchemy.dialects.postgresql.hstore">hstore</a></code><wbr></wbr>.<code><a href="sqlalchemy.dialects.postgresql.hstore.HSTORE.html" class="internal-link" title="sqlalchemy.dialects.postgresql.hstore.HSTORE">HSTORE</a></code></code></h1>
+        <div id="showPrivate">
+          <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+        </div>
+      </div>
+
+      <div class="categoryHeader">
+        class documentation
+      </div>
+
+      <div class="extrasDocstring">
+        <p><code><span class="py-keyword">class</span> <span class="py-defname">HSTORE</span>(<a href="sqlalchemy.types.Indexable.html" class="internal-link" title="sqlalchemy.types.Indexable">sqltypes.Indexable</a>, <a href="sqlalchemy.types.Concatenable.html" class="internal-link" title="sqlalchemy.types.Concatenable">sqltypes.Concatenable</a>, <a href="sqlalchemy.types.TypeEngine.html" class="internal-link" title="sqlalchemy.types.TypeEngine">sqltypes.TypeEngine</a>): <a href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.32//lib/sqlalchemy/dialects/postgresql/hstore.py#L64" class="sourceLink">(source)</a></code></p><p>Known subclasses: <code><a href="sqlalchemy.dialects.postgresql.psycopg2._PGHStore.html" class="internal-link">sqlalchemy.dialects.postgresql.psycopg2._PGHStore</a></code>, <code><a href="sqlalchemy.dialects.postgresql.pygresql._PGHStore.html" class="internal-link">sqlalchemy.dialects.postgresql.pygresql._PGHStore</a></code></p>
+        <p><a href="classIndex.html#sqlalchemy.dialects.postgresql.hstore.HSTORE">View In Hierarchy</a></p>
+      </div>
+
+      <div class="moduleDocstring">
+        <div><p>Represent the PostgreSQL HSTORE type.</p>
+<p>The :class:`.HSTORE` type stores dictionaries containing strings, e.g.:</p>
+<pre class="rst-literal-block">
+    data_table = Table('data_table', metadata,
+        Column('id', Integer, primary_key=True),
+        Column('data', HSTORE)
+    )
+
+    with engine.connect() as conn:
+        conn.execute(
+            data_table.insert(),
+            data = {"key1": "value1", "key2": "value2"}
+        )
+</pre>
+<p>:class:`.HSTORE` provides for a wide range of operations, including:</p>
+<p>* Index operations:</p>
+<pre class="rst-literal-block">
+    data_table.c.data['some key'] == 'some value'
+</pre>
+<p>* Containment operations:</p>
+<pre class="rst-literal-block">
+    data_table.c.data.has_key('some key')
+
+    data_table.c.data.has_all(['one', 'two', 'three'])
+</pre>
+<p>* Concatenation:</p>
+<pre class="rst-literal-block">
+    data_table.c.data + {"k1": "v1"}
+</pre>
+<p>For a full list of special methods see :class:`.HSTORE.comparator_factory`.</p>
+<p>For usage with the SQLAlchemy ORM, it may be desirable to combine the usage of :class:`.HSTORE` with :class:`.MutableDict` dictionary now part of the :mod:`sqlalchemy.ext.mutable` extension.  This extension will allow "in-place" changes to the dictionary, e.g. addition of new keys or replacement/removal of existing keys to/from the current dictionary, to produce events which will be detected by the unit of work:</p>
+<pre class="rst-literal-block">
+    from sqlalchemy.ext.mutable import MutableDict
+
+    class MyClass(Base):
+        __tablename__ = 'data_table'
+
+        id = Column(Integer, primary_key=True)
+        data = Column(MutableDict.as_mutable(HSTORE))
+
+    my_object = session.query(MyClass).one()
+
+    # in-place mutation, requires Mutable extension
+    # in order for the ORM to detect
+    my_object.data['some_key'] = 'some value'
+
+    session.commit()
+</pre>
+<p>When the :mod:`sqlalchemy.ext.mutable` extension is not used, the ORM will not be alerted to any changes to the contents of an existing dictionary, unless that dictionary value is re-assigned to the HSTORE-attribute itself, thus generating a change event.</p>
+<p>.. seealso:</p>
+<pre class="rst-literal-block">
+    :class:`.hstore` - render the PostgreSQL ``hstore()`` function.
+</pre>
+</div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id23617">
+  
+  
+  <tr class="class">
+    
+    <td>Class</td>
+    <td><code><a href="sqlalchemy.dialects.postgresql.hstore.HSTORE.Comparator.html" class="internal-link" title="sqlalchemy.dialects.postgresql.hstore.HSTORE.Comparator">​Comparator</a></code></td>
+    <td>Define comparison operations for :class:`.HSTORE`.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__init__" class="internal-link" title="sqlalchemy.dialects.postgresql.hstore.HSTORE.__init__">__init__</a></code></td>
+    <td>Construct a new :class:`.HSTORE`.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#bind_processor" class="internal-link" title="sqlalchemy.dialects.postgresql.hstore.HSTORE.bind_processor">bind​_processor</a></code></td>
+    <td>Return a conversion function for processing bind values.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#result_processor" class="internal-link" title="sqlalchemy.dialects.postgresql.hstore.HSTORE.result_processor">result​_processor</a></code></td>
+    <td>Return a conversion function for processing result row values.</td>
+  </tr><tr class="classvariable">
+    
+    <td>Class Variable</td>
+    <td><code><a href="#__visit_name__" class="internal-link" title="sqlalchemy.dialects.postgresql.hstore.HSTORE.__visit_name__">__visit​_name__</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="classvariable">
+    
+    <td>Class Variable</td>
+    <td><code><a href="#hashable" class="internal-link" title="sqlalchemy.dialects.postgresql.hstore.HSTORE.hashable">hashable</a></code></td>
+    <td>Flag, if False, means values from this type aren't hashable.</td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#text_type" class="internal-link" title="sqlalchemy.dialects.postgresql.hstore.HSTORE.text_type">text​_type</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+        
+          <p class="inheritedFrom">
+            Inherited from <code><a href="sqlalchemy.types.TypeEngine.html" class="internal-link" title="sqlalchemy.types.TypeEngine">TypeEngine</a></code>:
+          </p>
+          <table class="children sortable" id="id23618">
+  
+  
+  <tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="sqlalchemy.types.TypeEngine.html#__repr__" class="internal-link" title="sqlalchemy.types.TypeEngine.__repr__">__repr__</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="sqlalchemy.types.TypeEngine.html#__str__" class="internal-link" title="sqlalchemy.types.TypeEngine.__str__">__str__</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="sqlalchemy.types.TypeEngine.html#adapt" class="internal-link" title="sqlalchemy.types.TypeEngine.adapt">adapt</a></code></td>
+    <td>Produce an "adapted" form of this type, given an "impl" class to work with.</td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="sqlalchemy.types.TypeEngine.html#as_generic" class="internal-link" title="sqlalchemy.types.TypeEngine.as_generic">as​_generic</a></code></td>
+    <td>Return an instance of the generic type corresponding to this type using heuristic rule. The method may be overridden if this heuristic rule is not sufficient.</td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="sqlalchemy.types.TypeEngine.html#bind_expression" class="internal-link" title="sqlalchemy.types.TypeEngine.bind_expression">bind​_expression</a></code></td>
+    <td>Given a bind value (i.e. a :class:`.BindParameter` instance), return a SQL expression in its place.</td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="sqlalchemy.types.TypeEngine.html#coerce_compared_value" class="internal-link" title="sqlalchemy.types.TypeEngine.coerce_compared_value">coerce​_compared​_value</a></code></td>
+    <td>Suggest a type for a 'coerced' Python value in an expression.</td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="sqlalchemy.types.TypeEngine.html#column_expression" class="internal-link" title="sqlalchemy.types.TypeEngine.column_expression">column​_expression</a></code></td>
+    <td>Given a SELECT column expression, return a wrapping SQL expression.</td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="sqlalchemy.types.TypeEngine.html#compare_against_backend" class="internal-link" title="sqlalchemy.types.TypeEngine.compare_against_backend">compare​_against​_backend</a></code></td>
+    <td>Compare this type against the given backend type.</td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="sqlalchemy.types.TypeEngine.html#compare_values" class="internal-link" title="sqlalchemy.types.TypeEngine.compare_values">compare​_values</a></code></td>
+    <td>Compare two values for equality.</td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="sqlalchemy.types.TypeEngine.html#compile" class="internal-link" title="sqlalchemy.types.TypeEngine.compile">compile</a></code></td>
+    <td>Produce a string-compiled form of this :class:`.TypeEngine`.</td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="sqlalchemy.types.TypeEngine.html#copy" class="internal-link" title="sqlalchemy.types.TypeEngine.copy">copy</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="sqlalchemy.types.TypeEngine.html#copy_value" class="internal-link" title="sqlalchemy.types.TypeEngine.copy_value">copy​_value</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="sqlalchemy.types.TypeEngine.html#dialect_impl" class="internal-link" title="sqlalchemy.types.TypeEngine.dialect_impl">dialect​_impl</a></code></td>
+    <td>Return a dialect-specific implementation for this :class:`.TypeEngine`.</td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="sqlalchemy.types.TypeEngine.html#evaluates_none" class="internal-link" title="sqlalchemy.types.TypeEngine.evaluates_none">evaluates​_none</a></code></td>
+    <td>Return a copy of this type which has the :attr:`.should_evaluate_none` flag set to True.</td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="sqlalchemy.types.TypeEngine.html#get_dbapi_type" class="internal-link" title="sqlalchemy.types.TypeEngine.get_dbapi_type">get​_dbapi​_type</a></code></td>
+    <td>Return the corresponding type object from the underlying DB-API, if any.</td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="sqlalchemy.types.TypeEngine.html#literal_processor" class="internal-link" title="sqlalchemy.types.TypeEngine.literal_processor">literal​_processor</a></code></td>
+    <td>Return a conversion function for processing literal values that are to be rendered directly without using binds.</td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="sqlalchemy.types.TypeEngine.html#with_variant" class="internal-link" title="sqlalchemy.types.TypeEngine.with_variant">with​_variant</a></code></td>
+    <td>Produce a new type object that will utilize the given type when applied to the dialect of the given name.</td>
+  </tr><tr class="baseclassvariable">
+    
+    <td>Class Variable</td>
+    <td><code><a href="sqlalchemy.types.TypeEngine.html#should_evaluate_none" class="internal-link" title="sqlalchemy.types.TypeEngine.should_evaluate_none">should​_evaluate​_none</a></code></td>
+    <td>If True, the Python constant ``None`` is considered to be handled explicitly by this type.</td>
+  </tr><tr class="baseclassvariable">
+    
+    <td>Class Variable</td>
+    <td><code><a href="sqlalchemy.types.TypeEngine.html#sort_key_function" class="internal-link" title="sqlalchemy.types.TypeEngine.sort_key_function">sort​_key​_function</a></code></td>
+    <td>A sorting function that can be passed as the key to sorted.</td>
+  </tr><tr class="baseproperty">
+    
+    <td>Property</td>
+    <td><code><a href="sqlalchemy.types.TypeEngine.html#python_type" class="internal-link" title="sqlalchemy.types.TypeEngine.python_type">python​_type</a></code></td>
+    <td>Return the Python type object expected to be returned by instances of this type, if known.</td>
+  </tr><tr class="basestaticmethod private">
+    
+    <td>Static Method</td>
+    <td><code><a href="sqlalchemy.types.TypeEngine.html#_to_instance" class="internal-link" title="sqlalchemy.types.TypeEngine._to_instance">_to​_instance</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod private">
+    
+    <td>Method</td>
+    <td><code><a href="sqlalchemy.types.TypeEngine.html#_cached_bind_processor" class="internal-link" title="sqlalchemy.types.TypeEngine._cached_bind_processor">_cached​_bind​_processor</a></code></td>
+    <td>Return a dialect-specific bind processor for this type.</td>
+  </tr><tr class="basemethod private">
+    
+    <td>Method</td>
+    <td><code><a href="sqlalchemy.types.TypeEngine.html#_cached_custom_processor" class="internal-link" title="sqlalchemy.types.TypeEngine._cached_custom_processor">_cached​_custom​_processor</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod private">
+    
+    <td>Method</td>
+    <td><code><a href="sqlalchemy.types.TypeEngine.html#_cached_literal_processor" class="internal-link" title="sqlalchemy.types.TypeEngine._cached_literal_processor">_cached​_literal​_processor</a></code></td>
+    <td>Return a dialect-specific literal processor for this type.</td>
+  </tr><tr class="basemethod private">
+    
+    <td>Method</td>
+    <td><code><a href="sqlalchemy.types.TypeEngine.html#_cached_result_processor" class="internal-link" title="sqlalchemy.types.TypeEngine._cached_result_processor">_cached​_result​_processor</a></code></td>
+    <td>Return a dialect-specific result processor for this type.</td>
+  </tr><tr class="basemethod private">
+    
+    <td>Method</td>
+    <td><code><a href="sqlalchemy.types.TypeEngine.html#_compare_type_affinity" class="internal-link" title="sqlalchemy.types.TypeEngine._compare_type_affinity">_compare​_type​_affinity</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod private">
+    
+    <td>Method</td>
+    <td><code><a href="sqlalchemy.types.TypeEngine.html#_default_dialect" class="internal-link" title="sqlalchemy.types.TypeEngine._default_dialect">_default​_dialect</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod private">
+    
+    <td>Method</td>
+    <td><code><a href="sqlalchemy.types.TypeEngine.html#_dialect_info" class="internal-link" title="sqlalchemy.types.TypeEngine._dialect_info">_dialect​_info</a></code></td>
+    <td>Return a dialect-specific registry which caches a dialect-specific implementation, bind processing function, and one or more result processing functions.</td>
+  </tr><tr class="basemethod private">
+    
+    <td>Method</td>
+    <td><code><a href="sqlalchemy.types.TypeEngine.html#_gen_dialect_impl" class="internal-link" title="sqlalchemy.types.TypeEngine._gen_dialect_impl">_gen​_dialect​_impl</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod private">
+    
+    <td>Method</td>
+    <td><code><a href="sqlalchemy.types.TypeEngine.html#_resolve_for_literal" class="internal-link" title="sqlalchemy.types.TypeEngine._resolve_for_literal">_resolve​_for​_literal</a></code></td>
+    <td>adjust this type given a literal Python value that will be stored in a bound parameter.</td>
+  </tr><tr class="basemethod private">
+    
+    <td>Method</td>
+    <td><code><a href="sqlalchemy.types.TypeEngine.html#_unwrapped_dialect_impl" class="internal-link" title="sqlalchemy.types.TypeEngine._unwrapped_dialect_impl">_unwrapped​_dialect​_impl</a></code></td>
+    <td>Return the 'unwrapped' dialect impl for this type.</td>
+  </tr><tr class="baseclassvariable private">
+    
+    <td>Class Variable</td>
+    <td><code><a href="sqlalchemy.types.TypeEngine.html#_is_array" class="internal-link" title="sqlalchemy.types.TypeEngine._is_array">_is​_array</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="baseclassvariable private">
+    
+    <td>Class Variable</td>
+    <td><code><a href="sqlalchemy.types.TypeEngine.html#_is_table_value" class="internal-link" title="sqlalchemy.types.TypeEngine._is_table_value">_is​_table​_value</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="baseclassvariable private">
+    
+    <td>Class Variable</td>
+    <td><code><a href="sqlalchemy.types.TypeEngine.html#_is_tuple_type" class="internal-link" title="sqlalchemy.types.TypeEngine._is_tuple_type">_is​_tuple​_type</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="baseclassvariable private">
+    
+    <td>Class Variable</td>
+    <td><code><a href="sqlalchemy.types.TypeEngine.html#_is_type_decorator" class="internal-link" title="sqlalchemy.types.TypeEngine._is_type_decorator">_is​_type​_decorator</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="baseclassvariable private">
+    
+    <td>Class Variable</td>
+    <td><code><a href="sqlalchemy.types.TypeEngine.html#_isnull" class="internal-link" title="sqlalchemy.types.TypeEngine._isnull">_isnull</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="baseclassvariable private">
+    
+    <td>Class Variable</td>
+    <td><code><a href="sqlalchemy.types.TypeEngine.html#_sqla_type" class="internal-link" title="sqlalchemy.types.TypeEngine._sqla_type">_sqla​_type</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="baseproperty private">
+    
+    <td>Property</td>
+    <td><code><a href="sqlalchemy.types.TypeEngine.html#_generic_type_affinity" class="internal-link" title="sqlalchemy.types.TypeEngine._generic_type_affinity">_generic​_type​_affinity</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="baseproperty private">
+    
+    <td>Property</td>
+    <td><code><a href="sqlalchemy.types.TypeEngine.html#_has_bind_expression" class="internal-link" title="sqlalchemy.types.TypeEngine._has_bind_expression">_has​_bind​_expression</a></code></td>
+    <td>memoized boolean, check if bind_expression is implemented.</td>
+  </tr><tr class="baseproperty private">
+    
+    <td>Property</td>
+    <td><code><a href="sqlalchemy.types.TypeEngine.html#_has_column_expression" class="internal-link" title="sqlalchemy.types.TypeEngine._has_column_expression">_has​_column​_expression</a></code></td>
+    <td>memoized boolean, check if column_expression is implemented.</td>
+  </tr><tr class="baseproperty private">
+    
+    <td>Property</td>
+    <td><code><a href="sqlalchemy.types.TypeEngine.html#_static_cache_key" class="internal-link" title="sqlalchemy.types.TypeEngine._static_cache_key">_static​_cache​_key</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="baseproperty private">
+    
+    <td>Property</td>
+    <td><code><a href="sqlalchemy.types.TypeEngine.html#_type_affinity" class="internal-link" title="sqlalchemy.types.TypeEngine._type_affinity">_type​_affinity</a></code></td>
+    <td>Return a rudimental 'affinity' value expressing the general class of type.</td>
+  </tr>
+</table>
+          
+          <p class="inheritedFrom">
+            Inherited from <code><a href="sqlalchemy.sql.visitors.Traversible.html" class="internal-link" title="sqlalchemy.sql.visitors.Traversible">Traversible</a></code> (via <code><a href="sqlalchemy.types.TypeEngine.html" class="internal-link" title="sqlalchemy.types.TypeEngine">TypeEngine</a></code>):
+          </p>
+          <table class="children sortable" id="id23619">
+  
+  
+  <tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="sqlalchemy.sql.visitors.Traversible.html#__class_getitem__" class="internal-link" title="sqlalchemy.sql.visitors.Traversible.__class_getitem__">__class​_getitem__</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="sqlalchemy.sql.visitors.Traversible.html#get_children" class="internal-link" title="sqlalchemy.sql.visitors.Traversible.get_children">get​_children</a></code></td>
+    <td>Return immediate child :class:`.visitors.Traversible` elements of this :class:`.visitors.Traversible`.</td>
+  </tr>
+</table>
+          
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="basemethod">
+  
+  
+  <a name="sqlalchemy.dialects.postgresql.hstore.HSTORE.__init__">
+    
+  </a>
+  <a name="__init__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__init__</span>(self, text_type=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.32//lib/sqlalchemy/dialects/postgresql/hstore.py#L139">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.dialects.postgresql.hstore.HSTORE.bind_processor">
+    
+  </a>
+  <a name="bind_processor">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">bind_processor</span>(self, dialect):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.32//lib/sqlalchemy/dialects/postgresql/hstore.py#L230">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overrides <code><a href="sqlalchemy.types.TypeEngine.html#bind_processor" class="internal-link">sqlalchemy.types.TypeEngine.bind_processor</a></code></div><div class="interfaceinfo">overridden in <code><a href="sqlalchemy.dialects.postgresql.psycopg2._PGHStore.html" class="internal-link">sqlalchemy.dialects.postgresql.psycopg2._PGHStore</a></code>, <code><a href="sqlalchemy.dialects.postgresql.pygresql._PGHStore.html" class="internal-link">sqlalchemy.dialects.postgresql.pygresql._PGHStore</a></code></div>
+    
+    <div><p>Return a conversion function for processing bind values.</p>
+<p>Returns a callable which will receive a bind parameter value as the sole positional argument and will return a value to send to the DB-API.</p>
+<p>If processing is not necessary, the method should return ``None``.</p>
+<p>.. note:</p>
+<pre class="rst-literal-block">
+    This method is only called relative to a **dialect specific type
+    object**, which is often **private to a dialect in use** and is not
+    the same type object as the public facing one, which means it's not
+    feasible to subclass a :class:`.types.TypeEngine` class in order to
+    provide an alternate :meth:`_types.TypeEngine.bind_processor`
+    method, unless subclassing the :class:`_types.UserDefinedType`
+    class explicitly.
+
+    To provide alternate behavior for
+    :meth:`_types.TypeEngine.bind_processor`, implement a
+    :class:`_types.TypeDecorator` class and provide an implementation
+    of :meth:`_types.TypeDecorator.process_bind_param`.
+
+    .. seealso::
+
+        :ref:`types_typedecorator`
+</pre>
+<p>:param dialect: Dialect instance in use.</p>
+</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.dialects.postgresql.hstore.HSTORE.result_processor">
+    
+  </a>
+  <a name="result_processor">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">result_processor</span>(self, dialect, coltype):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.32//lib/sqlalchemy/dialects/postgresql/hstore.py#L250">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overrides <code><a href="sqlalchemy.types.TypeEngine.html#result_processor" class="internal-link">sqlalchemy.types.TypeEngine.result_processor</a></code></div><div class="interfaceinfo">overridden in <code><a href="sqlalchemy.dialects.postgresql.psycopg2._PGHStore.html" class="internal-link">sqlalchemy.dialects.postgresql.psycopg2._PGHStore</a></code>, <code><a href="sqlalchemy.dialects.postgresql.pygresql._PGHStore.html" class="internal-link">sqlalchemy.dialects.postgresql.pygresql._PGHStore</a></code></div>
+    
+    <div><p>Return a conversion function for processing result row values.</p>
+<p>Returns a callable which will receive a result row column value as the sole positional argument and will return a value to return to the user.</p>
+<p>If processing is not necessary, the method should return ``None``.</p>
+<p>.. note:</p>
+<pre class="rst-literal-block">
+    This method is only called relative to a **dialect specific type
+    object**, which is often **private to a dialect in use** and is not
+    the same type object as the public facing one, which means it's not
+    feasible to subclass a :class:`.types.TypeEngine` class in order to
+    provide an alternate :meth:`_types.TypeEngine.result_processor`
+    method, unless subclassing the :class:`_types.UserDefinedType`
+    class explicitly.
+
+    To provide alternate behavior for
+    :meth:`_types.TypeEngine.result_processor`, implement a
+    :class:`_types.TypeDecorator` class and provide an implementation
+    of :meth:`_types.TypeDecorator.process_result_value`.
+
+    .. seealso::
+
+        :ref:`types_typedecorator`
+</pre>
+<p>:param dialect: Dialect instance in use.</p>
+<p>:param coltype: DBAPI coltype argument received in cursor.description.</p>
+</div>
+  </div>
+</div><div class="baseclassvariable">
+  
+  
+  <a name="sqlalchemy.dialects.postgresql.hstore.HSTORE.__visit_name__">
+    
+  </a>
+  <a name="__visit_name__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">__visit_name__</span>: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.32//lib/sqlalchemy/dialects/postgresql/hstore.py#L135">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseclassvariable">
+  
+  
+  <a name="sqlalchemy.dialects.postgresql.hstore.HSTORE.hashable">
+    
+  </a>
+  <a name="hashable">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">hashable</span>: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.32//lib/sqlalchemy/dialects/postgresql/hstore.py#L136">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">overrides <code><a href="sqlalchemy.types.TypeEngine.html#hashable" class="internal-link">sqlalchemy.types.TypeEngine.hashable</a></code></div>
+    
+    <div><p>Flag, if False, means values from this type aren't hashable.</p>
+<p>Used by the ORM when uniquing result lists.</p>
+</div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="sqlalchemy.dialects.postgresql.hstore.HSTORE.text_type">
+    
+  </a>
+  <a name="text_type">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">text_type</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.32//lib/sqlalchemy/dialects/postgresql/hstore.py#L137">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div>
+
+      </div>
+    </div>
+
+    <footer class="navbar navbar-default">
+
+  
+  <div class="container">
+    <a href="index.html">API Documentation</a> for sqlalchemy,
+  generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
+    22.3.0.dev0 at 2022-03-22 17:27:41.
+  </div>
+
+  <!-- Search related scripts needs to be loaded at the end of HTML 
+    parsing not to introduce overhead and display HTML data asap -->
+  <script src="ajax.js" type="text/javascript"></script>
+  <script src="searchlib.js" type="text/javascript"></script>
+  <script src="search.js" type="text/javascript"></script>
+
+</footer>
+
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+  </body>
+</html>

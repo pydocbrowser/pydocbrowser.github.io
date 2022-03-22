@@ -1,0 +1,965 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  
+
+  <head>
+    
+    <title>twisted.internet.inotify</title>
+    <meta name="generator" content="pydoctor 22.3.0.dev0"> 
+        
+    </meta>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1 maximum-scale=1" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+    <link rel="stylesheet" type="text/css" href="extra.css" />
+</head>
+
+  <body>
+
+    <div id="banner">    
+    <div>
+        <a href="/">Home</a>
+        &gt; twisted-22.2.0 <!-- This is a placeholder -->
+        
+        <!-- (<a href=""&gt;show all versions</a&gt;) -->
+    </div>
+</div>
+
+    <nav class="navbar navbar-default">
+  
+  <div class="container">
+
+    <div class="navbar-header">
+      
+      <div class="navlinks">
+        <span class="navbar-brand">
+          twisted <a href="index.html">API Documentation</a>
+        </span>
+
+        <a href="moduleIndex.html">
+          Modules
+        </a>
+
+        <a href="classIndex.html">
+          Classes
+        </a>
+
+        <a href="nameIndex.html">
+          Names
+        </a>
+
+        <div id="search-box-container">
+          <div class="input-group">
+            <input id="search-box" type="search" name="search-query" placeholder="Search..." aria-label="Search" minlength="2" class="form-control" autocomplete="off" />
+            
+            <span class="input-group-btn">
+              <a style="display: none;" class="btn btn-default" id="search-clear-button" title="Clear" onclick="clearSearch()"><img src="fonts/x-circle.svg" alt="Clear" /></a>
+              <a class="btn btn-default" id="search-help-button" title="Help" onclick="toggleSearchHelpText()"><img src="fonts/info.svg" alt="Help" /></a>
+            </span>
+          </div>
+        </div>
+
+      </div>
+
+      <div id="search-results-container" style="display: none;">
+        
+        <div id="search-buttons">
+          <span class="label label-default" id="search-docstrings-button">
+          <label class="checkbox-inline">
+            <input type="checkbox" id="toggle-search-in-docstrings-checkbox" value="false" onclick="toggleSearchInDocstrings()">
+              search in docstrings
+            </input>
+          </label>
+          </span>
+          
+        </div>
+        
+        <noscript>
+            <h1>Cannot search: JavaScript is not supported/enabled in your browser.</h1>
+        </noscript>
+
+        <div class="hint" id="search-help-box">
+          <p class="rst-last">
+      
+            Search bar offers the following options:
+            <ul>   
+                <li>
+                  <strong>Term presence.</strong> The below example searches for documents that 
+                    must contain “foo”, might contain “bar” and must not contain “baz”: <code>+foo bar -baz</code>
+                </li> 
+
+                <li>
+                  <strong>Wildcards.</strong> The below example searches for documents with words beginning with “foo”: <code>foo*</code>
+                </li> 
+
+                <li>
+                  <strong>Search in specific fields.</strong> The following search matches all objects 
+                  in "twisted.mail" that matches “search”: <code>+qname:twisted.mail.* +search</code>
+
+                  <p>
+                    Possible fields: 'name', 'qname' (fully qualified name), 'docstring', and 'kind'.
+                    Last two fields are only applicable if "search in docstrings" is enabled.
+                  </p>
+                </li>
+
+                <li>
+                  <strong>Fuzzy matches.</strong> The following search matches all documents 
+                  that have a word within 1 edit distance of “foo”: <code>foo~1</code>
+                </li>
+            </ul>
+
+          </p>
+        </div>
+
+        <div id="search-status"> </div>
+
+        <div class="warning" id="search-warn-box" style="display: none;">
+          <p class="rst-last"><span id="search-warn"></span></p>
+        </div>
+
+        <table id="search-results">
+          <!-- Filled dynamically by JS -->
+        </table>
+        
+        <div style="margin-top: 8px;">
+          <p>Results provided by <a href="https://lunrjs.com">Lunr.js</a></p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</nav>
+
+    
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="module"><code><code><a href="index.html" class="internal-link">twisted</a></code><wbr></wbr>.<code><a href="twisted.internet.html" class="internal-link" title="twisted.internet">internet</a></code><wbr></wbr>.<code><a href="twisted.internet.inotify.html" class="internal-link" title="twisted.internet.inotify">inotify</a></code></code></h1>
+        <div id="showPrivate">
+          <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+        </div>
+      </div>
+
+      <div class="categoryHeader">
+        module documentation
+      </div>
+
+      <div class="extrasDocstring">
+        <a href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/internet/inotify.py" class="sourceLink">(source)</a>
+        <p></p>
+      </div>
+
+      <div class="moduleDocstring">
+        <div><p>This module provides support for Twisted to linux inotify API.</p>
+<p>In order to use this support, simply do the following (and start a reactor at some point):</p>
+<pre class="rst-literal-block">
+    from twisted.internet import inotify
+    from twisted.python import filepath
+
+    def notify(ignored, filepath, mask):
+        """
+        For historical reasons, an opaque handle is passed as first
+        parameter. This object should never be used.
+
+        @param filepath: FilePath on which the event happened.
+        @param mask: inotify event as hexadecimal masks
+        """
+        print("event %s on %s" % (
+            ', '.join(inotify.humanReadableMask(mask)), filepath))
+
+    notifier = inotify.INotify()
+    notifier.startReading()
+    notifier.watch(filepath.FilePath("/some/directory"), callbacks=[notify])
+    notifier.watch(filepath.FilePath(b"/some/directory2"), callbacks=[notify])
+</pre>
+<p>Note that in the above example, a <code><a href="twisted.python.filepath.FilePath.html" class="internal-link" title="twisted.python.filepath.FilePath">FilePath</a></code> which is a <code><a href="https://docs.python.org/3/library/stdtypes.html#bytes" class="intersphinx-link">bytes</a></code> path name or <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code> path name may be used.  However, no matter what type of <code><a href="twisted.python.filepath.FilePath.html" class="internal-link" title="twisted.python.filepath.FilePath">FilePath</a></code> is passed to this module, internally the <code><a href="twisted.python.filepath.FilePath.html" class="internal-link" title="twisted.python.filepath.FilePath">FilePath</a></code> is converted to <code><a href="https://docs.python.org/3/library/stdtypes.html#bytes" class="intersphinx-link">bytes</a></code> according to <code><a href="https://docs.python.org/3/library/sys.html#sys.getfilesystemencoding" class="intersphinx-link">sys.getfilesystemencoding</a></code>. For any <code><a href="twisted.python.filepath.FilePath.html" class="internal-link" title="twisted.python.filepath.FilePath">FilePath</a></code> returned by this module, the caller is responsible for converting from a <code><a href="https://docs.python.org/3/library/stdtypes.html#bytes" class="intersphinx-link">bytes</a></code> path name to a <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code> path name.</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Present Since</td></tr><tr><td colspan="2">10.1</td></tr></table></div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id31688">
+  
+  
+  <tr class="class">
+    
+    <td>Class</td>
+    <td><code><a href="twisted.internet.inotify.INotify.html" class="internal-link" title="twisted.internet.inotify.INotify">​INotify</a></code></td>
+    <td>The INotify file descriptor, it basically does everything related to INotify, from reading to notifying watch points.</td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#humanReadableMask" class="internal-link" title="twisted.internet.inotify.humanReadableMask">human​Readable​Mask</a></code></td>
+    <td>Auxiliary function that converts a hexadecimal mask into a series of human readable flags.</td>
+  </tr><tr class="constant">
+    
+    <td>Constant</td>
+    <td><code><a href="#IN_ACCESS" class="internal-link" title="twisted.internet.inotify.IN_ACCESS">IN​_ACCESS</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="constant">
+    
+    <td>Constant</td>
+    <td><code><a href="#IN_ATTRIB" class="internal-link" title="twisted.internet.inotify.IN_ATTRIB">IN​_ATTRIB</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="constant">
+    
+    <td>Constant</td>
+    <td><code><a href="#IN_CHANGED" class="internal-link" title="twisted.internet.inotify.IN_CHANGED">IN​_CHANGED</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="constant">
+    
+    <td>Constant</td>
+    <td><code><a href="#IN_CLOSE" class="internal-link" title="twisted.internet.inotify.IN_CLOSE">IN​_CLOSE</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="constant">
+    
+    <td>Constant</td>
+    <td><code><a href="#IN_CLOSE_NOWRITE" class="internal-link" title="twisted.internet.inotify.IN_CLOSE_NOWRITE">IN​_CLOSE​_NOWRITE</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="constant">
+    
+    <td>Constant</td>
+    <td><code><a href="#IN_CLOSE_WRITE" class="internal-link" title="twisted.internet.inotify.IN_CLOSE_WRITE">IN​_CLOSE​_WRITE</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="constant">
+    
+    <td>Constant</td>
+    <td><code><a href="#IN_CREATE" class="internal-link" title="twisted.internet.inotify.IN_CREATE">IN​_CREATE</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="constant">
+    
+    <td>Constant</td>
+    <td><code><a href="#IN_DELETE" class="internal-link" title="twisted.internet.inotify.IN_DELETE">IN​_DELETE</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="constant">
+    
+    <td>Constant</td>
+    <td><code><a href="#IN_DELETE_SELF" class="internal-link" title="twisted.internet.inotify.IN_DELETE_SELF">IN​_DELETE​_SELF</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="constant">
+    
+    <td>Constant</td>
+    <td><code><a href="#IN_DONT_FOLLOW" class="internal-link" title="twisted.internet.inotify.IN_DONT_FOLLOW">IN​_DONT​_FOLLOW</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="constant">
+    
+    <td>Constant</td>
+    <td><code><a href="#IN_IGNORED" class="internal-link" title="twisted.internet.inotify.IN_IGNORED">IN​_IGNORED</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="constant">
+    
+    <td>Constant</td>
+    <td><code><a href="#IN_ISDIR" class="internal-link" title="twisted.internet.inotify.IN_ISDIR">IN​_ISDIR</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="constant">
+    
+    <td>Constant</td>
+    <td><code><a href="#IN_MASK_ADD" class="internal-link" title="twisted.internet.inotify.IN_MASK_ADD">IN​_MASK​_ADD</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="constant">
+    
+    <td>Constant</td>
+    <td><code><a href="#IN_MODIFY" class="internal-link" title="twisted.internet.inotify.IN_MODIFY">IN​_MODIFY</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="constant">
+    
+    <td>Constant</td>
+    <td><code><a href="#IN_MOVE_SELF" class="internal-link" title="twisted.internet.inotify.IN_MOVE_SELF">IN​_MOVE​_SELF</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="constant">
+    
+    <td>Constant</td>
+    <td><code><a href="#IN_MOVED" class="internal-link" title="twisted.internet.inotify.IN_MOVED">IN​_MOVED</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="constant">
+    
+    <td>Constant</td>
+    <td><code><a href="#IN_MOVED_FROM" class="internal-link" title="twisted.internet.inotify.IN_MOVED_FROM">IN​_MOVED​_FROM</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="constant">
+    
+    <td>Constant</td>
+    <td><code><a href="#IN_MOVED_TO" class="internal-link" title="twisted.internet.inotify.IN_MOVED_TO">IN​_MOVED​_TO</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="constant">
+    
+    <td>Constant</td>
+    <td><code><a href="#IN_ONESHOT" class="internal-link" title="twisted.internet.inotify.IN_ONESHOT">IN​_ONESHOT</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="constant">
+    
+    <td>Constant</td>
+    <td><code><a href="#IN_ONLYDIR" class="internal-link" title="twisted.internet.inotify.IN_ONLYDIR">IN​_ONLYDIR</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="constant">
+    
+    <td>Constant</td>
+    <td><code><a href="#IN_OPEN" class="internal-link" title="twisted.internet.inotify.IN_OPEN">IN​_OPEN</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="constant">
+    
+    <td>Constant</td>
+    <td><code><a href="#IN_Q_OVERFLOW" class="internal-link" title="twisted.internet.inotify.IN_Q_OVERFLOW">IN​_Q​_OVERFLOW</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="constant">
+    
+    <td>Constant</td>
+    <td><code><a href="#IN_UNMOUNT" class="internal-link" title="twisted.internet.inotify.IN_UNMOUNT">IN​_UNMOUNT</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="constant">
+    
+    <td>Constant</td>
+    <td><code><a href="#IN_WATCH_MASK" class="internal-link" title="twisted.internet.inotify.IN_WATCH_MASK">IN​_WATCH​_MASK</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="class private">
+    
+    <td>Class</td>
+    <td><code><a href="twisted.internet.inotify._Watch.html" class="internal-link" title="twisted.internet.inotify._Watch">_​Watch</a></code></td>
+    <td>Watch object that represents a Watch point in the filesystem. The user should let INotify to create these objects</td>
+  </tr><tr class="constant private">
+    
+    <td>Constant</td>
+    <td><code><a href="#_FLAG_TO_HUMAN" class="internal-link" title="twisted.internet.inotify._FLAG_TO_HUMAN">_FLAG​_TO​_HUMAN</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+        
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="basefunction">
+  
+  
+  <a name="twisted.internet.inotify.humanReadableMask">
+    
+  </a>
+  <a name="humanReadableMask">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">humanReadableMask</span>(mask):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/internet/inotify.py#L113">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Auxiliary function that converts a hexadecimal mask into a series of human readable flags.</div>
+  </div>
+</div><div class="baseconstant">
+  
+  
+  <a name="twisted.internet.inotify.IN_ACCESS">
+    
+  </a>
+  <a name="IN_ACCESS">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">IN_ACCESS</span>: <code><a href="https://docs.python.org/3/library/functions.html#int" class="intersphinx-link">int</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/internet/inotify.py#L50">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    <table class="valueTable"><tr class="fieldStart"><td class="fieldName">Value</td></tr><tr><td><pre class="constant-value"><code>1</code></pre></td></tr></table>
+  </div>
+</div><div class="baseconstant">
+  
+  
+  <a name="twisted.internet.inotify.IN_ATTRIB">
+    
+  </a>
+  <a name="IN_ATTRIB">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">IN_ATTRIB</span>: <code><a href="https://docs.python.org/3/library/functions.html#int" class="intersphinx-link">int</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/internet/inotify.py#L52">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    <table class="valueTable"><tr class="fieldStart"><td class="fieldName">Value</td></tr><tr><td><pre class="constant-value"><code>4</code></pre></td></tr></table>
+  </div>
+</div><div class="baseconstant">
+  
+  
+  <a name="twisted.internet.inotify.IN_CHANGED">
+    
+  </a>
+  <a name="IN_CHANGED">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">IN_CHANGED</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/internet/inotify.py#L74">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    <table class="valueTable"><tr class="fieldStart"><td class="fieldName">Value</td></tr><tr><td><pre class="constant-value"><code><a href="#IN_MODIFY" class="internal-link" title="twisted.internet.inotify.IN_MODIFY">IN_MODIFY</a>|<a href="#IN_ATTRIB" class="internal-link" title="twisted.internet.inotify.IN_ATTRIB">IN_ATTRIB</a></code></pre></td></tr></table>
+  </div>
+</div><div class="baseconstant">
+  
+  
+  <a name="twisted.internet.inotify.IN_CLOSE">
+    
+  </a>
+  <a name="IN_CLOSE">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">IN_CLOSE</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/internet/inotify.py#L72">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    <table class="valueTable"><tr class="fieldStart"><td class="fieldName">Value</td></tr><tr><td><pre class="constant-value"><code><a href="#IN_CLOSE_WRITE" class="internal-link" title="twisted.internet.inotify.IN_CLOSE_WRITE">IN_CLOSE_WRITE</a>|<a href="#IN_CLOSE_NOWRITE" class="internal-link" title="twisted.internet.inotify.IN_CLOSE_NOWRITE">IN_CLOSE_NOWRITE</a></code></pre></td></tr></table>
+  </div>
+</div><div class="baseconstant">
+  
+  
+  <a name="twisted.internet.inotify.IN_CLOSE_NOWRITE">
+    
+  </a>
+  <a name="IN_CLOSE_NOWRITE">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">IN_CLOSE_NOWRITE</span>: <code><a href="https://docs.python.org/3/library/functions.html#int" class="intersphinx-link">int</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/internet/inotify.py#L54">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    <table class="valueTable"><tr class="fieldStart"><td class="fieldName">Value</td></tr><tr><td><pre class="constant-value"><code>16</code></pre></td></tr></table>
+  </div>
+</div><div class="baseconstant">
+  
+  
+  <a name="twisted.internet.inotify.IN_CLOSE_WRITE">
+    
+  </a>
+  <a name="IN_CLOSE_WRITE">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">IN_CLOSE_WRITE</span>: <code><a href="https://docs.python.org/3/library/functions.html#int" class="intersphinx-link">int</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/internet/inotify.py#L53">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    <table class="valueTable"><tr class="fieldStart"><td class="fieldName">Value</td></tr><tr><td><pre class="constant-value"><code>8</code></pre></td></tr></table>
+  </div>
+</div><div class="baseconstant">
+  
+  
+  <a name="twisted.internet.inotify.IN_CREATE">
+    
+  </a>
+  <a name="IN_CREATE">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">IN_CREATE</span>: <code><a href="https://docs.python.org/3/library/functions.html#int" class="intersphinx-link">int</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/internet/inotify.py#L58">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    <table class="valueTable"><tr class="fieldStart"><td class="fieldName">Value</td></tr><tr><td><pre class="constant-value"><code>256</code></pre></td></tr></table>
+  </div>
+</div><div class="baseconstant">
+  
+  
+  <a name="twisted.internet.inotify.IN_DELETE">
+    
+  </a>
+  <a name="IN_DELETE">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">IN_DELETE</span>: <code><a href="https://docs.python.org/3/library/functions.html#int" class="intersphinx-link">int</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/internet/inotify.py#L59">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    <table class="valueTable"><tr class="fieldStart"><td class="fieldName">Value</td></tr><tr><td><pre class="constant-value"><code>512</code></pre></td></tr></table>
+  </div>
+</div><div class="baseconstant">
+  
+  
+  <a name="twisted.internet.inotify.IN_DELETE_SELF">
+    
+  </a>
+  <a name="IN_DELETE_SELF">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">IN_DELETE_SELF</span>: <code><a href="https://docs.python.org/3/library/functions.html#int" class="intersphinx-link">int</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/internet/inotify.py#L60">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    <table class="valueTable"><tr class="fieldStart"><td class="fieldName">Value</td></tr><tr><td><pre class="constant-value"><code>1024</code></pre></td></tr></table>
+  </div>
+</div><div class="baseconstant">
+  
+  
+  <a name="twisted.internet.inotify.IN_DONT_FOLLOW">
+    
+  </a>
+  <a name="IN_DONT_FOLLOW">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">IN_DONT_FOLLOW</span>: <code><a href="https://docs.python.org/3/library/functions.html#int" class="intersphinx-link">int</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/internet/inotify.py#L67">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    <table class="valueTable"><tr class="fieldStart"><td class="fieldName">Value</td></tr><tr><td><pre class="constant-value"><code>33554432</code></pre></td></tr></table>
+  </div>
+</div><div class="baseconstant">
+  
+  
+  <a name="twisted.internet.inotify.IN_IGNORED">
+    
+  </a>
+  <a name="IN_IGNORED">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">IN_IGNORED</span>: <code><a href="https://docs.python.org/3/library/functions.html#int" class="intersphinx-link">int</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/internet/inotify.py#L64">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    <table class="valueTable"><tr class="fieldStart"><td class="fieldName">Value</td></tr><tr><td><pre class="constant-value"><code>32768</code></pre></td></tr></table>
+  </div>
+</div><div class="baseconstant">
+  
+  
+  <a name="twisted.internet.inotify.IN_ISDIR">
+    
+  </a>
+  <a name="IN_ISDIR">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">IN_ISDIR</span>: <code><a href="https://docs.python.org/3/library/functions.html#int" class="intersphinx-link">int</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/internet/inotify.py#L69">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    <table class="valueTable"><tr class="fieldStart"><td class="fieldName">Value</td></tr><tr><td><pre class="constant-value"><code>1073741824</code></pre></td></tr></table>
+  </div>
+</div><div class="baseconstant">
+  
+  
+  <a name="twisted.internet.inotify.IN_MASK_ADD">
+    
+  </a>
+  <a name="IN_MASK_ADD">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">IN_MASK_ADD</span>: <code><a href="https://docs.python.org/3/library/functions.html#int" class="intersphinx-link">int</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/internet/inotify.py#L68">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    <table class="valueTable"><tr class="fieldStart"><td class="fieldName">Value</td></tr><tr><td><pre class="constant-value"><code>536870912</code></pre></td></tr></table>
+  </div>
+</div><div class="baseconstant">
+  
+  
+  <a name="twisted.internet.inotify.IN_MODIFY">
+    
+  </a>
+  <a name="IN_MODIFY">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">IN_MODIFY</span>: <code><a href="https://docs.python.org/3/library/functions.html#int" class="intersphinx-link">int</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/internet/inotify.py#L51">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    <table class="valueTable"><tr class="fieldStart"><td class="fieldName">Value</td></tr><tr><td><pre class="constant-value"><code>2</code></pre></td></tr></table>
+  </div>
+</div><div class="baseconstant">
+  
+  
+  <a name="twisted.internet.inotify.IN_MOVE_SELF">
+    
+  </a>
+  <a name="IN_MOVE_SELF">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">IN_MOVE_SELF</span>: <code><a href="https://docs.python.org/3/library/functions.html#int" class="intersphinx-link">int</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/internet/inotify.py#L61">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    <table class="valueTable"><tr class="fieldStart"><td class="fieldName">Value</td></tr><tr><td><pre class="constant-value"><code>2048</code></pre></td></tr></table>
+  </div>
+</div><div class="baseconstant">
+  
+  
+  <a name="twisted.internet.inotify.IN_MOVED">
+    
+  </a>
+  <a name="IN_MOVED">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">IN_MOVED</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/internet/inotify.py#L73">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    <table class="valueTable"><tr class="fieldStart"><td class="fieldName">Value</td></tr><tr><td><pre class="constant-value"><code><a href="#IN_MOVED_FROM" class="internal-link" title="twisted.internet.inotify.IN_MOVED_FROM">IN_MOVED_FROM</a>|<a href="#IN_MOVED_TO" class="internal-link" title="twisted.internet.inotify.IN_MOVED_TO">IN_MOVED_TO</a></code></pre></td></tr></table>
+  </div>
+</div><div class="baseconstant">
+  
+  
+  <a name="twisted.internet.inotify.IN_MOVED_FROM">
+    
+  </a>
+  <a name="IN_MOVED_FROM">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">IN_MOVED_FROM</span>: <code><a href="https://docs.python.org/3/library/functions.html#int" class="intersphinx-link">int</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/internet/inotify.py#L56">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    <table class="valueTable"><tr class="fieldStart"><td class="fieldName">Value</td></tr><tr><td><pre class="constant-value"><code>64</code></pre></td></tr></table>
+  </div>
+</div><div class="baseconstant">
+  
+  
+  <a name="twisted.internet.inotify.IN_MOVED_TO">
+    
+  </a>
+  <a name="IN_MOVED_TO">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">IN_MOVED_TO</span>: <code><a href="https://docs.python.org/3/library/functions.html#int" class="intersphinx-link">int</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/internet/inotify.py#L57">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    <table class="valueTable"><tr class="fieldStart"><td class="fieldName">Value</td></tr><tr><td><pre class="constant-value"><code>128</code></pre></td></tr></table>
+  </div>
+</div><div class="baseconstant">
+  
+  
+  <a name="twisted.internet.inotify.IN_ONESHOT">
+    
+  </a>
+  <a name="IN_ONESHOT">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">IN_ONESHOT</span>: <code><a href="https://docs.python.org/3/library/functions.html#int" class="intersphinx-link">int</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/internet/inotify.py#L70">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    <table class="valueTable"><tr class="fieldStart"><td class="fieldName">Value</td></tr><tr><td><pre class="constant-value"><code>2147483648</code></pre></td></tr></table>
+  </div>
+</div><div class="baseconstant">
+  
+  
+  <a name="twisted.internet.inotify.IN_ONLYDIR">
+    
+  </a>
+  <a name="IN_ONLYDIR">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">IN_ONLYDIR</span>: <code><a href="https://docs.python.org/3/library/functions.html#int" class="intersphinx-link">int</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/internet/inotify.py#L66">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    <table class="valueTable"><tr class="fieldStart"><td class="fieldName">Value</td></tr><tr><td><pre class="constant-value"><code>16777216</code></pre></td></tr></table>
+  </div>
+</div><div class="baseconstant">
+  
+  
+  <a name="twisted.internet.inotify.IN_OPEN">
+    
+  </a>
+  <a name="IN_OPEN">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">IN_OPEN</span>: <code><a href="https://docs.python.org/3/library/functions.html#int" class="intersphinx-link">int</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/internet/inotify.py#L55">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    <table class="valueTable"><tr class="fieldStart"><td class="fieldName">Value</td></tr><tr><td><pre class="constant-value"><code>32</code></pre></td></tr></table>
+  </div>
+</div><div class="baseconstant">
+  
+  
+  <a name="twisted.internet.inotify.IN_Q_OVERFLOW">
+    
+  </a>
+  <a name="IN_Q_OVERFLOW">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">IN_Q_OVERFLOW</span>: <code><a href="https://docs.python.org/3/library/functions.html#int" class="intersphinx-link">int</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/internet/inotify.py#L63">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    <table class="valueTable"><tr class="fieldStart"><td class="fieldName">Value</td></tr><tr><td><pre class="constant-value"><code>16384</code></pre></td></tr></table>
+  </div>
+</div><div class="baseconstant">
+  
+  
+  <a name="twisted.internet.inotify.IN_UNMOUNT">
+    
+  </a>
+  <a name="IN_UNMOUNT">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">IN_UNMOUNT</span>: <code><a href="https://docs.python.org/3/library/functions.html#int" class="intersphinx-link">int</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/internet/inotify.py#L62">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    <table class="valueTable"><tr class="fieldStart"><td class="fieldName">Value</td></tr><tr><td><pre class="constant-value"><code>8192</code></pre></td></tr></table>
+  </div>
+</div><div class="baseconstant">
+  
+  
+  <a name="twisted.internet.inotify.IN_WATCH_MASK">
+    
+  </a>
+  <a name="IN_WATCH_MASK">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">IN_WATCH_MASK</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/internet/inotify.py#L76">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    <table class="valueTable"><tr class="fieldStart"><td class="fieldName">Value</td></tr><tr><td><pre class="constant-value"><code>(((((((<a href="#IN_MODIFY" class="internal-link" title="twisted.internet.inotify.IN_MODIFY">IN_MODIFY</a>|<a href="#IN_ATTRIB" class="internal-link" title="twisted.internet.inotify.IN_ATTRIB">IN_ATTRIB</a>)|<a href="#IN_CREATE" class="internal-link" title="twisted.internet.inotify.IN_CREATE">IN_CREATE</a>)|<a href="#IN_DELETE" class="internal-link" title="twisted.internet.inotify.IN_DELETE">IN_DELETE</a>)|<a href="#IN_DELETE_SELF" class="internal-link" title="twisted.internet.inotify.IN_DELETE_SELF">IN_DELETE_SELF</a>)|<a href="#IN_MOVE_SELF" class="internal-link" title="twisted.internet.inotify.IN_MOVE_SELF">IN_MOVE_SELF</a>)|<a href="#IN_UNMOUNT" class="internal-link" title="twisted.internet.inotify.IN_UNMOUNT">IN_UNMOUNT</a>)|<a href="#IN_MOVED_FROM" class="internal-link" title="twisted.internet.inotify.IN_MOVED_FROM">IN_MOVED_FROM</a>)|<a href="#IN_MOVED_TO" class="internal-link" title="twisted.internet.inotify.IN_MOVED_TO">IN_MOVED_TO</a></code></pre></td></tr></table>
+  </div>
+</div><div class="baseconstant private">
+  
+  
+  <a name="twisted.internet.inotify._FLAG_TO_HUMAN">
+    
+  </a>
+  <a name="_FLAG_TO_HUMAN">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_FLAG_TO_HUMAN</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.2.0//src/twisted/internet/inotify.py#L89">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    <table class="valueTable"><tr class="fieldStart"><td class="fieldName">Value</td></tr><tr><td><pre class="constant-value"><code>[<wbr></wbr>(<wbr></wbr><a href="#IN_ACCESS" class="internal-link" title="twisted.internet.inotify.IN_ACCESS">IN_ACCESS</a>, <wbr></wbr><span class="rst-variable-quote">'</span><span class="rst-variable-string">access</span><span class="rst-variable-quote">'</span>),
+ <wbr></wbr>(<wbr></wbr><a href="#IN_MODIFY" class="internal-link" title="twisted.internet.inotify.IN_MODIFY">IN_MODIFY</a>, <wbr></wbr><span class="rst-variable-quote">'</span><span class="rst-variable-string">modify</span><span class="rst-variable-quote">'</span>),
+ <wbr></wbr>(<wbr></wbr><a href="#IN_ATTRIB" class="internal-link" title="twisted.internet.inotify.IN_ATTRIB">IN_ATTRIB</a>, <wbr></wbr><span class="rst-variable-quote">'</span><span class="rst-variable-string">attrib</span><span class="rst-variable-quote">'</span>),
+ <wbr></wbr>(<wbr></wbr><a href="#IN_CLOSE_WRITE" class="internal-link" title="twisted.internet.inotify.IN_CLOSE_WRITE">IN_CLOSE_WRITE</a>, <wbr></wbr><span class="rst-variable-quote">'</span><span class="rst-variable-string">close_write</span><span class="rst-variable-quote">'</span>),
+ <wbr></wbr>(<wbr></wbr><a href="#IN_CLOSE_NOWRITE" class="internal-link" title="twisted.internet.inotify.IN_CLOSE_NOWRITE">IN_CLOSE_NOWRITE</a>, <wbr></wbr><span class="rst-variable-quote">'</span><span class="rst-variable-string">close_nowrite</span><span class="rst-variable-quote">'</span>),
+ <wbr></wbr>(<wbr></wbr><a href="#IN_OPEN" class="internal-link" title="twisted.internet.inotify.IN_OPEN">IN_OPEN</a>, <wbr></wbr><span class="rst-variable-quote">'</span><span class="rst-variable-string">open</span><span class="rst-variable-quote">'</span>),
+ <wbr></wbr>(<wbr></wbr><a href="#IN_MOVED_FROM" class="internal-link" title="twisted.internet.inotify.IN_MOVED_FROM">IN_MOVED_FROM</a>, <wbr></wbr><span class="rst-variable-quote">'</span><span class="rst-variable-string">moved_from</span><span class="rst-variable-quote">'</span>),
+<span class="rst-variable-ellipsis">...</span></code></pre></td></tr></table>
+  </div>
+</div>
+
+      </div>
+    </div>
+
+    <footer class="navbar navbar-default">
+
+  
+  <div class="container">
+    <a href="index.html">API Documentation</a> for twisted,
+  generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
+    22.3.0.dev0 at 2022-03-22 17:32:24.
+  </div>
+
+  <!-- Search related scripts needs to be loaded at the end of HTML 
+    parsing not to introduce overhead and display HTML data asap -->
+  <script src="ajax.js" type="text/javascript"></script>
+  <script src="searchlib.js" type="text/javascript"></script>
+  <script src="search.js" type="text/javascript"></script>
+
+</footer>
+
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+  </body>
+</html>

@@ -1,0 +1,713 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  
+
+  <head>
+    
+    <title>docutils.parsers.rst.roles</title>
+    <meta name="generator" content="pydoctor 22.3.0.dev0"> 
+        
+    </meta>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1 maximum-scale=1" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+    <link rel="stylesheet" type="text/css" href="extra.css" />
+</head>
+
+  <body>
+
+    <div id="banner">    
+    <div>
+        <a href="/">Home</a>
+        &gt; docutils-0.18.1 <!-- This is a placeholder -->
+        
+        <!-- (<a href=""&gt;show all versions</a&gt;) -->
+    </div>
+</div>
+
+    <nav class="navbar navbar-default">
+  
+  <div class="container">
+
+    <div class="navbar-header">
+      
+      <div class="navlinks">
+        <span class="navbar-brand">
+          docutils <a href="index.html">API Documentation</a>
+        </span>
+
+        <a href="moduleIndex.html">
+          Modules
+        </a>
+
+        <a href="classIndex.html">
+          Classes
+        </a>
+
+        <a href="nameIndex.html">
+          Names
+        </a>
+
+        <div id="search-box-container">
+          <div class="input-group">
+            <input id="search-box" type="search" name="search-query" placeholder="Search..." aria-label="Search" minlength="2" class="form-control" autocomplete="off" />
+            
+            <span class="input-group-btn">
+              <a style="display: none;" class="btn btn-default" id="search-clear-button" title="Clear" onclick="clearSearch()"><img src="fonts/x-circle.svg" alt="Clear" /></a>
+              <a class="btn btn-default" id="search-help-button" title="Help" onclick="toggleSearchHelpText()"><img src="fonts/info.svg" alt="Help" /></a>
+            </span>
+          </div>
+        </div>
+
+      </div>
+
+      <div id="search-results-container" style="display: none;">
+        
+        <div id="search-buttons">
+          <span class="label label-default" id="search-docstrings-button">
+          <label class="checkbox-inline">
+            <input type="checkbox" id="toggle-search-in-docstrings-checkbox" value="false" onclick="toggleSearchInDocstrings()">
+              search in docstrings
+            </input>
+          </label>
+          </span>
+          
+        </div>
+        
+        <noscript>
+            <h1>Cannot search: JavaScript is not supported/enabled in your browser.</h1>
+        </noscript>
+
+        <div class="hint" id="search-help-box">
+          <p class="rst-last">
+      
+            Search bar offers the following options:
+            <ul>   
+                <li>
+                  <strong>Term presence.</strong> The below example searches for documents that 
+                    must contain “foo”, might contain “bar” and must not contain “baz”: <code>+foo bar -baz</code>
+                </li> 
+
+                <li>
+                  <strong>Wildcards.</strong> The below example searches for documents with words beginning with “foo”: <code>foo*</code>
+                </li> 
+
+                <li>
+                  <strong>Search in specific fields.</strong> The following search matches all objects 
+                  in "twisted.mail" that matches “search”: <code>+qname:twisted.mail.* +search</code>
+
+                  <p>
+                    Possible fields: 'name', 'qname' (fully qualified name), 'docstring', and 'kind'.
+                    Last two fields are only applicable if "search in docstrings" is enabled.
+                  </p>
+                </li>
+
+                <li>
+                  <strong>Fuzzy matches.</strong> The following search matches all documents 
+                  that have a word within 1 edit distance of “foo”: <code>foo~1</code>
+                </li>
+            </ul>
+
+          </p>
+        </div>
+
+        <div id="search-status"> </div>
+
+        <div class="warning" id="search-warn-box" style="display: none;">
+          <p class="rst-last"><span id="search-warn"></span></p>
+        </div>
+
+        <table id="search-results">
+          <!-- Filled dynamically by JS -->
+        </table>
+        
+        <div style="margin-top: 8px;">
+          <p>Results provided by <a href="https://lunrjs.com">Lunr.js</a></p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</nav>
+
+    
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="module"><code><code><a href="index.html" class="internal-link">docutils</a></code><wbr></wbr>.<code><a href="docutils.parsers.html" class="internal-link" title="docutils.parsers">parsers</a></code><wbr></wbr>.<code><a href="docutils.parsers.rst.html" class="internal-link" title="docutils.parsers.rst">rst</a></code><wbr></wbr>.<code><a href="docutils.parsers.rst.roles.html" class="internal-link" title="docutils.parsers.rst.roles">roles</a></code></code></h1>
+        <div id="showPrivate">
+          <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+        </div>
+      </div>
+
+      <div class="categoryHeader">
+        module documentation
+      </div>
+
+      <div class="extrasDocstring">
+        <a href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/docutils-0.18.1//docutils/parsers/rst/roles.py" class="sourceLink">(source)</a>
+        <p></p>
+      </div>
+
+      <div class="moduleDocstring">
+        <div><p>This module defines standard interpreted text role functions, a registry for
+interpreted text roles, and an API for adding to and retrieving from the
+registry. See also <a class="rst-reference external" href="https://docutils.sourceforge.io/docs/ref/rst/roles.html" target="_top">Creating reStructuredText Interpreted Text Roles</a>.</p>
+<p>The interface for interpreted role functions is as follows:</p>
+<pre class="rst-literal-block">
+def role_fn(name, rawtext, text, lineno, inliner,
+            options={}, content=[]):
+    code...
+
+# Set function attributes for customization:
+role_fn.options = ...
+role_fn.content = ...
+</pre>
+<p>Parameters:</p>
+<ul class="rst-simple">
+<li><tt class="rst-docutils literal">name</tt> is the local name of the interpreted text role, the role name
+actually used in the document.</li>
+<li><tt class="rst-docutils literal">rawtext</tt> is a string containing the entire interpreted text construct.
+Return it as a <tt class="rst-docutils literal">problematic</tt> node linked to a system message if there is a
+problem.</li>
+<li><tt class="rst-docutils literal">text</tt> is the interpreted text content, with backslash escapes converted
+to nulls (<tt class="rst-docutils literal">\</tt>).</li>
+<li><tt class="rst-docutils literal">lineno</tt> is the line number where the text block containing the
+interpreted text begins.</li>
+<li><tt class="rst-docutils literal">inliner</tt> is the Inliner object that called the role function.
+It defines the following useful attributes: <tt class="rst-docutils literal">reporter</tt>,
+<tt class="rst-docutils literal">problematic</tt>, <tt class="rst-docutils literal">memo</tt>, <tt class="rst-docutils literal">parent</tt>, <tt class="rst-docutils literal">document</tt>.</li>
+<li><tt class="rst-docutils literal">options</tt>: A dictionary of directive options for customization, to be
+interpreted by the role function.  Used for additional attributes for the
+generated elements and other functionality.</li>
+<li><tt class="rst-docutils literal">content</tt>: A list of strings, the directive content for customization
+("role" directive).  To be interpreted by the role function.</li>
+</ul>
+<p>Function attributes for customization, interpreted by the "role" directive:</p>
+<ul>
+<li><p class="rst-first"><tt class="rst-docutils literal">options</tt>: A dictionary, mapping known option names to conversion
+functions such as <code><a href="https://docs.python.org/3/library/functions.html#int" class="intersphinx-link">int</a></code> or <code><a href="https://docs.python.org/3/library/functions.html#float" class="intersphinx-link">float</a></code>.  <tt class="rst-docutils literal">None</tt> or an empty dict implies no
+options to parse.  Several directive option conversion functions are defined
+in the <code><a href="https://pydocbrowser.github.io/docutils/latest/docutils.parsers.rst.directives.html" class="intersphinx-link">directives</a></code> module.</p>
+<p>All role functions implicitly support the "class" option, unless disabled
+with an explicit <tt class="rst-docutils literal">{'class': None}</tt>.</p>
+</li>
+<li><p class="rst-first"><tt class="rst-docutils literal">content</tt>: A boolean; true if content is allowed.  Client code must handle
+the case where content is required but not supplied (an empty content list
+will be supplied).</p>
+</li>
+</ul>
+<p>Note that unlike directives, the "arguments" function attribute is not
+supported for role customization.  Directive arguments are handled by the
+"role" directive itself.</p>
+<p>Interpreted role functions return a tuple of two values:</p>
+<ul class="rst-simple">
+<li>A list of nodes which will be inserted into the document tree at the
+point where the interpreted role was encountered (can be an empty
+list).</li>
+<li>A list of system messages, which will be inserted into the document tree
+immediately after the end of the current inline block (can also be empty).</li>
+</ul>
+</div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id7287">
+  
+  
+  <tr class="class">
+    
+    <td>Class</td>
+    <td><code><a href="docutils.parsers.rst.roles.CustomRole.html" class="internal-link" title="docutils.parsers.rst.roles.CustomRole">​Custom​Role</a></code></td>
+    <td>Wrapper for custom interpreted text roles.</td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><code><a href="docutils.parsers.rst.roles.GenericRole.html" class="internal-link" title="docutils.parsers.rst.roles.GenericRole">​Generic​Role</a></code></td>
+    <td>Generic interpreted text role.</td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#code_role" class="internal-link" title="docutils.parsers.rst.roles.code_role">code​_role</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#generic_custom_role" class="internal-link" title="docutils.parsers.rst.roles.generic_custom_role">generic​_custom​_role</a></code></td>
+    <td>Base for custom roles if no other base role is specified.</td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#math_role" class="internal-link" title="docutils.parsers.rst.roles.math_role">math​_role</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#pep_reference_role" class="internal-link" title="docutils.parsers.rst.roles.pep_reference_role">pep​_reference​_role</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#raw_role" class="internal-link" title="docutils.parsers.rst.roles.raw_role">raw​_role</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#register_canonical_role" class="internal-link" title="docutils.parsers.rst.roles.register_canonical_role">register​_canonical​_role</a></code></td>
+    <td>Register an interpreted text role by its canonical name.</td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#register_generic_role" class="internal-link" title="docutils.parsers.rst.roles.register_generic_role">register​_generic​_role</a></code></td>
+    <td>For roles which simply wrap a given <code><a href="docutils.parsers.rst.roles.GenericRole.html#node_class" class="internal-link" title="docutils.parsers.rst.roles.GenericRole.node_class">node_class</a></code> around the text.</td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#register_local_role" class="internal-link" title="docutils.parsers.rst.roles.register_local_role">register​_local​_role</a></code></td>
+    <td>Register an interpreted text role by its local or language-dependent name.</td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#rfc_reference_role" class="internal-link" title="docutils.parsers.rst.roles.rfc_reference_role">rfc​_reference​_role</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#role" class="internal-link" title="docutils.parsers.rst.roles.role">role</a></code></td>
+    <td>Locate and return a role function from its language-dependent name, along with a list of system messages.</td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#set_classes" class="internal-link" title="docutils.parsers.rst.roles.set_classes">set​_classes</a></code></td>
+    <td>Auxiliary function to set options['classes'] and delete options['class'].</td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#set_implicit_options" class="internal-link" title="docutils.parsers.rst.roles.set_implicit_options">set​_implicit​_options</a></code></td>
+    <td>Add customization options to role functions, unless explicitly set or disabled.</td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#unimplemented_role" class="internal-link" title="docutils.parsers.rst.roles.unimplemented_role">unimplemented​_role</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="constant">
+    
+    <td>Constant</td>
+    <td><code><a href="#DEFAULT_INTERPRETED_ROLE" class="internal-link" title="docutils.parsers.rst.roles.DEFAULT_INTERPRETED_ROLE">DEFAULT​_INTERPRETED​_ROLE</a></code></td>
+    <td>The canonical name of the default interpreted role.</td>
+  </tr><tr class="variable private">
+    
+    <td>Variable</td>
+    <td><code><a href="#_role_registry" class="internal-link" title="docutils.parsers.rst.roles._role_registry">_role​_registry</a></code></td>
+    <td>Mapping of canonical role names to role functions.</td>
+  </tr><tr class="variable private">
+    
+    <td>Variable</td>
+    <td><code><a href="#_roles" class="internal-link" title="docutils.parsers.rst.roles._roles">_roles</a></code></td>
+    <td>Mapping of local or language-dependent interpreted text role names to role functions.</td>
+  </tr>
+</table>
+        
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="basefunction">
+  
+  
+  <a name="docutils.parsers.rst.roles.code_role">
+    
+  </a>
+  <a name="code_role">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">code_role</span>(role, rawtext, text, lineno, inliner, options={}, content=[]):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/docutils-0.18.1//docutils/parsers/rst/roles.py#L329">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="docutils.parsers.rst.roles.generic_custom_role">
+    
+  </a>
+  <a name="generic_custom_role">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">generic_custom_role</span>(role, rawtext, text, lineno, inliner, options={}, content=[]):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/docutils-0.18.1//docutils/parsers/rst/roles.py#L235">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Base for custom roles if no other base role is specified.</div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="docutils.parsers.rst.roles.math_role">
+    
+  </a>
+  <a name="math_role">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">math_role</span>(role, rawtext, text, lineno, inliner, options={}, content=[]):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/docutils-0.18.1//docutils/parsers/rst/roles.py#L361">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="docutils.parsers.rst.roles.pep_reference_role">
+    
+  </a>
+  <a name="pep_reference_role">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">pep_reference_role</span>(role, rawtext, text, lineno, inliner, options={}, content=[]):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/docutils-0.18.1//docutils/parsers/rst/roles.py#L259">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="docutils.parsers.rst.roles.raw_role">
+    
+  </a>
+  <a name="raw_role">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">raw_role</span>(role, rawtext, text, lineno, inliner, options={}, content=[]):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/docutils-0.18.1//docutils/parsers/rst/roles.py#L307">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="docutils.parsers.rst.roles.register_canonical_role">
+    
+  </a>
+  <a name="register_canonical_role">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">register_canonical_role</span>(name, role_fn):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/docutils-0.18.1//docutils/parsers/rst/roles.py#L153">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Register an interpreted text role by its canonical name.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">name</span></td><td class="fieldArgDesc">The canonical name of the interpreted role.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">role​_fn</span></td><td class="fieldArgDesc">The role function.  See the module docstring.</td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="docutils.parsers.rst.roles.register_generic_role">
+    
+  </a>
+  <a name="register_generic_role">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">register_generic_role</span>(canonical_name, node_class):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/docutils-0.18.1//docutils/parsers/rst/roles.py#L185">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>For roles which simply wrap a given <code><a href="docutils.parsers.rst.roles.GenericRole.html#node_class" class="internal-link" title="docutils.parsers.rst.roles.GenericRole.node_class">node_class</a></code> around the text.</div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="docutils.parsers.rst.roles.register_local_role">
+    
+  </a>
+  <a name="register_local_role">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">register_local_role</span>(name, role_fn):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/docutils-0.18.1//docutils/parsers/rst/roles.py#L164">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Register an interpreted text role by its local or language-dependent name.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">name</span></td><td class="fieldArgDesc">The local or language-dependent name of the interpreted role.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">role​_fn</span></td><td class="fieldArgDesc">The role function.  See the module docstring.</td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="docutils.parsers.rst.roles.rfc_reference_role">
+    
+  </a>
+  <a name="rfc_reference_role">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">rfc_reference_role</span>(role, rawtext, text, lineno, inliner, options={}, content=[]):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/docutils-0.18.1//docutils/parsers/rst/roles.py#L280">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="docutils.parsers.rst.roles.role">
+    
+  </a>
+  <a name="role">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">role</span>(role_name, language_module, lineno, reporter):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/docutils-0.18.1//docutils/parsers/rst/roles.py#L100">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Locate and return a role function from its language-dependent name, along
+with a list of system messages.</p>
+<p>If the role is not found in the current language, check English. Return a
+2-tuple: role function (<tt class="rst-docutils literal">None</tt> if the named role cannot be found) and a
+list of system messages.</p>
+</div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="docutils.parsers.rst.roles.set_classes">
+    
+  </a>
+  <a name="set_classes">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">set_classes</span>(options):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/docutils-0.18.1//docutils/parsers/rst/roles.py#L394">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Auxiliary function to set options['classes'] and delete
+options['class'].</div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="docutils.parsers.rst.roles.set_implicit_options">
+    
+  </a>
+  <a name="set_implicit_options">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">set_implicit_options</span>(role_fn):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/docutils-0.18.1//docutils/parsers/rst/roles.py#L175">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Add customization options to role functions, unless explicitly set or
+disabled.</div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="docutils.parsers.rst.roles.unimplemented_role">
+    
+  </a>
+  <a name="unimplemented_role">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">unimplemented_role</span>(role, rawtext, text, lineno, inliner, options=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, content=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/docutils-0.18.1//docutils/parsers/rst/roles.py#L373">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="baseconstant">
+  
+  
+  <a name="docutils.parsers.rst.roles.DEFAULT_INTERPRETED_ROLE">
+    
+  </a>
+  <a name="DEFAULT_INTERPRETED_ROLE">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">DEFAULT_INTERPRETED_ROLE</span>: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/docutils-0.18.1//docutils/parsers/rst/roles.py#L84">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p>The canonical name of the default interpreted role.</p>
+<p>This role is used when no role is specified for a piece of interpreted text.</p>
+</div>
+    <table class="valueTable"><tr class="fieldStart"><td class="fieldName">Value</td></tr><tr><td><pre class="constant-value"><code><span class="rst-variable-quote">'</span><span class="rst-variable-string">title-reference</span><span class="rst-variable-quote">'</span></code></pre></td></tr></table>
+  </div>
+</div><div class="basevariable private">
+  
+  
+  <a name="docutils.parsers.rst.roles._role_registry">
+    
+  </a>
+  <a name="_role_registry">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_role_registry</span>: <code><a href="https://docs.python.org/3/library/stdtypes.html#dict" class="intersphinx-link">dict</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/docutils-0.18.1//docutils/parsers/rst/roles.py#L90">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p>Mapping of canonical role names to role functions.</p>
+<p>Language-dependent role names are defined in the <tt class="rst-docutils literal">language</tt> subpackage.</p>
+</div>
+    
+  </div>
+</div><div class="basevariable private">
+  
+  
+  <a name="docutils.parsers.rst.roles._roles">
+    
+  </a>
+  <a name="_roles">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_roles</span>: <code><a href="https://docs.python.org/3/library/stdtypes.html#dict" class="intersphinx-link">dict</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/docutils-0.18.1//docutils/parsers/rst/roles.py#L96">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div>Mapping of local or language-dependent interpreted text role names to role
+functions.</div>
+    
+  </div>
+</div>
+
+      </div>
+    </div>
+
+    <footer class="navbar navbar-default">
+
+  
+  <div class="container">
+    <a href="index.html">API Documentation</a> for docutils,
+  generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
+    22.3.0.dev0 at 2022-03-22 17:05:10.
+  </div>
+
+  <!-- Search related scripts needs to be loaded at the end of HTML 
+    parsing not to introduce overhead and display HTML data asap -->
+  <script src="ajax.js" type="text/javascript"></script>
+  <script src="searchlib.js" type="text/javascript"></script>
+  <script src="search.js" type="text/javascript"></script>
+
+</footer>
+
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+  </body>
+</html>

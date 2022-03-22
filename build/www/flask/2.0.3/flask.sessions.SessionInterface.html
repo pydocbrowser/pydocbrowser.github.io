@@ -1,0 +1,579 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  
+
+  <head>
+    
+    <title>flask.sessions.SessionInterface</title>
+    <meta name="generator" content="pydoctor 22.3.0.dev0"> 
+        
+    </meta>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1 maximum-scale=1" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+    <link rel="stylesheet" type="text/css" href="extra.css" />
+</head>
+
+  <body>
+
+    <div id="banner">    
+    <div>
+        <a href="/">Home</a>
+        &gt; flask-2.0.3 <!-- This is a placeholder -->
+        
+        <!-- (<a href=""&gt;show all versions</a&gt;) -->
+    </div>
+</div>
+
+    <nav class="navbar navbar-default">
+  
+  <div class="container">
+
+    <div class="navbar-header">
+      
+      <div class="navlinks">
+        <span class="navbar-brand">
+          flask <a href="index.html">API Documentation</a>
+        </span>
+
+        <a href="moduleIndex.html">
+          Modules
+        </a>
+
+        <a href="classIndex.html">
+          Classes
+        </a>
+
+        <a href="nameIndex.html">
+          Names
+        </a>
+
+        <div id="search-box-container">
+          <div class="input-group">
+            <input id="search-box" type="search" name="search-query" placeholder="Search..." aria-label="Search" minlength="2" class="form-control" autocomplete="off" />
+            
+            <span class="input-group-btn">
+              <a style="display: none;" class="btn btn-default" id="search-clear-button" title="Clear" onclick="clearSearch()"><img src="fonts/x-circle.svg" alt="Clear" /></a>
+              <a class="btn btn-default" id="search-help-button" title="Help" onclick="toggleSearchHelpText()"><img src="fonts/info.svg" alt="Help" /></a>
+            </span>
+          </div>
+        </div>
+
+      </div>
+
+      <div id="search-results-container" style="display: none;">
+        
+        <div id="search-buttons">
+          <span class="label label-default" id="search-docstrings-button">
+          <label class="checkbox-inline">
+            <input type="checkbox" id="toggle-search-in-docstrings-checkbox" value="false" onclick="toggleSearchInDocstrings()">
+              search in docstrings
+            </input>
+          </label>
+          </span>
+          
+        </div>
+        
+        <noscript>
+            <h1>Cannot search: JavaScript is not supported/enabled in your browser.</h1>
+        </noscript>
+
+        <div class="hint" id="search-help-box">
+          <p class="rst-last">
+      
+            Search bar offers the following options:
+            <ul>   
+                <li>
+                  <strong>Term presence.</strong> The below example searches for documents that 
+                    must contain “foo”, might contain “bar” and must not contain “baz”: <code>+foo bar -baz</code>
+                </li> 
+
+                <li>
+                  <strong>Wildcards.</strong> The below example searches for documents with words beginning with “foo”: <code>foo*</code>
+                </li> 
+
+                <li>
+                  <strong>Search in specific fields.</strong> The following search matches all objects 
+                  in "twisted.mail" that matches “search”: <code>+qname:twisted.mail.* +search</code>
+
+                  <p>
+                    Possible fields: 'name', 'qname' (fully qualified name), 'docstring', and 'kind'.
+                    Last two fields are only applicable if "search in docstrings" is enabled.
+                  </p>
+                </li>
+
+                <li>
+                  <strong>Fuzzy matches.</strong> The following search matches all documents 
+                  that have a word within 1 edit distance of “foo”: <code>foo~1</code>
+                </li>
+            </ul>
+
+          </p>
+        </div>
+
+        <div id="search-status"> </div>
+
+        <div class="warning" id="search-warn-box" style="display: none;">
+          <p class="rst-last"><span id="search-warn"></span></p>
+        </div>
+
+        <table id="search-results">
+          <!-- Filled dynamically by JS -->
+        </table>
+        
+        <div style="margin-top: 8px;">
+          <p>Results provided by <a href="https://lunrjs.com">Lunr.js</a></p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</nav>
+
+    
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="class"><code><code><a href="index.html" class="internal-link">flask</a></code><wbr></wbr>.<code><a href="flask.sessions.html" class="internal-link" title="flask.sessions">sessions</a></code><wbr></wbr>.<code><a href="flask.sessions.SessionInterface.html" class="internal-link" title="flask.sessions.SessionInterface">SessionInterface</a></code></code></h1>
+        <div id="showPrivate">
+          <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+        </div>
+      </div>
+
+      <div class="categoryHeader">
+        class documentation
+      </div>
+
+      <div class="extrasDocstring">
+        <p><code><span class="py-keyword">class</span> <span class="py-defname">SessionInterface</span>: <a href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/flask-2.0.3//src/flask/sessions.py#L107" class="sourceLink">(source)</a></code></p><p>Known subclasses: <code><a href="flask.sessions.SecureCookieSessionInterface.html" class="internal-link">flask.sessions.SecureCookieSessionInterface</a></code></p>
+        <p><a href="classIndex.html#flask.sessions.SessionInterface">View In Hierarchy</a></p>
+      </div>
+
+      <div class="moduleDocstring">
+        <div><p>The basic interface you have to implement in order to replace the default session interface which uses werkzeug's securecookie implementation.  The only methods you have to implement are :meth:`open_session` and :meth:`save_session`, the others have useful defaults which you don't need to change.</p>
+<p>The session object returned by the :meth:`open_session` method has to provide a dictionary like interface plus the properties and methods from the :class:`SessionMixin`.  We recommend just subclassing a dict and adding that mixin:</p>
+<pre class="rst-literal-block">
+    class Session(dict, SessionMixin):
+        pass
+</pre>
+<p>If :meth:`open_session` returns ``None`` Flask will call into :meth:`make_null_session` to create a session that acts as replacement if the session support cannot work because some requirement is not fulfilled.  The default :class:`NullSession` class that is created will complain that the secret key was not set.</p>
+<p>To replace the session interface on an application all you have to do is to assign :attr:`flask.Flask.session_interface`:</p>
+<pre class="rst-literal-block">
+    app = Flask(__name__)
+    app.session_interface = MySessionInterface()
+</pre>
+<p>Multiple requests with the same session may be sent and handled concurrently. When implementing a new session interface, consider whether reads or writes to the backing store must be synchronized. There is no guarantee on the order in which the session for each request is opened or saved, it will occur in the order that requests begin and end processing.</p>
+<p>.. versionadded:: 0.8</p>
+</div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id10311">
+  
+  
+  <tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#get_cookie_domain" class="internal-link" title="flask.sessions.SessionInterface.get_cookie_domain">get​_cookie​_domain</a></code></td>
+    <td>Returns the domain that should be set for the session cookie.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#get_cookie_httponly" class="internal-link" title="flask.sessions.SessionInterface.get_cookie_httponly">get​_cookie​_httponly</a></code></td>
+    <td>Returns True if the session cookie should be httponly.  This currently just returns the value of the ``SESSION_COOKIE_HTTPONLY`` config var.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#get_cookie_name" class="internal-link" title="flask.sessions.SessionInterface.get_cookie_name">get​_cookie​_name</a></code></td>
+    <td>Returns the name of the session cookie.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#get_cookie_path" class="internal-link" title="flask.sessions.SessionInterface.get_cookie_path">get​_cookie​_path</a></code></td>
+    <td><span class="undocumented">No summary</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#get_cookie_samesite" class="internal-link" title="flask.sessions.SessionInterface.get_cookie_samesite">get​_cookie​_samesite</a></code></td>
+    <td>Return ``'Strict'`` or ``'Lax'`` if the cookie should use the ``SameSite`` attribute. This currently just returns the value of the :data:`SESSION_COOKIE_SAMESITE` setting.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#get_cookie_secure" class="internal-link" title="flask.sessions.SessionInterface.get_cookie_secure">get​_cookie​_secure</a></code></td>
+    <td>Returns True if the cookie should be secure.  This currently just returns the value of the ``SESSION_COOKIE_SECURE`` setting.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#get_expiration_time" class="internal-link" title="flask.sessions.SessionInterface.get_expiration_time">get​_expiration​_time</a></code></td>
+    <td><span class="undocumented">No summary</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#is_null_session" class="internal-link" title="flask.sessions.SessionInterface.is_null_session">is​_null​_session</a></code></td>
+    <td>Checks if a given object is a null session.  Null sessions are not asked to be saved.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#make_null_session" class="internal-link" title="flask.sessions.SessionInterface.make_null_session">make​_null​_session</a></code></td>
+    <td><span class="undocumented">No summary</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#open_session" class="internal-link" title="flask.sessions.SessionInterface.open_session">open​_session</a></code></td>
+    <td>This is called at the beginning of each request, after pushing the request context, before matching the URL.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#save_session" class="internal-link" title="flask.sessions.SessionInterface.save_session">save​_session</a></code></td>
+    <td>This is called at the end of each request, after generating a response, before removing the request context. It is skipped if :meth:`is_null_session` returns ``True``.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#should_set_cookie" class="internal-link" title="flask.sessions.SessionInterface.should_set_cookie">should​_set​_cookie</a></code></td>
+    <td><span class="undocumented">No summary</span></td>
+  </tr><tr class="classvariable">
+    
+    <td>Class Variable</td>
+    <td><code><a href="#pickle_based" class="internal-link" title="flask.sessions.SessionInterface.pickle_based">pickle​_based</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+        
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="basemethod">
+  
+  
+  <a name="flask.sessions.SessionInterface.get_cookie_domain">
+    
+  </a>
+  <a name="get_cookie_domain">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">get_cookie_domain</span>(self, app):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/flask-2.0.3//src/flask/sessions.py#L185">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Returns the domain that should be set for the session cookie.</p>
+<p>Uses ``SESSION_COOKIE_DOMAIN`` if it is configured, otherwise falls back to detecting the domain based on ``SERVER_NAME``.</p>
+<p>Once detected (or if not set at all), ``SESSION_COOKIE_DOMAIN`` is updated to avoid re-running the logic.</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">app:</span><code><a href="flask.app.Flask.html" class="internal-link" title="flask.app.Flask">Flask</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">t.Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="flask.sessions.SessionInterface.get_cookie_httponly">
+    
+  </a>
+  <a name="get_cookie_httponly">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">get_cookie_httponly</span>(self, app):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/flask-2.0.3//src/flask/sessions.py#L251">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Returns True if the session cookie should be httponly.  This currently just returns the value of the ``SESSION_COOKIE_HTTPONLY`` config var.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">app:</span><code><a href="flask.app.Flask.html" class="internal-link" title="flask.app.Flask">Flask</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="flask.sessions.SessionInterface.get_cookie_name">
+    
+  </a>
+  <a name="get_cookie_name">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">get_cookie_name</span>(self, app):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/flask-2.0.3//src/flask/sessions.py#L178">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Returns the name of the session cookie.</p>
+<p>Uses ``app.session_cookie_name`` which is set to ``SESSION_COOKIE_NAME``</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">app:</span><code><a href="flask.app.Flask.html" class="internal-link" title="flask.app.Flask">Flask</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="flask.sessions.SessionInterface.get_cookie_path">
+    
+  </a>
+  <a name="get_cookie_path">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">get_cookie_path</span>(self, app):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/flask-2.0.3//src/flask/sessions.py#L243">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Returns the path for which the cookie should be valid.  The default implementation uses the value from the ``SESSION_COOKIE_PATH`` config var if it's set, and falls back to ``APPLICATION_ROOT`` or uses ``/`` if it's ``None``.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">app:</span><code><a href="flask.app.Flask.html" class="internal-link" title="flask.app.Flask">Flask</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="flask.sessions.SessionInterface.get_cookie_samesite">
+    
+  </a>
+  <a name="get_cookie_samesite">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">get_cookie_samesite</span>(self, app):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/flask-2.0.3//src/flask/sessions.py#L264">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Return ``'Strict'`` or ``'Lax'`` if the cookie should use the ``SameSite`` attribute. This currently just returns the value of the :data:`SESSION_COOKIE_SAMESITE` setting.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">app:</span><code><a href="flask.app.Flask.html" class="internal-link" title="flask.app.Flask">Flask</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="flask.sessions.SessionInterface.get_cookie_secure">
+    
+  </a>
+  <a name="get_cookie_secure">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">get_cookie_secure</span>(self, app):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/flask-2.0.3//src/flask/sessions.py#L258">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Returns True if the cookie should be secure.  This currently just returns the value of the ``SESSION_COOKIE_SECURE`` setting.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">app:</span><code><a href="flask.app.Flask.html" class="internal-link" title="flask.app.Flask">Flask</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="flask.sessions.SessionInterface.get_expiration_time">
+    
+  </a>
+  <a name="get_expiration_time">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">get_expiration_time</span>(self, app, session):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/flask-2.0.3//src/flask/sessions.py#L271">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>A helper method that returns an expiration date for the session or ``None`` if the session is linked to the browser session.  The default implementation returns now + the permanent session lifetime configured on the application.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">app:</span><code><a href="flask.app.Flask.html" class="internal-link" title="flask.app.Flask">Flask</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">session:</span><code><a href="flask.sessions.SessionMixin.html" class="internal-link" title="flask.sessions.SessionMixin">SessionMixin</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">t.Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/datetime.html#datetime.datetime" class="intersphinx-link">datetime</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="flask.sessions.SessionInterface.is_null_session">
+    
+  </a>
+  <a name="is_null_session">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">is_null_session</span>(self, obj):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/flask-2.0.3//src/flask/sessions.py#L169">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Checks if a given object is a null session.  Null sessions are not asked to be saved.</p>
+<p>This checks if the object is an instance of :attr:`null_session_class` by default.</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">obj:</span><code><a href="https://docs.python.org/3/library/functions.html#object" class="intersphinx-link">object</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="flask.sessions.SessionInterface.make_null_session">
+    
+  </a>
+  <a name="make_null_session">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">make_null_session</span>(self, app):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/flask-2.0.3//src/flask/sessions.py#L157">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Creates a null session which acts as a replacement object if the real session support could not be loaded due to a configuration error.  This mainly aids the user experience because the job of the null session is to still support lookup without complaining but modifications are answered with a helpful error message of what failed.</p>
+<p>This creates an instance of :attr:`null_session_class` by default.</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">app:</span><code><a href="flask.app.Flask.html" class="internal-link" title="flask.app.Flask">Flask</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="flask.sessions.NullSession.html" class="internal-link" title="flask.sessions.NullSession">NullSession</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="flask.sessions.SessionInterface.open_session">
+    
+  </a>
+  <a name="open_session">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">open_session</span>(self, app, request):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/flask-2.0.3//src/flask/sessions.py#L299">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="flask.sessions.SecureCookieSessionInterface.html" class="internal-link">flask.sessions.SecureCookieSessionInterface</a></code></div>
+    
+    <div><p>This is called at the beginning of each request, after pushing the request context, before matching the URL.</p>
+<p>This must return an object which implements a dictionary-like interface as well as the :class:`SessionMixin` interface.</p>
+<p>This will return ``None`` to indicate that loading failed in some way that is not immediately an error. The request context will fall back to using :meth:`make_null_session` in this case.</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">app:</span><code><a href="flask.app.Flask.html" class="internal-link" title="flask.app.Flask">Flask</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">request:</span><code><a href="flask.wrappers.Request.html" class="internal-link" title="flask.wrappers.Request">Request</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">t.Optional</a>[<wbr></wbr><a href="flask.sessions.SessionMixin.html" class="internal-link" title="flask.sessions.SessionMixin">SessionMixin</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="flask.sessions.SessionInterface.save_session">
+    
+  </a>
+  <a name="save_session">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">save_session</span>(self, app, session, response):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/flask-2.0.3//src/flask/sessions.py#L315">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="flask.sessions.SecureCookieSessionInterface.html" class="internal-link">flask.sessions.SecureCookieSessionInterface</a></code></div>
+    
+    <div>This is called at the end of each request, after generating a response, before removing the request context. It is skipped if :meth:`is_null_session` returns ``True``.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">app:</span><code><a href="flask.app.Flask.html" class="internal-link" title="flask.app.Flask">Flask</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">session:</span><code><a href="flask.sessions.SessionMixin.html" class="internal-link" title="flask.sessions.SessionMixin">SessionMixin</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">response:</span><code><a href="flask.wrappers.Response.html" class="internal-link" title="flask.wrappers.Response">Response</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="flask.sessions.SessionInterface.should_set_cookie">
+    
+  </a>
+  <a name="should_set_cookie">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">should_set_cookie</span>(self, app, session):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/flask-2.0.3//src/flask/sessions.py#L283">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Used by session backends to determine if a ``Set-Cookie`` header should be set for this session cookie for this response. If the session has been modified, the cookie is set. If the session is permanent and the ``SESSION_REFRESH_EACH_REQUEST`` config is true, the cookie is always set.</p>
+<p>This check is usually skipped if the session was deleted.</p>
+<p>.. versionadded:: 0.11</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">app:</span><code><a href="flask.app.Flask.html" class="internal-link" title="flask.app.Flask">Flask</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">session:</span><code><a href="flask.sessions.SessionMixin.html" class="internal-link" title="flask.sessions.SessionMixin">SessionMixin</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="baseclassvariable">
+  
+  
+  <a name="flask.sessions.SessionInterface.pickle_based">
+    
+  </a>
+  <a name="pickle_based">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">pickle_based</span>: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/flask-2.0.3//src/flask/sessions.py#L155">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div>
+
+      </div>
+    </div>
+
+    <footer class="navbar navbar-default">
+
+  
+  <div class="container">
+    <a href="index.html">API Documentation</a> for flask,
+  generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
+    22.3.0.dev0 at 2022-03-22 17:11:51.
+  </div>
+
+  <!-- Search related scripts needs to be loaded at the end of HTML 
+    parsing not to introduce overhead and display HTML data asap -->
+  <script src="ajax.js" type="text/javascript"></script>
+  <script src="searchlib.js" type="text/javascript"></script>
+  <script src="search.js" type="text/javascript"></script>
+
+</footer>
+
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+  </body>
+</html>
