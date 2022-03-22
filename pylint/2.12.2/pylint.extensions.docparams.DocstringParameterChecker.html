@@ -7,11 +7,11 @@
   <head>
     
     <title>pylint.extensions.docparams.DocstringParameterChecker</title>
-    <meta name="generator" content="pydoctor 22.2.2.dev0"> 
+    <meta name="generator" content="pydoctor 22.3.0.dev0"> 
         
     </meta>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=0.75" />
+    <meta name="viewport" content="width=device-width, initial-scale=1 maximum-scale=1" />
     <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="apidocs.css" />
     <link rel="stylesheet" type="text/css" href="extra.css" />
@@ -65,6 +65,18 @@
       </div>
 
       <div id="search-results-container" style="display: none;">
+        
+        <div id="search-buttons">
+          <span class="label label-default" id="search-docstrings-button">
+          <label class="checkbox-inline">
+            <input type="checkbox" id="toggle-search-in-docstrings-checkbox" value="false" onclick="toggleSearchInDocstrings()">
+              search in docstrings
+            </input>
+          </label>
+          </span>
+          
+        </div>
+        
         <noscript>
             <h1>Cannot search: JavaScript is not supported/enabled in your browser.</h1>
         </noscript>
@@ -84,11 +96,12 @@
                 </li> 
 
                 <li>
-                  <strong>Search in specific fields.</strong> The following search matches all documents 
-                  that contains "foo" in their full dotted name and with “bar” in any field: <code>+fullName:*foo* +bar</code>
+                  <strong>Search in specific fields.</strong> The following search matches all objects 
+                  in "twisted.mail" that matches “search”: <code>+qname:twisted.mail.* +search</code>
 
                   <p>
-                    Possible fields: 'name', 'docstring', 'fullName'.
+                    Possible fields: 'name', 'qname' (fully qualified name), 'docstring', and 'kind'.
+                    Last two fields are only applicable if "search in docstrings" is enabled.
                   </p>
                 </li>
 
@@ -102,7 +115,7 @@
         </div>
 
         <div id="search-status"> </div>
-        
+
         <div class="warning" id="search-warn-box" style="display: none;">
           <p class="rst-last"><span id="search-warn"></span></p>
         </div>
@@ -111,18 +124,13 @@
           <!-- Filled dynamically by JS -->
         </table>
         
-        <div>
-          <br />
+        <div style="margin-top: 8px;">
           <p>Results provided by <a href="https://lunrjs.com">Lunr.js</a></p>
         </div>
       </div>
 
     </div>
   </div>
-
-  <script src="ajax.js" type="text/javascript"></script>
-  <script src="search.js" type="text/javascript"></script>
-
 </nav>
 
     
@@ -150,7 +158,7 @@
       </div>
 
       <div id="splitTables">
-        <table class="children sortable" id="id248">
+        <table class="children sortable" id="id18779">
   
   
   <tr class="method">
@@ -236,27 +244,27 @@
   </tr><tr class="method private">
     
     <td>Method</td>
-    <td><code><a href="#_add_raise_message" class="internal-link" title="pylint.extensions.docparams.DocstringParameterChecker._add_raise_message">​_add​_raise​_message</a></code></td>
+    <td><code><a href="#_add_raise_message" class="internal-link" title="pylint.extensions.docparams.DocstringParameterChecker._add_raise_message">_add​_raise​_message</a></code></td>
     <td>Adds a message on :param:`node` for the missing exception type.</td>
   </tr><tr class="method private">
     
     <td>Method</td>
-    <td><code><a href="#_compare_different_args" class="internal-link" title="pylint.extensions.docparams.DocstringParameterChecker._compare_different_args">​_compare​_different​_args</a></code></td>
+    <td><code><a href="#_compare_different_args" class="internal-link" title="pylint.extensions.docparams.DocstringParameterChecker._compare_different_args">_compare​_different​_args</a></code></td>
     <td>Compare the found argument names with the expected ones and generate a message if there are extra arguments found.</td>
   </tr><tr class="method private">
     
     <td>Method</td>
-    <td><code><a href="#_compare_ignored_args" class="internal-link" title="pylint.extensions.docparams.DocstringParameterChecker._compare_ignored_args">​_compare​_ignored​_args</a></code></td>
+    <td><code><a href="#_compare_ignored_args" class="internal-link" title="pylint.extensions.docparams.DocstringParameterChecker._compare_ignored_args">_compare​_ignored​_args</a></code></td>
     <td>Compare the found argument names with the ignored ones and generate a message if there are ignored arguments found.</td>
   </tr><tr class="method private">
     
     <td>Method</td>
-    <td><code><a href="#_compare_missing_args" class="internal-link" title="pylint.extensions.docparams.DocstringParameterChecker._compare_missing_args">​_compare​_missing​_args</a></code></td>
+    <td><code><a href="#_compare_missing_args" class="internal-link" title="pylint.extensions.docparams.DocstringParameterChecker._compare_missing_args">_compare​_missing​_args</a></code></td>
     <td>Compare the found argument names with the expected ones and generate a message if there are arguments missing.</td>
   </tr><tr class="method private">
     
     <td>Method</td>
-    <td><code><a href="#_handle_no_raise_doc" class="internal-link" title="pylint.extensions.docparams.DocstringParameterChecker._handle_no_raise_doc">​_handle​_no​_raise​_doc</a></code></td>
+    <td><code><a href="#_handle_no_raise_doc" class="internal-link" title="pylint.extensions.docparams.DocstringParameterChecker._handle_no_raise_doc">_handle​_no​_raise​_doc</a></code></td>
     <td><span class="undocumented">Undocumented</span></td>
   </tr>
 </table>
@@ -264,7 +272,7 @@
           <p class="inheritedFrom">
             Inherited from <code><a href="pylint.checkers.BaseChecker.html" class="internal-link" title="pylint.checkers.BaseChecker">BaseChecker</a></code>:
           </p>
-          <table class="children sortable" id="id249">
+          <table class="children sortable" id="id18780">
   
   
   <tr class="basemethod">
@@ -353,7 +361,7 @@
           <p class="inheritedFrom">
             Inherited from <code><a href="pylint.config.OptionsProviderMixIn.html" class="internal-link" title="pylint.config.OptionsProviderMixIn">OptionsProviderMixIn</a></code> (via <code><a href="pylint.checkers.BaseChecker.html" class="internal-link" title="pylint.checkers.BaseChecker">BaseChecker</a></code>):
           </p>
-          <table class="children sortable" id="id250">
+          <table class="children sortable" id="id18781">
   
   
   <tr class="basemethod">
@@ -901,12 +909,20 @@
     </div>
 
     <footer class="navbar navbar-default">
+
   
   <div class="container">
     <a href="index.html">API Documentation</a> for pylint,
   generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
-    22.2.2.dev0 at 2022-02-28 20:33:28.
+    22.3.0.dev0 at 2022-03-22 17:22:50.
   </div>
+
+  <!-- Search related scripts needs to be loaded at the end of HTML 
+    parsing not to introduce overhead and display HTML data asap -->
+  <script src="ajax.js" type="text/javascript"></script>
+  <script src="searchlib.js" type="text/javascript"></script>
+  <script src="search.js" type="text/javascript"></script>
+
 </footer>
 
     <script src="pydoctor.js" type="text/javascript"></script>

@@ -7,11 +7,11 @@
   <head>
     
     <title>lxml.tests.selftest</title>
-    <meta name="generator" content="pydoctor 22.2.0"> 
+    <meta name="generator" content="pydoctor 22.3.0.dev0"> 
         
     </meta>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=0.75" />
+    <meta name="viewport" content="width=device-width, initial-scale=1 maximum-scale=1" />
     <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="apidocs.css" />
     <link rel="stylesheet" type="text/css" href="extra.css" />
@@ -19,12 +19,10 @@
 
   <body>
 
-    <div id="banner" class="container">    
+    <div id="banner">    
     <div>
-        <a href="https://pydocbrowser.github.io/">Home</a>
-        &gt; lxml-4.8.0 
-        <!-- This is an important placeholder and will be 
-            replaced by project name and version on building docs -->
+        <a href="/">Home</a>
+        &gt; lxml-4.8.0 <!-- This is a placeholder -->
         
         <!-- (<a href=""&gt;show all versions</a&gt;) -->
     </div>
@@ -37,21 +35,98 @@
     <div class="navbar-header">
       
       <div class="navlinks">
-          <span class="navbar-brand">
-            lxml <a href="index.html">API Documentation</a>
+        <span class="navbar-brand">
+          lxml <a href="index.html">API Documentation</a>
+        </span>
+
+        <a href="moduleIndex.html">
+          Modules
+        </a>
+
+        <a href="classIndex.html">
+          Classes
+        </a>
+
+        <a href="nameIndex.html">
+          Names
+        </a>
+
+        <div id="search-box-container">
+          <div class="input-group">
+            <input id="search-box" type="search" name="search-query" placeholder="Search..." aria-label="Search" minlength="2" class="form-control" autocomplete="off" />
+            
+            <span class="input-group-btn">
+              <a style="display: none;" class="btn btn-default" id="search-clear-button" title="Clear" onclick="clearSearch()"><img src="fonts/x-circle.svg" alt="Clear" /></a>
+              <a class="btn btn-default" id="search-help-button" title="Help" onclick="toggleSearchHelpText()"><img src="fonts/info.svg" alt="Help" /></a>
+            </span>
+          </div>
+        </div>
+
+      </div>
+
+      <div id="search-results-container" style="display: none;">
+        
+        <div id="search-buttons">
+          <span class="label label-default" id="search-docstrings-button">
+          <label class="checkbox-inline">
+            <input type="checkbox" id="toggle-search-in-docstrings-checkbox" value="false" onclick="toggleSearchInDocstrings()">
+              search in docstrings
+            </input>
+          </label>
           </span>
+          
+        </div>
+        
+        <noscript>
+            <h1>Cannot search: JavaScript is not supported/enabled in your browser.</h1>
+        </noscript>
 
-          <a href="moduleIndex.html">
-            Modules
-          </a>
+        <div class="hint" id="search-help-box">
+          <p class="rst-last">
+      
+            Search bar offers the following options:
+            <ul>   
+                <li>
+                  <strong>Term presence.</strong> The below example searches for documents that 
+                    must contain “foo”, might contain “bar” and must not contain “baz”: <code>+foo bar -baz</code>
+                </li> 
 
-          <a href="classIndex.html">
-            Classes
-          </a>
+                <li>
+                  <strong>Wildcards.</strong> The below example searches for documents with words beginning with “foo”: <code>foo*</code>
+                </li> 
 
-          <a href="nameIndex.html">
-            Names
-          </a>
+                <li>
+                  <strong>Search in specific fields.</strong> The following search matches all objects 
+                  in "twisted.mail" that matches “search”: <code>+qname:twisted.mail.* +search</code>
+
+                  <p>
+                    Possible fields: 'name', 'qname' (fully qualified name), 'docstring', and 'kind'.
+                    Last two fields are only applicable if "search in docstrings" is enabled.
+                  </p>
+                </li>
+
+                <li>
+                  <strong>Fuzzy matches.</strong> The following search matches all documents 
+                  that have a word within 1 edit distance of “foo”: <code>foo~1</code>
+                </li>
+            </ul>
+
+          </p>
+        </div>
+
+        <div id="search-status"> </div>
+
+        <div class="warning" id="search-warn-box" style="display: none;">
+          <p class="rst-last"><span id="search-warn"></span></p>
+        </div>
+
+        <table id="search-results">
+          <!-- Filled dynamically by JS -->
+        </table>
+        
+        <div style="margin-top: 8px;">
+          <p>Results provided by <a href="https://lunrjs.com">Lunr.js</a></p>
+        </div>
       </div>
 
     </div>
@@ -83,7 +158,7 @@
       </div>
 
       <div id="splitTables">
-        <table class="children sortable" id="id11071">
+        <table class="children sortable" id="id12200">
   
   
   <tr class="function">
@@ -387,10 +462,7 @@
 <span class="py-prompt">&gt;&gt;&gt; </span>elem.findall(<span class="py-string">"/tag"</span>)
 <span class="py-except">Traceback (most recent call last):</span>
 <span class="py-except">SyntaxError: cannot use absolute path on element</span>
-</pre><p># this is supported in ET 1.3:
-#&gt;&gt;&gt; elem.findall("section//")
-#Traceback (most recent call last):
-#SyntaxError: invalid path</p>
+</pre><p># this is supported in ET 1.3: #&gt;&gt;&gt; elem.findall("section//") #Traceback (most recent call last): #SyntaxError: invalid path</p>
 </div>
   </div>
 </div><div class="basefunction">
@@ -670,41 +742,13 @@
     
     
     <div><p>problems parsing mixed unicode/non-ascii html documents</p>
-<p>latin-1 text
-&gt;&gt;&gt; p = HTMLTreeBuilder.TreeBuilder()
-&gt;&gt;&gt; p.feed("&lt;p&gt;välue&lt;/p&gt;")
-&gt;&gt;&gt; serialize(p.close())
-'&lt;p&gt;v&amp;#228;lue&lt;/p&gt;'</p>
-<p>utf-8 text
-&gt;&gt;&gt; p = HTMLTreeBuilder.TreeBuilder(encoding="utf-8")
-&gt;&gt;&gt; p.feed("&lt;p&gt;vÃ¤lue&lt;/p&gt;")
-&gt;&gt;&gt; serialize(p.close())
-'&lt;p&gt;v&amp;#228;lue&lt;/p&gt;'</p>
-<p>utf-8 text using meta tag
-&gt;&gt;&gt; p = HTMLTreeBuilder.TreeBuilder()
-&gt;&gt;&gt; p.feed("&lt;html&gt;&lt;meta http-equiv='Content-Type' content='text/html; charset=utf-8'&gt;&lt;p&gt;vÃ¤lue&lt;/p&gt;&lt;/html&gt;")
-&gt;&gt;&gt; serialize(p.close().find("p"))
-'&lt;p&gt;v&amp;#228;lue&lt;/p&gt;'</p>
-<p>latin-1 character references
-&gt;&gt;&gt; p = HTMLTreeBuilder.TreeBuilder()
-&gt;&gt;&gt; p.feed("&lt;p&gt;v&amp;#228;lue&lt;/p&gt;")
-&gt;&gt;&gt; serialize(p.close())
-'&lt;p&gt;v&amp;#228;lue&lt;/p&gt;'</p>
-<p>latin-1 character entities
-&gt;&gt;&gt; p = HTMLTreeBuilder.TreeBuilder()
-&gt;&gt;&gt; p.feed("&lt;p&gt;v&amp;auml;lue&lt;/p&gt;")
-&gt;&gt;&gt; serialize(p.close())
-'&lt;p&gt;v&amp;#228;lue&lt;/p&gt;'</p>
-<p>mixed latin-1 text and unicode entities
-&gt;&gt;&gt; p = HTMLTreeBuilder.TreeBuilder()
-&gt;&gt;&gt; p.feed("&lt;p&gt;&amp;#8221;välue&amp;#8221;&lt;/p&gt;")
-&gt;&gt;&gt; serialize(p.close())
-'&lt;p&gt;&amp;#8221;v&amp;#228;lue&amp;#8221;&lt;/p&gt;'</p>
-<p>mixed unicode and latin-1 entities
-&gt;&gt;&gt; p = HTMLTreeBuilder.TreeBuilder()
-&gt;&gt;&gt; p.feed("&lt;p&gt;&amp;#8221;v&amp;auml;lue&amp;#8221;&lt;/p&gt;")
-&gt;&gt;&gt; serialize(p.close())
-'&lt;p&gt;&amp;#8221;v&amp;#228;lue&amp;#8221;&lt;/p&gt;'</p>
+<p>latin-1 text &gt;&gt;&gt; p = HTMLTreeBuilder.TreeBuilder() &gt;&gt;&gt; p.feed("&lt;p&gt;välue&lt;/p&gt;") &gt;&gt;&gt; serialize(p.close()) '&lt;p&gt;v&amp;#228;lue&lt;/p&gt;'</p>
+<p>utf-8 text &gt;&gt;&gt; p = HTMLTreeBuilder.TreeBuilder(encoding="utf-8") &gt;&gt;&gt; p.feed("&lt;p&gt;vÃ¤lue&lt;/p&gt;") &gt;&gt;&gt; serialize(p.close()) '&lt;p&gt;v&amp;#228;lue&lt;/p&gt;'</p>
+<p>utf-8 text using meta tag &gt;&gt;&gt; p = HTMLTreeBuilder.TreeBuilder() &gt;&gt;&gt; p.feed("&lt;html&gt;&lt;meta http-equiv='Content-Type' content='text/html; charset=utf-8'&gt;&lt;p&gt;vÃ¤lue&lt;/p&gt;&lt;/html&gt;") &gt;&gt;&gt; serialize(p.close().find("p")) '&lt;p&gt;v&amp;#228;lue&lt;/p&gt;'</p>
+<p>latin-1 character references &gt;&gt;&gt; p = HTMLTreeBuilder.TreeBuilder() &gt;&gt;&gt; p.feed("&lt;p&gt;v&amp;#228;lue&lt;/p&gt;") &gt;&gt;&gt; serialize(p.close()) '&lt;p&gt;v&amp;#228;lue&lt;/p&gt;'</p>
+<p>latin-1 character entities &gt;&gt;&gt; p = HTMLTreeBuilder.TreeBuilder() &gt;&gt;&gt; p.feed("&lt;p&gt;v&amp;auml;lue&lt;/p&gt;") &gt;&gt;&gt; serialize(p.close()) '&lt;p&gt;v&amp;#228;lue&lt;/p&gt;'</p>
+<p>mixed latin-1 text and unicode entities &gt;&gt;&gt; p = HTMLTreeBuilder.TreeBuilder() &gt;&gt;&gt; p.feed("&lt;p&gt;&amp;#8221;välue&amp;#8221;&lt;/p&gt;") &gt;&gt;&gt; serialize(p.close()) '&lt;p&gt;&amp;#8221;v&amp;#228;lue&amp;#8221;&lt;/p&gt;'</p>
+<p>mixed unicode and latin-1 entities &gt;&gt;&gt; p = HTMLTreeBuilder.TreeBuilder() &gt;&gt;&gt; p.feed("&lt;p&gt;&amp;#8221;v&amp;auml;lue&amp;#8221;&lt;/p&gt;") &gt;&gt;&gt; serialize(p.close()) '&lt;p&gt;&amp;#8221;v&amp;#228;lue&amp;#8221;&lt;/p&gt;'</p>
 </div>
   </div>
 </div><div class="basefunction">
@@ -727,8 +771,7 @@
   <div class="docstring functionBody">
     
     
-    <div><blockquote>
-problems parsing open BR tags</blockquote>
+    <div><p>problems parsing open BR tags</p>
 <pre class="py-doctest">
 <span class="py-prompt">&gt;&gt;&gt; </span>p = HTMLTreeBuilder.TreeBuilder()
 <span class="py-prompt"> &gt;&gt;&gt; </span>p.feed(<span class="py-string">"&lt;p&gt;key&lt;br&gt;value&lt;/p&gt;"</span>)
@@ -1026,9 +1069,7 @@ problems parsing open BR tags</blockquote>
     
     
     <div><p>Test entity handling.</p>
-<ol class="rst-arabic simple">
-<li>bad entities</li>
-</ol>
+<p>1) bad entities</p>
 <pre class="py-doctest">
 <span class="py-prompt">&gt;&gt;&gt; </span>ElementTree.XML(<span class="py-string">"&lt;document&gt;&amp;entity;&lt;/document&gt;"</span>)
 <span class="py-except">Traceback (most recent call last):</span>
@@ -1090,36 +1131,7 @@ problems parsing open BR tags</blockquote>
   <div class="docstring functionBody">
     
     
-    <div><p>Test the "fancy" parser.</p>
-<p>Sanity check.
-&gt;&gt;&gt; from elementtree import XMLTreeBuilder
-&gt;&gt;&gt; parser = XMLTreeBuilder.FancyTreeBuilder()
-&gt;&gt;&gt; tree = ElementTree.parse("samples/simple.xml", parser)
-&gt;&gt;&gt; normalize_crlf(tree)
-&gt;&gt;&gt; tree.write(sys.stdout)
-&lt;root&gt;</p>
-<blockquote>
-&lt;element key="value"&gt;text&lt;/element&gt;
-&lt;element&gt;text&lt;/element&gt;tail
-&lt;empty-element /&gt;</blockquote>
-<p>&lt;/root&gt;</p>
-<p>Callback check.
-&gt;&gt;&gt; class MyFancyParser(XMLTreeBuilder.FancyTreeBuilder):
-...     def start(self, elem):
-...         print("START %s" % elem.tag)
-...     def end(self, elem):
-...         print("END %s" % elem.tag)
-&gt;&gt;&gt; parser = MyFancyParser()
-&gt;&gt;&gt; tree = ElementTree.parse("samples/simple.xml", parser)
-START root
-START element
-END element
-START element
-END element
-START empty-element
-END empty-element
-END root</p>
-</div>
+    <div></div>
   </div>
 </div><div class="basefunction">
   
@@ -1211,8 +1223,7 @@ END root</p>
 <span class="py-output">['tag', 'tag']</span>
 <span class="py-prompt">&gt;&gt;&gt; </span>summarize_list(ElementTree.ElementTree(elem).findall(<span class="py-string">"./tag"</span>))
 <span class="py-output">['tag', 'tag']</span>
-</pre><p>FIXME: ET's Path module handles this case incorrectly; this gives
-a warning in 1.3, and the behaviour will be modified in 1.4.</p>
+</pre><p>FIXME: ET's Path module handles this case incorrectly; this gives a warning in 1.3, and the behaviour will be modified in 1.4.</p>
 <pre class="py-doctest">
 <span class="py-prompt">&gt;&gt;&gt; </span>summarize_list(ElementTree.ElementTree(elem).findall(<span class="py-string">"/tag"</span>))
 <span class="py-output">['tag', 'tag']</span>
@@ -1438,16 +1449,12 @@ a warning in 1.3, and the behaviour will be modified in 1.4.</p>
     
     
     <div><p>Test namespace issues.</p>
-<ol class="rst-arabic simple">
-<li>xml namespace</li>
-</ol>
+<p>1) xml namespace</p>
 <pre class="py-doctest">
 <span class="py-prompt">&gt;&gt;&gt; </span>elem = ElementTree.XML(<span class="py-string">"&lt;tag xml:lang='en' /&gt;"</span>)
 <span class="py-prompt">&gt;&gt;&gt; </span>serialize(elem) <span class="py-comment"># 1.1</span>
 <span class="py-output">'&lt;tag xml:lang="en"/&gt;'</span>
-</pre><ol class="rst-arabic simple" start="2">
-<li>other "well-known" namespaces</li>
-</ol>
+</pre><p>2) other "well-known" namespaces</p>
 <pre class="py-doctest">
 <span class="py-prompt">&gt;&gt;&gt; </span>elem = ElementTree.XML(<span class="py-string">"&lt;rdf:RDF xmlns:rdf='http://www.w3.org/1999/02/22-rdf-syntax-ns#' /&gt;"</span>)
 <span class="py-prompt">&gt;&gt;&gt; </span>serialize(elem) <span class="py-comment"># 2.1</span>
@@ -1460,9 +1467,7 @@ a warning in 1.3, and the behaviour will be modified in 1.4.</p>
 <span class="py-prompt">&gt;&gt;&gt; </span>elem = ElementTree.XML(<span class="py-string">"&lt;soap:Envelope xmlns:soap='http://schemas.xmlsoap.org/soap/envelope' /&gt;"</span>)
 <span class="py-prompt">&gt;&gt;&gt; </span>serialize(elem) <span class="py-comment"># 2.3</span>
 <span class="py-output">'&lt;soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope"/&gt;'</span>
-</pre><ol class="rst-arabic simple" start="3">
-<li>unknown namespaces</li>
-</ol>
+</pre><p>3) unknown namespaces</p>
 </div>
   </div>
 </div><div class="basefunction">
@@ -1507,32 +1512,7 @@ a warning in 1.3, and the behaviour will be modified in 1.4.</p>
   <div class="docstring functionBody">
     
     
-    <div><blockquote>
-<p>Test parsing from file.</p>
-<pre class="py-doctest">
-<span class="py-prompt">&gt;&gt;&gt; </span>tree = ElementTree.parse(<span class="py-string">"samples/simple.xml"</span>)
-<span class="py-prompt">&gt;&gt;&gt; </span>normalize_crlf(tree)
-<span class="py-prompt">&gt;&gt;&gt; </span>tree.write(stdout())
-<span class="py-output">&lt;root&gt;</span>
-<span class="py-output">   &lt;element key="value"&gt;text&lt;/element&gt;</span>
-<span class="py-output">   &lt;element&gt;text&lt;/element&gt;tail</span>
-<span class="py-output">   &lt;empty-element/&gt;</span>
-<span class="py-output">&lt;/root&gt;</span>
-<span class="py-prompt">&gt;&gt;&gt; </span>tree = ElementTree.parse(<span class="py-string">"samples/simple-ns.xml"</span>)
-<span class="py-prompt">&gt;&gt;&gt; </span>normalize_crlf(tree)
-<span class="py-prompt">&gt;&gt;&gt; </span>tree.write(stdout())
-<span class="py-output">&lt;root xmlns="http://namespace/"&gt;</span>
-<span class="py-output">   &lt;element key="value"&gt;text&lt;/element&gt;</span>
-<span class="py-output">   &lt;element&gt;text&lt;/element&gt;tail</span>
-<span class="py-output">   &lt;empty-element/&gt;</span>
-<span class="py-output">&lt;/root&gt;</span>
-</pre></blockquote>
-<p>##     &lt;ns0:root xmlns:ns0="http://namespace/"&gt;
-##        &lt;ns0:element key="value"&gt;text&lt;/ns0:element&gt;
-##        &lt;ns0:element&gt;text&lt;/ns0:element&gt;tail
-##        &lt;ns0:empty-element/&gt;
-##     &lt;/ns0:root&gt;</p>
-</div>
+    <div></div>
   </div>
 </div><div class="basefunction">
   
@@ -1583,29 +1563,18 @@ a warning in 1.3, and the behaviour will be modified in 1.4.</p>
   <div class="docstring functionBody">
     
     
-    <div><blockquote>
-<pre class="py-doctest">
+    <div><pre class="py-doctest">
 <span class="py-prompt">&gt;&gt;&gt; </span>element = ElementTree.XML(<span class="py-string">"&lt;html&gt;&lt;body&gt;text&lt;/body&gt;&lt;/html&gt;"</span>)
 <span class="py-prompt">&gt;&gt;&gt; </span>ElementTree.ElementTree(element).write(stdout())
 <span class="py-output">&lt;html&gt;&lt;body&gt;text&lt;/body&gt;&lt;/html&gt;</span>
 <span class="py-prompt">&gt;&gt;&gt; </span>element = ElementTree.fromstring(<span class="py-string">"&lt;html&gt;&lt;body&gt;text&lt;/body&gt;&lt;/html&gt;"</span>)
 <span class="py-prompt">&gt;&gt;&gt; </span>ElementTree.ElementTree(element).write(stdout())
 <span class="py-output">&lt;html&gt;&lt;body&gt;text&lt;/body&gt;&lt;/html&gt;</span>
-</pre></blockquote>
-<p>##     &gt;&gt;&gt; sequence = ["&lt;html&gt;&lt;body&gt;", "text&lt;/bo", "dy&gt;&lt;/html&gt;"]
-##     &gt;&gt;&gt; element = ElementTree.fromstringlist(sequence)
-##     &gt;&gt;&gt; ElementTree.ElementTree(element).write(stdout())
-##     &lt;html&gt;&lt;body&gt;text&lt;/body&gt;&lt;/html&gt;</p>
-<blockquote>
+</pre><p>##     &gt;&gt;&gt; sequence = ["&lt;html&gt;&lt;body&gt;", "text&lt;/bo", "dy&gt;&lt;/html&gt;"] ##     &gt;&gt;&gt; element = ElementTree.fromstringlist(sequence) ##     &gt;&gt;&gt; ElementTree.ElementTree(element).write(stdout()) ##     &lt;html&gt;&lt;body&gt;text&lt;/body&gt;&lt;/html&gt;</p>
 <pre class="py-doctest">
 <span class="py-prompt">&gt;&gt;&gt; </span><span class="py-builtin">print</span>(<span class="py-builtin">repr</span>(ElementTree.tostring(element)).lstrip(<span class="py-string">'b'</span>))
 <span class="py-output">'&lt;html&gt;&lt;body&gt;text&lt;/body&gt;&lt;/html&gt;'</span>
-</pre></blockquote>
-<p># looks different in lxml
-#    &gt;&gt;&gt; print(ElementTree.tostring(element, "ascii"))
-#    &lt;?xml version='1.0' encoding='ascii'?&gt;
-#    &lt;html&gt;&lt;body&gt;text&lt;/body&gt;&lt;/html&gt;</p>
-<blockquote>
+</pre><p># looks different in lxml #    &gt;&gt;&gt; print(ElementTree.tostring(element, "ascii")) #    &lt;?xml version='1.0' encoding='ascii'?&gt; #    &lt;html&gt;&lt;body&gt;text&lt;/body&gt;&lt;/html&gt;</p>
 <pre class="py-doctest">
 <span class="py-prompt">&gt;&gt;&gt; </span>_, ids = ElementTree.XMLID(<span class="py-string">"&lt;html&gt;&lt;body&gt;text&lt;/body&gt;&lt;/html&gt;"</span>)
 <span class="py-prompt">&gt;&gt;&gt; </span><span class="py-builtin">len</span>(ids)
@@ -1615,8 +1584,7 @@ a warning in 1.3, and the behaviour will be modified in 1.4.</p>
 <span class="py-output">1</span>
 <span class="py-prompt">&gt;&gt;&gt; </span>ids[<span class="py-string">"body"</span>].tag
 <span class="py-output">'body'</span>
-</pre></blockquote>
-</div>
+</pre></div>
   </div>
 </div><div class="basefunction">
   
@@ -1638,50 +1606,7 @@ a warning in 1.3, and the behaviour will be modified in 1.4.</p>
   <div class="docstring functionBody">
     
     
-    <div><blockquote>
-<p>Test QName handling.</p>
-<ol class="rst-arabic simple">
-<li>decorated tags</li>
-</ol>
-<pre class="py-doctest">
-<span class="py-prompt">&gt;&gt;&gt; </span>elem = ElementTree.Element(<span class="py-string">"{uri}tag"</span>)
-<span class="py-prompt">&gt;&gt;&gt; </span>serialize(elem) <span class="py-comment"># 1.1</span>
-<span class="py-output">'&lt;ns0:tag xmlns:ns0="uri"/&gt;'</span>
-<span class="py-prompt">&gt;&gt;&gt; </span>elem = ElementTree.Element(ElementTree.QName(<span class="py-string">"{uri}tag"</span>))
-<span class="py-prompt">&gt;&gt;&gt; </span>serialize(elem) <span class="py-comment"># 1.2</span>
-<span class="py-output">'&lt;ns0:tag xmlns:ns0="uri"/&gt;'</span>
-<span class="py-prompt">&gt;&gt;&gt; </span>elem = ElementTree.Element(ElementTree.QName(<span class="py-string">"uri"</span>, <span class="py-string">"tag"</span>))
-<span class="py-prompt">&gt;&gt;&gt; </span>serialize(elem) <span class="py-comment"># 1.3</span>
-<span class="py-output">'&lt;ns0:tag xmlns:ns0="uri"/&gt;'</span>
-</pre></blockquote>
-<p># ns/attribute order ...</p>
-<p>##     2) decorated attributes</p>
-<p>##     &gt;&gt;&gt; elem.clear()
-##     &gt;&gt;&gt; elem.attrib["{uri}key"] = "value"
-##     &gt;&gt;&gt; serialize(elem) # 2.1
-##     '&lt;ns0:tag ns0:key="value" xmlns:ns0="uri"/&gt;'</p>
-<p>##     &gt;&gt;&gt; elem.clear()
-##     &gt;&gt;&gt; elem.attrib[ElementTree.QName("{uri}key")] = "value"
-##     &gt;&gt;&gt; serialize(elem) # 2.2
-##     '&lt;ns0:tag ns0:key="value" xmlns:ns0="uri"/&gt;'</p>
-<p>##     3) decorated values are not converted by default, but the
-##        QName wrapper can be used for values</p>
-<p>##     &gt;&gt;&gt; elem.clear()
-##     &gt;&gt;&gt; elem.attrib["{uri}key"] = "{uri}value"
-##     &gt;&gt;&gt; serialize(elem) # 3.1
-##     '&lt;ns0:tag ns0:key="{uri}value" xmlns:ns0="uri"/&gt;'</p>
-<p>##     &gt;&gt;&gt; elem.clear()
-##     &gt;&gt;&gt; elem.attrib["{uri}key"] = ElementTree.QName("{uri}value")
-##     &gt;&gt;&gt; serialize(elem) # 3.2
-##     '&lt;ns0:tag ns0:key="ns0:value" xmlns:ns0="uri"/&gt;'</p>
-<p>##     &gt;&gt;&gt; elem.clear()
-##     &gt;&gt;&gt; subelem = ElementTree.Element("tag")
-##     &gt;&gt;&gt; subelem.attrib["{uri1}key"] = ElementTree.QName("{uri2}value")
-##     &gt;&gt;&gt; elem.append(subelem)
-##     &gt;&gt;&gt; elem.append(subelem)
-##     &gt;&gt;&gt; serialize(elem) # 3.3
-##     '&lt;ns0:tag xmlns:ns0="uri"&gt;&lt;tag ns1:key="ns2:value" xmlns:ns1="uri1" xmlns:ns2="uri2"/&gt;&lt;tag ns1:key="ns2:value" xmlns:ns1="uri1" xmlns:ns2="uri2"/&gt;&lt;/ns0:tag&gt;'</p>
-</div>
+    <div></div>
   </div>
 </div><div class="basefunction">
   
@@ -1967,8 +1892,7 @@ a warning in 1.3, and the behaviour will be modified in 1.4.</p>
   <div class="docstring functionBody">
     
     
-    <div><blockquote>
-<pre class="py-doctest">
+    <div><pre class="py-doctest">
 <span class="py-prompt">&gt;&gt;&gt; </span>elem = ElementTree.Element(<span class="py-string">"tag"</span>)
 <span class="py-prompt">&gt;&gt;&gt; </span>elem.text = <span class="py-string">"text"</span>
 <span class="py-prompt">&gt;&gt;&gt; </span>serialize(elem)
@@ -1976,11 +1900,7 @@ a warning in 1.3, and the behaviour will be modified in 1.4.</p>
 <span class="py-prompt">&gt;&gt;&gt; </span>ElementTree.SubElement(elem, <span class="py-string">"subtag"</span>).text = <span class="py-string">"subtext"</span>
 <span class="py-prompt">&gt;&gt;&gt; </span>serialize(elem)
 <span class="py-output">'&lt;tag&gt;text&lt;subtag&gt;subtext&lt;/subtag&gt;&lt;/tag&gt;'</span>
-</pre></blockquote>
-<p>##     Test tag suppression
-##     &gt;&gt;&gt; elem.tag = None
-##     &gt;&gt;&gt; serialize(elem)
-##     'text&lt;subtag&gt;subtext&lt;/subtag&gt;'</p>
+</pre><p>##     Test tag suppression ##     &gt;&gt;&gt; elem.tag = None ##     &gt;&gt;&gt; serialize(elem) ##     'text&lt;subtag&gt;subtext&lt;/subtag&gt;'</p>
 </div>
   </div>
 </div><div class="basefunction">
@@ -2032,51 +1952,7 @@ a warning in 1.3, and the behaviour will be modified in 1.4.</p>
   <div class="docstring functionBody">
     
     
-    <div><blockquote>
-<p>Basic inclusion example (XInclude C.1)</p>
-<pre class="py-doctest">
-<span class="py-prompt">&gt;&gt;&gt; </span>document = xinclude_loader(<span class="py-string">"C1.xml"</span>)
-<span class="py-prompt">&gt;&gt;&gt; </span>ElementInclude.include(document, xinclude_loader)
-<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-builtin">print</span>(serialize(document)) <span class="py-comment"># C1</span>
-<span class="py-output">&lt;document&gt;</span>
-<span class="py-output">  &lt;p&gt;120 Mz is adequate for an average home user.&lt;/p&gt;</span>
-<span class="py-output">  &lt;disclaimer&gt;</span>
-<span class="py-output">  &lt;p&gt;The opinions represented herein represent those of the individual</span>
-<span class="py-output">  and should not be interpreted as official policy endorsed by this</span>
-<span class="py-output">  organization.&lt;/p&gt;</span>
-<span class="py-output">&lt;/disclaimer&gt;</span>
-<span class="py-output">&lt;/document&gt;</span>
-</pre><p>Textual inclusion example (XInclude C.2)</p>
-<pre class="py-doctest">
-<span class="py-prompt">&gt;&gt;&gt; </span>document = xinclude_loader(<span class="py-string">"C2.xml"</span>)
-<span class="py-prompt">&gt;&gt;&gt; </span>ElementInclude.include(document, xinclude_loader)
-<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-builtin">print</span>(serialize(document)) <span class="py-comment"># C2</span>
-<span class="py-output">&lt;document&gt;</span>
-<span class="py-output">  &lt;p&gt;This document has been accessed</span>
-<span class="py-output">  324387 times.&lt;/p&gt;</span>
-<span class="py-output">&lt;/document&gt;</span>
-</pre><p>Textual inclusion of XML example (XInclude C.3)</p>
-<pre class="py-doctest">
-<span class="py-prompt">&gt;&gt;&gt; </span>document = xinclude_loader(<span class="py-string">"C3.xml"</span>)
-<span class="py-prompt">&gt;&gt;&gt; </span>ElementInclude.include(document, xinclude_loader)
-<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-builtin">print</span>(serialize(document)) <span class="py-comment"># C3</span>
-<span class="py-output">&lt;document&gt;</span>
-<span class="py-output">  &lt;p&gt;The following is the source of the "data.xml" resource:&lt;/p&gt;</span>
-<span class="py-output">  &lt;example&gt;&amp;lt;?xml version='1.0'?&amp;gt;</span>
-<span class="py-output">&amp;lt;data&amp;gt;</span>
-<span class="py-output">  &amp;lt;item&amp;gt;&amp;lt;![CDATA[Brooks &amp;amp; Shields]]&amp;gt;&amp;lt;/item&amp;gt;</span>
-<span class="py-output">&amp;lt;/data&amp;gt;</span>
-<span class="py-output">&lt;/example&gt;</span>
-<span class="py-output">&lt;/document&gt;</span>
-</pre></blockquote>
-<p>##     Fallback example (XInclude C.5)
-##     Note! Fallback support is not yet implemented</p>
-<p>##     &gt;&gt;&gt; document = xinclude_loader("C5.xml")
-##     &gt;&gt;&gt; ElementInclude.include(document, xinclude_loader)
-##     Traceback (most recent call last):
-##     IOError: resource not found
-##     &gt;&gt;&gt; # print(serialize(document)) # C5</p>
-</div>
+    <div></div>
   </div>
 </div><div class="basefunction">
   
@@ -2345,12 +2221,20 @@ a warning in 1.3, and the behaviour will be modified in 1.4.</p>
     </div>
 
     <footer class="navbar navbar-default">
+
   
   <div class="container">
     <a href="index.html">API Documentation</a> for lxml,
   generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
-    22.2.0 at 2022-02-23 08:15:47.
+    22.3.0.dev0 at 2022-03-22 17:13:43.
   </div>
+
+  <!-- Search related scripts needs to be loaded at the end of HTML 
+    parsing not to introduce overhead and display HTML data asap -->
+  <script src="ajax.js" type="text/javascript"></script>
+  <script src="searchlib.js" type="text/javascript"></script>
+  <script src="search.js" type="text/javascript"></script>
+
 </footer>
 
     <script src="pydoctor.js" type="text/javascript"></script>

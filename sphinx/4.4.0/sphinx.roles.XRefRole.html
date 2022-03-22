@@ -7,11 +7,11 @@
   <head>
     
     <title>sphinx.roles.XRefRole</title>
-    <meta name="generator" content="pydoctor 22.2.0"> 
+    <meta name="generator" content="pydoctor 22.3.0.dev0"> 
         
     </meta>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=0.75" />
+    <meta name="viewport" content="width=device-width, initial-scale=1 maximum-scale=1" />
     <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="apidocs.css" />
     <link rel="stylesheet" type="text/css" href="extra.css" />
@@ -19,12 +19,10 @@
 
   <body>
 
-    <div id="banner" class="container">    
+    <div id="banner">    
     <div>
-        <a href="https://pydocbrowser.github.io/">Home</a>
-        &gt; sphinx-4.4.0 
-        <!-- This is an important placeholder and will be 
-            replaced by project name and version on building docs -->
+        <a href="/">Home</a>
+        &gt; sphinx-4.4.0 <!-- This is a placeholder -->
         
         <!-- (<a href=""&gt;show all versions</a&gt;) -->
     </div>
@@ -37,21 +35,98 @@
     <div class="navbar-header">
       
       <div class="navlinks">
-          <span class="navbar-brand">
-            sphinx <a href="index.html">API Documentation</a>
+        <span class="navbar-brand">
+          sphinx <a href="index.html">API Documentation</a>
+        </span>
+
+        <a href="moduleIndex.html">
+          Modules
+        </a>
+
+        <a href="classIndex.html">
+          Classes
+        </a>
+
+        <a href="nameIndex.html">
+          Names
+        </a>
+
+        <div id="search-box-container">
+          <div class="input-group">
+            <input id="search-box" type="search" name="search-query" placeholder="Search..." aria-label="Search" minlength="2" class="form-control" autocomplete="off" />
+            
+            <span class="input-group-btn">
+              <a style="display: none;" class="btn btn-default" id="search-clear-button" title="Clear" onclick="clearSearch()"><img src="fonts/x-circle.svg" alt="Clear" /></a>
+              <a class="btn btn-default" id="search-help-button" title="Help" onclick="toggleSearchHelpText()"><img src="fonts/info.svg" alt="Help" /></a>
+            </span>
+          </div>
+        </div>
+
+      </div>
+
+      <div id="search-results-container" style="display: none;">
+        
+        <div id="search-buttons">
+          <span class="label label-default" id="search-docstrings-button">
+          <label class="checkbox-inline">
+            <input type="checkbox" id="toggle-search-in-docstrings-checkbox" value="false" onclick="toggleSearchInDocstrings()">
+              search in docstrings
+            </input>
+          </label>
           </span>
+          
+        </div>
+        
+        <noscript>
+            <h1>Cannot search: JavaScript is not supported/enabled in your browser.</h1>
+        </noscript>
 
-          <a href="moduleIndex.html">
-            Modules
-          </a>
+        <div class="hint" id="search-help-box">
+          <p class="rst-last">
+      
+            Search bar offers the following options:
+            <ul>   
+                <li>
+                  <strong>Term presence.</strong> The below example searches for documents that 
+                    must contain “foo”, might contain “bar” and must not contain “baz”: <code>+foo bar -baz</code>
+                </li> 
 
-          <a href="classIndex.html">
-            Classes
-          </a>
+                <li>
+                  <strong>Wildcards.</strong> The below example searches for documents with words beginning with “foo”: <code>foo*</code>
+                </li> 
 
-          <a href="nameIndex.html">
-            Names
-          </a>
+                <li>
+                  <strong>Search in specific fields.</strong> The following search matches all objects 
+                  in "twisted.mail" that matches “search”: <code>+qname:twisted.mail.* +search</code>
+
+                  <p>
+                    Possible fields: 'name', 'qname' (fully qualified name), 'docstring', and 'kind'.
+                    Last two fields are only applicable if "search in docstrings" is enabled.
+                  </p>
+                </li>
+
+                <li>
+                  <strong>Fuzzy matches.</strong> The following search matches all documents 
+                  that have a word within 1 edit distance of “foo”: <code>foo~1</code>
+                </li>
+            </ul>
+
+          </p>
+        </div>
+
+        <div id="search-status"> </div>
+
+        <div class="warning" id="search-warn-box" style="display: none;">
+          <p class="rst-last"><span id="search-warn"></span></p>
+        </div>
+
+        <table id="search-results">
+          <!-- Filled dynamically by JS -->
+        </table>
+        
+        <div style="margin-top: 8px;">
+          <p>Results provided by <a href="https://lunrjs.com">Lunr.js</a></p>
+        </div>
       </div>
 
     </div>
@@ -79,36 +154,11 @@
       </div>
 
       <div class="moduleDocstring">
-        <div><p>A generic cross-referencing role.  To create a callable that can be used as
-a role function, create an instance of this class.</p>
-<p>The general features of this role are:</p>
-<ul class="rst-simple">
-<li>Automatic creation of a reference and a content node.</li>
-<li>Optional separation of title and target with <code>title</code>.</li>
-<li>The implementation is a class rather than a function to make
-customization easier.</li>
-</ul>
-<p>Customization can be done in two ways:</p>
-<ul>
-<li><p class="rst-first">Supplying constructor parameters:
-* <code><a href="#fix_parens" class="internal-link" title="sphinx.roles.XRefRole.fix_parens">fix_parens</a></code> to normalize parentheses (strip from target, and add to</p>
-<blockquote>
-<p>title if configured)</p>
-</blockquote>
-<ul class="rst-simple">
-<li><code><a href="#lowercase" class="internal-link" title="sphinx.roles.XRefRole.lowercase">lowercase</a></code> to lowercase the target</li>
-<li><code><a href="#nodeclass" class="internal-link" title="sphinx.roles.XRefRole.nodeclass">nodeclass</a></code> and <code><a href="#innernodeclass" class="internal-link" title="sphinx.roles.XRefRole.innernodeclass">innernodeclass</a></code> select the node classes for
-the reference and the content node</li>
-</ul>
-</li>
-<li><p class="rst-first">Subclassing and overwriting <code><a href="#process_link" class="internal-link" title="sphinx.roles.XRefRole.process_link">process_link()</a></code> and/or <code><a href="#result_nodes" class="internal-link" title="sphinx.roles.XRefRole.result_nodes">result_nodes()</a></code>.</p>
-</li>
-</ul>
-</div>
+        <div></div>
       </div>
 
       <div id="splitTables">
-        <table class="children sortable" id="id17760">
+        <table class="children sortable" id="id21796">
   
   
   <tr class="method">
@@ -197,7 +247,7 @@ the reference and the content node</li>
           <p class="inheritedFrom">
             Inherited from <code><a href="sphinx.util.docutils.ReferenceRole.html" class="internal-link" title="sphinx.util.docutils.ReferenceRole">ReferenceRole</a></code>:
           </p>
-          <table class="children sortable" id="id17761">
+          <table class="children sortable" id="id21797">
   
   
   <tr class="basemethod">
@@ -231,7 +281,7 @@ the reference and the content node</li>
           <p class="inheritedFrom">
             Inherited from <code><a href="sphinx.util.docutils.SphinxRole.html" class="internal-link" title="sphinx.util.docutils.SphinxRole">SphinxRole</a></code> (via <code><a href="sphinx.util.docutils.ReferenceRole.html" class="internal-link" title="sphinx.util.docutils.ReferenceRole">ReferenceRole</a></code>):
           </p>
-          <table class="children sortable" id="id17762">
+          <table class="children sortable" id="id21798">
   
   
   <tr class="basemethod">
@@ -288,12 +338,12 @@ the reference and the content node</li>
     
     <td>Property</td>
     <td><code><a href="sphinx.util.docutils.SphinxRole.html#config" class="internal-link" title="sphinx.util.docutils.SphinxRole.config">config</a></code></td>
-    <td>Reference to the <code>.Config</code> object.</td>
+    <td>Reference to the :class:`.Config` object.</td>
   </tr><tr class="baseproperty">
     
     <td>Property</td>
     <td><code><a href="sphinx.util.docutils.SphinxRole.html#env" class="internal-link" title="sphinx.util.docutils.SphinxRole.env">env</a></code></td>
-    <td>Reference to the <code>.BuildEnvironment</code> object.</td>
+    <td>Reference to the :class:`.BuildEnvironment` object.</td>
   </tr>
 </table>
           
@@ -323,7 +373,7 @@ the reference and the content node</li>
   <div class="docstring functionBody">
     
     
-    <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">fix​_parens:</span><code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">lowercase:</span><code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">nodeclass:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Type" class="intersphinx-link">Type</a>[<wbr></wbr>Element]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">innernodeclass:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Type" class="intersphinx-link">Type</a>[<wbr></wbr>TextElement]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">warn​_dangling:</span><code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+    <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">fix​_parens:</span><code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">lowercase:</span><code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">nodeclass:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Type" class="intersphinx-link">Type</a>[<wbr></wbr><a href="https://pydocbrowser.github.io/docutils/latest/docutils.nodes.Element.html" class="intersphinx-link">Element</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">innernodeclass:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Type" class="intersphinx-link">Type</a>[<wbr></wbr><a href="https://pydocbrowser.github.io/docutils/latest/docutils.nodes.TextElement.html" class="intersphinx-link">TextElement</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">warn​_dangling:</span><code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basemethod">
   
@@ -345,7 +395,7 @@ the reference and the content node</li>
   <div class="docstring functionBody">
     
     
-    <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Tuple" class="intersphinx-link">Tuple</a>[<wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.List" class="intersphinx-link">List</a>[<wbr></wbr>Node], <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.List" class="intersphinx-link">List</a>[<wbr></wbr>system_message]]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+    <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Tuple" class="intersphinx-link">Tuple</a>[<wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.List" class="intersphinx-link">List</a>[<wbr></wbr><a href="https://pydocbrowser.github.io/docutils/latest/docutils.nodes.Node.html" class="intersphinx-link">Node</a>], <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.List" class="intersphinx-link">List</a>[<wbr></wbr><a href="https://pydocbrowser.github.io/docutils/latest/docutils.nodes.system_message.html" class="intersphinx-link">system_message</a>]]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basemethod">
   
@@ -367,7 +417,7 @@ the reference and the content node</li>
   <div class="docstring functionBody">
     
     
-    <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Tuple" class="intersphinx-link">Tuple</a>[<wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.List" class="intersphinx-link">List</a>[<wbr></wbr>Node], <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.List" class="intersphinx-link">List</a>[<wbr></wbr>system_message]]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+    <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Tuple" class="intersphinx-link">Tuple</a>[<wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.List" class="intersphinx-link">List</a>[<wbr></wbr><a href="https://pydocbrowser.github.io/docutils/latest/docutils.nodes.Node.html" class="intersphinx-link">Node</a>], <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.List" class="intersphinx-link">List</a>[<wbr></wbr><a href="https://pydocbrowser.github.io/docutils/latest/docutils.nodes.system_message.html" class="intersphinx-link">system_message</a>]]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basemethod">
   
@@ -389,10 +439,7 @@ the reference and the content node</li>
   <div class="docstring functionBody">
     <div class="interfaceinfo">overridden in <code><a href="sphinx.domains.c.CXRefRole.html" class="internal-link">sphinx.domains.c.CXRefRole</a></code>, <code><a href="sphinx.domains.cpp.CPPXRefRole.html" class="internal-link">sphinx.domains.cpp.CPPXRefRole</a></code>, <code><a href="sphinx.domains.javascript.JSXRefRole.html" class="internal-link">sphinx.domains.javascript.JSXRefRole</a></code>, <code><a href="sphinx.domains.python.PyXRefRole.html" class="internal-link">sphinx.domains.python.PyXRefRole</a></code>, <code><a href="sphinx.domains.std.OptionXRefRole.html" class="internal-link">sphinx.domains.std.OptionXRefRole</a></code>, <code><a href="sphinx.domains.std.TokenXRefRole.html" class="internal-link">sphinx.domains.std.TokenXRefRole</a></code>, <code><a href="sphinx.roles.AnyXRefRole.html" class="internal-link">sphinx.roles.AnyXRefRole</a></code></div>
     
-    <div>Called after parsing title and target text, and creating the
-reference node (given in <em>refnode</em>).  This method can alter the
-reference node and must return a new (or the same) <tt class="rst-docutils literal">(title, target)</tt>
-tuple.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">env:</span><code><a href="sphinx.environment.BuildEnvironment.html" class="internal-link" title="sphinx.environment.BuildEnvironment">BuildEnvironment</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">refnode:</span><code>Element</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">has​_explicit​_title:</span><code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">title:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">target:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Tuple" class="intersphinx-link">Tuple</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>, <wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+    <div>Called after parsing title and target text, and creating the reference node (given in *refnode*).  This method can alter the reference node and must return a new (or the same) ``(title, target)`` tuple.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">env:</span><code><a href="sphinx.environment.BuildEnvironment.html" class="internal-link" title="sphinx.environment.BuildEnvironment">BuildEnvironment</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">refnode:</span><code><a href="https://pydocbrowser.github.io/docutils/latest/docutils.nodes.Element.html" class="intersphinx-link">Element</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">has​_explicit​_title:</span><code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">title:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">target:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Tuple" class="intersphinx-link">Tuple</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>, <wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basemethod">
   
@@ -414,10 +461,7 @@ tuple.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" col
   <div class="docstring functionBody">
     <div class="interfaceinfo">overridden in <code><a href="sphinx.domains.math.MathReferenceRole.html" class="internal-link">sphinx.domains.math.MathReferenceRole</a></code>, <code><a href="sphinx.domains.std.EnvVarXRefRole.html" class="internal-link">sphinx.domains.std.EnvVarXRefRole</a></code></div>
     
-    <div>Called before returning the finished nodes.  <em>node</em> is the reference
-node if one was created (<em>is_ref</em> is then true), else the content node.
-This method can add other nodes and must return a <tt class="rst-docutils literal">(nodes, messages)</tt>
-tuple (the usual return value of a role function).<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">document:</span><code>nodes.document</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">env:</span><code><a href="sphinx.environment.BuildEnvironment.html" class="internal-link" title="sphinx.environment.BuildEnvironment">BuildEnvironment</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">node:</span><code>Element</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">is​_ref:</span><code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Tuple" class="intersphinx-link">Tuple</a>[<wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.List" class="intersphinx-link">List</a>[<wbr></wbr>Node], <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.List" class="intersphinx-link">List</a>[<wbr></wbr>system_message]]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+    <div>Called before returning the finished nodes.  *node* is the reference node if one was created (*is_ref* is then true), else the content node. This method can add other nodes and must return a ``(nodes, messages)`` tuple (the usual return value of a role function).<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">document:</span><code><a href="https://pydocbrowser.github.io/docutils/latest/docutils.nodes.document.html" class="intersphinx-link">nodes.document</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">env:</span><code><a href="sphinx.environment.BuildEnvironment.html" class="internal-link" title="sphinx.environment.BuildEnvironment">BuildEnvironment</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">node:</span><code><a href="https://pydocbrowser.github.io/docutils/latest/docutils.nodes.Element.html" class="intersphinx-link">Element</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">is​_ref:</span><code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Tuple" class="intersphinx-link">Tuple</a>[<wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.List" class="intersphinx-link">List</a>[<wbr></wbr><a href="https://pydocbrowser.github.io/docutils/latest/docutils.nodes.Node.html" class="intersphinx-link">Node</a>], <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.List" class="intersphinx-link">List</a>[<wbr></wbr><a href="https://pydocbrowser.github.io/docutils/latest/docutils.nodes.system_message.html" class="intersphinx-link">system_message</a>]]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basemethod">
   
@@ -439,7 +483,7 @@ tuple (the usual return value of a role function).<table class="fieldTable"><tr 
   <div class="docstring functionBody">
     <div class="interfaceinfo">overrides <code><a href="sphinx.util.docutils.SphinxRole.html#run" class="internal-link">sphinx.util.docutils.SphinxRole.run</a></code></div><div class="interfaceinfo">overridden in <code><a href="sphinx.domains.c.CXRefRole.html" class="internal-link">sphinx.domains.c.CXRefRole</a></code></div>
     
-    <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Tuple" class="intersphinx-link">Tuple</a>[<wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.List" class="intersphinx-link">List</a>[<wbr></wbr>Node], <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.List" class="intersphinx-link">List</a>[<wbr></wbr>system_message]]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+    <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Tuple" class="intersphinx-link">Tuple</a>[<wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.List" class="intersphinx-link">List</a>[<wbr></wbr><a href="https://pydocbrowser.github.io/docutils/latest/docutils.nodes.Node.html" class="intersphinx-link">Node</a>], <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.List" class="intersphinx-link">List</a>[<wbr></wbr><a href="https://pydocbrowser.github.io/docutils/latest/docutils.nodes.system_message.html" class="intersphinx-link">system_message</a>]]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basemethod">
   
@@ -676,12 +720,20 @@ tuple (the usual return value of a role function).<table class="fieldTable"><tr 
     </div>
 
     <footer class="navbar navbar-default">
+
   
   <div class="container">
     <a href="index.html">API Documentation</a> for sphinx,
   generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
-    22.2.0 at 2022-02-23 08:21:17.
+    22.3.0.dev0 at 2022-03-22 17:25:47.
   </div>
+
+  <!-- Search related scripts needs to be loaded at the end of HTML 
+    parsing not to introduce overhead and display HTML data asap -->
+  <script src="ajax.js" type="text/javascript"></script>
+  <script src="searchlib.js" type="text/javascript"></script>
+  <script src="search.js" type="text/javascript"></script>
+
 </footer>
 
     <script src="pydoctor.js" type="text/javascript"></script>

@@ -7,11 +7,11 @@
   <head>
     
     <title>jinja2.loaders.PackageLoader</title>
-    <meta name="generator" content="pydoctor 22.2.0"> 
+    <meta name="generator" content="pydoctor 22.3.0.dev0"> 
         
     </meta>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=0.75" />
+    <meta name="viewport" content="width=device-width, initial-scale=1 maximum-scale=1" />
     <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="apidocs.css" />
     <link rel="stylesheet" type="text/css" href="extra.css" />
@@ -19,12 +19,10 @@
 
   <body>
 
-    <div id="banner" class="container">    
+    <div id="banner">    
     <div>
-        <a href="https://pydocbrowser.github.io/">Home</a>
-        &gt; jinja2-3.0.3 
-        <!-- This is an important placeholder and will be 
-            replaced by project name and version on building docs -->
+        <a href="/">Home</a>
+        &gt; jinja2-3.0.3 <!-- This is a placeholder -->
         
         <!-- (<a href=""&gt;show all versions</a&gt;) -->
     </div>
@@ -37,21 +35,98 @@
     <div class="navbar-header">
       
       <div class="navlinks">
-          <span class="navbar-brand">
-            jinja2 <a href="index.html">API Documentation</a>
+        <span class="navbar-brand">
+          jinja2 <a href="index.html">API Documentation</a>
+        </span>
+
+        <a href="moduleIndex.html">
+          Modules
+        </a>
+
+        <a href="classIndex.html">
+          Classes
+        </a>
+
+        <a href="nameIndex.html">
+          Names
+        </a>
+
+        <div id="search-box-container">
+          <div class="input-group">
+            <input id="search-box" type="search" name="search-query" placeholder="Search..." aria-label="Search" minlength="2" class="form-control" autocomplete="off" />
+            
+            <span class="input-group-btn">
+              <a style="display: none;" class="btn btn-default" id="search-clear-button" title="Clear" onclick="clearSearch()"><img src="fonts/x-circle.svg" alt="Clear" /></a>
+              <a class="btn btn-default" id="search-help-button" title="Help" onclick="toggleSearchHelpText()"><img src="fonts/info.svg" alt="Help" /></a>
+            </span>
+          </div>
+        </div>
+
+      </div>
+
+      <div id="search-results-container" style="display: none;">
+        
+        <div id="search-buttons">
+          <span class="label label-default" id="search-docstrings-button">
+          <label class="checkbox-inline">
+            <input type="checkbox" id="toggle-search-in-docstrings-checkbox" value="false" onclick="toggleSearchInDocstrings()">
+              search in docstrings
+            </input>
+          </label>
           </span>
+          
+        </div>
+        
+        <noscript>
+            <h1>Cannot search: JavaScript is not supported/enabled in your browser.</h1>
+        </noscript>
 
-          <a href="moduleIndex.html">
-            Modules
-          </a>
+        <div class="hint" id="search-help-box">
+          <p class="rst-last">
+      
+            Search bar offers the following options:
+            <ul>   
+                <li>
+                  <strong>Term presence.</strong> The below example searches for documents that 
+                    must contain “foo”, might contain “bar” and must not contain “baz”: <code>+foo bar -baz</code>
+                </li> 
 
-          <a href="classIndex.html">
-            Classes
-          </a>
+                <li>
+                  <strong>Wildcards.</strong> The below example searches for documents with words beginning with “foo”: <code>foo*</code>
+                </li> 
 
-          <a href="nameIndex.html">
-            Names
-          </a>
+                <li>
+                  <strong>Search in specific fields.</strong> The following search matches all objects 
+                  in "twisted.mail" that matches “search”: <code>+qname:twisted.mail.* +search</code>
+
+                  <p>
+                    Possible fields: 'name', 'qname' (fully qualified name), 'docstring', and 'kind'.
+                    Last two fields are only applicable if "search in docstrings" is enabled.
+                  </p>
+                </li>
+
+                <li>
+                  <strong>Fuzzy matches.</strong> The following search matches all documents 
+                  that have a word within 1 edit distance of “foo”: <code>foo~1</code>
+                </li>
+            </ul>
+
+          </p>
+        </div>
+
+        <div id="search-status"> </div>
+
+        <div class="warning" id="search-warn-box" style="display: none;">
+          <p class="rst-last"><span id="search-warn"></span></p>
+        </div>
+
+        <table id="search-results">
+          <!-- Filled dynamically by JS -->
+        </table>
+        
+        <div style="margin-top: 8px;">
+          <p>Results provided by <a href="https://lunrjs.com">Lunr.js</a></p>
+        </div>
       </div>
 
     </div>
@@ -79,31 +154,11 @@
       </div>
 
       <div class="moduleDocstring">
-        <div><p>Load templates from a directory in a Python package.</p>
-<p>The following example looks up templates in the <tt class="rst-docutils literal">pages</tt> directory
-within the <tt class="rst-docutils literal">project.ui</tt> package.</p>
-<pre class="rst-code rst-python rst-literal-block">
-loader = PackageLoader("project.ui", "pages")
-</pre>
-<p>Only packages installed as directories (standard pip behavior) or
-zip/egg files (less common) are supported. The Python API for
-introspecting data in packages is too limited to support other
-installation methods the way this loader requires.</p>
-<p>There is limited support for <a class="rst-reference external" href="http://www.python.org/dev/peps/pep-0420" target="_top">PEP 420</a> namespace packages. The
-template directory is assumed to only be in one namespace
-contributor. Zip files contributing to a namespace are not
-supported.</p>
-<div class="rst-versionchanged">
-<span class="rst-versionmodified rst-changed">Changed in version 3.0: </span><span>No longer uses <tt class="rst-docutils literal">setuptools</tt> as a dependency.</span></div>
-<div class="rst-versionchanged">
-<span class="rst-versionmodified rst-changed">Changed in version 3.0: </span><span>Limited PEP 420 namespace package support.</span></div>
-<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">package​_name</span></td><td class="fieldArgDesc">Import name of the package that contains the
-template directory.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">package​_path</span></td><td class="fieldArgDesc">Directory within the imported package that
-contains the templates.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">encoding</span></td><td class="fieldArgDesc">Encoding of template files.</td></tr></table></div>
+        <div></div>
       </div>
 
       <div id="splitTables">
-        <table class="children sortable" id="id10659">
+        <table class="children sortable" id="id10631">
   
   
   <tr class="method">
@@ -120,7 +175,7 @@ contains the templates.</td></tr><tr><td class="fieldArgContainer"><span class="
     
     <td>Method</td>
     <td><code><a href="#list_templates" class="internal-link" title="jinja2.loaders.PackageLoader.list_templates">list​_templates</a></code></td>
-    <td>Iterates over all templates.  If the loader does not support that it should raise a <code><a href="https://docs.python.org/3/library/exceptions.html#TypeError" class="intersphinx-link">TypeError</a></code> which is the default behavior.</td>
+    <td>Iterates over all templates.  If the loader does not support that it should raise a :exc:`TypeError` which is the default behavior.</td>
   </tr><tr class="instancevariable">
     
     <td>Instance Variable</td>
@@ -139,17 +194,17 @@ contains the templates.</td></tr><tr><td class="fieldArgContainer"><span class="
   </tr><tr class="instancevariable private">
     
     <td>Instance Variable</td>
-    <td><code><a href="#_archive" class="internal-link" title="jinja2.loaders.PackageLoader._archive">​_archive</a></code></td>
+    <td><code><a href="#_archive" class="internal-link" title="jinja2.loaders.PackageLoader._archive">_archive</a></code></td>
     <td><span class="undocumented">Undocumented</span></td>
   </tr><tr class="instancevariable private">
     
     <td>Instance Variable</td>
-    <td><code><a href="#_loader" class="internal-link" title="jinja2.loaders.PackageLoader._loader">​_loader</a></code></td>
+    <td><code><a href="#_loader" class="internal-link" title="jinja2.loaders.PackageLoader._loader">_loader</a></code></td>
     <td><span class="undocumented">Undocumented</span></td>
   </tr><tr class="instancevariable private">
     
     <td>Instance Variable</td>
-    <td><code><a href="#_template_root" class="internal-link" title="jinja2.loaders.PackageLoader._template_root">​_template​_root</a></code></td>
+    <td><code><a href="#_template_root" class="internal-link" title="jinja2.loaders.PackageLoader._template_root">_template​_root</a></code></td>
     <td><span class="undocumented">Undocumented</span></td>
   </tr>
 </table>
@@ -157,7 +212,7 @@ contains the templates.</td></tr><tr><td class="fieldArgContainer"><span class="
           <p class="inheritedFrom">
             Inherited from <code><a href="jinja2.loaders.BaseLoader.html" class="internal-link" title="jinja2.loaders.BaseLoader">BaseLoader</a></code>:
           </p>
-          <table class="children sortable" id="id10660">
+          <table class="children sortable" id="id10632">
   
   
   <tr class="basemethod">
@@ -221,20 +276,9 @@ contains the templates.</td></tr><tr><td class="fieldArgContainer"><span class="
   <div class="docstring functionBody">
     <div class="interfaceinfo">overrides <code><a href="jinja2.loaders.BaseLoader.html#get_source" class="internal-link">jinja2.loaders.BaseLoader.get_source</a></code></div>
     
-    <div><p>Get the template source, filename and reload helper for a template.
-It's passed the environment and template name and has to return a
-tuple in the form <tt class="rst-docutils literal">(source, filename, uptodate)</tt> or raise a
-<code><a href="jinja2.exceptions.TemplateNotFound.html" class="internal-link" title="jinja2.exceptions.TemplateNotFound">TemplateNotFound</a></code> error if it can't locate the template.</p>
-<p>The source part of the returned tuple must be the source of the
-template as a string. The filename should be the name of the
-file on the filesystem if it was loaded from there, otherwise
-<tt class="rst-docutils literal">None</tt>. The filename is used by Python for the tracebacks
-if no loader extension is used.</p>
-<p>The last item in the tuple is the <code>uptodate</code> function.  If auto
-reloading is enabled it's always called to check if the template
-changed.  No arguments are passed so the function must store the
-old state somewhere (for example in a closure).  If it returns <code><a href="https://docs.python.org/3/library/constants.html#False" class="intersphinx-link">False</a></code>
-the template will be reloaded.</p>
+    <div><p>Get the template source, filename and reload helper for a template. It's passed the environment and template name and has to return a tuple in the form ``(source, filename, uptodate)`` or raise a `TemplateNotFound` error if it can't locate the template.</p>
+<p>The source part of the returned tuple must be the source of the template as a string. The filename should be the name of the file on the filesystem if it was loaded from there, otherwise ``None``. The filename is used by Python for the tracebacks if no loader extension is used.</p>
+<p>The last item in the tuple is the `uptodate` function.  If auto reloading is enabled it's always called to check if the template changed.  No arguments are passed so the function must store the old state somewhere (for example in a closure).  If it returns `False` the template will be reloaded.</p>
 <table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">environment:</span><code><a href="jinja2.environment.Environment.html" class="internal-link" title="jinja2.environment.Environment">Environment</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">template:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Tuple" class="intersphinx-link">t.Tuple</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>, <wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>, <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">t.Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Callable" class="intersphinx-link">t.Callable</a>[<wbr></wbr>[], <wbr></wbr><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a>]]]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basemethod">
@@ -257,8 +301,7 @@ the template will be reloaded.</p>
   <div class="docstring functionBody">
     <div class="interfaceinfo">overrides <code><a href="jinja2.loaders.BaseLoader.html#list_templates" class="internal-link">jinja2.loaders.BaseLoader.list_templates</a></code></div>
     
-    <div>Iterates over all templates.  If the loader does not support that
-it should raise a <code><a href="https://docs.python.org/3/library/exceptions.html#TypeError" class="intersphinx-link">TypeError</a></code> which is the default behavior.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.List" class="intersphinx-link">t.List</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+    <div>Iterates over all templates.  If the loader does not support that it should raise a :exc:`TypeError` which is the default behavior.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.List" class="intersphinx-link">t.List</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="baseinstancevariable">
   
@@ -404,12 +447,20 @@ it should raise a <code><a href="https://docs.python.org/3/library/exceptions.ht
     </div>
 
     <footer class="navbar navbar-default">
+
   
   <div class="container">
     <a href="index.html">API Documentation</a> for jinja2,
   generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
-    22.2.0 at 2022-02-23 08:15:20.
+    22.3.0.dev0 at 2022-03-22 17:12:24.
   </div>
+
+  <!-- Search related scripts needs to be loaded at the end of HTML 
+    parsing not to introduce overhead and display HTML data asap -->
+  <script src="ajax.js" type="text/javascript"></script>
+  <script src="searchlib.js" type="text/javascript"></script>
+  <script src="search.js" type="text/javascript"></script>
+
 </footer>
 
     <script src="pydoctor.js" type="text/javascript"></script>

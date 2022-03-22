@@ -7,11 +7,11 @@
   <head>
     
     <title>sphinx.util.inspect</title>
-    <meta name="generator" content="pydoctor 22.2.0"> 
+    <meta name="generator" content="pydoctor 22.3.0.dev0"> 
         
     </meta>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=0.75" />
+    <meta name="viewport" content="width=device-width, initial-scale=1 maximum-scale=1" />
     <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="apidocs.css" />
     <link rel="stylesheet" type="text/css" href="extra.css" />
@@ -19,12 +19,10 @@
 
   <body>
 
-    <div id="banner" class="container">    
+    <div id="banner">    
     <div>
-        <a href="https://pydocbrowser.github.io/">Home</a>
-        &gt; sphinx-4.4.0 
-        <!-- This is an important placeholder and will be 
-            replaced by project name and version on building docs -->
+        <a href="/">Home</a>
+        &gt; sphinx-4.4.0 <!-- This is a placeholder -->
         
         <!-- (<a href=""&gt;show all versions</a&gt;) -->
     </div>
@@ -37,21 +35,98 @@
     <div class="navbar-header">
       
       <div class="navlinks">
-          <span class="navbar-brand">
-            sphinx <a href="index.html">API Documentation</a>
+        <span class="navbar-brand">
+          sphinx <a href="index.html">API Documentation</a>
+        </span>
+
+        <a href="moduleIndex.html">
+          Modules
+        </a>
+
+        <a href="classIndex.html">
+          Classes
+        </a>
+
+        <a href="nameIndex.html">
+          Names
+        </a>
+
+        <div id="search-box-container">
+          <div class="input-group">
+            <input id="search-box" type="search" name="search-query" placeholder="Search..." aria-label="Search" minlength="2" class="form-control" autocomplete="off" />
+            
+            <span class="input-group-btn">
+              <a style="display: none;" class="btn btn-default" id="search-clear-button" title="Clear" onclick="clearSearch()"><img src="fonts/x-circle.svg" alt="Clear" /></a>
+              <a class="btn btn-default" id="search-help-button" title="Help" onclick="toggleSearchHelpText()"><img src="fonts/info.svg" alt="Help" /></a>
+            </span>
+          </div>
+        </div>
+
+      </div>
+
+      <div id="search-results-container" style="display: none;">
+        
+        <div id="search-buttons">
+          <span class="label label-default" id="search-docstrings-button">
+          <label class="checkbox-inline">
+            <input type="checkbox" id="toggle-search-in-docstrings-checkbox" value="false" onclick="toggleSearchInDocstrings()">
+              search in docstrings
+            </input>
+          </label>
           </span>
+          
+        </div>
+        
+        <noscript>
+            <h1>Cannot search: JavaScript is not supported/enabled in your browser.</h1>
+        </noscript>
 
-          <a href="moduleIndex.html">
-            Modules
-          </a>
+        <div class="hint" id="search-help-box">
+          <p class="rst-last">
+      
+            Search bar offers the following options:
+            <ul>   
+                <li>
+                  <strong>Term presence.</strong> The below example searches for documents that 
+                    must contain “foo”, might contain “bar” and must not contain “baz”: <code>+foo bar -baz</code>
+                </li> 
 
-          <a href="classIndex.html">
-            Classes
-          </a>
+                <li>
+                  <strong>Wildcards.</strong> The below example searches for documents with words beginning with “foo”: <code>foo*</code>
+                </li> 
 
-          <a href="nameIndex.html">
-            Names
-          </a>
+                <li>
+                  <strong>Search in specific fields.</strong> The following search matches all objects 
+                  in "twisted.mail" that matches “search”: <code>+qname:twisted.mail.* +search</code>
+
+                  <p>
+                    Possible fields: 'name', 'qname' (fully qualified name), 'docstring', and 'kind'.
+                    Last two fields are only applicable if "search in docstrings" is enabled.
+                  </p>
+                </li>
+
+                <li>
+                  <strong>Fuzzy matches.</strong> The following search matches all documents 
+                  that have a word within 1 edit distance of “foo”: <code>foo~1</code>
+                </li>
+            </ul>
+
+          </p>
+        </div>
+
+        <div id="search-status"> </div>
+
+        <div class="warning" id="search-warn-box" style="display: none;">
+          <p class="rst-last"><span id="search-warn"></span></p>
+        </div>
+
+        <table id="search-results">
+          <!-- Filled dynamically by JS -->
+        </table>
+        
+        <div style="margin-top: 8px;">
+          <p>Results provided by <a href="https://lunrjs.com">Lunr.js</a></p>
+        </div>
       </div>
 
     </div>
@@ -79,12 +154,11 @@
       </div>
 
       <div class="moduleDocstring">
-        <div><p>Helpers for inspecting Python modules.</p>
-<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Unknown Field: copyright</td></tr><tr><td colspan="2">Copyright 2007-2022 by the Sphinx team, see AUTHORS.</td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Unknown Field: license</td></tr><tr><td colspan="2">BSD, see LICENSE for details.</td></tr></table></div>
+        <div></div>
       </div>
 
       <div id="splitTables">
-        <table class="children sortable" id="id18004">
+        <table class="children sortable" id="id22040">
   
   
   <tr class="class">
@@ -121,7 +195,7 @@
     
     <td>Function</td>
     <td><code><a href="#getannotations" class="internal-link" title="sphinx.util.inspect.getannotations">getannotations</a></code></td>
-    <td>Get __annotations__ from given <em>obj</em> safely.</td>
+    <td>Get __annotations__ from given *obj* safely.</td>
   </tr><tr class="function">
     
     <td>Function</td>
@@ -136,17 +210,17 @@
     
     <td>Function</td>
     <td><code><a href="#getglobals" class="internal-link" title="sphinx.util.inspect.getglobals">getglobals</a></code></td>
-    <td>Get __globals__ from given <em>obj</em> safely.</td>
+    <td>Get __globals__ from given *obj* safely.</td>
   </tr><tr class="function">
     
     <td>Function</td>
     <td><code><a href="#getmro" class="internal-link" title="sphinx.util.inspect.getmro">getmro</a></code></td>
-    <td>Get __mro__ from given <em>obj</em> safely.</td>
+    <td>Get __mro__ from given *obj* safely.</td>
   </tr><tr class="function">
     
     <td>Function</td>
     <td><code><a href="#getorigbases" class="internal-link" title="sphinx.util.inspect.getorigbases">getorigbases</a></code></td>
-    <td>Get __orig_bases__ from <em>obj</em> safely.</td>
+    <td>Get __orig_bases__ from *obj* safely.</td>
   </tr><tr class="function">
     
     <td>Function</td>
@@ -266,12 +340,12 @@
     
     <td>Function</td>
     <td><code><a href="#signature" class="internal-link" title="sphinx.util.inspect.signature">signature</a></code></td>
-    <td>Return a Signature object for the given <em>subject</em>.</td>
+    <td>Return a Signature object for the given *subject*.</td>
   </tr><tr class="function">
     
     <td>Function</td>
     <td><code><a href="#signature_from_ast" class="internal-link" title="sphinx.util.inspect.signature_from_ast">signature​_from​_ast</a></code></td>
-    <td>Create a Signature object from AST <em>node</em>.</td>
+    <td>Create a Signature object from AST *node*.</td>
   </tr><tr class="function">
     
     <td>Function</td>
@@ -310,7 +384,7 @@
   </tr><tr class="function private">
     
     <td>Function</td>
-    <td><code><a href="#_should_unwrap" class="internal-link" title="sphinx.util.inspect._should_unwrap">​_should​_unwrap</a></code></td>
+    <td><code><a href="#_should_unwrap" class="internal-link" title="sphinx.util.inspect._should_unwrap">_should​_unwrap</a></code></td>
     <td>Check the function should be unwrapped on getting signature.</td>
   </tr>
 </table>
@@ -364,8 +438,7 @@
     
     
     <div><p>Get __all__ attribute of the module as dict.</p>
-<p>Return None if given <em>obj</em> does not have __all__.
-Raises ValueError if given <em>obj</em> have invalid __all__.</p>
+<p>Return None if given *obj* does not have __all__. Raises ValueError if given *obj* have invalid __all__.</p>
 <table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">obj:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">Any</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Sequence" class="intersphinx-link">Sequence</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basefunction">
@@ -388,7 +461,7 @@ Raises ValueError if given <em>obj</em> have invalid __all__.</p>
   <div class="docstring functionBody">
     
     
-    <div>Get __annotations__ from given <em>obj</em> safely.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">obj:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">Any</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Mapping" class="intersphinx-link">Mapping</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>, <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">Any</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+    <div>Get __annotations__ from given *obj* safely.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">obj:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">Any</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Mapping" class="intersphinx-link">Mapping</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>, <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">Any</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basefunction">
   
@@ -410,8 +483,7 @@ Raises ValueError if given <em>obj</em> have invalid __all__.</p>
   <div class="docstring functionBody">
     
     
-    <div>Like inspect.getfullargspec but supports bound methods, and wrapped
-methods.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">func:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Callable" class="intersphinx-link">Callable</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">Any</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+    <div>Like inspect.getfullargspec but supports bound methods, and wrapped methods.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">func:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Callable" class="intersphinx-link">Callable</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">Any</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basefunction">
   
@@ -435,11 +507,7 @@ methods.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" c
     
     <div><p>Get the docstring for the object.</p>
 <p>This tries to obtain the docstring for some kind of objects additionally:</p>
-<ul class="rst-simple">
-<li>partial functions</li>
-<li>inherited docstring</li>
-<li>inherited decorated methods</li>
-</ul>
+<p>* partial functions * inherited docstring * inherited decorated methods</p>
 <table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">obj:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">Any</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">attrgetter:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Callable" class="intersphinx-link">Callable</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">allow​_inherited:</span><code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">cls:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">Any</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">name:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basefunction">
@@ -462,7 +530,7 @@ methods.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" c
   <div class="docstring functionBody">
     
     
-    <div>Get __globals__ from given <em>obj</em> safely.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">obj:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">Any</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Mapping" class="intersphinx-link">Mapping</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>, <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">Any</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+    <div>Get __globals__ from given *obj* safely.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">obj:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">Any</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Mapping" class="intersphinx-link">Mapping</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>, <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">Any</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basefunction">
   
@@ -484,7 +552,7 @@ methods.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" c
   <div class="docstring functionBody">
     
     
-    <div>Get __mro__ from given <em>obj</em> safely.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">obj:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">Any</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Tuple" class="intersphinx-link">Tuple</a>[<wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Type" class="intersphinx-link">Type</a>, <wbr></wbr><span class="rst-variable-ellipsis">...</span>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+    <div>Get __mro__ from given *obj* safely.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">obj:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">Any</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Tuple" class="intersphinx-link">Tuple</a>[<wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Type" class="intersphinx-link">Type</a>, <wbr></wbr><span class="rst-variable-ellipsis">...</span>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basefunction">
   
@@ -506,7 +574,7 @@ methods.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" c
   <div class="docstring functionBody">
     
     
-    <div>Get __orig_bases__ from <em>obj</em> safely.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">obj:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">Any</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Tuple" class="intersphinx-link">Tuple</a>[<wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">Any</a>, <wbr></wbr><span class="rst-variable-ellipsis">...</span>]]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+    <div>Get __orig_bases__ from *obj* safely.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">obj:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">Any</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Tuple" class="intersphinx-link">Tuple</a>[<wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">Any</a>, <wbr></wbr><span class="rst-variable-ellipsis">...</span>]]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basefunction">
   
@@ -529,9 +597,7 @@ methods.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" c
     
     
     <div><p>Get __slots__ attribute of the class as dict.</p>
-<p>Return None if gienv <em>obj</em> does not have __slots__.
-Raises TypeError if given <em>obj</em> is not a class.
-Raises ValueError if given <em>obj</em> have invalid __slots__.</p>
+<p>Return None if gienv *obj* does not have __slots__. Raises TypeError if given *obj* is not a class. Raises ValueError if given *obj* have invalid __slots__.</p>
 <table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">obj:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">Any</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Dict" class="intersphinx-link">Dict</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basefunction">
@@ -555,13 +621,10 @@ Raises ValueError if given <em>obj</em> have invalid __slots__.</p>
     
     
     <div><p>If attr_name is implemented at builtin class, return True.</p>
-<blockquote>
 <pre class="py-doctest">
 <span class="py-prompt">&gt;&gt;&gt; </span>is_builtin_class_method(<span class="py-builtin">int</span>, <span class="py-string">'__init__'</span>)
 <span class="py-output">True</span>
-</pre></blockquote>
-<p>Why this function needed? CPython implements int.__init__ by Descriptor
-but PyPy implements it by pure Python code.</p>
+</pre><p>Why this function needed? CPython implements int.__init__ by Descriptor but PyPy implements it by pure Python code.</p>
 <table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">obj:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">Any</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">attr​_name:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basefunction">
@@ -1046,7 +1109,9 @@ but PyPy implements it by pure Python code.</p>
   <div class="docstring functionBody">
     
     
-    <div>Return a Signature object for the given <em>subject</em>.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">subject:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Callable" class="intersphinx-link">Callable</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">bound​_method:</span><code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code></td><td class="fieldArgDesc">Specify <em>subject</em> is a bound method or not</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">follow​_wrapped:</span><code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code></td><td class="fieldArgDesc">Same as <tt class="rst-docutils literal">inspect.signature()</tt>.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">type​_aliases:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Dict" class="intersphinx-link">Dict</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/inspect.html#inspect.Signature" class="intersphinx-link">inspect.Signature</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+    <div><p>Return a Signature object for the given *subject*.</p>
+<p>:param bound_method: Specify *subject* is a bound method or not :param follow_wrapped: Same as ``inspect.signature()``.</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">subject:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Callable" class="intersphinx-link">Callable</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">bound​_method:</span><code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">follow​_wrapped:</span><code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">type​_aliases:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Dict" class="intersphinx-link">Dict</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/inspect.html#inspect.Signature" class="intersphinx-link">inspect.Signature</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basefunction">
   
@@ -1068,7 +1133,7 @@ but PyPy implements it by pure Python code.</p>
   <div class="docstring functionBody">
     
     
-    <div>Create a Signature object from AST <em>node</em>.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">node:</span><code>ast.FunctionDef</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">code:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/inspect.html#inspect.Signature" class="intersphinx-link">inspect.Signature</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+    <div>Create a Signature object from AST *node*.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">node:</span><code>ast.FunctionDef</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">code:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/inspect.html#inspect.Signature" class="intersphinx-link">inspect.Signature</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basefunction">
   
@@ -1112,8 +1177,7 @@ but PyPy implements it by pure Python code.</p>
   <div class="docstring functionBody">
     
     
-    <div>Stringify a Signature object.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">sig:</span><code><a href="https://docs.python.org/3/library/inspect.html#inspect.Signature" class="intersphinx-link">inspect.Signature</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">show​_annotation:</span><code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code></td><td class="fieldArgDesc">If enabled, show annotations on the signature</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">show​_return​_annotation:</span><code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code></td><td class="fieldArgDesc">If enabled, show annotation of the return value</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">unqualified​_typehints:</span><code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code></td><td class="fieldArgDesc">If enabled, show annotations as unqualified
-(ex. io.StringIO -&gt; StringIO)</td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+    <div><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">sig:</span><code><a href="https://docs.python.org/3/library/inspect.html#inspect.Signature" class="intersphinx-link">inspect.Signature</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">show​_annotation:</span><code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">show​_return​_annotation:</span><code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">unqualified​_typehints:</span><code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basefunction">
   
@@ -1181,8 +1245,7 @@ but PyPy implements it by pure Python code.</p>
   <div class="docstring functionBody">
     
     
-    <div>Get an original object from wrapped object (unwrapping partials, wrapped
-functions, and other decorators).<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">obj:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">Any</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">stop:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Callable" class="intersphinx-link">Callable</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">Any</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+    <div>Get an original object from wrapped object (unwrapping partials, wrapped functions, and other decorators).<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">obj:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">Any</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">stop:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Callable" class="intersphinx-link">Callable</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">Any</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basevariable">
   
@@ -1258,12 +1321,20 @@ functions, and other decorators).<table class="fieldTable"><tr class="fieldStart
     </div>
 
     <footer class="navbar navbar-default">
+
   
   <div class="container">
     <a href="index.html">API Documentation</a> for sphinx,
   generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
-    22.2.0 at 2022-02-23 08:21:17.
+    22.3.0.dev0 at 2022-03-22 17:25:47.
   </div>
+
+  <!-- Search related scripts needs to be loaded at the end of HTML 
+    parsing not to introduce overhead and display HTML data asap -->
+  <script src="ajax.js" type="text/javascript"></script>
+  <script src="searchlib.js" type="text/javascript"></script>
+  <script src="search.js" type="text/javascript"></script>
+
 </footer>
 
     <script src="pydoctor.js" type="text/javascript"></script>

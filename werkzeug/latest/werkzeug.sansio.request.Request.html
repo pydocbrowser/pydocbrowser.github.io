@@ -7,11 +7,11 @@
   <head>
     
     <title>werkzeug.sansio.request.Request</title>
-    <meta name="generator" content="pydoctor 22.2.0"> 
+    <meta name="generator" content="pydoctor 22.3.0.dev0"> 
         
     </meta>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=0.75" />
+    <meta name="viewport" content="width=device-width, initial-scale=1 maximum-scale=1" />
     <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="apidocs.css" />
     <link rel="stylesheet" type="text/css" href="extra.css" />
@@ -19,12 +19,10 @@
 
   <body>
 
-    <div id="banner" class="container">    
+    <div id="banner">    
     <div>
-        <a href="https://pydocbrowser.github.io/">Home</a>
-        &gt; werkzeug-2.0.3 
-        <!-- This is an important placeholder and will be 
-            replaced by project name and version on building docs -->
+        <a href="/">Home</a>
+        &gt; werkzeug-2.0.3 <!-- This is a placeholder -->
         
         <!-- (<a href=""&gt;show all versions</a&gt;) -->
     </div>
@@ -37,21 +35,98 @@
     <div class="navbar-header">
       
       <div class="navlinks">
-          <span class="navbar-brand">
-            werkzeug <a href="index.html">API Documentation</a>
+        <span class="navbar-brand">
+          werkzeug <a href="index.html">API Documentation</a>
+        </span>
+
+        <a href="moduleIndex.html">
+          Modules
+        </a>
+
+        <a href="classIndex.html">
+          Classes
+        </a>
+
+        <a href="nameIndex.html">
+          Names
+        </a>
+
+        <div id="search-box-container">
+          <div class="input-group">
+            <input id="search-box" type="search" name="search-query" placeholder="Search..." aria-label="Search" minlength="2" class="form-control" autocomplete="off" />
+            
+            <span class="input-group-btn">
+              <a style="display: none;" class="btn btn-default" id="search-clear-button" title="Clear" onclick="clearSearch()"><img src="fonts/x-circle.svg" alt="Clear" /></a>
+              <a class="btn btn-default" id="search-help-button" title="Help" onclick="toggleSearchHelpText()"><img src="fonts/info.svg" alt="Help" /></a>
+            </span>
+          </div>
+        </div>
+
+      </div>
+
+      <div id="search-results-container" style="display: none;">
+        
+        <div id="search-buttons">
+          <span class="label label-default" id="search-docstrings-button">
+          <label class="checkbox-inline">
+            <input type="checkbox" id="toggle-search-in-docstrings-checkbox" value="false" onclick="toggleSearchInDocstrings()">
+              search in docstrings
+            </input>
+          </label>
           </span>
+          
+        </div>
+        
+        <noscript>
+            <h1>Cannot search: JavaScript is not supported/enabled in your browser.</h1>
+        </noscript>
 
-          <a href="moduleIndex.html">
-            Modules
-          </a>
+        <div class="hint" id="search-help-box">
+          <p class="rst-last">
+      
+            Search bar offers the following options:
+            <ul>   
+                <li>
+                  <strong>Term presence.</strong> The below example searches for documents that 
+                    must contain “foo”, might contain “bar” and must not contain “baz”: <code>+foo bar -baz</code>
+                </li> 
 
-          <a href="classIndex.html">
-            Classes
-          </a>
+                <li>
+                  <strong>Wildcards.</strong> The below example searches for documents with words beginning with “foo”: <code>foo*</code>
+                </li> 
 
-          <a href="nameIndex.html">
-            Names
-          </a>
+                <li>
+                  <strong>Search in specific fields.</strong> The following search matches all objects 
+                  in "twisted.mail" that matches “search”: <code>+qname:twisted.mail.* +search</code>
+
+                  <p>
+                    Possible fields: 'name', 'qname' (fully qualified name), 'docstring', and 'kind'.
+                    Last two fields are only applicable if "search in docstrings" is enabled.
+                  </p>
+                </li>
+
+                <li>
+                  <strong>Fuzzy matches.</strong> The following search matches all documents 
+                  that have a word within 1 edit distance of “foo”: <code>foo~1</code>
+                </li>
+            </ul>
+
+          </p>
+        </div>
+
+        <div id="search-status"> </div>
+
+        <div class="warning" id="search-warn-box" style="display: none;">
+          <p class="rst-last"><span id="search-warn"></span></p>
+        </div>
+
+        <table id="search-results">
+          <!-- Filled dynamically by JS -->
+        </table>
+        
+        <div style="margin-top: 8px;">
+          <p>Results provided by <a href="https://lunrjs.com">Lunr.js</a></p>
+        </div>
       </div>
 
     </div>
@@ -79,23 +154,11 @@
       </div>
 
       <div class="moduleDocstring">
-        <div><p>Represents the non-IO parts of a HTTP request, including the
-method, URL info, and headers.</p>
-<p>This class is not meant for general use. It should only be used when
-implementing WSGI, ASGI, or another HTTP application spec. Werkzeug
-provides a WSGI implementation at <a href="#system-message-1"><span class="rst-problematic" id="rst-problematic-1">:cls:`werkzeug.wrappers.Request`</span></a>.</p>
-<div class="rst-versionadded">
-<span class="rst-versionmodified rst-added">New in version 2.0.</span></div>
-<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">method</span></td><td class="fieldArgDesc">The method the request was made with, such as
-<tt class="rst-docutils literal">GET</tt>.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">scheme</span></td><td class="fieldArgDesc">The URL scheme of the protocol the request used, such
-as <tt class="rst-docutils literal">https</tt> or <tt class="rst-docutils literal">wss</tt>.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">server</span></td><td class="fieldArgDesc">The address of the server. <tt class="rst-docutils literal">(host, port)</tt>,
-<tt class="rst-docutils literal">(path, None)</tt> for unix sockets, or <tt class="rst-docutils literal">None</tt> if not known.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">root​_path</span></td><td class="fieldArgDesc">The prefix that the application is mounted under.
-This is prepended to generated URLs, but is not part of route
-matching.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">path</span></td><td class="fieldArgDesc">The path part of the URL after <tt class="rst-docutils literal">root_path</tt>.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">query​_string</span></td><td class="fieldArgDesc">The part of the URL after the "?".</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">headers</span></td><td class="fieldArgDesc">The headers received with the request.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">remote​_addr</span></td><td class="fieldArgDesc">The address of the client sending the request.</td></tr></table></div>
+        <div></div>
       </div>
 
       <div id="splitTables">
-        <table class="children sortable" id="id25923">
+        <table class="children sortable" id="id42833">
   
   
   <tr class="method">
@@ -212,22 +275,22 @@ matching.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">path
     
     <td>Property</td>
     <td><code><a href="#accept_charsets" class="internal-link" title="werkzeug.sansio.request.Request.accept_charsets">accept​_charsets</a></code></td>
-    <td>List of charsets this client supports as <code>~werkzeug.datastructures.CharsetAccept</code> object.</td>
+    <td>List of charsets this client supports as :class:`~werkzeug.datastructures.CharsetAccept` object.</td>
   </tr><tr class="property">
     
     <td>Property</td>
     <td><code><a href="#accept_encodings" class="internal-link" title="werkzeug.sansio.request.Request.accept_encodings">accept​_encodings</a></code></td>
-    <td>List of encodings this client accepts.  Encodings in a HTTP term are compression encodings such as gzip.  For charsets have a look at <code>accept_charset</code>.</td>
+    <td>List of encodings this client accepts.  Encodings in a HTTP term are compression encodings such as gzip.  For charsets have a look at :attr:`accept_charset`.</td>
   </tr><tr class="property">
     
     <td>Property</td>
     <td><code><a href="#accept_languages" class="internal-link" title="werkzeug.sansio.request.Request.accept_languages">accept​_languages</a></code></td>
-    <td>List of languages this client accepts as <code>~werkzeug.datastructures.LanguageAccept</code> object.</td>
+    <td>List of languages this client accepts as :class:`~werkzeug.datastructures.LanguageAccept` object.</td>
   </tr><tr class="property">
     
     <td>Property</td>
     <td><code><a href="#accept_mimetypes" class="internal-link" title="werkzeug.sansio.request.Request.accept_mimetypes">accept​_mimetypes</a></code></td>
-    <td>List of mimetypes this client supports as <code>~werkzeug.datastructures.MIMEAccept</code> object.</td>
+    <td>List of mimetypes this client supports as :class:`~werkzeug.datastructures.MIMEAccept` object.</td>
   </tr><tr class="property">
     
     <td>Property</td>
@@ -242,17 +305,17 @@ matching.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">path
     
     <td>Property</td>
     <td><code><a href="#authorization" class="internal-link" title="werkzeug.sansio.request.Request.authorization">authorization</a></code></td>
-    <td>The <code><a href="werkzeug.datastructures.Authorization.html" class="internal-link" title="werkzeug.datastructures.Authorization">Authorization</a></code> object in parsed form.</td>
+    <td>The `Authorization` object in parsed form.</td>
   </tr><tr class="property">
     
     <td>Property</td>
     <td><code><a href="#base_url" class="internal-link" title="werkzeug.sansio.request.Request.base_url">base​_url</a></code></td>
-    <td>Like <code><a href="#url" class="internal-link" title="werkzeug.sansio.request.Request.url">url</a></code> but without the query string.</td>
+    <td>Like :attr:`url` but without the query string.</td>
   </tr><tr class="property">
     
     <td>Property</td>
     <td><code><a href="#cache_control" class="internal-link" title="werkzeug.sansio.request.Request.cache_control">cache​_control</a></code></td>
-    <td>A <code>~werkzeug.datastructures.RequestCacheControl</code> object for the incoming cache control headers.</td>
+    <td>A :class:`~werkzeug.datastructures.RequestCacheControl` object for the incoming cache control headers.</td>
   </tr><tr class="property">
     
     <td>Property</td>
@@ -262,7 +325,7 @@ matching.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">path
     
     <td>Property</td>
     <td><code><a href="#cookies" class="internal-link" title="werkzeug.sansio.request.Request.cookies">cookies</a></code></td>
-    <td>A <code><a href="https://docs.python.org/3/library/stdtypes.html#dict" class="intersphinx-link">dict</a></code> with the contents of all cookies transmitted with the request.</td>
+    <td>A :class:`dict` with the contents of all cookies transmitted with the request.</td>
   </tr><tr class="property">
     
     <td>Property</td>
@@ -272,7 +335,7 @@ matching.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">path
     
     <td>Property</td>
     <td><code><a href="#host" class="internal-link" title="werkzeug.sansio.request.Request.host">host</a></code></td>
-    <td>The host name the request was made to, including the port if it's non-standard. Validated with <code><a href="#trusted_hosts" class="internal-link" title="werkzeug.sansio.request.Request.trusted_hosts">trusted_hosts</a></code>.</td>
+    <td>The host name the request was made to, including the port if it's non-standard. Validated with :attr:`trusted_hosts`.</td>
   </tr><tr class="property">
     
     <td>Property</td>
@@ -282,37 +345,37 @@ matching.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">path
     
     <td>Property</td>
     <td><code><a href="#if_match" class="internal-link" title="werkzeug.sansio.request.Request.if_match">if​_match</a></code></td>
-    <td>An object containing all the etags in the <code>If-Match</code> header.</td>
+    <td>An object containing all the etags in the `If-Match` header.</td>
   </tr><tr class="property">
     
     <td>Property</td>
     <td><code><a href="#if_modified_since" class="internal-link" title="werkzeug.sansio.request.Request.if_modified_since">if​_modified​_since</a></code></td>
-    <td>The parsed <code>If-Modified-Since</code> header as a datetime object.</td>
+    <td>The parsed `If-Modified-Since` header as a datetime object.</td>
   </tr><tr class="property">
     
     <td>Property</td>
     <td><code><a href="#if_none_match" class="internal-link" title="werkzeug.sansio.request.Request.if_none_match">if​_none​_match</a></code></td>
-    <td>An object containing all the etags in the <code>If-None-Match</code> header.</td>
+    <td>An object containing all the etags in the `If-None-Match` header.</td>
   </tr><tr class="property">
     
     <td>Property</td>
     <td><code><a href="#if_range" class="internal-link" title="werkzeug.sansio.request.Request.if_range">if​_range</a></code></td>
-    <td>The parsed <tt class="rst-docutils literal"><span class="pre">If-Range</span></tt> header.</td>
+    <td>The parsed ``If-Range`` header.</td>
   </tr><tr class="property">
     
     <td>Property</td>
     <td><code><a href="#if_unmodified_since" class="internal-link" title="werkzeug.sansio.request.Request.if_unmodified_since">if​_unmodified​_since</a></code></td>
-    <td>The parsed <code>If-Unmodified-Since</code> header as a datetime object.</td>
+    <td>The parsed `If-Unmodified-Since` header as a datetime object.</td>
   </tr><tr class="property">
     
     <td>Property</td>
     <td><code><a href="#is_json" class="internal-link" title="werkzeug.sansio.request.Request.is_json">is​_json</a></code></td>
-    <td>Check if the mimetype indicates JSON data, either <a href="#system-message-1"><span class="rst-problematic" id="rst-problematic-1">:mimetype:`application/json`</span></a> or <a href="#system-message-2"><span class="rst-problematic" id="rst-problematic-2">:mimetype:`application/*+json`</span></a>.</td>
+    <td>Check if the mimetype indicates JSON data, either :mimetype:`application/json` or :mimetype:`application/*+json`.</td>
   </tr><tr class="property">
     
     <td>Property</td>
     <td><code><a href="#is_secure" class="internal-link" title="werkzeug.sansio.request.Request.is_secure">is​_secure</a></code></td>
-    <td><tt class="rst-docutils literal">True</tt> if the request was made with a secure protocol (HTTPS or WSS).</td>
+    <td>``True`` if the request was made with a secure protocol (HTTPS or WSS).</td>
   </tr><tr class="property">
     
     <td>Property</td>
@@ -322,7 +385,7 @@ matching.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">path
     
     <td>Property</td>
     <td><code><a href="#mimetype_params" class="internal-link" title="werkzeug.sansio.request.Request.mimetype_params">mimetype​_params</a></code></td>
-    <td>The mimetype parameters as dict.  For example if the content type is <tt class="rst-docutils literal">text/html; <span class="pre">charset=utf-8</span></tt> the params would be <tt class="rst-docutils literal">{'charset': <span class="pre">'utf-8'}</span></tt>.</td>
+    <td>The mimetype parameters as dict.  For example if the content type is ``text/html; charset=utf-8`` the params would be ``{'charset': 'utf-8'}``.</td>
   </tr><tr class="property">
     
     <td>Property</td>
@@ -332,7 +395,7 @@ matching.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">path
     
     <td>Property</td>
     <td><code><a href="#range" class="internal-link" title="werkzeug.sansio.request.Request.range">range</a></code></td>
-    <td>The parsed <code><a href="werkzeug.datastructures.Range.html" class="internal-link" title="werkzeug.datastructures.Range">Range</a></code> header.</td>
+    <td>The parsed `Range` header.</td>
   </tr><tr class="property">
     
     <td>Property</td>
@@ -347,7 +410,7 @@ matching.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">path
     
     <td>Property</td>
     <td><code><a href="#url_charset" class="internal-link" title="werkzeug.sansio.request.Request.url_charset">url​_charset</a></code></td>
-    <td>The charset that is assumed for URLs. Defaults to the value of <code><a href="#charset" class="internal-link" title="werkzeug.sansio.request.Request.charset">charset</a></code>.</td>
+    <td>The charset that is assumed for URLs. Defaults to the value of :attr:`charset`.</td>
   </tr><tr class="property">
     
     <td>Property</td>
@@ -356,12 +419,12 @@ matching.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">path
   </tr><tr class="method private">
     
     <td>Method</td>
-    <td><code><a href="#_parse_content_type" class="internal-link" title="werkzeug.sansio.request.Request._parse_content_type">​_parse​_content​_type</a></code></td>
+    <td><code><a href="#_parse_content_type" class="internal-link" title="werkzeug.sansio.request.Request._parse_content_type">_parse​_content​_type</a></code></td>
     <td><span class="undocumented">Undocumented</span></td>
   </tr><tr class="instancevariable private">
     
     <td>Instance Variable</td>
-    <td><code><a href="#_parsed_content_type" class="internal-link" title="werkzeug.sansio.request.Request._parsed_content_type">​_parsed​_content​_type</a></code></td>
+    <td><code><a href="#_parsed_content_type" class="internal-link" title="werkzeug.sansio.request.Request._parsed_content_type">_parsed​_content​_type</a></code></td>
     <td><span class="undocumented">Undocumented</span></td>
   </tr>
 </table>
@@ -896,8 +959,7 @@ matching.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">path
   <div class="functionBody">
     
     
-    <div>List of charsets this client supports as
-<code>~werkzeug.datastructures.CharsetAccept</code> object.</div>
+    <div>List of charsets this client supports as :class:`~werkzeug.datastructures.CharsetAccept` object.</div>
     
   </div>
 </div><div class="baseproperty">
@@ -920,9 +982,7 @@ matching.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">path
   <div class="functionBody">
     
     
-    <div>List of encodings this client accepts.  Encodings in a HTTP term
-are compression encodings such as gzip.  For charsets have a look at
-<code>accept_charset</code>.</div>
+    <div>List of encodings this client accepts.  Encodings in a HTTP term are compression encodings such as gzip.  For charsets have a look at :attr:`accept_charset`.</div>
     
   </div>
 </div><div class="baseproperty">
@@ -945,12 +1005,7 @@ are compression encodings such as gzip.  For charsets have a look at
   <div class="functionBody">
     
     
-    <div><p>List of languages this client accepts as
-<code>~werkzeug.datastructures.LanguageAccept</code> object.</p>
-<!-- versionchanged 0.5
-In previous versions this was a regular
-`~werkzeug.datastructures.Accept` object. -->
-</div>
+    <div></div>
     
   </div>
 </div><div class="baseproperty">
@@ -973,8 +1028,7 @@ In previous versions this was a regular
   <div class="functionBody">
     
     
-    <div>List of mimetypes this client supports as
-<code>~werkzeug.datastructures.MIMEAccept</code> object.</div>
+    <div>List of mimetypes this client supports as :class:`~werkzeug.datastructures.MIMEAccept` object.</div>
     
   </div>
 </div><div class="baseproperty">
@@ -997,8 +1051,7 @@ In previous versions this was a regular
   <div class="functionBody">
     
     
-    <div>If a forwarded header exists this is a list of all ip addresses
-from the client ip to the last proxy server.</div>
+    <div>If a forwarded header exists this is a list of all ip addresses from the client ip to the last proxy server.</div>
     
   </div>
 </div><div class="baseproperty">
@@ -1021,13 +1074,8 @@ from the client ip to the last proxy server.</div>
   <div class="functionBody">
     
     
-    <div><p>The parsed URL parameters (the part in the URL after the question
-mark).</p>
-<p>By default an
-<code>~werkzeug.datastructures.ImmutableMultiDict</code>
-is returned from this function.  This can be changed by setting
-<code><a href="werkzeug.datastructures.ImmutableMultiDict.html" class="internal-link" title="werkzeug.datastructures.ImmutableMultiDict">parameter_storage_class</a></code> to a different type.  This might
-be necessary if the order of the form data is important.</p>
+    <div><p>The parsed URL parameters (the part in the URL after the question mark).</p>
+<p>By default an :class:`~werkzeug.datastructures.ImmutableMultiDict` is returned from this function.  This can be changed by setting :attr:`parameter_storage_class` to a different type.  This might be necessary if the order of the form data is important.</p>
 </div>
     
   </div>
@@ -1051,7 +1099,7 @@ be necessary if the order of the form data is important.</p>
   <div class="functionBody">
     
     
-    <div>The <code><a href="werkzeug.datastructures.Authorization.html" class="internal-link" title="werkzeug.datastructures.Authorization">Authorization</a></code> object in parsed form.</div>
+    <div>The `Authorization` object in parsed form.</div>
     
   </div>
 </div><div class="baseproperty">
@@ -1074,7 +1122,7 @@ be necessary if the order of the form data is important.</p>
   <div class="functionBody">
     
     
-    <div>Like <code><a href="#url" class="internal-link" title="werkzeug.sansio.request.Request.url">url</a></code> but without the query string.</div>
+    <div>Like :attr:`url` but without the query string.</div>
     
   </div>
 </div><div class="baseproperty">
@@ -1097,8 +1145,7 @@ be necessary if the order of the form data is important.</p>
   <div class="functionBody">
     
     
-    <div>A <code>~werkzeug.datastructures.RequestCacheControl</code> object
-for the incoming cache control headers.</div>
+    <div>A :class:`~werkzeug.datastructures.RequestCacheControl` object for the incoming cache control headers.</div>
     
   </div>
 </div><div class="baseproperty">
@@ -1121,10 +1168,7 @@ for the incoming cache control headers.</div>
   <div class="functionBody">
     
     
-    <div>The Content-Length entity-header field indicates the size of the
-entity-body in bytes or, in the case of the HEAD method, the size of
-the entity-body that would have been sent had the request been a
-GET.</div>
+    <div>The Content-Length entity-header field indicates the size of the entity-body in bytes or, in the case of the HEAD method, the size of the entity-body that would have been sent had the request been a GET.</div>
     
   </div>
 </div><div class="baseproperty">
@@ -1147,8 +1191,7 @@ GET.</div>
   <div class="functionBody">
     
     
-    <div>A <code><a href="https://docs.python.org/3/library/stdtypes.html#dict" class="intersphinx-link">dict</a></code> with the contents of all cookies transmitted with
-the request.</div>
+    <div>A :class:`dict` with the contents of all cookies transmitted with the request.</div>
     
   </div>
 </div><div class="baseproperty">
@@ -1194,8 +1237,7 @@ the request.</div>
   <div class="functionBody">
     
     
-    <div>The host name the request was made to, including the port if
-it's non-standard. Validated with <code><a href="#trusted_hosts" class="internal-link" title="werkzeug.sansio.request.Request.trusted_hosts">trusted_hosts</a></code>.</div>
+    <div>The host name the request was made to, including the port if it's non-standard. Validated with :attr:`trusted_hosts`.</div>
     
   </div>
 </div><div class="baseproperty">
@@ -1232,7 +1274,7 @@ it's non-standard. Validated with <code><a href="#trusted_hosts" class="internal
   </a>
   <div class="functionHeader">
     @<a href="werkzeug.utils.cached_property.html" class="internal-link" title="werkzeug.utils.cached_property">cached_property</a><br />
-    <span class="py-defname">if_match</span>: <code>~werkzeug.datastructures.ETags</code> =
+    <span class="py-defname">if_match</span>: <code><a href="werkzeug.datastructures.ETags.html" class="internal-link" title="werkzeug.datastructures.ETags">ETags</a></code> =
     <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/werkzeug-2.0.3//src/werkzeug/sansio/request.py#L425">
       
       (source)
@@ -1241,7 +1283,9 @@ it's non-standard. Validated with <code><a href="#trusted_hosts" class="internal
   <div class="functionBody">
     
     
-    <div>An object containing all the etags in the <code>If-Match</code> header.</div>
+    <div><p>An object containing all the etags in the `If-Match` header.</p>
+<p>:rtype: :class:`~werkzeug.datastructures.ETags`</p>
+</div>
     
   </div>
 </div><div class="baseproperty">
@@ -1264,10 +1308,7 @@ it's non-standard. Validated with <code><a href="#trusted_hosts" class="internal
   <div class="functionBody">
     
     
-    <div><p>The parsed <code>If-Modified-Since</code> header as a datetime object.</p>
-<div class="rst-versionchanged">
-<span class="rst-versionmodified rst-changed">Changed in version 2.0: </span><span>The datetime object is timezone-aware.</span></div>
-</div>
+    <div></div>
     
   </div>
 </div><div class="baseproperty">
@@ -1281,7 +1322,7 @@ it's non-standard. Validated with <code><a href="#trusted_hosts" class="internal
   </a>
   <div class="functionHeader">
     @<a href="werkzeug.utils.cached_property.html" class="internal-link" title="werkzeug.utils.cached_property">cached_property</a><br />
-    <span class="py-defname">if_none_match</span>: <code>~werkzeug.datastructures.ETags</code> =
+    <span class="py-defname">if_none_match</span>: <code><a href="werkzeug.datastructures.ETags.html" class="internal-link" title="werkzeug.datastructures.ETags">ETags</a></code> =
     <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/werkzeug-2.0.3//src/werkzeug/sansio/request.py#L433">
       
       (source)
@@ -1290,7 +1331,9 @@ it's non-standard. Validated with <code><a href="#trusted_hosts" class="internal
   <div class="functionBody">
     
     
-    <div>An object containing all the etags in the <code>If-None-Match</code> header.</div>
+    <div><p>An object containing all the etags in the `If-None-Match` header.</p>
+<p>:rtype: :class:`~werkzeug.datastructures.ETags`</p>
+</div>
     
   </div>
 </div><div class="baseproperty">
@@ -1313,12 +1356,7 @@ it's non-standard. Validated with <code><a href="#trusted_hosts" class="internal
   <div class="functionBody">
     
     
-    <div><p>The parsed <tt class="rst-docutils literal"><span class="pre">If-Range</span></tt> header.</p>
-<div class="rst-versionchanged">
-<span class="rst-versionmodified rst-changed">Changed in version 2.0: </span><span><tt class="rst-docutils literal">IfRange.date</tt> is timezone-aware.</span></div>
-<div class="rst-versionadded">
-<span class="rst-versionmodified rst-added">New in version 0.7.</span></div>
-</div>
+    <div></div>
     
   </div>
 </div><div class="baseproperty">
@@ -1341,10 +1379,7 @@ it's non-standard. Validated with <code><a href="#trusted_hosts" class="internal
   <div class="functionBody">
     
     
-    <div><p>The parsed <code>If-Unmodified-Since</code> header as a datetime object.</p>
-<div class="rst-versionchanged">
-<span class="rst-versionmodified rst-changed">Changed in version 2.0: </span><span>The datetime object is timezone-aware.</span></div>
-</div>
+    <div></div>
     
   </div>
 </div><div class="baseproperty">
@@ -1367,8 +1402,7 @@ it's non-standard. Validated with <code><a href="#trusted_hosts" class="internal
   <div class="functionBody">
     
     
-    <div>Check if the mimetype indicates JSON data, either
-<a href="#system-message-1"><span class="rst-problematic" id="rst-problematic-1">:mimetype:`application/json`</span></a> or <a href="#system-message-2"><span class="rst-problematic" id="rst-problematic-2">:mimetype:`application/*+json`</span></a>.</div>
+    <div>Check if the mimetype indicates JSON data, either :mimetype:`application/json` or :mimetype:`application/*+json`.</div>
     
   </div>
 </div><div class="baseproperty">
@@ -1391,8 +1425,7 @@ it's non-standard. Validated with <code><a href="#trusted_hosts" class="internal
   <div class="functionBody">
     
     
-    <div><tt class="rst-docutils literal">True</tt> if the request was made with a secure protocol
-(HTTPS or WSS).</div>
+    <div>``True`` if the request was made with a secure protocol (HTTPS or WSS).</div>
     
   </div>
 </div><div class="baseproperty">
@@ -1415,10 +1448,7 @@ it's non-standard. Validated with <code><a href="#trusted_hosts" class="internal
   <div class="functionBody">
     
     
-    <div>Like <code><a href="#content_type" class="internal-link" title="werkzeug.sansio.request.Request.content_type">content_type</a></code>, but without parameters (eg, without
-charset, type etc.) and always lowercase.  For example if the content
-type is <tt class="rst-docutils literal">text/HTML; <span class="pre">charset=utf-8</span></tt> the mimetype would be
-<tt class="rst-docutils literal">'text/html'</tt>.</div>
+    <div>Like :attr:`content_type`, but without parameters (eg, without charset, type etc.) and always lowercase.  For example if the content type is ``text/HTML; charset=utf-8`` the mimetype would be ``'text/html'``.</div>
     
   </div>
 </div><div class="baseproperty">
@@ -1441,9 +1471,7 @@ type is <tt class="rst-docutils literal">text/HTML; <span class="pre">charset=ut
   <div class="functionBody">
     
     
-    <div>The mimetype parameters as dict.  For example if the content
-type is <tt class="rst-docutils literal">text/html; <span class="pre">charset=utf-8</span></tt> the params would be
-<tt class="rst-docutils literal">{'charset': <span class="pre">'utf-8'}</span></tt>.</div>
+    <div>The mimetype parameters as dict.  For example if the content type is ``text/html; charset=utf-8`` the params would be ``{'charset': 'utf-8'}``.</div>
     
   </div>
 </div><div class="baseproperty">
@@ -1466,11 +1494,7 @@ type is <tt class="rst-docutils literal">text/html; <span class="pre">charset=ut
   <div class="functionBody">
     
     
-    <div>The Pragma general-header field is used to include
-implementation-specific directives that might apply to any recipient
-along the request/response chain.  All pragma directives specify
-optional behavior from the viewpoint of the protocol; however, some
-systems MAY require that behavior be consistent with the directives.</div>
+    <div>The Pragma general-header field is used to include implementation-specific directives that might apply to any recipient along the request/response chain.  All pragma directives specify optional behavior from the viewpoint of the protocol; however, some systems MAY require that behavior be consistent with the directives.</div>
     
   </div>
 </div><div class="baseproperty">
@@ -1484,7 +1508,7 @@ systems MAY require that behavior be consistent with the directives.</div>
   </a>
   <div class="functionHeader">
     @<a href="werkzeug.utils.cached_property.html" class="internal-link" title="werkzeug.utils.cached_property">cached_property</a><br />
-    <span class="py-defname">range</span>: <code>~werkzeug.datastructures.Range</code> =
+    <span class="py-defname">range</span>: <code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">t.Optional</a>[<wbr></wbr><a href="werkzeug.datastructures.Range.html" class="internal-link" title="werkzeug.datastructures.Range">Range</a>]</code> =
     <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/werkzeug-2.0.3//src/werkzeug/sansio/request.py#L470">
       
       (source)
@@ -1493,9 +1517,9 @@ systems MAY require that behavior be consistent with the directives.</div>
   <div class="functionBody">
     
     
-    <div><p>The parsed <code><a href="werkzeug.datastructures.Range.html" class="internal-link" title="werkzeug.datastructures.Range">Range</a></code> header.</p>
-<div class="rst-versionadded">
-<span class="rst-versionmodified rst-added">New in version 0.7.</span></div>
+    <div><p>The parsed `Range` header.</p>
+<p>.. versionadded:: 0.7</p>
+<p>:rtype: :class:`~werkzeug.datastructures.Range`</p>
 </div>
     
   </div>
@@ -1519,8 +1543,7 @@ systems MAY require that behavior be consistent with the directives.</div>
   <div class="functionBody">
     
     
-    <div>The request URL scheme, host, and root path. This is the root
-that the application is accessed from.</div>
+    <div>The request URL scheme, host, and root path. This is the root that the application is accessed from.</div>
     
   </div>
 </div><div class="baseproperty">
@@ -1543,8 +1566,7 @@ that the application is accessed from.</div>
   <div class="functionBody">
     
     
-    <div>The full request URL with the scheme, host, root path, path,
-and query string.</div>
+    <div>The full request URL with the scheme, host, root path, path, and query string.</div>
     
   </div>
 </div><div class="baseproperty">
@@ -1567,10 +1589,8 @@ and query string.</div>
   <div class="functionBody">
     
     
-    <div><p>The charset that is assumed for URLs. Defaults to the value
-of <code><a href="#charset" class="internal-link" title="werkzeug.sansio.request.Request.charset">charset</a></code>.</p>
-<div class="rst-versionadded">
-<span class="rst-versionmodified rst-added">New in version 0.6.</span></div>
+    <div><p>The charset that is assumed for URLs. Defaults to the value of :attr:`charset`.</p>
+<p>.. versionadded:: 0.6</p>
 </div>
     
   </div>
@@ -1594,15 +1614,7 @@ of <code><a href="#charset" class="internal-link" title="werkzeug.sansio.request
   <div class="functionBody">
     
     
-    <div><p>The user agent. Use <tt class="rst-docutils literal">user_agent.string</tt> to get the header
-value. Set <code><a href="werkzeug.useragents._UserAgent.html" class="internal-link" title="werkzeug.useragents._UserAgent">user_agent_class</a></code> to a subclass of
-<code>~werkzeug.user_agent.UserAgent</code> to provide parsing for
-the other properties or other extended data.</p>
-<div class="rst-versionchanged">
-<span class="rst-versionmodified rst-changed">Changed in version 2.0: </span><span>The built in parser is deprecated and will be removed in
-Werkzeug 2.1. A <tt class="rst-docutils literal">UserAgent</tt> subclass must be set to parse
-data from the string.</span></div>
-</div>
+    <div></div>
     
   </div>
 </div><div class="basemethod private">
@@ -1656,12 +1668,20 @@ data from the string.</span></div>
     </div>
 
     <footer class="navbar navbar-default">
+
   
   <div class="container">
     <a href="index.html">API Documentation</a> for werkzeug,
   generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
-    22.2.0 at 2022-02-23 08:27:49.
+    22.3.0.dev0 at 2022-03-22 17:48:04.
   </div>
+
+  <!-- Search related scripts needs to be loaded at the end of HTML 
+    parsing not to introduce overhead and display HTML data asap -->
+  <script src="ajax.js" type="text/javascript"></script>
+  <script src="searchlib.js" type="text/javascript"></script>
+  <script src="search.js" type="text/javascript"></script>
+
 </footer>
 
     <script src="pydoctor.js" type="text/javascript"></script>

@@ -7,11 +7,11 @@
   <head>
     
     <title>werkzeug.wrappers.response.Response</title>
-    <meta name="generator" content="pydoctor 22.2.0"> 
+    <meta name="generator" content="pydoctor 22.3.0.dev0"> 
         
     </meta>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=0.75" />
+    <meta name="viewport" content="width=device-width, initial-scale=1 maximum-scale=1" />
     <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="apidocs.css" />
     <link rel="stylesheet" type="text/css" href="extra.css" />
@@ -19,12 +19,10 @@
 
   <body>
 
-    <div id="banner" class="container">    
+    <div id="banner">    
     <div>
-        <a href="https://pydocbrowser.github.io/">Home</a>
-        &gt; werkzeug-2.0.3 
-        <!-- This is an important placeholder and will be 
-            replaced by project name and version on building docs -->
+        <a href="/">Home</a>
+        &gt; werkzeug-2.0.3 <!-- This is a placeholder -->
         
         <!-- (<a href=""&gt;show all versions</a&gt;) -->
     </div>
@@ -37,21 +35,98 @@
     <div class="navbar-header">
       
       <div class="navlinks">
-          <span class="navbar-brand">
-            werkzeug <a href="index.html">API Documentation</a>
+        <span class="navbar-brand">
+          werkzeug <a href="index.html">API Documentation</a>
+        </span>
+
+        <a href="moduleIndex.html">
+          Modules
+        </a>
+
+        <a href="classIndex.html">
+          Classes
+        </a>
+
+        <a href="nameIndex.html">
+          Names
+        </a>
+
+        <div id="search-box-container">
+          <div class="input-group">
+            <input id="search-box" type="search" name="search-query" placeholder="Search..." aria-label="Search" minlength="2" class="form-control" autocomplete="off" />
+            
+            <span class="input-group-btn">
+              <a style="display: none;" class="btn btn-default" id="search-clear-button" title="Clear" onclick="clearSearch()"><img src="fonts/x-circle.svg" alt="Clear" /></a>
+              <a class="btn btn-default" id="search-help-button" title="Help" onclick="toggleSearchHelpText()"><img src="fonts/info.svg" alt="Help" /></a>
+            </span>
+          </div>
+        </div>
+
+      </div>
+
+      <div id="search-results-container" style="display: none;">
+        
+        <div id="search-buttons">
+          <span class="label label-default" id="search-docstrings-button">
+          <label class="checkbox-inline">
+            <input type="checkbox" id="toggle-search-in-docstrings-checkbox" value="false" onclick="toggleSearchInDocstrings()">
+              search in docstrings
+            </input>
+          </label>
           </span>
+          
+        </div>
+        
+        <noscript>
+            <h1>Cannot search: JavaScript is not supported/enabled in your browser.</h1>
+        </noscript>
 
-          <a href="moduleIndex.html">
-            Modules
-          </a>
+        <div class="hint" id="search-help-box">
+          <p class="rst-last">
+      
+            Search bar offers the following options:
+            <ul>   
+                <li>
+                  <strong>Term presence.</strong> The below example searches for documents that 
+                    must contain “foo”, might contain “bar” and must not contain “baz”: <code>+foo bar -baz</code>
+                </li> 
 
-          <a href="classIndex.html">
-            Classes
-          </a>
+                <li>
+                  <strong>Wildcards.</strong> The below example searches for documents with words beginning with “foo”: <code>foo*</code>
+                </li> 
 
-          <a href="nameIndex.html">
-            Names
-          </a>
+                <li>
+                  <strong>Search in specific fields.</strong> The following search matches all objects 
+                  in "twisted.mail" that matches “search”: <code>+qname:twisted.mail.* +search</code>
+
+                  <p>
+                    Possible fields: 'name', 'qname' (fully qualified name), 'docstring', and 'kind'.
+                    Last two fields are only applicable if "search in docstrings" is enabled.
+                  </p>
+                </li>
+
+                <li>
+                  <strong>Fuzzy matches.</strong> The following search matches all documents 
+                  that have a word within 1 edit distance of “foo”: <code>foo~1</code>
+                </li>
+            </ul>
+
+          </p>
+        </div>
+
+        <div id="search-status"> </div>
+
+        <div class="warning" id="search-warn-box" style="display: none;">
+          <p class="rst-last"><span id="search-warn"></span></p>
+        </div>
+
+        <table id="search-results">
+          <!-- Filled dynamically by JS -->
+        </table>
+        
+        <div style="margin-top: 8px;">
+          <p>Results provided by <a href="https://lunrjs.com">Lunr.js</a></p>
+        </div>
       </div>
 
     </div>
@@ -79,64 +154,11 @@
       </div>
 
       <div class="moduleDocstring">
-        <div><p>Represents an outgoing WSGI HTTP response with body, status, and
-headers. Has properties and methods for using the functionality
-defined by various HTTP specs.</p>
-<p>The response body is flexible to support different use cases. The
-simple form is passing bytes, or a string which will be encoded as
-UTF-8. Passing an iterable of bytes or strings makes this a
-streaming response. A generator is particularly useful for building
-a CSV file in memory or using SSE (Server Sent Events). A file-like
-object is also iterable, although the
-<code>~werkzeug.utils.send_file</code> helper should be used in that
-case.</p>
-<p>The response object is itself a WSGI application callable. When
-called (<code><a href="#__call__" class="internal-link" title="werkzeug.wrappers.response.Response.__call__">__call__</a></code>) with <tt class="rst-docutils literal">environ</tt> and <tt class="rst-docutils literal">start_response</tt>,
-it will pass its status and headers to <tt class="rst-docutils literal">start_response</tt> then
-return its body as an iterable.</p>
-<pre class="rst-code rst-python rst-literal-block">
-from werkzeug.wrappers.response import Response
-
-def index():
-    return Response("Hello, World!")
-
-def application(environ, start_response):
-    path = environ.get("PATH_INFO") or "/"
-
-    if path == "/":
-        response = index()
-    else:
-        response = Response("Not Found", status=404)
-
-    return response(environ, start_response)
-</pre>
-<div class="rst-versionchanged">
-<span class="rst-versionmodified rst-changed">Changed in version 2.0: </span><span>Combine <tt class="rst-docutils literal">BaseResponse</tt> and mixins into a single <tt class="rst-docutils literal">Response</tt>
-class. Using the old classes is deprecated and will be removed
-in Werkzeug 2.1.</span></div>
-<div class="rst-versionchanged">
-<span class="rst-versionmodified rst-changed">Changed in version 0.5: </span><span>The <tt class="rst-docutils literal">direct_passthrough</tt> parameter was added.</span></div>
-<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">response</span></td><td class="fieldArgDesc">The data for the body of the response. A string or
-bytes, or tuple or list of strings or bytes, for a fixed-length
-response, or any other iterable of strings or bytes for a
-streaming response. Defaults to an empty body.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">status</span></td><td class="fieldArgDesc">The status code for the response. Either an int, in
-which case the default status message is added, or a string in
-the form <tt class="rst-docutils literal">{code} {message}</tt>, like <tt class="rst-docutils literal">404 Not Found</tt>. Defaults
-to 200.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">headers</span></td><td class="fieldArgDesc">A <code>~werkzeug.datastructures.Headers</code> object,
-or a list of <tt class="rst-docutils literal">(key, value)</tt> tuples that will be converted to a
-<tt class="rst-docutils literal">Headers</tt> object.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">mimetype</span></td><td class="fieldArgDesc">The mime type (content type without charset or
-other parameters) of the response. If the value starts with
-<tt class="rst-docutils literal">text/</tt> (or matches some other special cases), the charset
-will be added to create the <tt class="rst-docutils literal">content_type</tt>.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">content​_type</span></td><td class="fieldArgDesc">The full content type of the response.
-Overrides building the value from <tt class="rst-docutils literal">mimetype</tt>.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">direct​_passthrough</span></td><td class="fieldArgDesc">Pass the response body directly through
-as the WSGI iterable. This can be used when the body is a binary
-file or other iterator of bytes, to skip some unnecessary
-checks. Use <code>~werkzeug.utils.send_file</code> instead of setting
-this manually.</td></tr></table></div>
+        <div></div>
       </div>
 
       <div id="splitTables">
-        <table class="children sortable" id="id26010">
+        <table class="children sortable" id="id42920">
   
   
   <tr class="classmethod">
@@ -183,7 +205,7 @@ this manually.</td></tr></table></div>
     
     <td>Method</td>
     <td><code><a href="#calculate_content_length" class="internal-link" title="werkzeug.wrappers.response.Response.calculate_content_length">calculate​_content​_length</a></code></td>
-    <td>Returns the content length if available or <code><a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a></code> otherwise.</td>
+    <td>Returns the content length if available or `None` otherwise.</td>
   </tr><tr class="method">
     
     <td>Method</td>
@@ -213,7 +235,7 @@ this manually.</td></tr></table></div>
     
     <td>Method</td>
     <td><code><a href="#get_json" class="internal-link" title="werkzeug.wrappers.response.Response.get_json">get​_json</a></code></td>
-    <td>Parse <code><a href="#data" class="internal-link" title="werkzeug.wrappers.response.Response.data">data</a></code> as JSON. Useful during testing.</td>
+    <td>Parse :attr:`data` as JSON. Useful during testing.</td>
   </tr><tr class="method">
     
     <td>Method</td>
@@ -288,7 +310,7 @@ this manually.</td></tr></table></div>
     
     <td>Property</td>
     <td><code><a href="#is_sequence" class="internal-link" title="werkzeug.wrappers.response.Response.is_sequence">is​_sequence</a></code></td>
-    <td>If the iterator is buffered, this property will be <code><a href="https://docs.python.org/3/library/constants.html#True" class="intersphinx-link">True</a></code>.  A response object will consider an iterator to be buffered if the response attribute is a list or tuple.</td>
+    <td>If the iterator is buffered, this property will be `True`.  A response object will consider an iterator to be buffered if the response attribute is a list or tuple.</td>
   </tr><tr class="property">
     
     <td>Property</td>
@@ -298,7 +320,7 @@ this manually.</td></tr></table></div>
     
     <td>Property</td>
     <td><code><a href="#json" class="internal-link" title="werkzeug.wrappers.response.Response.json">json</a></code></td>
-    <td>The parsed JSON data if <code>mimetype</code> indicates JSON (<a href="#system-message-1"><span class="rst-problematic" id="rst-problematic-1">:mimetype:`application/json`</span></a>, see <code>is_json</code>).</td>
+    <td>The parsed JSON data if :attr:`mimetype` indicates JSON (:mimetype:`application/json`, see :attr:`is_json`).</td>
   </tr><tr class="property">
     
     <td>Property</td>
@@ -307,27 +329,27 @@ this manually.</td></tr></table></div>
   </tr><tr class="method private">
     
     <td>Method</td>
-    <td><code><a href="#_ensure_sequence" class="internal-link" title="werkzeug.wrappers.response.Response._ensure_sequence">​_ensure​_sequence</a></code></td>
-    <td>This method can be called by methods that need a sequence.  If <code>mutable</code> is true, it will also ensure that the response sequence is a standard Python list.</td>
+    <td><code><a href="#_ensure_sequence" class="internal-link" title="werkzeug.wrappers.response.Response._ensure_sequence">_ensure​_sequence</a></code></td>
+    <td>This method can be called by methods that need a sequence.  If `mutable` is true, it will also ensure that the response sequence is a standard Python list.</td>
   </tr><tr class="method private">
     
     <td>Method</td>
-    <td><code><a href="#_is_range_request_processable" class="internal-link" title="werkzeug.wrappers.response.Response._is_range_request_processable">​_is​_range​_request​_processable</a></code></td>
-    <td>Return <tt class="rst-docutils literal">True</tt> if <code><a href="werkzeug.datastructures.Range.html" class="internal-link" title="werkzeug.datastructures.Range">Range</a></code> header is present and if underlying resource is considered unchanged when compared with <code>If-Range</code> header.</td>
+    <td><code><a href="#_is_range_request_processable" class="internal-link" title="werkzeug.wrappers.response.Response._is_range_request_processable">_is​_range​_request​_processable</a></code></td>
+    <td>Return ``True`` if `Range` header is present and if underlying resource is considered unchanged when compared with `If-Range` header.</td>
   </tr><tr class="method private">
     
     <td>Method</td>
-    <td><code><a href="#_process_range_request" class="internal-link" title="werkzeug.wrappers.response.Response._process_range_request">​_process​_range​_request</a></code></td>
+    <td><code><a href="#_process_range_request" class="internal-link" title="werkzeug.wrappers.response.Response._process_range_request">_process​_range​_request</a></code></td>
     <td><span class="undocumented">No summary</span></td>
   </tr><tr class="method private">
     
     <td>Method</td>
-    <td><code><a href="#_wrap_range_response" class="internal-link" title="werkzeug.wrappers.response.Response._wrap_range_response">​_wrap​_range​_response</a></code></td>
+    <td><code><a href="#_wrap_range_response" class="internal-link" title="werkzeug.wrappers.response.Response._wrap_range_response">_wrap​_range​_response</a></code></td>
     <td>Wrap existing Response in case of Range Request context.</td>
   </tr><tr class="instancevariable private">
     
     <td>Instance Variable</td>
-    <td><code><a href="#_on_close" class="internal-link" title="werkzeug.wrappers.response.Response._on_close">​_on​_close</a></code></td>
+    <td><code><a href="#_on_close" class="internal-link" title="werkzeug.wrappers.response.Response._on_close">_on​_close</a></code></td>
     <td><span class="undocumented">Undocumented</span></td>
   </tr>
 </table>
@@ -358,27 +380,20 @@ this manually.</td></tr></table></div>
   <div class="docstring functionBody">
     
     
-    <div><p>Enforce that the WSGI response is a response object of the current
-type.  Werkzeug will use the <code><a href="werkzeug.wrappers.response.Response.html" class="internal-link" title="werkzeug.wrappers.response.Response">Response</a></code> internally in many
-situations like the exceptions.  If you call <code>get_response</code> on an
-exception you will get back a regular <code><a href="werkzeug.wrappers.response.Response.html" class="internal-link" title="werkzeug.wrappers.response.Response">Response</a></code> object, even
-if you are using a custom subclass.</p>
-<p>This method can enforce a given response type, and it will also
-convert arbitrary WSGI callables into response objects if an environ
-is provided:</p>
+    <div><p>Enforce that the WSGI response is a response object of the current type.  Werkzeug will use the :class:`Response` internally in many situations like the exceptions.  If you call :meth:`get_response` on an exception you will get back a regular :class:`Response` object, even if you are using a custom subclass.</p>
+<p>This method can enforce a given response type, and it will also convert arbitrary WSGI callables into response objects if an environ is provided:</p>
 <pre class="rst-literal-block">
-# convert a Werkzeug response object into an instance of the
-# MyResponseClass subclass.
-response = MyResponseClass.force_type(response)
+    # convert a Werkzeug response object into an instance of the
+    # MyResponseClass subclass.
+    response = MyResponseClass.force_type(response)
 
-# convert any WSGI application into a response object
-response = MyResponseClass.force_type(response, environ)
+    # convert any WSGI application into a response object
+    response = MyResponseClass.force_type(response, environ)
 </pre>
-<p>This is especially useful if you want to post-process responses in
-the main dispatcher and use functionality provided by your subclass.</p>
-<p>Keep in mind that this will modify response objects in place if
-possible!</p>
-<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">response:</span><code><a href="werkzeug.wrappers.response.Response.html" class="internal-link" title="werkzeug.wrappers.response.Response">Response</a></code></td><td class="fieldArgDesc">a response object or wsgi application.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">environ:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">t.Optional</a>[<wbr></wbr>WSGIEnvironment]</code></td><td class="fieldArgDesc">a WSGI environment object.</td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="werkzeug.wrappers.response.Response.html" class="internal-link" title="werkzeug.wrappers.response.Response">Response</a></code></td><td class="fieldArgDesc">a response object.</td></tr></table></div>
+<p>This is especially useful if you want to post-process responses in the main dispatcher and use functionality provided by your subclass.</p>
+<p>Keep in mind that this will modify response objects in place if possible!</p>
+<p>:param response: a response object or wsgi application. :param environ: a WSGI environment object. :return: a response object.</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">response:</span><code><a href="werkzeug.wrappers.response.Response.html" class="internal-link" title="werkzeug.wrappers.response.Response">Response</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">environ:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">t.Optional</a>[<wbr></wbr>WSGIEnvironment]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="werkzeug.wrappers.response.Response.html" class="internal-link" title="werkzeug.wrappers.response.Response">Response</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="baseclassmethod">
   
@@ -400,12 +415,9 @@ possible!</p>
   <div class="docstring functionBody">
     
     
-    <div>Create a new response object from an application output.  This
-works best if you pass it an application that returns a generator all
-the time.  Sometimes applications may use the <code><a href="werkzeug.wrappers.response.ResponseStream.html#write" class="internal-link" title="werkzeug.wrappers.response.ResponseStream.write">write()</a></code> callable
-returned by the <code>start_response</code> function.  This tries to resolve such
-edge cases automatically.  But if you don't get the expected output
-you should set <code>buffered</code> to <code><a href="https://docs.python.org/3/library/constants.html#True" class="intersphinx-link">True</a></code> which enforces buffering.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">app:</span><code>WSGIApplication</code></td><td class="fieldArgDesc">the WSGI application to execute.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">environ:</span><code>WSGIEnvironment</code></td><td class="fieldArgDesc">the WSGI environment to execute against.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">buffered:</span><code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code></td><td class="fieldArgDesc">set to <code><a href="https://docs.python.org/3/library/constants.html#True" class="intersphinx-link">True</a></code> to enforce buffering.</td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="werkzeug.wrappers.response.Response.html" class="internal-link" title="werkzeug.wrappers.response.Response">Response</a></code></td><td class="fieldArgDesc">a response object.</td></tr></table></div>
+    <div><p>Create a new response object from an application output.  This works best if you pass it an application that returns a generator all the time.  Sometimes applications may use the `write()` callable returned by the `start_response` function.  This tries to resolve such edge cases automatically.  But if you don't get the expected output you should set `buffered` to `True` which enforces buffering.</p>
+<p>:param app: the WSGI application to execute. :param environ: the WSGI environment to execute against. :param buffered: set to `True` to enforce buffering. :return: a response object.</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">app:</span><code>WSGIApplication</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">environ:</span><code>WSGIEnvironment</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">buffered:</span><code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="werkzeug.wrappers.response.Response.html" class="internal-link" title="werkzeug.wrappers.response.Response">Response</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basemethod">
   
@@ -427,8 +439,7 @@ you should set <code>buffered</code> to <code><a href="https://docs.python.org/3
   <div class="docstring functionBody">
     
     
-    <div>Process this response as WSGI application.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">environ:</span><code>WSGIEnvironment</code></td><td class="fieldArgDesc">the WSGI environment.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">start​_response:</span><code>StartResponse</code></td><td class="fieldArgDesc">the response callable provided by the WSGI
-server.</td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Iterable" class="intersphinx-link">t.Iterable</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#bytes" class="intersphinx-link">bytes</a>]</code></td><td class="fieldArgDesc">an application iterator</td></tr></table></div>
+    <div><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">environ:</span><code>WSGIEnvironment</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">start​_response:</span><code>StartResponse</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Iterable" class="intersphinx-link">t.Iterable</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#bytes" class="intersphinx-link">bytes</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basemethod">
   
@@ -538,11 +549,7 @@ server.</td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Return
   <div class="docstring functionBody">
     
     
-    <div><p>Add an etag for the current response if there is none yet.</p>
-<div class="rst-versionchanged">
-<span class="rst-versionmodified rst-changed">Changed in version 2.0: </span><span>SHA-1 is used to generate the value. MD5 may not be
-available in some environments.</span></div>
-<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">overwrite:</span><code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">weak:</span><code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+    <div><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">overwrite:</span><code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">weak:</span><code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basemethod">
   
@@ -564,7 +571,7 @@ available in some environments.</span></div>
   <div class="docstring functionBody">
     
     
-    <div>Returns the content length if available or <code><a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a></code> otherwise.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">t.Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/functions.html#int" class="intersphinx-link">int</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+    <div>Returns the content length if available or `None` otherwise.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">t.Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/functions.html#int" class="intersphinx-link">int</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basemethod">
   
@@ -586,12 +593,8 @@ available in some environments.</span></div>
   <div class="docstring functionBody">
     
     
-    <div><p>Adds a function to the internal list of functions that should
-be called as part of closing down the response.  Since 0.7 this
-function also returns the function that was passed so that this
-can be used as a decorator.</p>
-<div class="rst-versionadded">
-<span class="rst-versionmodified rst-added">New in version 0.6.</span></div>
+    <div><p>Adds a function to the internal list of functions that should be called as part of closing down the response.  Since 0.7 this function also returns the function that was passed so that this can be used as a decorator.</p>
+<p>.. versionadded:: 0.6</p>
 <table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">func:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Callable" class="intersphinx-link">t.Callable</a>[<wbr></wbr>[], <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">t.Any</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Callable" class="intersphinx-link">t.Callable</a>[<wbr></wbr>[], <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">t.Any</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basemethod">
@@ -614,11 +617,7 @@ can be used as a decorator.</p>
   <div class="docstring functionBody">
     
     
-    <div><p>Close the wrapped response if possible.  You can also use the object
-in a with statement which will automatically close it.</p>
-<div class="rst-versionadded">
-<span class="rst-versionmodified rst-added">New in version 0.9: </span><span>Can now be used in a with statement.</span></div>
-</div>
+    <div></div>
   </div>
 </div><div class="basemethod">
   
@@ -640,21 +639,7 @@ in a with statement which will automatically close it.</p>
   <div class="docstring functionBody">
     
     
-    <div><p>Make the response object ready to be pickled. Does the
-following:</p>
-<ul class="rst-simple">
-<li>Buffer the response into a list, ignoring
-<code>implicity_sequence_conversion</code> and
-<code><a href="#direct_passthrough" class="internal-link" title="werkzeug.wrappers.response.Response.direct_passthrough">direct_passthrough</a></code>.</li>
-<li>Set the <tt class="rst-docutils literal"><span class="pre">Content-Length</span></tt> header.</li>
-<li>Generate an <tt class="rst-docutils literal">ETag</tt> header if one is not already set.</li>
-</ul>
-<div class="rst-versionchanged">
-<span class="rst-versionmodified rst-changed">Changed in version 2.0: </span><span>An <tt class="rst-docutils literal">ETag</tt> header is added, the <tt class="rst-docutils literal">no_etag</tt> parameter is
-deprecated and will be removed in Werkzeug 2.1.</span></div>
-<div class="rst-versionchanged">
-<span class="rst-versionmodified rst-changed">Changed in version 0.6: </span><span>The <tt class="rst-docutils literal"><span class="pre">Content-Length</span></tt> header is set.</span></div>
-<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">no​_etag:</span><code><a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+    <div><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">no​_etag:</span><code><a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basemethod">
   
@@ -676,15 +661,11 @@ deprecated and will be removed in Werkzeug 2.1.</span></div>
   <div class="docstring functionBody">
     
     
-    <div><p>Returns the application iterator for the given environ.  Depending
-on the request method and the current status code the return value
-might be an empty response rather than the one from the response.</p>
-<p>If the request method is <code>HEAD</code> or the status code is in a range
-where the HTTP specification requires an empty response, an empty
-iterable is returned.</p>
-<div class="rst-versionadded">
-<span class="rst-versionmodified rst-added">New in version 0.6.</span></div>
-<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">environ:</span><code>WSGIEnvironment</code></td><td class="fieldArgDesc">the WSGI environment of the request.</td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Iterable" class="intersphinx-link">t.Iterable</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#bytes" class="intersphinx-link">bytes</a>]</code></td><td class="fieldArgDesc">a response iterable.</td></tr></table></div>
+    <div><p>Returns the application iterator for the given environ.  Depending on the request method and the current status code the return value might be an empty response rather than the one from the response.</p>
+<p>If the request method is `HEAD` or the status code is in a range where the HTTP specification requires an empty response, an empty iterable is returned.</p>
+<p>.. versionadded:: 0.6</p>
+<p>:param environ: the WSGI environment of the request. :return: a response iterable.</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">environ:</span><code>WSGIEnvironment</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Iterable" class="intersphinx-link">t.Iterable</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#bytes" class="intersphinx-link">bytes</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basemethod">
   
@@ -706,15 +687,10 @@ iterable is returned.</p>
   <div class="docstring functionBody">
     
     
-    <div><p>The string representation of the response body.  Whenever you call
-this property the response iterable is encoded and flattened.  This
-can lead to unwanted behavior if you stream big data.</p>
-<p>This behavior can be disabled by setting
-<code><a href="#implicit_sequence_conversion" class="internal-link" title="werkzeug.wrappers.response.Response.implicit_sequence_conversion">implicit_sequence_conversion</a></code> to <code><a href="https://docs.python.org/3/library/constants.html#False" class="intersphinx-link">False</a></code>.</p>
-<p>If <code>as_text</code> is set to <code><a href="https://docs.python.org/3/library/constants.html#True" class="intersphinx-link">True</a></code> the return value will be a decoded
-string.</p>
-<div class="rst-versionadded">
-<span class="rst-versionmodified rst-added">New in version 0.9.</span></div>
+    <div><p>The string representation of the response body.  Whenever you call this property the response iterable is encoded and flattened.  This can lead to unwanted behavior if you stream big data.</p>
+<p>This behavior can be disabled by setting :attr:`implicit_sequence_conversion` to `False`.</p>
+<p>If `as_text` is set to `True` the return value will be a decoded string.</p>
+<p>.. versionadded:: 0.9</p>
 <table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">as​_text:</span><code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Union" class="intersphinx-link">t.Union</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#bytes" class="intersphinx-link">bytes</a>, <wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basemethod">
@@ -737,13 +713,7 @@ string.</p>
   <div class="docstring functionBody">
     
     
-    <div><p>Parse <code><a href="#data" class="internal-link" title="werkzeug.wrappers.response.Response.data">data</a></code> as JSON. Useful during testing.</p>
-<p>If the mimetype does not indicate JSON
-(<a href="#system-message-1"><span class="rst-problematic" id="rst-problematic-1">:mimetype:`application/json`</span></a>, see <code>is_json</code>), this
-returns <tt class="rst-docutils literal">None</tt>.</p>
-<p>Unlike <code><a href="werkzeug.wrappers.request.Request.html#get_json" class="internal-link" title="werkzeug.wrappers.request.Request.get_json">Request.get_json</a></code>, the result is not cached.</p>
-<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">force:</span><code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code></td><td class="fieldArgDesc">Ignore the mimetype and always try to parse JSON.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">silent:</span><code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code></td><td class="fieldArgDesc">Silence parsing errors and return <tt class="rst-docutils literal">None</tt>
-instead.</td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">t.Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">t.Any</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+    <div><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">force:</span><code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">silent:</span><code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">t.Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">t.Any</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basemethod">
   
@@ -765,24 +735,7 @@ instead.</td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Retur
   <div class="docstring functionBody">
     
     
-    <div><p>This is automatically called right before the response is started
-and returns headers modified for the given environment.  It returns a
-copy of the headers from the response with some modifications applied
-if necessary.</p>
-<p>For example the location header (if present) is joined with the root
-URL of the environment.  Also the content length is automatically set
-to zero here for certain status codes.</p>
-<div class="rst-versionchanged">
-<p><span class="rst-versionmodified rst-changed">Changed in version 0.6: </span><span>Previously that function was called <code>fix_headers</code> and modified
-the response object in place.  Also since 0.6, IRIs in location
-and content-location headers are handled properly.</span></p>
-<p>Also starting with 0.6, Werkzeug will attempt to set the content
-length if it is able to figure it out on its own.  This is the
-case if all the strings in the response iterable are already
-encoded and the iterable is buffered.</p>
-</div>
-<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">environ:</span><code>WSGIEnvironment</code></td><td class="fieldArgDesc">the WSGI environment of the request.</td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="werkzeug.datastructures.Headers.html" class="internal-link" title="werkzeug.datastructures.Headers">Headers</a></code></td><td class="fieldArgDesc">returns a new <code>~werkzeug.datastructures.Headers</code>
-object.</td></tr></table></div>
+    <div><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">environ:</span><code>WSGIEnvironment</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="werkzeug.datastructures.Headers.html" class="internal-link" title="werkzeug.datastructures.Headers">Headers</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basemethod">
   
@@ -804,15 +757,10 @@ object.</td></tr></table></div>
   <div class="docstring functionBody">
     
     
-    <div><p>Returns the final WSGI response as tuple.  The first item in
-the tuple is the application iterator, the second the status and
-the third the list of headers.  The response returned is created
-specially for the given environment.  For example if the request
-method in the WSGI environment is <tt class="rst-docutils literal">'HEAD'</tt> the response will
-be empty and only the headers and status code will be present.</p>
-<div class="rst-versionadded">
-<span class="rst-versionmodified rst-added">New in version 0.6.</span></div>
-<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">environ:</span><code>WSGIEnvironment</code></td><td class="fieldArgDesc">the WSGI environment of the request.</td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Tuple" class="intersphinx-link">t.Tuple</a>[<wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Iterable" class="intersphinx-link">t.Iterable</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#bytes" class="intersphinx-link">bytes</a>], <wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>, <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.List" class="intersphinx-link">t.List</a>[<wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Tuple" class="intersphinx-link">t.Tuple</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>, <wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]]]</code></td><td class="fieldArgDesc">an <tt class="rst-docutils literal">(app_iter, status, headers)</tt> tuple.</td></tr></table></div>
+    <div><p>Returns the final WSGI response as tuple.  The first item in the tuple is the application iterator, the second the status and the third the list of headers.  The response returned is created specially for the given environment.  For example if the request method in the WSGI environment is ``'HEAD'`` the response will be empty and only the headers and status code will be present.</p>
+<p>.. versionadded:: 0.6</p>
+<p>:param environ: the WSGI environment of the request. :return: an ``(app_iter, status, headers)`` tuple.</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">environ:</span><code>WSGIEnvironment</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Tuple" class="intersphinx-link">t.Tuple</a>[<wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Iterable" class="intersphinx-link">t.Iterable</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#bytes" class="intersphinx-link">bytes</a>], <wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>, <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.List" class="intersphinx-link">t.List</a>[<wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Tuple" class="intersphinx-link">t.Tuple</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>, <wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]]]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basemethod">
   
@@ -834,10 +782,7 @@ be empty and only the headers and status code will be present.</p>
   <div class="docstring functionBody">
     
     
-    <div>Iter the response encoded with the encoding of the response.
-If the response object is invoked as WSGI application the return
-value of this method is used as application iterator unless
-<code><a href="#direct_passthrough" class="internal-link" title="werkzeug.wrappers.response.Response.direct_passthrough">direct_passthrough</a></code> was activated.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Iterator" class="intersphinx-link">t.Iterator</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#bytes" class="intersphinx-link">bytes</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+    <div>Iter the response encoded with the encoding of the response. If the response object is invoked as WSGI application the return value of this method is used as application iterator unless :attr:`direct_passthrough` was activated.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Iterator" class="intersphinx-link">t.Iterator</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#bytes" class="intersphinx-link">bytes</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basemethod">
   
@@ -859,36 +804,7 @@ value of this method is used as application iterator unless
   <div class="docstring functionBody">
     
     
-    <div><p>Make the response conditional to the request.  This method works
-best if an etag was defined for the response already.  The <code><a href="#add_etag" class="internal-link" title="werkzeug.wrappers.response.Response.add_etag">add_etag</a></code>
-method can be used to do that.  If called without etag just the date
-header is set.</p>
-<p>This does nothing if the request method in the request or environ is
-anything but GET or HEAD.</p>
-<p>For optimal performance when handling range requests, it's recommended
-that your response data object implements <code>seekable</code>, <code>seek</code> and <code><a href="werkzeug.wrappers.response.ResponseStream.html#tell" class="internal-link" title="werkzeug.wrappers.response.ResponseStream.tell">tell</a></code>
-methods as described by <code><a href="https://docs.python.org/3/library/io.html#io.IOBase" class="intersphinx-link">io.IOBase</a></code>.  Objects returned by
-<code>~werkzeug.wsgi.wrap_file</code> automatically implement those methods.</p>
-<p>It does not remove the body of the response because that's something
-the <code><a href="#__call__" class="internal-link" title="werkzeug.wrappers.response.Response.__call__">__call__</a></code> function does for us automatically.</p>
-<p>Returns self so that you can do <tt class="rst-docutils literal">return resp.make_conditional(req)</tt>
-but modifies the object in-place.</p>
-<div class="rst-versionchanged">
-<span class="rst-versionmodified rst-changed">Changed in version 2.0: </span><span>Range processing is skipped if length is 0 instead of
-raising a 416 Range Not Satisfiable error.</span></div>
-<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">request​_or​_environ:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Union" class="intersphinx-link">t.Union</a>[<wbr></wbr>WSGIEnvironment, <wbr></wbr><a href="werkzeug.wrappers.request.Request.html" class="internal-link" title="werkzeug.wrappers.request.Request">Request</a>]</code></td><td class="fieldArgDesc">a request object or WSGI environment to be
-used to make the response conditional
-against.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">accept​_ranges:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Union" class="intersphinx-link">t.Union</a>[<wbr></wbr><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a>, <wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]</code></td><td class="fieldArgDesc">This parameter dictates the value of
-<code>Accept-Ranges</code> header. If <tt class="rst-docutils literal">False</tt> (default),
-the header is not set. If <tt class="rst-docutils literal">True</tt>, it will be set
-to <tt class="rst-docutils literal">"bytes"</tt>. If <tt class="rst-docutils literal">None</tt>, it will be set to
-<tt class="rst-docutils literal">"none"</tt>. If it's a string, it will use this
-value.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">complete​_length:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">t.Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/functions.html#int" class="intersphinx-link">int</a>]</code></td><td class="fieldArgDesc">Will be used only in valid Range Requests.
-It will set <code>Content-Range</code> complete length
-value and compute <code>Content-Length</code> real value.
-This parameter is mandatory for successful
-Range Requests completion.</td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="werkzeug.wrappers.response.Response.html" class="internal-link" title="werkzeug.wrappers.response.Response">Response</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Raises</td></tr><tr><td class="fieldArgContainer"><code><span class="undocumented">Unknown exception</span></code></td><td><code>~werkzeug.exceptions.RequestedRangeNotSatisfiable</code>
-if <code><a href="werkzeug.datastructures.Range.html" class="internal-link" title="werkzeug.datastructures.Range">Range</a></code> header could not be parsed or satisfied.</td></tr></table></div>
+    <div><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">request​_or​_environ:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Union" class="intersphinx-link">t.Union</a>[<wbr></wbr>WSGIEnvironment, <wbr></wbr><a href="werkzeug.wrappers.request.Request.html" class="internal-link" title="werkzeug.wrappers.request.Request">Request</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">accept​_ranges:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Union" class="intersphinx-link">t.Union</a>[<wbr></wbr><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a>, <wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">complete​_length:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">t.Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/functions.html#int" class="intersphinx-link">int</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="werkzeug.wrappers.response.Response.html" class="internal-link" title="werkzeug.wrappers.response.Response">Response</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basemethod">
   
@@ -910,12 +826,8 @@ if <code><a href="werkzeug.datastructures.Range.html" class="internal-link" titl
   <div class="docstring functionBody">
     
     
-    <div><p>Converts the response iterator in a list.  By default this happens
-automatically if required.  If <code><a href="#implicit_sequence_conversion" class="internal-link" title="werkzeug.wrappers.response.Response.implicit_sequence_conversion">implicit_sequence_conversion</a></code> is
-disabled, this method is not automatically called and some properties
-might raise exceptions.  This also encodes all the items.</p>
-<div class="rst-versionadded">
-<span class="rst-versionmodified rst-added">New in version 0.6.</span></div>
+    <div><p>Converts the response iterator in a list.  By default this happens automatically if required.  If `implicit_sequence_conversion` is disabled, this method is not automatically called and some properties might raise exceptions.  This also encodes all the items.</p>
+<p>.. versionadded:: 0.6</p>
 </div>
   </div>
 </div><div class="basemethod">
@@ -938,11 +850,8 @@ might raise exceptions.  This also encodes all the items.</p>
   <div class="docstring functionBody">
     
     
-    <div><p>Sets a new string as response.  The value must be a string or
-bytes. If a string is set it's encoded to the charset of the
-response (utf-8 by default).</p>
-<div class="rst-versionadded">
-<span class="rst-versionmodified rst-added">New in version 0.9.</span></div>
+    <div><p>Sets a new string as response.  The value must be a string or bytes. If a string is set it's encoded to the charset of the response (utf-8 by default).</p>
+<p>.. versionadded:: 0.9</p>
 <table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">value:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Union" class="intersphinx-link">t.Union</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#bytes" class="intersphinx-link">bytes</a>, <wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="baseclassvariable">
@@ -1149,11 +1058,8 @@ response (utf-8 by default).</p>
   <div class="functionBody">
     
     
-    <div><p>If the iterator is buffered, this property will be <code><a href="https://docs.python.org/3/library/constants.html#True" class="intersphinx-link">True</a></code>.  A
-response object will consider an iterator to be buffered if the
-response attribute is a list or tuple.</p>
-<div class="rst-versionadded">
-<span class="rst-versionmodified rst-added">New in version 0.6.</span></div>
+    <div><p>If the iterator is buffered, this property will be `True`.  A response object will consider an iterator to be buffered if the response attribute is a list or tuple.</p>
+<p>.. versionadded:: 0.6</p>
 </div>
     
   </div>
@@ -1177,12 +1083,8 @@ response attribute is a list or tuple.</p>
   <div class="functionBody">
     
     
-    <div><p>If the response is streamed (the response is not an iterable with
-a length information) this property is <code><a href="https://docs.python.org/3/library/constants.html#True" class="intersphinx-link">True</a></code>.  In this case streamed
-means that there is no information about the number of iterations.
-This is usually <code><a href="https://docs.python.org/3/library/constants.html#True" class="intersphinx-link">True</a></code> if a generator is passed to the response object.</p>
-<p>This is useful for checking before applying some sort of post
-filtering that should not take place for streamed responses.</p>
+    <div><p>If the response is streamed (the response is not an iterable with a length information) this property is `True`.  In this case streamed means that there is no information about the number of iterations. This is usually `True` if a generator is passed to the response object.</p>
+<p>This is useful for checking before applying some sort of post filtering that should not take place for streamed responses.</p>
 </div>
     
   </div>
@@ -1206,9 +1108,8 @@ filtering that should not take place for streamed responses.</p>
   <div class="functionBody">
     
     
-    <div><p>The parsed JSON data if <code>mimetype</code> indicates JSON
-(<a href="#system-message-1"><span class="rst-problematic" id="rst-problematic-1">:mimetype:`application/json`</span></a>, see <code>is_json</code>).</p>
-<p>Calls <code><a href="#get_json" class="internal-link" title="werkzeug.wrappers.response.Response.get_json">get_json</a></code> with default arguments.</p>
+    <div><p>The parsed JSON data if :attr:`mimetype` indicates JSON (:mimetype:`application/json`, see :attr:`is_json`).</p>
+<p>Calls :meth:`get_json` with default arguments.</p>
 </div>
     
   </div>
@@ -1255,11 +1156,8 @@ filtering that should not take place for streamed responses.</p>
   <div class="docstring functionBody">
     
     
-    <div><p>This method can be called by methods that need a sequence.  If
-<code>mutable</code> is true, it will also ensure that the response sequence
-is a standard Python list.</p>
-<div class="rst-versionadded">
-<span class="rst-versionmodified rst-added">New in version 0.6.</span></div>
+    <div><p>This method can be called by methods that need a sequence.  If `mutable` is true, it will also ensure that the response sequence is a standard Python list.</p>
+<p>.. versionadded:: 0.6</p>
 <table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">mutable:</span><code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basemethod private">
@@ -1282,8 +1180,7 @@ is a standard Python list.</p>
   <div class="docstring functionBody">
     
     
-    <div>Return <tt class="rst-docutils literal">True</tt> if <code><a href="werkzeug.datastructures.Range.html" class="internal-link" title="werkzeug.datastructures.Range">Range</a></code> header is present and if underlying
-resource is considered unchanged when compared with <code>If-Range</code> header.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">environ:</span><code>WSGIEnvironment</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+    <div>Return ``True`` if `Range` header is present and if underlying resource is considered unchanged when compared with `If-Range` header.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">environ:</span><code>WSGIEnvironment</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basemethod private">
   
@@ -1305,15 +1202,7 @@ resource is considered unchanged when compared with <code>If-Range</code> header
   <div class="docstring functionBody">
     
     
-    <div><p>Handle Range Request related headers (RFC7233).  If <code>Accept-Ranges</code>
-header is valid, and Range Request is processable, we set the headers
-as described by the RFC, and wrap the underlying response in a
-RangeWrapper.</p>
-<p>Returns <tt class="rst-docutils literal">True</tt> if Range Request can be fulfilled, <tt class="rst-docutils literal">False</tt> otherwise.</p>
-<div class="rst-versionchanged">
-<span class="rst-versionmodified rst-changed">Changed in version 2.0: </span><span>Returns <tt class="rst-docutils literal">False</tt> if the length is 0.</span></div>
-<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">environ:</span><code>WSGIEnvironment</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">complete​_length:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">t.Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/functions.html#int" class="intersphinx-link">int</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">accept​_ranges:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">t.Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Union" class="intersphinx-link">t.Union</a>[<wbr></wbr><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a>, <wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Raises</td></tr><tr><td class="fieldArgContainer"><code><span class="undocumented">Unknown exception</span></code></td><td><code>~werkzeug.exceptions.RequestedRangeNotSatisfiable</code>
-if <code><a href="werkzeug.datastructures.Range.html" class="internal-link" title="werkzeug.datastructures.Range">Range</a></code> header could not be parsed or satisfied.</td></tr></table></div>
+    <div><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">environ:</span><code>WSGIEnvironment</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">complete​_length:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">t.Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/functions.html#int" class="intersphinx-link">int</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">accept​_ranges:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">t.Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Union" class="intersphinx-link">t.Union</a>[<wbr></wbr><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a>, <wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basemethod private">
   
@@ -1366,12 +1255,20 @@ if <code><a href="werkzeug.datastructures.Range.html" class="internal-link" titl
     </div>
 
     <footer class="navbar navbar-default">
+
   
   <div class="container">
     <a href="index.html">API Documentation</a> for werkzeug,
   generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
-    22.2.0 at 2022-02-23 08:27:49.
+    22.3.0.dev0 at 2022-03-22 17:48:04.
   </div>
+
+  <!-- Search related scripts needs to be loaded at the end of HTML 
+    parsing not to introduce overhead and display HTML data asap -->
+  <script src="ajax.js" type="text/javascript"></script>
+  <script src="searchlib.js" type="text/javascript"></script>
+  <script src="search.js" type="text/javascript"></script>
+
 </footer>
 
     <script src="pydoctor.js" type="text/javascript"></script>

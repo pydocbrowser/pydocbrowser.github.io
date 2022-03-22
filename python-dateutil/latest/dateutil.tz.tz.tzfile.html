@@ -7,11 +7,11 @@
   <head>
     
     <title>dateutil.tz.tz.tzfile</title>
-    <meta name="generator" content="pydoctor 22.2.0"> 
+    <meta name="generator" content="pydoctor 22.3.0.dev0"> 
         
     </meta>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=0.75" />
+    <meta name="viewport" content="width=device-width, initial-scale=1 maximum-scale=1" />
     <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="apidocs.css" />
     <link rel="stylesheet" type="text/css" href="extra.css" />
@@ -19,12 +19,10 @@
 
   <body>
 
-    <div id="banner" class="container">    
+    <div id="banner">    
     <div>
-        <a href="https://pydocbrowser.github.io/">Home</a>
-        &gt; python-dateutil-2.8.2 
-        <!-- This is an important placeholder and will be 
-            replaced by project name and version on building docs -->
+        <a href="/">Home</a>
+        &gt; python-dateutil-2.8.2 <!-- This is a placeholder -->
         
         <!-- (<a href=""&gt;show all versions</a&gt;) -->
     </div>
@@ -37,21 +35,98 @@
     <div class="navbar-header">
       
       <div class="navlinks">
-          <span class="navbar-brand">
-            dateutil <a href="index.html">API Documentation</a>
+        <span class="navbar-brand">
+          dateutil <a href="index.html">API Documentation</a>
+        </span>
+
+        <a href="moduleIndex.html">
+          Modules
+        </a>
+
+        <a href="classIndex.html">
+          Classes
+        </a>
+
+        <a href="nameIndex.html">
+          Names
+        </a>
+
+        <div id="search-box-container">
+          <div class="input-group">
+            <input id="search-box" type="search" name="search-query" placeholder="Search..." aria-label="Search" minlength="2" class="form-control" autocomplete="off" />
+            
+            <span class="input-group-btn">
+              <a style="display: none;" class="btn btn-default" id="search-clear-button" title="Clear" onclick="clearSearch()"><img src="fonts/x-circle.svg" alt="Clear" /></a>
+              <a class="btn btn-default" id="search-help-button" title="Help" onclick="toggleSearchHelpText()"><img src="fonts/info.svg" alt="Help" /></a>
+            </span>
+          </div>
+        </div>
+
+      </div>
+
+      <div id="search-results-container" style="display: none;">
+        
+        <div id="search-buttons">
+          <span class="label label-default" id="search-docstrings-button">
+          <label class="checkbox-inline">
+            <input type="checkbox" id="toggle-search-in-docstrings-checkbox" value="false" onclick="toggleSearchInDocstrings()">
+              search in docstrings
+            </input>
+          </label>
           </span>
+          
+        </div>
+        
+        <noscript>
+            <h1>Cannot search: JavaScript is not supported/enabled in your browser.</h1>
+        </noscript>
 
-          <a href="moduleIndex.html">
-            Modules
-          </a>
+        <div class="hint" id="search-help-box">
+          <p class="rst-last">
+      
+            Search bar offers the following options:
+            <ul>   
+                <li>
+                  <strong>Term presence.</strong> The below example searches for documents that 
+                    must contain “foo”, might contain “bar” and must not contain “baz”: <code>+foo bar -baz</code>
+                </li> 
 
-          <a href="classIndex.html">
-            Classes
-          </a>
+                <li>
+                  <strong>Wildcards.</strong> The below example searches for documents with words beginning with “foo”: <code>foo*</code>
+                </li> 
 
-          <a href="nameIndex.html">
-            Names
-          </a>
+                <li>
+                  <strong>Search in specific fields.</strong> The following search matches all objects 
+                  in "twisted.mail" that matches “search”: <code>+qname:twisted.mail.* +search</code>
+
+                  <p>
+                    Possible fields: 'name', 'qname' (fully qualified name), 'docstring', and 'kind'.
+                    Last two fields are only applicable if "search in docstrings" is enabled.
+                  </p>
+                </li>
+
+                <li>
+                  <strong>Fuzzy matches.</strong> The following search matches all documents 
+                  that have a word within 1 edit distance of “foo”: <code>foo~1</code>
+                </li>
+            </ul>
+
+          </p>
+        </div>
+
+        <div id="search-status"> </div>
+
+        <div class="warning" id="search-warn-box" style="display: none;">
+          <p class="rst-last"><span id="search-warn"></span></p>
+        </div>
+
+        <table id="search-results">
+          <!-- Filled dynamically by JS -->
+        </table>
+        
+        <div style="margin-top: 8px;">
+          <p>Results provided by <a href="https://lunrjs.com">Lunr.js</a></p>
+        </div>
       </div>
 
     </div>
@@ -79,35 +154,11 @@
       </div>
 
       <div class="moduleDocstring">
-        <div><p>This is a <tt class="rst-docutils literal">tzinfo</tt> subclass that allows one to use the <tt class="rst-docutils literal">tzfile(5)</tt>
-format timezone files to extract current and historical zone information.</p>
-<p>See <a class="rst-reference external" href="https://data.iana.org/time-zones/tz-link.html" target="_top">Sources for Time Zone and Daylight Saving Time Data</a> for more information.
-Time zone files can be compiled from the <a class="rst-reference external" href="https://www.iana.org/time-zones" target="_top">IANA Time Zone database files</a> with the <a class="rst-reference external" href="https://www.freebsd.org/cgi/man.cgi?query=zic&amp;sektion=8" target="_top">zic time zone compiler</a></p>
-<div class="rst-admonition note">
-<p class="rst-first rst-admonition-title">Note</p>
-<p class="rst-last">Only construct a <tt class="rst-docutils literal">tzfile</tt> directly if you have a specific timezone
-file on disk that you want to read into a Python <tt class="rst-docutils literal">tzinfo</tt> object.
-If you want to get a <tt class="rst-docutils literal">tzfile</tt> representing a specific IANA zone,
-(e.g. <tt class="rst-docutils literal">'America/New_York'</tt>), you should call
-<code><a href="dateutil.tz.tz.html#gettz" class="internal-link" title="dateutil.tz.tz.gettz">dateutil.tz.gettz</a></code> with the zone identifier.</p>
-</div>
-<p><strong>Examples:</strong></p>
-<p>Using the US Eastern time zone as an example, we can see that a <tt class="rst-docutils literal">tzfile</tt>
-provides time zone information for the standard Daylight Saving offsets:</p>
-<p>The <tt class="rst-docutils literal">tzfile</tt> structure contains a fully history of the time zone,
-so historical dates will also have the right offsets. For example, before
-the adoption of the UTC standards, New York used local solar  mean time:</p>
-<p>And during World War II, New York was on "Eastern War Time", which was a
-state of permanent daylight saving time:</p>
-<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">fileobj</span></td><td class="fieldArgDesc">This can be an opened file stream or a file name that the time zone
-information can be read from.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">filename</span></td><td class="fieldArgDesc">This is an optional parameter specifying the source of the time zone
-information in the event that <tt class="rst-docutils literal">fileobj</tt> is a file object. If omitted
-and <tt class="rst-docutils literal">fileobj</tt> is a file stream, this parameter will be set either to
-<tt class="rst-docutils literal">fileobj</tt>'s <tt class="rst-docutils literal">name</tt> attribute or to <tt class="rst-docutils literal">repr(fileobj)</tt>.</td></tr></table></div>
+        <div></div>
       </div>
 
       <div id="splitTables">
-        <table class="children sortable" id="id15112">
+        <table class="children sortable" id="id19145">
   
   
   <tr class="method">
@@ -149,7 +200,7 @@ and <tt class="rst-docutils literal">fileobj</tt> is a file stream, this paramet
     
     <td>Method</td>
     <td><code><a href="#fromutc" class="internal-link" title="dateutil.tz.tz.tzfile.fromutc">fromutc</a></code></td>
-    <td>The <tt class="rst-docutils literal">tzfile</tt> implementation of <code><a href="https://docs.python.org/3/library/datetime.html#datetime.tzinfo.fromutc" class="intersphinx-link">datetime.tzinfo.fromutc</a></code>.</td>
+    <td>The ``tzfile`` implementation of :py:func:`datetime.tzinfo.fromutc`.</td>
   </tr><tr class="method">
     
     <td>Method</td>
@@ -173,37 +224,37 @@ and <tt class="rst-docutils literal">fileobj</tt> is a file stream, this paramet
   </tr><tr class="method private">
     
     <td>Method</td>
-    <td><code><a href="#_find_last_transition" class="internal-link" title="dateutil.tz.tz.tzfile._find_last_transition">​_find​_last​_transition</a></code></td>
+    <td><code><a href="#_find_last_transition" class="internal-link" title="dateutil.tz.tz.tzfile._find_last_transition">_find​_last​_transition</a></code></td>
     <td><span class="undocumented">Undocumented</span></td>
   </tr><tr class="method private">
     
     <td>Method</td>
-    <td><code><a href="#_find_ttinfo" class="internal-link" title="dateutil.tz.tz.tzfile._find_ttinfo">​_find​_ttinfo</a></code></td>
+    <td><code><a href="#_find_ttinfo" class="internal-link" title="dateutil.tz.tz.tzfile._find_ttinfo">_find​_ttinfo</a></code></td>
     <td><span class="undocumented">Undocumented</span></td>
   </tr><tr class="method private">
     
     <td>Method</td>
-    <td><code><a href="#_get_ttinfo" class="internal-link" title="dateutil.tz.tz.tzfile._get_ttinfo">​_get​_ttinfo</a></code></td>
+    <td><code><a href="#_get_ttinfo" class="internal-link" title="dateutil.tz.tz.tzfile._get_ttinfo">_get​_ttinfo</a></code></td>
     <td><span class="undocumented">Undocumented</span></td>
   </tr><tr class="method private">
     
     <td>Method</td>
-    <td><code><a href="#_read_tzfile" class="internal-link" title="dateutil.tz.tz.tzfile._read_tzfile">​_read​_tzfile</a></code></td>
+    <td><code><a href="#_read_tzfile" class="internal-link" title="dateutil.tz.tz.tzfile._read_tzfile">_read​_tzfile</a></code></td>
     <td><span class="undocumented">Undocumented</span></td>
   </tr><tr class="method private">
     
     <td>Method</td>
-    <td><code><a href="#_resolve_ambiguous_time" class="internal-link" title="dateutil.tz.tz.tzfile._resolve_ambiguous_time">​_resolve​_ambiguous​_time</a></code></td>
+    <td><code><a href="#_resolve_ambiguous_time" class="internal-link" title="dateutil.tz.tz.tzfile._resolve_ambiguous_time">_resolve​_ambiguous​_time</a></code></td>
     <td><span class="undocumented">Undocumented</span></td>
   </tr><tr class="method private">
     
     <td>Method</td>
-    <td><code><a href="#_set_tzdata" class="internal-link" title="dateutil.tz.tz.tzfile._set_tzdata">​_set​_tzdata</a></code></td>
+    <td><code><a href="#_set_tzdata" class="internal-link" title="dateutil.tz.tz.tzfile._set_tzdata">_set​_tzdata</a></code></td>
     <td>Set the time zone data of this object from a _tzfile object</td>
   </tr><tr class="instancevariable private">
     
     <td>Instance Variable</td>
-    <td><code><a href="#_filename" class="internal-link" title="dateutil.tz.tz.tzfile._filename">​_filename</a></code></td>
+    <td><code><a href="#_filename" class="internal-link" title="dateutil.tz.tz.tzfile._filename">_filename</a></code></td>
     <td><span class="undocumented">Undocumented</span></td>
   </tr>
 </table>
@@ -211,23 +262,23 @@ and <tt class="rst-docutils literal">fileobj</tt> is a file stream, this paramet
           <p class="inheritedFrom">
             Inherited from <code><a href="dateutil.tz._common._tzinfo.html" class="internal-link" title="dateutil.tz._common._tzinfo">_tzinfo</a></code>:
           </p>
-          <table class="children sortable" id="id15113">
+          <table class="children sortable" id="id19146">
   
   
   <tr class="basemethod private">
     
     <td>Method</td>
-    <td><code><a href="dateutil.tz._common._tzinfo.html#_fold" class="internal-link" title="dateutil.tz._common._tzinfo._fold">​_fold</a></code></td>
+    <td><code><a href="dateutil.tz._common._tzinfo.html#_fold" class="internal-link" title="dateutil.tz._common._tzinfo._fold">_fold</a></code></td>
     <td><span class="undocumented">Undocumented</span></td>
   </tr><tr class="basemethod private">
     
     <td>Method</td>
-    <td><code><a href="dateutil.tz._common._tzinfo.html#_fold_status" class="internal-link" title="dateutil.tz._common._tzinfo._fold_status">​_fold​_status</a></code></td>
+    <td><code><a href="dateutil.tz._common._tzinfo.html#_fold_status" class="internal-link" title="dateutil.tz._common._tzinfo._fold_status">_fold​_status</a></code></td>
     <td><span class="undocumented">No summary</span></td>
   </tr><tr class="basemethod private">
     
     <td>Method</td>
-    <td><code><a href="dateutil.tz._common._tzinfo.html#_fromutc" class="internal-link" title="dateutil.tz._common._tzinfo._fromutc">​_fromutc</a></code></td>
+    <td><code><a href="dateutil.tz._common._tzinfo.html#_fromutc" class="internal-link" title="dateutil.tz._common._tzinfo._fromutc">_fromutc</a></code></td>
     <td>Given a timezone-aware datetime in a given timezone, calculates a timezone-aware datetime in a new timezone.</td>
   </tr>
 </table>
@@ -412,9 +463,7 @@ and <tt class="rst-docutils literal">fileobj</tt> is a file stream, this paramet
   <div class="docstring functionBody">
     <div class="interfaceinfo">overrides <code><a href="dateutil.tz._common._tzinfo.html#fromutc" class="internal-link">dateutil.tz._common._tzinfo.fromutc</a></code></div>
     
-    <div>The <tt class="rst-docutils literal">tzfile</tt> implementation of <code><a href="https://docs.python.org/3/library/datetime.html#datetime.tzinfo.fromutc" class="intersphinx-link">datetime.tzinfo.fromutc</a></code>.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">dt</span></td><td class="fieldArgDesc">A <code><a href="https://docs.python.org/3/library/datetime.html#datetime.datetime" class="intersphinx-link">datetime.datetime</a></code> object.</td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td colspan="2">Returns a <code><a href="https://docs.python.org/3/library/datetime.html#datetime.datetime" class="intersphinx-link">datetime.datetime</a></code> object representing the
-wall time in <tt class="rst-docutils literal">self</tt>'s time zone.</td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Raises</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/exceptions.html#TypeError" class="intersphinx-link">TypeError</a></code></td><td>Raised if <tt class="rst-docutils literal">dt</tt> is not a <code><a href="https://docs.python.org/3/library/datetime.html#datetime.datetime" class="intersphinx-link">datetime.datetime</a></code> object.</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/exceptions.html#ValueError" class="intersphinx-link">ValueError</a></code></td><td>Raised if this is called with a <tt class="rst-docutils literal">dt</tt> which does not have this
-<tt class="rst-docutils literal">tzinfo</tt> attached.</td></tr></table></div>
+    <div></div>
   </div>
 </div><div class="basemethod">
   
@@ -436,11 +485,7 @@ wall time in <tt class="rst-docutils literal">self</tt>'s time zone.</td></tr><t
   <div class="docstring functionBody">
     <div class="interfaceinfo">overrides <code><a href="dateutil.tz._common._tzinfo.html#is_ambiguous" class="internal-link">dateutil.tz._common._tzinfo.is_ambiguous</a></code></div>
     
-    <div><p>Whether or not the "wall time" of a given datetime is ambiguous in this
-zone.</p>
-<div class="rst-versionadded">
-<span class="rst-versionmodified rst-added">New in version 2.6.0.</span></div>
-<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">dt</span></td><td class="fieldArgDesc">A <code><a href="https://docs.python.org/3/library/datetime.html#datetime.datetime" class="intersphinx-link">datetime.datetime</a></code>, naive or time zone aware.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">idx</span></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td colspan="2">Returns <tt class="rst-docutils literal">True</tt> if ambiguous, <tt class="rst-docutils literal">False</tt> otherwise.</td></tr></table></div>
+    <div></div>
   </div>
 </div><div class="basemethod">
   
@@ -670,12 +715,20 @@ zone.</p>
     </div>
 
     <footer class="navbar navbar-default">
+
   
   <div class="container">
     <a href="index.html">API Documentation</a> for dateutil,
   generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
-    22.2.0 at 2022-02-23 08:19:32.
+    22.3.0.dev0 at 2022-03-22 17:23:31.
   </div>
+
+  <!-- Search related scripts needs to be loaded at the end of HTML 
+    parsing not to introduce overhead and display HTML data asap -->
+  <script src="ajax.js" type="text/javascript"></script>
+  <script src="searchlib.js" type="text/javascript"></script>
+  <script src="search.js" type="text/javascript"></script>
+
 </footer>
 
     <script src="pydoctor.js" type="text/javascript"></script>

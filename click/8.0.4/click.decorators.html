@@ -7,11 +7,11 @@
   <head>
     
     <title>click.decorators</title>
-    <meta name="generator" content="pydoctor 22.2.0"> 
+    <meta name="generator" content="pydoctor 22.3.0.dev0"> 
         
     </meta>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=0.75" />
+    <meta name="viewport" content="width=device-width, initial-scale=1 maximum-scale=1" />
     <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="apidocs.css" />
     <link rel="stylesheet" type="text/css" href="extra.css" />
@@ -19,12 +19,10 @@
 
   <body>
 
-    <div id="banner" class="container">    
+    <div id="banner">    
     <div>
-        <a href="https://pydocbrowser.github.io/">Home</a>
-        &gt; click-8.0.4 
-        <!-- This is an important placeholder and will be 
-            replaced by project name and version on building docs -->
+        <a href="/">Home</a>
+        &gt; click-8.0.4 <!-- This is a placeholder -->
         
         <!-- (<a href=""&gt;show all versions</a&gt;) -->
     </div>
@@ -37,21 +35,98 @@
     <div class="navbar-header">
       
       <div class="navlinks">
-          <span class="navbar-brand">
-            click <a href="index.html">API Documentation</a>
+        <span class="navbar-brand">
+          click <a href="index.html">API Documentation</a>
+        </span>
+
+        <a href="moduleIndex.html">
+          Modules
+        </a>
+
+        <a href="classIndex.html">
+          Classes
+        </a>
+
+        <a href="nameIndex.html">
+          Names
+        </a>
+
+        <div id="search-box-container">
+          <div class="input-group">
+            <input id="search-box" type="search" name="search-query" placeholder="Search..." aria-label="Search" minlength="2" class="form-control" autocomplete="off" />
+            
+            <span class="input-group-btn">
+              <a style="display: none;" class="btn btn-default" id="search-clear-button" title="Clear" onclick="clearSearch()"><img src="fonts/x-circle.svg" alt="Clear" /></a>
+              <a class="btn btn-default" id="search-help-button" title="Help" onclick="toggleSearchHelpText()"><img src="fonts/info.svg" alt="Help" /></a>
+            </span>
+          </div>
+        </div>
+
+      </div>
+
+      <div id="search-results-container" style="display: none;">
+        
+        <div id="search-buttons">
+          <span class="label label-default" id="search-docstrings-button">
+          <label class="checkbox-inline">
+            <input type="checkbox" id="toggle-search-in-docstrings-checkbox" value="false" onclick="toggleSearchInDocstrings()">
+              search in docstrings
+            </input>
+          </label>
           </span>
+          
+        </div>
+        
+        <noscript>
+            <h1>Cannot search: JavaScript is not supported/enabled in your browser.</h1>
+        </noscript>
 
-          <a href="moduleIndex.html">
-            Modules
-          </a>
+        <div class="hint" id="search-help-box">
+          <p class="rst-last">
+      
+            Search bar offers the following options:
+            <ul>   
+                <li>
+                  <strong>Term presence.</strong> The below example searches for documents that 
+                    must contain “foo”, might contain “bar” and must not contain “baz”: <code>+foo bar -baz</code>
+                </li> 
 
-          <a href="classIndex.html">
-            Classes
-          </a>
+                <li>
+                  <strong>Wildcards.</strong> The below example searches for documents with words beginning with “foo”: <code>foo*</code>
+                </li> 
 
-          <a href="nameIndex.html">
-            Names
-          </a>
+                <li>
+                  <strong>Search in specific fields.</strong> The following search matches all objects 
+                  in "twisted.mail" that matches “search”: <code>+qname:twisted.mail.* +search</code>
+
+                  <p>
+                    Possible fields: 'name', 'qname' (fully qualified name), 'docstring', and 'kind'.
+                    Last two fields are only applicable if "search in docstrings" is enabled.
+                  </p>
+                </li>
+
+                <li>
+                  <strong>Fuzzy matches.</strong> The following search matches all documents 
+                  that have a word within 1 edit distance of “foo”: <code>foo~1</code>
+                </li>
+            </ul>
+
+          </p>
+        </div>
+
+        <div id="search-status"> </div>
+
+        <div class="warning" id="search-warn-box" style="display: none;">
+          <p class="rst-last"><span id="search-warn"></span></p>
+        </div>
+
+        <table id="search-results">
+          <!-- Filled dynamically by JS -->
+        </table>
+        
+        <div style="margin-top: 8px;">
+          <p>Results provided by <a href="https://lunrjs.com">Lunr.js</a></p>
+        </div>
       </div>
 
     </div>
@@ -83,7 +158,7 @@
       </div>
 
       <div id="splitTables">
-        <table class="children sortable" id="id1024">
+        <table class="children sortable" id="id996">
   
   
   <tr class="function">
@@ -95,22 +170,22 @@
     
     <td>Function</td>
     <td><code><a href="#command" class="internal-link" title="click.decorators.command">command</a></code></td>
-    <td>Creates a new <code><a href="click.core.Command.html" class="internal-link" title="click.core.Command">Command</a></code> and uses the decorated function as callback.  This will also automatically attach all decorated <code><a href="#option" class="internal-link" title="click.decorators.option">option</a></code>s and <code><a href="#argument" class="internal-link" title="click.decorators.argument">argument</a></code>s as parameters to the command.</td>
+    <td>Creates a new :class:`Command` and uses the decorated function as callback.  This will also automatically attach all decorated :func:`option`\s and :func:`argument`\s as parameters to the command.</td>
   </tr><tr class="function">
     
     <td>Function</td>
     <td><code><a href="#confirmation_option" class="internal-link" title="click.decorators.confirmation_option">confirmation​_option</a></code></td>
-    <td>Add a <tt class="rst-docutils literal"><span class="pre">--yes</span></tt> option which shows a prompt before continuing if not passed. If the prompt is declined, the program will exit.</td>
+    <td>Add a ``--yes`` option which shows a prompt before continuing if not passed. If the prompt is declined, the program will exit.</td>
   </tr><tr class="function">
     
     <td>Function</td>
     <td><code><a href="#group" class="internal-link" title="click.decorators.group">group</a></code></td>
-    <td>Creates a new <code><a href="click.core.Group.html" class="internal-link" title="click.core.Group">Group</a></code> with a function as callback.  This works otherwise the same as <code><a href="#command" class="internal-link" title="click.decorators.command">command</a></code> just that the <code>cls</code> parameter is set to <code><a href="click.core.Group.html" class="internal-link" title="click.core.Group">Group</a></code>.</td>
+    <td>Creates a new :class:`Group` with a function as callback.  This works otherwise the same as :func:`command` just that the `cls` parameter is set to :class:`Group`.</td>
   </tr><tr class="function">
     
     <td>Function</td>
     <td><code><a href="#help_option" class="internal-link" title="click.decorators.help_option">help​_option</a></code></td>
-    <td>Add a <tt class="rst-docutils literal"><span class="pre">--help</span></tt> option which immediately prints the help page and exits the program.</td>
+    <td>Add a ``--help`` option which immediately prints the help page and exits the program.</td>
   </tr><tr class="function">
     
     <td>Function</td>
@@ -130,22 +205,22 @@
     
     <td>Function</td>
     <td><code><a href="#pass_meta_key" class="internal-link" title="click.decorators.pass_meta_key">pass​_meta​_key</a></code></td>
-    <td>Create a decorator that passes a key from <code><a href="click.core.Context.html#meta" class="internal-link" title="click.core.Context.meta">click.Context.meta</a></code> as the first argument to the decorated function.</td>
+    <td>Create a decorator that passes a key from :attr:`click.Context.meta` as the first argument to the decorated function.</td>
   </tr><tr class="function">
     
     <td>Function</td>
     <td><code><a href="#pass_obj" class="internal-link" title="click.decorators.pass_obj">pass​_obj</a></code></td>
-    <td>Similar to <code><a href="#pass_context" class="internal-link" title="click.decorators.pass_context">pass_context</a></code>, but only pass the object on the context onwards (<code><a href="click.core.Context.html#obj" class="internal-link" title="click.core.Context.obj">Context.obj</a></code>).  This is useful if that object represents the state of a nested system.</td>
+    <td>Similar to :func:`pass_context`, but only pass the object on the context onwards (:attr:`Context.obj`).  This is useful if that object represents the state of a nested system.</td>
   </tr><tr class="function">
     
     <td>Function</td>
     <td><code><a href="#password_option" class="internal-link" title="click.decorators.password_option">password​_option</a></code></td>
-    <td>Add a <tt class="rst-docutils literal"><span class="pre">--password</span></tt> option which prompts for a password, hiding input and asking to enter the value again for confirmation.</td>
+    <td>Add a ``--password`` option which prompts for a password, hiding input and asking to enter the value again for confirmation.</td>
   </tr><tr class="function">
     
     <td>Function</td>
     <td><code><a href="#version_option" class="internal-link" title="click.decorators.version_option">version​_option</a></code></td>
-    <td>Add a <tt class="rst-docutils literal"><span class="pre">--version</span></tt> option which immediately prints the version number and exits the program.</td>
+    <td>Add a ``--version`` option which immediately prints the version number and exits the program.</td>
   </tr><tr class="constant">
     
     <td>Constant</td>
@@ -159,12 +234,12 @@
   </tr><tr class="function private">
     
     <td>Function</td>
-    <td><code><a href="#_make_command" class="internal-link" title="click.decorators._make_command">​_make​_command</a></code></td>
+    <td><code><a href="#_make_command" class="internal-link" title="click.decorators._make_command">_make​_command</a></code></td>
     <td><span class="undocumented">Undocumented</span></td>
   </tr><tr class="function private">
     
     <td>Function</td>
-    <td><code><a href="#_param_memo" class="internal-link" title="click.decorators._param_memo">​_param​_memo</a></code></td>
+    <td><code><a href="#_param_memo" class="internal-link" title="click.decorators._param_memo">_param​_memo</a></code></td>
     <td><span class="undocumented">Undocumented</span></td>
   </tr>
 </table>
@@ -195,12 +270,7 @@
   <div class="docstring functionBody">
     
     
-    <div>Attaches an argument to the command.  All positional arguments are
-passed as parameter declarations to <code><a href="click.core.Argument.html" class="internal-link" title="click.core.Argument">Argument</a></code>; all keyword
-arguments are forwarded unchanged (except <tt class="rst-docutils literal">cls</tt>).
-This is equivalent to creating an <code><a href="click.core.Argument.html" class="internal-link" title="click.core.Argument">Argument</a></code> instance manually
-and attaching it to the <code><a href="click.core.Command.html#params" class="internal-link" title="click.core.Command.params">Command.params</a></code> list.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">*param​_decls:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">**attrs:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">t.Any</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">cls</span></td><td class="fieldArgDesc">the argument class to instantiate.  This defaults to
-<code><a href="click.core.Argument.html" class="internal-link" title="click.core.Argument">Argument</a></code>.</td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Callable" class="intersphinx-link">t.Callable</a>[<wbr></wbr>[<wbr></wbr><a href="#FC" class="internal-link" title="click.decorators.FC">FC</a>], <wbr></wbr><a href="#FC" class="internal-link" title="click.decorators.FC">FC</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+    <div><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">*param​_decls:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">**attrs:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">t.Any</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Callable" class="intersphinx-link">t.Callable</a>[<wbr></wbr>[<wbr></wbr><a href="#FC" class="internal-link" title="click.decorators.FC">FC</a>], <wbr></wbr><a href="#FC" class="internal-link" title="click.decorators.FC">FC</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basefunction">
   
@@ -222,19 +292,7 @@ and attaching it to the <code><a href="click.core.Command.html#params" class="in
   <div class="docstring functionBody">
     
     
-    <div><p>Creates a new <code><a href="click.core.Command.html" class="internal-link" title="click.core.Command">Command</a></code> and uses the decorated function as
-callback.  This will also automatically attach all decorated
-<code><a href="#option" class="internal-link" title="click.decorators.option">option</a></code>s and <code><a href="#argument" class="internal-link" title="click.decorators.argument">argument</a></code>s as parameters to the command.</p>
-<p>The name of the command defaults to the name of the function with
-underscores replaced by dashes.  If you want to change that, you can
-pass the intended name as the first argument.</p>
-<p>All keyword arguments are forwarded to the underlying command class.</p>
-<p>Once decorated the function turns into a <code><a href="click.core.Command.html" class="internal-link" title="click.core.Command">Command</a></code> instance
-that can be invoked as a command line utility or be attached to a
-command <code><a href="click.core.Group.html" class="internal-link" title="click.core.Group">Group</a></code>.</p>
-<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">name:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">t.Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]</code></td><td class="fieldArgDesc">the name of the command.  This defaults to the function
-name with underscores replaced by dashes.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">cls:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">t.Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Type" class="intersphinx-link">t.Type</a>[<wbr></wbr><a href="click.core.Command.html" class="internal-link" title="click.core.Command">Command</a>]]</code></td><td class="fieldArgDesc">the command class to instantiate.  This defaults to
-<code><a href="click.core.Command.html" class="internal-link" title="click.core.Command">Command</a></code>.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">**attrs:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">t.Any</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Callable" class="intersphinx-link">t.Callable</a>[<wbr></wbr>[<wbr></wbr><a href="#F" class="internal-link" title="click.decorators.F">F</a>], <wbr></wbr><a href="click.core.Command.html" class="internal-link" title="click.core.Command">Command</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+    <div><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">name:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">t.Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">cls:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">t.Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Type" class="intersphinx-link">t.Type</a>[<wbr></wbr><a href="click.core.Command.html" class="internal-link" title="click.core.Command">Command</a>]]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">**attrs:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">t.Any</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Callable" class="intersphinx-link">t.Callable</a>[<wbr></wbr>[<wbr></wbr><a href="#F" class="internal-link" title="click.decorators.F">F</a>], <wbr></wbr><a href="click.core.Command.html" class="internal-link" title="click.core.Command">Command</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basefunction">
   
@@ -256,9 +314,7 @@ name with underscores replaced by dashes.</td></tr><tr><td class="fieldArgContai
   <div class="docstring functionBody">
     
     
-    <div>Add a <tt class="rst-docutils literal"><span class="pre">--yes</span></tt> option which shows a prompt before continuing if
-not passed. If the prompt is declined, the program will exit.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">*param​_decls:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc">One or more option names. Defaults to the single
-value <tt class="rst-docutils literal"><span class="pre">"--yes"</span></tt>.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">**kwargs:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">t.Any</a></code></td><td class="fieldArgDesc">Extra arguments are passed to <code><a href="#option" class="internal-link" title="click.decorators.option">option</a></code>.</td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Callable" class="intersphinx-link">t.Callable</a>[<wbr></wbr>[<wbr></wbr><a href="#FC" class="internal-link" title="click.decorators.FC">FC</a>], <wbr></wbr><a href="#FC" class="internal-link" title="click.decorators.FC">FC</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+    <div><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">*param​_decls:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">**kwargs:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">t.Any</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Callable" class="intersphinx-link">t.Callable</a>[<wbr></wbr>[<wbr></wbr><a href="#FC" class="internal-link" title="click.decorators.FC">FC</a>], <wbr></wbr><a href="#FC" class="internal-link" title="click.decorators.FC">FC</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basefunction">
   
@@ -280,9 +336,7 @@ value <tt class="rst-docutils literal"><span class="pre">"--yes"</span></tt>.</t
   <div class="docstring functionBody">
     
     
-    <div>Creates a new <code><a href="click.core.Group.html" class="internal-link" title="click.core.Group">Group</a></code> with a function as callback.  This
-works otherwise the same as <code><a href="#command" class="internal-link" title="click.decorators.command">command</a></code> just that the <code>cls</code>
-parameter is set to <code><a href="click.core.Group.html" class="internal-link" title="click.core.Group">Group</a></code>.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">name:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">t.Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">**attrs:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">t.Any</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Callable" class="intersphinx-link">t.Callable</a>[<wbr></wbr>[<wbr></wbr><a href="#F" class="internal-link" title="click.decorators.F">F</a>], <wbr></wbr><a href="click.core.Group.html" class="internal-link" title="click.core.Group">Group</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+    <div>Creates a new :class:`Group` with a function as callback.  This works otherwise the same as :func:`command` just that the `cls` parameter is set to :class:`Group`.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">name:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">t.Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">**attrs:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">t.Any</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Callable" class="intersphinx-link">t.Callable</a>[<wbr></wbr>[<wbr></wbr><a href="#F" class="internal-link" title="click.decorators.F">F</a>], <wbr></wbr><a href="click.core.Group.html" class="internal-link" title="click.core.Group">Group</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basefunction">
   
@@ -304,13 +358,7 @@ parameter is set to <code><a href="click.core.Group.html" class="internal-link" 
   <div class="docstring functionBody">
     
     
-    <div><p>Add a <tt class="rst-docutils literal"><span class="pre">--help</span></tt> option which immediately prints the help page
-and exits the program.</p>
-<p>This is usually unnecessary, as the <tt class="rst-docutils literal"><span class="pre">--help</span></tt> option is added to
-each command automatically unless <tt class="rst-docutils literal">add_help_option=False</tt> is
-passed.</p>
-<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">*param​_decls:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc">One or more option names. Defaults to the single
-value <tt class="rst-docutils literal"><span class="pre">"--help"</span></tt>.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">**kwargs:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">t.Any</a></code></td><td class="fieldArgDesc">Extra arguments are passed to <code><a href="#option" class="internal-link" title="click.decorators.option">option</a></code>.</td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Callable" class="intersphinx-link">t.Callable</a>[<wbr></wbr>[<wbr></wbr><a href="#FC" class="internal-link" title="click.decorators.FC">FC</a>], <wbr></wbr><a href="#FC" class="internal-link" title="click.decorators.FC">FC</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+    <div><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">*param​_decls:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">**kwargs:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">t.Any</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Callable" class="intersphinx-link">t.Callable</a>[<wbr></wbr>[<wbr></wbr><a href="#FC" class="internal-link" title="click.decorators.FC">FC</a>], <wbr></wbr><a href="#FC" class="internal-link" title="click.decorators.FC">FC</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basefunction">
   
@@ -332,24 +380,7 @@ value <tt class="rst-docutils literal"><span class="pre">"--help"</span></tt>.</
   <div class="docstring functionBody">
     
     
-    <div><p>Given an object type this creates a decorator that will work
-similar to <code><a href="#pass_obj" class="internal-link" title="click.decorators.pass_obj">pass_obj</a></code> but instead of passing the object of the
-current context, it will find the innermost context of type
-<code>object_type</code>.</p>
-<p>This generates a decorator that works roughly like this:</p>
-<pre class="rst-literal-block">
-from functools import update_wrapper
-
-def decorator(f):
-    @pass_context
-    def new_func(ctx, *args, **kwargs):
-        obj = ctx.find_object(object_type)
-        return ctx.invoke(f, obj, *args, **kwargs)
-    return update_wrapper(new_func, f)
-return decorator
-</pre>
-<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">object​_type:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Type" class="intersphinx-link">t.Type</a></code></td><td class="fieldArgDesc">the type of the object to pass.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">ensure:</span><code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code></td><td class="fieldArgDesc">if set to <code><a href="https://docs.python.org/3/library/constants.html#True" class="intersphinx-link">True</a></code>, a new object will be created and
-remembered on the context if it's not there yet.</td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Callable" class="intersphinx-link">t.Callable</a>[<wbr></wbr>[<wbr></wbr><a href="#F" class="internal-link" title="click.decorators.F">F</a>], <wbr></wbr><a href="#F" class="internal-link" title="click.decorators.F">F</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+    <div><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">object​_type:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Type" class="intersphinx-link">t.Type</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">ensure:</span><code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Callable" class="intersphinx-link">t.Callable</a>[<wbr></wbr>[<wbr></wbr><a href="#F" class="internal-link" title="click.decorators.F">F</a>], <wbr></wbr><a href="#F" class="internal-link" title="click.decorators.F">F</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basefunction">
   
@@ -371,12 +402,7 @@ remembered on the context if it's not there yet.</td></tr><tr class="fieldStart"
   <div class="docstring functionBody">
     
     
-    <div>Attaches an option to the command.  All positional arguments are
-passed as parameter declarations to <code><a href="click.core.Option.html" class="internal-link" title="click.core.Option">Option</a></code>; all keyword
-arguments are forwarded unchanged (except <tt class="rst-docutils literal">cls</tt>).
-This is equivalent to creating an <code><a href="click.core.Option.html" class="internal-link" title="click.core.Option">Option</a></code> instance manually
-and attaching it to the <code><a href="click.core.Command.html#params" class="internal-link" title="click.core.Command.params">Command.params</a></code> list.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">*param​_decls:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">**attrs:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">t.Any</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">cls</span></td><td class="fieldArgDesc">the option class to instantiate.  This defaults to
-<code><a href="click.core.Option.html" class="internal-link" title="click.core.Option">Option</a></code>.</td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Callable" class="intersphinx-link">t.Callable</a>[<wbr></wbr>[<wbr></wbr><a href="#FC" class="internal-link" title="click.decorators.FC">FC</a>], <wbr></wbr><a href="#FC" class="internal-link" title="click.decorators.FC">FC</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+    <div><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">*param​_decls:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">**attrs:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">t.Any</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Callable" class="intersphinx-link">t.Callable</a>[<wbr></wbr>[<wbr></wbr><a href="#FC" class="internal-link" title="click.decorators.FC">FC</a>], <wbr></wbr><a href="#FC" class="internal-link" title="click.decorators.FC">FC</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basefunction">
   
@@ -398,8 +424,7 @@ and attaching it to the <code><a href="click.core.Command.html#params" class="in
   <div class="docstring functionBody">
     
     
-    <div>Marks a callback as wanting to receive the current context
-object as first argument.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">f:</span><code><a href="#F" class="internal-link" title="click.decorators.F">F</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="#F" class="internal-link" title="click.decorators.F">F</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+    <div>Marks a callback as wanting to receive the current context object as first argument.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">f:</span><code><a href="#F" class="internal-link" title="click.decorators.F">F</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="#F" class="internal-link" title="click.decorators.F">F</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basefunction">
   
@@ -421,14 +446,7 @@ object as first argument.<table class="fieldTable"><tr class="fieldStart"><td cl
   <div class="docstring functionBody">
     
     
-    <div><p>Create a decorator that passes a key from
-<code><a href="click.core.Context.html#meta" class="internal-link" title="click.core.Context.meta">click.Context.meta</a></code> as the first argument to the decorated
-function.</p>
-<div class="rst-versionadded">
-<span class="rst-versionmodified rst-added">New in version 8.0.</span></div>
-<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">key:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc">Key in <tt class="rst-docutils literal">Context.meta</tt> to pass.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">doc​_description:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">t.Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]</code></td><td class="fieldArgDesc">Description of the object being passed,
-inserted into the decorator's docstring. Defaults to "the 'key'
-key from Context.meta".</td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Callable" class="intersphinx-link">t.Callable</a>[<wbr></wbr>[<wbr></wbr><a href="#F" class="internal-link" title="click.decorators.F">F</a>], <wbr></wbr><a href="#F" class="internal-link" title="click.decorators.F">F</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+    <div><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">key:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">doc​_description:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">t.Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Callable" class="intersphinx-link">t.Callable</a>[<wbr></wbr>[<wbr></wbr><a href="#F" class="internal-link" title="click.decorators.F">F</a>], <wbr></wbr><a href="#F" class="internal-link" title="click.decorators.F">F</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basefunction">
   
@@ -450,9 +468,7 @@ key from Context.meta".</td></tr><tr class="fieldStart"><td class="fieldName" co
   <div class="docstring functionBody">
     
     
-    <div>Similar to <code><a href="#pass_context" class="internal-link" title="click.decorators.pass_context">pass_context</a></code>, but only pass the object on the
-context onwards (<code><a href="click.core.Context.html#obj" class="internal-link" title="click.core.Context.obj">Context.obj</a></code>).  This is useful if that object
-represents the state of a nested system.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">f:</span><code><a href="#F" class="internal-link" title="click.decorators.F">F</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="#F" class="internal-link" title="click.decorators.F">F</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+    <div>Similar to :func:`pass_context`, but only pass the object on the context onwards (:attr:`Context.obj`).  This is useful if that object represents the state of a nested system.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">f:</span><code><a href="#F" class="internal-link" title="click.decorators.F">F</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="#F" class="internal-link" title="click.decorators.F">F</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basefunction">
   
@@ -474,9 +490,7 @@ represents the state of a nested system.<table class="fieldTable"><tr class="fie
   <div class="docstring functionBody">
     
     
-    <div>Add a <tt class="rst-docutils literal"><span class="pre">--password</span></tt> option which prompts for a password, hiding
-input and asking to enter the value again for confirmation.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">*param​_decls:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc">One or more option names. Defaults to the single
-value <tt class="rst-docutils literal"><span class="pre">"--password"</span></tt>.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">**kwargs:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">t.Any</a></code></td><td class="fieldArgDesc">Extra arguments are passed to <code><a href="#option" class="internal-link" title="click.decorators.option">option</a></code>.</td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Callable" class="intersphinx-link">t.Callable</a>[<wbr></wbr>[<wbr></wbr><a href="#FC" class="internal-link" title="click.decorators.FC">FC</a>], <wbr></wbr><a href="#FC" class="internal-link" title="click.decorators.FC">FC</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+    <div><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">*param​_decls:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">**kwargs:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">t.Any</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Callable" class="intersphinx-link">t.Callable</a>[<wbr></wbr>[<wbr></wbr><a href="#FC" class="internal-link" title="click.decorators.FC">FC</a>], <wbr></wbr><a href="#FC" class="internal-link" title="click.decorators.FC">FC</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basefunction">
   
@@ -498,30 +512,7 @@ value <tt class="rst-docutils literal"><span class="pre">"--password"</span></tt
   <div class="docstring functionBody">
     
     
-    <div><p>Add a <tt class="rst-docutils literal"><span class="pre">--version</span></tt> option which immediately prints the version
-number and exits the program.</p>
-<p>If <tt class="rst-docutils literal">version</tt> is not provided, Click will try to detect it using
-<code>importlib.metadata.version</code> to get the version for the
-<tt class="rst-docutils literal">package_name</tt>. On Python &lt; 3.8, the <tt class="rst-docutils literal">importlib_metadata</tt>
-backport must be installed.</p>
-<p>If <tt class="rst-docutils literal">package_name</tt> is not provided, Click will try to detect it by
-inspecting the stack frames. This will be used to detect the
-version, so it must match the name of the installed package.</p>
-<div class="rst-versionchanged">
-<span class="rst-versionmodified rst-changed">Changed in version 8.0: </span><span>Add the <tt class="rst-docutils literal">package_name</tt> parameter, and the <tt class="rst-docutils literal">%(package)s</tt>
-value for messages.</span></div>
-<div class="rst-versionchanged">
-<span class="rst-versionmodified rst-changed">Changed in version 8.0: </span><span>Use <code><a href="https://docs.python.org/3/library/importlib.metadata.html#module-importlib.metadata" class="intersphinx-link">importlib.metadata</a></code> instead of <tt class="rst-docutils literal">pkg_resources</tt>. The
-version is detected based on the package name, not the entry
-point name. The Python package name must match the installed
-package name, or be passed with <tt class="rst-docutils literal">package_name=</tt>.</span></div>
-<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">version:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">t.Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]</code></td><td class="fieldArgDesc">The version number to show. If not provided, Click
-will try to detect it.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">*param​_decls:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc">One or more option names. Defaults to the single
-value <tt class="rst-docutils literal"><span class="pre">"--version"</span></tt>.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">package​_name:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">t.Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]</code></td><td class="fieldArgDesc">The package name to detect the version from. If
-not provided, Click will try to detect it.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">prog​_name:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">t.Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]</code></td><td class="fieldArgDesc">The name of the CLI to show in the message. If not
-provided, it will be detected from the command.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">message:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">t.Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]</code></td><td class="fieldArgDesc">The message to show. The values <tt class="rst-docutils literal">%(prog)s</tt>,
-<tt class="rst-docutils literal">%(package)s</tt>, and <tt class="rst-docutils literal">%(version)s</tt> are available. Defaults to
-<tt class="rst-docutils literal"><span class="pre">"%(prog)s,</span> version %(version)s"</tt>.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">**kwargs:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">t.Any</a></code></td><td class="fieldArgDesc">Extra arguments are passed to <code><a href="#option" class="internal-link" title="click.decorators.option">option</a></code>.</td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Callable" class="intersphinx-link">t.Callable</a>[<wbr></wbr>[<wbr></wbr><a href="#FC" class="internal-link" title="click.decorators.FC">FC</a>], <wbr></wbr><a href="#FC" class="internal-link" title="click.decorators.FC">FC</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Raises</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/exceptions.html#RuntimeError" class="intersphinx-link">RuntimeError</a></code></td><td><tt class="rst-docutils literal">version</tt> could not be detected.</td></tr></table></div>
+    <div><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">version:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">t.Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">*param​_decls:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">package​_name:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">t.Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">prog​_name:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">t.Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">message:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">t.Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">**kwargs:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">t.Any</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Callable" class="intersphinx-link">t.Callable</a>[<wbr></wbr>[<wbr></wbr><a href="#FC" class="internal-link" title="click.decorators.FC">FC</a>], <wbr></wbr><a href="#FC" class="internal-link" title="click.decorators.FC">FC</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="baseconstant">
   
@@ -621,12 +612,20 @@ provided, it will be detected from the command.</td></tr><tr><td class="fieldArg
     </div>
 
     <footer class="navbar navbar-default">
+
   
   <div class="container">
     <a href="index.html">API Documentation</a> for click,
   generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
-    22.2.0 at 2022-02-23 08:05:22.
+    22.3.0.dev0 at 2022-03-22 16:59:56.
   </div>
+
+  <!-- Search related scripts needs to be loaded at the end of HTML 
+    parsing not to introduce overhead and display HTML data asap -->
+  <script src="ajax.js" type="text/javascript"></script>
+  <script src="searchlib.js" type="text/javascript"></script>
+  <script src="search.js" type="text/javascript"></script>
+
 </footer>
 
     <script src="pydoctor.js" type="text/javascript"></script>

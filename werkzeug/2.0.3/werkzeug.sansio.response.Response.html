@@ -7,11 +7,11 @@
   <head>
     
     <title>werkzeug.sansio.response.Response</title>
-    <meta name="generator" content="pydoctor 22.2.0"> 
+    <meta name="generator" content="pydoctor 22.3.0.dev0"> 
         
     </meta>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=0.75" />
+    <meta name="viewport" content="width=device-width, initial-scale=1 maximum-scale=1" />
     <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="apidocs.css" />
     <link rel="stylesheet" type="text/css" href="extra.css" />
@@ -19,12 +19,10 @@
 
   <body>
 
-    <div id="banner" class="container">    
+    <div id="banner">    
     <div>
-        <a href="https://pydocbrowser.github.io/">Home</a>
-        &gt; werkzeug-2.0.3 
-        <!-- This is an important placeholder and will be 
-            replaced by project name and version on building docs -->
+        <a href="/">Home</a>
+        &gt; werkzeug-2.0.3 <!-- This is a placeholder -->
         
         <!-- (<a href=""&gt;show all versions</a&gt;) -->
     </div>
@@ -37,21 +35,98 @@
     <div class="navbar-header">
       
       <div class="navlinks">
-          <span class="navbar-brand">
-            werkzeug <a href="index.html">API Documentation</a>
+        <span class="navbar-brand">
+          werkzeug <a href="index.html">API Documentation</a>
+        </span>
+
+        <a href="moduleIndex.html">
+          Modules
+        </a>
+
+        <a href="classIndex.html">
+          Classes
+        </a>
+
+        <a href="nameIndex.html">
+          Names
+        </a>
+
+        <div id="search-box-container">
+          <div class="input-group">
+            <input id="search-box" type="search" name="search-query" placeholder="Search..." aria-label="Search" minlength="2" class="form-control" autocomplete="off" />
+            
+            <span class="input-group-btn">
+              <a style="display: none;" class="btn btn-default" id="search-clear-button" title="Clear" onclick="clearSearch()"><img src="fonts/x-circle.svg" alt="Clear" /></a>
+              <a class="btn btn-default" id="search-help-button" title="Help" onclick="toggleSearchHelpText()"><img src="fonts/info.svg" alt="Help" /></a>
+            </span>
+          </div>
+        </div>
+
+      </div>
+
+      <div id="search-results-container" style="display: none;">
+        
+        <div id="search-buttons">
+          <span class="label label-default" id="search-docstrings-button">
+          <label class="checkbox-inline">
+            <input type="checkbox" id="toggle-search-in-docstrings-checkbox" value="false" onclick="toggleSearchInDocstrings()">
+              search in docstrings
+            </input>
+          </label>
           </span>
+          
+        </div>
+        
+        <noscript>
+            <h1>Cannot search: JavaScript is not supported/enabled in your browser.</h1>
+        </noscript>
 
-          <a href="moduleIndex.html">
-            Modules
-          </a>
+        <div class="hint" id="search-help-box">
+          <p class="rst-last">
+      
+            Search bar offers the following options:
+            <ul>   
+                <li>
+                  <strong>Term presence.</strong> The below example searches for documents that 
+                    must contain “foo”, might contain “bar” and must not contain “baz”: <code>+foo bar -baz</code>
+                </li> 
 
-          <a href="classIndex.html">
-            Classes
-          </a>
+                <li>
+                  <strong>Wildcards.</strong> The below example searches for documents with words beginning with “foo”: <code>foo*</code>
+                </li> 
 
-          <a href="nameIndex.html">
-            Names
-          </a>
+                <li>
+                  <strong>Search in specific fields.</strong> The following search matches all objects 
+                  in "twisted.mail" that matches “search”: <code>+qname:twisted.mail.* +search</code>
+
+                  <p>
+                    Possible fields: 'name', 'qname' (fully qualified name), 'docstring', and 'kind'.
+                    Last two fields are only applicable if "search in docstrings" is enabled.
+                  </p>
+                </li>
+
+                <li>
+                  <strong>Fuzzy matches.</strong> The following search matches all documents 
+                  that have a word within 1 edit distance of “foo”: <code>foo~1</code>
+                </li>
+            </ul>
+
+          </p>
+        </div>
+
+        <div id="search-status"> </div>
+
+        <div class="warning" id="search-warn-box" style="display: none;">
+          <p class="rst-last"><span id="search-warn"></span></p>
+        </div>
+
+        <table id="search-results">
+          <!-- Filled dynamically by JS -->
+        </table>
+        
+        <div style="margin-top: 8px;">
+          <p>Results provided by <a href="https://lunrjs.com">Lunr.js</a></p>
+        </div>
       </div>
 
     </div>
@@ -79,27 +154,11 @@
       </div>
 
       <div class="moduleDocstring">
-        <div><p>Represents the non-IO parts of an HTTP response, specifically the
-status and headers but not the body.</p>
-<p>This class is not meant for general use. It should only be used when
-implementing WSGI, ASGI, or another HTTP application spec. Werkzeug
-provides a WSGI implementation at <a href="#system-message-1"><span class="rst-problematic" id="rst-problematic-1">:cls:`werkzeug.wrappers.Response`</span></a>.</p>
-<div class="rst-versionadded">
-<span class="rst-versionmodified rst-added">New in version 2.0.</span></div>
-<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">status</span></td><td class="fieldArgDesc">The status code for the response. Either an int, in
-which case the default status message is added, or a string in
-the form <tt class="rst-docutils literal">{code} {message}</tt>, like <tt class="rst-docutils literal">404 Not Found</tt>. Defaults
-to 200.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">headers</span></td><td class="fieldArgDesc">A <code>~werkzeug.datastructures.Headers</code> object,
-or a list of <tt class="rst-docutils literal">(key, value)</tt> tuples that will be converted to a
-<tt class="rst-docutils literal">Headers</tt> object.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">mimetype</span></td><td class="fieldArgDesc">The mime type (content type without charset or
-other parameters) of the response. If the value starts with
-<tt class="rst-docutils literal">text/</tt> (or matches some other special cases), the charset
-will be added to create the <tt class="rst-docutils literal">content_type</tt>.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">content​_type</span></td><td class="fieldArgDesc">The full content type of the response.
-Overrides building the value from <tt class="rst-docutils literal">mimetype</tt>.</td></tr></table></div>
+        <div></div>
       </div>
 
       <div id="splitTables">
-        <table class="children sortable" id="id25925">
+        <table class="children sortable" id="id42835">
   
   
   <tr class="method">
@@ -115,22 +174,22 @@ Overrides building the value from <tt class="rst-docutils literal">mimetype</tt>
   </tr><tr class="method">
     
     <td>Method</td>
-    <td><code><a href="#access_control_allow_credentials.setter" class="internal-link" title="werkzeug.sansio.response.Response.access_control_allow_credentials.setter">access​_control​_allow​_credentials.setter</a></code></td>
+    <td><code><a href="#access_control_allow_credentials.setter" class="internal-link" title="werkzeug.sansio.response.Response.access_control_allow_credentials.setter">access​_control​_allow​_credentials​.setter</a></code></td>
     <td><span class="undocumented">Undocumented</span></td>
   </tr><tr class="method">
     
     <td>Method</td>
-    <td><code><a href="#content_range.setter" class="internal-link" title="werkzeug.sansio.response.Response.content_range.setter">content​_range.setter</a></code></td>
+    <td><code><a href="#content_range.setter" class="internal-link" title="werkzeug.sansio.response.Response.content_range.setter">content​_range​.setter</a></code></td>
     <td><span class="undocumented">Undocumented</span></td>
   </tr><tr class="method">
     
     <td>Method</td>
-    <td><code><a href="#content_security_policy.setter" class="internal-link" title="werkzeug.sansio.response.Response.content_security_policy.setter">content​_security​_policy.setter</a></code></td>
+    <td><code><a href="#content_security_policy.setter" class="internal-link" title="werkzeug.sansio.response.Response.content_security_policy.setter">content​_security​_policy​.setter</a></code></td>
     <td><span class="undocumented">Undocumented</span></td>
   </tr><tr class="method">
     
     <td>Method</td>
-    <td><code><a href="#content_security_policy_report_only.setter" class="internal-link" title="werkzeug.sansio.response.Response.content_security_policy_report_only.setter">content​_security​_policy​_report​_only.setter</a></code></td>
+    <td><code><a href="#content_security_policy_report_only.setter" class="internal-link" title="werkzeug.sansio.response.Response.content_security_policy_report_only.setter">content​_security​_policy​_report​_only​.setter</a></code></td>
     <td><span class="undocumented">Undocumented</span></td>
   </tr><tr class="method">
     
@@ -141,16 +200,16 @@ Overrides building the value from <tt class="rst-docutils literal">mimetype</tt>
     
     <td>Method</td>
     <td><code><a href="#get_etag" class="internal-link" title="werkzeug.sansio.response.Response.get_etag">get​_etag</a></code></td>
-    <td>Return a tuple in the form <tt class="rst-docutils literal">(etag, is_weak)</tt>.  If there is no ETag the return value is <tt class="rst-docutils literal">(None, None)</tt>.</td>
+    <td>Return a tuple in the form ``(etag, is_weak)``.  If there is no ETag the return value is ``(None, None)``.</td>
   </tr><tr class="method">
     
     <td>Method</td>
-    <td><code><a href="#mimetype.setter" class="internal-link" title="werkzeug.sansio.response.Response.mimetype.setter">mimetype.setter</a></code></td>
+    <td><code><a href="#mimetype.setter" class="internal-link" title="werkzeug.sansio.response.Response.mimetype.setter">mimetype​.setter</a></code></td>
     <td><span class="undocumented">Undocumented</span></td>
   </tr><tr class="method">
     
     <td>Method</td>
-    <td><code><a href="#retry_after.setter" class="internal-link" title="werkzeug.sansio.response.Response.retry_after.setter">retry​_after.setter</a></code></td>
+    <td><code><a href="#retry_after.setter" class="internal-link" title="werkzeug.sansio.response.Response.retry_after.setter">retry​_after​.setter</a></code></td>
     <td><span class="undocumented">Undocumented</span></td>
   </tr><tr class="method">
     
@@ -165,12 +224,12 @@ Overrides building the value from <tt class="rst-docutils literal">mimetype</tt>
   </tr><tr class="method">
     
     <td>Method</td>
-    <td><code><a href="#status.setter" class="internal-link" title="werkzeug.sansio.response.Response.status.setter">status.setter</a></code></td>
+    <td><code><a href="#status.setter" class="internal-link" title="werkzeug.sansio.response.Response.status.setter">status​.setter</a></code></td>
     <td><span class="undocumented">Undocumented</span></td>
   </tr><tr class="method">
     
     <td>Method</td>
-    <td><code><a href="#status_code.setter" class="internal-link" title="werkzeug.sansio.response.Response.status_code.setter">status​_code.setter</a></code></td>
+    <td><code><a href="#status_code.setter" class="internal-link" title="werkzeug.sansio.response.Response.status_code.setter">status​_code​.setter</a></code></td>
     <td><span class="undocumented">Undocumented</span></td>
   </tr><tr class="classvariable">
     
@@ -316,22 +375,22 @@ Overrides building the value from <tt class="rst-docutils literal">mimetype</tt>
     
     <td>Property</td>
     <td><code><a href="#content_range" class="internal-link" title="werkzeug.sansio.response.Response.content_range">content​_range</a></code></td>
-    <td>The <tt class="rst-docutils literal"><span class="pre">Content-Range</span></tt> header as a <code>~werkzeug.datastructures.ContentRange</code> object. Available even if the header is not set.</td>
+    <td>The ``Content-Range`` header as a :class:`~werkzeug.datastructures.ContentRange` object. Available even if the header is not set.</td>
   </tr><tr class="property">
     
     <td>Property</td>
     <td><code><a href="#content_security_policy" class="internal-link" title="werkzeug.sansio.response.Response.content_security_policy">content​_security​_policy</a></code></td>
-    <td>The <tt class="rst-docutils literal"><span class="pre">Content-Security-Policy</span></tt> header as a <code>~werkzeug.datastructures.ContentSecurityPolicy</code> object. Available even if the header is not set.</td>
+    <td>The ``Content-Security-Policy`` header as a :class:`~werkzeug.datastructures.ContentSecurityPolicy` object. Available even if the header is not set.</td>
   </tr><tr class="property">
     
     <td>Property</td>
     <td><code><a href="#content_security_policy_report_only" class="internal-link" title="werkzeug.sansio.response.Response.content_security_policy_report_only">content​_security​_policy​_report​_only</a></code></td>
-    <td>The <tt class="rst-docutils literal"><span class="pre">Content-Security-policy-report-only</span></tt> header as a <code>~werkzeug.datastructures.ContentSecurityPolicy</code> object. Available even if the header is not set.</td>
+    <td>The ``Content-Security-policy-report-only`` header as a :class:`~werkzeug.datastructures.ContentSecurityPolicy` object. Available even if the header is not set.</td>
   </tr><tr class="property">
     
     <td>Property</td>
     <td><code><a href="#is_json" class="internal-link" title="werkzeug.sansio.response.Response.is_json">is​_json</a></code></td>
-    <td>Check if the mimetype indicates JSON data, either <a href="#system-message-1"><span class="rst-problematic" id="rst-problematic-1">:mimetype:`application/json`</span></a> or <a href="#system-message-2"><span class="rst-problematic" id="rst-problematic-2">:mimetype:`application/*+json`</span></a>.</td>
+    <td>Check if the mimetype indicates JSON data, either :mimetype:`application/json` or :mimetype:`application/*+json`.</td>
   </tr><tr class="property">
     
     <td>Property</td>
@@ -341,7 +400,7 @@ Overrides building the value from <tt class="rst-docutils literal">mimetype</tt>
     
     <td>Property</td>
     <td><code><a href="#mimetype_params" class="internal-link" title="werkzeug.sansio.response.Response.mimetype_params">mimetype​_params</a></code></td>
-    <td>The mimetype parameters as dict. For example if the content type is <tt class="rst-docutils literal">text/html; <span class="pre">charset=utf-8</span></tt> the params would be <tt class="rst-docutils literal">{'charset': <span class="pre">'utf-8'}</span></tt>.</td>
+    <td>The mimetype parameters as dict. For example if the content type is ``text/html; charset=utf-8`` the params would be ``{'charset': 'utf-8'}``.</td>
   </tr><tr class="property">
     
     <td>Property</td>
@@ -361,21 +420,21 @@ Overrides building the value from <tt class="rst-docutils literal">mimetype</tt>
     
     <td>Property</td>
     <td><code><a href="#www_authenticate" class="internal-link" title="werkzeug.sansio.response.Response.www_authenticate">www​_authenticate</a></code></td>
-    <td>The <tt class="rst-docutils literal"><span class="pre">WWW-Authenticate</span></tt> header in a parsed form.</td>
+    <td>The ``WWW-Authenticate`` header in a parsed form.</td>
   </tr><tr class="method private">
     
     <td>Method</td>
-    <td><code><a href="#_clean_status" class="internal-link" title="werkzeug.sansio.response.Response._clean_status">​_clean​_status</a></code></td>
+    <td><code><a href="#_clean_status" class="internal-link" title="werkzeug.sansio.response.Response._clean_status">_clean​_status</a></code></td>
     <td><span class="undocumented">Undocumented</span></td>
   </tr><tr class="instancevariable private">
     
     <td>Instance Variable</td>
-    <td><code><a href="#_status" class="internal-link" title="werkzeug.sansio.response.Response._status">​_status</a></code></td>
+    <td><code><a href="#_status" class="internal-link" title="werkzeug.sansio.response.Response._status">_status</a></code></td>
     <td><span class="undocumented">Undocumented</span></td>
   </tr><tr class="instancevariable private">
     
     <td>Instance Variable</td>
-    <td><code><a href="#_status_code" class="internal-link" title="werkzeug.sansio.response.Response._status_code">​_status​_code</a></code></td>
+    <td><code><a href="#_status_code" class="internal-link" title="werkzeug.sansio.response.Response._status_code">_status​_code</a></code></td>
     <td><span class="undocumented">Undocumented</span></td>
   </tr>
 </table>
@@ -538,11 +597,7 @@ Overrides building the value from <tt class="rst-docutils literal">mimetype</tt>
   <div class="docstring functionBody">
     
     
-    <div>Delete a cookie.  Fails silently if key doesn't exist.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">key:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc">the key (name) of the cookie to be deleted.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">path:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc">if the cookie that should be deleted was limited to a
-path, the path has to be defined here.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">domain:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">t.Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]</code></td><td class="fieldArgDesc">if the cookie that should be deleted was limited to a
-domain, that domain has to be defined here.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">secure:</span><code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code></td><td class="fieldArgDesc">If <tt class="rst-docutils literal">True</tt>, the cookie will only be available
-via HTTPS.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">httponly:</span><code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code></td><td class="fieldArgDesc">Disallow JavaScript access to the cookie.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">samesite:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">t.Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]</code></td><td class="fieldArgDesc">Limit the scope of the cookie to only be
-attached to requests that are "same-site".</td></tr></table></div>
+    <div><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">key:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">path:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">domain:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">t.Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">secure:</span><code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">httponly:</span><code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">samesite:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">t.Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basemethod">
   
@@ -564,8 +619,7 @@ attached to requests that are "same-site".</td></tr></table></div>
   <div class="docstring functionBody">
     
     
-    <div>Return a tuple in the form <tt class="rst-docutils literal">(etag, is_weak)</tt>.  If there is no
-ETag the return value is <tt class="rst-docutils literal">(None, None)</tt>.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Union" class="intersphinx-link">t.Union</a>[<wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Tuple" class="intersphinx-link">t.Tuple</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>, <wbr></wbr><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a>], <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Tuple" class="intersphinx-link">t.Tuple</a>[<wbr></wbr><a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, <wbr></wbr><a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>]]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+    <div>Return a tuple in the form ``(etag, is_weak)``.  If there is no ETag the return value is ``(None, None)``.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Union" class="intersphinx-link">t.Union</a>[<wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Tuple" class="intersphinx-link">t.Tuple</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>, <wbr></wbr><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a>], <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Tuple" class="intersphinx-link">t.Tuple</a>[<wbr></wbr><a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, <wbr></wbr><a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>]]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basemethod">
   
@@ -631,19 +685,7 @@ ETag the return value is <tt class="rst-docutils literal">(None, None)</tt>.<tab
   <div class="docstring functionBody">
     
     
-    <div><p>Sets a cookie.</p>
-<p>A warning is raised if the size of the cookie header exceeds
-<code><a href="#max_cookie_size" class="internal-link" title="werkzeug.sansio.response.Response.max_cookie_size">max_cookie_size</a></code>, but the header will still be set.</p>
-<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">key:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc">the key (name) of the cookie to be set.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">value:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc">the value of the cookie.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">max​_age:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">t.Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Union" class="intersphinx-link">t.Union</a>[<wbr></wbr><a href="https://docs.python.org/3/library/datetime.html#datetime.timedelta" class="intersphinx-link">timedelta</a>, <wbr></wbr><a href="https://docs.python.org/3/library/functions.html#int" class="intersphinx-link">int</a>]]</code></td><td class="fieldArgDesc">should be a number of seconds, or <code><a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a></code> (default) if
-the cookie should last only as long as the client's
-browser session.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">expires:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">t.Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Union" class="intersphinx-link">t.Union</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>, <wbr></wbr><a href="https://docs.python.org/3/library/datetime.html#datetime.datetime" class="intersphinx-link">datetime</a>, <wbr></wbr><a href="https://docs.python.org/3/library/functions.html#int" class="intersphinx-link">int</a>, <wbr></wbr><a href="https://docs.python.org/3/library/functions.html#float" class="intersphinx-link">float</a>]]</code></td><td class="fieldArgDesc">should be a <code><a href="https://docs.python.org/3/library/datetime.html#datetime.datetime" class="intersphinx-link">datetime</a></code> object or UNIX timestamp.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">path:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">t.Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]</code></td><td class="fieldArgDesc">limits the cookie to a given path, per default it will
-span the whole domain.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">domain:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">t.Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]</code></td><td class="fieldArgDesc">if you want to set a cross-domain cookie.  For example,
-<tt class="rst-docutils literal"><span class="pre">domain=".example.com"</span></tt> will set a cookie that is
-readable by the domain <tt class="rst-docutils literal">www.example.com</tt>,
-<tt class="rst-docutils literal">foo.example.com</tt> etc.  Otherwise, a cookie will only
-be readable by the domain that set it.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">secure:</span><code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code></td><td class="fieldArgDesc">If <tt class="rst-docutils literal">True</tt>, the cookie will only be available
-via HTTPS.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">httponly:</span><code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code></td><td class="fieldArgDesc">Disallow JavaScript access to the cookie.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">samesite:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">t.Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]</code></td><td class="fieldArgDesc">Limit the scope of the cookie to only be
-attached to requests that are "same-site".</td></tr></table></div>
+    <div><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">key:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">value:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">max​_age:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">t.Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Union" class="intersphinx-link">t.Union</a>[<wbr></wbr><a href="https://docs.python.org/3/library/datetime.html#datetime.timedelta" class="intersphinx-link">timedelta</a>, <wbr></wbr><a href="https://docs.python.org/3/library/functions.html#int" class="intersphinx-link">int</a>]]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">expires:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">t.Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Union" class="intersphinx-link">t.Union</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>, <wbr></wbr><a href="https://docs.python.org/3/library/datetime.html#datetime.datetime" class="intersphinx-link">datetime</a>, <wbr></wbr><a href="https://docs.python.org/3/library/functions.html#int" class="intersphinx-link">int</a>, <wbr></wbr><a href="https://docs.python.org/3/library/functions.html#float" class="intersphinx-link">float</a>]]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">path:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">t.Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">domain:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">t.Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">secure:</span><code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">httponly:</span><code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">samesite:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">t.Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basemethod">
   
@@ -1329,9 +1371,7 @@ attached to requests that are "same-site".</td></tr></table></div>
   <div class="functionBody">
     
     
-    <div>Whether credentials can be shared by the browser to
-JavaScript code. As part of the preflight request it indicates
-whether credentials can be used on the cross origin request.</div>
+    <div>Whether credentials can be shared by the browser to JavaScript code. As part of the preflight request it indicates whether credentials can be used on the cross origin request.</div>
     
   </div>
 </div><div class="baseproperty">
@@ -1354,9 +1394,7 @@ whether credentials can be used on the cross origin request.</div>
   <div class="functionBody">
     
     
-    <div>The Cache-Control general-header field is used to specify
-directives that MUST be obeyed by all caching mechanisms along the
-request/response chain.</div>
+    <div>The Cache-Control general-header field is used to specify directives that MUST be obeyed by all caching mechanisms along the request/response chain.</div>
     
   </div>
 </div><div class="baseproperty">
@@ -1379,11 +1417,8 @@ request/response chain.</div>
   <div class="functionBody">
     
     
-    <div><p>The <tt class="rst-docutils literal"><span class="pre">Content-Range</span></tt> header as a
-<code>~werkzeug.datastructures.ContentRange</code> object. Available
-even if the header is not set.</p>
-<div class="rst-versionadded">
-<span class="rst-versionmodified rst-added">New in version 0.7.</span></div>
+    <div><p>The ``Content-Range`` header as a :class:`~werkzeug.datastructures.ContentRange` object. Available even if the header is not set.</p>
+<p>.. versionadded:: 0.7</p>
 </div>
     
   </div>
@@ -1407,11 +1442,8 @@ even if the header is not set.</p>
   <div class="functionBody">
     
     
-    <div><p>The <tt class="rst-docutils literal"><span class="pre">Content-Security-Policy</span></tt> header as a
-<code>~werkzeug.datastructures.ContentSecurityPolicy</code> object. Available
-even if the header is not set.</p>
-<p>The Content-Security-Policy header adds an additional layer of
-security to help detect and mitigate certain types of attacks.</p>
+    <div><p>The ``Content-Security-Policy`` header as a :class:`~werkzeug.datastructures.ContentSecurityPolicy` object. Available even if the header is not set.</p>
+<p>The Content-Security-Policy header adds an additional layer of security to help detect and mitigate certain types of attacks.</p>
 </div>
     
   </div>
@@ -1435,12 +1467,8 @@ security to help detect and mitigate certain types of attacks.</p>
   <div class="functionBody">
     
     
-    <div><p>The <tt class="rst-docutils literal"><span class="pre">Content-Security-policy-report-only</span></tt> header as a
-<code>~werkzeug.datastructures.ContentSecurityPolicy</code> object. Available
-even if the header is not set.</p>
-<p>The Content-Security-Policy-Report-Only header adds a csp policy
-that is not enforced but is reported thereby helping detect
-certain types of attacks.</p>
+    <div><p>The ``Content-Security-policy-report-only`` header as a :class:`~werkzeug.datastructures.ContentSecurityPolicy` object. Available even if the header is not set.</p>
+<p>The Content-Security-Policy-Report-Only header adds a csp policy that is not enforced but is reported thereby helping detect certain types of attacks.</p>
 </div>
     
   </div>
@@ -1464,8 +1492,7 @@ certain types of attacks.</p>
   <div class="functionBody">
     
     
-    <div>Check if the mimetype indicates JSON data, either
-<a href="#system-message-1"><span class="rst-problematic" id="rst-problematic-1">:mimetype:`application/json`</span></a> or <a href="#system-message-2"><span class="rst-problematic" id="rst-problematic-2">:mimetype:`application/*+json`</span></a>.</div>
+    <div>Check if the mimetype indicates JSON data, either :mimetype:`application/json` or :mimetype:`application/*+json`.</div>
     
   </div>
 </div><div class="baseproperty">
@@ -1511,11 +1538,8 @@ certain types of attacks.</p>
   <div class="functionBody">
     
     
-    <div><p>The mimetype parameters as dict. For example if the
-content type is <tt class="rst-docutils literal">text/html; <span class="pre">charset=utf-8</span></tt> the params would be
-<tt class="rst-docutils literal">{'charset': <span class="pre">'utf-8'}</span></tt>.</p>
-<div class="rst-versionadded">
-<span class="rst-versionmodified rst-added">New in version 0.5.</span></div>
+    <div><p>The mimetype parameters as dict. For example if the content type is ``text/html; charset=utf-8`` the params would be ``{'charset': 'utf-8'}``.</p>
+<p>.. versionadded:: 0.5</p>
 </div>
     
   </div>
@@ -1539,13 +1563,7 @@ content type is <tt class="rst-docutils literal">text/html; <span class="pre">ch
   <div class="functionBody">
     
     
-    <div><p>The Retry-After response-header field can be used with a
-503 (Service Unavailable) response to indicate how long the
-service is expected to be unavailable to the requesting client.</p>
-<p>Time in seconds until expiration or date.</p>
-<div class="rst-versionchanged">
-<span class="rst-versionmodified rst-changed">Changed in version 2.0: </span><span>The datetime object is timezone-aware.</span></div>
-</div>
+    <div></div>
     
   </div>
 </div><div class="baseproperty">
@@ -1614,7 +1632,7 @@ service is expected to be unavailable to the requesting client.</p>
   <div class="functionBody">
     
     
-    <div>The <tt class="rst-docutils literal"><span class="pre">WWW-Authenticate</span></tt> header in a parsed form.</div>
+    <div>The ``WWW-Authenticate`` header in a parsed form.</div>
     
   </div>
 </div><div class="basemethod private">
@@ -1691,12 +1709,20 @@ service is expected to be unavailable to the requesting client.</p>
     </div>
 
     <footer class="navbar navbar-default">
+
   
   <div class="container">
     <a href="index.html">API Documentation</a> for werkzeug,
   generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
-    22.2.0 at 2022-02-23 08:27:49.
+    22.3.0.dev0 at 2022-03-22 17:48:04.
   </div>
+
+  <!-- Search related scripts needs to be loaded at the end of HTML 
+    parsing not to introduce overhead and display HTML data asap -->
+  <script src="ajax.js" type="text/javascript"></script>
+  <script src="searchlib.js" type="text/javascript"></script>
+  <script src="search.js" type="text/javascript"></script>
+
 </footer>
 
     <script src="pydoctor.js" type="text/javascript"></script>

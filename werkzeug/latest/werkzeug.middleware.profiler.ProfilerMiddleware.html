@@ -7,11 +7,11 @@
   <head>
     
     <title>werkzeug.middleware.profiler.ProfilerMiddleware</title>
-    <meta name="generator" content="pydoctor 22.2.0"> 
+    <meta name="generator" content="pydoctor 22.3.0.dev0"> 
         
     </meta>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=0.75" />
+    <meta name="viewport" content="width=device-width, initial-scale=1 maximum-scale=1" />
     <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="apidocs.css" />
     <link rel="stylesheet" type="text/css" href="extra.css" />
@@ -19,12 +19,10 @@
 
   <body>
 
-    <div id="banner" class="container">    
+    <div id="banner">    
     <div>
-        <a href="https://pydocbrowser.github.io/">Home</a>
-        &gt; werkzeug-2.0.3 
-        <!-- This is an important placeholder and will be 
-            replaced by project name and version on building docs -->
+        <a href="/">Home</a>
+        &gt; werkzeug-2.0.3 <!-- This is a placeholder -->
         
         <!-- (<a href=""&gt;show all versions</a&gt;) -->
     </div>
@@ -37,21 +35,98 @@
     <div class="navbar-header">
       
       <div class="navlinks">
-          <span class="navbar-brand">
-            werkzeug <a href="index.html">API Documentation</a>
+        <span class="navbar-brand">
+          werkzeug <a href="index.html">API Documentation</a>
+        </span>
+
+        <a href="moduleIndex.html">
+          Modules
+        </a>
+
+        <a href="classIndex.html">
+          Classes
+        </a>
+
+        <a href="nameIndex.html">
+          Names
+        </a>
+
+        <div id="search-box-container">
+          <div class="input-group">
+            <input id="search-box" type="search" name="search-query" placeholder="Search..." aria-label="Search" minlength="2" class="form-control" autocomplete="off" />
+            
+            <span class="input-group-btn">
+              <a style="display: none;" class="btn btn-default" id="search-clear-button" title="Clear" onclick="clearSearch()"><img src="fonts/x-circle.svg" alt="Clear" /></a>
+              <a class="btn btn-default" id="search-help-button" title="Help" onclick="toggleSearchHelpText()"><img src="fonts/info.svg" alt="Help" /></a>
+            </span>
+          </div>
+        </div>
+
+      </div>
+
+      <div id="search-results-container" style="display: none;">
+        
+        <div id="search-buttons">
+          <span class="label label-default" id="search-docstrings-button">
+          <label class="checkbox-inline">
+            <input type="checkbox" id="toggle-search-in-docstrings-checkbox" value="false" onclick="toggleSearchInDocstrings()">
+              search in docstrings
+            </input>
+          </label>
           </span>
+          
+        </div>
+        
+        <noscript>
+            <h1>Cannot search: JavaScript is not supported/enabled in your browser.</h1>
+        </noscript>
 
-          <a href="moduleIndex.html">
-            Modules
-          </a>
+        <div class="hint" id="search-help-box">
+          <p class="rst-last">
+      
+            Search bar offers the following options:
+            <ul>   
+                <li>
+                  <strong>Term presence.</strong> The below example searches for documents that 
+                    must contain “foo”, might contain “bar” and must not contain “baz”: <code>+foo bar -baz</code>
+                </li> 
 
-          <a href="classIndex.html">
-            Classes
-          </a>
+                <li>
+                  <strong>Wildcards.</strong> The below example searches for documents with words beginning with “foo”: <code>foo*</code>
+                </li> 
 
-          <a href="nameIndex.html">
-            Names
-          </a>
+                <li>
+                  <strong>Search in specific fields.</strong> The following search matches all objects 
+                  in "twisted.mail" that matches “search”: <code>+qname:twisted.mail.* +search</code>
+
+                  <p>
+                    Possible fields: 'name', 'qname' (fully qualified name), 'docstring', and 'kind'.
+                    Last two fields are only applicable if "search in docstrings" is enabled.
+                  </p>
+                </li>
+
+                <li>
+                  <strong>Fuzzy matches.</strong> The following search matches all documents 
+                  that have a word within 1 edit distance of “foo”: <code>foo~1</code>
+                </li>
+            </ul>
+
+          </p>
+        </div>
+
+        <div id="search-status"> </div>
+
+        <div class="warning" id="search-warn-box" style="display: none;">
+          <p class="rst-last"><span id="search-warn"></span></p>
+        </div>
+
+        <table id="search-results">
+          <!-- Filled dynamically by JS -->
+        </table>
+        
+        <div style="margin-top: 8px;">
+          <p>Results provided by <a href="https://lunrjs.com">Lunr.js</a></p>
+        </div>
       </div>
 
     </div>
@@ -79,41 +154,11 @@
       </div>
 
       <div class="moduleDocstring">
-        <div><p>Wrap a WSGI application and profile the execution of each
-request. Responses are buffered so that timings are more exact.</p>
-<p>If <tt class="rst-docutils literal">stream</tt> is given, <code><a href="https://docs.python.org/3/library/profile.html#pstats.Stats" class="intersphinx-link">pstats.Stats</a></code> are written to it
-after each request. If <tt class="rst-docutils literal">profile_dir</tt> is given, <code><a href="https://docs.python.org/3/library/profile.html#module-cProfile" class="intersphinx-link">cProfile</a></code>
-data files are saved to that directory, one file per request.</p>
-<p>The filename can be customized by passing <tt class="rst-docutils literal">filename_format</tt>. If
-it is a string, it will be formatted using <code><a href="https://docs.python.org/3/library/stdtypes.html#str.format" class="intersphinx-link">str.format</a></code> with
-the following fields available:</p>
-<ul class="rst-simple">
-<li><tt class="rst-docutils literal">{method}</tt> - The request method; GET, POST, etc.</li>
-<li><tt class="rst-docutils literal">{path}</tt> - The request path or 'root' should one not exist.</li>
-<li><tt class="rst-docutils literal">{elapsed}</tt> - The elapsed time of the request.</li>
-<li><tt class="rst-docutils literal">{time}</tt> - The time of the request.</li>
-</ul>
-<p>If it is a callable, it will be called with the WSGI <tt class="rst-docutils literal">environ</tt>
-dict and should return a filename.</p>
-<pre class="rst-code rst-python rst-literal-block">
-from werkzeug.middleware.profiler import ProfilerMiddleware
-app = ProfilerMiddleware(app)
-</pre>
-<div class="rst-versionchanged">
-<span class="rst-versionmodified rst-changed">Changed in version 0.15: </span><span>Stats are written even if <tt class="rst-docutils literal">profile_dir</tt> is given, and can be
-disable by passing <tt class="rst-docutils literal">stream=None</tt>.</span></div>
-<div class="rst-versionadded">
-<span class="rst-versionmodified rst-added">New in version 0.15: </span><span>Added <tt class="rst-docutils literal">filename_format</tt>.</span></div>
-<div class="rst-versionadded">
-<span class="rst-versionmodified rst-added">New in version 0.9: </span><span>Added <tt class="rst-docutils literal">restrictions</tt> and <tt class="rst-docutils literal">profile_dir</tt>.</span></div>
-<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">app</span></td><td class="fieldArgDesc">The WSGI application to wrap.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">stream</span></td><td class="fieldArgDesc">Write stats to this stream. Disable with <tt class="rst-docutils literal">None</tt>.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">sort​_by</span></td><td class="fieldArgDesc">A tuple of columns to sort stats by. See
-<code><a href="https://docs.python.org/3/library/profile.html#pstats.Stats.sort_stats" class="intersphinx-link">pstats.Stats.sort_stats</a></code>.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">restrictions</span></td><td class="fieldArgDesc">A tuple of restrictions to filter stats by. See
-<code><a href="https://docs.python.org/3/library/profile.html#pstats.Stats.print_stats" class="intersphinx-link">pstats.Stats.print_stats</a></code>.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">profile​_dir</span></td><td class="fieldArgDesc">Save profile data files to this directory.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">filename​_format</span></td><td class="fieldArgDesc">Format string for profile data file names,
-or a callable returning a name. See explanation above.</td></tr></table></div>
+        <div></div>
       </div>
 
       <div id="splitTables">
-        <table class="children sortable" id="id25873">
+        <table class="children sortable" id="id42783">
   
   
   <tr class="method">
@@ -129,32 +174,32 @@ or a callable returning a name. See explanation above.</td></tr></table></div>
   </tr><tr class="instancevariable private">
     
     <td>Instance Variable</td>
-    <td><code><a href="#_app" class="internal-link" title="werkzeug.middleware.profiler.ProfilerMiddleware._app">​_app</a></code></td>
+    <td><code><a href="#_app" class="internal-link" title="werkzeug.middleware.profiler.ProfilerMiddleware._app">_app</a></code></td>
     <td><span class="undocumented">Undocumented</span></td>
   </tr><tr class="instancevariable private">
     
     <td>Instance Variable</td>
-    <td><code><a href="#_filename_format" class="internal-link" title="werkzeug.middleware.profiler.ProfilerMiddleware._filename_format">​_filename​_format</a></code></td>
+    <td><code><a href="#_filename_format" class="internal-link" title="werkzeug.middleware.profiler.ProfilerMiddleware._filename_format">_filename​_format</a></code></td>
     <td><span class="undocumented">Undocumented</span></td>
   </tr><tr class="instancevariable private">
     
     <td>Instance Variable</td>
-    <td><code><a href="#_profile_dir" class="internal-link" title="werkzeug.middleware.profiler.ProfilerMiddleware._profile_dir">​_profile​_dir</a></code></td>
+    <td><code><a href="#_profile_dir" class="internal-link" title="werkzeug.middleware.profiler.ProfilerMiddleware._profile_dir">_profile​_dir</a></code></td>
     <td><span class="undocumented">Undocumented</span></td>
   </tr><tr class="instancevariable private">
     
     <td>Instance Variable</td>
-    <td><code><a href="#_restrictions" class="internal-link" title="werkzeug.middleware.profiler.ProfilerMiddleware._restrictions">​_restrictions</a></code></td>
+    <td><code><a href="#_restrictions" class="internal-link" title="werkzeug.middleware.profiler.ProfilerMiddleware._restrictions">_restrictions</a></code></td>
     <td><span class="undocumented">Undocumented</span></td>
   </tr><tr class="instancevariable private">
     
     <td>Instance Variable</td>
-    <td><code><a href="#_sort_by" class="internal-link" title="werkzeug.middleware.profiler.ProfilerMiddleware._sort_by">​_sort​_by</a></code></td>
+    <td><code><a href="#_sort_by" class="internal-link" title="werkzeug.middleware.profiler.ProfilerMiddleware._sort_by">_sort​_by</a></code></td>
     <td><span class="undocumented">Undocumented</span></td>
   </tr><tr class="instancevariable private">
     
     <td>Instance Variable</td>
-    <td><code><a href="#_stream" class="internal-link" title="werkzeug.middleware.profiler.ProfilerMiddleware._stream">​_stream</a></code></td>
+    <td><code><a href="#_stream" class="internal-link" title="werkzeug.middleware.profiler.ProfilerMiddleware._stream">_stream</a></code></td>
     <td><span class="undocumented">Undocumented</span></td>
   </tr>
 </table>
@@ -353,12 +398,20 @@ or a callable returning a name. See explanation above.</td></tr></table></div>
     </div>
 
     <footer class="navbar navbar-default">
+
   
   <div class="container">
     <a href="index.html">API Documentation</a> for werkzeug,
   generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
-    22.2.0 at 2022-02-23 08:27:49.
+    22.3.0.dev0 at 2022-03-22 17:48:04.
   </div>
+
+  <!-- Search related scripts needs to be loaded at the end of HTML 
+    parsing not to introduce overhead and display HTML data asap -->
+  <script src="ajax.js" type="text/javascript"></script>
+  <script src="searchlib.js" type="text/javascript"></script>
+  <script src="search.js" type="text/javascript"></script>
+
 </footer>
 
     <script src="pydoctor.js" type="text/javascript"></script>

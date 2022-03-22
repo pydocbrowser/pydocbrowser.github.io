@@ -7,11 +7,11 @@
   <head>
     
     <title>klein.test.test_app.KleinTestCase</title>
-    <meta name="generator" content="pydoctor 22.2.0"> 
+    <meta name="generator" content="pydoctor 22.3.0.dev0"> 
         
     </meta>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=0.75" />
+    <meta name="viewport" content="width=device-width, initial-scale=1 maximum-scale=1" />
     <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="apidocs.css" />
     <link rel="stylesheet" type="text/css" href="extra.css" />
@@ -35,21 +35,98 @@
     <div class="navbar-header">
       
       <div class="navlinks">
-          <span class="navbar-brand">
-            klein <a href="index.html">API Documentation</a>
+        <span class="navbar-brand">
+          klein <a href="index.html">API Documentation</a>
+        </span>
+
+        <a href="moduleIndex.html">
+          Modules
+        </a>
+
+        <a href="classIndex.html">
+          Classes
+        </a>
+
+        <a href="nameIndex.html">
+          Names
+        </a>
+
+        <div id="search-box-container">
+          <div class="input-group">
+            <input id="search-box" type="search" name="search-query" placeholder="Search..." aria-label="Search" minlength="2" class="form-control" autocomplete="off" />
+            
+            <span class="input-group-btn">
+              <a style="display: none;" class="btn btn-default" id="search-clear-button" title="Clear" onclick="clearSearch()"><img src="fonts/x-circle.svg" alt="Clear" /></a>
+              <a class="btn btn-default" id="search-help-button" title="Help" onclick="toggleSearchHelpText()"><img src="fonts/info.svg" alt="Help" /></a>
+            </span>
+          </div>
+        </div>
+
+      </div>
+
+      <div id="search-results-container" style="display: none;">
+        
+        <div id="search-buttons">
+          <span class="label label-default" id="search-docstrings-button">
+          <label class="checkbox-inline">
+            <input type="checkbox" id="toggle-search-in-docstrings-checkbox" value="false" onclick="toggleSearchInDocstrings()">
+              search in docstrings
+            </input>
+          </label>
           </span>
+          
+        </div>
+        
+        <noscript>
+            <h1>Cannot search: JavaScript is not supported/enabled in your browser.</h1>
+        </noscript>
 
-          <a href="moduleIndex.html">
-            Modules
-          </a>
+        <div class="hint" id="search-help-box">
+          <p class="rst-last">
+      
+            Search bar offers the following options:
+            <ul>   
+                <li>
+                  <strong>Term presence.</strong> The below example searches for documents that 
+                    must contain “foo”, might contain “bar” and must not contain “baz”: <code>+foo bar -baz</code>
+                </li> 
 
-          <a href="classIndex.html">
-            Classes
-          </a>
+                <li>
+                  <strong>Wildcards.</strong> The below example searches for documents with words beginning with “foo”: <code>foo*</code>
+                </li> 
 
-          <a href="nameIndex.html">
-            Names
-          </a>
+                <li>
+                  <strong>Search in specific fields.</strong> The following search matches all objects 
+                  in "twisted.mail" that matches “search”: <code>+qname:twisted.mail.* +search</code>
+
+                  <p>
+                    Possible fields: 'name', 'qname' (fully qualified name), 'docstring', and 'kind'.
+                    Last two fields are only applicable if "search in docstrings" is enabled.
+                  </p>
+                </li>
+
+                <li>
+                  <strong>Fuzzy matches.</strong> The following search matches all documents 
+                  that have a word within 1 edit distance of “foo”: <code>foo~1</code>
+                </li>
+            </ul>
+
+          </p>
+        </div>
+
+        <div id="search-status"> </div>
+
+        <div class="warning" id="search-warn-box" style="display: none;">
+          <p class="rst-last"><span id="search-warn"></span></p>
+        </div>
+
+        <table id="search-results">
+          <!-- Filled dynamically by JS -->
+        </table>
+        
+        <div style="margin-top: 8px;">
+          <p>Results provided by <a href="https://lunrjs.com">Lunr.js</a></p>
+        </div>
       </div>
 
     </div>
@@ -72,7 +149,7 @@
       </div>
 
       <div class="extrasDocstring">
-        <p><code><span class="py-keyword">class</span> <span class="py-defname">KleinTestCase</span>(unittest.TestCase): <a href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/klein-21.8.0//src/klein/test/test_app.py#L86" class="sourceLink">(source)</a></code></p>
+        <p><code><span class="py-keyword">class</span> <span class="py-defname">KleinTestCase</span>(<a href="https://pydocbrowser.github.io/twisted/latest/twisted.trial.unittest.TestCase.html" class="intersphinx-link" title="twisted.trial.unittest.TestCase">unittest.TestCase</a>): <a href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/klein-21.8.0//src/klein/test/test_app.py#L86" class="sourceLink">(source)</a></code></p>
         <p><a href="classIndex.html#klein.test.test_app.KleinTestCase">View In Hierarchy</a></p>
       </div>
 
@@ -81,44 +158,44 @@
       </div>
 
       <div id="splitTables">
-        <table class="children sortable" id="id87">
+        <table class="children sortable" id="id11001">
   
   
   <tr class="method">
     
     <td>Method</td>
     <td><code><a href="#test_bindable" class="internal-link" title="klein.test.test_app.KleinTestCase.test_bindable">test​_bindable</a></code></td>
-    <td>L{bindable} is a decorator which allows a function decorated by @route to have a uniform signature regardless of whether it is receiving a bound object from its L{Klein} or not.</td>
+    <td><code><a href="https://pydocbrowser.github.io/klein/latest/klein._decorators.html#bindable" class="intersphinx-link">bindable</a></code> is a decorator which allows a function decorated by @route to have a uniform signature regardless of whether it is receiving a bound object from its <code><a href="https://pydocbrowser.github.io/klein/latest/klein.Klein.html" class="intersphinx-link">Klein</a></code> or not.</td>
   </tr><tr class="method">
     
     <td>Method</td>
     <td><code><a href="#test_bindInstanceIgnoresBlankProperties" class="internal-link" title="klein.test.test_app.KleinTestCase.test_bindInstanceIgnoresBlankProperties">test_bind​Instance​Ignores​Blank​Properties</a></code></td>
-    <td>L{Klein.__get__} doesn't propagate L{AttributeError} when searching for the bound L{Klein} instance.</td>
+    <td><code><a href="https://pydocbrowser.github.io/klein/latest/klein.Klein.html#__get__" class="intersphinx-link">Klein.__get__</a></code> doesn't propagate <code><a href="https://docs.python.org/3/library/exceptions.html#AttributeError" class="intersphinx-link">AttributeError</a></code> when searching for the bound <code><a href="https://pydocbrowser.github.io/klein/latest/klein.Klein.html" class="intersphinx-link">Klein</a></code> instance.</td>
   </tr><tr class="method">
     
     <td>Method</td>
     <td><code><a href="#test_branchDoesntRequireTrailingSlash" class="internal-link" title="klein.test.test_app.KleinTestCase.test_branchDoesntRequireTrailingSlash">test_branch​Doesnt​Require​Trailing​Slash</a></code></td>
-    <td>L{Klein.route} should create a branch path which consumes all children, when the branch keyword argument is True and there is no trailing / on the path.</td>
+    <td><code><a href="https://pydocbrowser.github.io/klein/latest/klein.Klein.html#route" class="intersphinx-link">Klein.route</a></code> should create a branch path which consumes all children, when the branch keyword argument is True and there is no trailing / on the path.</td>
   </tr><tr class="method">
     
     <td>Method</td>
     <td><code><a href="#test_branchRoute" class="internal-link" title="klein.test.test_app.KleinTestCase.test_branchRoute">test_branch​Route</a></code></td>
-    <td>L{Klein.route} should create a branch path which consumes all children when the branch keyword argument is True.</td>
+    <td><code><a href="https://pydocbrowser.github.io/klein/latest/klein.Klein.html#route" class="intersphinx-link">Klein.route</a></code> should create a branch path which consumes all children when the branch keyword argument is True.</td>
   </tr><tr class="method">
     
     <td>Method</td>
     <td><code><a href="#test_classicalRoute" class="internal-link" title="klein.test.test_app.KleinTestCase.test_classicalRoute">test_classical​Route</a></code></td>
-    <td>L{Klein.route} may be used a method decorator when a L{Klein} instance is defined as a class variable.</td>
+    <td><code><a href="https://pydocbrowser.github.io/klein/latest/klein.Klein.html#route" class="intersphinx-link">Klein.route</a></code> may be used a method decorator when a <code><a href="https://pydocbrowser.github.io/klein/latest/klein.Klein.html" class="intersphinx-link">Klein</a></code> instance is defined as a class variable.</td>
   </tr><tr class="method">
     
     <td>Method</td>
     <td><code><a href="#test_classicalRouteWithBranch" class="internal-link" title="klein.test.test_app.KleinTestCase.test_classicalRouteWithBranch">test_classical​Route​With​Branch</a></code></td>
-    <td>Multiple instances of a class with a L{Klein} attribute and L{Klein.route}'d methods can be created and their L{Klein}s used independently.</td>
+    <td>Multiple instances of a class with a <code><a href="https://pydocbrowser.github.io/klein/latest/klein.Klein.html" class="intersphinx-link">Klein</a></code> attribute and <code><a href="https://pydocbrowser.github.io/klein/latest/klein.Klein.html#route" class="intersphinx-link">Klein.route</a></code>'d methods can be created and their <code><a href="https://pydocbrowser.github.io/klein/latest/klein.Klein.html" class="intersphinx-link">Klein</a></code>s used independently.</td>
   </tr><tr class="method">
     
     <td>Method</td>
     <td><code><a href="#test_classicalRouteWithTwoInstances" class="internal-link" title="klein.test.test_app.KleinTestCase.test_classicalRouteWithTwoInstances">test_classical​Route​With​Two​Instances</a></code></td>
-    <td>Multiple instances of a class with a L{Klein} attribute and L{Klein.route}'d methods can be created and their L{Klein}s used independently.</td>
+    <td>Multiple instances of a class with a <code><a href="https://pydocbrowser.github.io/klein/latest/klein.Klein.html" class="intersphinx-link">Klein</a></code> attribute and <code><a href="https://pydocbrowser.github.io/klein/latest/klein.Klein.html#route" class="intersphinx-link">Klein.route</a></code>'d methods can be created and their <code><a href="https://pydocbrowser.github.io/klein/latest/klein.Klein.html" class="intersphinx-link">Klein</a></code>s used independently.</td>
   </tr><tr class="method">
     
     <td>Method</td>
@@ -128,12 +205,12 @@
     
     <td>Method</td>
     <td><code><a href="#test_mapByIdentity" class="internal-link" title="klein.test.test_app.KleinTestCase.test_mapByIdentity">test_map​By​Identity</a></code></td>
-    <td>Routes are routed to the proper object regardless of its C{__hash__} implementation.</td>
+    <td>Routes are routed to the proper object regardless of its <tt class="rst-docutils literal">__hash__</tt> implementation.</td>
   </tr><tr class="method">
     
     <td>Method</td>
     <td><code><a href="#test_modified" class="internal-link" title="klein.test.test_app.KleinTestCase.test_modified">test​_modified</a></code></td>
-    <td>L{modified} is a decorator which alters the thing that it decorates, and describes itself as such.</td>
+    <td><code><a href="https://pydocbrowser.github.io/klein/latest/klein._decorators.html#modified" class="intersphinx-link">modified</a></code> is a decorator which alters the thing that it decorates, and describes itself as such.</td>
   </tr><tr class="method">
     
     <td>Method</td>
@@ -143,47 +220,47 @@
     
     <td>Method</td>
     <td><code><a href="#test_resource" class="internal-link" title="klein.test.test_app.KleinTestCase.test_resource">test​_resource</a></code></td>
-    <td>L{Klien.resource} returns a L{KleinResource}.</td>
+    <td><code>Klien.resource</code> returns a <code><a href="klein._resource.KleinResource.html" class="internal-link" title="klein._resource.KleinResource">KleinResource</a></code>.</td>
   </tr><tr class="method">
     
     <td>Method</td>
     <td><code><a href="#test_route" class="internal-link" title="klein.test.test_app.KleinTestCase.test_route">test​_route</a></code></td>
-    <td>L{Klein.route} adds functions as routable endpoints.</td>
+    <td><code><a href="https://pydocbrowser.github.io/klein/latest/klein.Klein.html#route" class="intersphinx-link">Klein.route</a></code> adds functions as routable endpoints.</td>
   </tr><tr class="method">
     
     <td>Method</td>
     <td><code><a href="#test_run" class="internal-link" title="klein.test.test_app.KleinTestCase.test_run">test​_run</a></code></td>
-    <td>L{Klein.run} configures a L{KleinResource} and a L{Site} listening on the specified interface and port, and logs to stdout.</td>
+    <td><code><a href="https://pydocbrowser.github.io/klein/latest/klein.Klein.html#run" class="intersphinx-link">Klein.run</a></code> configures a <code><a href="klein._resource.KleinResource.html" class="internal-link" title="klein._resource.KleinResource">KleinResource</a></code> and a <code>Site</code> listening on the specified interface and port, and logs to stdout.</td>
   </tr><tr class="method">
     
     <td>Method</td>
     <td><code><a href="#test_runSSL" class="internal-link" title="klein.test.test_app.KleinTestCase.test_runSSL">test_run​SSL</a></code></td>
-    <td>L{Klein.run} called with SSL endpoint specification.</td>
+    <td><code><a href="https://pydocbrowser.github.io/klein/latest/klein.Klein.html#run" class="intersphinx-link">Klein.run</a></code> called with SSL endpoint specification.</td>
   </tr><tr class="method">
     
     <td>Method</td>
     <td><code><a href="#test_runTCP6" class="internal-link" title="klein.test.test_app.KleinTestCase.test_runTCP6">test_run​TCP6</a></code></td>
-    <td>L{Klein.run} called with tcp6 endpoint description.</td>
+    <td><code><a href="https://pydocbrowser.github.io/klein/latest/klein.Klein.html#run" class="intersphinx-link">Klein.run</a></code> called with tcp6 endpoint description.</td>
   </tr><tr class="method">
     
     <td>Method</td>
     <td><code><a href="#test_runWithLogFile" class="internal-link" title="klein.test.test_app.KleinTestCase.test_runWithLogFile">test_run​With​Log​File</a></code></td>
-    <td>L{Klein.run} logs to the specified C{logFile}.</td>
+    <td><code><a href="https://pydocbrowser.github.io/klein/latest/klein.Klein.html#run" class="intersphinx-link">Klein.run</a></code> logs to the specified <tt class="rst-docutils literal">logFile</tt>.</td>
   </tr><tr class="method">
     
     <td>Method</td>
     <td><code><a href="#test_stackedRoute" class="internal-link" title="klein.test.test_app.KleinTestCase.test_stackedRoute">test_stacked​Route</a></code></td>
-    <td>L{Klein.route} can be stacked to create multiple endpoints of a single function.</td>
+    <td><code><a href="https://pydocbrowser.github.io/klein/latest/klein.Klein.html#route" class="intersphinx-link">Klein.route</a></code> can be stacked to create multiple endpoints of a single function.</td>
   </tr><tr class="method">
     
     <td>Method</td>
     <td><code><a href="#test_submountedRoute" class="internal-link" title="klein.test.test_app.KleinTestCase.test_submountedRoute">test_submounted​Route</a></code></td>
-    <td>L{Klein.subroute} adds functions as routable endpoints.</td>
+    <td><code><a href="https://pydocbrowser.github.io/klein/latest/klein.Klein.html#subroute" class="intersphinx-link">Klein.subroute</a></code> adds functions as routable endpoints.</td>
   </tr><tr class="method">
     
     <td>Method</td>
     <td><code><a href="#test_urlFor" class="internal-link" title="klein.test.test_app.KleinTestCase.test_urlFor">test_url​For</a></code></td>
-    <td>L{Klein.urlFor} builds an URL for an endpoint with parameters</td>
+    <td><code><a href="https://pydocbrowser.github.io/klein/latest/klein.Klein.html#urlFor" class="intersphinx-link">Klein.urlFor</a></code> builds an URL for an endpoint with parameters</td>
   </tr>
 </table>
         
@@ -213,9 +290,7 @@
   <div class="docstring functionBody">
     
     
-    <div>L{bindable} is a decorator which allows a function decorated by @route
-to have a uniform signature regardless of whether it is receiving a
-bound object from its L{Klein} or not.</div>
+    <div><code><a href="https://pydocbrowser.github.io/klein/latest/klein._decorators.html#bindable" class="intersphinx-link">bindable</a></code> is a decorator which allows a function decorated by @route to have a uniform signature regardless of whether it is receiving a bound object from its <code><a href="https://pydocbrowser.github.io/klein/latest/klein.Klein.html" class="intersphinx-link">Klein</a></code> or not.</div>
   </div>
 </div><div class="basemethod">
   
@@ -237,8 +312,7 @@ bound object from its L{Klein} or not.</div>
   <div class="docstring functionBody">
     
     
-    <div>L{Klein.__get__} doesn't propagate L{AttributeError} when
-searching for the bound L{Klein} instance.</div>
+    <div><code><a href="https://pydocbrowser.github.io/klein/latest/klein.Klein.html#__get__" class="intersphinx-link">Klein.__get__</a></code> doesn't propagate <code><a href="https://docs.python.org/3/library/exceptions.html#AttributeError" class="intersphinx-link">AttributeError</a></code> when searching for the bound <code><a href="https://pydocbrowser.github.io/klein/latest/klein.Klein.html" class="intersphinx-link">Klein</a></code> instance.</div>
   </div>
 </div><div class="basemethod">
   
@@ -260,9 +334,7 @@ searching for the bound L{Klein} instance.</div>
   <div class="docstring functionBody">
     
     
-    <div>L{Klein.route} should create a branch path which consumes all children,
-when the branch keyword argument is True and there is no trailing /
-on the path.</div>
+    <div><code><a href="https://pydocbrowser.github.io/klein/latest/klein.Klein.html#route" class="intersphinx-link">Klein.route</a></code> should create a branch path which consumes all children, when the branch keyword argument is True and there is no trailing / on the path.</div>
   </div>
 </div><div class="basemethod">
   
@@ -284,8 +356,7 @@ on the path.</div>
   <div class="docstring functionBody">
     
     
-    <div>L{Klein.route} should create a branch path which consumes all children
-when the branch keyword argument is True.</div>
+    <div><code><a href="https://pydocbrowser.github.io/klein/latest/klein.Klein.html#route" class="intersphinx-link">Klein.route</a></code> should create a branch path which consumes all children when the branch keyword argument is True.</div>
   </div>
 </div><div class="basemethod">
   
@@ -307,8 +378,7 @@ when the branch keyword argument is True.</div>
   <div class="docstring functionBody">
     
     
-    <div>L{Klein.route} may be used a method decorator when a L{Klein} instance
-is defined as a class variable.</div>
+    <div><code><a href="https://pydocbrowser.github.io/klein/latest/klein.Klein.html#route" class="intersphinx-link">Klein.route</a></code> may be used a method decorator when a <code><a href="https://pydocbrowser.github.io/klein/latest/klein.Klein.html" class="intersphinx-link">Klein</a></code> instance is defined as a class variable.</div>
   </div>
 </div><div class="basemethod">
   
@@ -330,9 +400,7 @@ is defined as a class variable.</div>
   <div class="docstring functionBody">
     
     
-    <div>Multiple instances of a class with a L{Klein} attribute and
-L{Klein.route}'d methods can be created and their L{Klein}s used
-independently.</div>
+    <div>Multiple instances of a class with a <code><a href="https://pydocbrowser.github.io/klein/latest/klein.Klein.html" class="intersphinx-link">Klein</a></code> attribute and <code><a href="https://pydocbrowser.github.io/klein/latest/klein.Klein.html#route" class="intersphinx-link">Klein.route</a></code>'d methods can be created and their <code><a href="https://pydocbrowser.github.io/klein/latest/klein.Klein.html" class="intersphinx-link">Klein</a></code>s used independently.</div>
   </div>
 </div><div class="basemethod">
   
@@ -354,9 +422,7 @@ independently.</div>
   <div class="docstring functionBody">
     
     
-    <div>Multiple instances of a class with a L{Klein} attribute and
-L{Klein.route}'d methods can be created and their L{Klein}s used
-independently.</div>
+    <div>Multiple instances of a class with a <code><a href="https://pydocbrowser.github.io/klein/latest/klein.Klein.html" class="intersphinx-link">Klein</a></code> attribute and <code><a href="https://pydocbrowser.github.io/klein/latest/klein.Klein.html#route" class="intersphinx-link">Klein.route</a></code>'d methods can be created and their <code><a href="https://pydocbrowser.github.io/klein/latest/klein.Klein.html" class="intersphinx-link">Klein</a></code>s used independently.</div>
   </div>
 </div><div class="basemethod">
   
@@ -378,8 +444,7 @@ independently.</div>
   <div class="docstring functionBody">
     
     
-    <div>When the Klein object can't find itself on the class it still preserves
-identity.</div>
+    <div>When the Klein object can't find itself on the class it still preserves identity.</div>
   </div>
 </div><div class="basemethod">
   
@@ -401,8 +466,7 @@ identity.</div>
   <div class="docstring functionBody">
     
     
-    <div>Routes are routed to the proper object regardless of its C{__hash__}
-implementation.</div>
+    <div>Routes are routed to the proper object regardless of its <tt class="rst-docutils literal">__hash__</tt> implementation.</div>
   </div>
 </div><div class="basemethod">
   
@@ -424,8 +488,7 @@ implementation.</div>
   <div class="docstring functionBody">
     
     
-    <div>L{modified} is a decorator which alters the thing that it decorates,
-and describes itself as such.</div>
+    <div><code><a href="https://pydocbrowser.github.io/klein/latest/klein._decorators.html#modified" class="intersphinx-link">modified</a></code> is a decorator which alters the thing that it decorates, and describes itself as such.</div>
   </div>
 </div><div class="basemethod">
   
@@ -447,11 +510,7 @@ and describes itself as such.</div>
   <div class="docstring functionBody">
     
     
-    <div>Repeated accesses of the same L{Klein} attribute on the same instance
-should result in an identically bound instance, when possible.
-"Possible" is defined by a writable instance-level attribute named
-C{__klein_bound_&lt;the name of the Klein attribute on the class&gt;__}, and
-something is maintaining a strong reference to the L{Klein} instance.</div>
+    <div>Repeated accesses of the same <code><a href="https://pydocbrowser.github.io/klein/latest/klein.Klein.html" class="intersphinx-link">Klein</a></code> attribute on the same instance should result in an identically bound instance, when possible. "Possible" is defined by a writable instance-level attribute named <tt class="rst-docutils literal">__klein_bound_&lt;the name of the Klein attribute on the class&gt;__</tt>, and something is maintaining a strong reference to the <code><a href="https://pydocbrowser.github.io/klein/latest/klein.Klein.html" class="intersphinx-link">Klein</a></code> instance.</div>
   </div>
 </div><div class="basemethod">
   
@@ -473,7 +532,7 @@ something is maintaining a strong reference to the L{Klein} instance.</div>
   <div class="docstring functionBody">
     
     
-    <div>L{Klien.resource} returns a L{KleinResource}.</div>
+    <div><code>Klien.resource</code> returns a <code><a href="klein._resource.KleinResource.html" class="internal-link" title="klein._resource.KleinResource">KleinResource</a></code>.</div>
   </div>
 </div><div class="basemethod">
   
@@ -495,7 +554,7 @@ something is maintaining a strong reference to the L{Klein} instance.</div>
   <div class="docstring functionBody">
     
     
-    <div>L{Klein.route} adds functions as routable endpoints.</div>
+    <div><code><a href="https://pydocbrowser.github.io/klein/latest/klein.Klein.html#route" class="intersphinx-link">Klein.route</a></code> adds functions as routable endpoints.</div>
   </div>
 </div><div class="basemethod">
   
@@ -517,9 +576,7 @@ something is maintaining a strong reference to the L{Klein} instance.</div>
   <div class="docstring functionBody">
     
     
-    <div>L{Klein.run} configures a L{KleinResource} and a L{Site}
-listening on the specified interface and port, and logs
-to stdout.</div>
+    <div><code><a href="https://pydocbrowser.github.io/klein/latest/klein.Klein.html#run" class="intersphinx-link">Klein.run</a></code> configures a <code><a href="klein._resource.KleinResource.html" class="internal-link" title="klein._resource.KleinResource">KleinResource</a></code> and a <code>Site</code> listening on the specified interface and port, and logs to stdout.</div>
   </div>
 </div><div class="basemethod">
   
@@ -541,7 +598,7 @@ to stdout.</div>
   <div class="docstring functionBody">
     
     
-    <div>L{Klein.run} called with SSL endpoint specification.</div>
+    <div><code><a href="https://pydocbrowser.github.io/klein/latest/klein.Klein.html#run" class="intersphinx-link">Klein.run</a></code> called with SSL endpoint specification.</div>
   </div>
 </div><div class="basemethod">
   
@@ -563,7 +620,7 @@ to stdout.</div>
   <div class="docstring functionBody">
     
     
-    <div>L{Klein.run} called with tcp6 endpoint description.</div>
+    <div><code><a href="https://pydocbrowser.github.io/klein/latest/klein.Klein.html#run" class="intersphinx-link">Klein.run</a></code> called with tcp6 endpoint description.</div>
   </div>
 </div><div class="basemethod">
   
@@ -585,7 +642,7 @@ to stdout.</div>
   <div class="docstring functionBody">
     
     
-    <div>L{Klein.run} logs to the specified C{logFile}.</div>
+    <div><code><a href="https://pydocbrowser.github.io/klein/latest/klein.Klein.html#run" class="intersphinx-link">Klein.run</a></code> logs to the specified <tt class="rst-docutils literal">logFile</tt>.</div>
   </div>
 </div><div class="basemethod">
   
@@ -607,8 +664,7 @@ to stdout.</div>
   <div class="docstring functionBody">
     
     
-    <div>L{Klein.route} can be stacked to create multiple endpoints of a single
-function.</div>
+    <div><code><a href="https://pydocbrowser.github.io/klein/latest/klein.Klein.html#route" class="intersphinx-link">Klein.route</a></code> can be stacked to create multiple endpoints of a single function.</div>
   </div>
 </div><div class="basemethod">
   
@@ -630,7 +686,7 @@ function.</div>
   <div class="docstring functionBody">
     
     
-    <div>L{Klein.subroute} adds functions as routable endpoints.</div>
+    <div><code><a href="https://pydocbrowser.github.io/klein/latest/klein.Klein.html#subroute" class="intersphinx-link">Klein.subroute</a></code> adds functions as routable endpoints.</div>
   </div>
 </div><div class="basemethod">
   
@@ -652,7 +708,7 @@ function.</div>
   <div class="docstring functionBody">
     
     
-    <div>L{Klein.urlFor} builds an URL for an endpoint with parameters</div>
+    <div><code><a href="https://pydocbrowser.github.io/klein/latest/klein.Klein.html#urlFor" class="intersphinx-link">Klein.urlFor</a></code> builds an URL for an endpoint with parameters</div>
   </div>
 </div>
 
@@ -660,12 +716,20 @@ function.</div>
     </div>
 
     <footer class="navbar navbar-default">
+
   
   <div class="container">
     <a href="index.html">API Documentation</a> for klein,
   generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
-    22.2.0 at 2022-02-23 16:04:10.
+    22.3.0.dev0 at 2022-03-22 17:12:49.
   </div>
+
+  <!-- Search related scripts needs to be loaded at the end of HTML 
+    parsing not to introduce overhead and display HTML data asap -->
+  <script src="ajax.js" type="text/javascript"></script>
+  <script src="searchlib.js" type="text/javascript"></script>
+  <script src="search.js" type="text/javascript"></script>
+
 </footer>
 
     <script src="pydoctor.js" type="text/javascript"></script>

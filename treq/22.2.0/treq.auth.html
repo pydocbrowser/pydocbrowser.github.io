@@ -7,11 +7,11 @@
   <head>
     
     <title>treq.auth</title>
-    <meta name="generator" content="pydoctor 22.2.0"> 
+    <meta name="generator" content="pydoctor 22.3.0.dev0"> 
         
     </meta>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=0.75" />
+    <meta name="viewport" content="width=device-width, initial-scale=1 maximum-scale=1" />
     <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="apidocs.css" />
     <link rel="stylesheet" type="text/css" href="extra.css" />
@@ -35,21 +35,98 @@
     <div class="navbar-header">
       
       <div class="navlinks">
-          <span class="navbar-brand">
-            treq <a href="index.html">API Documentation</a>
+        <span class="navbar-brand">
+          treq <a href="index.html">API Documentation</a>
+        </span>
+
+        <a href="moduleIndex.html">
+          Modules
+        </a>
+
+        <a href="classIndex.html">
+          Classes
+        </a>
+
+        <a href="nameIndex.html">
+          Names
+        </a>
+
+        <div id="search-box-container">
+          <div class="input-group">
+            <input id="search-box" type="search" name="search-query" placeholder="Search..." aria-label="Search" minlength="2" class="form-control" autocomplete="off" />
+            
+            <span class="input-group-btn">
+              <a style="display: none;" class="btn btn-default" id="search-clear-button" title="Clear" onclick="clearSearch()"><img src="fonts/x-circle.svg" alt="Clear" /></a>
+              <a class="btn btn-default" id="search-help-button" title="Help" onclick="toggleSearchHelpText()"><img src="fonts/info.svg" alt="Help" /></a>
+            </span>
+          </div>
+        </div>
+
+      </div>
+
+      <div id="search-results-container" style="display: none;">
+        
+        <div id="search-buttons">
+          <span class="label label-default" id="search-docstrings-button">
+          <label class="checkbox-inline">
+            <input type="checkbox" id="toggle-search-in-docstrings-checkbox" value="false" onclick="toggleSearchInDocstrings()">
+              search in docstrings
+            </input>
+          </label>
           </span>
+          
+        </div>
+        
+        <noscript>
+            <h1>Cannot search: JavaScript is not supported/enabled in your browser.</h1>
+        </noscript>
 
-          <a href="moduleIndex.html">
-            Modules
-          </a>
+        <div class="hint" id="search-help-box">
+          <p class="rst-last">
+      
+            Search bar offers the following options:
+            <ul>   
+                <li>
+                  <strong>Term presence.</strong> The below example searches for documents that 
+                    must contain “foo”, might contain “bar” and must not contain “baz”: <code>+foo bar -baz</code>
+                </li> 
 
-          <a href="classIndex.html">
-            Classes
-          </a>
+                <li>
+                  <strong>Wildcards.</strong> The below example searches for documents with words beginning with “foo”: <code>foo*</code>
+                </li> 
 
-          <a href="nameIndex.html">
-            Names
-          </a>
+                <li>
+                  <strong>Search in specific fields.</strong> The following search matches all objects 
+                  in "twisted.mail" that matches “search”: <code>+qname:twisted.mail.* +search</code>
+
+                  <p>
+                    Possible fields: 'name', 'qname' (fully qualified name), 'docstring', and 'kind'.
+                    Last two fields are only applicable if "search in docstrings" is enabled.
+                  </p>
+                </li>
+
+                <li>
+                  <strong>Fuzzy matches.</strong> The following search matches all documents 
+                  that have a word within 1 edit distance of “foo”: <code>foo~1</code>
+                </li>
+            </ul>
+
+          </p>
+        </div>
+
+        <div id="search-status"> </div>
+
+        <div class="warning" id="search-warn-box" style="display: none;">
+          <p class="rst-last"><span id="search-warn"></span></p>
+        </div>
+
+        <table id="search-results">
+          <!-- Filled dynamically by JS -->
+        </table>
+        
+        <div style="margin-top: 8px;">
+          <p>Results provided by <a href="https://lunrjs.com">Lunr.js</a></p>
+        </div>
       </div>
 
     </div>
@@ -81,7 +158,7 @@
       </div>
 
       <div id="splitTables">
-        <table class="children sortable" id="id1123">
+        <table class="children sortable" id="id29576">
   
   
   <tr class="class">
@@ -133,7 +210,7 @@
   <div class="docstring functionBody">
     
     
-    <div>Wrap an agent to perform authentication<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">agent</span></td><td class="fieldArgDesc">Agent to wrap.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">auth​_config</span></td><td class="fieldArgDesc">A <tt class="rst-docutils literal">('username', 'password')</tt> tuple --- see <code><a href="#add_basic_auth" class="internal-link" title="treq.auth.add_basic_auth">add_basic_auth</a></code>.</td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td colspan="2"><code>~twisted.web.iweb.IAgent</code></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Raises</td></tr><tr><td class="fieldArgContainer"><code><a href="treq.auth.UnknownAuthConfig.html" class="internal-link" title="treq.auth.UnknownAuthConfig">UnknownAuthConfig</a></code></td><td>When the format <em>auth_config</em> isn't supported.</td></tr></table></div>
+    <div></div>
   </div>
 </div><div class="basefunction">
   
@@ -156,14 +233,11 @@
     
     
     <div><p>Wrap an agent to add HTTP basic authentication</p>
-<p>The returned agent sets the <em>Authorization</em> request header according to the
-basic authentication scheme described in <a class="rst-reference external" href="http://tools.ietf.org/html/rfc7617.html" target="_top">RFC 7617</a>. This header contains
-the given <em>username</em> and <em>password</em> in plaintext, and thus should only be
-used over an encrypted transport (HTTPS).</p>
-<p>Note that the colon (<tt class="rst-docutils literal">:</tt>) is used as a delimiter between the <em>username</em>
-and <em>password</em>, so if either parameter includes a colon the interpretation
-of the <em>Authorization</em> header is server-defined.</p>
-<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">agent</span></td><td class="fieldArgDesc">Agent to wrap.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">username</span></td><td class="fieldArgDesc">The username.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">password</span></td><td class="fieldArgDesc">The password.</td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td colspan="2"><code>~twisted.web.iweb.IAgent</code></td></tr></table></div>
+<p>The returned agent sets the *Authorization* request header according to the basic authentication scheme described in :rfc:`7617`. This header contains the given *username* and *password* in plaintext, and thus should only be used over an encrypted transport (HTTPS).</p>
+<p>Note that the colon (``:``) is used as a delimiter between the *username* and *password*, so if either parameter includes a colon the interpretation of the *Authorization* header is server-defined.</p>
+<p>:param agent: Agent to wrap. :param username: The username. :param password: The password.</p>
+<p>:returns: :class:`~twisted.web.iweb.IAgent`</p>
+</div>
   </div>
 </div>
 
@@ -171,12 +245,20 @@ of the <em>Authorization</em> header is server-defined.</p>
     </div>
 
     <footer class="navbar navbar-default">
+
   
   <div class="container">
     <a href="index.html">API Documentation</a> for treq,
   generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
-    22.2.0 at 2022-02-23 16:04:59.
+    22.3.0.dev0 at 2022-03-22 17:32:16.
   </div>
+
+  <!-- Search related scripts needs to be loaded at the end of HTML 
+    parsing not to introduce overhead and display HTML data asap -->
+  <script src="ajax.js" type="text/javascript"></script>
+  <script src="searchlib.js" type="text/javascript"></script>
+  <script src="search.js" type="text/javascript"></script>
+
 </footer>
 
     <script src="pydoctor.js" type="text/javascript"></script>

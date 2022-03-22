@@ -7,11 +7,11 @@
   <head>
     
     <title>click.core.Context</title>
-    <meta name="generator" content="pydoctor 22.2.0"> 
+    <meta name="generator" content="pydoctor 22.3.0.dev0"> 
         
     </meta>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=0.75" />
+    <meta name="viewport" content="width=device-width, initial-scale=1 maximum-scale=1" />
     <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="apidocs.css" />
     <link rel="stylesheet" type="text/css" href="extra.css" />
@@ -19,12 +19,10 @@
 
   <body>
 
-    <div id="banner" class="container">    
+    <div id="banner">    
     <div>
-        <a href="https://pydocbrowser.github.io/">Home</a>
-        &gt; click-8.0.4 
-        <!-- This is an important placeholder and will be 
-            replaced by project name and version on building docs -->
+        <a href="/">Home</a>
+        &gt; click-8.0.4 <!-- This is a placeholder -->
         
         <!-- (<a href=""&gt;show all versions</a&gt;) -->
     </div>
@@ -37,21 +35,98 @@
     <div class="navbar-header">
       
       <div class="navlinks">
-          <span class="navbar-brand">
-            click <a href="index.html">API Documentation</a>
+        <span class="navbar-brand">
+          click <a href="index.html">API Documentation</a>
+        </span>
+
+        <a href="moduleIndex.html">
+          Modules
+        </a>
+
+        <a href="classIndex.html">
+          Classes
+        </a>
+
+        <a href="nameIndex.html">
+          Names
+        </a>
+
+        <div id="search-box-container">
+          <div class="input-group">
+            <input id="search-box" type="search" name="search-query" placeholder="Search..." aria-label="Search" minlength="2" class="form-control" autocomplete="off" />
+            
+            <span class="input-group-btn">
+              <a style="display: none;" class="btn btn-default" id="search-clear-button" title="Clear" onclick="clearSearch()"><img src="fonts/x-circle.svg" alt="Clear" /></a>
+              <a class="btn btn-default" id="search-help-button" title="Help" onclick="toggleSearchHelpText()"><img src="fonts/info.svg" alt="Help" /></a>
+            </span>
+          </div>
+        </div>
+
+      </div>
+
+      <div id="search-results-container" style="display: none;">
+        
+        <div id="search-buttons">
+          <span class="label label-default" id="search-docstrings-button">
+          <label class="checkbox-inline">
+            <input type="checkbox" id="toggle-search-in-docstrings-checkbox" value="false" onclick="toggleSearchInDocstrings()">
+              search in docstrings
+            </input>
+          </label>
           </span>
+          
+        </div>
+        
+        <noscript>
+            <h1>Cannot search: JavaScript is not supported/enabled in your browser.</h1>
+        </noscript>
 
-          <a href="moduleIndex.html">
-            Modules
-          </a>
+        <div class="hint" id="search-help-box">
+          <p class="rst-last">
+      
+            Search bar offers the following options:
+            <ul>   
+                <li>
+                  <strong>Term presence.</strong> The below example searches for documents that 
+                    must contain “foo”, might contain “bar” and must not contain “baz”: <code>+foo bar -baz</code>
+                </li> 
 
-          <a href="classIndex.html">
-            Classes
-          </a>
+                <li>
+                  <strong>Wildcards.</strong> The below example searches for documents with words beginning with “foo”: <code>foo*</code>
+                </li> 
 
-          <a href="nameIndex.html">
-            Names
-          </a>
+                <li>
+                  <strong>Search in specific fields.</strong> The following search matches all objects 
+                  in "twisted.mail" that matches “search”: <code>+qname:twisted.mail.* +search</code>
+
+                  <p>
+                    Possible fields: 'name', 'qname' (fully qualified name), 'docstring', and 'kind'.
+                    Last two fields are only applicable if "search in docstrings" is enabled.
+                  </p>
+                </li>
+
+                <li>
+                  <strong>Fuzzy matches.</strong> The following search matches all documents 
+                  that have a word within 1 edit distance of “foo”: <code>foo~1</code>
+                </li>
+            </ul>
+
+          </p>
+        </div>
+
+        <div id="search-status"> </div>
+
+        <div class="warning" id="search-warn-box" style="display: none;">
+          <p class="rst-last"><span id="search-warn"></span></p>
+        </div>
+
+        <table id="search-results">
+          <!-- Filled dynamically by JS -->
+        </table>
+        
+        <div style="margin-top: 8px;">
+          <p>Results provided by <a href="https://lunrjs.com">Lunr.js</a></p>
+        </div>
       </div>
 
     </div>
@@ -79,74 +154,11 @@
       </div>
 
       <div class="moduleDocstring">
-        <div><p>The context is a special internal object that holds state relevant
-for the script execution at every single level.  It's normally invisible
-to commands unless they opt-in to getting access to it.</p>
-<p>The context is useful as it can pass internal objects around and can
-control special execution features such as reading data from
-environment variables.</p>
-<p>A context can be used as context manager in which case it will call
-<code><a href="#close" class="internal-link" title="click.core.Context.close">close</a></code> on teardown.</p>
-<div class="rst-versionchanged">
-<span class="rst-versionmodified rst-changed">Changed in version 8.0: </span><span>The <tt class="rst-docutils literal">show_default</tt> parameter defaults to the value from the
-parent context.</span></div>
-<div class="rst-versionchanged">
-<span class="rst-versionmodified rst-changed">Changed in version 7.1: </span><span>Added the <tt class="rst-docutils literal">show_default</tt> parameter.</span></div>
-<div class="rst-versionchanged">
-<span class="rst-versionmodified rst-changed">Changed in version 4.0: </span><span>Added the <tt class="rst-docutils literal">color</tt>, <tt class="rst-docutils literal">ignore_unknown_options</tt>, and
-<tt class="rst-docutils literal">max_content_width</tt> parameters.</span></div>
-<div class="rst-versionchanged">
-<span class="rst-versionmodified rst-changed">Changed in version 3.0: </span><span>Added the <tt class="rst-docutils literal">allow_extra_args</tt> and <tt class="rst-docutils literal">allow_interspersed_args</tt>
-parameters.</span></div>
-<div class="rst-versionchanged">
-<span class="rst-versionmodified rst-changed">Changed in version 2.0: </span><span>Added the <tt class="rst-docutils literal">resilient_parsing</tt>, <tt class="rst-docutils literal">help_option_names</tt>, and
-<tt class="rst-docutils literal">token_normalize_func</tt> parameters.</span></div>
-<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">command</span></td><td class="fieldArgDesc">the command class for this context.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">parent</span></td><td class="fieldArgDesc">the parent context.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">info​_name</span></td><td class="fieldArgDesc">the info name for this invocation.  Generally this
-is the most descriptive name for the script or
-command.  For the toplevel script it is usually
-the name of the script, for commands below it it's
-the name of the script.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">obj</span></td><td class="fieldArgDesc">an arbitrary object of user data.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">auto​_envvar​_prefix</span></td><td class="fieldArgDesc">the prefix to use for automatic environment
-variables.  If this is <code><a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a></code> then reading
-from environment variables is disabled.  This
-does not affect manually set environment
-variables which are always read.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">default​_map</span></td><td class="fieldArgDesc">a dictionary (like object) with default values
-for parameters.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">terminal​_width</span></td><td class="fieldArgDesc">the width of the terminal.  The default is
-inherit from parent context.  If no context
-defines the terminal width then auto
-detection will be applied.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">max​_content​_width</span></td><td class="fieldArgDesc">the maximum width for content rendered by
-Click (this currently only affects help
-pages).  This defaults to 80 characters if
-not overridden.  In other words: even if the
-terminal is larger than that, Click will not
-format things wider than 80 characters by
-default.  In addition to that, formatters might
-add some safety mapping on the right.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">resilient​_parsing</span></td><td class="fieldArgDesc">if this flag is enabled then Click will
-parse without any interactivity or callback
-invocation.  Default values will also be
-ignored.  This is useful for implementing
-things such as completion support.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">allow​_extra​_args</span></td><td class="fieldArgDesc">if this is set to <code><a href="https://docs.python.org/3/library/constants.html#True" class="intersphinx-link">True</a></code> then extra arguments
-at the end will not raise an error and will be
-kept on the context.  The default is to inherit
-from the command.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">allow​_interspersed​_args</span></td><td class="fieldArgDesc">if this is set to <code><a href="https://docs.python.org/3/library/constants.html#False" class="intersphinx-link">False</a></code> then options
-and arguments cannot be mixed.  The
-default is to inherit from the command.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">ignore​_unknown​_options</span></td><td class="fieldArgDesc">instructs click to ignore options it does
-not know and keeps them for later
-processing.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">help​_option​_names</span></td><td class="fieldArgDesc">optionally a list of strings that define how
-the default help parameter is named.  The
-default is <tt class="rst-docutils literal"><span class="pre">['--help']</span></tt>.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">token​_normalize​_func</span></td><td class="fieldArgDesc">an optional function that is used to
-normalize tokens (options, choices,
-etc.).  This for instance can be used to
-implement case insensitive behavior.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">color</span></td><td class="fieldArgDesc">controls if the terminal supports ANSI colors or not.  The
-default is autodetection.  This is only needed if ANSI
-codes are used in texts that Click prints which is by
-default not the case.  This for instance would affect
-help output.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">show​_default</span></td><td class="fieldArgDesc">Show defaults for all options. If not set,
-defaults to the value from a parent context. Overrides an
-option's <tt class="rst-docutils literal">show_default</tt> argument.</td></tr></table></div>
+        <div></div>
       </div>
 
       <div id="splitTables">
-        <table class="children sortable" id="id1004">
+        <table class="children sortable" id="id976">
   
   
   <tr class="method">
@@ -178,12 +190,12 @@ option's <tt class="rst-docutils literal">show_default</tt> argument.</td></tr><
     
     <td>Method</td>
     <td><code><a href="#close" class="internal-link" title="click.core.Context.close">close</a></code></td>
-    <td>Invoke all close callbacks registered with <code><a href="#call_on_close" class="internal-link" title="click.core.Context.call_on_close">call_on_close</a></code>, and exit all context managers entered with <code><a href="#with_resource" class="internal-link" title="click.core.Context.with_resource">with_resource</a></code>.</td>
+    <td>Invoke all close callbacks registered with :meth:`call_on_close`, and exit all context managers entered with :meth:`with_resource`.</td>
   </tr><tr class="method">
     
     <td>Method</td>
     <td><code><a href="#ensure_object" class="internal-link" title="click.core.Context.ensure_object">ensure​_object</a></code></td>
-    <td>Like <code><a href="#find_object" class="internal-link" title="click.core.Context.find_object">find_object</a></code> but sets the innermost object to a new instance of <code>object_type</code> if it does not exist.</td>
+    <td>Like :meth:`find_object` but sets the innermost object to a new instance of `object_type` if it does not exist.</td>
   </tr><tr class="method">
     
     <td>Method</td>
@@ -208,7 +220,7 @@ option's <tt class="rst-docutils literal">show_default</tt> argument.</td></tr><
     
     <td>Method</td>
     <td><code><a href="#forward" class="internal-link" title="click.core.Context.forward">forward</a></code></td>
-    <td>Similar to <code><a href="#invoke" class="internal-link" title="click.core.Context.invoke">invoke</a></code> but fills in default keyword arguments from the current context if the other command expects it.  This cannot invoke callbacks directly, only other commands.</td>
+    <td>Similar to :meth:`invoke` but fills in default keyword arguments from the current context if the other command expects it.  This cannot invoke callbacks directly, only other commands.</td>
   </tr><tr class="method">
     
     <td>Method</td>
@@ -233,12 +245,12 @@ option's <tt class="rst-docutils literal">show_default</tt> argument.</td></tr><
     
     <td>Method</td>
     <td><code><a href="#lookup_default" class="internal-link" title="click.core.Context.lookup_default">lookup​_default</a></code></td>
-    <td>Get the default for a parameter from <code><a href="#default_map" class="internal-link" title="click.core.Context.default_map">default_map</a></code>.</td>
+    <td>Get the default for a parameter from :attr:`default_map`.</td>
   </tr><tr class="method">
     
     <td>Method</td>
     <td><code><a href="#make_formatter" class="internal-link" title="click.core.Context.make_formatter">make​_formatter</a></code></td>
-    <td>Creates the <code>~click.HelpFormatter</code> for the help and usage output.</td>
+    <td>Creates the :class:`~click.HelpFormatter` for the help and usage output.</td>
   </tr><tr class="method">
     
     <td>Method</td>
@@ -258,7 +270,7 @@ option's <tt class="rst-docutils literal">show_default</tt> argument.</td></tr><
     
     <td>Method</td>
     <td><code><a href="#with_resource" class="internal-link" title="click.core.Context.with_resource">with​_resource</a></code></td>
-    <td>Register a resource as if it were used in a <tt class="rst-docutils literal">with</tt> statement. The resource will be cleaned up when the context is popped.</td>
+    <td>Register a resource as if it were used in a ``with`` statement. The resource will be cleaned up when the context is popped.</td>
   </tr><tr class="instancevariable">
     
     <td>Instance Variable</td>
@@ -363,7 +375,7 @@ option's <tt class="rst-docutils literal">show_default</tt> argument.</td></tr><
     
     <td>Property</td>
     <td><code><a href="#command_path" class="internal-link" title="click.core.Context.command_path">command​_path</a></code></td>
-    <td>The computed command path.  This is used for the <tt class="rst-docutils literal">usage</tt> information on the help page.  It's automatically created by combining the info names of the chain of contexts to the root.</td>
+    <td>The computed command path.  This is used for the ``usage`` information on the help page.  It's automatically created by combining the info names of the chain of contexts to the root.</td>
   </tr><tr class="property">
     
     <td>Property</td>
@@ -372,32 +384,32 @@ option's <tt class="rst-docutils literal">show_default</tt> argument.</td></tr><
   </tr><tr class="method private">
     
     <td>Method</td>
-    <td><code><a href="#_make_sub_context" class="internal-link" title="click.core.Context._make_sub_context">​_make​_sub​_context</a></code></td>
+    <td><code><a href="#_make_sub_context" class="internal-link" title="click.core.Context._make_sub_context">_make​_sub​_context</a></code></td>
     <td>Create a new context of the same type as this context, but for a new command.</td>
   </tr><tr class="instancevariable private">
     
     <td>Instance Variable</td>
-    <td><code><a href="#_close_callbacks" class="internal-link" title="click.core.Context._close_callbacks">​_close​_callbacks</a></code></td>
+    <td><code><a href="#_close_callbacks" class="internal-link" title="click.core.Context._close_callbacks">_close​_callbacks</a></code></td>
     <td><span class="undocumented">Undocumented</span></td>
   </tr><tr class="instancevariable private">
     
     <td>Instance Variable</td>
-    <td><code><a href="#_depth" class="internal-link" title="click.core.Context._depth">​_depth</a></code></td>
+    <td><code><a href="#_depth" class="internal-link" title="click.core.Context._depth">_depth</a></code></td>
     <td><span class="undocumented">Undocumented</span></td>
   </tr><tr class="instancevariable private">
     
     <td>Instance Variable</td>
-    <td><code><a href="#_exit_stack" class="internal-link" title="click.core.Context._exit_stack">​_exit​_stack</a></code></td>
+    <td><code><a href="#_exit_stack" class="internal-link" title="click.core.Context._exit_stack">_exit​_stack</a></code></td>
     <td><span class="undocumented">Undocumented</span></td>
   </tr><tr class="instancevariable private">
     
     <td>Instance Variable</td>
-    <td><code><a href="#_meta" class="internal-link" title="click.core.Context._meta">​_meta</a></code></td>
+    <td><code><a href="#_meta" class="internal-link" title="click.core.Context._meta">_meta</a></code></td>
     <td><span class="undocumented">Undocumented</span></td>
   </tr><tr class="instancevariable private">
     
     <td>Instance Variable</td>
-    <td><code><a href="#_parameter_source" class="internal-link" title="click.core.Context._parameter_source">​_parameter​_source</a></code></td>
+    <td><code><a href="#_parameter_source" class="internal-link" title="click.core.Context._parameter_source">_parameter​_source</a></code></td>
     <td><span class="undocumented">Undocumented</span></td>
   </tr>
 </table>
@@ -517,11 +529,9 @@ option's <tt class="rst-docutils literal">show_default</tt> argument.</td></tr><
     
     
     <div><p>Register a function to be called when the context tears down.</p>
-<p>This can be used to close resources opened during the script
-execution. Resources that support Python's context manager
-protocol which would be used in a <tt class="rst-docutils literal">with</tt> statement should be
-registered with <code><a href="#with_resource" class="internal-link" title="click.core.Context.with_resource">with_resource</a></code> instead.</p>
-<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">f:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Callable" class="intersphinx-link">t.Callable</a>[<wbr></wbr><span class="rst-variable-ellipsis">...</span>, <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">t.Any</a>]</code></td><td class="fieldArgDesc">The function to execute on teardown.</td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Callable" class="intersphinx-link">t.Callable</a>[<wbr></wbr><span class="rst-variable-ellipsis">...</span>, <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">t.Any</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+<p>This can be used to close resources opened during the script execution. Resources that support Python's context manager protocol which would be used in a ``with`` statement should be registered with :meth:`with_resource` instead.</p>
+<p>:param f: The function to execute on teardown.</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">f:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Callable" class="intersphinx-link">t.Callable</a>[<wbr></wbr><span class="rst-variable-ellipsis">...</span>, <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">t.Any</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Callable" class="intersphinx-link">t.Callable</a>[<wbr></wbr><span class="rst-variable-ellipsis">...</span>, <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">t.Any</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basemethod">
   
@@ -543,9 +553,7 @@ registered with <code><a href="#with_resource" class="internal-link" title="clic
   <div class="docstring functionBody">
     
     
-    <div>Invoke all close callbacks registered with
-<code><a href="#call_on_close" class="internal-link" title="click.core.Context.call_on_close">call_on_close</a></code>, and exit all context managers entered
-with <code><a href="#with_resource" class="internal-link" title="click.core.Context.with_resource">with_resource</a></code>.</div>
+    <div>Invoke all close callbacks registered with :meth:`call_on_close`, and exit all context managers entered with :meth:`with_resource`.</div>
   </div>
 </div><div class="basemethod">
   
@@ -567,8 +575,7 @@ with <code><a href="#with_resource" class="internal-link" title="click.core.Cont
   <div class="docstring functionBody">
     
     
-    <div>Like <code><a href="#find_object" class="internal-link" title="click.core.Context.find_object">find_object</a></code> but sets the innermost object to a
-new instance of <code>object_type</code> if it does not exist.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">object​_type:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Type" class="intersphinx-link">t.Type</a>[<wbr></wbr><a href="click.core.html#V" class="internal-link" title="click.core.V">V</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="click.core.html#V" class="internal-link" title="click.core.V">V</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+    <div>Like :meth:`find_object` but sets the innermost object to a new instance of `object_type` if it does not exist.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">object​_type:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Type" class="intersphinx-link">t.Type</a>[<wbr></wbr><a href="click.core.html#V" class="internal-link" title="click.core.V">V</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="click.core.html#V" class="internal-link" title="click.core.V">V</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basemethod">
   
@@ -612,8 +619,9 @@ new instance of <code>object_type</code> if it does not exist.<table class="fiel
   <div class="docstring functionBody">
     
     
-    <div>Aborts the execution of the program with a specific error
-message.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">message:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc">the error message to fail with.</td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code>te.NoReturn</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+    <div><p>Aborts the execution of the program with a specific error message.</p>
+<p>:param message: the error message to fail with.</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">message:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code>te.NoReturn</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basemethod">
   
@@ -679,13 +687,7 @@ message.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" c
   <div class="docstring functionBody">
     
     
-    <div><p>Similar to <code><a href="#invoke" class="internal-link" title="click.core.Context.invoke">invoke</a></code> but fills in default keyword
-arguments from the current context if the other command expects
-it.  This cannot invoke callbacks directly, only other commands.</p>
-<div class="rst-versionchanged">
-<span class="rst-versionmodified rst-changed">Changed in version 8.0: </span><span>All <tt class="rst-docutils literal">kwargs</tt> are tracked in <code><a href="#params" class="internal-link" title="click.core.Context.params">params</a></code> so they will be
-passed if <tt class="rst-docutils literal">forward</tt> is called at multiple levels.</span></div>
-<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">__self</span></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">__cmd:</span><code><a href="click.core.Command.html" class="internal-link" title="click.core.Command">Command</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">*args:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">t.Any</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">**kwargs:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">t.Any</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">t.Any</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+    <div><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">__self</span></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">__cmd:</span><code><a href="click.core.Command.html" class="internal-link" title="click.core.Command">Command</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">*args:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">t.Any</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">**kwargs:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">t.Any</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">t.Any</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basemethod">
   
@@ -707,8 +709,7 @@ passed if <tt class="rst-docutils literal">forward</tt> is called at multiple le
   <div class="docstring functionBody">
     
     
-    <div>Helper method to get formatted help page for the current
-context and command.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+    <div>Helper method to get formatted help page for the current context and command.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basemethod">
   
@@ -730,16 +731,7 @@ context and command.<table class="fieldTable"><tr class="fieldStart"><td class="
   <div class="docstring functionBody">
     
     
-    <div><p>Get the source of a parameter. This indicates the location
-from which the value of the parameter was obtained.</p>
-<p>This can be useful for determining when a user specified a value
-on the command line that is the same as the default value. It
-will be <code>~click.core.ParameterSource.DEFAULT</code> only if the
-value was actually taken from the default.</p>
-<div class="rst-versionchanged">
-<span class="rst-versionmodified rst-changed">Changed in version 8.0: </span><span>Returns <tt class="rst-docutils literal">None</tt> if the parameter was not provided from any
-source.</span></div>
-<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">name:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc">The name of the parameter.</td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer">ParameterSource</td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+    <div><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">name:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">t.Optional</a>[<wbr></wbr><a href="click.core.ParameterSource.html" class="internal-link" title="click.core.ParameterSource">ParameterSource</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basemethod">
   
@@ -761,8 +753,7 @@ source.</span></div>
   <div class="docstring functionBody">
     
     
-    <div>Helper method to get formatted usage string for the current
-context and command.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+    <div>Helper method to get formatted usage string for the current context and command.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basemethod">
   
@@ -784,24 +775,7 @@ context and command.<table class="fieldTable"><tr class="fieldStart"><td class="
   <div class="docstring functionBody">
     
     
-    <div><p>Invokes a command callback in exactly the way it expects.  There
-are two ways to invoke this method:</p>
-<ol class="rst-arabic simple">
-<li>the first argument can be a callback and all other arguments and
-keyword arguments are forwarded directly to the function.</li>
-<li>the first argument is a click command object.  In that case all
-arguments are forwarded as well but proper click parameters
-(options and click arguments) must be keyword arguments and Click
-will fill in defaults.</li>
-</ol>
-<p>Note that before Click 3.2 keyword arguments were not properly filled
-in against the intention of this code and no context was created.  For
-more information about this change and why it was done in a bugfix
-release see <a href="#system-message-1"><span class="rst-problematic" id="rst-problematic-1">:ref:`upgrade-to-3.2`</span></a>.</p>
-<div class="rst-versionchanged">
-<span class="rst-versionmodified rst-changed">Changed in version 8.0: </span><span>All <tt class="rst-docutils literal">kwargs</tt> are tracked in <code><a href="#params" class="internal-link" title="click.core.Context.params">params</a></code> so they will be
-passed if <code><a href="#forward" class="internal-link" title="click.core.Context.forward">forward</a></code> is called at multiple levels.</span></div>
-<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">__self</span></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">__callback:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Union" class="intersphinx-link">t.Union</a>[<wbr></wbr><a href="click.core.Command.html" class="internal-link" title="click.core.Command">Command</a>, <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Callable" class="intersphinx-link">t.Callable</a>[<wbr></wbr><span class="rst-variable-ellipsis">...</span>, <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">t.Any</a>]]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">*args:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">t.Any</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">**kwargs:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">t.Any</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">t.Any</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+    <div><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">__self</span></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">__callback:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Union" class="intersphinx-link">t.Union</a>[<wbr></wbr><a href="click.core.Command.html" class="internal-link" title="click.core.Command">Command</a>, <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Callable" class="intersphinx-link">t.Callable</a>[<wbr></wbr><span class="rst-variable-ellipsis">...</span>, <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">t.Any</a>]]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">*args:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">t.Any</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">**kwargs:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">t.Any</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">t.Any</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basemethod">
   
@@ -823,11 +797,7 @@ passed if <code><a href="#forward" class="internal-link" title="click.core.Conte
   <div class="docstring functionBody">
     
     
-    <div><p>Get the default for a parameter from <code><a href="#default_map" class="internal-link" title="click.core.Context.default_map">default_map</a></code>.</p>
-<div class="rst-versionchanged">
-<span class="rst-versionmodified rst-changed">Changed in version 8.0: </span><span>Added the <tt class="rst-docutils literal">call</tt> parameter.</span></div>
-<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">name:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc">Name of the parameter.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">call:</span><code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code></td><td class="fieldArgDesc">If the default is a callable, call it. Disable to
-return the callable instead.</td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">t.Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">t.Any</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+    <div><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">name:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">call:</span><code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">t.Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">t.Any</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basemethod">
   
@@ -849,13 +819,7 @@ return the callable instead.</td></tr><tr class="fieldStart"><td class="fieldNam
   <div class="docstring functionBody">
     
     
-    <div><p>Creates the <code>~click.HelpFormatter</code> for the help and
-usage output.</p>
-<p>To quickly customize the formatter class used without overriding
-this method, set the <code><a href="click.formatting.HelpFormatter.html" class="internal-link" title="click.formatting.HelpFormatter">formatter_class</a></code> attribute.</p>
-<div class="rst-versionchanged">
-<span class="rst-versionmodified rst-changed">Changed in version 8.0: </span><span>Added the <code><a href="click.formatting.HelpFormatter.html" class="internal-link" title="click.formatting.HelpFormatter">formatter_class</a></code> attribute.</span></div>
-<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="click.formatting.HelpFormatter.html" class="internal-link" title="click.formatting.HelpFormatter">HelpFormatter</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+    <div><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="click.formatting.HelpFormatter.html" class="internal-link" title="click.formatting.HelpFormatter">HelpFormatter</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basemethod">
   
@@ -877,30 +841,7 @@ this method, set the <code><a href="click.formatting.HelpFormatter.html" class="
   <div class="docstring functionBody">
     
     
-    <div><p>This helper method can be used with the context object to promote
-it to the current thread local (see <code><a href="click.globals.html#get_current_context" class="internal-link" title="click.globals.get_current_context">get_current_context</a></code>).
-The default behavior of this is to invoke the cleanup functions which
-can be disabled by setting <code>cleanup</code> to <code><a href="https://docs.python.org/3/library/constants.html#False" class="intersphinx-link">False</a></code>.  The cleanup
-functions are typically used for things such as closing file handles.</p>
-<p>If the cleanup is intended the context object can also be directly
-used as a context manager.</p>
-<p>Example usage:</p>
-<pre class="rst-literal-block">
-with ctx.scope():
-    assert get_current_context() is ctx
-</pre>
-<p>This is equivalent:</p>
-<pre class="rst-literal-block">
-with ctx:
-    assert get_current_context() is ctx
-</pre>
-<div class="rst-versionadded">
-<span class="rst-versionmodified rst-added">New in version 5.0.</span></div>
-<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">cleanup:</span><code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code></td><td class="fieldArgDesc">controls if the cleanup functions should be run or
-not.  The default is to run these functions.  In
-some situations the context only wants to be
-temporarily pushed in which case this can be disabled.
-Nested pushes automatically defer the cleanup.</td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Iterator" class="intersphinx-link">t.Iterator</a>[<wbr></wbr><a href="click.core.Context.html" class="internal-link" title="click.core.Context">Context</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+    <div><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">cleanup:</span><code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Iterator" class="intersphinx-link">t.Iterator</a>[<wbr></wbr><a href="click.core.Context.html" class="internal-link" title="click.core.Context">Context</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basemethod">
   
@@ -922,8 +863,9 @@ Nested pushes automatically defer the cleanup.</td></tr><tr class="fieldStart"><
   <div class="docstring functionBody">
     
     
-    <div>Set the source of a parameter. This indicates the location
-from which the value of the parameter was obtained.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">name:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc">The name of the parameter.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">source:</span><code><a href="click.core.ParameterSource.html" class="internal-link" title="click.core.ParameterSource">ParameterSource</a></code></td><td class="fieldArgDesc">A member of <code>~click.core.ParameterSource</code>.</td></tr></table></div>
+    <div><p>Set the source of a parameter. This indicates the location from which the value of the parameter was obtained.</p>
+<p>:param name: The name of the parameter. :param source: A member of :class:`~click.core.ParameterSource`.</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">name:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">source:</span><code><a href="click.core.ParameterSource.html" class="internal-link" title="click.core.ParameterSource">ParameterSource</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basemethod">
   
@@ -945,16 +887,7 @@ from which the value of the parameter was obtained.<table class="fieldTable"><tr
   <div class="docstring functionBody">
     
     
-    <div><p>Gather information that could be useful for a tool generating
-user-facing documentation. This traverses the entire CLI
-structure.</p>
-<pre class="rst-code rst-python rst-literal-block">
-with Context(cli) as ctx:
-    info = ctx.to_info_dict()
-</pre>
-<div class="rst-versionadded">
-<span class="rst-versionmodified rst-added">New in version 8.0.</span></div>
-<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Dict" class="intersphinx-link">t.Dict</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>, <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">t.Any</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+    <div><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Dict" class="intersphinx-link">t.Dict</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>, <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">t.Any</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basemethod">
   
@@ -976,26 +909,7 @@ with Context(cli) as ctx:
   <div class="docstring functionBody">
     
     
-    <div><p>Register a resource as if it were used in a <tt class="rst-docutils literal">with</tt>
-statement. The resource will be cleaned up when the context is
-popped.</p>
-<p>Uses <code><a href="https://docs.python.org/3/library/contextlib.html#contextlib.ExitStack.enter_context" class="intersphinx-link">contextlib.ExitStack.enter_context</a></code>. It calls the
-resource's <tt class="rst-docutils literal">__enter__()</tt> method and returns the result. When
-the context is popped, it closes the stack, which calls the
-resource's <tt class="rst-docutils literal">__exit__()</tt> method.</p>
-<p>To register a cleanup function for something that isn't a
-context manager, use <code><a href="#call_on_close" class="internal-link" title="click.core.Context.call_on_close">call_on_close</a></code>. Or use something
-from <code><a href="https://docs.python.org/3/library/contextlib.html#module-contextlib" class="intersphinx-link">contextlib</a></code> to turn it into a context manager first.</p>
-<pre class="rst-code rst-python rst-literal-block">
-@click.group()
-@click.option("--name")
-@click.pass_context
-def cli(ctx):
-    ctx.obj = ctx.with_resource(connect_db(name))
-</pre>
-<div class="rst-versionadded">
-<span class="rst-versionmodified rst-added">New in version 8.0.</span></div>
-<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">context​_manager:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.ContextManager" class="intersphinx-link">t.ContextManager</a>[<wbr></wbr><a href="click.core.html#V" class="internal-link" title="click.core.V">V</a>]</code></td><td class="fieldArgDesc">The context manager to enter.</td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="click.core.html#V" class="internal-link" title="click.core.V">V</a></code></td><td class="fieldArgDesc">Whatever <tt class="rst-docutils literal">context_manager.__enter__()</tt> returns.</td></tr></table></div>
+    <div><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">context​_manager:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.ContextManager" class="intersphinx-link">t.ContextManager</a>[<wbr></wbr><a href="click.core.html#V" class="internal-link" title="click.core.V">V</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="click.core.html#V" class="internal-link" title="click.core.V">V</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="baseinstancevariable">
   
@@ -1477,9 +1391,7 @@ def cli(ctx):
   <div class="functionBody">
     
     
-    <div>The computed command path.  This is used for the <tt class="rst-docutils literal">usage</tt>
-information on the help page.  It's automatically created by
-combining the info names of the chain of contexts to the root.</div>
+    <div>The computed command path.  This is used for the ``usage`` information on the help page.  It's automatically created by combining the info names of the chain of contexts to the root.</div>
     
   </div>
 </div><div class="baseproperty">
@@ -1502,28 +1414,20 @@ combining the info names of the chain of contexts to the root.</div>
   <div class="functionBody">
     
     
-    <div><p>This is a dictionary which is shared with all the contexts
-that are nested.  It exists so that click utilities can store some
-state here if they need to.  It is however the responsibility of
-that code to manage this dictionary well.</p>
-<p>The keys are supposed to be unique dotted strings.  For instance
-module paths are a good choice for it.  What is stored in there is
-irrelevant for the operation of click.  However what is important is
-that code that places data here adheres to the general semantics of
-the system.</p>
+    <div><p>This is a dictionary which is shared with all the contexts that are nested.  It exists so that click utilities can store some state here if they need to.  It is however the responsibility of that code to manage this dictionary well.</p>
+<p>The keys are supposed to be unique dotted strings.  For instance module paths are a good choice for it.  What is stored in there is irrelevant for the operation of click.  However what is important is that code that places data here adheres to the general semantics of the system.</p>
 <p>Example usage:</p>
 <pre class="rst-literal-block">
-LANG_KEY = f'{__name__}.lang'
+    LANG_KEY = f'{__name__}.lang'
 
-def set_language(value):
-    ctx = get_current_context()
-    ctx.meta[LANG_KEY] = value
+    def set_language(value):
+        ctx = get_current_context()
+        ctx.meta[LANG_KEY] = value
 
-def get_language():
-    return get_current_context().meta.get(LANG_KEY, 'en_US')
+    def get_language():
+        return get_current_context().meta.get(LANG_KEY, 'en_US')
 </pre>
-<div class="rst-versionadded">
-<span class="rst-versionmodified rst-added">New in version 5.0.</span></div>
+<p>.. versionadded:: 5.0</p>
 </div>
     
   </div>
@@ -1547,8 +1451,9 @@ def get_language():
   <div class="docstring functionBody">
     
     
-    <div>Create a new context of the same type as this context, but
-for a new command.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">command:</span><code><a href="click.core.Command.html" class="internal-link" title="click.core.Command">Command</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="click.core.Context.html" class="internal-link" title="click.core.Context">Context</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Unknown Field: meta</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">private</span></td><td class="fieldArgDesc"></td></tr></table></div>
+    <div><p>Create a new context of the same type as this context, but for a new command.</p>
+<p>:meta private:</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">command:</span><code><a href="click.core.Command.html" class="internal-link" title="click.core.Command">Command</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="click.core.Context.html" class="internal-link" title="click.core.Context">Context</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="baseinstancevariable private">
   
@@ -1671,12 +1576,20 @@ for a new command.<table class="fieldTable"><tr class="fieldStart"><td class="fi
     </div>
 
     <footer class="navbar navbar-default">
+
   
   <div class="container">
     <a href="index.html">API Documentation</a> for click,
   generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
-    22.2.0 at 2022-02-23 08:05:22.
+    22.3.0.dev0 at 2022-03-22 16:59:56.
   </div>
+
+  <!-- Search related scripts needs to be loaded at the end of HTML 
+    parsing not to introduce overhead and display HTML data asap -->
+  <script src="ajax.js" type="text/javascript"></script>
+  <script src="searchlib.js" type="text/javascript"></script>
+  <script src="search.js" type="text/javascript"></script>
+
 </footer>
 
     <script src="pydoctor.js" type="text/javascript"></script>

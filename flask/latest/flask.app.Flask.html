@@ -7,11 +7,11 @@
   <head>
     
     <title>flask.app.Flask</title>
-    <meta name="generator" content="pydoctor 22.2.0"> 
+    <meta name="generator" content="pydoctor 22.3.0.dev0"> 
         
     </meta>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=0.75" />
+    <meta name="viewport" content="width=device-width, initial-scale=1 maximum-scale=1" />
     <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="apidocs.css" />
     <link rel="stylesheet" type="text/css" href="extra.css" />
@@ -19,12 +19,10 @@
 
   <body>
 
-    <div id="banner" class="container">    
+    <div id="banner">    
     <div>
-        <a href="https://pydocbrowser.github.io/">Home</a>
-        &gt; flask-2.0.3 
-        <!-- This is an important placeholder and will be 
-            replaced by project name and version on building docs -->
+        <a href="/">Home</a>
+        &gt; flask-2.0.3 <!-- This is a placeholder -->
         
         <!-- (<a href=""&gt;show all versions</a&gt;) -->
     </div>
@@ -37,21 +35,98 @@
     <div class="navbar-header">
       
       <div class="navlinks">
-          <span class="navbar-brand">
-            flask <a href="index.html">API Documentation</a>
+        <span class="navbar-brand">
+          flask <a href="index.html">API Documentation</a>
+        </span>
+
+        <a href="moduleIndex.html">
+          Modules
+        </a>
+
+        <a href="classIndex.html">
+          Classes
+        </a>
+
+        <a href="nameIndex.html">
+          Names
+        </a>
+
+        <div id="search-box-container">
+          <div class="input-group">
+            <input id="search-box" type="search" name="search-query" placeholder="Search..." aria-label="Search" minlength="2" class="form-control" autocomplete="off" />
+            
+            <span class="input-group-btn">
+              <a style="display: none;" class="btn btn-default" id="search-clear-button" title="Clear" onclick="clearSearch()"><img src="fonts/x-circle.svg" alt="Clear" /></a>
+              <a class="btn btn-default" id="search-help-button" title="Help" onclick="toggleSearchHelpText()"><img src="fonts/info.svg" alt="Help" /></a>
+            </span>
+          </div>
+        </div>
+
+      </div>
+
+      <div id="search-results-container" style="display: none;">
+        
+        <div id="search-buttons">
+          <span class="label label-default" id="search-docstrings-button">
+          <label class="checkbox-inline">
+            <input type="checkbox" id="toggle-search-in-docstrings-checkbox" value="false" onclick="toggleSearchInDocstrings()">
+              search in docstrings
+            </input>
+          </label>
           </span>
+          
+        </div>
+        
+        <noscript>
+            <h1>Cannot search: JavaScript is not supported/enabled in your browser.</h1>
+        </noscript>
 
-          <a href="moduleIndex.html">
-            Modules
-          </a>
+        <div class="hint" id="search-help-box">
+          <p class="rst-last">
+      
+            Search bar offers the following options:
+            <ul>   
+                <li>
+                  <strong>Term presence.</strong> The below example searches for documents that 
+                    must contain “foo”, might contain “bar” and must not contain “baz”: <code>+foo bar -baz</code>
+                </li> 
 
-          <a href="classIndex.html">
-            Classes
-          </a>
+                <li>
+                  <strong>Wildcards.</strong> The below example searches for documents with words beginning with “foo”: <code>foo*</code>
+                </li> 
 
-          <a href="nameIndex.html">
-            Names
-          </a>
+                <li>
+                  <strong>Search in specific fields.</strong> The following search matches all objects 
+                  in "twisted.mail" that matches “search”: <code>+qname:twisted.mail.* +search</code>
+
+                  <p>
+                    Possible fields: 'name', 'qname' (fully qualified name), 'docstring', and 'kind'.
+                    Last two fields are only applicable if "search in docstrings" is enabled.
+                  </p>
+                </li>
+
+                <li>
+                  <strong>Fuzzy matches.</strong> The following search matches all documents 
+                  that have a word within 1 edit distance of “foo”: <code>foo~1</code>
+                </li>
+            </ul>
+
+          </p>
+        </div>
+
+        <div id="search-status"> </div>
+
+        <div class="warning" id="search-warn-box" style="display: none;">
+          <p class="rst-last"><span id="search-warn"></span></p>
+        </div>
+
+        <table id="search-results">
+          <!-- Filled dynamically by JS -->
+        </table>
+        
+        <div style="margin-top: 8px;">
+          <p>Results provided by <a href="https://lunrjs.com">Lunr.js</a></p>
+        </div>
       </div>
 
     </div>
@@ -79,92 +154,18 @@
       </div>
 
       <div class="moduleDocstring">
-        <div><p>The flask object implements a WSGI application and acts as the central
-object.  It is passed the name of the module or package of the
-application.  Once it is created it will act as a central registry for
-the view functions, the URL rules, template configuration and much more.</p>
-<p>The name of the package is used to resolve resources from inside the
-package or the folder the module is contained in depending on if the
-package parameter resolves to an actual python package (a folder with
-an <a href="#system-message-1"><span class="rst-problematic" id="rst-problematic-1">:file:`__init__.py`</span></a> file inside) or a standard module (just a <tt class="rst-docutils literal">.py</tt> file).</p>
-<p>For more information about resource loading, see <code>open_resource</code>.</p>
-<p>Usually you create a <code><a href="flask.app.Flask.html" class="internal-link" title="flask.app.Flask">Flask</a></code> instance in your main module or
-in the <a href="#system-message-2"><span class="rst-problematic" id="rst-problematic-2">:file:`__init__.py`</span></a> file of your package like this:</p>
-<pre class="rst-literal-block">
-from flask import Flask
-app = Flask(__name__)
-</pre>
-<div class="rst-admonition rst-admonition-about-the-first-parameter">
-<p class="rst-first rst-admonition-title">About the First Parameter</p>
-<p>The idea of the first parameter is to give Flask an idea of what
-belongs to your application.  This name is used to find resources
-on the filesystem, can be used by extensions to improve debugging
-information and a lot more.</p>
-<p>So it's important what you provide there.  If you are using a single
-module, <code><a href="https://docs.python.org/3/reference/import.html#name__" class="intersphinx-link">__name__</a></code> is always the correct value.  If you however are
-using a package, it's usually recommended to hardcode the name of
-your package there.</p>
-<p>For example if your application is defined in <a href="#system-message-3"><span class="rst-problematic" id="rst-problematic-3">:file:`yourapplication/app.py`</span></a>
-you should create it with one of the two versions below:</p>
-<pre class="rst-literal-block">
-app = Flask('yourapplication')
-app = Flask(__name__.split('.')[0])
-</pre>
-<p class="rst-last">Why is that?  The application will work even with <code><a href="https://docs.python.org/3/reference/import.html#name__" class="intersphinx-link">__name__</a></code>, thanks
-to how resources are looked up.  However it will make debugging more
-painful.  Certain extensions can make assumptions based on the
-import name of your application.  For example the Flask-SQLAlchemy
-extension will look for the code in your application that triggered
-an SQL query in debug mode.  If the import name is not properly set
-up, that debugging information is lost.  (For example it would only
-pick up SQL queries in <code>yourapplication.app</code> and not
-<code>yourapplication.views.frontend</code>)</p>
-</div>
-<div class="rst-versionadded">
-<span class="rst-versionmodified rst-added">New in version 0.7: </span><span>The <code>static_url_path</code>, <code>static_folder</code>, and <code>template_folder</code>
-parameters were added.</span></div>
-<div class="rst-versionadded">
-<span class="rst-versionmodified rst-added">New in version 0.8: </span><span>The <code><a href="#instance_path" class="internal-link" title="flask.app.Flask.instance_path">instance_path</a></code> and <code>instance_relative_config</code> parameters were
-added.</span></div>
-<div class="rst-versionadded">
-<span class="rst-versionmodified rst-added">New in version 0.11: </span><span>The <code>root_path</code> parameter was added.</span></div>
-<div class="rst-versionadded">
-<span class="rst-versionmodified rst-added">New in version 1.0: </span><span>The <tt class="rst-docutils literal">host_matching</tt> and <tt class="rst-docutils literal">static_host</tt> parameters were added.</span></div>
-<div class="rst-versionadded">
-<span class="rst-versionmodified rst-added">New in version 1.0: </span><span>The <tt class="rst-docutils literal">subdomain_matching</tt> parameter was added. Subdomain
-matching needs to be enabled manually now. Setting
-<code>SERVER_NAME</code> does not implicitly enable it.</span></div>
-<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">import​_name</span></td><td class="fieldArgDesc">the name of the application package</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">static​_url​_path</span></td><td class="fieldArgDesc">can be used to specify a different path for the
-static files on the web.  Defaults to the name
-of the <code>static_folder</code> folder.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">static​_folder</span></td><td class="fieldArgDesc">The folder with static files that is served at
-<tt class="rst-docutils literal">static_url_path</tt>. Relative to the application <tt class="rst-docutils literal">root_path</tt>
-or an absolute path. Defaults to <tt class="rst-docutils literal">'static'</tt>.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">static​_host</span></td><td class="fieldArgDesc">the host to use when adding the static route.
-Defaults to None. Required when using <tt class="rst-docutils literal">host_matching=True</tt>
-with a <tt class="rst-docutils literal">static_folder</tt> configured.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">host​_matching</span></td><td class="fieldArgDesc">set <tt class="rst-docutils literal">url_map.host_matching</tt> attribute.
-Defaults to False.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">subdomain​_matching</span></td><td class="fieldArgDesc">consider the subdomain relative to
-<code>SERVER_NAME</code> when matching routes. Defaults to False.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">template​_folder</span></td><td class="fieldArgDesc">the folder that contains the templates that should
-be used by the application.  Defaults to
-<tt class="rst-docutils literal">'templates'</tt> folder in the root path of the
-application.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">instance​_path</span></td><td class="fieldArgDesc">An alternative instance path for the application.
-By default the folder <tt class="rst-docutils literal">'instance'</tt> next to the
-package or module is assumed to be the instance
-path.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">instance​_relative​_config</span></td><td class="fieldArgDesc">if set to <tt class="rst-docutils literal">True</tt> relative filenames
-for loading the config are assumed to
-be relative to the instance path instead
-of the application root.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">root​_path</span></td><td class="fieldArgDesc">The path to the root of the application files.
-This should only be set manually when it can't be detected
-automatically, such as for namespace packages.</td></tr></table></div>
+        <div></div>
       </div>
 
       <div id="splitTables">
-        <table class="children sortable" id="id10280">
+        <table class="children sortable" id="id10252">
   
   
   <tr class="method">
     
     <td>Method</td>
     <td><code><a href="#__call__" class="internal-link" title="flask.app.Flask.__call__">__call__</a></code></td>
-    <td>The WSGI server calls the Flask application object as the WSGI application. This calls <code><a href="#wsgi_app" class="internal-link" title="flask.app.Flask.wsgi_app">wsgi_app</a></code>, which can be wrapped to apply middleware.</td>
+    <td>The WSGI server calls the Flask application object as the WSGI application. This calls :meth:`wsgi_app`, which can be wrapped to apply middleware.</td>
   </tr><tr class="method">
     
     <td>Method</td>
@@ -174,27 +175,27 @@ automatically, such as for namespace packages.</td></tr></table></div>
     
     <td>Method</td>
     <td><code><a href="#add_template_filter" class="internal-link" title="flask.app.Flask.add_template_filter">add​_template​_filter</a></code></td>
-    <td>Register a custom template filter.  Works exactly like the <code><a href="#template_filter" class="internal-link" title="flask.app.Flask.template_filter">template_filter</a></code> decorator.</td>
+    <td>Register a custom template filter.  Works exactly like the :meth:`template_filter` decorator.</td>
   </tr><tr class="method">
     
     <td>Method</td>
     <td><code><a href="#add_template_global" class="internal-link" title="flask.app.Flask.add_template_global">add​_template​_global</a></code></td>
-    <td>Register a custom template global function. Works exactly like the <code><a href="#template_global" class="internal-link" title="flask.app.Flask.template_global">template_global</a></code> decorator.</td>
+    <td>Register a custom template global function. Works exactly like the :meth:`template_global` decorator.</td>
   </tr><tr class="method">
     
     <td>Method</td>
     <td><code><a href="#add_template_test" class="internal-link" title="flask.app.Flask.add_template_test">add​_template​_test</a></code></td>
-    <td>Register a custom template test.  Works exactly like the <code><a href="#template_test" class="internal-link" title="flask.app.Flask.template_test">template_test</a></code> decorator.</td>
+    <td>Register a custom template test.  Works exactly like the :meth:`template_test` decorator.</td>
   </tr><tr class="method">
     
     <td>Method</td>
     <td><code><a href="#add_url_rule" class="internal-link" title="flask.app.Flask.add_url_rule">add​_url​_rule</a></code></td>
-    <td>Register a rule for routing incoming requests and building URLs. The <code><a href="#route" class="internal-link" title="flask.scaffold.Scaffold.route">route</a></code> decorator is a shortcut to call this with the <tt class="rst-docutils literal">view_func</tt> argument. These are equivalent:</td>
+    <td>Register a rule for routing incoming requests and building URLs. The :meth:`route` decorator is a shortcut to call this with the ``view_func`` argument. These are equivalent:</td>
   </tr><tr class="method">
     
     <td>Method</td>
     <td><code><a href="#app_context" class="internal-link" title="flask.app.Flask.app_context">app​_context</a></code></td>
-    <td>Create an <code>~flask.ctx.AppContext</code>. Use as a <tt class="rst-docutils literal">with</tt> block to push the context, which will make <code><a href="flask.globals.html#current_app" class="internal-link" title="flask.globals.current_app">current_app</a></code> point at this application.</td>
+    <td>Create an :class:`~flask.ctx.AppContext`. Use as a ``with`` block to push the context, which will make :data:`current_app` point at this application.</td>
   </tr><tr class="method">
     
     <td>Method</td>
@@ -228,7 +229,7 @@ automatically, such as for namespace packages.</td></tr></table></div>
   </tr><tr class="method">
     
     <td>Method</td>
-    <td><code><a href="#debug.setter" class="internal-link" title="flask.app.Flask.debug.setter">debug.setter</a></code></td>
+    <td><code><a href="#debug.setter" class="internal-link" title="flask.app.Flask.debug.setter">debug​.setter</a></code></td>
     <td><span class="undocumented">Undocumented</span></td>
   </tr><tr class="method">
     
@@ -249,7 +250,7 @@ automatically, such as for namespace packages.</td></tr></table></div>
     
     <td>Method</td>
     <td><code><a href="#ensure_sync" class="internal-link" title="flask.app.Flask.ensure_sync">ensure​_sync</a></code></td>
-    <td>Ensure that the function is synchronous for WSGI workers. Plain <tt class="rst-docutils literal">def</tt> functions are returned as-is. <tt class="rst-docutils literal">async def</tt> functions are wrapped to run and wait for the response.</td>
+    <td>Ensure that the function is synchronous for WSGI workers. Plain ``def`` functions are returned as-is. ``async def`` functions are wrapped to run and wait for the response.</td>
   </tr><tr class="method">
     
     <td>Method</td>
@@ -264,7 +265,7 @@ automatically, such as for namespace packages.</td></tr></table></div>
     
     <td>Method</td>
     <td><code><a href="#handle_exception" class="internal-link" title="flask.app.Flask.handle_exception">handle​_exception</a></code></td>
-    <td>Handle an exception that did not have an error handler associated with it, or that was raised from an error handler. This always causes a 500 <tt class="rst-docutils literal">InternalServerError</tt>.</td>
+    <td>Handle an exception that did not have an error handler associated with it, or that was raised from an error handler. This always causes a 500 ``InternalServerError``.</td>
   </tr><tr class="method">
     
     <td>Method</td>
@@ -274,7 +275,7 @@ automatically, such as for namespace packages.</td></tr></table></div>
     
     <td>Method</td>
     <td><code><a href="#handle_url_build_error" class="internal-link" title="flask.app.Flask.handle_url_build_error">handle​_url​_build​_error</a></code></td>
-    <td>Handle <code>~werkzeug.routing.BuildError</code> on <code><a href="flask.helpers.html#url_for" class="internal-link" title="flask.helpers.url_for">url_for</a></code>.</td>
+    <td>Handle :class:`~werkzeug.routing.BuildError` on :meth:`url_for`.</td>
   </tr><tr class="method">
     
     <td>Method</td>
@@ -304,12 +305,12 @@ automatically, such as for namespace packages.</td></tr></table></div>
     
     <td>Method</td>
     <td><code><a href="#make_default_options_response" class="internal-link" title="flask.app.Flask.make_default_options_response">make​_default​_options​_response</a></code></td>
-    <td>This method is called to create the default <tt class="rst-docutils literal">OPTIONS</tt> response. This can be changed through subclassing to change the default behavior of <tt class="rst-docutils literal">OPTIONS</tt> responses.</td>
+    <td>This method is called to create the default ``OPTIONS`` response. This can be changed through subclassing to change the default behavior of ``OPTIONS`` responses.</td>
   </tr><tr class="method">
     
     <td>Method</td>
     <td><code><a href="#make_response" class="internal-link" title="flask.app.Flask.make_response">make​_response</a></code></td>
-    <td>Convert the return value from a view function to an instance of <code><a href="flask.wrappers.Response.html" class="internal-link" title="flask.wrappers.Response">response_class</a></code>.</td>
+    <td>Convert the return value from a view function to an instance of :attr:`response_class`.</td>
   </tr><tr class="method">
     
     <td>Method</td>
@@ -329,7 +330,7 @@ automatically, such as for namespace packages.</td></tr></table></div>
     
     <td>Method</td>
     <td><code><a href="#process_response" class="internal-link" title="flask.app.Flask.process_response">process​_response</a></code></td>
-    <td>Can be overridden in order to modify the response object before it's sent to the WSGI server.  By default this will call all the <code>after_request</code> decorated functions.</td>
+    <td>Can be overridden in order to modify the response object before it's sent to the WSGI server.  By default this will call all the :meth:`after_request` decorated functions.</td>
   </tr><tr class="method">
     
     <td>Method</td>
@@ -339,12 +340,12 @@ automatically, such as for namespace packages.</td></tr></table></div>
     
     <td>Method</td>
     <td><code><a href="#register_blueprint" class="internal-link" title="flask.app.Flask.register_blueprint">register​_blueprint</a></code></td>
-    <td>Register a <code>~flask.Blueprint</code> on the application. Keyword arguments passed to this method will override the defaults set on the blueprint.</td>
+    <td>Register a :class:`~flask.Blueprint` on the application. Keyword arguments passed to this method will override the defaults set on the blueprint.</td>
   </tr><tr class="method">
     
     <td>Method</td>
     <td><code><a href="#request_context" class="internal-link" title="flask.app.Flask.request_context">request​_context</a></code></td>
-    <td>Create a <code>~flask.ctx.RequestContext</code> representing a WSGI environment. Use a <tt class="rst-docutils literal">with</tt> block to push the context, which will make <code><a href="flask.globals.html#request" class="internal-link" title="flask.globals.request">request</a></code> point at this request.</td>
+    <td>Create a :class:`~flask.ctx.RequestContext` representing a WSGI environment. Use a ``with`` block to push the context, which will make :data:`request` point at this request.</td>
   </tr><tr class="method">
     
     <td>Method</td>
@@ -354,7 +355,7 @@ automatically, such as for namespace packages.</td></tr></table></div>
     
     <td>Method</td>
     <td><code><a href="#select_jinja_autoescape" class="internal-link" title="flask.app.Flask.select_jinja_autoescape">select​_jinja​_autoescape</a></code></td>
-    <td>Returns <tt class="rst-docutils literal">True</tt> if autoescaping should be active for the given template name. If no template name is given, returns <code><a href="https://docs.python.org/3/library/constants.html#True" class="intersphinx-link">True</a></code>.</td>
+    <td>Returns ``True`` if autoescaping should be active for the given template name. If no template name is given, returns `True`.</td>
   </tr><tr class="method">
     
     <td>Method</td>
@@ -388,18 +389,18 @@ automatically, such as for namespace packages.</td></tr></table></div>
   </tr><tr class="method">
     
     <td>Method</td>
-    <td><code><a href="#templates_auto_reload.setter" class="internal-link" title="flask.app.Flask.templates_auto_reload.setter">templates​_auto​_reload.setter</a></code></td>
+    <td><code><a href="#templates_auto_reload.setter" class="internal-link" title="flask.app.Flask.templates_auto_reload.setter">templates​_auto​_reload​.setter</a></code></td>
     <td><span class="undocumented">Undocumented</span></td>
   </tr><tr class="method">
     
     <td>Method</td>
     <td><code><a href="#test_cli_runner" class="internal-link" title="flask.app.Flask.test_cli_runner">test​_cli​_runner</a></code></td>
-    <td>Create a CLI runner for testing CLI commands. See <a href="#system-message-1"><span class="rst-problematic" id="rst-problematic-1">:ref:`testing-cli`</span></a>.</td>
+    <td>Create a CLI runner for testing CLI commands. See :ref:`testing-cli`.</td>
   </tr><tr class="method">
     
     <td>Method</td>
     <td><code><a href="#test_client" class="internal-link" title="flask.app.Flask.test_client">test​_client</a></code></td>
-    <td>Creates a test client for this application.  For information about unit testing head over to <a href="#system-message-1"><span class="rst-problematic" id="rst-problematic-1">:doc:`/testing`</span></a>.</td>
+    <td>Creates a test client for this application.  For information about unit testing head over to :doc:`/testing`.</td>
   </tr><tr class="method">
     
     <td>Method</td>
@@ -414,7 +415,7 @@ automatically, such as for namespace packages.</td></tr></table></div>
     
     <td>Method</td>
     <td><code><a href="#try_trigger_before_first_request_functions" class="internal-link" title="flask.app.Flask.try_trigger_before_first_request_functions">try​_trigger​_before​_first​_request​_functions</a></code></td>
-    <td>Called before each request and will ensure that it triggers the <code><a href="#before_first_request_funcs" class="internal-link" title="flask.app.Flask.before_first_request_funcs">before_first_request_funcs</a></code> and only exactly once per application instance (which means process usually).</td>
+    <td>Called before each request and will ensure that it triggers the :attr:`before_first_request_funcs` and only exactly once per application instance (which means process usually).</td>
   </tr><tr class="method">
     
     <td>Method</td>
@@ -424,7 +425,7 @@ automatically, such as for namespace packages.</td></tr></table></div>
     
     <td>Method</td>
     <td><code><a href="#wsgi_app" class="internal-link" title="flask.app.Flask.wsgi_app">wsgi​_app</a></code></td>
-    <td>The actual WSGI application. This is not implemented in <code><a href="#__call__" class="internal-link" title="flask.app.Flask.__call__">__call__</a></code> so that middlewares can be applied without losing a reference to the app object. Instead of doing this:</td>
+    <td>The actual WSGI application. This is not implemented in :meth:`__call__` so that middlewares can be applied without losing a reference to the app object. Instead of doing this:</td>
   </tr><tr class="classvariable">
     
     <td>Class Variable</td>
@@ -544,7 +545,7 @@ automatically, such as for namespace packages.</td></tr></table></div>
     
     <td>Property</td>
     <td><code><a href="#got_first_request" class="internal-link" title="flask.app.Flask.got_first_request">got​_first​_request</a></code></td>
-    <td>This attribute is set to <tt class="rst-docutils literal">True</tt> if the application started handling the first request.</td>
+    <td>This attribute is set to ``True`` if the application started handling the first request.</td>
   </tr><tr class="property">
     
     <td>Property</td>
@@ -554,7 +555,7 @@ automatically, such as for namespace packages.</td></tr></table></div>
     
     <td>Property</td>
     <td><code><a href="#logger" class="internal-link" title="flask.app.Flask.logger">logger</a></code></td>
-    <td>A standard Python <code>~logging.Logger</code> for the app, with the same name as <code><a href="#name" class="internal-link" title="flask.app.Flask.name">name</a></code>.</td>
+    <td>A standard Python :class:`~logging.Logger` for the app, with the same name as :attr:`name`.</td>
   </tr><tr class="property">
     
     <td>Property</td>
@@ -564,36 +565,36 @@ automatically, such as for namespace packages.</td></tr></table></div>
     
     <td>Property</td>
     <td><code><a href="#preserve_context_on_exception" class="internal-link" title="flask.app.Flask.preserve_context_on_exception">preserve​_context​_on​_exception</a></code></td>
-    <td>Returns the value of the <tt class="rst-docutils literal">PRESERVE_CONTEXT_ON_EXCEPTION</tt> configuration value in case it's set, otherwise a sensible default is returned.</td>
+    <td>Returns the value of the ``PRESERVE_CONTEXT_ON_EXCEPTION`` configuration value in case it's set, otherwise a sensible default is returned.</td>
   </tr><tr class="property">
     
     <td>Property</td>
     <td><code><a href="#propagate_exceptions" class="internal-link" title="flask.app.Flask.propagate_exceptions">propagate​_exceptions</a></code></td>
-    <td>Returns the value of the <tt class="rst-docutils literal">PROPAGATE_EXCEPTIONS</tt> configuration value in case it's set, otherwise a sensible default is returned.</td>
+    <td>Returns the value of the ``PROPAGATE_EXCEPTIONS`` configuration value in case it's set, otherwise a sensible default is returned.</td>
   </tr><tr class="property">
     
     <td>Property</td>
     <td><code><a href="#templates_auto_reload" class="internal-link" title="flask.app.Flask.templates_auto_reload">templates​_auto​_reload</a></code></td>
-    <td>Reload templates when they are changed. Used by <code><a href="#create_jinja_environment" class="internal-link" title="flask.app.Flask.create_jinja_environment">create_jinja_environment</a></code>.</td>
+    <td>Reload templates when they are changed. Used by :meth:`create_jinja_environment`.</td>
   </tr><tr class="method private">
     
     <td>Method</td>
-    <td><code><a href="#_find_error_handler" class="internal-link" title="flask.app.Flask._find_error_handler">​_find​_error​_handler</a></code></td>
+    <td><code><a href="#_find_error_handler" class="internal-link" title="flask.app.Flask._find_error_handler">_find​_error​_handler</a></code></td>
     <td><span class="undocumented">No summary</span></td>
   </tr><tr class="method private">
     
     <td>Method</td>
-    <td><code><a href="#_is_setup_finished" class="internal-link" title="flask.app.Flask._is_setup_finished">​_is​_setup​_finished</a></code></td>
+    <td><code><a href="#_is_setup_finished" class="internal-link" title="flask.app.Flask._is_setup_finished">_is​_setup​_finished</a></code></td>
     <td><span class="undocumented">Undocumented</span></td>
   </tr><tr class="instancevariable private">
     
     <td>Instance Variable</td>
-    <td><code><a href="#_before_request_lock" class="internal-link" title="flask.app.Flask._before_request_lock">​_before​_request​_lock</a></code></td>
+    <td><code><a href="#_before_request_lock" class="internal-link" title="flask.app.Flask._before_request_lock">_before​_request​_lock</a></code></td>
     <td><span class="undocumented">Undocumented</span></td>
   </tr><tr class="instancevariable private">
     
     <td>Instance Variable</td>
-    <td><code><a href="#_got_first_request" class="internal-link" title="flask.app.Flask._got_first_request">​_got​_first​_request</a></code></td>
+    <td><code><a href="#_got_first_request" class="internal-link" title="flask.app.Flask._got_first_request">_got​_first​_request</a></code></td>
     <td><span class="undocumented">Undocumented</span></td>
   </tr>
 </table>
@@ -601,7 +602,7 @@ automatically, such as for namespace packages.</td></tr></table></div>
           <p class="inheritedFrom">
             Inherited from <code><a href="flask.scaffold.Scaffold.html" class="internal-link" title="flask.scaffold.Scaffold">Scaffold</a></code>:
           </p>
-          <table class="children sortable" id="id10281">
+          <table class="children sortable" id="id10253">
   
   
   <tr class="basemethod">
@@ -628,12 +629,12 @@ automatically, such as for namespace packages.</td></tr></table></div>
     
     <td>Method</td>
     <td><code><a href="flask.scaffold.Scaffold.html#delete" class="internal-link" title="flask.scaffold.Scaffold.delete">delete</a></code></td>
-    <td>Shortcut for <code><a href="#route" class="internal-link" title="flask.scaffold.Scaffold.route">route</a></code> with <tt class="rst-docutils literal"><span class="pre">methods=["DELETE"]</span></tt>.</td>
+    <td>Shortcut for :meth:`route` with ``methods=["DELETE"]``.</td>
   </tr><tr class="basemethod">
     
     <td>Method</td>
     <td><code><a href="flask.scaffold.Scaffold.html#endpoint" class="internal-link" title="flask.scaffold.Scaffold.endpoint">endpoint</a></code></td>
-    <td>Decorate a view function to register it for the given endpoint. Used if a rule is added without a <tt class="rst-docutils literal">view_func</tt> with <code><a href="#add_url_rule" class="internal-link" title="flask.scaffold.Scaffold.add_url_rule">add_url_rule</a></code>.</td>
+    <td>Decorate a view function to register it for the given endpoint. Used if a rule is added without a ``view_func`` with :meth:`add_url_rule`.</td>
   </tr><tr class="basemethod">
     
     <td>Method</td>
@@ -643,42 +644,42 @@ automatically, such as for namespace packages.</td></tr></table></div>
     
     <td>Method</td>
     <td><code><a href="flask.scaffold.Scaffold.html#get" class="internal-link" title="flask.scaffold.Scaffold.get">get</a></code></td>
-    <td>Shortcut for <code><a href="#route" class="internal-link" title="flask.scaffold.Scaffold.route">route</a></code> with <tt class="rst-docutils literal"><span class="pre">methods=["GET"]</span></tt>.</td>
+    <td>Shortcut for :meth:`route` with ``methods=["GET"]``.</td>
   </tr><tr class="basemethod">
     
     <td>Method</td>
     <td><code><a href="flask.scaffold.Scaffold.html#get_send_file_max_age" class="internal-link" title="flask.scaffold.Scaffold.get_send_file_max_age">get​_send​_file​_max​_age</a></code></td>
-    <td>Used by <code><a href="flask.helpers.html#send_file" class="internal-link" title="flask.helpers.send_file">send_file</a></code> to determine the <tt class="rst-docutils literal">max_age</tt> cache value for a given file path if it wasn't passed.</td>
+    <td>Used by :func:`send_file` to determine the ``max_age`` cache value for a given file path if it wasn't passed.</td>
   </tr><tr class="basemethod">
     
     <td>Method</td>
     <td><code><a href="flask.scaffold.Scaffold.html#open_resource" class="internal-link" title="flask.scaffold.Scaffold.open_resource">open​_resource</a></code></td>
-    <td>Open a resource file relative to <code><a href="#root_path" class="internal-link" title="flask.scaffold.Scaffold.root_path">root_path</a></code> for reading.</td>
+    <td>Open a resource file relative to :attr:`root_path` for reading.</td>
   </tr><tr class="basemethod">
     
     <td>Method</td>
     <td><code><a href="flask.scaffold.Scaffold.html#patch" class="internal-link" title="flask.scaffold.Scaffold.patch">patch</a></code></td>
-    <td>Shortcut for <code><a href="#route" class="internal-link" title="flask.scaffold.Scaffold.route">route</a></code> with <tt class="rst-docutils literal"><span class="pre">methods=["PATCH"]</span></tt>.</td>
+    <td>Shortcut for :meth:`route` with ``methods=["PATCH"]``.</td>
   </tr><tr class="basemethod">
     
     <td>Method</td>
     <td><code><a href="flask.scaffold.Scaffold.html#post" class="internal-link" title="flask.scaffold.Scaffold.post">post</a></code></td>
-    <td>Shortcut for <code><a href="#route" class="internal-link" title="flask.scaffold.Scaffold.route">route</a></code> with <tt class="rst-docutils literal"><span class="pre">methods=["POST"]</span></tt>.</td>
+    <td>Shortcut for :meth:`route` with ``methods=["POST"]``.</td>
   </tr><tr class="basemethod">
     
     <td>Method</td>
     <td><code><a href="flask.scaffold.Scaffold.html#put" class="internal-link" title="flask.scaffold.Scaffold.put">put</a></code></td>
-    <td>Shortcut for <code><a href="#route" class="internal-link" title="flask.scaffold.Scaffold.route">route</a></code> with <tt class="rst-docutils literal"><span class="pre">methods=["PUT"]</span></tt>.</td>
+    <td>Shortcut for :meth:`route` with ``methods=["PUT"]``.</td>
   </tr><tr class="basemethod">
     
     <td>Method</td>
     <td><code><a href="flask.scaffold.Scaffold.html#register_error_handler" class="internal-link" title="flask.scaffold.Scaffold.register_error_handler">register​_error​_handler</a></code></td>
-    <td>Alternative error attach function to the <code><a href="#errorhandler" class="internal-link" title="flask.scaffold.Scaffold.errorhandler">errorhandler</a></code> decorator that is more straightforward to use for non decorator usage.</td>
+    <td>Alternative error attach function to the :meth:`errorhandler` decorator that is more straightforward to use for non decorator usage.</td>
   </tr><tr class="basemethod">
     
     <td>Method</td>
     <td><code><a href="flask.scaffold.Scaffold.html#route" class="internal-link" title="flask.scaffold.Scaffold.route">route</a></code></td>
-    <td>Decorate a view function to register it with the given URL rule and options. Calls <code><a href="#add_url_rule" class="internal-link" title="flask.scaffold.Scaffold.add_url_rule">add_url_rule</a></code>, which has more details about the implementation.</td>
+    <td>Decorate a view function to register it with the given URL rule and options. Calls :meth:`add_url_rule`, which has more details about the implementation.</td>
   </tr><tr class="basemethod">
     
     <td>Method</td>
@@ -687,12 +688,12 @@ automatically, such as for namespace packages.</td></tr></table></div>
   </tr><tr class="basemethod">
     
     <td>Method</td>
-    <td><code><a href="flask.scaffold.Scaffold.html#static_folder.setter" class="internal-link" title="flask.scaffold.Scaffold.static_folder.setter">static​_folder.setter</a></code></td>
+    <td><code><a href="flask.scaffold.Scaffold.html#static_folder.setter" class="internal-link" title="flask.scaffold.Scaffold.static_folder.setter">static​_folder​.setter</a></code></td>
     <td><span class="undocumented">Undocumented</span></td>
   </tr><tr class="basemethod">
     
     <td>Method</td>
-    <td><code><a href="flask.scaffold.Scaffold.html#static_url_path.setter" class="internal-link" title="flask.scaffold.Scaffold.static_url_path.setter">static​_url​_path.setter</a></code></td>
+    <td><code><a href="flask.scaffold.Scaffold.html#static_url_path.setter" class="internal-link" title="flask.scaffold.Scaffold.static_url_path.setter">static​_url​_path​.setter</a></code></td>
     <td><span class="undocumented">Undocumented</span></td>
   </tr><tr class="basemethod">
     
@@ -708,7 +709,7 @@ automatically, such as for namespace packages.</td></tr></table></div>
     
     <td>Method</td>
     <td><code><a href="flask.scaffold.Scaffold.html#url_value_preprocessor" class="internal-link" title="flask.scaffold.Scaffold.url_value_preprocessor">url​_value​_preprocessor</a></code></td>
-    <td>Register a URL value preprocessor function for all view functions in the application. These functions will be called before the <code><a href="#before_request" class="internal-link" title="flask.scaffold.Scaffold.before_request">before_request</a></code> functions.</td>
+    <td>Register a URL value preprocessor function for all view functions in the application. These functions will be called before the :meth:`before_request` functions.</td>
   </tr><tr class="baseclassvariable">
     
     <td>Class Variable</td>
@@ -783,17 +784,17 @@ automatically, such as for namespace packages.</td></tr></table></div>
     
     <td>Property</td>
     <td><code><a href="flask.scaffold.Scaffold.html#has_static_folder" class="internal-link" title="flask.scaffold.Scaffold.has_static_folder">has​_static​_folder</a></code></td>
-    <td><tt class="rst-docutils literal">True</tt> if <code><a href="#static_folder" class="internal-link" title="flask.scaffold.Scaffold.static_folder">static_folder</a></code> is set.</td>
+    <td>``True`` if :attr:`static_folder` is set.</td>
   </tr><tr class="baseproperty">
     
     <td>Property</td>
     <td><code><a href="flask.scaffold.Scaffold.html#jinja_loader" class="internal-link" title="flask.scaffold.Scaffold.jinja_loader">jinja​_loader</a></code></td>
-    <td>The Jinja loader for this object's templates. By default this is a class <code>jinja2.loaders.FileSystemLoader</code> to <code><a href="#template_folder" class="internal-link" title="flask.scaffold.Scaffold.template_folder">template_folder</a></code> if it is set.</td>
+    <td>The Jinja loader for this object's templates. By default this is a class :class:`jinja2.loaders.FileSystemLoader` to :attr:`template_folder` if it is set.</td>
   </tr><tr class="baseproperty">
     
     <td>Property</td>
     <td><code><a href="flask.scaffold.Scaffold.html#static_folder" class="internal-link" title="flask.scaffold.Scaffold.static_folder">static​_folder</a></code></td>
-    <td>The absolute path to the configured static folder. <tt class="rst-docutils literal">None</tt> if no static folder is set.</td>
+    <td>The absolute path to the configured static folder. ``None`` if no static folder is set.</td>
   </tr><tr class="baseproperty">
     
     <td>Property</td>
@@ -802,22 +803,22 @@ automatically, such as for namespace packages.</td></tr></table></div>
   </tr><tr class="basestaticmethod private">
     
     <td>Static Method</td>
-    <td><code><a href="flask.scaffold.Scaffold.html#_get_exc_class_and_code" class="internal-link" title="flask.scaffold.Scaffold._get_exc_class_and_code">​_get​_exc​_class​_and​_code</a></code></td>
-    <td>Get the exception class being handled. For HTTP status codes or <tt class="rst-docutils literal">HTTPException</tt> subclasses, return both the exception and status code.</td>
+    <td><code><a href="flask.scaffold.Scaffold.html#_get_exc_class_and_code" class="internal-link" title="flask.scaffold.Scaffold._get_exc_class_and_code">_get​_exc​_class​_and​_code</a></code></td>
+    <td>Get the exception class being handled. For HTTP status codes or ``HTTPException`` subclasses, return both the exception and status code.</td>
   </tr><tr class="basemethod private">
     
     <td>Method</td>
-    <td><code><a href="flask.scaffold.Scaffold.html#_method_route" class="internal-link" title="flask.scaffold.Scaffold._method_route">​_method​_route</a></code></td>
+    <td><code><a href="flask.scaffold.Scaffold.html#_method_route" class="internal-link" title="flask.scaffold.Scaffold._method_route">_method​_route</a></code></td>
     <td><span class="undocumented">Undocumented</span></td>
   </tr><tr class="baseinstancevariable private">
     
     <td>Instance Variable</td>
-    <td><code><a href="flask.scaffold.Scaffold.html#_static_folder" class="internal-link" title="flask.scaffold.Scaffold._static_folder">​_static​_folder</a></code></td>
+    <td><code><a href="flask.scaffold.Scaffold.html#_static_folder" class="internal-link" title="flask.scaffold.Scaffold._static_folder">_static​_folder</a></code></td>
     <td><span class="undocumented">Undocumented</span></td>
   </tr><tr class="baseinstancevariable private">
     
     <td>Instance Variable</td>
-    <td><code><a href="flask.scaffold.Scaffold.html#_static_url_path" class="internal-link" title="flask.scaffold.Scaffold._static_url_path">​_static​_url​_path</a></code></td>
+    <td><code><a href="flask.scaffold.Scaffold.html#_static_url_path" class="internal-link" title="flask.scaffold.Scaffold._static_url_path">_static​_url​_path</a></code></td>
     <td><span class="undocumented">Undocumented</span></td>
   </tr>
 </table>
@@ -848,9 +849,7 @@ automatically, such as for namespace packages.</td></tr></table></div>
   <div class="docstring functionBody">
     
     
-    <div>The WSGI server calls the Flask application object as the
-WSGI application. This calls <code><a href="#wsgi_app" class="internal-link" title="flask.app.Flask.wsgi_app">wsgi_app</a></code>, which can be
-wrapped to apply middleware.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">environ:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#dict" class="intersphinx-link">dict</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">start​_response:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Callable" class="intersphinx-link">t.Callable</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">t.Any</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+    <div>The WSGI server calls the Flask application object as the WSGI application. This calls :meth:`wsgi_app`, which can be wrapped to apply middleware.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">environ:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#dict" class="intersphinx-link">dict</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">start​_response:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Callable" class="intersphinx-link">t.Callable</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">t.Any</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basemethod">
   
@@ -894,9 +893,7 @@ wrapped to apply middleware.<table class="fieldTable"><tr class="fieldStart"><td
   <div class="docstring functionBody">
     
     
-    <div>Register a custom template filter.  Works exactly like the
-<code><a href="#template_filter" class="internal-link" title="flask.app.Flask.template_filter">template_filter</a></code> decorator.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">f:</span><code><a href="flask.typing.html#TemplateFilterCallable" class="internal-link" title="flask.typing.TemplateFilterCallable">TemplateFilterCallable</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">name:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">t.Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]</code></td><td class="fieldArgDesc">the optional name of the filter, otherwise the
-function name will be used.</td></tr></table></div>
+    <div><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">f:</span><code><a href="flask.typing.html#TemplateFilterCallable" class="internal-link" title="flask.typing.TemplateFilterCallable">TemplateFilterCallable</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">name:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">t.Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basemethod">
   
@@ -918,12 +915,7 @@ function name will be used.</td></tr></table></div>
   <div class="docstring functionBody">
     
     
-    <div><p>Register a custom template global function. Works exactly like the
-<code><a href="#template_global" class="internal-link" title="flask.app.Flask.template_global">template_global</a></code> decorator.</p>
-<div class="rst-versionadded">
-<span class="rst-versionmodified rst-added">New in version 0.10.</span></div>
-<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">f:</span><code><a href="flask.typing.html#TemplateGlobalCallable" class="internal-link" title="flask.typing.TemplateGlobalCallable">TemplateGlobalCallable</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">name:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">t.Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]</code></td><td class="fieldArgDesc">the optional name of the global function, otherwise the
-function name will be used.</td></tr></table></div>
+    <div><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">f:</span><code><a href="flask.typing.html#TemplateGlobalCallable" class="internal-link" title="flask.typing.TemplateGlobalCallable">TemplateGlobalCallable</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">name:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">t.Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basemethod">
   
@@ -945,12 +937,7 @@ function name will be used.</td></tr></table></div>
   <div class="docstring functionBody">
     
     
-    <div><p>Register a custom template test.  Works exactly like the
-<code><a href="#template_test" class="internal-link" title="flask.app.Flask.template_test">template_test</a></code> decorator.</p>
-<div class="rst-versionadded">
-<span class="rst-versionmodified rst-added">New in version 0.10.</span></div>
-<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">f:</span><code><a href="flask.typing.html#TemplateTestCallable" class="internal-link" title="flask.typing.TemplateTestCallable">TemplateTestCallable</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">name:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">t.Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]</code></td><td class="fieldArgDesc">the optional name of the test, otherwise the
-function name will be used.</td></tr></table></div>
+    <div><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">f:</span><code><a href="flask.typing.html#TemplateTestCallable" class="internal-link" title="flask.typing.TemplateTestCallable">TemplateTestCallable</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">name:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">t.Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basemethod">
   
@@ -972,49 +959,7 @@ function name will be used.</td></tr></table></div>
   <div class="docstring functionBody">
     <div class="interfaceinfo">overrides <code><a href="flask.scaffold.Scaffold.html#add_url_rule" class="internal-link">flask.scaffold.Scaffold.add_url_rule</a></code></div>
     
-    <div><p>Register a rule for routing incoming requests and building
-URLs. The <code><a href="#route" class="internal-link" title="flask.scaffold.Scaffold.route">route</a></code> decorator is a shortcut to call this
-with the <tt class="rst-docutils literal">view_func</tt> argument. These are equivalent:</p>
-<pre class="rst-code rst-python rst-literal-block">
-@app.route("/")
-def index():
-    ...
-</pre>
-<pre class="rst-code rst-python rst-literal-block">
-def index():
-    ...
-
-app.add_url_rule("/", view_func=index)
-</pre>
-<p>See <a href="#system-message-1"><span class="rst-problematic" id="rst-problematic-1">:ref:`url-route-registrations`</span></a>.</p>
-<p>The endpoint name for the route defaults to the name of the view
-function if the <tt class="rst-docutils literal">endpoint</tt> parameter isn't passed. An error
-will be raised if a function has already been registered for the
-endpoint.</p>
-<p>The <tt class="rst-docutils literal">methods</tt> parameter defaults to <tt class="rst-docutils literal">["GET"]</tt>. <tt class="rst-docutils literal">HEAD</tt> is
-always added automatically, and <tt class="rst-docutils literal">OPTIONS</tt> is added
-automatically by default.</p>
-<p><tt class="rst-docutils literal">view_func</tt> does not necessarily need to be passed, but if the
-rule should participate in routing an endpoint name must be
-associated with a view function at some point with the
-<code><a href="#endpoint" class="internal-link" title="flask.scaffold.Scaffold.endpoint">endpoint</a></code> decorator.</p>
-<pre class="rst-code rst-python rst-literal-block">
-app.add_url_rule("/", endpoint="index")
-
-@app.endpoint("index")
-def index():
-    ...
-</pre>
-<p>If <tt class="rst-docutils literal">view_func</tt> has a <tt class="rst-docutils literal">required_methods</tt> attribute, those
-methods are added to the passed and automatic methods. If it
-has a <tt class="rst-docutils literal">provide_automatic_methods</tt> attribute, it is used as the
-default if the parameter is not passed.</p>
-<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">rule:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc">The URL rule string.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">endpoint:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">t.Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]</code></td><td class="fieldArgDesc">The endpoint name to associate with the rule
-and view function. Used when routing and building URLs.
-Defaults to <tt class="rst-docutils literal">view_func.__name__</tt>.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">view​_func:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">t.Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Callable" class="intersphinx-link">t.Callable</a>]</code></td><td class="fieldArgDesc">The view function to associate with the
-endpoint name.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">provide​_automatic​_options:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">t.Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a>]</code></td><td class="fieldArgDesc">Add the <tt class="rst-docutils literal">OPTIONS</tt> method and
-respond to <tt class="rst-docutils literal">OPTIONS</tt> requests automatically.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">**options:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">t.Any</a></code></td><td class="fieldArgDesc">Extra options passed to the
-<code>~werkzeug.routing.Rule</code> object.</td></tr></table></div>
+    <div><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">rule:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">endpoint:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">t.Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">view​_func:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">t.Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Callable" class="intersphinx-link">t.Callable</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">provide​_automatic​_options:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">t.Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">**options:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">t.Any</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basemethod">
   
@@ -1036,20 +981,15 @@ respond to <tt class="rst-docutils literal">OPTIONS</tt> requests automatically.
   <div class="docstring functionBody">
     
     
-    <div><p>Create an <code>~flask.ctx.AppContext</code>. Use as a <tt class="rst-docutils literal">with</tt>
-block to push the context, which will make <code><a href="flask.globals.html#current_app" class="internal-link" title="flask.globals.current_app">current_app</a></code>
-point at this application.</p>
-<p>An application context is automatically pushed by
-<code><a href="flask.ctx.RequestContext.html#push" class="internal-link" title="flask.ctx.RequestContext.push">RequestContext.push()</a></code>
-when handling a request, and when running a CLI command. Use
-this to manually create a context outside of these situations.</p>
+    <div><p>Create an :class:`~flask.ctx.AppContext`. Use as a ``with`` block to push the context, which will make :data:`current_app` point at this application.</p>
+<p>An application context is automatically pushed by :meth:`RequestContext.push() &lt;flask.ctx.RequestContext.push&gt;` when handling a request, and when running a CLI command. Use this to manually create a context outside of these situations.</p>
+<p>:</p>
 <pre class="rst-literal-block">
-with app.app_context():
-    init_db()
+    with app.app_context():
+        init_db()
 </pre>
-<p>See <a href="#system-message-1"><span class="rst-problematic" id="rst-problematic-1">:doc:`/appcontext`</span></a>.</p>
-<div class="rst-versionadded">
-<span class="rst-versionmodified rst-added">New in version 0.9.</span></div>
+<p>See :doc:`/appcontext`.</p>
+<p>.. versionadded:: 0.9</p>
 <table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="flask.ctx.AppContext.html" class="internal-link" title="flask.ctx.AppContext">AppContext</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basemethod">
@@ -1072,15 +1012,7 @@ with app.app_context():
   <div class="docstring functionBody">
     
     
-    <div><p>Return a sync function that will run the coroutine function.</p>
-<pre class="rst-code rst-python rst-literal-block">
-result = app.async_to_sync(func)(*args, **kwargs)
-</pre>
-<p>Override this method to change how the app converts async code
-to be synchronously callable.</p>
-<div class="rst-versionadded">
-<span class="rst-versionmodified rst-added">New in version 2.0.</span></div>
-<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">func:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Callable" class="intersphinx-link">t.Callable</a>[<wbr></wbr><span class="rst-variable-ellipsis">...</span>, <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Coroutine" class="intersphinx-link">t.Coroutine</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Callable" class="intersphinx-link">t.Callable</a>[<wbr></wbr><span class="rst-variable-ellipsis">...</span>, <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">t.Any</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+    <div><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">func:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Callable" class="intersphinx-link">t.Callable</a>[<wbr></wbr><span class="rst-variable-ellipsis">...</span>, <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Coroutine" class="intersphinx-link">t.Coroutine</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Callable" class="intersphinx-link">t.Callable</a>[<wbr></wbr><span class="rst-variable-ellipsis">...</span>, <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">t.Any</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basemethod">
   
@@ -1102,12 +1034,8 @@ to be synchronously callable.</p>
   <div class="docstring functionBody">
     
     
-    <div><p>Tries to locate the instance path if it was not provided to the
-constructor of the application class.  It will basically calculate
-the path to a folder named <tt class="rst-docutils literal">instance</tt> next to your main file or
-the package.</p>
-<div class="rst-versionadded">
-<span class="rst-versionmodified rst-added">New in version 0.8.</span></div>
+    <div><p>Tries to locate the instance path if it was not provided to the constructor of the application class.  It will basically calculate the path to a folder named ``instance`` next to your main file or the package.</p>
+<p>.. versionadded:: 0.8</p>
 <table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basemethod">
@@ -1130,12 +1058,9 @@ the package.</p>
   <div class="docstring functionBody">
     
     
-    <div><p>Registers a function to be run before the first request to this
-instance of the application.</p>
-<p>The function will be called without any arguments and its return
-value is ignored.</p>
-<div class="rst-versionadded">
-<span class="rst-versionmodified rst-added">New in version 0.8.</span></div>
+    <div><p>Registers a function to be run before the first request to this instance of the application.</p>
+<p>The function will be called without any arguments and its return value is ignored.</p>
+<p>.. versionadded:: 0.8</p>
 <table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">f:</span><code><a href="flask.typing.html#BeforeFirstRequestCallable" class="internal-link" title="flask.typing.BeforeFirstRequestCallable">BeforeFirstRequestCallable</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="flask.typing.html#BeforeFirstRequestCallable" class="internal-link" title="flask.typing.BeforeFirstRequestCallable">BeforeFirstRequestCallable</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basemethod">
@@ -1158,14 +1083,9 @@ value is ignored.</p>
   <div class="docstring functionBody">
     
     
-    <div><p>Creates the loader for the Jinja2 environment.  Can be used to
-override just the loader and keeping the rest unchanged.  It's
-discouraged to override this function.  Instead one should override
-the <code>jinja_loader</code> function instead.</p>
-<p>The global loader dispatches between the loaders of the application
-and the individual blueprints.</p>
-<div class="rst-versionadded">
-<span class="rst-versionmodified rst-added">New in version 0.7.</span></div>
+    <div><p>Creates the loader for the Jinja2 environment.  Can be used to override just the loader and keeping the rest unchanged.  It's discouraged to override this function.  Instead one should override the :meth:`jinja_loader` function instead.</p>
+<p>The global loader dispatches between the loaders of the application and the individual blueprints.</p>
+<p>.. versionadded:: 0.7</p>
 <table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="flask.templating.DispatchingJinjaLoader.html" class="internal-link" title="flask.templating.DispatchingJinjaLoader">DispatchingJinjaLoader</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basemethod">
@@ -1188,16 +1108,7 @@ and the individual blueprints.</p>
   <div class="docstring functionBody">
     
     
-    <div><p>Create the Jinja environment based on <code><a href="#jinja_options" class="internal-link" title="flask.app.Flask.jinja_options">jinja_options</a></code>
-and the various Jinja-related methods of the app. Changing
-<code><a href="#jinja_options" class="internal-link" title="flask.app.Flask.jinja_options">jinja_options</a></code> after this will have no effect. Also adds
-Flask-related globals and filters to the environment.</p>
-<div class="rst-versionchanged">
-<span class="rst-versionmodified rst-changed">Changed in version 0.11: </span><span><tt class="rst-docutils literal">Environment.auto_reload</tt> set in accordance with
-<tt class="rst-docutils literal">TEMPLATES_AUTO_RELOAD</tt> configuration option.</span></div>
-<div class="rst-versionadded">
-<span class="rst-versionmodified rst-added">New in version 0.5.</span></div>
-<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="flask.templating.Environment.html" class="internal-link" title="flask.templating.Environment">Environment</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+    <div><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="flask.templating.Environment.html" class="internal-link" title="flask.templating.Environment">Environment</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basemethod">
   
@@ -1219,18 +1130,7 @@ Flask-related globals and filters to the environment.</p>
   <div class="docstring functionBody">
     
     
-    <div><p>Creates a URL adapter for the given request. The URL adapter
-is created at a point where the request context is not yet set
-up so the request is passed explicitly.</p>
-<div class="rst-versionadded">
-<span class="rst-versionmodified rst-added">New in version 0.6.</span></div>
-<div class="rst-versionchanged">
-<span class="rst-versionmodified rst-changed">Changed in version 0.9: </span><span>This can now also be called without a request object when the
-URL adapter is created for the application context.</span></div>
-<div class="rst-versionchanged">
-<span class="rst-versionmodified rst-changed">Changed in version 1.0: </span><span><code>SERVER_NAME</code> no longer implicitly enables subdomain
-matching. Use <code><a href="#subdomain_matching" class="internal-link" title="flask.app.Flask.subdomain_matching">subdomain_matching</a></code> instead.</span></div>
-<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">request:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">t.Optional</a>[<wbr></wbr><a href="flask.wrappers.Request.html" class="internal-link" title="flask.wrappers.Request">Request</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">t.Optional</a>[<wbr></wbr>MapAdapter]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+    <div><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">request:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">t.Optional</a>[<wbr></wbr><a href="flask.wrappers.Request.html" class="internal-link" title="flask.wrappers.Request">Request</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">t.Optional</a>[<wbr></wbr><a href="https://pydocbrowser.github.io/werkzeug/latest/werkzeug.routing.MapAdapter.html" class="intersphinx-link">MapAdapter</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basemethod">
   
@@ -1274,14 +1174,7 @@ matching. Use <code><a href="#subdomain_matching" class="internal-link" title="f
   <div class="docstring functionBody">
     
     
-    <div><p>Does the request dispatching.  Matches the URL and returns the
-return value of the view or error handler.  This does not have to
-be a response object.  In order to convert the return value to a
-proper response object, call <code><a href="#make_response" class="internal-link" title="flask.app.Flask.make_response">make_response</a></code>.</p>
-<div class="rst-versionchanged">
-<span class="rst-versionmodified rst-changed">Changed in version 0.7: </span><span>This no longer does the exception handling, this code was
-moved to the new <code><a href="#full_dispatch_request" class="internal-link" title="flask.app.Flask.full_dispatch_request">full_dispatch_request</a></code>.</span></div>
-<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="flask.typing.html#ResponseReturnValue" class="internal-link" title="flask.typing.ResponseReturnValue">ResponseReturnValue</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+    <div><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="flask.typing.html#ResponseReturnValue" class="internal-link" title="flask.typing.ResponseReturnValue">ResponseReturnValue</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basemethod">
   
@@ -1304,15 +1197,10 @@ moved to the new <code><a href="#full_dispatch_request" class="internal-link" ti
     
     
     <div><p>Called right before the application context is popped.</p>
-<p>When handling a request, the application context is popped
-after the request context. See <code><a href="#do_teardown_request" class="internal-link" title="flask.app.Flask.do_teardown_request">do_teardown_request</a></code>.</p>
-<p>This calls all functions decorated with
-<code><a href="#teardown_appcontext" class="internal-link" title="flask.app.Flask.teardown_appcontext">teardown_appcontext</a></code>. Then the
-<code><a href="flask.signals.html#appcontext_tearing_down" class="internal-link" title="flask.signals.appcontext_tearing_down">appcontext_tearing_down</a></code> signal is sent.</p>
-<p>This is called by
-<code><a href="flask.ctx.AppContext.html#pop" class="internal-link" title="flask.ctx.AppContext.pop">AppContext.pop()</a></code>.</p>
-<div class="rst-versionadded">
-<span class="rst-versionmodified rst-added">New in version 0.9.</span></div>
+<p>When handling a request, the application context is popped after the request context. See :meth:`do_teardown_request`.</p>
+<p>This calls all functions decorated with :meth:`teardown_appcontext`. Then the :data:`appcontext_tearing_down` signal is sent.</p>
+<p>This is called by :meth:`AppContext.pop() &lt;flask.ctx.AppContext.pop&gt;`.</p>
+<p>.. versionadded:: 0.9</p>
 <table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">exc:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">t.Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/exceptions.html#BaseException" class="intersphinx-link">BaseException</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basemethod">
@@ -1335,21 +1223,7 @@ after the request context. See <code><a href="#do_teardown_request" class="inter
   <div class="docstring functionBody">
     
     
-    <div><p>Called after the request is dispatched and the response is
-returned, right before the request context is popped.</p>
-<p>This calls all functions decorated with
-<code>teardown_request</code>, and <code><a href="flask.scaffold.Scaffold.html#teardown_request" class="internal-link" title="flask.scaffold.Scaffold.teardown_request">Blueprint.teardown_request</a></code>
-if a blueprint handled the request. Finally, the
-<code><a href="flask.signals.html#request_tearing_down" class="internal-link" title="flask.signals.request_tearing_down">request_tearing_down</a></code> signal is sent.</p>
-<p>This is called by
-<code><a href="flask.ctx.RequestContext.html#pop" class="internal-link" title="flask.ctx.RequestContext.pop">RequestContext.pop()</a></code>,
-which may be delayed during testing to maintain access to
-resources.</p>
-<div class="rst-versionchanged">
-<span class="rst-versionmodified rst-changed">Changed in version 0.9: </span><span>Added the <tt class="rst-docutils literal">exc</tt> argument.</span></div>
-<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">exc:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">t.Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/exceptions.html#BaseException" class="intersphinx-link">BaseException</a>]</code></td><td class="fieldArgDesc">An unhandled exception raised while dispatching the
-request. Detected from the current exception information if
-not passed. Passed to each teardown function.</td></tr></table></div>
+    <div><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">exc:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">t.Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/exceptions.html#BaseException" class="intersphinx-link">BaseException</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basemethod">
   
@@ -1371,12 +1245,9 @@ not passed. Passed to each teardown function.</td></tr></table></div>
   <div class="docstring functionBody">
     
     
-    <div><p>Ensure that the function is synchronous for WSGI workers.
-Plain <tt class="rst-docutils literal">def</tt> functions are returned as-is. <tt class="rst-docutils literal">async def</tt>
-functions are wrapped to run and wait for the response.</p>
+    <div><p>Ensure that the function is synchronous for WSGI workers. Plain ``def`` functions are returned as-is. ``async def`` functions are wrapped to run and wait for the response.</p>
 <p>Override this method to change how the app runs async views.</p>
-<div class="rst-versionadded">
-<span class="rst-versionmodified rst-added">New in version 2.0.</span></div>
+<p>.. versionadded:: 2.0</p>
 <table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">func:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Callable" class="intersphinx-link">t.Callable</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Callable" class="intersphinx-link">t.Callable</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basemethod">
@@ -1399,15 +1270,10 @@ functions are wrapped to run and wait for the response.</p>
   <div class="docstring functionBody">
     
     
-    <div><p>Given the return value from a view function this finalizes
-the request by converting it into a response and invoking the
-postprocessing functions.  This is invoked for both normal
-request dispatching as well as error handlers.</p>
-<p>Because this means that it might be called as a result of a
-failure a special safe mode is available which can be enabled
-with the <code>from_error_handler</code> flag.  If enabled, failures in
-response processing will be logged and otherwise ignored.</p>
-<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">rv:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Union" class="intersphinx-link">t.Union</a>[<wbr></wbr><a href="flask.typing.html#ResponseReturnValue" class="internal-link" title="flask.typing.ResponseReturnValue">ResponseReturnValue</a>, <wbr></wbr>HTTPException]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">from​_error​_handler:</span><code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="flask.wrappers.Response.html" class="internal-link" title="flask.wrappers.Response">Response</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Unknown Field: internal</td></tr><tr><td colspan="2"></td></tr></table></div>
+    <div><p>Given the return value from a view function this finalizes the request by converting it into a response and invoking the postprocessing functions.  This is invoked for both normal request dispatching as well as error handlers.</p>
+<p>Because this means that it might be called as a result of a failure a special safe mode is available which can be enabled with the `from_error_handler` flag.  If enabled, failures in response processing will be logged and otherwise ignored.</p>
+<p>:internal:</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">rv:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Union" class="intersphinx-link">t.Union</a>[<wbr></wbr><a href="flask.typing.html#ResponseReturnValue" class="internal-link" title="flask.typing.ResponseReturnValue">ResponseReturnValue</a>, <wbr></wbr><a href="https://pydocbrowser.github.io/werkzeug/latest/werkzeug.exceptions.HTTPException.html" class="intersphinx-link">HTTPException</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">from​_error​_handler:</span><code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="flask.wrappers.Response.html" class="internal-link" title="flask.wrappers.Response">Response</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basemethod">
   
@@ -1429,11 +1295,8 @@ response processing will be logged and otherwise ignored.</p>
   <div class="docstring functionBody">
     
     
-    <div><p>Dispatches the request and on top of that performs request
-pre and postprocessing as well as HTTP exception catching and
-error handling.</p>
-<div class="rst-versionadded">
-<span class="rst-versionmodified rst-added">New in version 0.7.</span></div>
+    <div><p>Dispatches the request and on top of that performs request pre and postprocessing as well as HTTP exception catching and error handling.</p>
+<p>.. versionadded:: 0.7</p>
 <table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="flask.wrappers.Response.html" class="internal-link" title="flask.wrappers.Response">Response</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basemethod">
@@ -1456,28 +1319,7 @@ error handling.</p>
   <div class="docstring functionBody">
     
     
-    <div><p>Handle an exception that did not have an error handler
-associated with it, or that was raised from an error handler.
-This always causes a 500 <tt class="rst-docutils literal">InternalServerError</tt>.</p>
-<p>Always sends the <code><a href="flask.signals.html#got_request_exception" class="internal-link" title="flask.signals.got_request_exception">got_request_exception</a></code> signal.</p>
-<p>If <code><a href="#propagate_exceptions" class="internal-link" title="flask.app.Flask.propagate_exceptions">propagate_exceptions</a></code> is <tt class="rst-docutils literal">True</tt>, such as in debug
-mode, the error will be re-raised so that the debugger can
-display it. Otherwise, the original exception is logged, and
-an <code>~werkzeug.exceptions.InternalServerError</code> is returned.</p>
-<p>If an error handler is registered for <tt class="rst-docutils literal">InternalServerError</tt> or
-<tt class="rst-docutils literal">500</tt>, it will be used. For consistency, the handler will
-always receive the <tt class="rst-docutils literal">InternalServerError</tt>. The original
-unhandled exception is available as <tt class="rst-docutils literal">e.original_exception</tt>.</p>
-<div class="rst-versionchanged">
-<span class="rst-versionmodified rst-changed">Changed in version 1.1.0: </span><span>Always passes the <tt class="rst-docutils literal">InternalServerError</tt> instance to the
-handler, setting <tt class="rst-docutils literal">original_exception</tt> to the unhandled
-error.</span></div>
-<div class="rst-versionchanged">
-<span class="rst-versionmodified rst-changed">Changed in version 1.1.0: </span><span><tt class="rst-docutils literal">after_request</tt> functions and other finalization is done
-even for the default 500 response when there is no handler.</span></div>
-<div class="rst-versionadded">
-<span class="rst-versionmodified rst-added">New in version 0.3.</span></div>
-<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">e:</span><code><a href="https://docs.python.org/3/library/exceptions.html#Exception" class="intersphinx-link">Exception</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="flask.wrappers.Response.html" class="internal-link" title="flask.wrappers.Response">Response</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+    <div><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">e:</span><code><a href="https://docs.python.org/3/library/exceptions.html#Exception" class="intersphinx-link">Exception</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="flask.wrappers.Response.html" class="internal-link" title="flask.wrappers.Response">Response</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basemethod">
   
@@ -1499,20 +1341,7 @@ even for the default 500 response when there is no handler.</span></div>
   <div class="docstring functionBody">
     
     
-    <div><p>Handles an HTTP exception.  By default this will invoke the
-registered error handlers and fall back to returning the
-exception as response.</p>
-<div class="rst-versionchanged">
-<span class="rst-versionmodified rst-changed">Changed in version 1.0.3: </span><span><tt class="rst-docutils literal">RoutingException</tt>, used internally for actions such as
- slash redirects during routing, is not passed to error
- handlers.</span></div>
-<div class="rst-versionchanged">
-<span class="rst-versionmodified rst-changed">Changed in version 1.0: </span><span>Exceptions are looked up by code <em>and</em> by MRO, so
-<tt class="rst-docutils literal">HTTPException</tt> subclasses can be handled with a catch-all
-handler for the base <tt class="rst-docutils literal">HTTPException</tt>.</span></div>
-<div class="rst-versionadded">
-<span class="rst-versionmodified rst-added">New in version 0.3.</span></div>
-<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">e:</span><code>HTTPException</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Union" class="intersphinx-link">t.Union</a>[<wbr></wbr>HTTPException, <wbr></wbr><a href="flask.typing.html#ResponseReturnValue" class="internal-link" title="flask.typing.ResponseReturnValue">ResponseReturnValue</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+    <div><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">e:</span><code><a href="https://pydocbrowser.github.io/werkzeug/latest/werkzeug.exceptions.HTTPException.html" class="intersphinx-link">HTTPException</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Union" class="intersphinx-link">t.Union</a>[<wbr></wbr><a href="https://pydocbrowser.github.io/werkzeug/latest/werkzeug.exceptions.HTTPException.html" class="intersphinx-link">HTTPException</a>, <wbr></wbr><a href="flask.typing.html#ResponseReturnValue" class="internal-link" title="flask.typing.ResponseReturnValue">ResponseReturnValue</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basemethod">
   
@@ -1534,8 +1363,7 @@ handler for the base <tt class="rst-docutils literal">HTTPException</tt>.</span>
   <div class="docstring functionBody">
     
     
-    <div>Handle <code>~werkzeug.routing.BuildError</code> on
-<code><a href="flask.helpers.html#url_for" class="internal-link" title="flask.helpers.url_for">url_for</a></code>.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">error:</span><code><a href="https://docs.python.org/3/library/exceptions.html#Exception" class="intersphinx-link">Exception</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">endpoint:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">values:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#dict" class="intersphinx-link">dict</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+    <div>Handle :class:`~werkzeug.routing.BuildError` on :meth:`url_for`.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">error:</span><code><a href="https://docs.python.org/3/library/exceptions.html#Exception" class="intersphinx-link">Exception</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">endpoint:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">values:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#dict" class="intersphinx-link">dict</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basemethod">
   
@@ -1557,19 +1385,7 @@ handler for the base <tt class="rst-docutils literal">HTTPException</tt>.</span>
   <div class="docstring functionBody">
     
     
-    <div><p>This method is called whenever an exception occurs that
-should be handled. A special case is <code>~werkzeug
-.exceptions.HTTPException</code> which is forwarded to the
-<code><a href="#handle_http_exception" class="internal-link" title="flask.app.Flask.handle_http_exception">handle_http_exception</a></code> method. This function will either
-return a response value or reraise the exception with the same
-traceback.</p>
-<div class="rst-versionchanged">
-<span class="rst-versionmodified rst-changed">Changed in version 1.0: </span><span>Key errors raised from request data like <tt class="rst-docutils literal">form</tt> show the
-bad key in debug mode rather than a generic bad request
-message.</span></div>
-<div class="rst-versionadded">
-<span class="rst-versionmodified rst-added">New in version 0.7.</span></div>
-<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">e:</span><code><a href="https://docs.python.org/3/library/exceptions.html#Exception" class="intersphinx-link">Exception</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Union" class="intersphinx-link">t.Union</a>[<wbr></wbr>HTTPException, <wbr></wbr><a href="flask.typing.html#ResponseReturnValue" class="internal-link" title="flask.typing.ResponseReturnValue">ResponseReturnValue</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+    <div><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">e:</span><code><a href="https://docs.python.org/3/library/exceptions.html#Exception" class="intersphinx-link">Exception</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Union" class="intersphinx-link">t.Union</a>[<wbr></wbr><a href="https://pydocbrowser.github.io/werkzeug/latest/werkzeug.exceptions.HTTPException.html" class="intersphinx-link">HTTPException</a>, <wbr></wbr><a href="flask.typing.html#ResponseReturnValue" class="internal-link" title="flask.typing.ResponseReturnValue">ResponseReturnValue</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basemethod">
   
@@ -1591,11 +1407,8 @@ message.</span></div>
   <div class="docstring functionBody">
     
     
-    <div><p>Injects the URL defaults for the given endpoint directly into
-the values dictionary passed.  This is used internally and
-automatically called on URL building.</p>
-<div class="rst-versionadded">
-<span class="rst-versionmodified rst-added">New in version 0.7.</span></div>
+    <div><p>Injects the URL defaults for the given endpoint directly into the values dictionary passed.  This is used internally and automatically called on URL building.</p>
+<p>.. versionadded:: 0.7</p>
 <table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">endpoint:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">values:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#dict" class="intersphinx-link">dict</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basemethod">
@@ -1619,8 +1432,7 @@ automatically called on URL building.</p>
     
     
     <div><p>Iterates over all blueprints by the order they were registered.</p>
-<div class="rst-versionadded">
-<span class="rst-versionmodified rst-added">New in version 0.11.</span></div>
+<p>.. versionadded:: 0.11</p>
 <table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.ValuesView" class="intersphinx-link">t.ValuesView</a>[<wbr></wbr><a href="flask.blueprints.Blueprint.html" class="internal-link" title="flask.blueprints.Blueprint">Blueprint</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basemethod">
@@ -1643,12 +1455,8 @@ automatically called on URL building.</p>
   <div class="docstring functionBody">
     
     
-    <div><p>Logs an exception.  This is called by <code><a href="#handle_exception" class="internal-link" title="flask.app.Flask.handle_exception">handle_exception</a></code>
-if debugging is disabled and right before the handler is called.
-The default implementation logs the exception as error on the
-<code><a href="#logger" class="internal-link" title="flask.app.Flask.logger">logger</a></code>.</p>
-<div class="rst-versionadded">
-<span class="rst-versionmodified rst-added">New in version 0.8.</span></div>
+    <div><p>Logs an exception.  This is called by :meth:`handle_exception` if debugging is disabled and right before the handler is called. The default implementation logs the exception as error on the :attr:`logger`.</p>
+<p>.. versionadded:: 0.8</p>
 <table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">exc​_info:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Union" class="intersphinx-link">t.Union</a>[<wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Tuple" class="intersphinx-link">t.Tuple</a>[<wbr></wbr><a href="https://docs.python.org/3/library/functions.html#type" class="intersphinx-link">type</a>, <wbr></wbr><a href="https://docs.python.org/3/library/exceptions.html#BaseException" class="intersphinx-link">BaseException</a>, <wbr></wbr><a href="https://docs.python.org/3/library/types.html#types.TracebackType" class="intersphinx-link">TracebackType</a>], <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Tuple" class="intersphinx-link">t.Tuple</a>[<wbr></wbr><a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, <wbr></wbr><a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, <wbr></wbr><a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>]]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basemethod">
@@ -1671,13 +1479,8 @@ The default implementation logs the exception as error on the
   <div class="docstring functionBody">
     
     
-    <div><p>Used to create the config attribute by the Flask constructor.
-The <code>instance_relative</code> parameter is passed in from the constructor
-of Flask (there named <code>instance_relative_config</code>) and indicates if
-the config should be relative to the instance path or the root path
-of the application.</p>
-<div class="rst-versionadded">
-<span class="rst-versionmodified rst-added">New in version 0.8.</span></div>
+    <div><p>Used to create the config attribute by the Flask constructor. The `instance_relative` parameter is passed in from the constructor of Flask (there named `instance_relative_config`) and indicates if the config should be relative to the instance path or the root path of the application.</p>
+<p>.. versionadded:: 0.8</p>
 <table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">instance​_relative:</span><code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="flask.config.Config.html" class="internal-link" title="flask.config.Config">Config</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basemethod">
@@ -1700,11 +1503,8 @@ of the application.</p>
   <div class="docstring functionBody">
     
     
-    <div><p>This method is called to create the default <tt class="rst-docutils literal">OPTIONS</tt> response.
-This can be changed through subclassing to change the default
-behavior of <tt class="rst-docutils literal">OPTIONS</tt> responses.</p>
-<div class="rst-versionadded">
-<span class="rst-versionmodified rst-added">New in version 0.7.</span></div>
+    <div><p>This method is called to create the default ``OPTIONS`` response. This can be changed through subclassing to change the default behavior of ``OPTIONS`` responses.</p>
+<p>.. versionadded:: 0.7</p>
 <table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="flask.wrappers.Response.html" class="internal-link" title="flask.wrappers.Response">Response</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basemethod">
@@ -1727,40 +1527,7 @@ behavior of <tt class="rst-docutils literal">OPTIONS</tt> responses.</p>
   <div class="docstring functionBody">
     
     
-    <div><p>Convert the return value from a view function to an instance of
-<code><a href="flask.wrappers.Response.html" class="internal-link" title="flask.wrappers.Response">response_class</a></code>.</p>
-<div class="rst-versionchanged">
-<span class="rst-versionmodified rst-changed">Changed in version 0.9: </span><span>Previously a tuple was interpreted as the arguments for the
-response object.</span></div>
-<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">rv:</span><code><a href="flask.typing.html#ResponseReturnValue" class="internal-link" title="flask.typing.ResponseReturnValue">ResponseReturnValue</a></code></td><td class="fieldArgDesc"><p>the return value from the view function. The view function
-must return a response. Returning <tt class="rst-docutils literal">None</tt>, or the view ending
-without returning, is not allowed. The following types are allowed
-for <tt class="rst-docutils literal">view_rv</tt>:</p>
-<dl class="rst-docutils">
-<dt><tt class="rst-docutils literal">str</tt></dt>
-<dd>A response object is created with the string encoded to UTF-8
-as the body.</dd>
-<dt><tt class="rst-docutils literal">bytes</tt></dt>
-<dd>A response object is created with the bytes as the body.</dd>
-<dt><tt class="rst-docutils literal">dict</tt></dt>
-<dd>A dictionary that will be jsonify'd before being returned.</dd>
-<dt><tt class="rst-docutils literal">tuple</tt></dt>
-<dd>Either <tt class="rst-docutils literal">(body, status, headers)</tt>, <tt class="rst-docutils literal">(body, status)</tt>, or
-<tt class="rst-docutils literal">(body, headers)</tt>, where <tt class="rst-docutils literal">body</tt> is any of the other types
-allowed here, <tt class="rst-docutils literal">status</tt> is a string or an integer, and
-<tt class="rst-docutils literal">headers</tt> is a dictionary or a list of <tt class="rst-docutils literal">(key, value)</tt>
-tuples. If <tt class="rst-docutils literal">body</tt> is a <code><a href="flask.wrappers.Response.html" class="internal-link" title="flask.wrappers.Response">response_class</a></code> instance,
-<tt class="rst-docutils literal">status</tt> overwrites the exiting value and <tt class="rst-docutils literal">headers</tt> are
-extended.</dd>
-<dt><code><a href="flask.wrappers.Response.html" class="internal-link" title="flask.wrappers.Response">response_class</a></code></dt>
-<dd>The object is returned unchanged.</dd>
-<dt>other <code>~werkzeug.wrappers.Response</code> class</dt>
-<dd>The object is coerced to <code><a href="flask.wrappers.Response.html" class="internal-link" title="flask.wrappers.Response">response_class</a></code>.</dd>
-<dt><code><a href="https://docs.python.org/3/library/functions.html#callable" class="intersphinx-link">callable</a></code></dt>
-<dd>The function is called as a WSGI application. The result is
-used to create a response object.</dd>
-</dl>
-</td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="flask.wrappers.Response.html" class="internal-link" title="flask.wrappers.Response">Response</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+    <div><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">rv:</span><code><a href="flask.typing.html#ResponseReturnValue" class="internal-link" title="flask.typing.ResponseReturnValue">ResponseReturnValue</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="flask.wrappers.Response.html" class="internal-link" title="flask.wrappers.Response">Response</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basemethod">
   
@@ -1782,11 +1549,8 @@ used to create a response object.</dd>
   <div class="docstring functionBody">
     
     
-    <div><p>Returns the shell context for an interactive shell for this
-application.  This runs all the registered shell context
-processors.</p>
-<div class="rst-versionadded">
-<span class="rst-versionmodified rst-added">New in version 0.11.</span></div>
+    <div><p>Returns the shell context for an interactive shell for this application.  This runs all the registered shell context processors.</p>
+<p>.. versionadded:: 0.11</p>
 <table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/stdtypes.html#dict" class="intersphinx-link">dict</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basemethod">
@@ -1809,11 +1573,7 @@ processors.</p>
   <div class="docstring functionBody">
     
     
-    <div>Opens a resource from the application's instance folder
-(<code><a href="#instance_path" class="internal-link" title="flask.app.Flask.instance_path">instance_path</a></code>).  Otherwise works like
-<code>open_resource</code>.  Instance resources can also be opened for
-writing.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">resource:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc">the name of the resource.  To access resources within
-subfolders use forward slashes as separator.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">mode:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc">resource file opening mode, default is 'rb'.</td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.IO" class="intersphinx-link">t.IO</a>[<wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.AnyStr" class="intersphinx-link">t.AnyStr</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+    <div><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">resource:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">mode:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.IO" class="intersphinx-link">t.IO</a>[<wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.AnyStr" class="intersphinx-link">t.AnyStr</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basemethod">
   
@@ -1835,13 +1595,8 @@ subfolders use forward slashes as separator.</td></tr><tr><td class="fieldArgCon
   <div class="docstring functionBody">
     
     
-    <div><p>Called before the request is dispatched. Calls
-<code>url_value_preprocessors</code> registered with the app and the
-current blueprint (if any). Then calls <code>before_request_funcs</code>
-registered with the app and the blueprint.</p>
-<p>If any <code>before_request</code> handler returns a non-None value, the
-value is handled as if it was the return value from the view, and
-further request handling is stopped.</p>
+    <div><p>Called before the request is dispatched. Calls :attr:`url_value_preprocessors` registered with the app and the current blueprint (if any). Then calls :attr:`before_request_funcs` registered with the app and the blueprint.</p>
+<p>If any :meth:`before_request` handler returns a non-None value, the value is handled as if it was the return value from the view, and further request handling is stopped.</p>
 <table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">t.Optional</a>[<wbr></wbr><a href="flask.typing.html#ResponseReturnValue" class="internal-link" title="flask.typing.ResponseReturnValue">ResponseReturnValue</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basemethod">
@@ -1864,14 +1619,7 @@ further request handling is stopped.</p>
   <div class="docstring functionBody">
     
     
-    <div><p>Can be overridden in order to modify the response object
-before it's sent to the WSGI server.  By default this will
-call all the <code>after_request</code> decorated functions.</p>
-<div class="rst-versionchanged">
-<span class="rst-versionmodified rst-changed">Changed in version 0.5: </span><span>As of Flask 0.5 the functions registered for after request
-execution are called in reverse order of registration.</span></div>
-<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">response:</span><code><a href="flask.wrappers.Response.html" class="internal-link" title="flask.wrappers.Response">Response</a></code></td><td class="fieldArgDesc">a <code><a href="flask.wrappers.Response.html" class="internal-link" title="flask.wrappers.Response">response_class</a></code> object.</td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="flask.wrappers.Response.html" class="internal-link" title="flask.wrappers.Response">Response</a></code></td><td class="fieldArgDesc">a new response object or the same, has to be an
-instance of <code><a href="flask.wrappers.Response.html" class="internal-link" title="flask.wrappers.Response">response_class</a></code>.</td></tr></table></div>
+    <div><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">response:</span><code><a href="flask.wrappers.Response.html" class="internal-link" title="flask.wrappers.Response">Response</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="flask.wrappers.Response.html" class="internal-link" title="flask.wrappers.Response">Response</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basemethod">
   
@@ -1893,10 +1641,9 @@ instance of <code><a href="flask.wrappers.Response.html" class="internal-link" t
   <div class="docstring functionBody">
     
     
-    <div>Exceptions that are recording during routing are reraised with
-this method.  During debug we are not reraising redirect requests
-for non <tt class="rst-docutils literal">GET</tt>, <tt class="rst-docutils literal">HEAD</tt>, or <tt class="rst-docutils literal">OPTIONS</tt> requests and we're raising
-a different error instead to help debug situations.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">request:</span><code><a href="flask.wrappers.Request.html" class="internal-link" title="flask.wrappers.Request">Request</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code>te.NoReturn</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Unknown Field: internal</td></tr><tr><td colspan="2"></td></tr></table></div>
+    <div><p>Exceptions that are recording during routing are reraised with this method.  During debug we are not reraising redirect requests for non ``GET``, ``HEAD``, or ``OPTIONS`` requests and we're raising a different error instead to help debug situations.</p>
+<p>:internal:</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">request:</span><code><a href="flask.wrappers.Request.html" class="internal-link" title="flask.wrappers.Request">Request</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code>te.NoReturn</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basemethod">
   
@@ -1918,22 +1665,7 @@ a different error instead to help debug situations.<table class="fieldTable"><tr
   <div class="docstring functionBody">
     
     
-    <div><p>Register a <code>~flask.Blueprint</code> on the application. Keyword
-arguments passed to this method will override the defaults set on the
-blueprint.</p>
-<p>Calls the blueprint's <code>~flask.Blueprint.register</code> method after
-recording the blueprint in the application's <code><a href="#blueprints" class="internal-link" title="flask.app.Flask.blueprints">blueprints</a></code>.</p>
-<div class="rst-versionchanged">
-<span class="rst-versionmodified rst-changed">Changed in version 2.0.1: </span><span>The <tt class="rst-docutils literal">name</tt> option can be used to change the (pre-dotted)
-name the blueprint is registered with. This allows the same
-blueprint to be registered multiple times with unique names
-for <tt class="rst-docutils literal">url_for</tt>.</span></div>
-<div class="rst-versionadded">
-<span class="rst-versionmodified rst-added">New in version 0.7.</span></div>
-<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">blueprint:</span><code><a href="flask.blueprints.Blueprint.html" class="internal-link" title="flask.blueprints.Blueprint">Blueprint</a></code></td><td class="fieldArgDesc">The blueprint to register.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">**options:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">t.Any</a></code></td><td class="fieldArgDesc">Additional keyword arguments are passed to
-<code>~flask.blueprints.BlueprintSetupState</code>. They can be
-accessed in <code>~flask.Blueprint.record</code> callbacks.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">url​_prefix</span></td><td class="fieldArgDesc">Blueprint routes will be prefixed with this.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">subdomain</span></td><td class="fieldArgDesc">Blueprint routes will match on this subdomain.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">url​_defaults</span></td><td class="fieldArgDesc">Blueprint routes will use these default values for
-view arguments.</td></tr></table></div>
+    <div><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">blueprint:</span><code><a href="flask.blueprints.Blueprint.html" class="internal-link" title="flask.blueprints.Blueprint">Blueprint</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">**options:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">t.Any</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basemethod">
   
@@ -1955,15 +1687,11 @@ view arguments.</td></tr></table></div>
   <div class="docstring functionBody">
     
     
-    <div><p>Create a <code>~flask.ctx.RequestContext</code> representing a
-WSGI environment. Use a <tt class="rst-docutils literal">with</tt> block to push the context,
-which will make <code><a href="flask.globals.html#request" class="internal-link" title="flask.globals.request">request</a></code> point at this request.</p>
-<p>See <a href="#system-message-1"><span class="rst-problematic" id="rst-problematic-1">:doc:`/reqcontext`</span></a>.</p>
-<p>Typically you should not call this from your own code. A request
-context is automatically pushed by the <code><a href="#wsgi_app" class="internal-link" title="flask.app.Flask.wsgi_app">wsgi_app</a></code> when
-handling a request. Use <code><a href="#test_request_context" class="internal-link" title="flask.app.Flask.test_request_context">test_request_context</a></code> to create
-an environment and context instead of this method.</p>
-<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">environ:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#dict" class="intersphinx-link">dict</a></code></td><td class="fieldArgDesc">a WSGI environment</td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="flask.ctx.RequestContext.html" class="internal-link" title="flask.ctx.RequestContext">RequestContext</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+    <div><p>Create a :class:`~flask.ctx.RequestContext` representing a WSGI environment. Use a ``with`` block to push the context, which will make :data:`request` point at this request.</p>
+<p>See :doc:`/reqcontext`.</p>
+<p>Typically you should not call this from your own code. A request context is automatically pushed by the :meth:`wsgi_app` when handling a request. Use :meth:`test_request_context` to create an environment and context instead of this method.</p>
+<p>:param environ: a WSGI environment</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">environ:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#dict" class="intersphinx-link">dict</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="flask.ctx.RequestContext.html" class="internal-link" title="flask.ctx.RequestContext">RequestContext</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basemethod">
   
@@ -1985,50 +1713,7 @@ an environment and context instead of this method.</p>
   <div class="docstring functionBody">
     
     
-    <div><p>Runs the application on a local development server.</p>
-<p>Do not use <tt class="rst-docutils literal">run()</tt> in a production setting. It is not intended to
-meet security and performance requirements for a production server.
-Instead, see <a href="#system-message-1"><span class="rst-problematic" id="rst-problematic-1">:doc:`/deploying/index`</span></a> for WSGI server recommendations.</p>
-<p>If the <code><a href="#debug" class="internal-link" title="flask.app.Flask.debug">debug</a></code> flag is set the server will automatically reload
-for code changes and show a debugger in case an exception happened.</p>
-<p>If you want to run the application in debug mode, but disable the
-code execution on the interactive debugger, you can pass
-<tt class="rst-docutils literal">use_evalex=False</tt> as parameter.  This will keep the debugger's
-traceback screen active, but disable code execution.</p>
-<p>It is not recommended to use this function for development with
-automatic reloading as this is badly supported.  Instead you should
-be using the <a href="#system-message-2"><span class="rst-problematic" id="rst-problematic-2">:command:`flask`</span></a> command line script's <tt class="rst-docutils literal">run</tt> support.</p>
-<div class="rst-admonition rst-admonition-keep-in-mind">
-<p class="rst-first rst-admonition-title">Keep in Mind</p>
-<p class="rst-last">Flask will suppress any server error with a generic error page
-unless it is in debug mode.  As such to enable just the
-interactive debugger without the code reloading, you have to
-invoke <code><a href="#run" class="internal-link" title="flask.app.Flask.run">run</a></code> with <tt class="rst-docutils literal">debug=True</tt> and <tt class="rst-docutils literal">use_reloader=False</tt>.
-Setting <tt class="rst-docutils literal">use_debugger</tt> to <tt class="rst-docutils literal">True</tt> without being in debug mode
-won't catch any exceptions because there won't be any to
-catch.</p>
-</div>
-<div class="rst-versionchanged">
-<p><span class="rst-versionmodified rst-changed">Changed in version 1.0: </span><span>If installed, python-dotenv will be used to load environment
-variables from <a href="#system-message-5"><span class="rst-problematic" id="rst-problematic-5">:file:`.env`</span></a> and <a href="#system-message-6"><span class="rst-problematic" id="rst-problematic-6">:file:`.flaskenv`</span></a> files.</span></p>
-<p>If set, the <a href="#system-message-7"><span class="rst-problematic" id="rst-problematic-7">:envvar:`FLASK_ENV`</span></a> and <a href="#system-message-8"><span class="rst-problematic" id="rst-problematic-8">:envvar:`FLASK_DEBUG`</span></a>
-environment variables will override <code><a href="#env" class="internal-link" title="flask.app.Flask.env">env</a></code> and
-<code><a href="#debug" class="internal-link" title="flask.app.Flask.debug">debug</a></code>.</p>
-<p>Threaded mode is enabled by default.</p>
-</div>
-<div class="rst-versionchanged">
-<span class="rst-versionmodified rst-changed">Changed in version 0.10: </span><span>The default port is now picked from the <tt class="rst-docutils literal">SERVER_NAME</tt>
-variable.</span></div>
-<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">host:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">t.Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]</code></td><td class="fieldArgDesc">the hostname to listen on. Set this to <tt class="rst-docutils literal">'0.0.0.0'</tt> to
-have the server available externally as well. Defaults to
-<tt class="rst-docutils literal">'127.0.0.1'</tt> or the host in the <tt class="rst-docutils literal">SERVER_NAME</tt> config variable
-if present.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">port:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">t.Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/functions.html#int" class="intersphinx-link">int</a>]</code></td><td class="fieldArgDesc">the port of the webserver. Defaults to <tt class="rst-docutils literal">5000</tt> or the
-port defined in the <tt class="rst-docutils literal">SERVER_NAME</tt> config variable if present.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">debug:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">t.Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a>]</code></td><td class="fieldArgDesc">if given, enable or disable debug mode. See
-<code><a href="#debug" class="internal-link" title="flask.app.Flask.debug">debug</a></code>.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">load​_dotenv:</span><code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code></td><td class="fieldArgDesc">Load the nearest <a href="#system-message-3"><span class="rst-problematic" id="rst-problematic-3">:file:`.env`</span></a> and <a href="#system-message-4"><span class="rst-problematic" id="rst-problematic-4">:file:`.flaskenv`</span></a>
-files to set environment variables. Will also change the working
-directory to the directory containing the first file found.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">**options:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">t.Any</a></code></td><td class="fieldArgDesc">the options to be forwarded to the underlying Werkzeug
-server. See <code>werkzeug.serving.run_simple</code> for more
-information.</td></tr></table></div>
+    <div><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">host:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">t.Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">port:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">t.Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/functions.html#int" class="intersphinx-link">int</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">debug:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">t.Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">load​_dotenv:</span><code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">**options:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">t.Any</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basemethod">
   
@@ -2050,10 +1735,8 @@ information.</td></tr></table></div>
   <div class="docstring functionBody">
     
     
-    <div><p>Returns <tt class="rst-docutils literal">True</tt> if autoescaping should be active for the given
-template name. If no template name is given, returns <code><a href="https://docs.python.org/3/library/constants.html#True" class="intersphinx-link">True</a></code>.</p>
-<div class="rst-versionadded">
-<span class="rst-versionmodified rst-added">New in version 0.5.</span></div>
+    <div><p>Returns ``True`` if autoescaping should be active for the given template name. If no template name is given, returns `True`.</p>
+<p>.. versionadded:: 0.5</p>
 <table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">filename:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basemethod">
@@ -2077,8 +1760,7 @@ template name. If no template name is given, returns <code><a href="https://docs
     
     
     <div><p>Registers a shell context processor function.</p>
-<div class="rst-versionadded">
-<span class="rst-versionmodified rst-added">New in version 0.11.</span></div>
+<p>.. versionadded:: 0.11</p>
 <table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">f:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Callable" class="intersphinx-link">t.Callable</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Callable" class="intersphinx-link">t.Callable</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basemethod">
@@ -2101,12 +1783,8 @@ template name. If no template name is given, returns <code><a href="https://docs
   <div class="docstring functionBody">
     
     
-    <div><p>This is called to figure out if an error should be ignored
-or not as far as the teardown system is concerned.  If this
-function returns <tt class="rst-docutils literal">True</tt> then the teardown handlers will not be
-passed the error.</p>
-<div class="rst-versionadded">
-<span class="rst-versionmodified rst-added">New in version 0.10.</span></div>
+    <div><p>This is called to figure out if an error should be ignored or not as far as the teardown system is concerned.  If this function returns ``True`` then the teardown handlers will not be passed the error.</p>
+<p>.. versionadded:: 0.10</p>
 <table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">error:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">t.Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/exceptions.html#BaseException" class="intersphinx-link">BaseException</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basemethod">
@@ -2129,29 +1807,19 @@ passed the error.</p>
   <div class="docstring functionBody">
     
     
-    <div><p>Registers a function to be called when the application context
-ends.  These functions are typically also called when the request
-context is popped.</p>
+    <div><p>Registers a function to be called when the application context ends.  These functions are typically also called when the request context is popped.</p>
 <p>Example:</p>
 <pre class="rst-literal-block">
-ctx = app.app_context()
-ctx.push()
-...
-ctx.pop()
+    ctx = app.app_context()
+    ctx.push()
+    ...
+    ctx.pop()
 </pre>
-<p>When <tt class="rst-docutils literal">ctx.pop()</tt> is executed in the above example, the teardown
-functions are called just before the app context moves from the
-stack of active contexts.  This becomes relevant if you are using
-such constructs in tests.</p>
-<p>Since a request context typically also manages an application
-context it would also be called when you pop a request context.</p>
-<p>When a teardown function was called because of an unhandled exception
-it will be passed an error object. If an <code>errorhandler</code> is
-registered, it will handle the exception and the teardown will not
-receive it.</p>
+<p>When ``ctx.pop()`` is executed in the above example, the teardown functions are called just before the app context moves from the stack of active contexts.  This becomes relevant if you are using such constructs in tests.</p>
+<p>Since a request context typically also manages an application context it would also be called when you pop a request context.</p>
+<p>When a teardown function was called because of an unhandled exception it will be passed an error object. If an :meth:`errorhandler` is registered, it will handle the exception and the teardown will not receive it.</p>
 <p>The return values of teardown functions are ignored.</p>
-<div class="rst-versionadded">
-<span class="rst-versionmodified rst-added">New in version 0.9.</span></div>
+<p>.. versionadded:: 0.9</p>
 <table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">f:</span><code><a href="flask.typing.html#TeardownCallable" class="internal-link" title="flask.typing.TeardownCallable">TeardownCallable</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="flask.typing.html#TeardownCallable" class="internal-link" title="flask.typing.TeardownCallable">TeardownCallable</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basemethod">
@@ -2174,16 +1842,7 @@ receive it.</p>
   <div class="docstring functionBody">
     
     
-    <div><p>A decorator that is used to register custom template filter.
-You can specify a name for the filter, otherwise the function
-name will be used. Example:</p>
-<pre class="rst-literal-block">
-@app.template_filter()
-def reverse(s):
-    return s[::-1]
-</pre>
-<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">name:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">t.Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]</code></td><td class="fieldArgDesc">the optional name of the filter, otherwise the
-function name will be used.</td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Callable" class="intersphinx-link">t.Callable</a>[<wbr></wbr>[<wbr></wbr><a href="flask.typing.html#TemplateFilterCallable" class="internal-link" title="flask.typing.TemplateFilterCallable">TemplateFilterCallable</a>], <wbr></wbr><a href="flask.typing.html#TemplateFilterCallable" class="internal-link" title="flask.typing.TemplateFilterCallable">TemplateFilterCallable</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+    <div><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">name:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">t.Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Callable" class="intersphinx-link">t.Callable</a>[<wbr></wbr>[<wbr></wbr><a href="flask.typing.html#TemplateFilterCallable" class="internal-link" title="flask.typing.TemplateFilterCallable">TemplateFilterCallable</a>], <wbr></wbr><a href="flask.typing.html#TemplateFilterCallable" class="internal-link" title="flask.typing.TemplateFilterCallable">TemplateFilterCallable</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basemethod">
   
@@ -2205,18 +1864,7 @@ function name will be used.</td></tr><tr class="fieldStart"><td class="fieldName
   <div class="docstring functionBody">
     
     
-    <div><p>A decorator that is used to register a custom template global function.
-You can specify a name for the global function, otherwise the function
-name will be used. Example:</p>
-<pre class="rst-literal-block">
-@app.template_global()
-def double(n):
-    return 2 * n
-</pre>
-<div class="rst-versionadded">
-<span class="rst-versionmodified rst-added">New in version 0.10.</span></div>
-<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">name:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">t.Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]</code></td><td class="fieldArgDesc">the optional name of the global function, otherwise the
-function name will be used.</td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Callable" class="intersphinx-link">t.Callable</a>[<wbr></wbr>[<wbr></wbr><a href="flask.typing.html#TemplateGlobalCallable" class="internal-link" title="flask.typing.TemplateGlobalCallable">TemplateGlobalCallable</a>], <wbr></wbr><a href="flask.typing.html#TemplateGlobalCallable" class="internal-link" title="flask.typing.TemplateGlobalCallable">TemplateGlobalCallable</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+    <div><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">name:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">t.Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Callable" class="intersphinx-link">t.Callable</a>[<wbr></wbr>[<wbr></wbr><a href="flask.typing.html#TemplateGlobalCallable" class="internal-link" title="flask.typing.TemplateGlobalCallable">TemplateGlobalCallable</a>], <wbr></wbr><a href="flask.typing.html#TemplateGlobalCallable" class="internal-link" title="flask.typing.TemplateGlobalCallable">TemplateGlobalCallable</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basemethod">
   
@@ -2238,23 +1886,7 @@ function name will be used.</td></tr><tr class="fieldStart"><td class="fieldName
   <div class="docstring functionBody">
     
     
-    <div><p>A decorator that is used to register custom template test.
-You can specify a name for the test, otherwise the function
-name will be used. Example:</p>
-<pre class="rst-literal-block">
-@app.template_test()
-def is_prime(n):
-    if n == 2:
-        return True
-    for i in range(2, int(math.ceil(math.sqrt(n))) + 1):
-        if n % i == 0:
-            return False
-    return True
-</pre>
-<div class="rst-versionadded">
-<span class="rst-versionmodified rst-added">New in version 0.10.</span></div>
-<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">name:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">t.Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]</code></td><td class="fieldArgDesc">the optional name of the test, otherwise the
-function name will be used.</td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Callable" class="intersphinx-link">t.Callable</a>[<wbr></wbr>[<wbr></wbr><a href="flask.typing.html#TemplateTestCallable" class="internal-link" title="flask.typing.TemplateTestCallable">TemplateTestCallable</a>], <wbr></wbr><a href="flask.typing.html#TemplateTestCallable" class="internal-link" title="flask.typing.TemplateTestCallable">TemplateTestCallable</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+    <div><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">name:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">t.Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Callable" class="intersphinx-link">t.Callable</a>[<wbr></wbr>[<wbr></wbr><a href="flask.typing.html#TemplateTestCallable" class="internal-link" title="flask.typing.TemplateTestCallable">TemplateTestCallable</a>], <wbr></wbr><a href="flask.typing.html#TemplateTestCallable" class="internal-link" title="flask.typing.TemplateTestCallable">TemplateTestCallable</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basemethod">
   
@@ -2298,13 +1930,9 @@ function name will be used.</td></tr><tr class="fieldStart"><td class="fieldName
   <div class="docstring functionBody">
     
     
-    <div><p>Create a CLI runner for testing CLI commands.
-See <a href="#system-message-1"><span class="rst-problematic" id="rst-problematic-1">:ref:`testing-cli`</span></a>.</p>
-<p>Returns an instance of <code><a href="#test_cli_runner_class" class="internal-link" title="flask.app.Flask.test_cli_runner_class">test_cli_runner_class</a></code>, by default
-<code>~flask.testing.FlaskCliRunner</code>. The Flask app object is
-passed as the first argument.</p>
-<div class="rst-versionadded">
-<span class="rst-versionmodified rst-added">New in version 1.0.</span></div>
+    <div><p>Create a CLI runner for testing CLI commands. See :ref:`testing-cli`.</p>
+<p>Returns an instance of :attr:`test_cli_runner_class`, by default :class:`~flask.testing.FlaskCliRunner`. The Flask app object is passed as the first argument.</p>
+<p>.. versionadded:: 1.0</p>
 <table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">**kwargs:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">t.Any</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="flask.testing.FlaskCliRunner.html" class="internal-link" title="flask.testing.FlaskCliRunner">FlaskCliRunner</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basemethod">
@@ -2327,52 +1955,7 @@ passed as the first argument.</p>
   <div class="docstring functionBody">
     
     
-    <div><p>Creates a test client for this application.  For information
-about unit testing head over to <a href="#system-message-1"><span class="rst-problematic" id="rst-problematic-1">:doc:`/testing`</span></a>.</p>
-<p>Note that if you are testing for assertions or exceptions in your
-application code, you must set <tt class="rst-docutils literal">app.testing = True</tt> in order for the
-exceptions to propagate to the test client.  Otherwise, the exception
-will be handled by the application (not visible to the test client) and
-the only indication of an AssertionError or other exception will be a
-500 status code response to the test client.  See the <code><a href="#testing" class="internal-link" title="flask.app.Flask.testing">testing</a></code>
-attribute.  For example:</p>
-<pre class="rst-literal-block">
-app.testing = True
-client = app.test_client()
-</pre>
-<p>The test client can be used in a <tt class="rst-docutils literal">with</tt> block to defer the closing down
-of the context until the end of the <tt class="rst-docutils literal">with</tt> block.  This is useful if
-you want to access the context locals for testing:</p>
-<pre class="rst-literal-block">
-with app.test_client() as c:
-    rv = c.get('/?vodka=42')
-    assert request.args['vodka'] == '42'
-</pre>
-<p>Additionally, you may pass optional keyword arguments that will then
-be passed to the application's <code><a href="#test_client_class" class="internal-link" title="flask.app.Flask.test_client_class">test_client_class</a></code> constructor.
-For example:</p>
-<pre class="rst-literal-block">
-from flask.testing import FlaskClient
-
-class CustomClient(FlaskClient):
-    def __init__(self, *args, **kwargs):
-        self._authentication = kwargs.pop("authentication")
-        super(CustomClient,self).__init__( *args, **kwargs)
-
-app.test_client_class = CustomClient
-client = app.test_client(authentication='Basic ....')
-</pre>
-<p>See <code>~flask.testing.FlaskClient</code> for more information.</p>
-<div class="rst-versionchanged">
-<span class="rst-versionmodified rst-changed">Changed in version 0.4: </span><span>added support for <tt class="rst-docutils literal">with</tt> block usage for the client.</span></div>
-<div class="rst-versionadded">
-<span class="rst-versionmodified rst-added">New in version 0.7: </span><span>The <code>use_cookies</code> parameter was added as well as the ability
-to override the client to be used by setting the
-<code><a href="#test_client_class" class="internal-link" title="flask.app.Flask.test_client_class">test_client_class</a></code> attribute.</span></div>
-<div class="rst-versionchanged">
-<span class="rst-versionmodified rst-changed">Changed in version 0.11: </span><span>Added <code>**kwargs</code> to support passing additional keyword arguments to
-the constructor of <code><a href="#test_client_class" class="internal-link" title="flask.app.Flask.test_client_class">test_client_class</a></code>.</span></div>
-<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">use​_cookies:</span><code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">**kwargs:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">t.Any</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="flask.testing.FlaskClient.html" class="internal-link" title="flask.testing.FlaskClient">FlaskClient</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+    <div><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">use​_cookies:</span><code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">**kwargs:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">t.Any</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="flask.testing.FlaskClient.html" class="internal-link" title="flask.testing.FlaskClient">FlaskClient</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basemethod">
   
@@ -2394,41 +1977,7 @@ the constructor of <code><a href="#test_client_class" class="internal-link" titl
   <div class="docstring functionBody">
     
     
-    <div><p>Create a <code>~flask.ctx.RequestContext</code> for a WSGI
-environment created from the given values. This is mostly useful
-during testing, where you may want to run a function that uses
-request data without dispatching a full request.</p>
-<p>See <a href="#system-message-1"><span class="rst-problematic" id="rst-problematic-1">:doc:`/reqcontext`</span></a>.</p>
-<p>Use a <tt class="rst-docutils literal">with</tt> block to push the context, which will make
-<code><a href="flask.globals.html#request" class="internal-link" title="flask.globals.request">request</a></code> point at the request for the created
-environment.</p>
-<pre class="rst-literal-block">
-with test_request_context(...):
-    generate_report()
-</pre>
-<p>When using the shell, it may be easier to push and pop the
-context manually to avoid indentation.</p>
-<pre class="rst-literal-block">
-ctx = app.test_request_context(...)
-ctx.push()
-...
-ctx.pop()
-</pre>
-<p>Takes the same arguments as Werkzeug's
-<code>~werkzeug.test.EnvironBuilder</code>, with some defaults from
-the application. See the linked Werkzeug docs for most of the
-available arguments. Flask-specific behavior is listed here.</p>
-<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">*args:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">t.Any</a></code></td><td class="fieldArgDesc">other positional arguments passed to
-<code>~werkzeug.test.EnvironBuilder</code>.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">**kwargs:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">t.Any</a></code></td><td class="fieldArgDesc">other keyword arguments passed to
-<code>~werkzeug.test.EnvironBuilder</code>.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">path</span></td><td class="fieldArgDesc">URL path being requested.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">base​_url</span></td><td class="fieldArgDesc">Base URL where the app is being served, which
-<tt class="rst-docutils literal">path</tt> is relative to. If not given, built from
-<code>PREFERRED_URL_SCHEME</code>, <tt class="rst-docutils literal">subdomain</tt>,
-<code>SERVER_NAME</code>, and <code>APPLICATION_ROOT</code>.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">subdomain</span></td><td class="fieldArgDesc">Subdomain name to append to
-<code>SERVER_NAME</code>.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">url​_scheme</span></td><td class="fieldArgDesc">Scheme to use instead of
-<code>PREFERRED_URL_SCHEME</code>.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">data</span></td><td class="fieldArgDesc">The request body, either as a string or a dict of
-form keys and values.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">json</span></td><td class="fieldArgDesc">If given, this is serialized as JSON and passed as
-<tt class="rst-docutils literal">data</tt>. Also defaults <tt class="rst-docutils literal">content_type</tt> to
-<tt class="rst-docutils literal">application/json</tt>.</td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="flask.ctx.RequestContext.html" class="internal-link" title="flask.ctx.RequestContext">RequestContext</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+    <div><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">*args:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">t.Any</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">**kwargs:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">t.Any</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="flask.ctx.RequestContext.html" class="internal-link" title="flask.ctx.RequestContext">RequestContext</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basemethod">
   
@@ -2450,20 +1999,7 @@ form keys and values.</td></tr><tr><td class="fieldArgContainer"><span class="fi
   <div class="docstring functionBody">
     
     
-    <div><p>Checks if an HTTP exception should be trapped or not.  By default
-this will return <tt class="rst-docutils literal">False</tt> for all exceptions except for a bad request
-key error if <tt class="rst-docutils literal">TRAP_BAD_REQUEST_ERRORS</tt> is set to <tt class="rst-docutils literal">True</tt>.  It
-also returns <tt class="rst-docutils literal">True</tt> if <tt class="rst-docutils literal">TRAP_HTTP_EXCEPTIONS</tt> is set to <tt class="rst-docutils literal">True</tt>.</p>
-<p>This is called for all HTTP exceptions raised by a view function.
-If it returns <tt class="rst-docutils literal">True</tt> for any exception the error handler for this
-exception is not called and it shows up as regular exception in the
-traceback.  This is helpful for debugging implicitly raised HTTP
-exceptions.</p>
-<div class="rst-versionchanged">
-<span class="rst-versionmodified rst-changed">Changed in version 1.0: </span><span>Bad request errors are not trapped by default in debug mode.</span></div>
-<div class="rst-versionadded">
-<span class="rst-versionmodified rst-added">New in version 0.8.</span></div>
-<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">e:</span><code><a href="https://docs.python.org/3/library/exceptions.html#Exception" class="intersphinx-link">Exception</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+    <div><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">e:</span><code><a href="https://docs.python.org/3/library/exceptions.html#Exception" class="intersphinx-link">Exception</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basemethod">
   
@@ -2485,9 +2021,9 @@ exceptions.</p>
   <div class="docstring functionBody">
     
     
-    <div>Called before each request and will ensure that it triggers
-the <code><a href="#before_first_request_funcs" class="internal-link" title="flask.app.Flask.before_first_request_funcs">before_first_request_funcs</a></code> and only exactly once per
-application instance (which means process usually).<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Unknown Field: internal</td></tr><tr><td colspan="2"></td></tr></table></div>
+    <div><p>Called before each request and will ensure that it triggers the :attr:`before_first_request_funcs` and only exactly once per application instance (which means process usually).</p>
+<p>:internal:</p>
+</div>
   </div>
 </div><div class="basemethod">
   
@@ -2509,13 +2045,7 @@ application instance (which means process usually).<table class="fieldTable"><tr
   <div class="docstring functionBody">
     
     
-    <div>Update the template context with some commonly used variables.
-This injects request, session, config and g into the template
-context as well as everything template context processors want
-to inject.  Note that the as of Flask 0.6, the original values
-in the context will not be overridden if a context processor
-decides to return a value with the same key.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">context:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#dict" class="intersphinx-link">dict</a></code></td><td class="fieldArgDesc">the context as a dictionary that is updated in place
-to add extra variables.</td></tr></table></div>
+    <div><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">context:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#dict" class="intersphinx-link">dict</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basemethod">
   
@@ -2537,26 +2067,7 @@ to add extra variables.</td></tr></table></div>
   <div class="docstring functionBody">
     
     
-    <div><p>The actual WSGI application. This is not implemented in
-<code><a href="#__call__" class="internal-link" title="flask.app.Flask.__call__">__call__</a></code> so that middlewares can be applied without
-losing a reference to the app object. Instead of doing this:</p>
-<pre class="rst-literal-block">
-app = MyMiddleware(app)
-</pre>
-<p>It's a better idea to do this instead:</p>
-<pre class="rst-literal-block">
-app.wsgi_app = MyMiddleware(app.wsgi_app)
-</pre>
-<p>Then you still have the original application object around and
-can continue to call methods on it.</p>
-<div class="rst-versionchanged">
-<span class="rst-versionmodified rst-changed">Changed in version 0.7: </span><span>Teardown events for the request and app contexts are called
-even if an unhandled error occurs. Other events may not be
-called depending on when an error occurs during dispatch.
-See <a href="#system-message-1"><span class="rst-problematic" id="rst-problematic-1">:ref:`callbacks-and-errors`</span></a>.</span></div>
-<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">environ:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#dict" class="intersphinx-link">dict</a></code></td><td class="fieldArgDesc">A WSGI environment.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">start​_response:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Callable" class="intersphinx-link">t.Callable</a></code></td><td class="fieldArgDesc">A callable accepting a status code,
-a list of headers, and an optional exception context to
-start the response.</td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">t.Any</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+    <div><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">environ:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#dict" class="intersphinx-link">dict</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">start​_response:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Callable" class="intersphinx-link">t.Callable</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">t.Any</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="baseclassvariable">
   
@@ -2900,16 +2411,9 @@ start the response.</td></tr><tr class="fieldStart"><td class="fieldName" colspa
   <div class="functionBody">
     
     
-    <div><p>Whether debug mode is enabled. When using <tt class="rst-docutils literal">flask run</tt> to start
-the development server, an interactive debugger will be shown for
-unhandled exceptions, and the server will be reloaded when code
-changes. This maps to the <code>DEBUG</code> config key. This is
-enabled when <code><a href="#env" class="internal-link" title="flask.app.Flask.env">env</a></code> is <tt class="rst-docutils literal">'development'</tt> and is overridden
-by the <tt class="rst-docutils literal">FLASK_DEBUG</tt> environment variable. It may not behave as
-expected if set in code.</p>
-<p><strong>Do not enable debug mode when deploying in production.</strong></p>
-<p>Default: <tt class="rst-docutils literal">True</tt> if <code><a href="#env" class="internal-link" title="flask.app.Flask.env">env</a></code> is <tt class="rst-docutils literal">'development'</tt>, or
-<tt class="rst-docutils literal">False</tt> otherwise.</p>
+    <div><p>Whether debug mode is enabled. When using ``flask run`` to start the development server, an interactive debugger will be shown for unhandled exceptions, and the server will be reloaded when code changes. This maps to the :data:`DEBUG` config key. This is enabled when :attr:`env` is ``'development'`` and is overridden by the ``FLASK_DEBUG`` environment variable. It may not behave as expected if set in code.</p>
+<p>**Do not enable debug mode when deploying in production.**</p>
+<p>Default: ``True`` if :attr:`env` is ``'development'``, or ``False`` otherwise.</p>
 </div>
     
   </div>
@@ -3117,10 +2621,8 @@ expected if set in code.</p>
   <div class="functionBody">
     
     
-    <div><p>This attribute is set to <tt class="rst-docutils literal">True</tt> if the application started
-handling the first request.</p>
-<div class="rst-versionadded">
-<span class="rst-versionmodified rst-added">New in version 0.8.</span></div>
+    <div><p>This attribute is set to ``True`` if the application started handling the first request.</p>
+<p>.. versionadded:: 0.8</p>
 </div>
     
   </div>
@@ -3145,9 +2647,7 @@ handling the first request.</p>
     
     
     <div><p>The Jinja environment used to load templates.</p>
-<p>The environment is created the first time this property is
-accessed. Changing <code><a href="#jinja_options" class="internal-link" title="flask.app.Flask.jinja_options">jinja_options</a></code> after that will have no
-effect.</p>
+<p>The environment is created the first time this property is accessed. Changing :attr:`jinja_options` after that will have no effect.</p>
 </div>
     
   </div>
@@ -3171,25 +2671,7 @@ effect.</p>
   <div class="functionBody">
     
     
-    <div><p>A standard Python <code>~logging.Logger</code> for the app, with
-the same name as <code><a href="#name" class="internal-link" title="flask.app.Flask.name">name</a></code>.</p>
-<p>In debug mode, the logger's <code>~logging.Logger.level</code> will
-be set to <code>~logging.DEBUG</code>.</p>
-<p>If there are no handlers configured, a default handler will be
-added. See <a href="#system-message-1"><span class="rst-problematic" id="rst-problematic-1">:doc:`/logging`</span></a> for more information.</p>
-<div class="rst-versionchanged">
-<span class="rst-versionmodified rst-changed">Changed in version 1.1.0: </span><span>The logger takes the same name as <code><a href="#name" class="internal-link" title="flask.app.Flask.name">name</a></code> rather than
-hard-coding <tt class="rst-docutils literal">"flask.app"</tt>.</span></div>
-<div class="rst-versionchanged">
-<span class="rst-versionmodified rst-changed">Changed in version 1.0.0: </span><span>Behavior was simplified. The logger is always named
-<tt class="rst-docutils literal">"flask.app"</tt>. The level is only set during configuration,
-it doesn't check <tt class="rst-docutils literal">app.debug</tt> each time. Only one format is
-used, not different ones depending on <tt class="rst-docutils literal">app.debug</tt>. No
-handlers are removed, and a handler is only added if no
-handlers are already configured.</span></div>
-<div class="rst-versionadded">
-<span class="rst-versionmodified rst-added">New in version 0.3.</span></div>
-</div>
+    <div></div>
     
   </div>
 </div><div class="baseproperty">
@@ -3212,13 +2694,8 @@ handlers are already configured.</span></div>
   <div class="functionBody">
     <div class="interfaceinfo">overrides <code><a href="flask.scaffold.Scaffold.html#name" class="internal-link">flask.scaffold.Scaffold.name</a></code></div>
     
-    <div><p>The name of the application.  This is usually the import name
-with the difference that it's guessed from the run file if the
-import name is main.  This name is used as a display name when
-Flask needs the name of the application.  It can be set and overridden
-to change the value.</p>
-<div class="rst-versionadded">
-<span class="rst-versionmodified rst-added">New in version 0.8.</span></div>
+    <div><p>The name of the application.  This is usually the import name with the difference that it's guessed from the run file if the import name is main.  This name is used as a display name when Flask needs the name of the application.  It can be set and overridden to change the value.</p>
+<p>.. versionadded:: 0.8</p>
 </div>
     
   </div>
@@ -3242,11 +2719,8 @@ to change the value.</p>
   <div class="functionBody">
     
     
-    <div><p>Returns the value of the <tt class="rst-docutils literal">PRESERVE_CONTEXT_ON_EXCEPTION</tt>
-configuration value in case it's set, otherwise a sensible default
-is returned.</p>
-<div class="rst-versionadded">
-<span class="rst-versionmodified rst-added">New in version 0.7.</span></div>
+    <div><p>Returns the value of the ``PRESERVE_CONTEXT_ON_EXCEPTION`` configuration value in case it's set, otherwise a sensible default is returned.</p>
+<p>.. versionadded:: 0.7</p>
 </div>
     
   </div>
@@ -3270,10 +2744,8 @@ is returned.</p>
   <div class="functionBody">
     
     
-    <div><p>Returns the value of the <tt class="rst-docutils literal">PROPAGATE_EXCEPTIONS</tt> configuration
-value in case it's set, otherwise a sensible default is returned.</p>
-<div class="rst-versionadded">
-<span class="rst-versionmodified rst-added">New in version 0.7.</span></div>
+    <div><p>Returns the value of the ``PROPAGATE_EXCEPTIONS`` configuration value in case it's set, otherwise a sensible default is returned.</p>
+<p>.. versionadded:: 0.7</p>
 </div>
     
   </div>
@@ -3297,14 +2769,7 @@ value in case it's set, otherwise a sensible default is returned.</p>
   <div class="functionBody">
     
     
-    <div><p>Reload templates when they are changed. Used by
-<code><a href="#create_jinja_environment" class="internal-link" title="flask.app.Flask.create_jinja_environment">create_jinja_environment</a></code>.</p>
-<p>This attribute can be configured with <code>TEMPLATES_AUTO_RELOAD</code>. If
-not set, it will be enabled in debug mode.</p>
-<div class="rst-versionadded">
-<span class="rst-versionmodified rst-added">New in version 1.0: </span><span>This property was added but the underlying config and behavior
-already existed.</span></div>
-</div>
+    <div></div>
     
   </div>
 </div><div class="basemethod private">
@@ -3327,10 +2792,7 @@ already existed.</span></div>
   <div class="docstring functionBody">
     
     
-    <div>Return a registered error handler for an exception in this order:
-blueprint handler for a specific code, app handler for a specific code,
-blueprint handler for an exception class, app handler for an exception
-class, or <tt class="rst-docutils literal">None</tt> if a suitable handler is not found.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">e:</span><code><a href="https://docs.python.org/3/library/exceptions.html#Exception" class="intersphinx-link">Exception</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">t.Optional</a>[<wbr></wbr><a href="flask.typing.html#ErrorHandlerCallable" class="internal-link" title="flask.typing.ErrorHandlerCallable">ErrorHandlerCallable</a>[<wbr></wbr><a href="https://docs.python.org/3/library/exceptions.html#Exception" class="intersphinx-link">Exception</a>]]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+    <div>Return a registered error handler for an exception in this order: blueprint handler for a specific code, app handler for a specific code, blueprint handler for an exception class, app handler for an exception class, or ``None`` if a suitable handler is not found.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">e:</span><code><a href="https://docs.python.org/3/library/exceptions.html#Exception" class="intersphinx-link">Exception</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">t.Optional</a>[<wbr></wbr><a href="flask.typing.html#ErrorHandlerCallable" class="internal-link" title="flask.typing.ErrorHandlerCallable">ErrorHandlerCallable</a>[<wbr></wbr><a href="https://docs.python.org/3/library/exceptions.html#Exception" class="intersphinx-link">Exception</a>]]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basemethod private">
   
@@ -3406,12 +2868,20 @@ class, or <tt class="rst-docutils literal">None</tt> if a suitable handler is no
     </div>
 
     <footer class="navbar navbar-default">
+
   
   <div class="container">
     <a href="index.html">API Documentation</a> for flask,
   generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
-    22.2.0 at 2022-02-23 08:14:52.
+    22.3.0.dev0 at 2022-03-22 17:11:51.
   </div>
+
+  <!-- Search related scripts needs to be loaded at the end of HTML 
+    parsing not to introduce overhead and display HTML data asap -->
+  <script src="ajax.js" type="text/javascript"></script>
+  <script src="searchlib.js" type="text/javascript"></script>
+  <script src="search.js" type="text/javascript"></script>
+
 </footer>
 
     <script src="pydoctor.js" type="text/javascript"></script>

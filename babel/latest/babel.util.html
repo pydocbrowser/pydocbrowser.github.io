@@ -7,11 +7,11 @@
   <head>
     
     <title>babel.util</title>
-    <meta name="generator" content="pydoctor 22.2.0"> 
+    <meta name="generator" content="pydoctor 22.3.0.dev0"> 
         
     </meta>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=0.75" />
+    <meta name="viewport" content="width=device-width, initial-scale=1 maximum-scale=1" />
     <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="apidocs.css" />
     <link rel="stylesheet" type="text/css" href="extra.css" />
@@ -19,12 +19,10 @@
 
   <body>
 
-    <div id="banner" class="container">    
+    <div id="banner">    
     <div>
-        <a href="https://pydocbrowser.github.io/">Home</a>
-        &gt; babel-2.9.1 
-        <!-- This is an important placeholder and will be 
-            replaced by project name and version on building docs -->
+        <a href="/">Home</a>
+        &gt; babel-2.9.1 <!-- This is a placeholder -->
         
         <!-- (<a href=""&gt;show all versions</a&gt;) -->
     </div>
@@ -37,21 +35,98 @@
     <div class="navbar-header">
       
       <div class="navlinks">
-          <span class="navbar-brand">
-            babel <a href="index.html">API Documentation</a>
+        <span class="navbar-brand">
+          babel <a href="index.html">API Documentation</a>
+        </span>
+
+        <a href="moduleIndex.html">
+          Modules
+        </a>
+
+        <a href="classIndex.html">
+          Classes
+        </a>
+
+        <a href="nameIndex.html">
+          Names
+        </a>
+
+        <div id="search-box-container">
+          <div class="input-group">
+            <input id="search-box" type="search" name="search-query" placeholder="Search..." aria-label="Search" minlength="2" class="form-control" autocomplete="off" />
+            
+            <span class="input-group-btn">
+              <a style="display: none;" class="btn btn-default" id="search-clear-button" title="Clear" onclick="clearSearch()"><img src="fonts/x-circle.svg" alt="Clear" /></a>
+              <a class="btn btn-default" id="search-help-button" title="Help" onclick="toggleSearchHelpText()"><img src="fonts/info.svg" alt="Help" /></a>
+            </span>
+          </div>
+        </div>
+
+      </div>
+
+      <div id="search-results-container" style="display: none;">
+        
+        <div id="search-buttons">
+          <span class="label label-default" id="search-docstrings-button">
+          <label class="checkbox-inline">
+            <input type="checkbox" id="toggle-search-in-docstrings-checkbox" value="false" onclick="toggleSearchInDocstrings()">
+              search in docstrings
+            </input>
+          </label>
           </span>
+          
+        </div>
+        
+        <noscript>
+            <h1>Cannot search: JavaScript is not supported/enabled in your browser.</h1>
+        </noscript>
 
-          <a href="moduleIndex.html">
-            Modules
-          </a>
+        <div class="hint" id="search-help-box">
+          <p class="rst-last">
+      
+            Search bar offers the following options:
+            <ul>   
+                <li>
+                  <strong>Term presence.</strong> The below example searches for documents that 
+                    must contain “foo”, might contain “bar” and must not contain “baz”: <code>+foo bar -baz</code>
+                </li> 
 
-          <a href="classIndex.html">
-            Classes
-          </a>
+                <li>
+                  <strong>Wildcards.</strong> The below example searches for documents with words beginning with “foo”: <code>foo*</code>
+                </li> 
 
-          <a href="nameIndex.html">
-            Names
-          </a>
+                <li>
+                  <strong>Search in specific fields.</strong> The following search matches all objects 
+                  in "twisted.mail" that matches “search”: <code>+qname:twisted.mail.* +search</code>
+
+                  <p>
+                    Possible fields: 'name', 'qname' (fully qualified name), 'docstring', and 'kind'.
+                    Last two fields are only applicable if "search in docstrings" is enabled.
+                  </p>
+                </li>
+
+                <li>
+                  <strong>Fuzzy matches.</strong> The following search matches all documents 
+                  that have a word within 1 edit distance of “foo”: <code>foo~1</code>
+                </li>
+            </ul>
+
+          </p>
+        </div>
+
+        <div id="search-status"> </div>
+
+        <div class="warning" id="search-warn-box" style="display: none;">
+          <p class="rst-last"><span id="search-warn"></span></p>
+        </div>
+
+        <table id="search-results">
+          <!-- Filled dynamically by JS -->
+        </table>
+        
+        <div style="margin-top: 8px;">
+          <p>Results provided by <a href="https://lunrjs.com">Lunr.js</a></p>
+        </div>
       </div>
 
     </div>
@@ -79,15 +154,11 @@
       </div>
 
       <div class="moduleDocstring">
-        <div><p>Various utility classes and functions.</p>
-<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Unknown Field: copyright</td></tr><tr><td colspan="2"><ol class="rst-loweralpha simple" start="3">
-<li>2013-2021 by the Babel Team.</li>
-</ol>
-</td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Unknown Field: license</td></tr><tr><td colspan="2">BSD, see LICENSE for more details.</td></tr></table></div>
+        <div></div>
       </div>
 
       <div id="splitTables">
-        <table class="children sortable" id="id668">
+        <table class="children sortable" id="id640">
   
   
   <tr class="class">
@@ -114,7 +185,7 @@
     
     <td>Function</td>
     <td><code><a href="#parse_future_flags" class="internal-link" title="babel.util.parse_future_flags">parse​_future​_flags</a></code></td>
-    <td>Parse the compiler flags by <code><a href="https://docs.python.org/3/library/__future__.html#module-__future__" class="intersphinx-link">__future__</a></code> from the given Python code.</td>
+    <td>Parse the compiler flags by :mod:`__future__` from the given Python code.</td>
   </tr><tr class="function">
     
     <td>Function</td>
@@ -124,7 +195,7 @@
     
     <td>Function</td>
     <td><code><a href="#wraptext" class="internal-link" title="babel.util.wraptext">wraptext</a></code></td>
-    <td>Simple wrapper around the <tt class="rst-docutils literal">textwrap.wrap</tt> function in the standard library. This version does not wrap lines on hyphens in words.</td>
+    <td>Simple wrapper around the ``textwrap.wrap`` function in the standard library. This version does not wrap lines on hyphens in words.</td>
   </tr><tr class="variable">
     
     <td>Variable</td>
@@ -170,14 +241,14 @@
     
     
     <div><p>Yield all items in an iterable collection that are distinct.</p>
-<p>Unlike when using sets for a similar effect, the original ordering of the
-items in the collection is preserved by this function.</p>
+<p>Unlike when using sets for a similar effect, the original ordering of the items in the collection is preserved by this function.</p>
 <pre class="py-doctest">
 <span class="py-prompt">&gt;&gt;&gt; </span><span class="py-builtin">print</span>(<span class="py-builtin">list</span>(distinct([1, 2, 1, 3, 4, 4])))
 <span class="py-output">[1, 2, 3, 4]</span>
 <span class="py-prompt">&gt;&gt;&gt; </span><span class="py-builtin">print</span>(<span class="py-builtin">list</span>(distinct(<span class="py-string">'foobar'</span>)))
 <span class="py-output">['f', 'o', 'b', 'a', 'r']</span>
-</pre><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">iterable</span></td><td class="fieldArgDesc">the iterable collection providing the data</td></tr></table></div>
+</pre><p>:param iterable: the iterable collection providing the data</p>
+</div>
   </div>
 </div><div class="basefunction">
   
@@ -200,8 +271,9 @@ items in the collection is preserved by this function.</p>
     
     
     <div><p>Deduce the encoding of a source file from magic comment.</p>
-<p>It does this in the same way as the <a class="rst-reference external" href="https://docs.python.org/3.4/reference/lexical_analysis.html#encoding-declarations" target="_top">Python interpreter</a></p>
-<p>The <tt class="rst-docutils literal">fp</tt> argument should be a seekable file object.</p>
+<p>It does this in the same way as the `Python interpreter`__</p>
+<p>.. __: https://docs.python.org/3.4/reference/lexical_analysis.html#encoding-declarations</p>
+<p>The ``fp`` argument should be a seekable file object.</p>
 <p>(From Jeff Dairiki)</p>
 </div>
   </div>
@@ -225,8 +297,7 @@ items in the collection is preserved by this function.</p>
   <div class="docstring functionBody">
     
     
-    <div>Parse the compiler flags by <code><a href="https://docs.python.org/3/library/__future__.html#module-__future__" class="intersphinx-link">__future__</a></code> from the given Python
-code.</div>
+    <div>Parse the compiler flags by :mod:`__future__` from the given Python code.</div>
   </div>
 </div><div class="basefunction">
   
@@ -248,41 +319,7 @@ code.</div>
   <div class="docstring functionBody">
     
     
-    <div><p>Extended pathname pattern matching.</p>
-<p>This function is similar to what is provided by the <tt class="rst-docutils literal">fnmatch</tt> module in
-the Python standard library, but:</p>
-<blockquote>
-<ul class="rst-simple">
-<li>can match complete (relative or absolute) path names, and not just file
-names, and</li>
-<li>also supports a convenience pattern ("**") to match files at any
-directory level.</li>
-</ul>
-</blockquote>
-<p>Examples:</p>
-<pre class="py-doctest">
-<span class="py-prompt">&gt;&gt;&gt; </span>pathmatch(<span class="py-string">'**.py'</span>, <span class="py-string">'bar.py'</span>)
-<span class="py-output">True</span>
-<span class="py-prompt">&gt;&gt;&gt; </span>pathmatch(<span class="py-string">'**.py'</span>, <span class="py-string">'foo/bar/baz.py'</span>)
-<span class="py-output">True</span>
-<span class="py-prompt">&gt;&gt;&gt; </span>pathmatch(<span class="py-string">'**.py'</span>, <span class="py-string">'templates/index.html'</span>)
-<span class="py-output">False</span>
-</pre><pre class="py-doctest">
-<span class="py-prompt">&gt;&gt;&gt; </span>pathmatch(<span class="py-string">'./foo/**.py'</span>, <span class="py-string">'foo/bar/baz.py'</span>)
-<span class="py-output">True</span>
-<span class="py-prompt">&gt;&gt;&gt; </span>pathmatch(<span class="py-string">'./foo/**.py'</span>, <span class="py-string">'bar/baz.py'</span>)
-<span class="py-output">False</span>
-</pre><pre class="py-doctest">
-<span class="py-prompt">&gt;&gt;&gt; </span>pathmatch(<span class="py-string">'^foo/**.py'</span>, <span class="py-string">'foo/bar/baz.py'</span>)
-<span class="py-output">True</span>
-<span class="py-prompt">&gt;&gt;&gt; </span>pathmatch(<span class="py-string">'^foo/**.py'</span>, <span class="py-string">'bar/baz.py'</span>)
-<span class="py-output">False</span>
-</pre><pre class="py-doctest">
-<span class="py-prompt">&gt;&gt;&gt; </span>pathmatch(<span class="py-string">'**/templates/*.html'</span>, <span class="py-string">'templates/index.html'</span>)
-<span class="py-output">True</span>
-<span class="py-prompt">&gt;&gt;&gt; </span>pathmatch(<span class="py-string">'**/templates/*.html'</span>, <span class="py-string">'templates/foo/bar.html'</span>)
-<span class="py-output">False</span>
-</pre><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">pattern</span></td><td class="fieldArgDesc">the glob pattern</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">filename</span></td><td class="fieldArgDesc">the path name of the file to match against</td></tr></table></div>
+    <div></div>
   </div>
 </div><div class="basefunction">
   
@@ -304,10 +341,7 @@ directory level.</li>
   <div class="docstring functionBody">
     
     
-    <div>Simple wrapper around the <tt class="rst-docutils literal">textwrap.wrap</tt> function in the standard
-library. This version does not wrap lines on hyphens in words.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">text</span></td><td class="fieldArgDesc">the text to wrap</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">width</span></td><td class="fieldArgDesc">the maximum line width</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">initial​_indent</span></td><td class="fieldArgDesc">string that will be prepended to the first line of
-wrapped output</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">subsequent​_indent</span></td><td class="fieldArgDesc">string that will be prepended to all lines save
-the first of wrapped output</td></tr></table></div>
+    <div></div>
   </div>
 </div><div class="basevariable">
   
@@ -384,12 +418,20 @@ the first of wrapped output</td></tr></table></div>
     </div>
 
     <footer class="navbar navbar-default">
+
   
   <div class="container">
     <a href="index.html">API Documentation</a> for babel,
   generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
-    22.2.0 at 2022-02-23 08:04:53.
+    22.3.0.dev0 at 2022-03-22 16:59:25.
   </div>
+
+  <!-- Search related scripts needs to be loaded at the end of HTML 
+    parsing not to introduce overhead and display HTML data asap -->
+  <script src="ajax.js" type="text/javascript"></script>
+  <script src="searchlib.js" type="text/javascript"></script>
+  <script src="search.js" type="text/javascript"></script>
+
 </footer>
 
     <script src="pydoctor.js" type="text/javascript"></script>

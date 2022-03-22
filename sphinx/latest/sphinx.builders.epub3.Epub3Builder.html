@@ -7,11 +7,11 @@
   <head>
     
     <title>sphinx.builders.epub3.Epub3Builder</title>
-    <meta name="generator" content="pydoctor 22.2.0"> 
+    <meta name="generator" content="pydoctor 22.3.0.dev0"> 
         
     </meta>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=0.75" />
+    <meta name="viewport" content="width=device-width, initial-scale=1 maximum-scale=1" />
     <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="apidocs.css" />
     <link rel="stylesheet" type="text/css" href="extra.css" />
@@ -19,12 +19,10 @@
 
   <body>
 
-    <div id="banner" class="container">    
+    <div id="banner">    
     <div>
-        <a href="https://pydocbrowser.github.io/">Home</a>
-        &gt; sphinx-4.4.0 
-        <!-- This is an important placeholder and will be 
-            replaced by project name and version on building docs -->
+        <a href="/">Home</a>
+        &gt; sphinx-4.4.0 <!-- This is a placeholder -->
         
         <!-- (<a href=""&gt;show all versions</a&gt;) -->
     </div>
@@ -37,21 +35,98 @@
     <div class="navbar-header">
       
       <div class="navlinks">
-          <span class="navbar-brand">
-            sphinx <a href="index.html">API Documentation</a>
+        <span class="navbar-brand">
+          sphinx <a href="index.html">API Documentation</a>
+        </span>
+
+        <a href="moduleIndex.html">
+          Modules
+        </a>
+
+        <a href="classIndex.html">
+          Classes
+        </a>
+
+        <a href="nameIndex.html">
+          Names
+        </a>
+
+        <div id="search-box-container">
+          <div class="input-group">
+            <input id="search-box" type="search" name="search-query" placeholder="Search..." aria-label="Search" minlength="2" class="form-control" autocomplete="off" />
+            
+            <span class="input-group-btn">
+              <a style="display: none;" class="btn btn-default" id="search-clear-button" title="Clear" onclick="clearSearch()"><img src="fonts/x-circle.svg" alt="Clear" /></a>
+              <a class="btn btn-default" id="search-help-button" title="Help" onclick="toggleSearchHelpText()"><img src="fonts/info.svg" alt="Help" /></a>
+            </span>
+          </div>
+        </div>
+
+      </div>
+
+      <div id="search-results-container" style="display: none;">
+        
+        <div id="search-buttons">
+          <span class="label label-default" id="search-docstrings-button">
+          <label class="checkbox-inline">
+            <input type="checkbox" id="toggle-search-in-docstrings-checkbox" value="false" onclick="toggleSearchInDocstrings()">
+              search in docstrings
+            </input>
+          </label>
           </span>
+          
+        </div>
+        
+        <noscript>
+            <h1>Cannot search: JavaScript is not supported/enabled in your browser.</h1>
+        </noscript>
 
-          <a href="moduleIndex.html">
-            Modules
-          </a>
+        <div class="hint" id="search-help-box">
+          <p class="rst-last">
+      
+            Search bar offers the following options:
+            <ul>   
+                <li>
+                  <strong>Term presence.</strong> The below example searches for documents that 
+                    must contain “foo”, might contain “bar” and must not contain “baz”: <code>+foo bar -baz</code>
+                </li> 
 
-          <a href="classIndex.html">
-            Classes
-          </a>
+                <li>
+                  <strong>Wildcards.</strong> The below example searches for documents with words beginning with “foo”: <code>foo*</code>
+                </li> 
 
-          <a href="nameIndex.html">
-            Names
-          </a>
+                <li>
+                  <strong>Search in specific fields.</strong> The following search matches all objects 
+                  in "twisted.mail" that matches “search”: <code>+qname:twisted.mail.* +search</code>
+
+                  <p>
+                    Possible fields: 'name', 'qname' (fully qualified name), 'docstring', and 'kind'.
+                    Last two fields are only applicable if "search in docstrings" is enabled.
+                  </p>
+                </li>
+
+                <li>
+                  <strong>Fuzzy matches.</strong> The following search matches all documents 
+                  that have a word within 1 edit distance of “foo”: <code>foo~1</code>
+                </li>
+            </ul>
+
+          </p>
+        </div>
+
+        <div id="search-status"> </div>
+
+        <div class="warning" id="search-warn-box" style="display: none;">
+          <p class="rst-last"><span id="search-warn"></span></p>
+        </div>
+
+        <table id="search-results">
+          <!-- Filled dynamically by JS -->
+        </table>
+        
+        <div style="margin-top: 8px;">
+          <p>Results provided by <a href="https://lunrjs.com">Lunr.js</a></p>
+        </div>
       </div>
 
     </div>
@@ -80,14 +155,12 @@
 
       <div class="moduleDocstring">
         <div><p>Builder that outputs epub3 files.</p>
-<p>It creates the metainfo files content.opf, nav.xhtml, toc.ncx, mimetype,
-and META-INF/container.xml. Afterwards, all necessary files are zipped to
-an epub file.</p>
+<p>It creates the metainfo files content.opf, nav.xhtml, toc.ncx, mimetype, and META-INF/container.xml. Afterwards, all necessary files are zipped to an epub file.</p>
 </div>
       </div>
 
       <div id="splitTables">
-        <table class="children sortable" id="id16649">
+        <table class="children sortable" id="id20685">
   
   
   <tr class="method">
@@ -119,7 +192,7 @@ an epub file.</p>
     
     <td>Method</td>
     <td><code><a href="#prepare_writing" class="internal-link" title="sphinx.builders.epub3.Epub3Builder.prepare_writing">prepare​_writing</a></code></td>
-    <td>A place where you can add logic before <code><a href="#write_doc" class="internal-link" title="sphinx.builders.Builder.write_doc">write_doc</a></code> is run</td>
+    <td>A place where you can add logic before :meth:`write_doc` is run</td>
   </tr><tr class="classvariable">
     
     <td>Class Variable</td>
@@ -151,7 +224,7 @@ an epub file.</p>
           <p class="inheritedFrom">
             Inherited from <code><a href="sphinx.builders._epub_base.EpubBuilder.html" class="internal-link" title="sphinx.builders._epub_base.EpubBuilder">EpubBuilder</a></code>:
           </p>
-          <table class="children sortable" id="id16650">
+          <table class="children sortable" id="id20686">
   
   
   <tr class="basemethod">
@@ -380,7 +453,7 @@ an epub file.</p>
           <p class="inheritedFrom">
             Inherited from <code><a href="sphinx.builders.html.StandaloneHTMLBuilder.html" class="internal-link" title="sphinx.builders.html.StandaloneHTMLBuilder">StandaloneHTMLBuilder</a></code> (via <code><a href="sphinx.builders._epub_base.EpubBuilder.html" class="internal-link" title="sphinx.builders._epub_base.EpubBuilder">EpubBuilder</a></code>):
           </p>
-          <table class="children sortable" id="id16651">
+          <table class="children sortable" id="id20687">
   
   
   <tr class="basemethod">
@@ -711,27 +784,27 @@ an epub file.</p>
   </tr><tr class="basemethod private">
     
     <td>Method</td>
-    <td><code><a href="sphinx.builders.html.StandaloneHTMLBuilder.html#_get_local_toctree" class="internal-link" title="sphinx.builders.html.StandaloneHTMLBuilder._get_local_toctree">​_get​_local​_toctree</a></code></td>
+    <td><code><a href="sphinx.builders.html.StandaloneHTMLBuilder.html#_get_local_toctree" class="internal-link" title="sphinx.builders.html.StandaloneHTMLBuilder._get_local_toctree">_get​_local​_toctree</a></code></td>
     <td><span class="undocumented">Undocumented</span></td>
   </tr><tr class="basemethod private">
     
     <td>Method</td>
-    <td><code><a href="sphinx.builders.html.StandaloneHTMLBuilder.html#_get_style_filename" class="internal-link" title="sphinx.builders.html.StandaloneHTMLBuilder._get_style_filename">​_get​_style​_filename</a></code></td>
+    <td><code><a href="sphinx.builders.html.StandaloneHTMLBuilder.html#_get_style_filename" class="internal-link" title="sphinx.builders.html.StandaloneHTMLBuilder._get_style_filename">_get​_style​_filename</a></code></td>
     <td><span class="undocumented">Undocumented</span></td>
   </tr><tr class="basemethod private">
     
     <td>Method</td>
-    <td><code><a href="sphinx.builders.html.StandaloneHTMLBuilder.html#_get_translations_js" class="internal-link" title="sphinx.builders.html.StandaloneHTMLBuilder._get_translations_js">​_get​_translations​_js</a></code></td>
+    <td><code><a href="sphinx.builders.html.StandaloneHTMLBuilder.html#_get_translations_js" class="internal-link" title="sphinx.builders.html.StandaloneHTMLBuilder._get_translations_js">_get​_translations​_js</a></code></td>
     <td><span class="undocumented">Undocumented</span></td>
   </tr><tr class="baseinstancevariable private">
     
     <td>Instance Variable</td>
-    <td><code><a href="sphinx.builders.html.StandaloneHTMLBuilder.html#_css_files" class="internal-link" title="sphinx.builders.html.StandaloneHTMLBuilder._css_files">​_css​_files</a></code></td>
+    <td><code><a href="sphinx.builders.html.StandaloneHTMLBuilder.html#_css_files" class="internal-link" title="sphinx.builders.html.StandaloneHTMLBuilder._css_files">_css​_files</a></code></td>
     <td><span class="undocumented">Undocumented</span></td>
   </tr><tr class="baseinstancevariable private">
     
     <td>Instance Variable</td>
-    <td><code><a href="sphinx.builders.html.StandaloneHTMLBuilder.html#_script_files" class="internal-link" title="sphinx.builders.html.StandaloneHTMLBuilder._script_files">​_script​_files</a></code></td>
+    <td><code><a href="sphinx.builders.html.StandaloneHTMLBuilder.html#_script_files" class="internal-link" title="sphinx.builders.html.StandaloneHTMLBuilder._script_files">_script​_files</a></code></td>
     <td><span class="undocumented">Undocumented</span></td>
   </tr>
 </table>
@@ -739,7 +812,7 @@ an epub file.</p>
           <p class="inheritedFrom">
             Inherited from <code><a href="sphinx.builders.Builder.html" class="internal-link" title="sphinx.builders.Builder">Builder</a></code> (via <code><a href="sphinx.builders._epub_base.EpubBuilder.html" class="internal-link" title="sphinx.builders._epub_base.EpubBuilder">EpubBuilder</a></code>, <code><a href="sphinx.builders.html.StandaloneHTMLBuilder.html" class="internal-link" title="sphinx.builders.html.StandaloneHTMLBuilder">StandaloneHTMLBuilder</a></code>):
           </p>
-          <table class="children sortable" id="id16652">
+          <table class="children sortable" id="id20688">
   
   
   <tr class="basemethod">
@@ -756,7 +829,7 @@ an epub file.</p>
     
     <td>Method</td>
     <td><code><a href="sphinx.builders.Builder.html#build_specific" class="internal-link" title="sphinx.builders.Builder.build_specific">build​_specific</a></code></td>
-    <td>Only rebuild as much as needed for changes in the <em>filenames</em>.</td>
+    <td>Only rebuild as much as needed for changes in the *filenames*.</td>
   </tr><tr class="basemethod">
     
     <td>Method</td>
@@ -915,22 +988,22 @@ an epub file.</p>
   </tr><tr class="basemethod private">
     
     <td>Method</td>
-    <td><code><a href="sphinx.builders.Builder.html#_read_parallel" class="internal-link" title="sphinx.builders.Builder._read_parallel">​_read​_parallel</a></code></td>
+    <td><code><a href="sphinx.builders.Builder.html#_read_parallel" class="internal-link" title="sphinx.builders.Builder._read_parallel">_read​_parallel</a></code></td>
     <td><span class="undocumented">Undocumented</span></td>
   </tr><tr class="basemethod private">
     
     <td>Method</td>
-    <td><code><a href="sphinx.builders.Builder.html#_read_serial" class="internal-link" title="sphinx.builders.Builder._read_serial">​_read​_serial</a></code></td>
+    <td><code><a href="sphinx.builders.Builder.html#_read_serial" class="internal-link" title="sphinx.builders.Builder._read_serial">_read​_serial</a></code></td>
     <td><span class="undocumented">Undocumented</span></td>
   </tr><tr class="basemethod private">
     
     <td>Method</td>
-    <td><code><a href="sphinx.builders.Builder.html#_write_parallel" class="internal-link" title="sphinx.builders.Builder._write_parallel">​_write​_parallel</a></code></td>
+    <td><code><a href="sphinx.builders.Builder.html#_write_parallel" class="internal-link" title="sphinx.builders.Builder._write_parallel">_write​_parallel</a></code></td>
     <td><span class="undocumented">Undocumented</span></td>
   </tr><tr class="basemethod private">
     
     <td>Method</td>
-    <td><code><a href="sphinx.builders.Builder.html#_write_serial" class="internal-link" title="sphinx.builders.Builder._write_serial">​_write​_serial</a></code></td>
+    <td><code><a href="sphinx.builders.Builder.html#_write_serial" class="internal-link" title="sphinx.builders.Builder._write_serial">_write​_serial</a></code></td>
     <td><span class="undocumented">Undocumented</span></td>
   </tr>
 </table>
@@ -984,11 +1057,8 @@ an epub file.</p>
     
     
     <div><p>Create the toc navigation structure.</p>
-<p>This method is almost same as build_navpoints method in epub.py.
-This is because the logical navigation structure of epub3 is not
-different from one of epub2.</p>
-<p>The difference from build_navpoints method is templates which are used
-when generating navigation documents.</p>
+<p>This method is almost same as build_navpoints method in epub.py. This is because the logical navigation structure of epub3 is not different from one of epub2.</p>
+<p>The difference from build_navpoints method is templates which are used when generating navigation documents.</p>
 <table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">navnodes:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.List" class="intersphinx-link">List</a>[<wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Dict" class="intersphinx-link">Dict</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>, <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">Any</a>]]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.List" class="intersphinx-link">List</a>[<wbr></wbr><a href="sphinx.builders.epub3.NavPoint.html" class="internal-link" title="sphinx.builders.epub3.NavPoint">NavPoint</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basemethod">
@@ -1011,8 +1081,7 @@ when generating navigation documents.</p>
   <div class="docstring functionBody">
     <div class="interfaceinfo">overrides <code><a href="sphinx.builders._epub_base.EpubBuilder.html#content_metadata" class="internal-link">sphinx.builders._epub_base.EpubBuilder.content_metadata</a></code></div>
     
-    <div>Create a dictionary with all metadata for the content.opf
-file properly escaped.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Dict" class="intersphinx-link">Dict</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+    <div>Create a dictionary with all metadata for the content.opf file properly escaped.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Dict" class="intersphinx-link">Dict</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basemethod">
   
@@ -1056,8 +1125,7 @@ file properly escaped.<table class="fieldTable"><tr class="fieldStart"><td class
   <div class="docstring functionBody">
     
     
-    <div>Create a dictionary with all metadata for the nav.xhtml file
-properly escaped.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">navlist:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.List" class="intersphinx-link">List</a>[<wbr></wbr><a href="sphinx.builders.epub3.NavPoint.html" class="internal-link" title="sphinx.builders.epub3.NavPoint">NavPoint</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Dict" class="intersphinx-link">Dict</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+    <div>Create a dictionary with all metadata for the nav.xhtml file properly escaped.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">navlist:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.List" class="intersphinx-link">List</a>[<wbr></wbr><a href="sphinx.builders.epub3.NavPoint.html" class="internal-link" title="sphinx.builders.epub3.NavPoint">NavPoint</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Dict" class="intersphinx-link">Dict</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basemethod">
   
@@ -1079,7 +1147,7 @@ properly escaped.<table class="fieldTable"><tr class="fieldStart"><td class="fie
   <div class="docstring functionBody">
     <div class="interfaceinfo">overrides <code><a href="sphinx.builders.html.StandaloneHTMLBuilder.html#prepare_writing" class="internal-link">sphinx.builders.html.StandaloneHTMLBuilder.prepare_writing</a></code></div>
     
-    <div>A place where you can add logic before <code><a href="#write_doc" class="internal-link" title="sphinx.builders.Builder.write_doc">write_doc</a></code> is run<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">docnames:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Set" class="intersphinx-link">Set</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+    <div>A place where you can add logic before :meth:`write_doc` is run<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">docnames:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Set" class="intersphinx-link">Set</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="baseclassvariable">
   
@@ -1202,12 +1270,20 @@ properly escaped.<table class="fieldTable"><tr class="fieldStart"><td class="fie
     </div>
 
     <footer class="navbar navbar-default">
+
   
   <div class="container">
     <a href="index.html">API Documentation</a> for sphinx,
   generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
-    22.2.0 at 2022-02-23 08:21:17.
+    22.3.0.dev0 at 2022-03-22 17:25:47.
   </div>
+
+  <!-- Search related scripts needs to be loaded at the end of HTML 
+    parsing not to introduce overhead and display HTML data asap -->
+  <script src="ajax.js" type="text/javascript"></script>
+  <script src="searchlib.js" type="text/javascript"></script>
+  <script src="search.js" type="text/javascript"></script>
+
 </footer>
 
     <script src="pydoctor.js" type="text/javascript"></script>

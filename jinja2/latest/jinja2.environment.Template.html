@@ -7,11 +7,11 @@
   <head>
     
     <title>jinja2.environment.Template</title>
-    <meta name="generator" content="pydoctor 22.2.0"> 
+    <meta name="generator" content="pydoctor 22.3.0.dev0"> 
         
     </meta>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=0.75" />
+    <meta name="viewport" content="width=device-width, initial-scale=1 maximum-scale=1" />
     <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="apidocs.css" />
     <link rel="stylesheet" type="text/css" href="extra.css" />
@@ -19,12 +19,10 @@
 
   <body>
 
-    <div id="banner" class="container">    
+    <div id="banner">    
     <div>
-        <a href="https://pydocbrowser.github.io/">Home</a>
-        &gt; jinja2-3.0.3 
-        <!-- This is an important placeholder and will be 
-            replaced by project name and version on building docs -->
+        <a href="/">Home</a>
+        &gt; jinja2-3.0.3 <!-- This is a placeholder -->
         
         <!-- (<a href=""&gt;show all versions</a&gt;) -->
     </div>
@@ -37,21 +35,98 @@
     <div class="navbar-header">
       
       <div class="navlinks">
-          <span class="navbar-brand">
-            jinja2 <a href="index.html">API Documentation</a>
+        <span class="navbar-brand">
+          jinja2 <a href="index.html">API Documentation</a>
+        </span>
+
+        <a href="moduleIndex.html">
+          Modules
+        </a>
+
+        <a href="classIndex.html">
+          Classes
+        </a>
+
+        <a href="nameIndex.html">
+          Names
+        </a>
+
+        <div id="search-box-container">
+          <div class="input-group">
+            <input id="search-box" type="search" name="search-query" placeholder="Search..." aria-label="Search" minlength="2" class="form-control" autocomplete="off" />
+            
+            <span class="input-group-btn">
+              <a style="display: none;" class="btn btn-default" id="search-clear-button" title="Clear" onclick="clearSearch()"><img src="fonts/x-circle.svg" alt="Clear" /></a>
+              <a class="btn btn-default" id="search-help-button" title="Help" onclick="toggleSearchHelpText()"><img src="fonts/info.svg" alt="Help" /></a>
+            </span>
+          </div>
+        </div>
+
+      </div>
+
+      <div id="search-results-container" style="display: none;">
+        
+        <div id="search-buttons">
+          <span class="label label-default" id="search-docstrings-button">
+          <label class="checkbox-inline">
+            <input type="checkbox" id="toggle-search-in-docstrings-checkbox" value="false" onclick="toggleSearchInDocstrings()">
+              search in docstrings
+            </input>
+          </label>
           </span>
+          
+        </div>
+        
+        <noscript>
+            <h1>Cannot search: JavaScript is not supported/enabled in your browser.</h1>
+        </noscript>
 
-          <a href="moduleIndex.html">
-            Modules
-          </a>
+        <div class="hint" id="search-help-box">
+          <p class="rst-last">
+      
+            Search bar offers the following options:
+            <ul>   
+                <li>
+                  <strong>Term presence.</strong> The below example searches for documents that 
+                    must contain “foo”, might contain “bar” and must not contain “baz”: <code>+foo bar -baz</code>
+                </li> 
 
-          <a href="classIndex.html">
-            Classes
-          </a>
+                <li>
+                  <strong>Wildcards.</strong> The below example searches for documents with words beginning with “foo”: <code>foo*</code>
+                </li> 
 
-          <a href="nameIndex.html">
-            Names
-          </a>
+                <li>
+                  <strong>Search in specific fields.</strong> The following search matches all objects 
+                  in "twisted.mail" that matches “search”: <code>+qname:twisted.mail.* +search</code>
+
+                  <p>
+                    Possible fields: 'name', 'qname' (fully qualified name), 'docstring', and 'kind'.
+                    Last two fields are only applicable if "search in docstrings" is enabled.
+                  </p>
+                </li>
+
+                <li>
+                  <strong>Fuzzy matches.</strong> The following search matches all documents 
+                  that have a word within 1 edit distance of “foo”: <code>foo~1</code>
+                </li>
+            </ul>
+
+          </p>
+        </div>
+
+        <div id="search-status"> </div>
+
+        <div class="warning" id="search-warn-box" style="display: none;">
+          <p class="rst-last"><span id="search-warn"></span></p>
+        </div>
+
+        <table id="search-results">
+          <!-- Filled dynamically by JS -->
+        </table>
+        
+        <div style="margin-top: 8px;">
+          <p>Results provided by <a href="https://lunrjs.com">Lunr.js</a></p>
+        </div>
       </div>
 
     </div>
@@ -80,21 +155,14 @@
 
       <div class="moduleDocstring">
         <div><p>A compiled template that can be rendered.</p>
-<p>Use the methods on <code><a href="jinja2.environment.Environment.html" class="internal-link" title="jinja2.environment.Environment">Environment</a></code> to create or load templates.
-The environment is used to configure how templates are compiled and
-behave.</p>
-<p>It is also possible to create a template object directly. This is
-not usually recommended. The constructor takes most of the same
-arguments as <code><a href="jinja2.environment.Environment.html" class="internal-link" title="jinja2.environment.Environment">Environment</a></code>. All templates created with the
-same environment arguments share the same ephemeral <tt class="rst-docutils literal">Environment</tt>
-instance behind the scenes.</p>
-<p>A template object should be considered immutable. Modifications on
-the object are not supported.</p>
+<p>Use the methods on :class:`Environment` to create or load templates. The environment is used to configure how templates are compiled and behave.</p>
+<p>It is also possible to create a template object directly. This is not usually recommended. The constructor takes most of the same arguments as :class:`Environment`. All templates created with the same environment arguments share the same ephemeral ``Environment`` instance behind the scenes.</p>
+<p>A template object should be considered immutable. Modifications on the object are not supported.</p>
 </div>
       </div>
 
       <div id="splitTables">
-        <table class="children sortable" id="id10603">
+        <table class="children sortable" id="id10575">
   
   
   <tr class="classmethod">
@@ -126,7 +194,7 @@ the object are not supported.</p>
     
     <td>Async Method</td>
     <td><code><a href="#generate_async" class="internal-link" title="jinja2.environment.Template.generate_async">generate​_async</a></code></td>
-    <td>An async version of <code><a href="#generate" class="internal-link" title="jinja2.environment.Template.generate">generate</a></code>.  Works very similarly but returns an async iterator instead.</td>
+    <td>An async version of :meth:`generate`.  Works very similarly but returns an async iterator instead.</td>
   </tr><tr class="method">
     
     <td>Method</td>
@@ -151,17 +219,17 @@ the object are not supported.</p>
     
     <td>Method</td>
     <td><code><a href="#render" class="internal-link" title="jinja2.environment.Template.render">render</a></code></td>
-    <td>This method accepts the same arguments as the <code><a href="https://docs.python.org/3/library/stdtypes.html#dict" class="intersphinx-link">dict</a></code> constructor: A dict, a dict subclass or some keyword arguments.  If no arguments are given the context will be empty.  These two calls do the same:</td>
+    <td>This method accepts the same arguments as the `dict` constructor: A dict, a dict subclass or some keyword arguments.  If no arguments are given the context will be empty.  These two calls do the same:</td>
   </tr><tr class="method">
     
     <td>Async Method</td>
     <td><code><a href="#render_async" class="internal-link" title="jinja2.environment.Template.render_async">render​_async</a></code></td>
-    <td>This works similar to <code><a href="#render" class="internal-link" title="jinja2.environment.Template.render">render</a></code> but returns a coroutine that when awaited returns the entire rendered template string.  This requires the async feature to be enabled.</td>
+    <td>This works similar to :meth:`render` but returns a coroutine that when awaited returns the entire rendered template string.  This requires the async feature to be enabled.</td>
   </tr><tr class="method">
     
     <td>Method</td>
     <td><code><a href="#stream" class="internal-link" title="jinja2.environment.Template.stream">stream</a></code></td>
-    <td>Works exactly like <code><a href="#generate" class="internal-link" title="jinja2.environment.Template.generate">generate</a></code> but returns a <code><a href="jinja2.environment.TemplateStream.html" class="internal-link" title="jinja2.environment.TemplateStream">TemplateStream</a></code>.</td>
+    <td>Works exactly like :meth:`generate` but returns a :class:`TemplateStream`.</td>
   </tr><tr class="classvariable">
     
     <td>Class Variable</td>
@@ -201,7 +269,7 @@ the object are not supported.</p>
     
     <td>Property</td>
     <td><code><a href="#is_up_to_date" class="internal-link" title="jinja2.environment.Template.is_up_to_date">is​_up​_to​_date</a></code></td>
-    <td>If this variable is <code><a href="https://docs.python.org/3/library/constants.html#False" class="intersphinx-link">False</a></code> there is a newer version available.</td>
+    <td>If this variable is `False` there is a newer version available.</td>
   </tr><tr class="property">
     
     <td>Property</td>
@@ -210,32 +278,32 @@ the object are not supported.</p>
   </tr><tr class="classmethod private">
     
     <td>Class Method</td>
-    <td><code><a href="#_from_namespace" class="internal-link" title="jinja2.environment.Template._from_namespace">​_from​_namespace</a></code></td>
+    <td><code><a href="#_from_namespace" class="internal-link" title="jinja2.environment.Template._from_namespace">_from​_namespace</a></code></td>
     <td><span class="undocumented">Undocumented</span></td>
   </tr><tr class="method private">
     
     <td>Method</td>
-    <td><code><a href="#_get_default_module" class="internal-link" title="jinja2.environment.Template._get_default_module">​_get​_default​_module</a></code></td>
+    <td><code><a href="#_get_default_module" class="internal-link" title="jinja2.environment.Template._get_default_module">_get​_default​_module</a></code></td>
     <td><span class="undocumented">No summary</span></td>
   </tr><tr class="method private">
     
     <td>Async Method</td>
-    <td><code><a href="#_get_default_module_async" class="internal-link" title="jinja2.environment.Template._get_default_module_async">​_get​_default​_module​_async</a></code></td>
+    <td><code><a href="#_get_default_module_async" class="internal-link" title="jinja2.environment.Template._get_default_module_async">_get​_default​_module​_async</a></code></td>
     <td><span class="undocumented">Undocumented</span></td>
   </tr><tr class="classvariable private">
     
     <td>Class Variable</td>
-    <td><code><a href="#_debug_info" class="internal-link" title="jinja2.environment.Template._debug_info">​_debug​_info</a></code></td>
+    <td><code><a href="#_debug_info" class="internal-link" title="jinja2.environment.Template._debug_info">_debug​_info</a></code></td>
     <td><span class="undocumented">Undocumented</span></td>
   </tr><tr class="classvariable private">
     
     <td>Class Variable</td>
-    <td><code><a href="#_uptodate" class="internal-link" title="jinja2.environment.Template._uptodate">​_uptodate</a></code></td>
+    <td><code><a href="#_uptodate" class="internal-link" title="jinja2.environment.Template._uptodate">_uptodate</a></code></td>
     <td><span class="undocumented">Undocumented</span></td>
   </tr><tr class="instancevariable private">
     
     <td>Instance Variable</td>
-    <td><code><a href="#_module" class="internal-link" title="jinja2.environment.Template._module">​_module</a></code></td>
+    <td><code><a href="#_module" class="internal-link" title="jinja2.environment.Template._module">_module</a></code></td>
     <td><span class="undocumented">Undocumented</span></td>
   </tr>
 </table>
@@ -266,8 +334,7 @@ the object are not supported.</p>
   <div class="docstring functionBody">
     
     
-    <div>Creates a template object from compiled code and the globals.  This
-is used by the loaders and environment to create a template object.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">environment:</span><code><a href="jinja2.environment.Environment.html" class="internal-link" title="jinja2.environment.Environment">Environment</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">code:</span><code><a href="https://docs.python.org/3/library/types.html#types.CodeType" class="intersphinx-link">CodeType</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">globals:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.MutableMapping" class="intersphinx-link">t.MutableMapping</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>, <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">t.Any</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">uptodate:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">t.Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Callable" class="intersphinx-link">t.Callable</a>[<wbr></wbr>[], <wbr></wbr><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a>]]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="jinja2.environment.Template.html" class="internal-link" title="jinja2.environment.Template">Template</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+    <div>Creates a template object from compiled code and the globals.  This is used by the loaders and environment to create a template object.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">environment:</span><code><a href="jinja2.environment.Environment.html" class="internal-link" title="jinja2.environment.Environment">Environment</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">code:</span><code><a href="https://docs.python.org/3/library/types.html#types.CodeType" class="intersphinx-link">CodeType</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">globals:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.MutableMapping" class="intersphinx-link">t.MutableMapping</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>, <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">t.Any</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">uptodate:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">t.Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Callable" class="intersphinx-link">t.Callable</a>[<wbr></wbr>[], <wbr></wbr><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a>]]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="jinja2.environment.Template.html" class="internal-link" title="jinja2.environment.Template">Template</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="baseclassmethod">
   
@@ -289,10 +356,8 @@ is used by the loaders and environment to create a template object.<table class=
   <div class="docstring functionBody">
     
     
-    <div><p>Creates a template object from a module.  This is used by the
-module loader to create a template object.</p>
-<div class="rst-versionadded">
-<span class="rst-versionmodified rst-added">New in version 2.4.</span></div>
+    <div><p>Creates a template object from a module.  This is used by the module loader to create a template object.</p>
+<p>.. versionadded:: 2.4</p>
 <table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">environment:</span><code><a href="jinja2.environment.Environment.html" class="internal-link" title="jinja2.environment.Environment">Environment</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">module​_dict:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.MutableMapping" class="intersphinx-link">t.MutableMapping</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>, <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">t.Any</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">globals:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.MutableMapping" class="intersphinx-link">t.MutableMapping</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>, <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">t.Any</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="jinja2.environment.Template.html" class="internal-link" title="jinja2.environment.Template">Template</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basemethod">
@@ -359,11 +424,8 @@ module loader to create a template object.</p>
   <div class="docstring functionBody">
     
     
-    <div><p>For very large templates it can be useful to not render the whole
-template at once but evaluate each statement after another and yield
-piece for piece.  This method basically does exactly that and returns
-a generator that yields one item after another as strings.</p>
-<p>It accepts the same arguments as <code><a href="#render" class="internal-link" title="jinja2.environment.Template.render">render</a></code>.</p>
+    <div><p>For very large templates it can be useful to not render the whole template at once but evaluate each statement after another and yield piece for piece.  This method basically does exactly that and returns a generator that yields one item after another as strings.</p>
+<p>It accepts the same arguments as :meth:`render`.</p>
 <table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">*args:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">t.Any</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">**kwargs:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">t.Any</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Iterator" class="intersphinx-link">t.Iterator</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basemethod">
@@ -386,8 +448,7 @@ a generator that yields one item after another as strings.</p>
   <div class="docstring functionBody">
     
     
-    <div>An async version of <code><a href="#generate" class="internal-link" title="jinja2.environment.Template.generate">generate</a></code>.  Works very similarly but
-returns an async iterator instead.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">*args:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">t.Any</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">**kwargs:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">t.Any</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.AsyncIterator" class="intersphinx-link">t.AsyncIterator</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+    <div>An async version of :meth:`generate`.  Works very similarly but returns an async iterator instead.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">*args:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">t.Any</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">**kwargs:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">t.Any</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.AsyncIterator" class="intersphinx-link">t.AsyncIterator</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basemethod">
   
@@ -409,8 +470,7 @@ returns an async iterator instead.<table class="fieldTable"><tr class="fieldStar
   <div class="docstring functionBody">
     
     
-    <div>Return the source line number of a line number in the
-generated bytecode as they are not in sync.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">lineno:</span><code><a href="https://docs.python.org/3/library/functions.html#int" class="intersphinx-link">int</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/functions.html#int" class="intersphinx-link">int</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+    <div>Return the source line number of a line number in the generated bytecode as they are not in sync.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">lineno:</span><code><a href="https://docs.python.org/3/library/functions.html#int" class="intersphinx-link">int</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/functions.html#int" class="intersphinx-link">int</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basemethod">
   
@@ -432,11 +492,7 @@ generated bytecode as they are not in sync.<table class="fieldTable"><tr class="
   <div class="docstring functionBody">
     
     
-    <div>This method works like the <code><a href="#module" class="internal-link" title="jinja2.environment.Template.module">module</a></code> attribute when called
-without arguments but it will evaluate the template on every call
-rather than caching it.  It's also possible to provide
-a dict which is then used as context.  The arguments are the same
-as for the <code><a href="#new_context" class="internal-link" title="jinja2.environment.Template.new_context">new_context</a></code> method.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">vars:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">t.Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Dict" class="intersphinx-link">t.Dict</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>, <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">t.Any</a>]]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">shared:</span><code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">locals:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">t.Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Mapping" class="intersphinx-link">t.Mapping</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>, <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">t.Any</a>]]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="jinja2.environment.TemplateModule.html" class="internal-link" title="jinja2.environment.TemplateModule">TemplateModule</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+    <div>This method works like the :attr:`module` attribute when called without arguments but it will evaluate the template on every call rather than caching it.  It's also possible to provide a dict which is then used as context.  The arguments are the same as for the :meth:`new_context` method.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">vars:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">t.Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Dict" class="intersphinx-link">t.Dict</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>, <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">t.Any</a>]]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">shared:</span><code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">locals:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">t.Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Mapping" class="intersphinx-link">t.Mapping</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>, <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">t.Any</a>]]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="jinja2.environment.TemplateModule.html" class="internal-link" title="jinja2.environment.TemplateModule">TemplateModule</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basemethod">
   
@@ -458,10 +514,7 @@ as for the <code><a href="#new_context" class="internal-link" title="jinja2.envi
   <div class="docstring functionBody">
     
     
-    <div>As template module creation can invoke template code for
-asynchronous executions this method must be used instead of the
-normal <code><a href="#make_module" class="internal-link" title="jinja2.environment.Template.make_module">make_module</a></code> one.  Likewise the module attribute
-becomes unavailable in async mode.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">vars:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">t.Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Dict" class="intersphinx-link">t.Dict</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>, <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">t.Any</a>]]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">shared:</span><code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">locals:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">t.Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Mapping" class="intersphinx-link">t.Mapping</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>, <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">t.Any</a>]]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="jinja2.environment.TemplateModule.html" class="internal-link" title="jinja2.environment.TemplateModule">TemplateModule</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+    <div>As template module creation can invoke template code for asynchronous executions this method must be used instead of the normal :meth:`make_module` one.  Likewise the module attribute becomes unavailable in async mode.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">vars:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">t.Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Dict" class="intersphinx-link">t.Dict</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>, <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">t.Any</a>]]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">shared:</span><code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">locals:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">t.Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Mapping" class="intersphinx-link">t.Mapping</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>, <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">t.Any</a>]]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="jinja2.environment.TemplateModule.html" class="internal-link" title="jinja2.environment.TemplateModule">TemplateModule</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basemethod">
   
@@ -483,11 +536,8 @@ becomes unavailable in async mode.<table class="fieldTable"><tr class="fieldStar
   <div class="docstring functionBody">
     
     
-    <div><p>Create a new <code><a href="jinja2.runtime.Context.html" class="internal-link" title="jinja2.runtime.Context">Context</a></code> for this template.  The vars
-provided will be passed to the template.  Per default the globals
-are added to the context.  If shared is set to <code><a href="https://docs.python.org/3/library/constants.html#True" class="intersphinx-link">True</a></code> the data
-is passed as is to the context without adding the globals.</p>
-<p><code><a href="https://docs.python.org/3/library/functions.html#locals" class="intersphinx-link">locals</a></code> can be a dict of local variables for internal usage.</p>
+    <div><p>Create a new :class:`Context` for this template.  The vars provided will be passed to the template.  Per default the globals are added to the context.  If shared is set to `True` the data is passed as is to the context without adding the globals.</p>
+<p>`locals` can be a dict of local variables for internal usage.</p>
 <table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">vars:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">t.Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Dict" class="intersphinx-link">t.Dict</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>, <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">t.Any</a>]]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">shared:</span><code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">locals:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">t.Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Mapping" class="intersphinx-link">t.Mapping</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>, <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">t.Any</a>]]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="jinja2.runtime.Context.html" class="internal-link" title="jinja2.runtime.Context">Context</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basemethod">
@@ -510,12 +560,10 @@ is passed as is to the context without adding the globals.</p>
   <div class="docstring functionBody">
     <div class="interfaceinfo">overridden in <code><a href="jinja2.nativetypes.NativeTemplate.html" class="internal-link">jinja2.nativetypes.NativeTemplate</a></code></div>
     
-    <div><p>This method accepts the same arguments as the <code><a href="https://docs.python.org/3/library/stdtypes.html#dict" class="intersphinx-link">dict</a></code> constructor:
-A dict, a dict subclass or some keyword arguments.  If no arguments
-are given the context will be empty.  These two calls do the same:</p>
+    <div><p>This method accepts the same arguments as the `dict` constructor: A dict, a dict subclass or some keyword arguments.  If no arguments are given the context will be empty.  These two calls do the same:</p>
 <pre class="rst-literal-block">
-template.render(knights='that say nih')
-template.render({'knights': 'that say nih'})
+    template.render(knights='that say nih')
+    template.render({'knights': 'that say nih'})
 </pre>
 <p>This will return the rendered template as a string.</p>
 <table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">*args:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">t.Any</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">**kwargs:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">t.Any</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
@@ -540,12 +588,10 @@ template.render({'knights': 'that say nih'})
   <div class="docstring functionBody">
     <div class="interfaceinfo">overridden in <code><a href="jinja2.nativetypes.NativeTemplate.html" class="internal-link">jinja2.nativetypes.NativeTemplate</a></code></div>
     
-    <div><p>This works similar to <code><a href="#render" class="internal-link" title="jinja2.environment.Template.render">render</a></code> but returns a coroutine
-that when awaited returns the entire rendered template string.  This
-requires the async feature to be enabled.</p>
+    <div><p>This works similar to :meth:`render` but returns a coroutine that when awaited returns the entire rendered template string.  This requires the async feature to be enabled.</p>
 <p>Example usage:</p>
 <pre class="rst-literal-block">
-await template.render_async(knights='that say nih; asynchronously')
+    await template.render_async(knights='that say nih; asynchronously')
 </pre>
 <table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">*args:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">t.Any</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">**kwargs:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">t.Any</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
@@ -569,8 +615,7 @@ await template.render_async(knights='that say nih; asynchronously')
   <div class="docstring functionBody">
     
     
-    <div>Works exactly like <code><a href="#generate" class="internal-link" title="jinja2.environment.Template.generate">generate</a></code> but returns a
-<code><a href="jinja2.environment.TemplateStream.html" class="internal-link" title="jinja2.environment.TemplateStream">TemplateStream</a></code>.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">*args:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">t.Any</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">**kwargs:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">t.Any</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="jinja2.environment.TemplateStream.html" class="internal-link" title="jinja2.environment.TemplateStream">TemplateStream</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+    <div>Works exactly like :meth:`generate` but returns a :class:`TemplateStream`.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">*args:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">t.Any</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">**kwargs:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">t.Any</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="jinja2.environment.TemplateStream.html" class="internal-link" title="jinja2.environment.TemplateStream">TemplateStream</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="baseclassvariable">
   
@@ -753,7 +798,7 @@ await template.render_async(knights='that say nih; asynchronously')
   <div class="functionBody">
     
     
-    <div>If this variable is <code><a href="https://docs.python.org/3/library/constants.html#False" class="intersphinx-link">False</a></code> there is a newer version available.</div>
+    <div>If this variable is `False` there is a newer version available.</div>
     
   </div>
 </div><div class="baseproperty">
@@ -776,9 +821,7 @@ await template.render_async(knights='that say nih; asynchronously')
   <div class="functionBody">
     
     
-    <div><p>The template as module.  This is used for imports in the
-template runtime but is also useful if one wants to access
-exported template variables from the Python layer:</p>
+    <div><p>The template as module.  This is used for imports in the template runtime but is also useful if one wants to access exported template variables from the Python layer:</p>
 <pre class="py-doctest">
 <span class="py-prompt">&gt;&gt;&gt; </span>t = Template(<span class="py-string">'{% macro foo() %}42{% endmacro %}23'</span>)
 <span class="py-prompt">&gt;&gt;&gt; </span><span class="py-builtin">str</span>(t.module)
@@ -831,15 +874,8 @@ exported template variables from the Python layer:</p>
   <div class="docstring functionBody">
     
     
-    <div><p>If a context is passed in, this means that the template was
-imported. Imported templates have access to the current
-template's globals by default, but they can only be accessed via
-the context during runtime.</p>
-<p>If there are new globals, we need to create a new module because
-the cached module is already rendered and will not have access
-to globals from the current context. This new module is not
-cached because the template can be imported elsewhere, and it
-should have access to only the current template's globals.</p>
+    <div><p>If a context is passed in, this means that the template was imported. Imported templates have access to the current template's globals by default, but they can only be accessed via the context during runtime.</p>
+<p>If there are new globals, we need to create a new module because the cached module is already rendered and will not have access to globals from the current context. This new module is not cached because the template can be imported elsewhere, and it should have access to only the current template's globals.</p>
 <table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">ctx:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">t.Optional</a>[<wbr></wbr><a href="jinja2.runtime.Context.html" class="internal-link" title="jinja2.runtime.Context">Context</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="jinja2.environment.TemplateModule.html" class="internal-link" title="jinja2.environment.TemplateModule">TemplateModule</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basemethod private">
@@ -939,12 +975,20 @@ should have access to only the current template's globals.</p>
     </div>
 
     <footer class="navbar navbar-default">
+
   
   <div class="container">
     <a href="index.html">API Documentation</a> for jinja2,
   generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
-    22.2.0 at 2022-02-23 08:15:20.
+    22.3.0.dev0 at 2022-03-22 17:12:24.
   </div>
+
+  <!-- Search related scripts needs to be loaded at the end of HTML 
+    parsing not to introduce overhead and display HTML data asap -->
+  <script src="ajax.js" type="text/javascript"></script>
+  <script src="searchlib.js" type="text/javascript"></script>
+  <script src="search.js" type="text/javascript"></script>
+
 </footer>
 
     <script src="pydoctor.js" type="text/javascript"></script>

@@ -7,11 +7,11 @@
   <head>
     
     <title>jinja2.parser.Parser</title>
-    <meta name="generator" content="pydoctor 22.2.0"> 
+    <meta name="generator" content="pydoctor 22.3.0.dev0"> 
         
     </meta>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=0.75" />
+    <meta name="viewport" content="width=device-width, initial-scale=1 maximum-scale=1" />
     <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="apidocs.css" />
     <link rel="stylesheet" type="text/css" href="extra.css" />
@@ -19,12 +19,10 @@
 
   <body>
 
-    <div id="banner" class="container">    
+    <div id="banner">    
     <div>
-        <a href="https://pydocbrowser.github.io/">Home</a>
-        &gt; jinja2-3.0.3 
-        <!-- This is an important placeholder and will be 
-            replaced by project name and version on building docs -->
+        <a href="/">Home</a>
+        &gt; jinja2-3.0.3 <!-- This is a placeholder -->
         
         <!-- (<a href=""&gt;show all versions</a&gt;) -->
     </div>
@@ -37,21 +35,98 @@
     <div class="navbar-header">
       
       <div class="navlinks">
-          <span class="navbar-brand">
-            jinja2 <a href="index.html">API Documentation</a>
+        <span class="navbar-brand">
+          jinja2 <a href="index.html">API Documentation</a>
+        </span>
+
+        <a href="moduleIndex.html">
+          Modules
+        </a>
+
+        <a href="classIndex.html">
+          Classes
+        </a>
+
+        <a href="nameIndex.html">
+          Names
+        </a>
+
+        <div id="search-box-container">
+          <div class="input-group">
+            <input id="search-box" type="search" name="search-query" placeholder="Search..." aria-label="Search" minlength="2" class="form-control" autocomplete="off" />
+            
+            <span class="input-group-btn">
+              <a style="display: none;" class="btn btn-default" id="search-clear-button" title="Clear" onclick="clearSearch()"><img src="fonts/x-circle.svg" alt="Clear" /></a>
+              <a class="btn btn-default" id="search-help-button" title="Help" onclick="toggleSearchHelpText()"><img src="fonts/info.svg" alt="Help" /></a>
+            </span>
+          </div>
+        </div>
+
+      </div>
+
+      <div id="search-results-container" style="display: none;">
+        
+        <div id="search-buttons">
+          <span class="label label-default" id="search-docstrings-button">
+          <label class="checkbox-inline">
+            <input type="checkbox" id="toggle-search-in-docstrings-checkbox" value="false" onclick="toggleSearchInDocstrings()">
+              search in docstrings
+            </input>
+          </label>
           </span>
+          
+        </div>
+        
+        <noscript>
+            <h1>Cannot search: JavaScript is not supported/enabled in your browser.</h1>
+        </noscript>
 
-          <a href="moduleIndex.html">
-            Modules
-          </a>
+        <div class="hint" id="search-help-box">
+          <p class="rst-last">
+      
+            Search bar offers the following options:
+            <ul>   
+                <li>
+                  <strong>Term presence.</strong> The below example searches for documents that 
+                    must contain “foo”, might contain “bar” and must not contain “baz”: <code>+foo bar -baz</code>
+                </li> 
 
-          <a href="classIndex.html">
-            Classes
-          </a>
+                <li>
+                  <strong>Wildcards.</strong> The below example searches for documents with words beginning with “foo”: <code>foo*</code>
+                </li> 
 
-          <a href="nameIndex.html">
-            Names
-          </a>
+                <li>
+                  <strong>Search in specific fields.</strong> The following search matches all objects 
+                  in "twisted.mail" that matches “search”: <code>+qname:twisted.mail.* +search</code>
+
+                  <p>
+                    Possible fields: 'name', 'qname' (fully qualified name), 'docstring', and 'kind'.
+                    Last two fields are only applicable if "search in docstrings" is enabled.
+                  </p>
+                </li>
+
+                <li>
+                  <strong>Fuzzy matches.</strong> The following search matches all documents 
+                  that have a word within 1 edit distance of “foo”: <code>foo~1</code>
+                </li>
+            </ul>
+
+          </p>
+        </div>
+
+        <div id="search-status"> </div>
+
+        <div class="warning" id="search-warn-box" style="display: none;">
+          <p class="rst-last"><span id="search-warn"></span></p>
+        </div>
+
+        <table id="search-results">
+          <!-- Filled dynamically by JS -->
+        </table>
+        
+        <div style="margin-top: 8px;">
+          <p>Results provided by <a href="https://lunrjs.com">Lunr.js</a></p>
+        </div>
       </div>
 
     </div>
@@ -79,12 +154,11 @@
       </div>
 
       <div class="moduleDocstring">
-        <div>This is the central parsing class Jinja uses.  It's passed to
-extensions and can be used to parse expressions or statements.</div>
+        <div>This is the central parsing class Jinja uses.  It's passed to extensions and can be used to parse expressions or statements.</div>
       </div>
 
       <div id="splitTables">
-        <table class="children sortable" id="id10906">
+        <table class="children sortable" id="id10878">
   
   
   <tr class="method">
@@ -96,7 +170,7 @@ extensions and can be used to parse expressions or statements.</div>
     
     <td>Method</td>
     <td><code><a href="#fail" class="internal-link" title="jinja2.parser.Parser.fail">fail</a></code></td>
-    <td>Convenience method that raises <code>exc</code> with the message, passed line number or last line number as well as the current name and filename.</td>
+    <td>Convenience method that raises `exc` with the message, passed line number or last line number as well as the current name and filename.</td>
   </tr><tr class="method">
     
     <td>Method</td>
@@ -111,7 +185,7 @@ extensions and can be used to parse expressions or statements.</div>
     
     <td>Method</td>
     <td><code><a href="#free_identifier" class="internal-link" title="jinja2.parser.Parser.free_identifier">free​_identifier</a></code></td>
-    <td>Return a new free identifier as <code>~jinja2.nodes.InternalName</code>.</td>
+    <td>Return a new free identifier as :class:`~jinja2.nodes.InternalName`.</td>
   </tr><tr class="method">
     
     <td>Method</td>
@@ -121,7 +195,7 @@ extensions and can be used to parse expressions or statements.</div>
     
     <td>Method</td>
     <td><code><a href="#parse" class="internal-link" title="jinja2.parser.Parser.parse">parse</a></code></td>
-    <td>Parse the whole template into a <code><a href="jinja2.environment.Template.html" class="internal-link" title="jinja2.environment.Template">Template</a></code> node.</td>
+    <td>Parse the whole template into a `Template` node.</td>
   </tr><tr class="method">
     
     <td>Method</td>
@@ -181,7 +255,7 @@ extensions and can be used to parse expressions or statements.</div>
     
     <td>Method</td>
     <td><code><a href="#parse_expression" class="internal-link" title="jinja2.parser.Parser.parse_expression">parse​_expression</a></code></td>
-    <td>Parse an expression.  Per default all expressions are parsed, if the optional <code>with_condexpr</code> parameter is set to <code><a href="https://docs.python.org/3/library/constants.html#False" class="intersphinx-link">False</a></code> conditional expressions are not parsed.</td>
+    <td>Parse an expression.  Per default all expressions are parsed, if the optional `with_condexpr` parameter is set to `False` conditional expressions are not parsed.</td>
   </tr><tr class="method">
     
     <td>Method</td>
@@ -370,22 +444,22 @@ extensions and can be used to parse expressions or statements.</div>
   </tr><tr class="method private">
     
     <td>Method</td>
-    <td><code><a href="#_fail_ut_eof" class="internal-link" title="jinja2.parser.Parser._fail_ut_eof">​_fail​_ut​_eof</a></code></td>
+    <td><code><a href="#_fail_ut_eof" class="internal-link" title="jinja2.parser.Parser._fail_ut_eof">_fail​_ut​_eof</a></code></td>
     <td><span class="undocumented">Undocumented</span></td>
   </tr><tr class="instancevariable private">
     
     <td>Instance Variable</td>
-    <td><code><a href="#_end_token_stack" class="internal-link" title="jinja2.parser.Parser._end_token_stack">​_end​_token​_stack</a></code></td>
+    <td><code><a href="#_end_token_stack" class="internal-link" title="jinja2.parser.Parser._end_token_stack">_end​_token​_stack</a></code></td>
     <td><span class="undocumented">Undocumented</span></td>
   </tr><tr class="instancevariable private">
     
     <td>Instance Variable</td>
-    <td><code><a href="#_last_identifier" class="internal-link" title="jinja2.parser.Parser._last_identifier">​_last​_identifier</a></code></td>
+    <td><code><a href="#_last_identifier" class="internal-link" title="jinja2.parser.Parser._last_identifier">_last​_identifier</a></code></td>
     <td><span class="undocumented">Undocumented</span></td>
   </tr><tr class="instancevariable private">
     
     <td>Instance Variable</td>
-    <td><code><a href="#_tag_stack" class="internal-link" title="jinja2.parser.Parser._tag_stack">​_tag​_stack</a></code></td>
+    <td><code><a href="#_tag_stack" class="internal-link" title="jinja2.parser.Parser._tag_stack">_tag​_stack</a></code></td>
     <td><span class="undocumented">Undocumented</span></td>
   </tr>
 </table>
@@ -438,9 +512,7 @@ extensions and can be used to parse expressions or statements.</div>
   <div class="docstring functionBody">
     
     
-    <div>Convenience method that raises <code>exc</code> with the message, passed
-line number or last line number as well as the current name and
-filename.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">msg:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">lineno:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">t.Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/functions.html#int" class="intersphinx-link">int</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">exc:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Type" class="intersphinx-link">t.Type</a>[<wbr></wbr><a href="jinja2.exceptions.TemplateSyntaxError.html" class="internal-link" title="jinja2.exceptions.TemplateSyntaxError">TemplateSyntaxError</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code>te.NoReturn</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+    <div>Convenience method that raises `exc` with the message, passed line number or last line number as well as the current name and filename.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">msg:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">lineno:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">t.Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/functions.html#int" class="intersphinx-link">int</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">exc:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Type" class="intersphinx-link">t.Type</a>[<wbr></wbr><a href="jinja2.exceptions.TemplateSyntaxError.html" class="internal-link" title="jinja2.exceptions.TemplateSyntaxError">TemplateSyntaxError</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code>te.NoReturn</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basemethod">
   
@@ -484,9 +556,7 @@ filename.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" 
   <div class="docstring functionBody">
     
     
-    <div>Called if the parser encounters an unknown tag.  Tries to fail
-with a human readable error message that could help to identify
-the problem.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">name:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">lineno:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">t.Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/functions.html#int" class="intersphinx-link">int</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code>te.NoReturn</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+    <div>Called if the parser encounters an unknown tag.  Tries to fail with a human readable error message that could help to identify the problem.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">name:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">lineno:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">t.Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/functions.html#int" class="intersphinx-link">int</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code>te.NoReturn</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basemethod">
   
@@ -508,7 +578,7 @@ the problem.<table class="fieldTable"><tr class="fieldStart"><td class="fieldNam
   <div class="docstring functionBody">
     
     
-    <div>Return a new free identifier as <code>~jinja2.nodes.InternalName</code>.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">lineno:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">t.Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/functions.html#int" class="intersphinx-link">int</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="jinja2.nodes.InternalName.html" class="internal-link" title="jinja2.nodes.InternalName">nodes.InternalName</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+    <div>Return a new free identifier as :class:`~jinja2.nodes.InternalName`.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">lineno:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">t.Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/functions.html#int" class="intersphinx-link">int</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="jinja2.nodes.InternalName.html" class="internal-link" title="jinja2.nodes.InternalName">nodes.InternalName</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basemethod">
   
@@ -552,7 +622,7 @@ the problem.<table class="fieldTable"><tr class="fieldStart"><td class="fieldNam
   <div class="docstring functionBody">
     
     
-    <div>Parse the whole template into a <code><a href="jinja2.environment.Template.html" class="internal-link" title="jinja2.environment.Template">Template</a></code> node.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="jinja2.nodes.Template.html" class="internal-link" title="jinja2.nodes.Template">nodes.Template</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+    <div>Parse the whole template into a `Template` node.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="jinja2.nodes.Template.html" class="internal-link" title="jinja2.nodes.Template">nodes.Template</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basemethod">
   
@@ -596,13 +666,7 @@ the problem.<table class="fieldTable"><tr class="fieldStart"><td class="fieldNam
   <div class="docstring functionBody">
     
     
-    <div>Parse an assignment target.  As Jinja allows assignments to
-tuples, this function can parse all allowed assignment targets.  Per
-default assignments to tuples are parsed, that can be disable however
-by setting <code>with_tuple</code> to <code><a href="https://docs.python.org/3/library/constants.html#False" class="intersphinx-link">False</a></code>.  If only assignments to names are
-wanted <code>name_only</code> can be set to <code><a href="https://docs.python.org/3/library/constants.html#True" class="intersphinx-link">True</a></code>.  The <code>extra_end_rules</code>
-parameter is forwarded to the tuple parsing function.  If
-<code>with_namespace</code> is enabled, a namespace assignment may be parsed.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">with​_tuple:</span><code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">name​_only:</span><code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">extra​_end​_rules:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">t.Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Tuple" class="intersphinx-link">t.Tuple</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>, <wbr></wbr><span class="rst-variable-ellipsis">...</span>]]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">with​_namespace:</span><code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Union" class="intersphinx-link">t.Union</a>[<wbr></wbr><a href="jinja2.nodes.NSRef.html" class="internal-link" title="jinja2.nodes.NSRef">nodes.NSRef</a>, <wbr></wbr><a href="jinja2.nodes.Name.html" class="internal-link" title="jinja2.nodes.Name">nodes.Name</a>, <wbr></wbr><a href="jinja2.nodes.Tuple.html" class="internal-link" title="jinja2.nodes.Tuple">nodes.Tuple</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+    <div>Parse an assignment target.  As Jinja allows assignments to tuples, this function can parse all allowed assignment targets.  Per default assignments to tuples are parsed, that can be disable however by setting `with_tuple` to `False`.  If only assignments to names are wanted `name_only` can be set to `True`.  The `extra_end_rules` parameter is forwarded to the tuple parsing function.  If `with_namespace` is enabled, a namespace assignment may be parsed.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">with​_tuple:</span><code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">name​_only:</span><code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">extra​_end​_rules:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">t.Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Tuple" class="intersphinx-link">t.Tuple</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>, <wbr></wbr><span class="rst-variable-ellipsis">...</span>]]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">with​_namespace:</span><code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Union" class="intersphinx-link">t.Union</a>[<wbr></wbr><a href="jinja2.nodes.NSRef.html" class="internal-link" title="jinja2.nodes.NSRef">nodes.NSRef</a>, <wbr></wbr><a href="jinja2.nodes.Name.html" class="internal-link" title="jinja2.nodes.Name">nodes.Name</a>, <wbr></wbr><a href="jinja2.nodes.Tuple.html" class="internal-link" title="jinja2.nodes.Tuple">nodes.Tuple</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basemethod">
   
@@ -822,9 +886,7 @@ parameter is forwarded to the tuple parsing function.  If
   <div class="docstring functionBody">
     
     
-    <div>Parse an expression.  Per default all expressions are parsed, if
-the optional <code>with_condexpr</code> parameter is set to <code><a href="https://docs.python.org/3/library/constants.html#False" class="intersphinx-link">False</a></code> conditional
-expressions are not parsed.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">with​_condexpr:</span><code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="jinja2.nodes.Expr.html" class="internal-link" title="jinja2.nodes.Expr">nodes.Expr</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+    <div>Parse an expression.  Per default all expressions are parsed, if the optional `with_condexpr` parameter is set to `False` conditional expressions are not parsed.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">with​_condexpr:</span><code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="jinja2.nodes.Expr.html" class="internal-link" title="jinja2.nodes.Expr">nodes.Expr</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basemethod">
   
@@ -1352,14 +1414,7 @@ expressions are not parsed.<table class="fieldTable"><tr class="fieldStart"><td 
   <div class="docstring functionBody">
     
     
-    <div>Parse multiple statements into a list until one of the end tokens
-is reached.  This is used to parse the body of statements as it also
-parses template data if appropriate.  The parser checks first if the
-current token is a colon and skips it if there is one.  Then it checks
-for the block end and parses until if one of the <code>end_tokens</code> is
-reached.  Per default the active token in the stream at the end of
-the call is the matched end token.  If this is not wanted <code>drop_needle</code>
-can be set to <code><a href="https://docs.python.org/3/library/constants.html#True" class="intersphinx-link">True</a></code> and the end token is removed.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">end​_tokens:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Tuple" class="intersphinx-link">t.Tuple</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>, <wbr></wbr><span class="rst-variable-ellipsis">...</span>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">drop​_needle:</span><code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.List" class="intersphinx-link">t.List</a>[<wbr></wbr><a href="jinja2.nodes.Node.html" class="internal-link" title="jinja2.nodes.Node">nodes.Node</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+    <div>Parse multiple statements into a list until one of the end tokens is reached.  This is used to parse the body of statements as it also parses template data if appropriate.  The parser checks first if the current token is a colon and skips it if there is one.  Then it checks for the block end and parses until if one of the `end_tokens` is reached.  Per default the active token in the stream at the end of the call is the matched end token.  If this is not wanted `drop_needle` can be set to `True` and the end token is removed.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">end​_tokens:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Tuple" class="intersphinx-link">t.Tuple</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>, <wbr></wbr><span class="rst-variable-ellipsis">...</span>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">drop​_needle:</span><code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.List" class="intersphinx-link">t.List</a>[<wbr></wbr><a href="jinja2.nodes.Node.html" class="internal-link" title="jinja2.nodes.Node">nodes.Node</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basemethod">
   
@@ -1447,20 +1502,10 @@ can be set to <code><a href="https://docs.python.org/3/library/constants.html#Tr
   <div class="docstring functionBody">
     
     
-    <div><p>Works like <code><a href="#parse_expression" class="internal-link" title="jinja2.parser.Parser.parse_expression">parse_expression</a></code> but if multiple expressions are
-delimited by a comma a <code>~jinja2.nodes.Tuple</code> node is created.
-This method could also return a regular expression instead of a tuple
-if no commas where found.</p>
-<p>The default parsing mode is a full tuple.  If <code>simplified</code> is <code><a href="https://docs.python.org/3/library/constants.html#True" class="intersphinx-link">True</a></code>
-only names and literals are parsed.  The <code>no_condexpr</code> parameter is
-forwarded to <code><a href="#parse_expression" class="internal-link" title="jinja2.parser.Parser.parse_expression">parse_expression</a></code>.</p>
-<p>Because tuples do not require delimiters and may end in a bogus comma
-an extra hint is needed that marks the end of a tuple.  For example
-for loops support tuples between <code>for</code> and <code>in</code>.  In that case the
-<code>extra_end_rules</code> is set to <tt class="rst-docutils literal">['name:in']</tt>.</p>
-<p><code>explicit_parentheses</code> is true if the parsing was triggered by an
-expression in parentheses.  This is used to figure out if an empty
-tuple is a valid expression or not.</p>
+    <div><p>Works like `parse_expression` but if multiple expressions are delimited by a comma a :class:`~jinja2.nodes.Tuple` node is created. This method could also return a regular expression instead of a tuple if no commas where found.</p>
+<p>The default parsing mode is a full tuple.  If `simplified` is `True` only names and literals are parsed.  The `no_condexpr` parameter is forwarded to :meth:`parse_expression`.</p>
+<p>Because tuples do not require delimiters and may end in a bogus comma an extra hint is needed that marks the end of a tuple.  For example for loops support tuples between `for` and `in`.  In that case the `extra_end_rules` is set to ``['name:in']``.</p>
+<p>`explicit_parentheses` is true if the parsing was triggered by an expression in parentheses.  This is used to figure out if an empty tuple is a valid expression or not.</p>
 <table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">simplified:</span><code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">with​_condexpr:</span><code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">extra​_end​_rules:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">t.Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Tuple" class="intersphinx-link">t.Tuple</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>, <wbr></wbr><span class="rst-variable-ellipsis">...</span>]]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">explicit​_parentheses:</span><code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Union" class="intersphinx-link">t.Union</a>[<wbr></wbr><a href="jinja2.nodes.Tuple.html" class="internal-link" title="jinja2.nodes.Tuple">nodes.Tuple</a>, <wbr></wbr><a href="jinja2.nodes.Expr.html" class="internal-link" title="jinja2.nodes.Expr">nodes.Expr</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basemethod">
@@ -1764,12 +1809,20 @@ tuple is a valid expression or not.</p>
     </div>
 
     <footer class="navbar navbar-default">
+
   
   <div class="container">
     <a href="index.html">API Documentation</a> for jinja2,
   generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
-    22.2.0 at 2022-02-23 08:15:20.
+    22.3.0.dev0 at 2022-03-22 17:12:24.
   </div>
+
+  <!-- Search related scripts needs to be loaded at the end of HTML 
+    parsing not to introduce overhead and display HTML data asap -->
+  <script src="ajax.js" type="text/javascript"></script>
+  <script src="searchlib.js" type="text/javascript"></script>
+  <script src="search.js" type="text/javascript"></script>
+
 </footer>
 
     <script src="pydoctor.js" type="text/javascript"></script>

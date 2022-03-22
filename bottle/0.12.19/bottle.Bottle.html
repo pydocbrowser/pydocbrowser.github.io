@@ -7,11 +7,11 @@
   <head>
     
     <title>bottle.Bottle</title>
-    <meta name="generator" content="pydoctor 22.2.0"> 
+    <meta name="generator" content="pydoctor 22.3.0.dev0"> 
         
     </meta>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=0.75" />
+    <meta name="viewport" content="width=device-width, initial-scale=1 maximum-scale=1" />
     <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="apidocs.css" />
     <link rel="stylesheet" type="text/css" href="extra.css" />
@@ -19,12 +19,10 @@
 
   <body>
 
-    <div id="banner" class="container">    
+    <div id="banner">    
     <div>
-        <a href="https://pydocbrowser.github.io/">Home</a>
-        &gt; bottle-0.12.19 
-        <!-- This is an important placeholder and will be 
-            replaced by project name and version on building docs -->
+        <a href="/">Home</a>
+        &gt; bottle-0.12.19 <!-- This is a placeholder -->
         
         <!-- (<a href=""&gt;show all versions</a&gt;) -->
     </div>
@@ -37,21 +35,98 @@
     <div class="navbar-header">
       
       <div class="navlinks">
-          <span class="navbar-brand">
-            bottle <a href="index.html">API Documentation</a>
+        <span class="navbar-brand">
+          bottle <a href="index.html">API Documentation</a>
+        </span>
+
+        <a href="moduleIndex.html">
+          Modules
+        </a>
+
+        <a href="classIndex.html">
+          Classes
+        </a>
+
+        <a href="nameIndex.html">
+          Names
+        </a>
+
+        <div id="search-box-container">
+          <div class="input-group">
+            <input id="search-box" type="search" name="search-query" placeholder="Search..." aria-label="Search" minlength="2" class="form-control" autocomplete="off" />
+            
+            <span class="input-group-btn">
+              <a style="display: none;" class="btn btn-default" id="search-clear-button" title="Clear" onclick="clearSearch()"><img src="fonts/x-circle.svg" alt="Clear" /></a>
+              <a class="btn btn-default" id="search-help-button" title="Help" onclick="toggleSearchHelpText()"><img src="fonts/info.svg" alt="Help" /></a>
+            </span>
+          </div>
+        </div>
+
+      </div>
+
+      <div id="search-results-container" style="display: none;">
+        
+        <div id="search-buttons">
+          <span class="label label-default" id="search-docstrings-button">
+          <label class="checkbox-inline">
+            <input type="checkbox" id="toggle-search-in-docstrings-checkbox" value="false" onclick="toggleSearchInDocstrings()">
+              search in docstrings
+            </input>
+          </label>
           </span>
+          
+        </div>
+        
+        <noscript>
+            <h1>Cannot search: JavaScript is not supported/enabled in your browser.</h1>
+        </noscript>
 
-          <a href="moduleIndex.html">
-            Modules
-          </a>
+        <div class="hint" id="search-help-box">
+          <p class="rst-last">
+      
+            Search bar offers the following options:
+            <ul>   
+                <li>
+                  <strong>Term presence.</strong> The below example searches for documents that 
+                    must contain “foo”, might contain “bar” and must not contain “baz”: <code>+foo bar -baz</code>
+                </li> 
 
-          <a href="classIndex.html">
-            Classes
-          </a>
+                <li>
+                  <strong>Wildcards.</strong> The below example searches for documents with words beginning with “foo”: <code>foo*</code>
+                </li> 
 
-          <a href="nameIndex.html">
-            Names
-          </a>
+                <li>
+                  <strong>Search in specific fields.</strong> The following search matches all objects 
+                  in "twisted.mail" that matches “search”: <code>+qname:twisted.mail.* +search</code>
+
+                  <p>
+                    Possible fields: 'name', 'qname' (fully qualified name), 'docstring', and 'kind'.
+                    Last two fields are only applicable if "search in docstrings" is enabled.
+                  </p>
+                </li>
+
+                <li>
+                  <strong>Fuzzy matches.</strong> The following search matches all documents 
+                  that have a word within 1 edit distance of “foo”: <code>foo~1</code>
+                </li>
+            </ul>
+
+          </p>
+        </div>
+
+        <div id="search-status"> </div>
+
+        <div class="warning" id="search-warn-box" style="display: none;">
+          <p class="rst-last"><span id="search-warn"></span></p>
+        </div>
+
+        <table id="search-results">
+          <!-- Filled dynamically by JS -->
+        </table>
+        
+        <div style="margin-top: 8px;">
+          <p>Results provided by <a href="https://lunrjs.com">Lunr.js</a></p>
+        </div>
       </div>
 
     </div>
@@ -79,21 +154,18 @@
       </div>
 
       <div class="moduleDocstring">
-        <div>Each Bottle object represents a single, distinct web application and
-consists of routes, callbacks, plugins, resources and configuration.
-Instances are callable WSGI applications.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">catchall</span></td><td class="fieldArgDesc">If true (default), handle all exceptions. Turn off to
-let debugging middleware handle exceptions.</td></tr></table></div>
+        <div></div>
       </div>
 
       <div id="splitTables">
-        <table class="children sortable" id="id895">
+        <table class="children sortable" id="id867">
   
   
   <tr class="method">
     
     <td>Method</td>
     <td><code><a href="#__call__" class="internal-link" title="bottle.Bottle.__call__">__call__</a></code></td>
-    <td>Each instance of 'Bottle' is a WSGI application.</td>
+    <td>Each instance of :class:'Bottle' is a WSGI application.</td>
   </tr><tr class="method">
     
     <td>Method</td>
@@ -108,7 +180,7 @@ let debugging middleware handle exceptions.</td></tr></table></div>
     
     <td>Method</td>
     <td><code><a href="#add_route" class="internal-link" title="bottle.Bottle.add_route">add​_route</a></code></td>
-    <td>Add a route object, but do not change the <code><a href="bottle.Route.html#app" class="internal-link" title="bottle.Route.app">Route.app</a></code> attribute.</td>
+    <td>Add a route object, but do not change the :data:`Route.app` attribute.</td>
   </tr><tr class="method">
     
     <td>Method</td>
@@ -123,7 +195,7 @@ let debugging middleware handle exceptions.</td></tr></table></div>
     
     <td>Method</td>
     <td><code><a href="#delete" class="internal-link" title="bottle.Bottle.delete">delete</a></code></td>
-    <td>Equals <code><a href="#route" class="internal-link" title="bottle.Bottle.route">route</a></code> with a <tt class="rst-docutils literal">DELETE</tt> method parameter.</td>
+    <td>Equals :meth:`route` with a ``DELETE`` method parameter.</td>
   </tr><tr class="method">
     
     <td>Method</td>
@@ -133,7 +205,7 @@ let debugging middleware handle exceptions.</td></tr></table></div>
     
     <td>Method</td>
     <td><code><a href="#get" class="internal-link" title="bottle.Bottle.get">get</a></code></td>
-    <td>Equals <code><a href="#route" class="internal-link" title="bottle.Bottle.route">route</a></code>.</td>
+    <td>Equals :meth:`route`.</td>
   </tr><tr class="method">
     
     <td>Method</td>
@@ -143,17 +215,17 @@ let debugging middleware handle exceptions.</td></tr></table></div>
     
     <td>Method</td>
     <td><code><a href="#hook" class="internal-link" title="bottle.Bottle.hook">hook</a></code></td>
-    <td>Return a decorator that attaches a callback to a hook. See <code><a href="#add_hook" class="internal-link" title="bottle.Bottle.add_hook">add_hook</a></code> for details.</td>
+    <td>Return a decorator that attaches a callback to a hook. See :meth:`add_hook` for details.</td>
   </tr><tr class="method">
     
     <td>Method</td>
     <td><code><a href="#install" class="internal-link" title="bottle.Bottle.install">install</a></code></td>
-    <td>Add a plugin to the list of plugins and prepare it for being applied to all routes of this application. A plugin may be a simple decorator or an object that implements the <code>Plugin</code> API.</td>
+    <td>Add a plugin to the list of plugins and prepare it for being applied to all routes of this application. A plugin may be a simple decorator or an object that implements the :class:`Plugin` API.</td>
   </tr><tr class="method">
     
     <td>Method</td>
     <td><code><a href="#match" class="internal-link" title="bottle.Bottle.match">match</a></code></td>
-    <td>Search for a matching route and return a (<code><a href="bottle.Route.html" class="internal-link" title="bottle.Route">Route</a></code> , urlargs) tuple. The second value is a dictionary with parameters extracted from the URL. Raise <code><a href="bottle.HTTPError.html" class="internal-link" title="bottle.HTTPError">HTTPError</a></code> (404/405) on a non-match.</td>
+    <td>Search for a matching route and return a (:class:`Route` , urlargs) tuple. The second value is a dictionary with parameters extracted from the URL. Raise :exc:`HTTPError` (404/405) on a non-match.</td>
   </tr><tr class="method">
     
     <td>Method</td>
@@ -163,17 +235,17 @@ let debugging middleware handle exceptions.</td></tr></table></div>
     
     <td>Method</td>
     <td><code><a href="#mount" class="internal-link" title="bottle.Bottle.mount">mount</a></code></td>
-    <td>Mount an application (<code><a href="bottle.Bottle.html" class="internal-link" title="bottle.Bottle">Bottle</a></code> or plain WSGI) to a specific URL prefix. Example:</td>
+    <td>Mount an application (:class:`Bottle` or plain WSGI) to a specific URL prefix. Example:</td>
   </tr><tr class="method">
     
     <td>Method</td>
     <td><code><a href="#post" class="internal-link" title="bottle.Bottle.post">post</a></code></td>
-    <td>Equals <code><a href="#route" class="internal-link" title="bottle.Bottle.route">route</a></code> with a <tt class="rst-docutils literal">POST</tt> method parameter.</td>
+    <td>Equals :meth:`route` with a ``POST`` method parameter.</td>
   </tr><tr class="method">
     
     <td>Method</td>
     <td><code><a href="#put" class="internal-link" title="bottle.Bottle.put">put</a></code></td>
-    <td>Equals <code><a href="#route" class="internal-link" title="bottle.Bottle.route">route</a></code> with a <tt class="rst-docutils literal">PUT</tt> method parameter.</td>
+    <td>Equals :meth:`route` with a ``PUT`` method parameter.</td>
   </tr><tr class="method">
     
     <td>Method</td>
@@ -193,7 +265,7 @@ let debugging middleware handle exceptions.</td></tr></table></div>
     
     <td>Method</td>
     <td><code><a href="#run" class="internal-link" title="bottle.Bottle.run">run</a></code></td>
-    <td>Calls <code><a href="#run" class="internal-link" title="bottle.Bottle.run">run</a></code> with the same parameters.</td>
+    <td>Calls :func:`run` with the same parameters.</td>
   </tr><tr class="method">
     
     <td>Method</td>
@@ -252,12 +324,12 @@ let debugging middleware handle exceptions.</td></tr></table></div>
   </tr><tr class="method private">
     
     <td>Method</td>
-    <td><code><a href="#_cast" class="internal-link" title="bottle.Bottle._cast">​_cast</a></code></td>
+    <td><code><a href="#_cast" class="internal-link" title="bottle.Bottle._cast">_cast</a></code></td>
     <td><span class="undocumented">No summary</span></td>
   </tr><tr class="method private">
     
     <td>Method</td>
-    <td><code><a href="#_handle" class="internal-link" title="bottle.Bottle._handle">​_handle</a></code></td>
+    <td><code><a href="#_handle" class="internal-link" title="bottle.Bottle._handle">_handle</a></code></td>
     <td><span class="undocumented">Undocumented</span></td>
   </tr><tr class="classvariable private">
     
@@ -272,7 +344,7 @@ let debugging middleware handle exceptions.</td></tr></table></div>
   </tr><tr class="property private">
     
     <td>Property</td>
-    <td><code><a href="#_hooks" class="internal-link" title="bottle.Bottle._hooks">​_hooks</a></code></td>
+    <td><code><a href="#_hooks" class="internal-link" title="bottle.Bottle._hooks">_hooks</a></code></td>
     <td><span class="undocumented">Undocumented</span></td>
   </tr>
 </table>
@@ -303,7 +375,7 @@ let debugging middleware handle exceptions.</td></tr></table></div>
   <div class="docstring functionBody">
     
     
-    <div>Each instance of 'Bottle' is a WSGI application.</div>
+    <div>Each instance of :class:'Bottle' is a WSGI application.</div>
   </div>
 </div><div class="basemethod">
   
@@ -347,17 +419,7 @@ let debugging middleware handle exceptions.</td></tr></table></div>
   <div class="docstring functionBody">
     
     
-    <div><p>Attach a callback to a hook. Three hooks are currently implemented:</p>
-<dl class="rst-docutils">
-<dt>before_request</dt>
-<dd>Executed once before each request. The request context is
-available, but no routing has happened yet.</dd>
-<dt>after_request</dt>
-<dd>Executed once after each request regardless of its outcome.</dd>
-<dt>app_reset</dt>
-<dd>Called whenever <code><a href="#reset" class="internal-link" title="bottle.Bottle.reset">Bottle.reset</a></code> is called.</dd>
-</dl>
-</div>
+    <div></div>
   </div>
 </div><div class="basemethod">
   
@@ -379,8 +441,7 @@ available, but no routing has happened yet.</dd>
   <div class="docstring functionBody">
     
     
-    <div>Add a route object, but do not change the <code><a href="bottle.Route.html#app" class="internal-link" title="bottle.Route.app">Route.app</a></code>
-attribute.</div>
+    <div>Add a route object, but do not change the :data:`Route.app` attribute.</div>
   </div>
 </div><div class="basemethod">
   
@@ -446,7 +507,7 @@ attribute.</div>
   <div class="docstring functionBody">
     
     
-    <div>Equals <code><a href="#route" class="internal-link" title="bottle.Bottle.route">route</a></code> with a <tt class="rst-docutils literal">DELETE</tt> method parameter.</div>
+    <div>Equals :meth:`route` with a ``DELETE`` method parameter.</div>
   </div>
 </div><div class="basemethod">
   
@@ -490,7 +551,7 @@ attribute.</div>
   <div class="docstring functionBody">
     
     
-    <div>Equals <code><a href="#route" class="internal-link" title="bottle.Bottle.route">route</a></code>.</div>
+    <div>Equals :meth:`route`.</div>
   </div>
 </div><div class="basemethod">
   
@@ -534,8 +595,7 @@ attribute.</div>
   <div class="docstring functionBody">
     
     
-    <div>Return a decorator that attaches a callback to a hook. See
-<code><a href="#add_hook" class="internal-link" title="bottle.Bottle.add_hook">add_hook</a></code> for details.</div>
+    <div>Return a decorator that attaches a callback to a hook. See :meth:`add_hook` for details.</div>
   </div>
 </div><div class="basemethod">
   
@@ -557,9 +617,7 @@ attribute.</div>
   <div class="docstring functionBody">
     
     
-    <div>Add a plugin to the list of plugins and prepare it for being
-applied to all routes of this application. A plugin may be a simple
-decorator or an object that implements the <code>Plugin</code> API.</div>
+    <div>Add a plugin to the list of plugins and prepare it for being applied to all routes of this application. A plugin may be a simple decorator or an object that implements the :class:`Plugin` API.</div>
   </div>
 </div><div class="basemethod">
   
@@ -581,9 +639,7 @@ decorator or an object that implements the <code>Plugin</code> API.</div>
   <div class="docstring functionBody">
     
     
-    <div>Search for a matching route and return a (<code><a href="bottle.Route.html" class="internal-link" title="bottle.Route">Route</a></code> , urlargs)
-tuple. The second value is a dictionary with parameters extracted
-from the URL. Raise <code><a href="bottle.HTTPError.html" class="internal-link" title="bottle.HTTPError">HTTPError</a></code> (404/405) on a non-match.</div>
+    <div>Search for a matching route and return a (:class:`Route` , urlargs) tuple. The second value is a dictionary with parameters extracted from the URL. Raise :exc:`HTTPError` (404/405) on a non-match.</div>
   </div>
 </div><div class="basemethod">
   
@@ -605,10 +661,7 @@ from the URL. Raise <code><a href="bottle.HTTPError.html" class="internal-link" 
   <div class="docstring functionBody">
     
     
-    <div>Merge the routes of another <code><a href="bottle.Bottle.html" class="internal-link" title="bottle.Bottle">Bottle</a></code> application or a list of
-<code><a href="bottle.Route.html" class="internal-link" title="bottle.Route">Route</a></code> objects into this application. The routes keep their
-'owner', meaning that the <code><a href="bottle.Route.html#app" class="internal-link" title="bottle.Route.app">Route.app</a></code> attribute is not
-changed.</div>
+    <div>Merge the routes of another :class:`Bottle` application or a list of :class:`Route` objects into this application. The routes keep their 'owner', meaning that the :data:`Route.app` attribute is not changed.</div>
   </div>
 </div><div class="basemethod">
   
@@ -630,14 +683,7 @@ changed.</div>
   <div class="docstring functionBody">
     
     
-    <div><p>Mount an application (<code><a href="bottle.Bottle.html" class="internal-link" title="bottle.Bottle">Bottle</a></code> or plain WSGI) to a specific
-URL prefix. Example:</p>
-<pre class="rst-literal-block">
-root_app.mount('/admin/', admin_app)
-</pre>
-<p>All other parameters are passed to the underlying <code><a href="#route" class="internal-link" title="bottle.Bottle.route">route</a></code> call.</p>
-<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">prefix</span></td><td class="fieldArgDesc">path prefix or <code>mount-point</code>. If it ends in a slash,
-that slash is mandatory.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">app</span></td><td class="fieldArgDesc">an instance of <code><a href="bottle.Bottle.html" class="internal-link" title="bottle.Bottle">Bottle</a></code> or a WSGI application.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">**options</span></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+    <div></div>
   </div>
 </div><div class="basemethod">
   
@@ -659,7 +705,7 @@ that slash is mandatory.</td></tr><tr><td class="fieldArgContainer"><span class=
   <div class="docstring functionBody">
     
     
-    <div>Equals <code><a href="#route" class="internal-link" title="bottle.Bottle.route">route</a></code> with a <tt class="rst-docutils literal">POST</tt> method parameter.</div>
+    <div>Equals :meth:`route` with a ``POST`` method parameter.</div>
   </div>
 </div><div class="basemethod">
   
@@ -681,7 +727,7 @@ that slash is mandatory.</td></tr><tr><td class="fieldArgContainer"><span class=
   <div class="docstring functionBody">
     
     
-    <div>Equals <code><a href="#route" class="internal-link" title="bottle.Bottle.route">route</a></code> with a <tt class="rst-docutils literal">PUT</tt> method parameter.</div>
+    <div>Equals :meth:`route` with a ``PUT`` method parameter.</div>
   </div>
 </div><div class="basemethod">
   
@@ -725,9 +771,7 @@ that slash is mandatory.</td></tr><tr><td class="fieldArgContainer"><span class=
   <div class="docstring functionBody">
     
     
-    <div>Reset all routes (force plugins to be re-applied) and clear all
-caches. If an ID or route object is given, only that specific route
-is affected.</div>
+    <div>Reset all routes (force plugins to be re-applied) and clear all caches. If an ID or route object is given, only that specific route is affected.</div>
   </div>
 </div><div class="basemethod">
   
@@ -749,23 +793,7 @@ is affected.</div>
   <div class="docstring functionBody">
     
     
-    <div><p>A decorator to bind a function to a request URL. Example:</p>
-<pre class="rst-literal-block">
-@app.route('/hello/:name')
-def hello(name):
-    return 'Hello %s' % name
-</pre>
-<p>The <tt class="rst-docutils literal">:name</tt> part is a wildcard. See <code><a href="bottle.Router.html" class="internal-link" title="bottle.Router">Router</a></code> for syntax
-details.</p>
-<p>Any additional keyword arguments are stored as route-specific
-configuration and passed to plugins (see <code>Plugin.apply</code>).</p>
-<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">path</span></td><td class="fieldArgDesc">Request path or a list of paths to listen to. If no
-path is specified, it is automatically generated from the
-signature of the function.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">method</span></td><td class="fieldArgDesc">HTTP method (<code>GET</code>, <code><a href="bottle.BaseRequest.html#POST" class="internal-link" title="bottle.BaseRequest.POST">POST</a></code>, <code>PUT</code>, ...) or a list of
-methods to listen to. (default: <code>GET</code>)</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">callback</span></td><td class="fieldArgDesc">An optional shortcut to avoid the decorator
-syntax. <tt class="rst-docutils literal"><span class="pre">route(...,</span> callback=func)</tt> equals <tt class="rst-docutils literal"><span class="pre">route(...)(func)</span></tt></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">name</span></td><td class="fieldArgDesc">The name for this route. (default: None)</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">apply</span></td><td class="fieldArgDesc">A decorator or plugin or a list of plugins. These are
-applied to the route callback in addition to installed plugins.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">skip</span></td><td class="fieldArgDesc">A list of plugins, plugin classes or names. Matching
-plugins are not installed to this route. <tt class="rst-docutils literal">True</tt> skips all.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">**config</span></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+    <div></div>
   </div>
 </div><div class="basemethod">
   
@@ -787,7 +815,7 @@ plugins are not installed to this route. <tt class="rst-docutils literal">True</
   <div class="docstring functionBody">
     
     
-    <div>Calls <code><a href="#run" class="internal-link" title="bottle.Bottle.run">run</a></code> with the same parameters.</div>
+    <div>Calls :func:`run` with the same parameters.</div>
   </div>
 </div><div class="basemethod">
   
@@ -831,10 +859,7 @@ plugins are not installed to this route. <tt class="rst-docutils literal">True</
   <div class="docstring functionBody">
     
     
-    <div>Uninstall plugins. Pass an instance to remove a specific plugin, a type
-object to remove all plugins that match that type, a string to remove
-all plugins with a matching <tt class="rst-docutils literal">name</tt> attribute or <tt class="rst-docutils literal">True</tt> to remove all
-plugins. Return the list of removed plugins.</div>
+    <div>Uninstall plugins. Pass an instance to remove a specific plugin, a type object to remove all plugins that match that type, a string to remove all plugins with a matching ``name`` attribute or ``True`` to remove all plugins. Return the list of removed plugins.</div>
   </div>
 </div><div class="basemethod">
   
@@ -1062,10 +1087,7 @@ plugins. Return the list of removed plugins.</div>
   <div class="docstring functionBody">
     
     
-    <div>Try to convert the parameter into something WSGI compatible and set
-correct HTTP headers when possible.
-Support: False, str, unicode, dict, HTTPResponse, HTTPError, file-like,
-iterable of strings and iterable of unicodes</div>
+    <div>Try to convert the parameter into something WSGI compatible and set correct HTTP headers when possible. Support: False, str, unicode, dict, HTTPResponse, HTTPError, file-like, iterable of strings and iterable of unicodes</div>
   </div>
 </div><div class="basemethod private">
   
@@ -1164,12 +1186,20 @@ iterable of strings and iterable of unicodes</div>
     </div>
 
     <footer class="navbar navbar-default">
+
   
   <div class="container">
     <a href="index.html">API Documentation</a> for bottle,
   generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
-    22.2.0 at 2022-02-23 08:05:17.
+    22.3.0.dev0 at 2022-03-22 16:59:49.
   </div>
+
+  <!-- Search related scripts needs to be loaded at the end of HTML 
+    parsing not to introduce overhead and display HTML data asap -->
+  <script src="ajax.js" type="text/javascript"></script>
+  <script src="searchlib.js" type="text/javascript"></script>
+  <script src="search.js" type="text/javascript"></script>
+
 </footer>
 
     <script src="pydoctor.js" type="text/javascript"></script>
