@@ -762,14 +762,14 @@
         </div>
 
         <div id="splitTables">
-          <table class="children sortable" id="id21">
+          <table class="children sortable" id="id662">
   
   
   <tr class="method">
     
     <td>Method</td>
     <td><code><a href="#__init__" class="internal-link" title="bs4.builder._lxml.LXMLTreeBuilderForXML.__init__">__init__</a></code></td>
-    <td><span class="undocumented">No summary</span></td>
+    <td>Constructor.</td>
   </tr><tr class="method">
     
     <td>Method</td>
@@ -789,7 +789,7 @@
     
     <td>Method</td>
     <td><code><a href="#default_parser" class="internal-link" title="bs4.builder._lxml.LXMLTreeBuilderForXML.default_parser">default<wbr></wbr>_parser</a></code></td>
-    <td><span class="undocumented">No summary</span></td>
+    <td>Find the default parser for the given encoding.</td>
   </tr><tr class="method">
     
     <td>Method</td>
@@ -824,7 +824,7 @@
     
     <td>Method</td>
     <td><code><a href="#prepare_markup" class="internal-link" title="bs4.builder._lxml.LXMLTreeBuilderForXML.prepare_markup">prepare<wbr></wbr>_markup</a></code></td>
-    <td><span class="undocumented">No summary</span></td>
+    <td>Run any preliminary steps necessary to make incoming markup acceptable to the parser.</td>
   </tr><tr class="method">
     
     <td>Method</td>
@@ -926,7 +926,7 @@
             <p class="inheritedFrom">
               Inherited from <code><a href="bs4.builder.TreeBuilder.html" class="internal-link" title="bs4.builder.TreeBuilder">TreeBuilder</a></code>:
             </p>
-            <table class="children sortable" id="id22">
+            <table class="children sortable" id="id663">
   
   
   <tr class="basemethod">
@@ -943,7 +943,7 @@
     
     <td>Method</td>
     <td><code><a href="bs4.builder.TreeBuilder.html#set_up_substitutions" class="internal-link" title="bs4.builder.TreeBuilder.set_up_substitutions">set<wbr></wbr>_up<wbr></wbr>_substitutions</a></code></td>
-    <td>Set up any substitutions that will need to be performed on a `Tag` when it's output as a string.</td>
+    <td>Set up any substitutions that will need to be performed on  a `Tag` when it's output as a string.</td>
   </tr><tr class="baseconstant">
     
     <td>Constant</td>
@@ -998,7 +998,7 @@
     
     <td>Method</td>
     <td><code><a href="bs4.builder.TreeBuilder.html#_replace_cdata_list_attribute_values" class="internal-link" title="bs4.builder.TreeBuilder._replace_cdata_list_attribute_values">_replace<wbr></wbr>_cdata<wbr></wbr>_list<wbr></wbr>_attribute<wbr></wbr>_values</a></code></td>
-    <td><span class="undocumented">No summary</span></td>
+    <td>When an attribute value is associated with a tag that can have multiple values for that attribute, convert the string value to a list of strings.</td>
   </tr>
 </table>
             
@@ -1027,7 +1027,36 @@
   <div class="docstring functionBody">
     <div class="interfaceinfo">overrides <code><a href="bs4.builder.TreeBuilder.html#__init__" class="internal-link">bs4.builder.TreeBuilder.__init__</a></code></div>
     
-    <div></div>
+    <div><p class="pre">Constructor.
+
+:param multi_valued_attributes: If this is set to None, the
+ TreeBuilder will not turn any values for attributes like
+ 'class' into lists. Setting this to a dictionary will
+ customize this behavior; look at DEFAULT_CDATA_LIST_ATTRIBUTES
+ for an example.
+
+ Internally, these are called "CDATA list attributes", but that
+ probably doesn't make sense to an end-user, so the argument name
+ is `multi_valued_attributes`.
+
+:param preserve_whitespace_tags: A list of tags to treat
+ the way &lt;pre&gt; tags are treated in HTML. Tags in this list
+ are immune from pretty-printing; their contents will always be
+ output as-is.
+
+:param string_containers: A dictionary mapping tag names to
+the classes that should be instantiated to contain the textual
+contents of those tags. The default is to use NavigableString
+for every tag, no matter what the name. You can override the
+default by changing DEFAULT_STRING_CONTAINERS.
+
+:param store_line_numbers: If the parser keeps track of the
+ line numbers and positions of the original markup, that
+ information will, by default, be stored in each corresponding
+ `Tag` object. You can turn this off by passing
+ store_line_numbers=False. If the parser you're using doesn't 
+ keep track of this information, then setting store_line_numbers=True
+ will do nothing.</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -1071,8 +1100,7 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Handle comments as Comment objects.</p>
-</div>
+    <div><p class="pre">Handle comments as Comment objects.</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -1116,7 +1144,11 @@
   <div class="docstring functionBody">
     <div class="interfaceinfo">overridden in <code><a href="bs4.builder._lxml.LXMLTreeBuilder.html" class="internal-link">bs4.builder._lxml.LXMLTreeBuilder</a></code></div>
     
-    <div></div>
+    <div><p class="pre">Find the default parser for the given encoding.
+
+:param encoding: A string.
+:return: Either a parser object or a class, which
+  will be instantiated with default arguments.</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -1182,10 +1214,13 @@
   <div class="docstring functionBody">
     <div class="interfaceinfo">overrides <code><a href="bs4.builder.TreeBuilder.html#feed" class="internal-link">bs4.builder.TreeBuilder.feed</a></code></div><div class="interfaceinfo">overridden in <code><a href="bs4.builder._lxml.LXMLTreeBuilder.html" class="internal-link">bs4.builder._lxml.LXMLTreeBuilder</a></code></div>
     
-    <div><p>Run some incoming markup through some parsing process, populating the `BeautifulSoup` object in self.soup.</p>
-<p>This method is not implemented in TreeBuilder; it must be implemented in subclasses.</p>
-<p>:return: None.</p>
-</div>
+    <div><p class="pre">Run some incoming markup through some parsing process,
+populating the `BeautifulSoup` object in self.soup.
+
+This method is not implemented in TreeBuilder; it must be
+implemented in subclasses.
+
+:return: None.</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -1207,9 +1242,10 @@
   <div class="docstring functionBody">
     <div class="interfaceinfo">overrides <code><a href="bs4.builder.TreeBuilder.html#initialize_soup" class="internal-link">bs4.builder.TreeBuilder.initialize_soup</a></code></div>
     
-    <div><p>Let the BeautifulSoup object know about the standard namespace mapping.</p>
-<p>:param soup: A `BeautifulSoup`.</p>
-</div>
+    <div><p class="pre">Let the BeautifulSoup object know about the standard namespace
+mapping.
+
+:param soup: A `BeautifulSoup`.</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -1231,9 +1267,10 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Instantiate an appropriate parser for the given encoding.</p>
-<p>:param encoding: A string. :return: A parser object such as an `etree.XMLParser`.</p>
-</div>
+    <div><p class="pre">Instantiate an appropriate parser for the given encoding.
+
+:param encoding: A string.
+:return: A parser object such as an `etree.XMLParser`.</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -1277,7 +1314,30 @@
   <div class="docstring functionBody">
     <div class="interfaceinfo">overrides <code><a href="bs4.builder.TreeBuilder.html#prepare_markup" class="internal-link">bs4.builder.TreeBuilder.prepare_markup</a></code></div>
     
-    <div></div>
+    <div><p class="pre">Run any preliminary steps necessary to make incoming markup
+acceptable to the parser.
+
+lxml really wants to get a bytestring and convert it to
+Unicode itself. So instead of using UnicodeDammit to convert
+the bytestring to Unicode using different encodings, this
+implementation uses EncodingDetector to iterate over the
+encodings, and tell lxml to try to parse the document as each
+one in turn.
+
+:param markup: Some markup -- hopefully a bytestring.
+:param user_specified_encoding: The user asked to try this encoding.
+:param document_declared_encoding: The markup itself claims to be
+    in this encoding.
+:param exclude_encodings: The user asked _not_ to try any of
+    these encodings.
+
+:yield: A series of 4-tuples:
+ (markup, encoding, declared encoding,
+  has undergone character replacement)
+
+ Each 4-tuple represents a strategy for converting the
+ document to Unicode and parsing it. Each strategy will be tried 
+ in turn.</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -1321,8 +1381,7 @@
   <div class="docstring functionBody">
     <div class="interfaceinfo">overrides <code><a href="bs4.builder.TreeBuilder.html#test_fragment_to_document" class="internal-link">bs4.builder.TreeBuilder.test_fragment_to_document</a></code></div><div class="interfaceinfo">overridden in <code><a href="bs4.builder._lxml.LXMLTreeBuilder.html" class="internal-link">bs4.builder._lxml.LXMLTreeBuilder</a></code></div>
     
-    <div><p>See `TreeBuilder`.</p>
-</div>
+    <div><p class="pre">See `TreeBuilder`.</p></div>
   </div>
 </div><div class="baseconstant">
   
@@ -1665,8 +1724,7 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Find the currently active prefix for the given namespace.</p>
-</div>
+    <div><p class="pre">Find the currently active prefix for the given namespace.</p></div>
   </div>
 </div><div class="basemethod private">
   
@@ -1688,11 +1746,17 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Let the BeautifulSoup object know about namespaces encountered while parsing the document.</p>
-<p>This might be useful later on when creating CSS selectors.</p>
-<p>This will track (almost) all namespaces, even ones that were only in scope for part of the document. If two namespaces have the same prefix, only the first one encountered will be tracked. Un-prefixed namespaces are not tracked.</p>
-<p>:param mapping: A dictionary mapping namespace prefixes to URIs.</p>
-</div>
+    <div><p class="pre">Let the BeautifulSoup object know about namespaces encountered
+while parsing the document.
+
+This might be useful later on when creating CSS selectors.
+
+This will track (almost) all namespaces, even ones that were
+only in scope for part of the document. If two namespaces have
+the same prefix, only the first one encountered will be
+tracked. Un-prefixed namespaces are not tracked.
+
+:param mapping: A dictionary mapping namespace prefixes to URIs.</p></div>
   </div>
 </div><div class="baseinstancevariable private">
   
@@ -1729,7 +1793,7 @@
   <div class="container">
     <a href="index.html">API Documentation</a> for bs4,
   generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
-    22.4.0.dev0 at 2022-04-11 16:00:53.
+    22.4.0.dev0 at 2022-04-23 04:46:24.
   </div>
 
   <!-- Search related scripts needs to be loaded at the end of HTML 

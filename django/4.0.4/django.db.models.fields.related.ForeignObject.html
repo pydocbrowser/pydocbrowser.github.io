@@ -1908,12 +1908,11 @@
         </div>
 
         <div class="moduleDocstring">
-          <div><p>Abstraction of the ForeignKey relation to support multi-column relations.</p>
-</div>
+          <div><p class="pre">Abstraction of the ForeignKey relation to support multi-column relations.</p></div>
         </div>
 
         <div id="splitTables">
-          <table class="children sortable" id="id3555">
+          <table class="children sortable" id="id4636">
   
   
   <tr class="classmethod">
@@ -1950,7 +1949,7 @@
     
     <td>Method</td>
     <td><code><a href="#deconstruct" class="internal-link" title="django.db.models.fields.related.ForeignObject.deconstruct">deconstruct</a></code></td>
-    <td><span class="undocumented">No summary</span></td>
+    <td>Return enough information to recreate the field as a 4-tuple:</td>
   </tr><tr class="method">
     
     <td>Method</td>
@@ -2077,7 +2076,7 @@
             <p class="inheritedFrom">
               Inherited from <code><a href="django.db.models.fields.related.RelatedField.html" class="internal-link" title="django.db.models.fields.related.RelatedField">RelatedField</a></code>:
             </p>
-            <table class="children sortable" id="id3556">
+            <table class="children sortable" id="id4637">
   
   
   <tr class="basemethod">
@@ -2201,7 +2200,7 @@
             <p class="inheritedFrom">
               Inherited from <code><a href="django.db.models.fields.mixins.FieldCacheMixin.html" class="internal-link" title="django.db.models.fields.mixins.FieldCacheMixin">FieldCacheMixin</a></code> (via <code><a href="django.db.models.fields.related.RelatedField.html" class="internal-link" title="django.db.models.fields.related.RelatedField">RelatedField</a></code>):
             </p>
-            <table class="children sortable" id="id3557">
+            <table class="children sortable" id="id4638">
   
   
   <tr class="basemethod">
@@ -2230,7 +2229,7 @@
             <p class="inheritedFrom">
               Inherited from <code><a href="django.db.models.fields.Field.html" class="internal-link" title="django.db.models.fields.Field">Field</a></code> (via <code><a href="django.db.models.fields.related.RelatedField.html" class="internal-link" title="django.db.models.fields.related.RelatedField">RelatedField</a></code>):
             </p>
-            <table class="children sortable" id="id3558">
+            <table class="children sortable" id="id4639">
   
   
   <tr class="basemethod">
@@ -2694,7 +2693,7 @@
             <p class="inheritedFrom">
               Inherited from <code><a href="django.db.models.query_utils.RegisterLookupMixin.html" class="internal-link" title="django.db.models.query_utils.RegisterLookupMixin">RegisterLookupMixin</a></code> (via <code><a href="django.db.models.fields.related.RelatedField.html" class="internal-link" title="django.db.models.fields.related.RelatedField">RelatedField</a></code>, <code><a href="django.db.models.fields.Field.html" class="internal-link" title="django.db.models.fields.Field">Field</a></code>):
             </p>
-            <table class="children sortable" id="id3559">
+            <table class="children sortable" id="id4640">
   
   
   <tr class="baseclassmethod">
@@ -2848,9 +2847,10 @@
   <div class="docstring functionBody">
     <div class="interfaceinfo">overrides <code><a href="django.db.models.fields.related.RelatedField.html#contribute_to_class" class="internal-link">django.db.models.fields.related.RelatedField.contribute_to_class</a></code></div>
     
-    <div><p>Register the field with the model class it belongs to.</p>
-<p>If private_only is True, create a separate instance of this field for every subclass of cls, even if cls is not an abstract model.</p>
-</div>
+    <div><p class="pre">Register the field with the model class it belongs to.
+
+If private_only is True, create a separate instance of this field
+for every subclass of cls, even if cls is not an abstract model.</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -2894,7 +2894,35 @@
   <div class="docstring functionBody">
     <div class="interfaceinfo">overrides <code><a href="django.db.models.fields.related.RelatedField.html#deconstruct" class="internal-link">django.db.models.fields.related.RelatedField.deconstruct</a></code></div><div class="interfaceinfo">overridden in <code><a href="django.db.models.fields.related.ForeignKey.html" class="internal-link">django.db.models.fields.related.ForeignKey</a></code></div>
     
-    <div></div>
+    <div><p class="pre">Return enough information to recreate the field as a 4-tuple:
+
+ * The name of the field on the model, if contribute_to_class() has
+   been run.
+ * The import path of the field, including the class, e.g.
+   django.db.models.IntegerField. This should be the most portable
+   version, so less specific may be better.
+ * A list of positional arguments.
+ * A dict of keyword arguments.
+
+Note that the positional or keyword arguments must contain values of
+the following types (including inner values of collection types):
+
+ * None, bool, str, int, float, complex, set, frozenset, list, tuple,
+   dict
+ * UUID
+ * datetime.datetime (naive), datetime.date
+ * top-level classes, top-level functions - will be referenced by their
+   full import path
+ * Storage instances - these have their own deconstruct() method
+
+This is because the values here must be serialized into a text format
+(possibly new Python code, possibly JSON) and these are the only types
+with encoding handlers defined.
+
+There's no need to return the exact way the field was instantiated this
+time, just ensure that the resulting field is the same - prefer keyword
+arguments over positional ones, and omit parameters with their default
+values.</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -2938,10 +2966,16 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Return an extra filter condition for related object fetching when user does 'instance.fieldname', that is the extra filter is used in the descriptor of the field.</p>
-<p>The filter should be either a dict usable in .filter(**kwargs) call or a Q-object. The condition will be ANDed together with the relation's joining columns.</p>
-<p>A parallel method is get_extra_restriction() which is used in JOIN and subquery conditions.</p>
-</div>
+    <div><p class="pre">Return an extra filter condition for related object fetching when
+user does 'instance.fieldname', that is the extra filter is used in
+the descriptor of the field.
+
+The filter should be either a dict usable in .filter(**kwargs) call or
+a Q-object. The condition will be ANDed together with the relation's
+joining columns.
+
+A parallel method is get_extra_restriction() which is used in
+JOIN and subquery conditions.</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -2963,10 +2997,15 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Return a pair condition used for joining and subquery pushdown. The condition is something that responds to as_sql(compiler, connection) method.</p>
-<p>Note that currently referring both the 'alias' and 'related_alias' will not work in some conditions, like subquery pushdown.</p>
-<p>A parallel method is get_extra_descriptor_filter() which is used in instance.fieldname related object fetching.</p>
-</div>
+    <div><p class="pre">Return a pair condition used for joining and subquery pushdown. The
+condition is something that responds to as_sql(compiler, connection)
+method.
+
+Note that currently referring both the 'alias' and 'related_alias'
+will not work in some conditions, like subquery pushdown.
+
+A parallel method is get_extra_descriptor_filter() which is used in
+instance.fieldname related object fetching.</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -3054,8 +3093,7 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Get path from this field to the related model.</p>
-</div>
+    <div><p class="pre">Get path from this field to the related model.</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -3099,8 +3137,7 @@
   <div class="docstring functionBody">
     <div class="interfaceinfo">overridden in <code><a href="django.db.models.fields.related.ForeignKey.html" class="internal-link">django.db.models.fields.related.ForeignKey</a></code></div>
     
-    <div><p>Get path from the related model to this field's model.</p>
-</div>
+    <div><p class="pre">Get path from the related model to this field's model.</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -3456,7 +3493,7 @@
   <div class="container">
     <a href="index.html">API Documentation</a> for django,
   generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
-    22.4.0.dev0 at 2022-04-11 16:01:21.
+    22.4.0.dev0 at 2022-04-23 04:48:04.
   </div>
 
   <!-- Search related scripts needs to be loaded at the end of HTML 

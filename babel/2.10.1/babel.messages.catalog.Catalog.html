@@ -792,12 +792,11 @@
         </div>
 
         <div class="moduleDocstring">
-          <div><p>Representation of a message catalog.</p>
-</div>
+          <div><p class="pre">Representation of a message catalog.</p></div>
         </div>
 
         <div id="splitTables">
-          <table class="children sortable" id="id23">
+          <table class="children sortable" id="id593">
   
   
   <tr class="method">
@@ -819,7 +818,7 @@
     
     <td>Method</td>
     <td><code><a href="#__init__" class="internal-link" title="babel.messages.catalog.Catalog.__init__">__init__</a></code></td>
-    <td><span class="undocumented">No summary</span></td>
+    <td>Initialize the catalog object.</td>
   </tr><tr class="method">
     
     <td>Method</td>
@@ -844,7 +843,7 @@
     
     <td>Method</td>
     <td><code><a href="#add" class="internal-link" title="babel.messages.catalog.Catalog.add">add</a></code></td>
-    <td><span class="undocumented">No summary</span></td>
+    <td>Add or update the message with the specified ID.</td>
   </tr><tr class="method">
     
     <td>Method</td>
@@ -1068,8 +1067,7 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Return whether the catalog has a message with the specified ID.</p>
-</div>
+    <div><p class="pre">Return whether the catalog has a message with the specified ID.</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -1091,8 +1089,7 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Delete the message with the specified ID.</p>
-</div>
+    <div><p class="pre">Delete the message with the specified ID.</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -1114,9 +1111,9 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Return the message with the specified ID.</p>
-<p>:param id: the message ID</p>
-</div>
+    <div><p class="pre">Return the message with the specified ID.
+
+:param id: the message ID</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -1138,7 +1135,25 @@
   <div class="docstring functionBody">
     
     
-    <div></div>
+    <div><p class="pre">Initialize the catalog object.
+
+:param locale: the locale identifier or `Locale` object, or `None`
+               if the catalog is not bound to a locale (which basically
+               means it's a template)
+:param domain: the message domain
+:param header_comment: the header comment as string, or `None` for the
+                       default header
+:param project: the project's name
+:param version: the project's version
+:param copyright_holder: the copyright holder of the catalog
+:param msgid_bugs_address: the email address or URL to submit bug
+                           reports to
+:param creation_date: the date the catalog was created
+:param revision_date: the date the catalog was revised
+:param last_translator: the name and email of the last translator
+:param language_team: the name and email of the language team
+:param charset: the encoding to use in the output (defaults to utf-8)
+:param fuzzy: the fuzzy bit on the catalog header</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -1160,9 +1175,10 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Iterates through all the entries in the catalog, in the order they were added, yielding a `Message` object for every entry.</p>
-<p>:rtype: ``iterator``</p>
-</div>
+    <div><p class="pre">Iterates through all the entries in the catalog, in the order they
+were added, yielding a `Message` object for every entry.
+
+:rtype: ``iterator``</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -1184,9 +1200,9 @@
   <div class="docstring functionBody">
     
     
-    <div><p>The number of messages in the catalog.</p>
-<p>This does not include the special ``msgid ""`` entry.</p>
-</div>
+    <div><p class="pre">The number of messages in the catalog.
+
+This does not include the special ``msgid ""`` entry.</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -1230,23 +1246,26 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Add or update the message with the specified ID.</p>
-<pre class="py-doctest">
-<span class="py-prompt">&gt;&gt;&gt; </span>catalog = Catalog()
-<span class="py-prompt">&gt;&gt;&gt; </span>catalog[u<span class="py-string">'foo'</span>] = Message(u<span class="py-string">'foo'</span>)
-<span class="py-prompt">&gt;&gt;&gt; </span>catalog[u<span class="py-string">'foo'</span>]
-<span class="py-output">&lt;Message u'foo' (flags: [])&gt;</span>
-</pre><p>If a message with that ID is already in the catalog, it is updated to include the locations and flags of the new message.</p>
-<pre class="py-doctest">
-<span class="py-prompt">&gt;&gt;&gt; </span>catalog = Catalog()
-<span class="py-prompt">&gt;&gt;&gt; </span>catalog[u<span class="py-string">'foo'</span>] = Message(u<span class="py-string">'foo'</span>, locations=[(<span class="py-string">'main.py'</span>, 1)])
-<span class="py-prompt">&gt;&gt;&gt; </span>catalog[u<span class="py-string">'foo'</span>].locations
-<span class="py-output">[('main.py', 1)]</span>
-<span class="py-prompt">&gt;&gt;&gt; </span>catalog[u<span class="py-string">'foo'</span>] = Message(u<span class="py-string">'foo'</span>, locations=[(<span class="py-string">'utils.py'</span>, 5)])
-<span class="py-prompt">&gt;&gt;&gt; </span>catalog[u<span class="py-string">'foo'</span>].locations
-<span class="py-output">[('main.py', 1), ('utils.py', 5)]</span>
-</pre><p>:param id: the message ID :param message: the `Message` object</p>
-</div>
+    <div><p class="pre">Add or update the message with the specified ID.
+
+&gt;&gt;&gt; catalog = Catalog()
+&gt;&gt;&gt; catalog[u'foo'] = Message(u'foo')
+&gt;&gt;&gt; catalog[u'foo']
+&lt;Message u'foo' (flags: [])&gt;
+
+If a message with that ID is already in the catalog, it is updated
+to include the locations and flags of the new message.
+
+&gt;&gt;&gt; catalog = Catalog()
+&gt;&gt;&gt; catalog[u'foo'] = Message(u'foo', locations=[('main.py', 1)])
+&gt;&gt;&gt; catalog[u'foo'].locations
+[('main.py', 1)]
+&gt;&gt;&gt; catalog[u'foo'] = Message(u'foo', locations=[('utils.py', 5)])
+&gt;&gt;&gt; catalog[u'foo'].locations
+[('main.py', 1), ('utils.py', 5)]
+
+:param id: the message ID
+:param message: the `Message` object</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -1268,7 +1287,30 @@
   <div class="docstring functionBody">
     
     
-    <div></div>
+    <div><p class="pre">Add or update the message with the specified ID.
+
+&gt;&gt;&gt; catalog = Catalog()
+&gt;&gt;&gt; catalog.add(u'foo')
+&lt;Message ...&gt;
+&gt;&gt;&gt; catalog[u'foo']
+&lt;Message u'foo' (flags: [])&gt;
+
+This method simply constructs a `Message` object with the given
+arguments and invokes `__setitem__` with that object.
+
+:param id: the message ID, or a ``(singular, plural)`` tuple for
+           pluralizable messages
+:param string: the translated message string, or a
+               ``(singular, plural)`` tuple for pluralizable messages
+:param locations: a sequence of ``(filename, lineno)`` tuples
+:param flags: a set or sequence of flags
+:param auto_comments: a sequence of automatic comments
+:param user_comments: a sequence of user comments
+:param previous_id: the previous message ID, or a ``(singular, plural)``
+                    tuple for pluralizable messages
+:param lineno: the line number on which the msgid line was found in the
+               PO file, if any
+:param context: the message context</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -1290,10 +1332,13 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Run various validation checks on the translations in the catalog.</p>
-<p>For every message which fails validation, this method yield a ``(message, errors)`` tuple, where ``message`` is the `Message` object and ``errors`` is a sequence of `TranslationError` objects.</p>
-<p>:rtype: ``iterator``</p>
-</div>
+    <div><p class="pre">Run various validation checks on the translations in the catalog.
+
+For every message which fails validation, this method yield a
+``(message, errors)`` tuple, where ``message`` is the `Message` object
+and ``errors`` is a sequence of `TranslationError` objects.
+
+:rtype: ``iterator``</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -1315,9 +1360,10 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Delete the message with the specified ID and context.</p>
-<p>:param id: the message ID :param context: the message context, or ``None`` for no context</p>
-</div>
+    <div><p class="pre">Delete the message with the specified ID and context.
+
+:param id: the message ID
+:param context: the message context, or ``None`` for no context</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -1339,9 +1385,10 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Return the message with the specified ID and context.</p>
-<p>:param id: the message ID :param context: the message context, or ``None`` for no context</p>
-</div>
+    <div><p class="pre">Return the message with the specified ID and context.
+
+:param id: the message ID
+:param context: the message context, or ``None`` for no context</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -1363,8 +1410,8 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Checks if catalogs are identical, taking into account messages and headers.</p>
-</div>
+    <div><p class="pre">Checks if catalogs are identical, taking into account messages and
+headers.</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -1386,53 +1433,57 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Update the catalog based on the given template catalog.</p>
-<pre class="py-doctest">
-<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">from</span> babel.messages <span class="py-keyword">import</span> Catalog
-<span class="py-prompt">&gt;&gt;&gt; </span>template = Catalog()
-<span class="py-prompt">&gt;&gt;&gt; </span>template.add(<span class="py-string">'green'</span>, locations=[(<span class="py-string">'main.py'</span>, 99)])
-<span class="py-output">&lt;Message ...&gt;</span>
-<span class="py-prompt">&gt;&gt;&gt; </span>template.add(<span class="py-string">'blue'</span>, locations=[(<span class="py-string">'main.py'</span>, 100)])
-<span class="py-output">&lt;Message ...&gt;</span>
-<span class="py-prompt">&gt;&gt;&gt; </span>template.add((<span class="py-string">'salad'</span>, <span class="py-string">'salads'</span>), locations=[(<span class="py-string">'util.py'</span>, 42)])
-<span class="py-output">&lt;Message ...&gt;</span>
-<span class="py-prompt">&gt;&gt;&gt; </span>catalog = Catalog(locale=<span class="py-string">'de_DE'</span>)
-<span class="py-prompt">&gt;&gt;&gt; </span>catalog.add(<span class="py-string">'blue'</span>, u<span class="py-string">'blau'</span>, locations=[(<span class="py-string">'main.py'</span>, 98)])
-<span class="py-output">&lt;Message ...&gt;</span>
-<span class="py-prompt">&gt;&gt;&gt; </span>catalog.add(<span class="py-string">'head'</span>, u<span class="py-string">'Kopf'</span>, locations=[(<span class="py-string">'util.py'</span>, 33)])
-<span class="py-output">&lt;Message ...&gt;</span>
-<span class="py-prompt">&gt;&gt;&gt; </span>catalog.add((<span class="py-string">'salad'</span>, <span class="py-string">'salads'</span>), (u<span class="py-string">'Salat'</span>, u<span class="py-string">'Salate'</span>),
-<span class="py-more">... </span>            locations=[(<span class="py-string">'util.py'</span>, 38)])
-<span class="py-output">&lt;Message ...&gt;</span>
-</pre><pre class="py-doctest">
-<span class="py-prompt">&gt;&gt;&gt; </span>catalog.update(template)
-<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-builtin">len</span>(catalog)
-<span class="py-output">3</span>
-</pre><pre class="py-doctest">
-<span class="py-prompt">&gt;&gt;&gt; </span>msg1 = catalog[<span class="py-string">'green'</span>]
-<span class="py-prompt">&gt;&gt;&gt; </span>msg1.string
-<span class="py-prompt">&gt;&gt;&gt; </span>msg1.locations
-<span class="py-output">[('main.py', 99)]</span>
-</pre><pre class="py-doctest">
-<span class="py-prompt">&gt;&gt;&gt; </span>msg2 = catalog[<span class="py-string">'blue'</span>]
-<span class="py-prompt">&gt;&gt;&gt; </span>msg2.string
-<span class="py-output">u'blau'</span>
-<span class="py-prompt">&gt;&gt;&gt; </span>msg2.locations
-<span class="py-output">[('main.py', 100)]</span>
-</pre><pre class="py-doctest">
-<span class="py-prompt">&gt;&gt;&gt; </span>msg3 = catalog[<span class="py-string">'salad'</span>]
-<span class="py-prompt">&gt;&gt;&gt; </span>msg3.string
-<span class="py-output">(u'Salat', u'Salate')</span>
-<span class="py-prompt">&gt;&gt;&gt; </span>msg3.locations
-<span class="py-output">[('util.py', 42)]</span>
-</pre><p>Messages that are in the catalog but not in the template are removed from the main collection, but can still be accessed via the `obsolete` member:</p>
-<pre class="py-doctest">
-<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-string">'head'</span> <span class="py-keyword">in</span> catalog
-<span class="py-output">False</span>
-<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-builtin">list</span>(catalog.obsolete.values())
-<span class="py-output">[&lt;Message 'head' (flags: [])&gt;]</span>
-</pre><p>:param template: the reference catalog, usually read from a POT file :param no_fuzzy_matching: whether to use fuzzy matching of message IDs</p>
-</div>
+    <div><p class="pre">Update the catalog based on the given template catalog.
+
+&gt;&gt;&gt; from babel.messages import Catalog
+&gt;&gt;&gt; template = Catalog()
+&gt;&gt;&gt; template.add('green', locations=[('main.py', 99)])
+&lt;Message ...&gt;
+&gt;&gt;&gt; template.add('blue', locations=[('main.py', 100)])
+&lt;Message ...&gt;
+&gt;&gt;&gt; template.add(('salad', 'salads'), locations=[('util.py', 42)])
+&lt;Message ...&gt;
+&gt;&gt;&gt; catalog = Catalog(locale='de_DE')
+&gt;&gt;&gt; catalog.add('blue', u'blau', locations=[('main.py', 98)])
+&lt;Message ...&gt;
+&gt;&gt;&gt; catalog.add('head', u'Kopf', locations=[('util.py', 33)])
+&lt;Message ...&gt;
+&gt;&gt;&gt; catalog.add(('salad', 'salads'), (u'Salat', u'Salate'),
+...             locations=[('util.py', 38)])
+&lt;Message ...&gt;
+
+&gt;&gt;&gt; catalog.update(template)
+&gt;&gt;&gt; len(catalog)
+3
+
+&gt;&gt;&gt; msg1 = catalog['green']
+&gt;&gt;&gt; msg1.string
+&gt;&gt;&gt; msg1.locations
+[('main.py', 99)]
+
+&gt;&gt;&gt; msg2 = catalog['blue']
+&gt;&gt;&gt; msg2.string
+u'blau'
+&gt;&gt;&gt; msg2.locations
+[('main.py', 100)]
+
+&gt;&gt;&gt; msg3 = catalog['salad']
+&gt;&gt;&gt; msg3.string
+(u'Salat', u'Salate')
+&gt;&gt;&gt; msg3.locations
+[('util.py', 42)]
+
+Messages that are in the catalog but not in the template are removed
+from the main collection, but can still be accessed via the `obsolete`
+member:
+
+&gt;&gt;&gt; 'head' in catalog
+False
+&gt;&gt;&gt; list(catalog.obsolete.values())
+[&lt;Message 'head' (flags: [])&gt;]
+
+:param template: the reference catalog, usually read from a POT file
+:param no_fuzzy_matching: whether to use fuzzy matching of message IDs</p></div>
   </div>
 </div><div class="baseclassvariable">
   
@@ -1638,8 +1689,7 @@
   <div class="functionBody">
     
     
-    <div><p>Name and email address of the language team.</p>
-</div>
+    <div><p class="pre">Name and email address of the language team.</p></div>
     
   </div>
 </div><div class="baseinstancevariable">
@@ -1662,8 +1712,7 @@
   <div class="functionBody">
     
     
-    <div><p>Name and email address of the last translator.</p>
-</div>
+    <div><p class="pre">Name and email address of the last translator.</p></div>
     
   </div>
 </div><div class="baseinstancevariable">
@@ -1824,14 +1873,14 @@
   <div class="functionBody">
     
     
-    <div><p>The number of plurals used by the catalog or locale.</p>
-<pre class="py-doctest">
-<span class="py-prompt">&gt;&gt;&gt; </span>Catalog(locale=<span class="py-string">'en'</span>).num_plurals
-<span class="py-output">2</span>
-<span class="py-prompt">&gt;&gt;&gt; </span>Catalog(locale=<span class="py-string">'ga'</span>).num_plurals
-<span class="py-output">5</span>
-</pre><p>:type: `int`</p>
-</div>
+    <div><p class="pre">The number of plurals used by the catalog or locale.
+
+&gt;&gt;&gt; Catalog(locale='en').num_plurals
+2
+&gt;&gt;&gt; Catalog(locale='ga').num_plurals
+5
+
+:type: `int`</p></div>
     
   </div>
 </div><div class="baseproperty">
@@ -1854,16 +1903,16 @@
   <div class="functionBody">
     
     
-    <div><p>The plural expression used by the catalog or locale.</p>
-<pre class="py-doctest">
-<span class="py-prompt">&gt;&gt;&gt; </span>Catalog(locale=<span class="py-string">'en'</span>).plural_expr
-<span class="py-output">'(n != 1)'</span>
-<span class="py-prompt">&gt;&gt;&gt; </span>Catalog(locale=<span class="py-string">'ga'</span>).plural_expr
-<span class="py-output">'(n==1 ? 0 : n==2 ? 1 : n&gt;=3 &amp;&amp; n&lt;=6 ? 2 : n&gt;=7 &amp;&amp; n&lt;=10 ? 3 : 4)'</span>
-<span class="py-prompt">&gt;&gt;&gt; </span>Catalog(locale=<span class="py-string">'ding'</span>).plural_expr  <span class="py-comment"># unknown locale</span>
-<span class="py-output">'(n != 1)'</span>
-</pre><p>:type: `str`</p>
-</div>
+    <div><p class="pre">The plural expression used by the catalog or locale.
+
+&gt;&gt;&gt; Catalog(locale='en').plural_expr
+'(n != 1)'
+&gt;&gt;&gt; Catalog(locale='ga').plural_expr
+'(n==1 ? 0 : n==2 ? 1 : n&gt;=3 &amp;&amp; n&lt;=6 ? 2 : n&gt;=7 &amp;&amp; n&lt;=10 ? 3 : 4)'
+&gt;&gt;&gt; Catalog(locale='ding').plural_expr  # unknown locale
+'(n != 1)'
+
+:type: `str`</p></div>
     
   </div>
 </div><div class="baseproperty">
@@ -1886,14 +1935,14 @@
   <div class="functionBody">
     
     
-    <div><p>Return the plural forms declaration for the locale.</p>
-<pre class="py-doctest">
-<span class="py-prompt">&gt;&gt;&gt; </span>Catalog(locale=<span class="py-string">'en'</span>).plural_forms
-<span class="py-output">'nplurals=2; plural=(n != 1);'</span>
-<span class="py-prompt">&gt;&gt;&gt; </span>Catalog(locale=<span class="py-string">'pt_BR'</span>).plural_forms
-<span class="py-output">'nplurals=2; plural=(n &gt; 1);'</span>
-</pre><p>:type: `str`</p>
-</div>
+    <div><p class="pre">Return the plural forms declaration for the locale.
+
+&gt;&gt;&gt; Catalog(locale='en').plural_forms
+'nplurals=2; plural=(n != 1);'
+&gt;&gt;&gt; Catalog(locale='pt_BR').plural_forms
+'nplurals=2; plural=(n &gt; 1);'
+
+:type: `str`</p></div>
     
   </div>
 </div><div class="basemethod private">
@@ -2026,8 +2075,9 @@
   <div class="docstring functionBody">
     
     
-    <div><p>The key for a message is just the singular ID even for pluralizable messages, but is a ``(msgid, msgctxt)`` tuple for context-specific messages.</p>
-</div>
+    <div><p class="pre">The key for a message is just the singular ID even for pluralizable
+messages, but is a ``(msgid, msgctxt)`` tuple for context-specific
+messages.</p></div>
   </div>
 </div><div class="basemethod private">
   
@@ -2245,7 +2295,7 @@
   <div class="container">
     <a href="index.html">API Documentation</a> for babel,
   generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
-    22.4.0.dev0 at 2022-04-21 01:03:37.
+    22.4.0.dev0 at 2022-04-23 04:46:09.
   </div>
 
   <!-- Search related scripts needs to be loaded at the end of HTML 

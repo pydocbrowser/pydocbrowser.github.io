@@ -449,15 +449,18 @@
         </div>
 
         <div class="moduleDocstring">
-          <div><p>Parsing context with knowledge of flags &amp; their format.</p>
-<p>Generally associated with the core program or a task.</p>
-<p>When run through a parser, will also hold runtime values filled in by the parser.</p>
-<p>.. versionadded:: 1.0</p>
-</div>
+          <div><p class="pre">Parsing context with knowledge of flags &amp; their format.
+
+Generally associated with the core program or a task.
+
+When run through a parser, will also hold runtime values filled in by the
+parser.
+
+.. versionadded:: 1.0</p></div>
         </div>
 
         <div id="splitTables">
-          <table class="children sortable" id="id5903">
+          <table class="children sortable" id="id10715">
   
   
   <tr class="method">
@@ -474,7 +477,7 @@
     
     <td>Method</td>
     <td><code><a href="#add_arg" class="internal-link" title="invoke.parser.context.ParserContext.add_arg">add<wbr></wbr>_arg</a></code></td>
-    <td><span class="undocumented">No summary</span></td>
+    <td>Adds given ``Argument`` (or constructor args for one) to this context.</td>
   </tr><tr class="method">
     
     <td>Method</td>
@@ -489,7 +492,7 @@
     
     <td>Method</td>
     <td><code><a href="#help_tuples" class="internal-link" title="invoke.parser.context.ParserContext.help_tuples">help<wbr></wbr>_tuples</a></code></td>
-    <td><span class="undocumented">No summary</span></td>
+    <td>Return sorted iterable of help tuples for all member Arguments.</td>
   </tr><tr class="method">
     
     <td>Method</td>
@@ -563,11 +566,18 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Create a new ``ParserContext`` named ``name``, with ``aliases``.</p>
-<p>``name`` is optional, and should be a string if given. It's used to tell ParserContext objects apart, and for use in a Parser when determining what chunk of input might belong to a given ParserContext.</p>
-<p>``aliases`` is also optional and should be an iterable containing strings. Parsing will honor any aliases when trying to "find" a given context in its input.</p>
-<p>May give one or more ``args``, which is a quick alternative to calling ``for arg in args: self.add_arg(arg)`` after initialization.</p>
-</div>
+    <div><p class="pre">Create a new ``ParserContext`` named ``name``, with ``aliases``.
+
+``name`` is optional, and should be a string if given. It's used to
+tell ParserContext objects apart, and for use in a Parser when
+determining what chunk of input might belong to a given ParserContext.
+
+``aliases`` is also optional and should be an iterable containing
+strings. Parsing will honor any aliases when trying to "find" a given
+context in its input.
+
+May give one or more ``args``, which is a quick alternative to calling
+``for arg in args: self.add_arg(arg)`` after initialization.</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -611,7 +621,20 @@
   <div class="docstring functionBody">
     
     
-    <div></div>
+    <div><p class="pre">Adds given ``Argument`` (or constructor args for one) to this context.
+
+The Argument in question is added to the following dict attributes:
+
+* ``args``: "normal" access, i.e. the given names are directly exposed
+  as keys.
+* ``flags``: "flaglike" access, i.e. the given names are translated
+  into CLI flags, e.g. ``"foo"`` is accessible via ``flags['--foo']``.
+* ``inverse_flags``: similar to ``flags`` but containing only the
+  "inverse" versions of boolean flags which default to True. This
+  allows the parser to track e.g. ``--no-myflag`` and turn it into a
+  False value for the ``myflag`` Argument.
+
+.. versionadded:: 1.0</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -633,10 +656,11 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Similar to `help_tuples` but returns flag names only, no helpstrs.</p>
-<p>Specifically, all flag names, flattened, in rough order.</p>
-<p>.. versionadded:: 1.0</p>
-</div>
+    <div><p class="pre">Similar to `help_tuples` but returns flag names only, no helpstrs.
+
+Specifically, all flag names, flattened, in rough order.
+
+.. versionadded:: 1.0</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -658,9 +682,9 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Return 2-tuple of ``(flag-spec, help-string)`` for given ``flag``.</p>
-<p>.. versionadded:: 1.0</p>
-</div>
+    <div><p class="pre">Return 2-tuple of ``(flag-spec, help-string)`` for given ``flag``.
+
+.. versionadded:: 1.0</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -682,7 +706,26 @@
   <div class="docstring functionBody">
     
     
-    <div></div>
+    <div><p class="pre">Return sorted iterable of help tuples for all member Arguments.
+
+Sorts like so:
+
+* General sort is alphanumerically
+* Short flags win over long flags
+* Arguments with *only* long flags and *no* short flags will come
+  first.
+* When an Argument has multiple long or short flags, it will sort using
+  the most favorable (lowest alphabetically) candidate.
+
+This will result in a help list like so::
+
+    --alpha, --zeta # 'alpha' wins
+    --beta
+    -a, --query # short flag wins
+    -b, --argh
+    -c
+
+.. versionadded:: 1.0</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -864,10 +907,12 @@
   <div class="functionBody">
     
     
-    <div><p>This context's arguments' values keyed by their ``.name`` attribute.</p>
-<p>Results in a dict suitable for use in Python contexts, where e.g. an arg named ``foo-bar`` becomes accessible as ``foo_bar``.</p>
-<p>.. versionadded:: 1.0</p>
-</div>
+    <div><p class="pre">This context's arguments' values keyed by their ``.name`` attribute.
+
+Results in a dict suitable for use in Python contexts, where e.g. an
+arg named ``foo-bar`` becomes accessible as ``foo_bar``.
+
+.. versionadded:: 1.0</p></div>
     
   </div>
 </div><div class="baseproperty">
@@ -905,7 +950,7 @@
   <div class="container">
     <a href="index.html">API Documentation</a> for invoke,
   generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
-    22.4.0.dev0 at 2022-04-11 16:10:53.
+    22.4.0.dev0 at 2022-04-23 06:42:04.
   </div>
 
   <!-- Search related scripts needs to be loaded at the end of HTML 

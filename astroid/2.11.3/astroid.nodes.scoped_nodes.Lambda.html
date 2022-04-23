@@ -685,13 +685,12 @@
         </div>
 
         <div class="moduleDocstring">
-          <div><p>Class representing an :class:`ast.Lambda` node.</p>
-<pre class="py-doctest">
-<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">import</span> astroid
-<span class="py-prompt">&gt;&gt;&gt; </span>node = astroid.extract_node(<span class="py-string">'lambda arg: arg + 1'</span>)
-<span class="py-prompt">&gt;&gt;&gt; </span>node
-<span class="py-output">&lt;Lambda.&lt;lambda&gt; l.1 at 0x7f23b2e41518&gt;</span>
-</pre></div>
+          <div><p class="pre">Class representing an :class:`ast.Lambda` node.
+
+&gt;&gt;&gt; import astroid
+&gt;&gt;&gt; node = astroid.extract_node('lambda arg: arg + 1')
+&gt;&gt;&gt; node
+&lt;Lambda.&lt;lambda&gt; l.1 at 0x7f23b2e41518&gt;</p></div>
         </div>
 
         <div id="splitTables">
@@ -702,7 +701,7 @@
     
     <td>Method</td>
     <td><code><a href="#__init__" class="internal-link" title="astroid.nodes.scoped_nodes.Lambda.__init__">__init__</a></code></td>
-    <td><span class="undocumented">No summary</span></td>
+    <td>:param lineno: The line that this node appears on in the source code. :type lineno: int or None</td>
   </tr><tr class="method">
     
     <td>Method</td>
@@ -712,12 +711,12 @@
     
     <td>Method</td>
     <td><code><a href="#bool_value" class="internal-link" title="astroid.nodes.scoped_nodes.Lambda.bool_value">bool<wbr></wbr>_value</a></code></td>
-    <td><span class="undocumented">No summary</span></td>
+    <td>Determine the boolean value of this node.</td>
   </tr><tr class="method">
     
     <td>Method</td>
     <td><code><a href="#callable" class="internal-link" title="astroid.nodes.scoped_nodes.Lambda.callable">callable</a></code></td>
-    <td><span class="undocumented">No summary</span></td>
+    <td>Whether this node defines something that is callable.</td>
   </tr><tr class="method">
     
     <td>Method</td>
@@ -762,7 +761,7 @@
     
     <td>Method</td>
     <td><code><a href="#scope_lookup" class="internal-link" title="astroid.nodes.scoped_nodes.Lambda.scope_lookup">scope<wbr></wbr>_lookup</a></code></td>
-    <td><span class="undocumented">No summary</span></td>
+    <td>Lookup where the given names is assigned.</td>
   </tr><tr class="classvariable">
     
     <td>Class Variable</td>
@@ -860,7 +859,22 @@
   <div class="docstring functionBody">
     <div class="interfaceinfo">overridden in <code><a href="astroid.nodes.scoped_nodes.FunctionDef.html" class="internal-link">astroid.nodes.scoped_nodes.FunctionDef</a></code></div>
     
-    <div></div>
+    <div><p class="pre">:param lineno: The line that this node appears on in the source code.
+:type lineno: int or None
+
+:param col_offset: The column that this node appears on in the
+    source code.
+:type col_offset: int or None
+
+:param parent: The parent node in the syntax tree.
+:type parent: NodeNG or None
+
+:param end_lineno: The last line this node appears on in the source code.
+:type end_lineno: Optional[int]
+
+:param end_col_offset: The end column this node appears on in the
+    source code. Note: This is after the last symbol.
+:type end_col_offset: Optional[int]</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -882,9 +896,12 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Get the names of each of the arguments, including that of the collections of variable-length arguments ("args", "kwargs", etc.), as well as positional-only and keyword-only arguments.</p>
-<p>:returns: The names of the arguments. :rtype: list(str)</p>
-<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code>List[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+    <div><p class="pre">Get the names of each of the arguments, including that
+of the collections of variable-length arguments ("args", "kwargs",
+etc.), as well as positional-only and keyword-only arguments.
+
+:returns: The names of the arguments.
+:rtype: list(str)</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code>List[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basemethod">
   
@@ -906,7 +923,11 @@
   <div class="docstring functionBody">
     <div class="interfaceinfo">overridden in <code><a href="astroid.nodes.scoped_nodes.FunctionDef.html" class="internal-link">astroid.nodes.scoped_nodes.FunctionDef</a></code></div>
     
-    <div></div>
+    <div><p class="pre">Determine the boolean value of this node.
+
+:returns: The boolean value of this node.
+    For a :class:`Lambda` this is always ``True``.
+:rtype: bool</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -928,7 +949,12 @@
   <div class="docstring functionBody">
     
     
-    <div></div>
+    <div><p class="pre">Whether this node defines something that is callable.
+
+:returns: True if this defines something that is callable,
+    False otherwise.
+    For a :class:`Lambda` this is always ``True``.
+:rtype: bool</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -950,9 +976,10 @@
   <div class="docstring functionBody">
     
     
-    <div><p>A human readable type of this node.</p>
-<p>:returns: The type of this node. :rtype: str</p>
-</div>
+    <div><p class="pre">A human readable type of this node.
+
+:returns: The type of this node.
+:rtype: str</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -974,10 +1001,12 @@
   <div class="docstring functionBody">
     <div class="interfaceinfo">overridden in <code><a href="astroid.nodes.scoped_nodes.FunctionDef.html" class="internal-link">astroid.nodes.scoped_nodes.FunctionDef</a></code></div>
     
-    <div><p>The node's frame node.</p>
-<p>A frame node is a :class:`Module`, :class:`FunctionDef`, :class:`ClassDef` or :class:`Lambda`.</p>
-<p>:returns: The node itself.</p>
-<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">future:</span><code>Literal[<wbr></wbr><a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, <wbr></wbr><a href="https://docs.python.org/3/library/constants.html#True" class="intersphinx-link">True</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code>T</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+    <div><p class="pre">The node's frame node.
+
+A frame node is a :class:`Module`, :class:`FunctionDef`,
+:class:`ClassDef` or :class:`Lambda`.
+
+:returns: The node itself.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">future:</span><code>Literal[<wbr></wbr><a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, <wbr></wbr><a href="https://docs.python.org/3/library/constants.html#True" class="intersphinx-link">True</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code>T</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basemethod">
   
@@ -1065,9 +1094,10 @@
   <div class="docstring functionBody">
     <div class="interfaceinfo">overridden in <code><a href="astroid.nodes.scoped_nodes.FunctionDef.html" class="internal-link">astroid.nodes.scoped_nodes.FunctionDef</a></code></div>
     
-    <div><p>Infer what the function returns when called.</p>
-<p>:param caller: Unused :type caller: object</p>
-</div>
+    <div><p class="pre">Infer what the function returns when called.
+
+:param caller: Unused
+:type caller: object</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -1089,10 +1119,12 @@
   <div class="docstring functionBody">
     <div class="interfaceinfo">overridden in <code><a href="astroid.nodes.scoped_nodes.FunctionDef.html" class="internal-link">astroid.nodes.scoped_nodes.FunctionDef</a></code></div>
     
-    <div><p>Do some setup after initialisation.</p>
-<p>:param args: The arguments that the function takes.</p>
-<p>:param body: The contents of the function body. :type body: list(NodeNG)</p>
-<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">args:</span><code>Arguments</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">body</span></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+    <div><p class="pre">Do some setup after initialisation.
+
+:param args: The arguments that the function takes.
+
+:param body: The contents of the function body.
+:type body: list(NodeNG)</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">args:</span><code>Arguments</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">body</span></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basemethod">
   
@@ -1114,9 +1146,10 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Get the name of the type that this node represents.</p>
-<p>:returns: The name of the type. :rtype: str</p>
-</div>
+    <div><p class="pre">Get the name of the type that this node represents.
+
+:returns: The name of the type.
+:rtype: str</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -1138,7 +1171,22 @@
   <div class="docstring functionBody">
     <div class="interfaceinfo">overridden in <code><a href="astroid.nodes.scoped_nodes.FunctionDef.html" class="internal-link">astroid.nodes.scoped_nodes.FunctionDef</a></code></div>
     
-    <div></div>
+    <div><p class="pre">Lookup where the given names is assigned.
+
+:param node: The node to look for assignments up to.
+    Any assignments after the given node are ignored.
+:type node: NodeNG
+
+:param name: The name to find assignments for.
+:type name: str
+
+:param offset: The line offset to filter statements up to.
+:type offset: int
+
+:returns: This scope node and the list of assignments associated to the
+    given name according to the scope where it has been found (locals,
+    globals or builtin).
+:rtype: tuple(str, list(NodeNG))</p></div>
   </div>
 </div><div class="baseclassvariable">
   
@@ -1206,8 +1254,7 @@
   <div class="functionBody">
     
     
-    <div><p>The names of special attributes that this function has.</p>
-</div>
+    <div><p class="pre">The names of special attributes that this function has.</p></div>
     
   </div>
 </div><div class="baseinstancevariable">
@@ -1230,8 +1277,7 @@
   <div class="functionBody">
     <div class="interfaceinfo">overridden in <code><a href="astroid.nodes.scoped_nodes.FunctionDef.html" class="internal-link">astroid.nodes.scoped_nodes.FunctionDef</a></code></div>
     
-    <div><p>The arguments that the function takes.</p>
-</div>
+    <div><p class="pre">The arguments that the function takes.</p></div>
     
   </div>
 </div><div class="baseinstancevariable">
@@ -1254,9 +1300,9 @@
   <div class="functionBody">
     <div class="interfaceinfo">overridden in <code><a href="astroid.nodes.scoped_nodes.FunctionDef.html" class="internal-link">astroid.nodes.scoped_nodes.FunctionDef</a></code></div>
     
-    <div><p>The contents of the function body.</p>
-<p>:type: list(NodeNG)</p>
-</div>
+    <div><p class="pre">The contents of the function body.
+
+:type: list(NodeNG)</p></div>
     
   </div>
 </div><div class="baseinstancevariable">
@@ -1302,9 +1348,9 @@
   <div class="functionBody">
     
     
-    <div><p>A map of the name of a local variable to the node defining it.</p>
-<p>:type: dict(str, NodeNG)</p>
-</div>
+    <div><p class="pre">A map of the name of a local variable to the node defining it.
+
+:type: dict(str, NodeNG)</p></div>
     
   </div>
 </div><div class="baseproperty">
@@ -1327,9 +1373,10 @@
   <div class="functionBody">
     <div class="interfaceinfo">overridden in <code><a href="astroid.nodes.scoped_nodes.FunctionDef.html" class="internal-link">astroid.nodes.scoped_nodes.FunctionDef</a></code></div>
     
-    <div><p>Whether this is a method or function.</p>
-<p>:returns: 'method' if this is a method, 'function' otherwise. :rtype: str</p>
-</div>
+    <div><p class="pre">Whether this is a method or function.
+
+:returns: 'method' if this is a method, 'function' otherwise.
+:rtype: str</p></div>
     
   </div>
 </div><div class="baseclassvariable private">
@@ -1390,7 +1437,7 @@
   <div class="container">
     <a href="index.html">API Documentation</a> for astroid,
   generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
-    22.4.0.dev0 at 2022-04-20 01:08:25.
+    22.4.0.dev0 at 2022-04-23 04:44:39.
   </div>
 
   <!-- Search related scripts needs to be loaded at the end of HTML 

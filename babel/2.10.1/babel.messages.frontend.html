@@ -459,11 +459,17 @@
         </div>
 
         <div class="moduleDocstring">
-          <div></div>
+          <div><p class="pre">babel.messages.frontend
+~~~~~~~~~~~~~~~~~~~~~~~
+
+Frontends for the message extraction functionality.
+
+:copyright: (c) 2013-2022 by the Babel Team.
+:license: BSD, see LICENSE for more details.</p></div>
         </div>
 
         <div id="splitTables">
-          <table class="children sortable" id="id26">
+          <table class="children sortable" id="id596">
   
   
   <tr class="class">
@@ -500,7 +506,7 @@
     
     <td>Function</td>
     <td><code><a href="#check_message_extractors" class="internal-link" title="babel.messages.frontend.check_message_extractors">check<wbr></wbr>_message<wbr></wbr>_extractors</a></code></td>
-    <td><span class="undocumented">No summary</span></td>
+    <td>Validate the ``message_extractors`` keyword argument to ``setup()``.</td>
   </tr><tr class="function">
     
     <td>Function</td>
@@ -520,7 +526,7 @@
     
     <td>Function</td>
     <td><code><a href="#parse_mapping" class="internal-link" title="babel.messages.frontend.parse_mapping">parse<wbr></wbr>_mapping</a></code></td>
-    <td><span class="undocumented">No summary</span></td>
+    <td>Parse an extraction method mapping from a file-like object.</td>
   </tr><tr class="variable">
     
     <td>Variable</td>
@@ -559,7 +565,13 @@
   <div class="docstring functionBody">
     
     
-    <div></div>
+    <div><p class="pre">Validate the ``message_extractors`` keyword argument to ``setup()``.
+
+:param dist: the distutils/setuptools ``Distribution`` object
+:param name: the name of the keyword argument (should always be
+             "message_extractors")
+:param value: the value of the keyword argument
+:raise `DistutilsSetupError`: if the value is not valid</p></div>
   </div>
 </div><div class="basefunction">
   
@@ -581,22 +593,29 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Make a list out of an argument.</p>
-<p>Values from `distutils` argument parsing are always single strings; values from `optparse` parsing may be lists of strings that may need to be further split.</p>
-<p>No matter the input, this function returns a flat list of whitespace-trimmed strings, with `None` values filtered out.</p>
-<pre class="py-doctest">
-<span class="py-prompt">&gt;&gt;&gt; </span>listify_value(<span class="py-string">"foo bar"</span>)
-<span class="py-output">['foo', 'bar']</span>
-<span class="py-prompt">&gt;&gt;&gt; </span>listify_value([<span class="py-string">"foo bar"</span>])
-<span class="py-output">['foo', 'bar']</span>
-<span class="py-prompt">&gt;&gt;&gt; </span>listify_value([[<span class="py-string">"foo"</span>], <span class="py-string">"bar"</span>])
-<span class="py-output">['foo', 'bar']</span>
-<span class="py-prompt">&gt;&gt;&gt; </span>listify_value([[<span class="py-string">"foo"</span>], [<span class="py-string">"bar"</span>, <span class="py-builtin">None</span>, <span class="py-string">"foo"</span>]])
-<span class="py-output">['foo', 'bar', 'foo']</span>
-<span class="py-prompt">&gt;&gt;&gt; </span>listify_value(<span class="py-string">"foo, bar, quux"</span>, <span class="py-string">","</span>)
-<span class="py-output">['foo', 'bar', 'quux']</span>
-</pre><p>:param arg: A string or a list of strings :param split: The argument to pass to `str.split()`. :return:</p>
-</div>
+    <div><p class="pre">Make a list out of an argument.
+
+Values from `distutils` argument parsing are always single strings;
+values from `optparse` parsing may be lists of strings that may need
+to be further split.
+
+No matter the input, this function returns a flat list of whitespace-trimmed
+strings, with `None` values filtered out.
+
+&gt;&gt;&gt; listify_value("foo bar")
+['foo', 'bar']
+&gt;&gt;&gt; listify_value(["foo bar"])
+['foo', 'bar']
+&gt;&gt;&gt; listify_value([["foo"], "bar"])
+['foo', 'bar']
+&gt;&gt;&gt; listify_value([["foo"], ["bar", None, "foo"]])
+['foo', 'bar', 'foo']
+&gt;&gt;&gt; listify_value("foo, bar, quux", ",")
+['foo', 'bar', 'quux']
+
+:param arg: A string or a list of strings
+:param split: The argument to pass to `str.split()`.
+:return:</p></div>
   </div>
 </div><div class="basefunction">
   
@@ -640,16 +659,15 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Parse keywords specifications from the given list of strings.</p>
-<pre class="py-doctest">
-<span class="py-prompt">&gt;&gt;&gt; </span>kw = <span class="py-builtin">sorted</span>(parse_keywords([<span class="py-string">'_'</span>, <span class="py-string">'dgettext:2'</span>, <span class="py-string">'dngettext:2,3'</span>, <span class="py-string">'pgettext:1c,2'</span>]).items())
-<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">for</span> keyword, indices <span class="py-keyword">in</span> kw:
-<span class="py-more">... </span>    <span class="py-builtin">print</span>((keyword, indices))
-<span class="py-output">('_', None)</span>
-<span class="py-output">('dgettext', (2,))</span>
-<span class="py-output">('dngettext', (2, 3))</span>
-<span class="py-output">('pgettext', ((1, 'c'), 2))</span>
-</pre></div>
+    <div><p class="pre">Parse keywords specifications from the given list of strings.
+
+&gt;&gt;&gt; kw = sorted(parse_keywords(['_', 'dgettext:2', 'dngettext:2,3', 'pgettext:1c,2']).items())
+&gt;&gt;&gt; for keyword, indices in kw:
+...     print((keyword, indices))
+('_', None)
+('dgettext', (2,))
+('dngettext', (2, 3))
+('pgettext', ((1, 'c'), 2))</p></div>
   </div>
 </div><div class="basefunction">
   
@@ -671,7 +689,53 @@
   <div class="docstring functionBody">
     
     
-    <div></div>
+    <div><p class="pre">Parse an extraction method mapping from a file-like object.
+
+&gt;&gt;&gt; buf = StringIO('''
+... [extractors]
+... custom = mypackage.module:myfunc
+...
+... # Python source files
+... [python: **.py]
+...
+... # Genshi templates
+... [genshi: **/templates/**.html]
+... include_attrs =
+... [genshi: **/templates/**.txt]
+... template_class = genshi.template:TextTemplate
+... encoding = latin-1
+...
+... # Some custom extractor
+... [custom: **/custom/*.*]
+... ''')
+
+&gt;&gt;&gt; method_map, options_map = parse_mapping(buf)
+&gt;&gt;&gt; len(method_map)
+4
+
+&gt;&gt;&gt; method_map[0]
+('**.py', 'python')
+&gt;&gt;&gt; options_map['**.py']
+{}
+&gt;&gt;&gt; method_map[1]
+('**/templates/**.html', 'genshi')
+&gt;&gt;&gt; options_map['**/templates/**.html']['include_attrs']
+''
+&gt;&gt;&gt; method_map[2]
+('**/templates/**.txt', 'genshi')
+&gt;&gt;&gt; options_map['**/templates/**.txt']['template_class']
+'genshi.template:TextTemplate'
+&gt;&gt;&gt; options_map['**/templates/**.txt']['encoding']
+'latin-1'
+
+&gt;&gt;&gt; method_map[3]
+('**/custom/*.*', 'mypackage.module:myfunc')
+&gt;&gt;&gt; options_map['**/custom/*.*']
+{}
+
+:param fileobj: a readable file-like object containing the configuration
+                text to parse
+:see: `extract_from_directory`</p></div>
   </div>
 </div><div class="basevariable">
   
@@ -716,8 +780,7 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Build a directory_filter function based on a list of ignore patterns.</p>
-</div>
+    <div><p class="pre">Build a directory_filter function based on a list of ignore patterns.</p></div>
   </div>
 </div>
         </div>
@@ -731,7 +794,7 @@
   <div class="container">
     <a href="index.html">API Documentation</a> for babel,
   generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
-    22.4.0.dev0 at 2022-04-21 01:03:37.
+    22.4.0.dev0 at 2022-04-23 04:46:09.
   </div>
 
   <!-- Search related scripts needs to be loaded at the end of HTML 

@@ -552,12 +552,11 @@
         </div>
 
         <div class="moduleDocstring">
-          <div><p>Representation of a single message in a catalog.</p>
-</div>
+          <div><p class="pre">Representation of a single message in a catalog.</p></div>
         </div>
 
         <div id="splitTables">
-          <table class="children sortable" id="id22">
+          <table class="children sortable" id="id592">
   
   
   <tr class="method">
@@ -584,7 +583,7 @@
     
     <td>Method</td>
     <td><code><a href="#__init__" class="internal-link" title="babel.messages.catalog.Message.__init__">__init__</a></code></td>
-    <td><span class="undocumented">No summary</span></td>
+    <td>Create the message object.</td>
   </tr><tr class="method">
     
     <td>Method</td>
@@ -609,7 +608,7 @@
     
     <td>Method</td>
     <td><code><a href="#check" class="internal-link" title="babel.messages.catalog.Message.check">check</a></code></td>
-    <td><span class="undocumented">No summary</span></td>
+    <td>Run various validation checks on the message.  Some validations are only performed if the catalog is provided.  This method returns a sequence of `TranslationError` objects.</td>
   </tr><tr class="method">
     
     <td>Method</td>
@@ -708,8 +707,7 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Compare Messages, taking into account plural ids</p>
-</div>
+    <div><p class="pre">Compare Messages, taking into account plural ids</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -797,7 +795,21 @@
   <div class="docstring functionBody">
     
     
-    <div></div>
+    <div><p class="pre">Create the message object.
+
+:param id: the message ID, or a ``(singular, plural)`` tuple for
+           pluralizable messages
+:param string: the translated message string, or a
+               ``(singular, plural)`` tuple for pluralizable messages
+:param locations: a sequence of ``(filename, lineno)`` tuples
+:param flags: a set or sequence of flags
+:param auto_comments: a sequence of automatic comments for the message
+:param user_comments: a sequence of user comments for the message
+:param previous_id: the previous message ID, or a ``(singular, plural)``
+                    tuple for pluralizable messages
+:param lineno: the line number on which the msgid line was found in the
+               PO file, if any
+:param context: the message context</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -907,7 +919,14 @@
   <div class="docstring functionBody">
     
     
-    <div></div>
+    <div><p class="pre">Run various validation checks on the message.  Some validations
+are only performed if the catalog is provided.  This method returns
+a sequence of `TranslationError` objects.
+
+:rtype: ``iterator``
+:param catalog: A catalog instance that is passed to the checkers
+:see: `Catalog.check` for a way to perform checks for all messages
+      in a catalog.</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -951,8 +970,8 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Checks whether messages are identical, taking into account all properties.</p>
-</div>
+    <div><p class="pre">Checks whether messages are identical, taking into account all
+properties.</p></div>
   </div>
 </div><div class="baseinstancevariable">
   
@@ -1181,17 +1200,17 @@
   <div class="functionBody">
     
     
-    <div><p>Whether the translation is fuzzy.</p>
-<pre class="py-doctest">
-<span class="py-prompt">&gt;&gt;&gt; </span>Message(<span class="py-string">'foo'</span>).fuzzy
-<span class="py-output">False</span>
-<span class="py-prompt">&gt;&gt;&gt; </span>msg = Message(<span class="py-string">'foo'</span>, <span class="py-string">'foo'</span>, flags=[<span class="py-string">'fuzzy'</span>])
-<span class="py-prompt">&gt;&gt;&gt; </span>msg.fuzzy
-<span class="py-output">True</span>
-<span class="py-prompt">&gt;&gt;&gt; </span>msg
-<span class="py-output">&lt;Message 'foo' (flags: ['fuzzy'])&gt;</span>
-</pre><p>:type:  `bool`</p>
-</div>
+    <div><p class="pre">Whether the translation is fuzzy.
+
+&gt;&gt;&gt; Message('foo').fuzzy
+False
+&gt;&gt;&gt; msg = Message('foo', 'foo', flags=['fuzzy'])
+&gt;&gt;&gt; msg.fuzzy
+True
+&gt;&gt;&gt; msg
+&lt;Message 'foo' (flags: ['fuzzy'])&gt;
+
+:type:  `bool`</p></div>
     
   </div>
 </div><div class="baseproperty">
@@ -1214,14 +1233,14 @@
   <div class="functionBody">
     
     
-    <div><p>Whether the message is plurizable.</p>
-<pre class="py-doctest">
-<span class="py-prompt">&gt;&gt;&gt; </span>Message(<span class="py-string">'foo'</span>).pluralizable
-<span class="py-output">False</span>
-<span class="py-prompt">&gt;&gt;&gt; </span>Message((<span class="py-string">'foo'</span>, <span class="py-string">'bar'</span>)).pluralizable
-<span class="py-output">True</span>
-</pre><p>:type:  `bool`</p>
-</div>
+    <div><p class="pre">Whether the message is plurizable.
+
+&gt;&gt;&gt; Message('foo').pluralizable
+False
+&gt;&gt;&gt; Message(('foo', 'bar')).pluralizable
+True
+
+:type:  `bool`</p></div>
     
   </div>
 </div><div class="baseproperty">
@@ -1244,14 +1263,14 @@
   <div class="functionBody">
     
     
-    <div><p>Whether the message contains Python-style parameters.</p>
-<pre class="py-doctest">
-<span class="py-prompt">&gt;&gt;&gt; </span>Message(<span class="py-string">'foo %(name)s bar'</span>).python_format
-<span class="py-output">True</span>
-<span class="py-prompt">&gt;&gt;&gt; </span>Message((<span class="py-string">'foo %(name)s'</span>, <span class="py-string">'foo %(name)s'</span>)).python_format
-<span class="py-output">True</span>
-</pre><p>:type:  `bool`</p>
-</div>
+    <div><p class="pre">Whether the message contains Python-style parameters.
+
+&gt;&gt;&gt; Message('foo %(name)s bar').python_format
+True
+&gt;&gt;&gt; Message(('foo %(name)s', 'foo %(name)s')).python_format
+True
+
+:type:  `bool`</p></div>
     
   </div>
 </div>
@@ -1266,7 +1285,7 @@
   <div class="container">
     <a href="index.html">API Documentation</a> for babel,
   generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
-    22.4.0.dev0 at 2022-04-21 01:03:37.
+    22.4.0.dev0 at 2022-04-23 04:46:09.
   </div>
 
   <!-- Search related scripts needs to be loaded at the end of HTML 

@@ -649,7 +649,7 @@
         </div>
 
         <div id="splitTables">
-          <table class="children sortable" id="id4834">
+          <table class="children sortable" id="id5915">
   
   
   <tr class="class">
@@ -696,7 +696,7 @@
     
     <td>Function</td>
     <td><code><a href="#mark_for_rollback_on_error" class="internal-link" title="django.db.transaction.mark_for_rollback_on_error">mark<wbr></wbr>_for<wbr></wbr>_rollback<wbr></wbr>_on<wbr></wbr>_error</a></code></td>
-    <td><span class="undocumented">No summary</span></td>
+    <td>Internal low-level utility to mark a transaction as "needs rollback" when an exception is raised while not enforcing the enclosed block to be in a transaction. This is needed by Model.save() and friends to avoid starting a transaction when in autocommit mode and a single query is executed.</td>
   </tr><tr class="function">
     
     <td>Function</td>
@@ -792,8 +792,7 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Reset the counter used to generate unique savepoint ids in this thread.</p>
-</div>
+    <div><p class="pre">Reset the counter used to generate unique savepoint ids in this thread.</p></div>
   </div>
 </div><div class="basefunction">
   
@@ -815,8 +814,7 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Commit a transaction.</p>
-</div>
+    <div><p class="pre">Commit a transaction.</p></div>
   </div>
 </div><div class="basefunction">
   
@@ -838,8 +836,7 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Get the autocommit status of the connection.</p>
-</div>
+    <div><p class="pre">Get the autocommit status of the connection.</p></div>
   </div>
 </div><div class="basefunction">
   
@@ -861,8 +858,8 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Get a database connection by name, or the default database connection if no name is provided. This is a private API.</p>
-</div>
+    <div><p class="pre">Get a database connection by name, or the default database connection
+if no name is provided. This is a private API.</p></div>
   </div>
 </div><div class="basefunction">
   
@@ -884,8 +881,7 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Get the "needs rollback" flag -- for *advanced use* only.</p>
-</div>
+    <div><p class="pre">Get the "needs rollback" flag -- for *advanced use* only.</p></div>
   </div>
 </div><div class="basefunction">
   
@@ -907,7 +903,21 @@
   <div class="docstring functionBody">
     
     
-    <div></div>
+    <div><p class="pre">Internal low-level utility to mark a transaction as "needs rollback" when
+an exception is raised while not enforcing the enclosed block to be in a
+transaction. This is needed by Model.save() and friends to avoid starting a
+transaction when in autocommit mode and a single query is executed.
+
+It's equivalent to:
+
+    connection = get_connection(using)
+    if connection.get_autocommit():
+        yield
+    else:
+        with transaction.atomic(using=using, savepoint=False):
+            yield
+
+but it uses low-level utilities to avoid performance overhead.</p></div>
   </div>
 </div><div class="basefunction">
   
@@ -951,8 +961,8 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Register `func` to be called when the current transaction is committed. If the current transaction is rolled back, `func` will not be called.</p>
-</div>
+    <div><p class="pre">Register `func` to be called when the current transaction is committed.
+If the current transaction is rolled back, `func` will not be called.</p></div>
   </div>
 </div><div class="basefunction">
   
@@ -974,8 +984,7 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Roll back a transaction.</p>
-</div>
+    <div><p class="pre">Roll back a transaction.</p></div>
   </div>
 </div><div class="basefunction">
   
@@ -997,8 +1006,9 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Create a savepoint (if supported and required by the backend) inside the current transaction. Return an identifier for the savepoint that will be used for the subsequent rollback or commit.</p>
-</div>
+    <div><p class="pre">Create a savepoint (if supported and required by the backend) inside the
+current transaction. Return an identifier for the savepoint that will be
+used for the subsequent rollback or commit.</p></div>
   </div>
 </div><div class="basefunction">
   
@@ -1020,8 +1030,8 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Commit the most recent savepoint (if one exists). Do nothing if savepoints are not supported.</p>
-</div>
+    <div><p class="pre">Commit the most recent savepoint (if one exists). Do nothing if
+savepoints are not supported.</p></div>
   </div>
 </div><div class="basefunction">
   
@@ -1043,8 +1053,8 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Roll back the most recent savepoint (if one exists). Do nothing if savepoints are not supported.</p>
-</div>
+    <div><p class="pre">Roll back the most recent savepoint (if one exists). Do nothing if
+savepoints are not supported.</p></div>
   </div>
 </div><div class="basefunction">
   
@@ -1066,8 +1076,7 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Set the autocommit status of the connection.</p>
-</div>
+    <div><p class="pre">Set the autocommit status of the connection.</p></div>
   </div>
 </div><div class="basefunction">
   
@@ -1089,10 +1098,15 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Set or unset the "needs rollback" flag -- for *advanced use* only.</p>
-<p>When `rollback` is `True`, trigger a rollback when exiting the innermost enclosing atomic block that has `savepoint=True` (that's the default). Use this to force a rollback without raising an exception.</p>
-<p>When `rollback` is `False`, prevent such a rollback. Use this only after rolling back to a known-good state! Otherwise, you break the atomic block and data corruption may occur.</p>
-</div>
+    <div><p class="pre">Set or unset the "needs rollback" flag -- for *advanced use* only.
+
+When `rollback` is `True`, trigger a rollback when exiting the innermost
+enclosing atomic block that has `savepoint=True` (that's the default). Use
+this to force a rollback without raising an exception.
+
+When `rollback` is `False`, prevent such a rollback. Use this only after
+rolling back to a known-good state! Otherwise, you break the atomic block
+and data corruption may occur.</p></div>
   </div>
 </div><div class="basefunction private">
   
@@ -1128,7 +1142,7 @@
   <div class="container">
     <a href="index.html">API Documentation</a> for django,
   generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
-    22.4.0.dev0 at 2022-04-11 16:01:21.
+    22.4.0.dev0 at 2022-04-23 04:48:04.
   </div>
 
   <!-- Search related scripts needs to be loaded at the end of HTML 

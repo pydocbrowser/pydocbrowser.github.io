@@ -1469,14 +1469,14 @@
         </div>
 
         <div id="splitTables">
-          <table class="children sortable" id="id3361">
+          <table class="children sortable" id="id4442">
   
   
   <tr class="method">
     
     <td>Method</td>
     <td><code><a href="#as_sql" class="internal-link" title="django.db.models.fields.json.DataContains.as_sql">as<wbr></wbr>_sql</a></code></td>
-    <td><span class="undocumented">No summary</span></td>
+    <td>Responsible for returning a (sql, [params]) tuple to be included in the current query.</td>
   </tr><tr class="classvariable">
     
     <td>Class Variable</td>
@@ -1493,7 +1493,7 @@
             <p class="inheritedFrom">
               Inherited from <code><a href="django.db.models.lookups.PostgresOperatorLookup.html" class="internal-link" title="django.db.models.lookups.PostgresOperatorLookup">PostgresOperatorLookup</a></code>:
             </p>
-            <table class="children sortable" id="id3362">
+            <table class="children sortable" id="id4443">
   
   
   <tr class="basemethod">
@@ -1507,7 +1507,7 @@
             <p class="inheritedFrom">
               Inherited from <code><a href="django.db.models.lookups.FieldGetDbPrepValueMixin.html" class="internal-link" title="django.db.models.lookups.FieldGetDbPrepValueMixin">FieldGetDbPrepValueMixin</a></code> (via <code><a href="django.db.models.lookups.PostgresOperatorLookup.html" class="internal-link" title="django.db.models.lookups.PostgresOperatorLookup">PostgresOperatorLookup</a></code>):
             </p>
-            <table class="children sortable" id="id3363">
+            <table class="children sortable" id="id4444">
   
   
   <tr class="basemethod">
@@ -1526,7 +1526,7 @@
             <p class="inheritedFrom">
               Inherited from <code><a href="django.db.models.lookups.Lookup.html" class="internal-link" title="django.db.models.lookups.Lookup">Lookup</a></code> (via <code><a href="django.db.models.lookups.PostgresOperatorLookup.html" class="internal-link" title="django.db.models.lookups.PostgresOperatorLookup">PostgresOperatorLookup</a></code>):
             </p>
-            <table class="children sortable" id="id3364">
+            <table class="children sortable" id="id4445">
   
   
   <tr class="basemethod">
@@ -1603,7 +1603,7 @@
     
     <td>Method</td>
     <td><code><a href="django.db.models.lookups.Lookup.html#resolve_expression" class="internal-link" title="django.db.models.lookups.Lookup.resolve_expression">resolve<wbr></wbr>_expression</a></code></td>
-    <td><span class="undocumented">No summary</span></td>
+    <td>Provide the chance to do any preprocessing or validation before being added to the query.</td>
   </tr><tr class="basemethod">
     
     <td>Method</td>
@@ -1660,7 +1660,7 @@
             <p class="inheritedFrom">
               Inherited from <code><a href="django.db.models.expressions.BaseExpression.html" class="internal-link" title="django.db.models.expressions.BaseExpression">BaseExpression</a></code> (via <code><a href="django.db.models.lookups.PostgresOperatorLookup.html" class="internal-link" title="django.db.models.lookups.PostgresOperatorLookup">PostgresOperatorLookup</a></code>, <code><a href="django.db.models.lookups.Lookup.html" class="internal-link" title="django.db.models.lookups.Lookup">Lookup</a></code>, <code><a href="django.db.models.expressions.Expression.html" class="internal-link" title="django.db.models.expressions.Expression">Expression</a></code>):
             </p>
-            <table class="children sortable" id="id3365">
+            <table class="children sortable" id="id4446">
   
   
   <tr class="basemethod">
@@ -1794,7 +1794,7 @@
             <p class="inheritedFrom">
               Inherited from <code><a href="django.db.models.expressions.Combinable.html" class="internal-link" title="django.db.models.expressions.Combinable">Combinable</a></code> (via <code><a href="django.db.models.lookups.PostgresOperatorLookup.html" class="internal-link" title="django.db.models.lookups.PostgresOperatorLookup">PostgresOperatorLookup</a></code>, <code><a href="django.db.models.lookups.Lookup.html" class="internal-link" title="django.db.models.lookups.Lookup">Lookup</a></code>, <code><a href="django.db.models.expressions.Expression.html" class="internal-link" title="django.db.models.expressions.Expression">Expression</a></code>):
             </p>
-            <table class="children sortable" id="id3366">
+            <table class="children sortable" id="id4447">
   
   
   <tr class="basemethod">
@@ -1995,7 +1995,29 @@
   <div class="docstring functionBody">
     <div class="interfaceinfo">overrides <code><a href="django.db.models.expressions.BaseExpression.html#as_sql" class="internal-link">django.db.models.expressions.BaseExpression.as_sql</a></code></div>
     
-    <div></div>
+    <div><p class="pre">Responsible for returning a (sql, [params]) tuple to be included
+in the current query.
+
+Different backends can provide their own implementation, by
+providing an `as_{vendor}` method and patching the Expression:
+
+```
+def override_as_sql(self, compiler, connection):
+    # custom logic
+    return super().as_sql(compiler, connection)
+setattr(Expression, 'as_' + connection.vendor, override_as_sql)
+```
+
+Arguments:
+ * compiler: the query compiler responsible for generating the query.
+   Must have a compile method, returning a (sql, [params]) tuple.
+   Calling compiler(value) will return a quoted `value`.
+
+ * connection: the database connection used for the current query.
+
+Return: (sql, params)
+  Where `sql` is a string containing ordered sql parameters to be
+  replaced with the elements of the list `params`.</p></div>
   </div>
 </div><div class="baseclassvariable">
   
@@ -2055,7 +2077,7 @@
   <div class="container">
     <a href="index.html">API Documentation</a> for django,
   generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
-    22.4.0.dev0 at 2022-04-11 16:01:21.
+    22.4.0.dev0 at 2022-04-23 04:48:04.
   </div>
 
   <!-- Search related scripts needs to be loaded at the end of HTML 

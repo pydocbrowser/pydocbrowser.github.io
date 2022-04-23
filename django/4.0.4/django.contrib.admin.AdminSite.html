@@ -1075,12 +1075,15 @@
         </div>
 
         <div class="moduleDocstring">
-          <div><p>An AdminSite object encapsulates an instance of the Django admin application, ready to be hooked in to your URLconf. Models are registered with the AdminSite using the register() method, and the get_urls() method can then be used to access Django view functions that present a full admin interface for the collection of registered models.</p>
-</div>
+          <div><p class="pre">An AdminSite object encapsulates an instance of the Django admin application, ready
+to be hooked in to your URLconf. Models are registered with the AdminSite using the
+register() method, and the get_urls() method can then be used to access Django view
+functions that present a full admin interface for the collection of registered
+models.</p></div>
         </div>
 
         <div id="splitTables">
-          <table class="children sortable" id="id625">
+          <table class="children sortable" id="id1706">
   
   
   <tr class="method">
@@ -1102,7 +1105,7 @@
     
     <td>Method</td>
     <td><code><a href="#admin_view" class="internal-link" title="django.contrib.admin.AdminSite.admin_view">admin<wbr></wbr>_view</a></code></td>
-    <td><span class="undocumented">No summary</span></td>
+    <td>Decorator to create an admin view attached to this ``AdminSite``. This wraps the view and provides permission checking by calling ``self.has_permission``.</td>
   </tr><tr class="method">
     
     <td>Method</td>
@@ -1375,8 +1378,7 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Register an action to be available globally.</p>
-</div>
+    <div><p class="pre">Register an action to be available globally.</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -1398,7 +1400,26 @@
   <div class="docstring functionBody">
     
     
-    <div></div>
+    <div><p class="pre">Decorator to create an admin view attached to this ``AdminSite``. This
+wraps the view and provides permission checking by calling
+``self.has_permission``.
+
+You'll want to use this from within ``AdminSite.get_urls()``:
+
+    class MyAdminSite(AdminSite):
+
+        def get_urls(self):
+            from django.urls import path
+
+            urls = super().get_urls()
+            urls += [
+                path('my_view/', self.admin_view(some_view))
+            ]
+            return urls
+
+By default, admin_views are marked non-cacheable using the
+``never_cache`` decorator. If the view can be safely cached, set
+cacheable=True.</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -1486,8 +1507,8 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Run the system checks on all ModelAdmins, except if they aren't customized at all.</p>
-</div>
+    <div><p class="pre">Run the system checks on all ModelAdmins, except if they aren't
+customized at all.</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -1509,8 +1530,7 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Disable a globally-registered action. Raise KeyError for invalid names.</p>
-</div>
+    <div><p class="pre">Disable a globally-registered action. Raise KeyError for invalid names.</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -1532,9 +1552,11 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Return a dictionary of variables to put in the template context for *every* page in the admin site.</p>
-<p>For sites running on a subpath, use the SCRIPT_NAME value if site_url hasn't been customized.</p>
-</div>
+    <div><p class="pre">Return a dictionary of variables to put in the template context for
+*every* page in the admin site.
+
+For sites running on a subpath, use the SCRIPT_NAME value if site_url
+hasn't been customized.</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -1556,8 +1578,8 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Explicitly get a registered global action whether it's enabled or not. Raise KeyError for invalid names.</p>
-</div>
+    <div><p class="pre">Explicitly get a registered global action whether it's enabled or
+not. Raise KeyError for invalid names.</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -1579,8 +1601,8 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Return a sorted list of all the installed apps that have been registered in this site.</p>
-</div>
+    <div><p class="pre">Return a sorted list of all the installed apps that have been
+registered in this site.</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -1624,8 +1646,8 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Return True if the given HttpRequest has permission to view *at least one* page in the admin site.</p>
-</div>
+    <div><p class="pre">Return True if the given HttpRequest has permission to view
+*at least one* page in the admin site.</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -1647,9 +1669,10 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Display the i18n JavaScript that the Django admin requires.</p>
-<p>`extra_context` is unused but present for consistency with the other admin views.</p>
-</div>
+    <div><p class="pre">Display the i18n JavaScript that the Django admin requires.
+
+`extra_context` is unused but present for consistency with the other
+admin views.</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -1671,8 +1694,8 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Display the main admin index page, which lists all of the installed apps that have been registered in this site.</p>
-</div>
+    <div><p class="pre">Display the main admin index page, which lists all of the installed
+apps that have been registered in this site.</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -1694,8 +1717,7 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Check if a model class is registered with this `AdminSite`.</p>
-</div>
+    <div><p class="pre">Check if a model class is registered with this `AdminSite`.</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -1717,8 +1739,7 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Display the login form for the given HttpRequest.</p>
-</div>
+    <div><p class="pre">Display the login form for the given HttpRequest.</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -1740,9 +1761,9 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Log out the user for the given HttpRequest.</p>
-<p>This should *not* assume the user is already logged in.</p>
-</div>
+    <div><p class="pre">Log out the user for the given HttpRequest.
+
+This should *not* assume the user is already logged in.</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -1764,8 +1785,7 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Handle the "change password" task -- both form display and validation.</p>
-</div>
+    <div><p class="pre">Handle the "change password" task -- both form display and validation.</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -1787,8 +1807,7 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Display the "success" page after a password change.</p>
-</div>
+    <div><p class="pre">Display the "success" page after a password change.</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -1810,12 +1829,17 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Register the given model(s) with the given admin class.</p>
-<p>The model(s) should be Model classes, not instances.</p>
-<p>If an admin class isn't given, use ModelAdmin (the default admin options). If keyword arguments are given -- e.g., list_display -- apply them as options to the admin class.</p>
-<p>If a model is already registered, raise AlreadyRegistered.</p>
-<p>If a model is abstract, raise ImproperlyConfigured.</p>
-</div>
+    <div><p class="pre">Register the given model(s) with the given admin class.
+
+The model(s) should be Model classes, not instances.
+
+If an admin class isn't given, use ModelAdmin (the default admin
+options). If keyword arguments are given -- e.g., list_display --
+apply them as options to the admin class.
+
+If a model is already registered, raise AlreadyRegistered.
+
+If a model is abstract, raise ImproperlyConfigured.</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -1837,9 +1861,9 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Unregister the given model(s).</p>
-<p>If a model isn't already registered, raise NotRegistered.</p>
-</div>
+    <div><p class="pre">Unregister the given model(s).
+
+If a model isn't already registered, raise NotRegistered.</p></div>
   </div>
 </div><div class="baseclassvariable">
   
@@ -2206,8 +2230,7 @@
   <div class="functionBody">
     
     
-    <div><p>Get all the enabled actions as an iterable of (name, func).</p>
-</div>
+    <div><p class="pre">Get all the enabled actions as an iterable of (name, func).</p></div>
     
   </div>
 </div><div class="baseproperty">
@@ -2253,8 +2276,8 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Build the app dictionary. The optional `label` parameter filters models of a specific app.</p>
-</div>
+    <div><p class="pre">Build the app dictionary. The optional `label` parameter filters models
+of a specific app.</p></div>
   </div>
 </div><div class="baseinstancevariable private">
   
@@ -2337,7 +2360,7 @@
   <div class="container">
     <a href="index.html">API Documentation</a> for django,
   generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
-    22.4.0.dev0 at 2022-04-11 16:01:21.
+    22.4.0.dev0 at 2022-04-23 04:48:04.
   </div>
 
   <!-- Search related scripts needs to be loaded at the end of HTML 

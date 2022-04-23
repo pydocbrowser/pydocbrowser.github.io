@@ -549,14 +549,16 @@
         </div>
 
         <div class="moduleDocstring">
-          <div><p>Utility functions surrounding terminal devices &amp; I/O.</p>
-<p>Much of this code performs platform-sensitive branching, e.g. Windows support.</p>
-<p>This is its own module to abstract away what would otherwise be distracting logic-flow interruptions.</p>
-</div>
+          <div><p class="pre">Utility functions surrounding terminal devices &amp; I/O.
+
+Much of this code performs platform-sensitive branching, e.g. Windows support.
+
+This is its own module to abstract away what would otherwise be distracting
+logic-flow interruptions.</p></div>
         </div>
 
         <div id="splitTables">
-          <table class="children sortable" id="id5920">
+          <table class="children sortable" id="id10732">
   
   
   <tr class="function">
@@ -578,7 +580,7 @@
     
     <td>Function</td>
     <td><code><a href="#pty_size" class="internal-link" title="invoke.terminals.pty_size">pty<wbr></wbr>_size</a></code></td>
-    <td><span class="undocumented">No summary</span></td>
+    <td>Determine current local pseudoterminal dimensions.</td>
   </tr><tr class="function">
     
     <td>Function</td>
@@ -632,17 +634,18 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Query stream ``input_`` to see how many bytes may be readable.</p>
-<p>.. note:</p>
-<pre class="rst-literal-block">
+    <div><p class="pre">Query stream ``input_`` to see how many bytes may be readable.
+
+.. note::
     If we are unable to tell (e.g. if ``input_`` isn't a true file
     descriptor or isn't a valid TTY) we fall back to suggesting reading 1
     byte only.
-</pre>
-<p>:param input: Input stream object (file-like).</p>
-<p>:returns: `int` number of bytes to read.</p>
-<p>.. versionadded:: 1.0</p>
-</div>
+
+:param input: Input stream object (file-like).
+
+:returns: `int` number of bytes to read.
+
+.. versionadded:: 1.0</p></div>
   </div>
 </div><div class="basefunction">
   
@@ -686,10 +689,11 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Force local terminal ``stream`` be character, not line, buffered.</p>
-<p>Only applies to Unix-based systems; on Windows this is a no-op.</p>
-<p>.. versionadded:: 1.0</p>
-</div>
+    <div><p class="pre">Force local terminal ``stream`` be character, not line, buffered.
+
+Only applies to Unix-based systems; on Windows this is a no-op.
+
+.. versionadded:: 1.0</p></div>
   </div>
 </div><div class="basefunction">
   
@@ -711,7 +715,13 @@
   <div class="docstring functionBody">
     
     
-    <div></div>
+    <div><p class="pre">Determine current local pseudoterminal dimensions.
+
+:returns:
+    A ``(num_cols, num_rows)`` two-tuple describing PTY size. Defaults to
+    ``(80, 24)`` if unable to get a sensible result dynamically.
+
+.. versionadded:: 1.0</p></div>
   </div>
 </div><div class="basefunction">
   
@@ -733,11 +743,13 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Test ``input_`` to determine whether a read action will succeed.</p>
-<p>:param input_: Input stream object (file-like).</p>
-<p>:returns: ``True`` if a read should succeed, ``False`` otherwise.</p>
-<p>.. versionadded:: 1.0</p>
-</div>
+    <div><p class="pre">Test ``input_`` to determine whether a read action will succeed.
+
+:param input_: Input stream object (file-like).
+
+:returns: ``True`` if a read should succeed, ``False`` otherwise.
+
+.. versionadded:: 1.0</p></div>
   </div>
 </div><div class="basefunction">
   
@@ -759,16 +771,22 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Detect if given stdin ``stream`` seems to be in the foreground of a TTY.</p>
-<p>Specifically, compares the current Python process group ID to that of the stream's file descriptor to see if they match; if they do not match, it is likely that the process has been placed in the background.</p>
-<p>This is used as a test to determine whether we should manipulate an active stdin so it runs in a character-buffered mode; touching the terminal in this way when the process is backgrounded, causes most shells to pause execution.</p>
-<p>.. note:</p>
-<pre class="rst-literal-block">
+    <div><p class="pre">Detect if given stdin ``stream`` seems to be in the foreground of a TTY.
+
+Specifically, compares the current Python process group ID to that of the
+stream's file descriptor to see if they match; if they do not match, it is
+likely that the process has been placed in the background.
+
+This is used as a test to determine whether we should manipulate an active
+stdin so it runs in a character-buffered mode; touching the terminal in
+this way when the process is backgrounded, causes most shells to pause
+execution.
+
+.. note::
     Processes that aren't attached to a terminal to begin with, will always
     fail this test, as it starts with "do you have a real ``fileno``?".
-</pre>
-<p>.. versionadded:: 1.0</p>
-</div>
+
+.. versionadded:: 1.0</p></div>
   </div>
 </div><div class="baseconstant">
   
@@ -790,10 +808,13 @@
   <div class="functionBody">
     
     
-    <div><p>Whether or not the current platform appears to be Windows in nature.</p>
-<p>Note that Cygwin's Python is actually close enough to "real" UNIXes that it doesn't need (or want!) to use PyWin32 -- so we only test for literal Win32 setups (vanilla Python, ActiveState etc) here.</p>
-<p>.. versionadded:: 1.0</p>
-</div>
+    <div><p class="pre">Whether or not the current platform appears to be Windows in nature.
+
+Note that Cygwin's Python is actually close enough to "real" UNIXes that it
+doesn't need (or want!) to use PyWin32 -- so we only test for literal Win32
+setups (vanilla Python, ActiveState etc) here.
+
+.. versionadded:: 1.0</p></div>
     <table class="valueTable"><tr class="fieldStart"><td class="fieldName">Value</td></tr><tr><td><pre class="constant-value"><code>(sys.platform == 'win32')</code></pre></td></tr></table>
   </div>
 </div><div class="basefunction private">
@@ -816,9 +837,9 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Suitable for most POSIX platforms.</p>
-<p>.. versionadded:: 1.0</p>
-</div>
+    <div><p class="pre">Suitable for most POSIX platforms.
+
+.. versionadded:: 1.0</p></div>
   </div>
 </div><div class="basefunction private">
   
@@ -854,7 +875,7 @@
   <div class="container">
     <a href="index.html">API Documentation</a> for invoke,
   generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
-    22.4.0.dev0 at 2022-04-11 16:10:53.
+    22.4.0.dev0 at 2022-04-23 06:42:04.
   </div>
 
   <!-- Search related scripts needs to be loaded at the end of HTML 

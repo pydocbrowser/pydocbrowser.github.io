@@ -492,11 +492,17 @@
         </div>
 
         <div class="moduleDocstring">
-          <div></div>
+          <div><p class="pre">babel.core
+~~~~~~~~~~
+
+Core locale representation and locale data access.
+
+:copyright: (c) 2013-2022 by the Babel Team.
+:license: BSD, see LICENSE for more details.</p></div>
         </div>
 
         <div id="splitTables">
-          <table class="children sortable" id="id3">
+          <table class="children sortable" id="id573">
   
   
   <tr class="class">
@@ -513,12 +519,12 @@
     
     <td>Function</td>
     <td><code><a href="#default_locale" class="internal-link" title="babel.core.default_locale">default<wbr></wbr>_locale</a></code></td>
-    <td><span class="undocumented">No summary</span></td>
+    <td>Returns the system default locale for a given category, based on environment variables.</td>
   </tr><tr class="function">
     
     <td>Function</td>
     <td><code><a href="#get_global" class="internal-link" title="babel.core.get_global">get<wbr></wbr>_global</a></code></td>
-    <td><span class="undocumented">No summary</span></td>
+    <td>Return the dictionary for the given key in the global data.</td>
   </tr><tr class="function">
     
     <td>Function</td>
@@ -528,12 +534,12 @@
     
     <td>Function</td>
     <td><code><a href="#negotiate_locale" class="internal-link" title="babel.core.negotiate_locale">negotiate<wbr></wbr>_locale</a></code></td>
-    <td><span class="undocumented">No summary</span></td>
+    <td>Find the best match between available and requested locale strings.</td>
   </tr><tr class="function">
     
     <td>Function</td>
     <td><code><a href="#parse_locale" class="internal-link" title="babel.core.parse_locale">parse<wbr></wbr>_locale</a></code></td>
-    <td><span class="undocumented">No summary</span></td>
+    <td>Parse a locale identifier into a tuple of the form ``(language, territory, script, variant)``.</td>
   </tr><tr class="constant">
     
     <td>Constant</td>
@@ -582,7 +588,31 @@
   <div class="docstring functionBody">
     
     
-    <div></div>
+    <div><p class="pre">Returns the system default locale for a given category, based on
+environment variables.
+
+&gt;&gt;&gt; for name in ['LANGUAGE', 'LC_ALL', 'LC_CTYPE']:
+...     os.environ[name] = ''
+&gt;&gt;&gt; os.environ['LANG'] = 'fr_FR.UTF-8'
+&gt;&gt;&gt; default_locale('LC_MESSAGES')
+'fr_FR'
+
+The "C" or "POSIX" pseudo-locales are treated as aliases for the
+"en_US_POSIX" locale:
+
+&gt;&gt;&gt; os.environ['LC_MESSAGES'] = 'POSIX'
+&gt;&gt;&gt; default_locale('LC_MESSAGES')
+'en_US_POSIX'
+
+The following fallbacks to the variable are always considered:
+
+- ``LANGUAGE``
+- ``LC_ALL``
+- ``LC_CTYPE``
+- ``LANG``
+
+:param category: one of the ``LC_XXX`` environment variable names
+:param aliases: a dictionary of aliases for locale identifiers</p></div>
   </div>
 </div><div class="basefunction">
   
@@ -604,7 +634,38 @@
   <div class="docstring functionBody">
     
     
-    <div></div>
+    <div><p class="pre">Return the dictionary for the given key in the global data.
+
+The global data is stored in the ``babel/global.dat`` file and contains
+information independent of individual locales.
+
+&gt;&gt;&gt; get_global('zone_aliases')['UTC']
+u'Etc/UTC'
+&gt;&gt;&gt; get_global('zone_territories')['Europe/Berlin']
+u'DE'
+
+The keys available are:
+
+- ``all_currencies``
+- ``currency_fractions``
+- ``language_aliases``
+- ``likely_subtags``
+- ``parent_exceptions``
+- ``script_aliases``
+- ``territory_aliases``
+- ``territory_currencies``
+- ``territory_languages``
+- ``territory_zones``
+- ``variant_aliases``
+- ``windows_zone_mapping``
+- ``zone_aliases``
+- ``zone_territories``
+
+.. note:: The internal structure of the data may change between versions.
+
+.. versionadded:: 0.9
+
+:param key: the data key</p></div>
   </div>
 </div><div class="basefunction">
   
@@ -626,13 +687,17 @@
   <div class="docstring functionBody">
     
     
-    <div><p>The reverse of :func:`parse_locale`.  It creates a locale identifier out of a ``(language, territory, script, variant)`` tuple.  Items can be set to ``None`` and trailing ``None``\s can also be left out of the tuple.</p>
-<pre class="py-doctest">
-<span class="py-prompt">&gt;&gt;&gt; </span>get_locale_identifier((<span class="py-string">'de'</span>, <span class="py-string">'DE'</span>, <span class="py-builtin">None</span>, <span class="py-string">'1999'</span>))
-<span class="py-output">'de_DE_1999'</span>
-</pre><p>.. versionadded:: 1.0</p>
-<p>:param tup: the tuple as returned by :func:`parse_locale`. :param sep: the separator for the identifier.</p>
-</div>
+    <div><p class="pre">The reverse of :func:`parse_locale`.  It creates a locale identifier out
+of a ``(language, territory, script, variant)`` tuple.  Items can be set to
+``None`` and trailing ``None``\s can also be left out of the tuple.
+
+&gt;&gt;&gt; get_locale_identifier(('de', 'DE', None, '1999'))
+'de_DE_1999'
+
+.. versionadded:: 1.0
+
+:param tup: the tuple as returned by :func:`parse_locale`.
+:param sep: the separator for the identifier.</p></div>
   </div>
 </div><div class="basefunction">
   
@@ -654,7 +719,50 @@
   <div class="docstring functionBody">
     
     
-    <div></div>
+    <div><p class="pre">Find the best match between available and requested locale strings.
+
+&gt;&gt;&gt; negotiate_locale(['de_DE', 'en_US'], ['de_DE', 'de_AT'])
+'de_DE'
+&gt;&gt;&gt; negotiate_locale(['de_DE', 'en_US'], ['en', 'de'])
+'de'
+
+Case is ignored by the algorithm, the result uses the case of the preferred
+locale identifier:
+
+&gt;&gt;&gt; negotiate_locale(['de_DE', 'en_US'], ['de_de', 'de_at'])
+'de_DE'
+
+&gt;&gt;&gt; negotiate_locale(['de_DE', 'en_US'], ['de_de', 'de_at'])
+'de_DE'
+
+By default, some web browsers unfortunately do not include the territory
+in the locale identifier for many locales, and some don't even allow the
+user to easily add the territory. So while you may prefer using qualified
+locale identifiers in your web-application, they would not normally match
+the language-only locale sent by such browsers. To workaround that, this
+function uses a default mapping of commonly used langauge-only locale
+identifiers to identifiers including the territory:
+
+&gt;&gt;&gt; negotiate_locale(['ja', 'en_US'], ['ja_JP', 'en_US'])
+'ja_JP'
+
+Some browsers even use an incorrect or outdated language code, such as "no"
+for Norwegian, where the correct locale identifier would actually be "nb_NO"
+(Bokmål) or "nn_NO" (Nynorsk). The aliases are intended to take care of
+such cases, too:
+
+&gt;&gt;&gt; negotiate_locale(['no', 'sv'], ['nb_NO', 'sv_SE'])
+'nb_NO'
+
+You can override this default mapping by passing a different `aliases`
+dictionary to this function, or you can bypass the behavior althogher by
+setting the `aliases` parameter to `None`.
+
+:param preferred: the list of locale strings preferred by the user
+:param available: the list of locale strings available
+:param sep: character that separates the different parts of the locale
+            strings
+:param aliases: a dictionary of aliases for locale identifiers</p></div>
   </div>
 </div><div class="basefunction">
   
@@ -676,7 +784,50 @@
   <div class="docstring functionBody">
     
     
-    <div></div>
+    <div><p class="pre">Parse a locale identifier into a tuple of the form ``(language,
+territory, script, variant)``.
+
+&gt;&gt;&gt; parse_locale('zh_CN')
+('zh', 'CN', None, None)
+&gt;&gt;&gt; parse_locale('zh_Hans_CN')
+('zh', 'CN', 'Hans', None)
+&gt;&gt;&gt; parse_locale('ca_es_valencia')
+('ca', 'ES', None, 'VALENCIA')
+&gt;&gt;&gt; parse_locale('en_150')
+('en', '150', None, None)
+&gt;&gt;&gt; parse_locale('en_us_posix')
+('en', 'US', None, 'POSIX')
+
+The default component separator is "_", but a different separator can be
+specified using the `sep` parameter:
+
+&gt;&gt;&gt; parse_locale('zh-CN', sep='-')
+('zh', 'CN', None, None)
+
+If the identifier cannot be parsed into a locale, a `ValueError` exception
+is raised:
+
+&gt;&gt;&gt; parse_locale('not_a_LOCALE_String')
+Traceback (most recent call last):
+  ...
+ValueError: 'not_a_LOCALE_String' is not a valid locale identifier
+
+Encoding information and locale modifiers are removed from the identifier:
+
+&gt;&gt;&gt; parse_locale('it_IT@euro')
+('it', 'IT', None, None)
+&gt;&gt;&gt; parse_locale('en_US.UTF-8')
+('en', 'US', None, None)
+&gt;&gt;&gt; parse_locale('de_DE.iso885915@euro')
+('de', 'DE', None, None)
+
+See :rfc:`4646` for more information.
+
+:param identifier: the locale identifier string
+:param sep: character that separates the different components of the locale
+            identifier
+:raise `ValueError`: if the string does not appear to be a valid locale
+                     identifier</p></div>
   </div>
 </div><div class="baseconstant">
   
@@ -788,7 +939,7 @@
   <div class="container">
     <a href="index.html">API Documentation</a> for babel,
   generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
-    22.4.0.dev0 at 2022-04-21 01:03:37.
+    22.4.0.dev0 at 2022-04-23 04:46:09.
   </div>
 
   <!-- Search related scripts needs to be loaded at the end of HTML 

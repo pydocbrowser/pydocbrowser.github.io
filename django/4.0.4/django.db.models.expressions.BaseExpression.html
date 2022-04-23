@@ -872,12 +872,11 @@
         </div>
 
         <div class="moduleDocstring">
-          <div><p>Base class for all query expressions.</p>
-</div>
+          <div><p class="pre">Base class for all query expressions.</p></div>
         </div>
 
         <div id="splitTables">
-          <table class="children sortable" id="id3235">
+          <table class="children sortable" id="id4316">
   
   
   <tr class="method">
@@ -894,7 +893,7 @@
     
     <td>Method</td>
     <td><code><a href="#as_sql" class="internal-link" title="django.db.models.expressions.BaseExpression.as_sql">as<wbr></wbr>_sql</a></code></td>
-    <td><span class="undocumented">No summary</span></td>
+    <td>Responsible for returning a (sql, [params]) tuple to be included in the current query.</td>
   </tr><tr class="method">
     
     <td>Method</td>
@@ -954,7 +953,7 @@
     
     <td>Method</td>
     <td><code><a href="#resolve_expression" class="internal-link" title="django.db.models.expressions.BaseExpression.resolve_expression">resolve<wbr></wbr>_expression</a></code></td>
-    <td><span class="undocumented">No summary</span></td>
+    <td>Provide the chance to do any preprocessing or validation before being added to the query.</td>
   </tr><tr class="method">
     
     <td>Method</td>
@@ -1117,7 +1116,29 @@
   <div class="docstring functionBody">
     <div class="interfaceinfo">overridden in <code><a href="django.contrib.postgres.fields.ranges.RangeBoundary.html" class="internal-link">django.contrib.postgres.fields.ranges.RangeBoundary</a></code>, <code><a href="django.db.models.expressions.Case.html" class="internal-link">django.db.models.expressions.Case</a></code>, <code><a href="django.db.models.expressions.Col.html" class="internal-link">django.db.models.expressions.Col</a></code>, <code><a href="django.db.models.expressions.CombinedExpression.html" class="internal-link">django.db.models.expressions.CombinedExpression</a></code>, <code><a href="django.db.models.expressions.ExpressionWrapper.html" class="internal-link">django.db.models.expressions.ExpressionWrapper</a></code>, <code><a href="django.db.models.expressions.Func.html" class="internal-link">django.db.models.expressions.Func</a></code>, <code><a href="django.db.models.expressions.OrderBy.html" class="internal-link">django.db.models.expressions.OrderBy</a></code>, <code><a href="django.db.models.expressions.RawSQL.html" class="internal-link">django.db.models.expressions.RawSQL</a></code>, <code><a href="django.db.models.expressions.Ref.html" class="internal-link">django.db.models.expressions.Ref</a></code>, <code><a href="django.db.models.expressions.Star.html" class="internal-link">django.db.models.expressions.Star</a></code>, <code><a href="django.db.models.expressions.Subquery.html" class="internal-link">django.db.models.expressions.Subquery</a></code>, <code><a href="django.db.models.expressions.Value.html" class="internal-link">django.db.models.expressions.Value</a></code>, <code><a href="django.db.models.expressions.When.html" class="internal-link">django.db.models.expressions.When</a></code>, <code><a href="django.db.models.expressions.Window.html" class="internal-link">django.db.models.expressions.Window</a></code>, <code><a href="django.db.models.expressions.WindowFrame.html" class="internal-link">django.db.models.expressions.WindowFrame</a></code>, <code><a href="django.db.models.fields.json.ContainedBy.html" class="internal-link">django.db.models.fields.json.ContainedBy</a></code>, <code><a href="django.db.models.fields.json.DataContains.html" class="internal-link">django.db.models.fields.json.DataContains</a></code>, <code><a href="django.db.models.fields.json.HasKeyLookup.html" class="internal-link">django.db.models.fields.json.HasKeyLookup</a></code>, <code><a href="django.db.models.lookups.BuiltinLookup.html" class="internal-link">django.db.models.lookups.BuiltinLookup</a></code>, <code><a href="django.db.models.lookups.YearLookup.html" class="internal-link">django.db.models.lookups.YearLookup</a></code>, <code><a href="django.db.models.sql.query.Query.html" class="internal-link">django.db.models.sql.query.Query</a></code></div>
     
-    <div></div>
+    <div><p class="pre">Responsible for returning a (sql, [params]) tuple to be included
+in the current query.
+
+Different backends can provide their own implementation, by
+providing an `as_{vendor}` method and patching the Expression:
+
+```
+def override_as_sql(self, compiler, connection):
+    # custom logic
+    return super().as_sql(compiler, connection)
+setattr(Expression, 'as_' + connection.vendor, override_as_sql)
+```
+
+Arguments:
+ * compiler: the query compiler responsible for generating the query.
+   Must have a compile method, returning a (sql, [params]) tuple.
+   Calling compiler(value) will return a quoted `value`.
+
+ * connection: the database connection used for the current query.
+
+Return: (sql, params)
+  Where `sql` is a string containing ordered sql parameters to be
+  replaced with the elements of the list `params`.</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -1205,8 +1226,8 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Recursively yield this expression and all subexpressions, in depth-first order.</p>
-</div>
+    <div><p class="pre">Recursively yield this expression and all subexpressions, in
+depth-first order.</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -1316,8 +1337,7 @@
   <div class="docstring functionBody">
     <div class="interfaceinfo">overridden in <code><a href="django.db.models.aggregates.Aggregate.html" class="internal-link">django.db.models.aggregates.Aggregate</a></code>, <code><a href="django.db.models.expressions.When.html" class="internal-link">django.db.models.expressions.When</a></code></div>
     
-    <div><p>Return the underlying field types used by this aggregate.</p>
-</div>
+    <div><p class="pre">Return the underlying field types used by this aggregate.</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -1383,7 +1403,18 @@
   <div class="docstring functionBody">
     <div class="interfaceinfo">overridden in <code><a href="django.db.models.expressions.Case.html" class="internal-link">django.db.models.expressions.Case</a></code>, <code><a href="django.db.models.expressions.CombinedExpression.html" class="internal-link">django.db.models.expressions.CombinedExpression</a></code>, <code><a href="django.db.models.expressions.Func.html" class="internal-link">django.db.models.expressions.Func</a></code>, <code><a href="django.db.models.expressions.RawSQL.html" class="internal-link">django.db.models.expressions.RawSQL</a></code>, <code><a href="django.db.models.expressions.Ref.html" class="internal-link">django.db.models.expressions.Ref</a></code>, <code><a href="django.db.models.expressions.Value.html" class="internal-link">django.db.models.expressions.Value</a></code>, <code><a href="django.db.models.expressions.When.html" class="internal-link">django.db.models.expressions.When</a></code>, <code><a href="django.db.models.lookups.Lookup.html" class="internal-link">django.db.models.lookups.Lookup</a></code>, <code><a href="django.db.models.sql.query.Query.html" class="internal-link">django.db.models.sql.query.Query</a></code></div>
     
-    <div></div>
+    <div><p class="pre">Provide the chance to do any preprocessing or validation before being
+added to the query.
+
+Arguments:
+ * query: the backend query implementation
+ * allow_joins: boolean allowing or denying use of joins
+   in this query
+ * reuse: a set of reusable joins for multijoins
+ * summarize: a terminal aggregate clause
+ * for_save: whether this expression about to be used in a save or update
+
+Return: an Expression to be added to the query.</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -1427,8 +1458,8 @@
   <div class="docstring functionBody">
     <div class="interfaceinfo">overridden in <code><a href="django.db.models.expressions.Exists.html" class="internal-link">django.db.models.expressions.Exists</a></code>, <code><a href="django.db.models.lookups.Lookup.html" class="internal-link">django.db.models.lookups.Lookup</a></code></div>
     
-    <div><p>Custom format for select clauses. For example, EXISTS expressions need to be wrapped in CASE WHEN on Oracle.</p>
-</div>
+    <div><p class="pre">Custom format for select clauses. For example, EXISTS expressions need
+to be wrapped in CASE WHEN on Oracle.</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -1633,8 +1664,9 @@
   <div class="functionBody">
     <div class="interfaceinfo">overridden in <code><a href="django.db.models.functions.datetime.TruncBase.html" class="internal-link">django.db.models.functions.datetime.TruncBase</a></code></div>
     
-    <div><p>Expressions provide their own converters because users have the option of manually specifying the output_field which may be a different type from the one the database returns.</p>
-</div>
+    <div><p class="pre">Expressions provide their own converters because users have the option
+of manually specifying the output_field which may be a different type
+from the one the database returns.</p></div>
     
   </div>
 </div><div class="baseproperty">
@@ -1680,8 +1712,7 @@
   <div class="functionBody">
     <div class="interfaceinfo">overridden in <code><a href="django.contrib.postgres.fields.ranges.IsEmpty.html" class="internal-link">django.contrib.postgres.fields.ranges.IsEmpty</a></code>, <code><a href="django.contrib.postgres.fields.ranges.LowerInclusive.html" class="internal-link">django.contrib.postgres.fields.ranges.LowerInclusive</a></code>, <code><a href="django.contrib.postgres.fields.ranges.LowerInfinite.html" class="internal-link">django.contrib.postgres.fields.ranges.LowerInfinite</a></code>, <code><a href="django.contrib.postgres.fields.ranges.RangeEndsWith.html" class="internal-link">django.contrib.postgres.fields.ranges.RangeEndsWith</a></code>, <code><a href="django.contrib.postgres.fields.ranges.RangeStartsWith.html" class="internal-link">django.contrib.postgres.fields.ranges.RangeStartsWith</a></code>, <code><a href="django.contrib.postgres.fields.ranges.UpperInclusive.html" class="internal-link">django.contrib.postgres.fields.ranges.UpperInclusive</a></code>, <code><a href="django.contrib.postgres.fields.ranges.UpperInfinite.html" class="internal-link">django.contrib.postgres.fields.ranges.UpperInfinite</a></code>, <code><a href="django.db.models.aggregates.Count.html" class="internal-link">django.db.models.aggregates.Count</a></code>, <code><a href="django.db.models.expressions.Exists.html" class="internal-link">django.db.models.expressions.Exists</a></code>, <code><a href="django.db.models.expressions.TemporalSubtraction.html" class="internal-link">django.db.models.expressions.TemporalSubtraction</a></code>, <code><a href="django.db.models.functions.Extract.html" class="internal-link">django.db.models.functions.Extract</a></code>, <code><a href="django.db.models.functions.JSONObject.html" class="internal-link">django.db.models.functions.JSONObject</a></code>, <code><a href="django.db.models.functions.Left.html" class="internal-link">django.db.models.functions.Left</a></code>, <code><a href="django.db.models.functions.Length.html" class="internal-link">django.db.models.functions.Length</a></code>, <code><a href="django.db.models.functions.LPad.html" class="internal-link">django.db.models.functions.LPad</a></code>, <code><a href="django.db.models.functions.Now.html" class="internal-link">django.db.models.functions.Now</a></code>, <code><a href="django.db.models.functions.Ord.html" class="internal-link">django.db.models.functions.Ord</a></code>, <code><a href="django.db.models.functions.Repeat.html" class="internal-link">django.db.models.functions.Repeat</a></code>, <code><a href="django.db.models.functions.StrIndex.html" class="internal-link">django.db.models.functions.StrIndex</a></code>, <code><a href="django.db.models.functions.Substr.html" class="internal-link">django.db.models.functions.Substr</a></code>, <code><a href="django.db.models.functions.TruncDate.html" class="internal-link">django.db.models.functions.TruncDate</a></code>, <code><a href="django.db.models.functions.TruncTime.html" class="internal-link">django.db.models.functions.TruncTime</a></code>, <code><a href="django.db.models.functions.window.CumeDist.html" class="internal-link">django.db.models.functions.window.CumeDist</a></code>, <code><a href="django.db.models.functions.window.DenseRank.html" class="internal-link">django.db.models.functions.window.DenseRank</a></code>, <code><a href="django.db.models.functions.window.Ntile.html" class="internal-link">django.db.models.functions.window.Ntile</a></code>, <code><a href="django.db.models.functions.window.PercentRank.html" class="internal-link">django.db.models.functions.window.PercentRank</a></code>, <code><a href="django.db.models.functions.window.Rank.html" class="internal-link">django.db.models.functions.window.Rank</a></code>, <code><a href="django.db.models.functions.window.RowNumber.html" class="internal-link">django.db.models.functions.window.RowNumber</a></code>, <code><a href="django.db.models.lookups.Lookup.html" class="internal-link">django.db.models.lookups.Lookup</a></code>, <code><a href="django.db.models.sql.query.Query.html" class="internal-link">django.db.models.sql.query.Query</a></code></div>
     
-    <div><p>Return the output type of this expressions.</p>
-</div>
+    <div><p class="pre">Return the output type of this expressions.</p></div>
     
   </div>
 </div><div class="basestaticmethod private">
@@ -1748,10 +1779,17 @@
   <div class="docstring functionBody">
     <div class="interfaceinfo">overridden in <code><a href="django.db.models.expressions.CombinedExpression.html" class="internal-link">django.db.models.expressions.CombinedExpression</a></code>, <code><a href="django.db.models.expressions.Subquery.html" class="internal-link">django.db.models.expressions.Subquery</a></code>, <code><a href="django.db.models.expressions.Value.html" class="internal-link">django.db.models.expressions.Value</a></code>, <code><a href="django.db.models.expressions.Window.html" class="internal-link">django.db.models.expressions.Window</a></code>, <code><a href="django.db.models.functions.Round.html" class="internal-link">django.db.models.functions.Round</a></code>, <code><a href="django.db.models.functions.window.LagLeadFunction.html" class="internal-link">django.db.models.functions.window.LagLeadFunction</a></code>, <code><a href="django.db.models.functions.window.NthValue.html" class="internal-link">django.db.models.functions.window.NthValue</a></code></div>
     
-    <div><p>Attempt to infer the output type of the expression. If the output fields of all source fields match then, simply infer the same type here. This isn't always correct, but it makes sense most of the time.</p>
-<p>Consider the difference between `2 + 2` and `2 / 3`. Inferring the type here is a convenience for the common case. The user should supply their own output_field with more complex computations.</p>
-<p>If a source's output field resolves to None, exclude it from this check. If all sources are None, then an error is raised higher up the stack in the output_field property.</p>
-</div>
+    <div><p class="pre">Attempt to infer the output type of the expression. If the output
+fields of all source fields match then, simply infer the same type
+here. This isn't always correct, but it makes sense most of the time.
+
+Consider the difference between `2 + 2` and `2 / 3`. Inferring
+the type here is a convenience for the common case. The user should
+supply their own output_field with more complex computations.
+
+If a source's output field resolves to None, exclude it from this check.
+If all sources are None, then an error is raised higher up the stack in
+the output_field property.</p></div>
   </div>
 </div><div class="baseclassvariable private">
   
@@ -1796,8 +1834,8 @@
   <div class="functionBody">
     
     
-    <div><p>Return the output field of this expression, or None if _resolve_output_field() didn't return an output type.</p>
-</div>
+    <div><p class="pre">Return the output field of this expression, or None if
+_resolve_output_field() didn't return an output type.</p></div>
     
   </div>
 </div>
@@ -1812,7 +1850,7 @@
   <div class="container">
     <a href="index.html">API Documentation</a> for django,
   generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
-    22.4.0.dev0 at 2022-04-11 16:01:21.
+    22.4.0.dev0 at 2022-04-23 04:48:04.
   </div>
 
   <!-- Search related scripts needs to be loaded at the end of HTML 

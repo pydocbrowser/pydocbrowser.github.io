@@ -443,7 +443,7 @@
         </div>
 
         <div id="splitTables">
-          <table class="children sortable" id="id67">
+          <table class="children sortable" id="id637">
   
   
   <tr class="class">
@@ -455,17 +455,17 @@
     
     <td>Function</td>
     <td><code><a href="#format_compound_unit" class="internal-link" title="babel.units.format_compound_unit">format<wbr></wbr>_compound<wbr></wbr>_unit</a></code></td>
-    <td><span class="undocumented">No summary</span></td>
+    <td>Format a compound number value, i.e. "kilometers per hour" or similar.</td>
   </tr><tr class="function">
     
     <td>Function</td>
     <td><code><a href="#format_unit" class="internal-link" title="babel.units.format_unit">format<wbr></wbr>_unit</a></code></td>
-    <td><span class="undocumented">No summary</span></td>
+    <td>Format a value of a given unit.</td>
   </tr><tr class="function">
     
     <td>Function</td>
     <td><code><a href="#get_unit_name" class="internal-link" title="babel.units.get_unit_name">get<wbr></wbr>_unit<wbr></wbr>_name</a></code></td>
-    <td><span class="undocumented">No summary</span></td>
+    <td>Get the display name for a measurement unit in the given locale.</td>
   </tr><tr class="function private">
     
     <td>Function</td>
@@ -504,7 +504,48 @@
   <div class="docstring functionBody">
     
     
-    <div></div>
+    <div><p class="pre">Format a compound number value, i.e. "kilometers per hour" or similar.
+
+Both unit specifiers are optional to allow for formatting of arbitrary values still according
+to the locale's general "per" formatting specifier.
+
+&gt;&gt;&gt; format_compound_unit(7, denominator_value=11, length="short", locale="pt")
+'7/11'
+
+&gt;&gt;&gt; format_compound_unit(150, "kilometer", denominator_unit="hour", locale="sv")
+'150 kilometer per timme'
+
+&gt;&gt;&gt; format_compound_unit(150, "kilowatt", denominator_unit="year", locale="fi")
+'150 kilowattia / vuosi'
+
+&gt;&gt;&gt; format_compound_unit(32.5, "ton", 15, denominator_unit="hour", locale="en")
+'32.5 tons per 15 hours'
+
+&gt;&gt;&gt; format_compound_unit(160, denominator_unit="square-meter", locale="fr")
+'160 par m\xe8tre carr\xe9'
+
+&gt;&gt;&gt; format_compound_unit(4, "meter", "ratakisko", length="short", locale="fi")
+'4 m/ratakisko'
+
+&gt;&gt;&gt; format_compound_unit(35, "minute", denominator_unit="fathom", locale="sv")
+'35 minuter per famn'
+
+&gt;&gt;&gt; from babel.numbers import format_currency
+&gt;&gt;&gt; format_compound_unit(format_currency(35, "JPY", locale="de"), denominator_unit="liter", locale="de")
+'35\xa0\xa5 pro Liter'
+
+See https://www.unicode.org/reports/tr35/tr35-general.html#perUnitPatterns
+
+:param numerator_value: The numerator value. This may be a string,
+                        in which case it is considered preformatted and the unit is ignored.
+:param numerator_unit: The numerator unit. See `format_unit`.
+:param denominator_value: The denominator value. This may be a string,
+                          in which case it is considered preformatted and the unit is ignored.
+:param denominator_unit: The denominator unit. See `format_unit`.
+:param length: The formatting length. "short", "long" or "narrow"
+:param format: An optional format, as accepted by `format_decimal`.
+:param locale: the `Locale` object or locale identifier
+:return: A formatted compound value.</p></div>
   </div>
 </div><div class="basefunction">
   
@@ -526,7 +567,51 @@
   <div class="docstring functionBody">
     
     
-    <div></div>
+    <div><p class="pre">Format a value of a given unit.
+
+Values are formatted according to the locale's usual pluralization rules
+and number formats.
+
+&gt;&gt;&gt; format_unit(12, 'length-meter', locale='ro_RO')
+u'12 metri'
+&gt;&gt;&gt; format_unit(15.5, 'length-mile', locale='fi_FI')
+u'15,5 mailia'
+&gt;&gt;&gt; format_unit(1200, 'pressure-millimeter-ofhg', locale='nb')
+u'1\xa0200 millimeter kvikks\xf8lv'
+&gt;&gt;&gt; format_unit(270, 'ton', locale='en')
+u'270 tons'
+
+Number formats may be overridden with the ``format`` parameter.
+
+&gt;&gt;&gt; import decimal
+&gt;&gt;&gt; format_unit(decimal.Decimal("-42.774"), 'temperature-celsius', 'short', format='#.0', locale='fr')
+u'-42,8\u202f\xb0C'
+
+The locale's usual pluralization rules are respected.
+
+&gt;&gt;&gt; format_unit(1, 'length-meter', locale='ro_RO')
+u'1 metru'
+&gt;&gt;&gt; format_unit(0, 'length-mile', locale='cy')
+u'0 mi'
+&gt;&gt;&gt; format_unit(1, 'length-mile', locale='cy')
+u'1 filltir'
+&gt;&gt;&gt; format_unit(3, 'length-mile', locale='cy')
+u'3 milltir'
+
+&gt;&gt;&gt; format_unit(15, 'length-horse', locale='fi')
+Traceback (most recent call last):
+    ...
+UnknownUnitError: length-horse is not a known unit in fi
+
+.. versionadded:: 2.2.0
+
+:param value: the value to format. If this is a string, no number formatting will be attempted.
+:param measurement_unit: the code of a measurement unit.
+                         Known units can be found in the CLDR Unit Validity XML file:
+                         https://unicode.org/repos/cldr/tags/latest/common/validity/unit.xml
+:param length: "short", "long" or "narrow"
+:param format: An optional format, as accepted by `format_decimal`.
+:param locale: the `Locale` object or locale identifier</p></div>
   </div>
 </div><div class="basefunction">
   
@@ -548,7 +633,25 @@
   <div class="docstring functionBody">
     
     
-    <div></div>
+    <div><p class="pre">Get the display name for a measurement unit in the given locale.
+
+&gt;&gt;&gt; get_unit_name("radian", locale="en")
+'radians'
+
+Unknown units will raise exceptions:
+
+&gt;&gt;&gt; get_unit_name("battery", locale="fi")
+Traceback (most recent call last):
+    ...
+UnknownUnitError: battery/long is not a known unit/length in fi
+
+:param measurement_unit: the code of a measurement unit.
+                         Known units can be found in the CLDR Unit Validity XML file:
+                         https://unicode.org/repos/cldr/tags/latest/common/validity/unit.xml
+
+:param length: "short", "long" or "narrow"
+:param locale: the `Locale` object or locale identifier
+:return: The unit display name, or None.</p></div>
   </div>
 </div><div class="basefunction private">
   
@@ -570,19 +673,27 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Find a predefined compound unit pattern.</p>
-<p>Used internally by format_compound_unit.</p>
-<pre class="py-doctest">
-<span class="py-prompt">&gt;&gt;&gt; </span>_find_compound_unit(<span class="py-string">"kilometer"</span>, <span class="py-string">"hour"</span>, locale=<span class="py-string">"en"</span>)
-<span class="py-output">'speed-kilometer-per-hour'</span>
-</pre><pre class="py-doctest">
-<span class="py-prompt">&gt;&gt;&gt; </span>_find_compound_unit(<span class="py-string">"mile"</span>, <span class="py-string">"gallon"</span>, locale=<span class="py-string">"en"</span>)
-<span class="py-output">'consumption-mile-per-gallon'</span>
-</pre><p>If no predefined compound pattern can be found, `None` is returned.</p>
-<pre class="py-doctest">
-<span class="py-prompt">&gt;&gt;&gt; </span>_find_compound_unit(<span class="py-string">"gallon"</span>, <span class="py-string">"mile"</span>, locale=<span class="py-string">"en"</span>)</pre><pre class="py-doctest">
-<span class="py-prompt">&gt;&gt;&gt; </span>_find_compound_unit(<span class="py-string">"horse"</span>, <span class="py-string">"purple"</span>, locale=<span class="py-string">"en"</span>)</pre><p>:param numerator_unit: The numerator unit's identifier :param denominator_unit: The denominator unit's identifier :param locale: the `Locale` object or locale identifier :return: A key to the `unit_patterns` mapping, or None. :rtype: str|None</p>
-</div>
+    <div><p class="pre">Find a predefined compound unit pattern.
+
+Used internally by format_compound_unit.
+
+&gt;&gt;&gt; _find_compound_unit("kilometer", "hour", locale="en")
+'speed-kilometer-per-hour'
+
+&gt;&gt;&gt; _find_compound_unit("mile", "gallon", locale="en")
+'consumption-mile-per-gallon'
+
+If no predefined compound pattern can be found, `None` is returned.
+
+&gt;&gt;&gt; _find_compound_unit("gallon", "mile", locale="en")
+
+&gt;&gt;&gt; _find_compound_unit("horse", "purple", locale="en")
+
+:param numerator_unit: The numerator unit's identifier
+:param denominator_unit: The denominator unit's identifier
+:param locale: the `Locale` object or locale identifier
+:return: A key to the `unit_patterns` mapping, or None.
+:rtype: str|None</p></div>
   </div>
 </div><div class="basefunction private">
   
@@ -604,15 +715,20 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Expand an unit into a qualified form.</p>
-<p>Known units can be found in the CLDR Unit Validity XML file: https://unicode.org/repos/cldr/tags/latest/common/validity/unit.xml</p>
-<pre class="py-doctest">
-<span class="py-prompt">&gt;&gt;&gt; </span>_find_unit_pattern(<span class="py-string">"radian"</span>, locale=<span class="py-string">"en"</span>)
-<span class="py-output">'angle-radian'</span>
-</pre><p>Unknown values will return None.</p>
-<pre class="py-doctest">
-<span class="py-prompt">&gt;&gt;&gt; </span>_find_unit_pattern(<span class="py-string">"horse"</span>, locale=<span class="py-string">"en"</span>)</pre><p>:param unit_id: the code of a measurement unit. :return: A key to the `unit_patterns` mapping, or None.</p>
-</div>
+    <div><p class="pre">Expand an unit into a qualified form.
+
+Known units can be found in the CLDR Unit Validity XML file:
+https://unicode.org/repos/cldr/tags/latest/common/validity/unit.xml
+
+&gt;&gt;&gt; _find_unit_pattern("radian", locale="en")
+'angle-radian'
+
+Unknown values will return None.
+
+&gt;&gt;&gt; _find_unit_pattern("horse", locale="en")
+
+:param unit_id: the code of a measurement unit.
+:return: A key to the `unit_patterns` mapping, or None.</p></div>
   </div>
 </div>
         </div>
@@ -626,7 +742,7 @@
   <div class="container">
     <a href="index.html">API Documentation</a> for babel,
   generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
-    22.4.0.dev0 at 2022-04-21 01:03:37.
+    22.4.0.dev0 at 2022-04-23 04:46:09.
   </div>
 
   <!-- Search related scripts needs to be loaded at the end of HTML 

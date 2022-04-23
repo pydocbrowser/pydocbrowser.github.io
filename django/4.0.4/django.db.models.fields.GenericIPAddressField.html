@@ -1915,7 +1915,7 @@
         </div>
 
         <div id="splitTables">
-          <table class="children sortable" id="id3705">
+          <table class="children sortable" id="id4786">
   
   
   <tr class="method">
@@ -1932,7 +1932,7 @@
     
     <td>Method</td>
     <td><code><a href="#deconstruct" class="internal-link" title="django.db.models.fields.GenericIPAddressField.deconstruct">deconstruct</a></code></td>
-    <td><span class="undocumented">No summary</span></td>
+    <td>Return enough information to recreate the field as a 4-tuple:</td>
   </tr><tr class="method">
     
     <td>Method</td>
@@ -1999,7 +1999,7 @@
             <p class="inheritedFrom">
               Inherited from <code><a href="django.db.models.fields.Field.html" class="internal-link" title="django.db.models.fields.Field">Field</a></code>:
             </p>
-            <table class="children sortable" id="id3706">
+            <table class="children sortable" id="id4787">
   
   
   <tr class="basemethod">
@@ -2473,7 +2473,7 @@
             <p class="inheritedFrom">
               Inherited from <code><a href="django.db.models.query_utils.RegisterLookupMixin.html" class="internal-link" title="django.db.models.query_utils.RegisterLookupMixin">RegisterLookupMixin</a></code> (via <code><a href="django.db.models.fields.Field.html" class="internal-link" title="django.db.models.fields.Field">Field</a></code>):
             </p>
-            <table class="children sortable" id="id3707">
+            <table class="children sortable" id="id4788">
   
   
   <tr class="baseclassmethod">
@@ -2588,7 +2588,35 @@
   <div class="docstring functionBody">
     <div class="interfaceinfo">overrides <code><a href="django.db.models.fields.Field.html#deconstruct" class="internal-link">django.db.models.fields.Field.deconstruct</a></code></div>
     
-    <div></div>
+    <div><p class="pre">Return enough information to recreate the field as a 4-tuple:
+
+ * The name of the field on the model, if contribute_to_class() has
+   been run.
+ * The import path of the field, including the class, e.g.
+   django.db.models.IntegerField. This should be the most portable
+   version, so less specific may be better.
+ * A list of positional arguments.
+ * A dict of keyword arguments.
+
+Note that the positional or keyword arguments must contain values of
+the following types (including inner values of collection types):
+
+ * None, bool, str, int, float, complex, set, frozenset, list, tuple,
+   dict
+ * UUID
+ * datetime.datetime (naive), datetime.date
+ * top-level classes, top-level functions - will be referenced by their
+   full import path
+ * Storage instances - these have their own deconstruct() method
+
+This is because the values here must be serialized into a text format
+(possibly new Python code, possibly JSON) and these are the only types
+with encoding handlers defined.
+
+There's no need to return the exact way the field was instantiated this
+time, just ensure that the resulting field is the same - prefer keyword
+arguments over positional ones, and omit parameters with their default
+values.</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -2610,8 +2638,7 @@
   <div class="docstring functionBody">
     <div class="interfaceinfo">overrides <code><a href="django.db.models.fields.Field.html#formfield" class="internal-link">django.db.models.fields.Field.formfield</a></code></div>
     
-    <div><p>Return a django.forms.Field instance for this field.</p>
-</div>
+    <div><p class="pre">Return a django.forms.Field instance for this field.</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -2633,9 +2660,9 @@
   <div class="docstring functionBody">
     <div class="interfaceinfo">overrides <code><a href="django.db.models.fields.Field.html#get_db_prep_value" class="internal-link">django.db.models.fields.Field.get_db_prep_value</a></code></div>
     
-    <div><p>Return field's value prepared for interacting with the database backend.</p>
-<p>Used by the default implementations of get_db_prep_save().</p>
-</div>
+    <div><p class="pre">Return field's value prepared for interacting with the database backend.
+
+Used by the default implementations of get_db_prep_save().</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -2679,8 +2706,7 @@
   <div class="docstring functionBody">
     <div class="interfaceinfo">overrides <code><a href="django.db.models.fields.Field.html#get_prep_value" class="internal-link">django.db.models.fields.Field.get_prep_value</a></code></div>
     
-    <div><p>Perform preliminary non-db specific value checks and conversions.</p>
-</div>
+    <div><p class="pre">Perform preliminary non-db specific value checks and conversions.</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -2702,8 +2728,9 @@
   <div class="docstring functionBody">
     <div class="interfaceinfo">overrides <code><a href="django.db.models.fields.Field.html#to_python" class="internal-link">django.db.models.fields.Field.to_python</a></code></div>
     
-    <div><p>Convert the input value into the expected Python data type, raising django.core.exceptions.ValidationError if the data can't be converted. Return the converted value. Subclasses should override this.</p>
-</div>
+    <div><p class="pre">Convert the input value into the expected Python data type, raising
+django.core.exceptions.ValidationError if the data can't be converted.
+Return the converted value. Subclasses should override this.</p></div>
   </div>
 </div><div class="baseclassvariable">
   
@@ -2877,7 +2904,7 @@
   <div class="container">
     <a href="index.html">API Documentation</a> for django,
   generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
-    22.4.0.dev0 at 2022-04-11 16:01:21.
+    22.4.0.dev0 at 2022-04-23 04:48:04.
   </div>
 
   <!-- Search related scripts needs to be loaded at the end of HTML 

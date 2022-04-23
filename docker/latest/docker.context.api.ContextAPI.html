@@ -336,44 +336,45 @@
         </div>
 
         <div class="moduleDocstring">
-          <div><p>Context API. Contains methods for context management: create, list, remove, get, inspect.</p>
-</div>
+          <div><p class="pre">Context API.
+Contains methods for context management:
+create, list, remove, get, inspect.</p></div>
         </div>
 
         <div id="splitTables">
-          <table class="children sortable" id="id49">
+          <table class="children sortable" id="id1151">
   
   
   <tr class="classmethod">
     
     <td>Class Method</td>
     <td><code><a href="#contexts" class="internal-link" title="docker.context.api.ContextAPI.contexts">contexts</a></code></td>
-    <td><span class="undocumented">No summary</span></td>
+    <td>Context list. Returns:     (Context): List of context objects. Raises:     :py:class:`docker.errors.APIError`         If the server returns an error.</td>
   </tr><tr class="classmethod">
     
     <td>Class Method</td>
     <td><code><a href="#create_context" class="internal-link" title="docker.context.api.ContextAPI.create_context">create<wbr></wbr>_context</a></code></td>
-    <td><span class="undocumented">No summary</span></td>
+    <td>Creates a new context. Returns:     (Context): a Context object. Raises:     :py:class:`docker.errors.MissingContextParameter`         If a context name is not provided.     :py:class:`docker.errors.ContextAlreadyExists`         If a context with the name already exists...</td>
   </tr><tr class="classmethod">
     
     <td>Class Method</td>
     <td><code><a href="#get_context" class="internal-link" title="docker.context.api.ContextAPI.get_context">get<wbr></wbr>_context</a></code></td>
-    <td><span class="undocumented">No summary</span></td>
+    <td>Retrieves a context object. Args:     name (str): The name of the context</td>
   </tr><tr class="classmethod">
     
     <td>Class Method</td>
     <td><code><a href="#get_current_context" class="internal-link" title="docker.context.api.ContextAPI.get_current_context">get<wbr></wbr>_current<wbr></wbr>_context</a></code></td>
-    <td><span class="undocumented">No summary</span></td>
+    <td>Get current context. Returns:     (Context): current context object.</td>
   </tr><tr class="classmethod">
     
     <td>Class Method</td>
     <td><code><a href="#inspect_context" class="internal-link" title="docker.context.api.ContextAPI.inspect_context">inspect<wbr></wbr>_context</a></code></td>
-    <td><span class="undocumented">No summary</span></td>
+    <td>Remove a context. Similar to the ``docker context inspect`` command.</td>
   </tr><tr class="classmethod">
     
     <td>Class Method</td>
     <td><code><a href="#remove_context" class="internal-link" title="docker.context.api.ContextAPI.remove_context">remove<wbr></wbr>_context</a></code></td>
-    <td><span class="undocumented">No summary</span></td>
+    <td>Remove a context. Similar to the ``docker context rm`` command.</td>
   </tr><tr class="classmethod">
     
     <td>Class Method</td>
@@ -412,7 +413,12 @@
   <div class="docstring functionBody">
     
     
-    <div></div>
+    <div><p class="pre">Context list.
+Returns:
+    (Context): List of context objects.
+Raises:
+    :py:class:`docker.errors.APIError`
+        If the server returns an error.</p></div>
   </div>
 </div><div class="baseclassmethod">
   
@@ -434,7 +440,32 @@
   <div class="docstring functionBody">
     
     
-    <div></div>
+    <div><p class="pre">Creates a new context.
+Returns:
+    (Context): a Context object.
+Raises:
+    :py:class:`docker.errors.MissingContextParameter`
+        If a context name is not provided.
+    :py:class:`docker.errors.ContextAlreadyExists`
+        If a context with the name already exists.
+    :py:class:`docker.errors.ContextException`
+        If name is default.
+
+Example:
+
+&gt;&gt;&gt; from docker.context import ContextAPI
+&gt;&gt;&gt; ctx = ContextAPI.create_context(name='test')
+&gt;&gt;&gt; print(ctx.Metadata)
+{
+    "Name": "test",
+    "Metadata": {},
+    "Endpoints": {
+        "docker": {
+            "Host": "unix:///var/run/docker.sock",
+            "SkipTLSVerify": false
+        }
+    }
+}</p></div>
   </div>
 </div><div class="baseclassmethod">
   
@@ -456,7 +487,25 @@
   <div class="docstring functionBody">
     
     
-    <div></div>
+    <div><p class="pre">Retrieves a context object.
+Args:
+    name (str): The name of the context
+
+Example:
+
+&gt;&gt;&gt; from docker.context import ContextAPI
+&gt;&gt;&gt; ctx = ContextAPI.get_context(name='test')
+&gt;&gt;&gt; print(ctx.Metadata)
+{
+    "Name": "test",
+    "Metadata": {},
+    "Endpoints": {
+        "docker": {
+        "Host": "unix:///var/run/docker.sock",
+        "SkipTLSVerify": false
+        }
+    }
+}</p></div>
   </div>
 </div><div class="baseclassmethod">
   
@@ -478,7 +527,9 @@
   <div class="docstring functionBody">
     
     
-    <div></div>
+    <div><p class="pre">Get current context.
+Returns:
+    (Context): current context object.</p></div>
   </div>
 </div><div class="baseclassmethod">
   
@@ -500,7 +551,22 @@
   <div class="docstring functionBody">
     
     
-    <div></div>
+    <div><p class="pre">Remove a context. Similar to the ``docker context inspect`` command.
+
+Args:
+    name (str): The name of the context
+
+Raises:
+    :py:class:`docker.errors.MissingContextParameter`
+        If a context name is not provided.
+    :py:class:`docker.errors.ContextNotFound`
+        If a context with the name does not exist.
+
+Example:
+
+&gt;&gt;&gt; from docker.context import ContextAPI
+&gt;&gt;&gt; ContextAPI.remove_context(name='test')
+&gt;&gt;&gt;</p></div>
   </div>
 </div><div class="baseclassmethod">
   
@@ -522,7 +588,24 @@
   <div class="docstring functionBody">
     
     
-    <div></div>
+    <div><p class="pre">Remove a context. Similar to the ``docker context rm`` command.
+
+Args:
+    name (str): The name of the context
+
+Raises:
+    :py:class:`docker.errors.MissingContextParameter`
+        If a context name is not provided.
+    :py:class:`docker.errors.ContextNotFound`
+        If a context with the name does not exist.
+    :py:class:`docker.errors.ContextException`
+        If name is default.
+
+Example:
+
+&gt;&gt;&gt; from docker.context import ContextAPI
+&gt;&gt;&gt; ContextAPI.remove_context(name='test')
+&gt;&gt;&gt;</p></div>
   </div>
 </div><div class="baseclassmethod">
   
@@ -581,7 +664,7 @@
   <div class="container">
     <a href="index.html">API Documentation</a> for docker,
   generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
-    22.4.0.dev0 at 2022-04-19 18:16:32.
+    22.4.0.dev0 at 2022-04-23 04:47:40.
   </div>
 
   <!-- Search related scripts needs to be loaded at the end of HTML 

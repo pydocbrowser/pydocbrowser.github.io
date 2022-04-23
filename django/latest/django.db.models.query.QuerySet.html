@@ -1442,12 +1442,11 @@
         </div>
 
         <div class="moduleDocstring">
-          <div><p>Represent a lazy database lookup for a set of objects.</p>
-</div>
+          <div><p class="pre">Represent a lazy database lookup for a set of objects.</p></div>
         </div>
 
         <div id="splitTables">
-          <table class="children sortable" id="id4778">
+          <table class="children sortable" id="id5859">
   
   
   <tr class="classmethod">
@@ -1494,7 +1493,7 @@
     
     <td>Method</td>
     <td><code><a href="#__iter__" class="internal-link" title="django.db.models.query.QuerySet.__iter__">__iter__</a></code></td>
-    <td>The queryset iterator protocol uses three nested iterators in the default case:</td>
+    <td>The queryset iterator protocol uses three nested iterators in the default case:     1. sql.compiler.execute_sql()        - Returns 100 rows at time (constants.GET_ITERATOR_CHUNK_SIZE)          using cursor...</td>
   </tr><tr class="method">
     
     <td>Method</td>
@@ -2066,8 +2065,7 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Don't populate the QuerySet's cache.</p>
-</div>
+    <div><p class="pre">Don't populate the QuerySet's cache.</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -2089,8 +2087,7 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Retrieve an item or slice from the set of results.</p>
-</div>
+    <div><p class="pre">Retrieve an item or slice from the set of results.</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -2156,22 +2153,18 @@
   <div class="docstring functionBody">
     
     
-    <div><p>The queryset iterator protocol uses three nested iterators in the default case:</p>
-<ol class="rst-simple">
-<li>sql.compiler.execute_sql()<ul>
-<li>Returns 100 rows at time (constants.GET_ITERATOR_CHUNK_SIZE) using cursor.fetchmany(). This part is responsible for doing some column masking, and returning the rows in chunks.</li>
-</ul>
-</li>
-<li>sql.compiler.results_iter()<ul>
-<li>Returns one row at time. At this point the rows are still just tuples. In some cases the return values are converted to Python values at this location.</li>
-</ul>
-</li>
-<li>self.iterator()<ul>
-<li>Responsible for turning the rows into model objects.</li>
-</ul>
-</li>
-</ol>
-</div>
+    <div><p class="pre">The queryset iterator protocol uses three nested iterators in the
+default case:
+    1. sql.compiler.execute_sql()
+       - Returns 100 rows at time (constants.GET_ITERATOR_CHUNK_SIZE)
+         using cursor.fetchmany(). This part is responsible for
+         doing some column masking, and returning the rows in chunks.
+    2. sql.compiler.results_iter()
+       - Returns one row at time. At this point the rows are still just
+         tuples. In some cases the return values are converted to
+         Python values at this location.
+    3. self.iterator()
+       - Responsible for turning the rows into model objects.</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -2281,9 +2274,11 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Return a dictionary containing the calculations (aggregation) over the current queryset.</p>
-<p>If args is present the expression is passed as a kwarg using the Aggregate object's default alias.</p>
-</div>
+    <div><p class="pre">Return a dictionary containing the calculations (aggregation)
+over the current queryset.
+
+If args is present the expression is passed as a kwarg using
+the Aggregate object's default alias.</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -2305,8 +2300,7 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Return a query set with added aliases for extra data or aggregations.</p>
-</div>
+    <div><p class="pre">Return a query set with added aliases for extra data or aggregations.</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -2328,8 +2322,8 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Return a new QuerySet that is a copy of the current one. This allows a QuerySet to proxy for a model manager in some cases.</p>
-</div>
+    <div><p class="pre">Return a new QuerySet that is a copy of the current one. This allows a
+QuerySet to proxy for a model manager in some cases.</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -2351,8 +2345,8 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Return a query set in which the returned objects have been annotated with extra data or aggregations.</p>
-</div>
+    <div><p class="pre">Return a query set in which the returned objects have been annotated
+with extra data or aggregations.</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -2374,8 +2368,11 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Insert each of the instances into the database. Do *not* call save() on each of the instances, do not send any pre/post_save signals, and do not set the primary key attribute if it is an autoincrement field (except if features.can_return_rows_from_bulk_insert=True). Multi-table models are not supported.</p>
-</div>
+    <div><p class="pre">Insert each of the instances into the database. Do *not* call
+save() on each of the instances, do not send any pre/post_save
+signals, and do not set the primary key attribute if it is an
+autoincrement field (except if features.can_return_rows_from_bulk_insert=True).
+Multi-table models are not supported.</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -2397,8 +2394,7 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Update the given fields in each of the given objects in the database.</p>
-</div>
+    <div><p class="pre">Update the given fields in each of the given objects in the database.</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -2420,10 +2416,13 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Return a new QuerySet instance with filter_obj added to the filters.</p>
-<p>filter_obj can be a Q object or a dictionary of keyword lookup arguments.</p>
-<p>This exists to support framework features such as 'limit_choices_to', and usually it will be more natural to use other methods.</p>
-</div>
+    <div><p class="pre">Return a new QuerySet instance with filter_obj added to the filters.
+
+filter_obj can be a Q object or a dictionary of keyword lookup
+arguments.
+
+This exists to support framework features such as 'limit_choices_to',
+and usually it will be more natural to use other methods.</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -2445,8 +2444,7 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Return True if the queryset contains an object.</p>
-</div>
+    <div><p class="pre">Return True if the queryset contains an object.</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -2468,9 +2466,11 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Perform a SELECT COUNT() and return the number of records as an integer.</p>
-<p>If the QuerySet is already fully cached, return the length of the cached results set to avoid multiple SELECT COUNT(*) calls.</p>
-</div>
+    <div><p class="pre">Perform a SELECT COUNT() and return the number of records as an
+integer.
+
+If the QuerySet is already fully cached, return the length of the
+cached results set to avoid multiple SELECT COUNT(*) calls.</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -2492,8 +2492,8 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Create a new object with the given kwargs, saving it to the database and returning the created object.</p>
-</div>
+    <div><p class="pre">Create a new object with the given kwargs, saving it to the database
+and returning the created object.</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -2515,8 +2515,8 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Return a list of date objects representing all available dates for the given field_name, scoped to 'kind'.</p>
-</div>
+    <div><p class="pre">Return a list of date objects representing all available dates for
+the given field_name, scoped to 'kind'.</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -2538,8 +2538,8 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Return a list of datetime objects representing all available datetimes for the given field_name, scoped to 'kind'.</p>
-</div>
+    <div><p class="pre">Return a list of datetime objects representing all available
+datetimes for the given field_name, scoped to 'kind'.</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -2561,8 +2561,10 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Defer the loading of data for certain fields until they are accessed. Add the set of deferred fields to any existing set of deferred fields. The only exception to this is if None is passed in as the only parameter, in which case removal all deferrals.</p>
-</div>
+    <div><p class="pre">Defer the loading of data for certain fields until they are accessed.
+Add the set of deferred fields to any existing set of deferred fields.
+The only exception to this is if None is passed in as the only
+parameter, in which case removal all deferrals.</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -2584,8 +2586,7 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Delete the records in the current QuerySet.</p>
-</div>
+    <div><p class="pre">Delete the records in the current QuerySet.</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -2629,8 +2630,7 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Return a new QuerySet instance that will select only distinct results.</p>
-</div>
+    <div><p class="pre">Return a new QuerySet instance that will select only distinct results.</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -2674,8 +2674,8 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Return a new QuerySet instance with NOT (args) ANDed to the existing set.</p>
-</div>
+    <div><p class="pre">Return a new QuerySet instance with NOT (args) ANDed to the existing
+set.</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -2741,8 +2741,7 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Add extra SQL fragments to the query.</p>
-</div>
+    <div><p class="pre">Add extra SQL fragments to the query.</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -2764,8 +2763,8 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Return a new QuerySet instance with the args ANDed to the existing set.</p>
-</div>
+    <div><p class="pre">Return a new QuerySet instance with the args ANDed to the existing
+set.</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -2787,8 +2786,7 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Return the first object of a query or None if no match is found.</p>
-</div>
+    <div><p class="pre">Return the first object of a query or None if no match is found.</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -2810,8 +2808,8 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Perform the query and return a single object matching the given keyword arguments.</p>
-</div>
+    <div><p class="pre">Perform the query and return a single object matching the given
+keyword arguments.</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -2833,8 +2831,9 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Look up an object with the given kwargs, creating one if necessary. Return a tuple of (object, created), where created is a boolean specifying whether an object was created.</p>
-</div>
+    <div><p class="pre">Look up an object with the given kwargs, creating one if necessary.
+Return a tuple of (object, created), where created is a boolean
+specifying whether an object was created.</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -2856,8 +2855,8 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Return a dictionary mapping each of the given IDs to the object with that ID. If `id_list` isn't provided, evaluate the entire QuerySet.</p>
-</div>
+    <div><p class="pre">Return a dictionary mapping each of the given IDs to the object with
+that ID. If `id_list` isn't provided, evaluate the entire QuerySet.</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -2901,8 +2900,8 @@
   <div class="docstring functionBody">
     
     
-    <div><p>An iterator over the results from applying this QuerySet to the database.</p>
-</div>
+    <div><p class="pre">An iterator over the results from applying this QuerySet to the
+database.</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -2924,8 +2923,7 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Return the last object of a query or None if no match is found.</p>
-</div>
+    <div><p class="pre">Return the last object of a query or None if no match is found.</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -2969,8 +2967,7 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Return an empty QuerySet.</p>
-</div>
+    <div><p class="pre">Return an empty QuerySet.</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -2992,8 +2989,9 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Essentially, the opposite of defer(). Only the fields passed into this method and that are not already specified as deferred are loaded immediately when the queryset is evaluated.</p>
-</div>
+    <div><p class="pre">Essentially, the opposite of defer(). Only the fields passed into this
+method and that are not already specified as deferred are loaded
+immediately when the queryset is evaluated.</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -3015,8 +3013,7 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Return a new QuerySet instance with the ordering changed.</p>
-</div>
+    <div><p class="pre">Return a new QuerySet instance with the ordering changed.</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -3038,9 +3035,12 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Return a new QuerySet instance that will prefetch the specified Many-To-One and Many-To-Many related objects when the QuerySet is evaluated.</p>
-<p>When prefetch_related() is called more than once, append to the list of prefetch lookups. If prefetch_related(None) is called, clear the list.</p>
-</div>
+    <div><p class="pre">Return a new QuerySet instance that will prefetch the specified
+Many-To-One and Many-To-Many related objects when the QuerySet is
+evaluated.
+
+When prefetch_related() is called more than once, append to the list of
+prefetch lookups. If prefetch_related(None) is called, clear the list.</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -3128,8 +3128,7 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Reverse the ordering of the QuerySet.</p>
-</div>
+    <div><p class="pre">Reverse the ordering of the QuerySet.</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -3151,8 +3150,8 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Return a new QuerySet instance that will select objects with a FOR UPDATE lock.</p>
-</div>
+    <div><p class="pre">Return a new QuerySet instance that will select objects with a
+FOR UPDATE lock.</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -3174,10 +3173,12 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Return a new QuerySet instance that will select related objects.</p>
-<p>If fields are specified, they must be ForeignKey fields and only those related objects are included in the selection.</p>
-<p>If select_related(None) is called, clear the list.</p>
-</div>
+    <div><p class="pre">Return a new QuerySet instance that will select related objects.
+
+If fields are specified, they must be ForeignKey fields and only those
+related objects are included in the selection.
+
+If select_related(None) is called, clear the list.</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -3221,8 +3222,8 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Update all elements in the current QuerySet, setting all the given fields to the appropriate values.</p>
-</div>
+    <div><p class="pre">Update all elements in the current QuerySet, setting all the given
+fields to the appropriate values.</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -3244,8 +3245,10 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Look up an object with the given kwargs, updating one with defaults if it exists, otherwise create a new one. Return a tuple (object, created), where created is a boolean specifying whether an object was created.</p>
-</div>
+    <div><p class="pre">Look up an object with the given kwargs, updating one with defaults
+if it exists, otherwise create a new one.
+Return a tuple (object, created), where created is a boolean
+specifying whether an object was created.</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -3267,8 +3270,7 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Select which database this QuerySet should execute against.</p>
-</div>
+    <div><p class="pre">Select which database this QuerySet should execute against.</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -3357,8 +3359,7 @@
   <div class="functionBody">
     
     
-    <div><p>Return the database used if this query is executed now.</p>
-</div>
+    <div><p class="pre">Return the database used if this query is executed now.</p></div>
     
   </div>
 </div><div class="baseproperty">
@@ -3381,8 +3382,8 @@
   <div class="functionBody">
     
     
-    <div><p>Return True if the QuerySet is ordered -- i.e. has an order_by() clause or a default ordering on the model (or is empty).</p>
-</div>
+    <div><p class="pre">Return True if the QuerySet is ordered -- i.e. has an order_by()
+clause or a default ordering on the model (or is empty).</p></div>
     
   </div>
 </div><div class="baseproperty">
@@ -3450,8 +3451,8 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Update hinting information for use by routers. Add new key/values or overwrite existing key/values.</p>
-</div>
+    <div><p class="pre">Update hinting information for use by routers. Add new key/values or
+overwrite existing key/values.</p></div>
   </div>
 </div><div class="basemethod private">
   
@@ -3495,8 +3496,7 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Helper method for bulk_create() to insert objs one batch at a time.</p>
-</div>
+    <div><p class="pre">Helper method for bulk_create() to insert objs one batch at a time.</p></div>
   </div>
 </div><div class="basemethod private">
   
@@ -3518,8 +3518,8 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Return a copy of the current QuerySet that's ready for another operation.</p>
-</div>
+    <div><p class="pre">Return a copy of the current QuerySet that's ready for another
+operation.</p></div>
   </div>
 </div><div class="basemethod private">
   
@@ -3541,8 +3541,8 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Return a copy of the current QuerySet. A lightweight alternative to deepcopy().</p>
-</div>
+    <div><p class="pre">Return a copy of the current QuerySet. A lightweight alternative
+to deepcopy().</p></div>
   </div>
 </div><div class="basemethod private">
   
@@ -3586,8 +3586,8 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Return the earliest object according to fields (if given) or by the model's Meta.get_latest_by.</p>
-</div>
+    <div><p class="pre">Return the earliest object according to fields (if given) or by the
+model's Meta.get_latest_by.</p></div>
   </div>
 </div><div class="basemethod private">
   
@@ -3609,8 +3609,8 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Prepare `params` for creating a model instance based on the given kwargs; for use by get_or_create().</p>
-</div>
+    <div><p class="pre">Prepare `params` for creating a model instance based on the given
+kwargs; for use by get_or_create().</p></div>
   </div>
 </div><div class="basemethod private">
   
@@ -3698,8 +3698,9 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Check if this QuerySet has any filtering going on. This isn't equivalent with checking if all objects are present in results, for example, qs[1:]._has_filters() -&gt; False.</p>
-</div>
+    <div><p class="pre">Check if this QuerySet has any filtering going on. This isn't
+equivalent with checking if all objects are present in results, for
+example, qs[1:]._has_filters() -&gt; False.</p></div>
   </div>
 </div><div class="basemethod private">
   
@@ -3721,8 +3722,8 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Insert a new record for the given model. This provides an interface to the InsertQuery class and is how Model.save() is implemented.</p>
-</div>
+    <div><p class="pre">Insert a new record for the given model. This provides an interface to
+the InsertQuery class and is how Model.save() is implemented.</p></div>
   </div>
 </div><div class="basemethod private">
   
@@ -3766,8 +3767,7 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Keep track of all known related objects from either QuerySet instance.</p>
-</div>
+    <div><p class="pre">Keep track of all known related objects from either QuerySet instance.</p></div>
   </div>
 </div><div class="basemethod private">
   
@@ -3789,8 +3789,7 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Check that two QuerySet classes may be merged.</p>
-</div>
+    <div><p class="pre">Check that two QuerySet classes may be merged.</p></div>
   </div>
 </div><div class="basemethod private">
   
@@ -3812,9 +3811,14 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Indicate that the next filter call and the one following that should be treated as a single filter. This is only important when it comes to determining when to reuse tables for many-to-many filters. Required so that we can filter naturally on the results of related managers.</p>
-<p>This doesn't return a clone of the current QuerySet (it returns "self"). The method is only used internally and should be immediately followed by a filter() that does create a clone.</p>
-</div>
+    <div><p class="pre">Indicate that the next filter call and the one following that should
+be treated as a single filter. This is only important when it comes to
+determining when to reuse tables for many-to-many filters. Required so
+that we can filter naturally on the results of related managers.
+
+This doesn't return a clone of the current QuerySet (it returns
+"self"). The method is only used internally and should be immediately
+followed by a filter() that does create a clone.</p></div>
   </div>
 </div><div class="basemethod private">
   
@@ -3902,8 +3906,8 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Delete objects found from the given queryset in single direct SQL query. No signals are sent and there is no protection for cascades.</p>
-</div>
+    <div><p class="pre">Delete objects found from the given queryset in single direct SQL
+query. No signals are sent and there is no protection for cascades.</p></div>
   </div>
 </div><div class="basemethod private">
   
@@ -3925,8 +3929,10 @@
   <div class="docstring functionBody">
     
     
-    <div><p>A version of update() that accepts field objects instead of field names. Used primarily for model saving and not intended for use by general code (it requires too much poking around at model internals to be useful at that level).</p>
-</div>
+    <div><p class="pre">A version of update() that accepts field objects instead of field names.
+Used primarily for model saving and not intended for use by general
+code (it requires too much poking around at model internals to be
+useful at that level).</p></div>
   </div>
 </div><div class="basemethod private">
   
@@ -4261,7 +4267,7 @@
   <div class="container">
     <a href="index.html">API Documentation</a> for django,
   generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
-    22.4.0.dev0 at 2022-04-11 16:01:21.
+    22.4.0.dev0 at 2022-04-23 04:48:04.
   </div>
 
   <!-- Search related scripts needs to be loaded at the end of HTML 

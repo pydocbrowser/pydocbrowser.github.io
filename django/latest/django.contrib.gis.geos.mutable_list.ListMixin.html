@@ -586,11 +586,48 @@
         </div>
 
         <div class="moduleDocstring">
-          <div></div>
+          <div><p class="pre">A base class which provides complete list interface.
+Derived classes must call ListMixin's __init__() function
+and implement the following:
+
+function _get_single_external(self, i):
+    Return single item with index i for general use.
+    The index i will always satisfy 0 &lt;= i &lt; len(self).
+
+function _get_single_internal(self, i):
+    Same as above, but for use within the class [Optional]
+    Note that if _get_single_internal and _get_single_internal return
+    different types of objects, _set_list must distinguish
+    between the two and handle each appropriately.
+
+function _set_list(self, length, items):
+    Recreate the entire object.
+
+    NOTE: items may be a generator which calls _get_single_internal.
+    Therefore, it is necessary to cache the values in a temporary:
+        temp = list(items)
+    before clobbering the original storage.
+
+function _set_single(self, i, value):
+    Set the single item at index i to value [Optional]
+    If left undefined, all mutations will result in rebuilding
+    the object using _set_list.
+
+function __len__(self):
+    Return the length
+
+int _minlength:
+    The minimum legal length [Optional]
+
+int _maxlength:
+    The maximum legal length [Optional]
+
+type or tuple _allowed:
+    A type or tuple of allowed item types [Optional]</p></div>
         </div>
 
         <div id="splitTables">
-          <table class="children sortable" id="id1653">
+          <table class="children sortable" id="id2734">
   
   
   <tr class="method">
@@ -786,8 +823,7 @@
   <div class="docstring functionBody">
     
     
-    <div><p>add another list-like object</p>
-</div>
+    <div><p class="pre">add another list-like object</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -809,8 +845,7 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Delete the item(s) at the specified index/slice.</p>
-</div>
+    <div><p class="pre">Delete the item(s) at the specified index/slice.</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -854,8 +889,7 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Get the item(s) at the specified index/slice.</p>
-</div>
+    <div><p class="pre">Get the item(s) at the specified index/slice.</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -877,8 +911,7 @@
   <div class="docstring functionBody">
     
     
-    <div><p>add another list-like object to self</p>
-</div>
+    <div><p class="pre">add another list-like object to self</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -900,8 +933,7 @@
   <div class="docstring functionBody">
     
     
-    <div><p>multiply</p>
-</div>
+    <div><p class="pre">multiply</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -967,8 +999,7 @@
   <div class="docstring functionBody">
     
     
-    <div><p>multiply</p>
-</div>
+    <div><p class="pre">multiply</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -990,8 +1021,7 @@
   <div class="docstring functionBody">
     
     
-    <div><p>add to another list-like object</p>
-</div>
+    <div><p class="pre">add to another list-like object</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -1013,8 +1043,7 @@
   <div class="docstring functionBody">
     
     
-    <div><p>multiply</p>
-</div>
+    <div><p class="pre">multiply</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -1036,8 +1065,7 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Set the item(s) at the specified index/slice.</p>
-</div>
+    <div><p class="pre">Set the item(s) at the specified index/slice.</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -1059,8 +1087,7 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Standard list append method</p>
-</div>
+    <div><p class="pre">Standard list append method</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -1082,8 +1109,7 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Standard list count method</p>
-</div>
+    <div><p class="pre">Standard list count method</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -1105,8 +1131,7 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Standard list extend method</p>
-</div>
+    <div><p class="pre">Standard list extend method</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -1128,8 +1153,7 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Standard list index method</p>
-</div>
+    <div><p class="pre">Standard list index method</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -1151,8 +1175,7 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Standard list insert method</p>
-</div>
+    <div><p class="pre">Standard list insert method</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -1174,8 +1197,7 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Standard list pop method</p>
-</div>
+    <div><p class="pre">Standard list pop method</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -1197,8 +1219,7 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Standard list remove method</p>
-</div>
+    <div><p class="pre">Standard list remove method</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -1220,8 +1241,7 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Standard list reverse method</p>
-</div>
+    <div><p class="pre">Standard list reverse method</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -1243,8 +1263,7 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Standard list sort method</p>
-</div>
+    <div><p class="pre">Standard list sort method</p></div>
   </div>
 </div><div class="basemethod private">
   
@@ -1266,8 +1285,7 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Assign an extended slice by re-assigning individual items</p>
-</div>
+    <div><p class="pre">Assign an extended slice by re-assigning individual items</p></div>
   </div>
 </div><div class="basemethod private">
   
@@ -1289,8 +1307,7 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Assign an extended slice by rebuilding entire list</p>
-</div>
+    <div><p class="pre">Assign an extended slice by rebuilding entire list</p></div>
   </div>
 </div><div class="basemethod private">
   
@@ -1312,8 +1329,7 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Assign a simple slice; Can assign slice of any length</p>
-</div>
+    <div><p class="pre">Assign a simple slice; Can assign slice of any length</p></div>
   </div>
 </div><div class="basemethod private">
   
@@ -1423,8 +1439,7 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Assign values to a slice of the object</p>
-</div>
+    <div><p class="pre">Assign values to a slice of the object</p></div>
   </div>
 </div><div class="baseclassvariable private">
   
@@ -1530,7 +1545,7 @@
   <div class="container">
     <a href="index.html">API Documentation</a> for django,
   generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
-    22.4.0.dev0 at 2022-04-11 16:01:21.
+    22.4.0.dev0 at 2022-04-23 04:48:04.
   </div>
 
   <!-- Search related scripts needs to be loaded at the end of HTML 

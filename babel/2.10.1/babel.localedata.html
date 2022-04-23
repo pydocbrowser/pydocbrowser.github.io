@@ -502,11 +502,20 @@
         </div>
 
         <div class="moduleDocstring">
-          <div></div>
+          <div><p class="pre">babel.localedata
+~~~~~~~~~~~~~~~~
+
+Low-level locale data access.
+
+:note: The `Locale` class, which uses this module under the hood, provides a
+       more convenient interface for accessing the locale data.
+
+:copyright: (c) 2013-2022 by the Babel Team.
+:license: BSD, see LICENSE for more details.</p></div>
         </div>
 
         <div id="splitTables">
-          <table class="children sortable" id="id12">
+          <table class="children sortable" id="id582">
   
   
   <tr class="class">
@@ -528,7 +537,7 @@
     
     <td>Function</td>
     <td><code><a href="#load" class="internal-link" title="babel.localedata.load">load</a></code></td>
-    <td><span class="undocumented">No summary</span></td>
+    <td>Load the locale data for the given locale.</td>
   </tr><tr class="function">
     
     <td>Function</td>
@@ -597,10 +606,11 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Check whether locale data is available for the given locale.</p>
-<p>Returns `True` if it exists, `False` otherwise.</p>
-<p>:param name: the locale identifier string</p>
-</div>
+    <div><p class="pre">Check whether locale data is available for the given locale.
+
+Returns `True` if it exists, `False` otherwise.
+
+:param name: the locale identifier string</p></div>
   </div>
 </div><div class="basefunction">
   
@@ -622,7 +632,29 @@
   <div class="docstring functionBody">
     
     
-    <div></div>
+    <div><p class="pre">Load the locale data for the given locale.
+
+The locale data is a dictionary that contains much of the data defined by
+the Common Locale Data Repository (CLDR). This data is stored as a
+collection of pickle files inside the ``babel`` package.
+
+&gt;&gt;&gt; d = load('en_US')
+&gt;&gt;&gt; d['languages']['sv']
+u'Swedish'
+
+Note that the results are cached, and subsequent requests for the same
+locale return the same dictionary:
+
+&gt;&gt;&gt; d1 = load('en_US')
+&gt;&gt;&gt; d2 = load('en_US')
+&gt;&gt;&gt; d1 is d2
+True
+
+:param name: the locale identifier string (or "root")
+:param merge_inherited: whether the inherited data should be merged into
+                        the data of the requested locale
+:raise `IOError`: if no locale data file is found for the given locale
+                  identifer, or one of the locales it inherits from</p></div>
   </div>
 </div><div class="basefunction">
   
@@ -644,12 +676,17 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Return a list of all locale identifiers for which locale data is available.</p>
-<p>This data is cached after the first invocation in `locale_identifiers.cache`.</p>
-<p>Removing the `locale_identifiers.cache` attribute or setting it to `None` will cause this function to re-read the list from disk.</p>
-<p>.. versionadded:: 0.8.1</p>
-<p>:return: a list of locale identifiers (strings)</p>
-</div>
+    <div><p class="pre">Return a list of all locale identifiers for which locale data is
+available.
+
+This data is cached after the first invocation in `locale_identifiers.cache`.
+
+Removing the `locale_identifiers.cache` attribute or setting it to `None`
+will cause this function to re-read the list from disk.
+
+.. versionadded:: 0.8.1
+
+:return: a list of locale identifiers (strings)</p></div>
   </div>
 </div><div class="basefunction">
   
@@ -671,14 +708,16 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Merge the data from `dict2` into the `dict1` dictionary, making copies of nested dictionaries.</p>
-<pre class="py-doctest">
-<span class="py-prompt">&gt;&gt;&gt; </span>d = {1: <span class="py-string">'foo'</span>, 3: <span class="py-string">'baz'</span>}
-<span class="py-prompt">&gt;&gt;&gt; </span>merge(d, {1: <span class="py-string">'Foo'</span>, 2: <span class="py-string">'Bar'</span>})
-<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-builtin">sorted</span>(d.items())
-<span class="py-output">[(1, 'Foo'), (2, 'Bar'), (3, 'baz')]</span>
-</pre><p>:param dict1: the dictionary to merge into :param dict2: the dictionary containing the data that should be merged</p>
-</div>
+    <div><p class="pre">Merge the data from `dict2` into the `dict1` dictionary, making copies
+of nested dictionaries.
+
+&gt;&gt;&gt; d = {1: 'foo', 3: 'baz'}
+&gt;&gt;&gt; merge(d, {1: 'Foo', 2: 'Bar'})
+&gt;&gt;&gt; sorted(d.items())
+[(1, 'Foo'), (2, 'Bar'), (3, 'baz')]
+
+:param dict1: the dictionary to merge into
+:param dict2: the dictionary containing the data that should be merged</p></div>
   </div>
 </div><div class="basefunction">
   
@@ -700,9 +739,10 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Normalize a locale ID by stripping spaces and apply proper casing.</p>
-<p>Returns the normalized locale ID string or `None` if the ID is not recognized.</p>
-</div>
+    <div><p class="pre">Normalize a locale ID by stripping spaces and apply proper casing.
+
+Returns the normalized locale ID string or `None` if the ID is not
+recognized.</p></div>
   </div>
 </div><div class="basefunction">
   
@@ -724,8 +764,7 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Resolve a locale identifier to a `.dat` path on disk.</p>
-</div>
+    <div><p class="pre">Resolve a locale identifier to a `.dat` path on disk.</p></div>
   </div>
 </div><div class="basevariable private">
   
@@ -831,7 +870,7 @@
   <div class="container">
     <a href="index.html">API Documentation</a> for babel,
   generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
-    22.4.0.dev0 at 2022-04-21 01:03:37.
+    22.4.0.dev0 at 2022-04-23 04:46:09.
   </div>
 
   <!-- Search related scripts needs to be loaded at the end of HTML 

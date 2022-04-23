@@ -632,28 +632,38 @@
         </div>
 
         <div class="moduleDocstring">
-          <div><p>Context-aware API wrapper &amp; state-passing object.</p>
-<p>`.Context` objects are created during command-line parsing (or, if desired, by hand) and used to share parser and configuration state with executed tasks (see :ref:`why-context`).</p>
-<p>Specifically, the class offers wrappers for core API calls (such as `.run`) which take into account CLI parser flags, configuration files, and/or changes made at runtime. It also acts as a proxy for its `~.Context.config` attribute - see that attribute's documentation for details.</p>
-<p>Instances of `.Context` may be shared between tasks when executing sub-tasks - either the same context the caller was given, or an altered copy thereof (or, theoretically, a brand new one).</p>
-<p>.. versionadded:: 1.0</p>
-</div>
+          <div><p class="pre">Context-aware API wrapper &amp; state-passing object.
+
+`.Context` objects are created during command-line parsing (or, if desired,
+by hand) and used to share parser and configuration state with executed
+tasks (see :ref:`why-context`).
+
+Specifically, the class offers wrappers for core API calls (such as `.run`)
+which take into account CLI parser flags, configuration files, and/or
+changes made at runtime. It also acts as a proxy for its `~.Context.config`
+attribute - see that attribute's documentation for details.
+
+Instances of `.Context` may be shared between tasks when executing
+sub-tasks - either the same context the caller was given, or an altered
+copy thereof (or, theoretically, a brand new one).
+
+.. versionadded:: 1.0</p></div>
         </div>
 
         <div id="splitTables">
-          <table class="children sortable" id="id5873">
+          <table class="children sortable" id="id10685">
   
   
   <tr class="method">
     
     <td>Method</td>
     <td><code><a href="#__init__" class="internal-link" title="invoke.context.Context.__init__">__init__</a></code></td>
-    <td><span class="undocumented">No summary</span></td>
+    <td>:param config:     `.Config` object to use as the base configuration.</td>
   </tr><tr class="method">
     
     <td>Method</td>
     <td><code><a href="#cd" class="internal-link" title="invoke.context.Context.cd">cd</a></code></td>
-    <td><span class="undocumented">No summary</span></td>
+    <td>Context manager that keeps directory state when executing commands.</td>
   </tr><tr class="method">
     
     <td>Method</td>
@@ -673,7 +683,7 @@
     
     <td>Method</td>
     <td><code><a href="#sudo" class="internal-link" title="invoke.context.Context.sudo">sudo</a></code></td>
-    <td><span class="undocumented">No summary</span></td>
+    <td>Execute a shell command via ``sudo`` with password auto-response.</td>
   </tr><tr class="property">
     
     <td>Property</td>
@@ -705,14 +715,14 @@
             <p class="inheritedFrom">
               Inherited from <code><a href="invoke.config.DataProxy.html" class="internal-link" title="invoke.config.DataProxy">DataProxy</a></code>:
             </p>
-            <table class="children sortable" id="id5874">
+            <table class="children sortable" id="id10686">
   
   
   <tr class="baseclassmethod">
     
     <td>Class Method</td>
     <td><code><a href="invoke.config.DataProxy.html#from_data" class="internal-link" title="invoke.config.DataProxy.from_data">from<wbr></wbr>_data</a></code></td>
-    <td><span class="undocumented">No summary</span></td>
+    <td>Alternate constructor for 'baby' DataProxies used as sub-dict values.</td>
   </tr><tr class="basemethod">
     
     <td>Method</td>
@@ -807,7 +817,7 @@
     
     <td>Method</td>
     <td><code><a href="invoke.config.DataProxy.html#_set" class="internal-link" title="invoke.config.DataProxy._set">_set</a></code></td>
-    <td><span class="undocumented">No summary</span></td>
+    <td>Convenience workaround of default 'attrs are config keys' behavior.</td>
   </tr><tr class="basemethod private">
     
     <td>Method</td>
@@ -861,7 +871,10 @@
   <div class="docstring functionBody">
     <div class="interfaceinfo">overridden in <code><a href="invoke.context.MockContext.html" class="internal-link">invoke.context.MockContext</a></code></div>
     
-    <div></div>
+    <div><p class="pre">:param config:
+    `.Config` object to use as the base configuration.
+
+    Defaults to an anonymous/default `.Config` instance.</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -883,7 +896,49 @@
   <div class="docstring functionBody">
     
     
-    <div></div>
+    <div><p class="pre">Context manager that keeps directory state when executing commands.
+
+Any calls to `run`, `sudo`, within the wrapped block will implicitly
+have a string similar to ``"cd &lt;path&gt; &amp;&amp; "`` prefixed in order to give
+the sense that there is actually statefulness involved.
+
+Because use of `cd` affects all such invocations, any code making use
+of the `cwd` property will also be affected by use of `cd`.
+
+Like the actual 'cd' shell builtin, `cd` may be called with relative
+paths (keep in mind that your default starting directory is your user's
+``$HOME``) and may be nested as well.
+
+Below is a "normal" attempt at using the shell 'cd', which doesn't work
+since all commands are executed in individual subprocesses -- state is
+**not** kept between invocations of `run` or `sudo`::
+
+    c.run('cd /var/www')
+    c.run('ls')
+
+The above snippet will list the contents of the user's ``$HOME``
+instead of ``/var/www``. With `cd`, however, it will work as expected::
+
+    with c.cd('/var/www'):
+        c.run('ls')  # Turns into "cd /var/www &amp;&amp; ls"
+
+Finally, a demonstration (see inline comments) of nesting::
+
+    with c.cd('/var/www'):
+        c.run('ls') # cd /var/www &amp;&amp; ls
+        with c.cd('website1'):
+            c.run('ls')  # cd /var/www/website1 &amp;&amp; ls
+
+.. note::
+    Space characters will be escaped automatically to make dealing with
+    such directory names easier.
+
+.. versionadded:: 1.0
+.. versionchanged:: 1.5
+    Explicitly cast the ``path`` argument (the only argument) to a
+    string; this allows any object defining ``__str__`` to be handed in
+    (such as the various ``Path`` objects out there), and not just
+    string literals.</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -927,44 +982,52 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Prefix all nested `run`/`sudo` commands with given command plus ``&amp;&amp;``.</p>
-<p>Most of the time, you'll want to be using this alongside a shell script which alters shell state, such as ones which export or alter shell environment variables.</p>
-<p>For example, one of the most common uses of this tool is with the ``workon`` command from `virtualenvwrapper &lt;https://virtualenvwrapper.readthedocs.io/en/latest/&gt;`_:</p>
-<pre class="rst-literal-block">
+    <div><p class="pre">Prefix all nested `run`/`sudo` commands with given command plus ``&amp;&amp;``.
+
+Most of the time, you'll want to be using this alongside a shell script
+which alters shell state, such as ones which export or alter shell
+environment variables.
+
+For example, one of the most common uses of this tool is with the
+``workon`` command from `virtualenvwrapper
+&lt;https://virtualenvwrapper.readthedocs.io/en/latest/&gt;`_::
+
     with c.prefix('workon myvenv'):
         c.run('./manage.py migrate')
-</pre>
-<p>In the above snippet, the actual shell command run would be this:</p>
-<pre class="rst-literal-block">
+
+In the above snippet, the actual shell command run would be this::
+
     $ workon myvenv &amp;&amp; ./manage.py migrate
-</pre>
-<p>This context manager is compatible with `cd`, so if your virtualenv doesn't ``cd`` in its ``postactivate`` script, you could do the following:</p>
-<pre class="rst-literal-block">
+
+This context manager is compatible with `cd`, so if your virtualenv
+doesn't ``cd`` in its ``postactivate`` script, you could do the
+following::
+
     with c.cd('/path/to/app'):
         with c.prefix('workon myvenv'):
             c.run('./manage.py migrate')
             c.run('./manage.py loaddata fixture')
-</pre>
-<p>Which would result in executions like so:</p>
-<pre class="rst-literal-block">
+
+Which would result in executions like so::
+
     $ cd /path/to/app &amp;&amp; workon myvenv &amp;&amp; ./manage.py migrate
     $ cd /path/to/app &amp;&amp; workon myvenv &amp;&amp; ./manage.py loaddata fixture
-</pre>
-<p>Finally, as alluded to above, `prefix` may be nested if desired, e.g.:</p>
-<pre class="rst-literal-block">
+
+Finally, as alluded to above, `prefix` may be nested if desired, e.g.::
+
     with c.prefix('workon myenv'):
         c.run('ls')
         with c.prefix('source /some/script'):
             c.run('touch a_file')
-</pre>
-<p>The result:</p>
-<pre class="rst-literal-block">
+
+The result::
+
     $ workon myenv &amp;&amp; ls
     $ workon myenv &amp;&amp; source /some/script &amp;&amp; touch a_file
-</pre>
-<p>Contrived, but hopefully illustrative.</p>
-<p>.. versionadded:: 1.0</p>
-</div>
+
+Contrived, but hopefully illustrative.
+
+.. versionadded:: 1.0</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -986,11 +1049,16 @@
   <div class="docstring functionBody">
     <div class="interfaceinfo">overridden in <code><a href="invoke.context.MockContext.html" class="internal-link">invoke.context.MockContext</a></code></div>
     
-    <div><p>Execute a local shell command, honoring config options.</p>
-<p>Specifically, this method instantiates a `.Runner` subclass (according to the ``runner`` config option; default is `.Local`) and calls its ``.run`` method with ``command`` and ``kwargs``.</p>
-<p>See `.Runner.run` for details on ``command`` and the available keyword arguments.</p>
-<p>.. versionadded:: 1.0</p>
-</div>
+    <div><p class="pre">Execute a local shell command, honoring config options.
+
+Specifically, this method instantiates a `.Runner` subclass (according
+to the ``runner`` config option; default is `.Local`) and calls its
+``.run`` method with ``command`` and ``kwargs``.
+
+See `.Runner.run` for details on ``command`` and the available keyword
+arguments.
+
+.. versionadded:: 1.0</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -1012,7 +1080,72 @@
   <div class="docstring functionBody">
     <div class="interfaceinfo">overridden in <code><a href="invoke.context.MockContext.html" class="internal-link">invoke.context.MockContext</a></code></div>
     
-    <div></div>
+    <div><p class="pre">Execute a shell command via ``sudo`` with password auto-response.
+
+**Basics**
+
+This method is identical to `run` but adds a handful of
+convenient behaviors around invoking the ``sudo`` program. It doesn't
+do anything users could not do themselves by wrapping `run`, but the
+use case is too common to make users reinvent these wheels themselves.
+
+.. note::
+    If you intend to respond to sudo's password prompt by hand, just
+    use ``run("sudo command")`` instead! The autoresponding features in
+    this method will just get in your way.
+
+Specifically, `sudo`:
+
+* Places a `.FailingResponder` into the ``watchers`` kwarg (see
+  :doc:`/concepts/watchers`) which:
+
+    * searches for the configured ``sudo`` password prompt;
+    * responds with the configured sudo password (``sudo.password``
+      from the :doc:`configuration &lt;/concepts/configuration&gt;`);
+    * can tell when that response causes an authentication failure
+      (e.g. if the system requires a password and one was not
+      configured), and raises `.AuthFailure` if so.
+
+* Builds a ``sudo`` command string using the supplied ``command``
+  argument, prefixed by various flags (see below);
+* Executes that command via a call to `run`, returning the result.
+
+**Flags used**
+
+``sudo`` flags used under the hood include:
+
+- ``-S`` to allow auto-responding of password via stdin;
+- ``-p &lt;prompt&gt;`` to explicitly state the prompt to use, so we can be
+  sure our auto-responder knows what to look for;
+- ``-u &lt;user&gt;`` if ``user`` is not ``None``, to execute the command as
+  a user other than ``root``;
+- When ``-u`` is present, ``-H`` is also added, to ensure the
+  subprocess has the requested user's ``$HOME`` set properly.
+
+**Configuring behavior**
+
+There are a couple of ways to change how this method behaves:
+
+- Because it wraps `run`, it honors all `run` config parameters and
+  keyword arguments, in the same way that `run` does.
+
+    - Thus, invocations such as ``c.sudo('command', echo=True)`` are
+      possible, and if a config layer (such as a config file or env
+      var) specifies that e.g. ``run.warn = True``, that too will take
+      effect under `sudo`.
+
+- `sudo` has its own set of keyword arguments (see below) and they are
+  also all controllable via the configuration system, under the
+  ``sudo.*`` tree.
+
+    - Thus you could, for example, pre-set a sudo user in a config
+      file; such as an ``invoke.json`` containing ``{"sudo": {"user":
+      "someuser"}}``.
+
+:param str password: Runtime override for ``sudo.password``.
+:param str user: Runtime override for ``sudo.user``.
+
+.. versionadded:: 1.0</p></div>
   </div>
 </div><div class="baseproperty">
   
@@ -1057,9 +1190,9 @@
   <div class="functionBody">
     
     
-    <div><p>Return the current working directory, accounting for uses of `cd`.</p>
-<p>.. versionadded:: 1.0</p>
-</div>
+    <div><p class="pre">Return the current working directory, accounting for uses of `cd`.
+
+.. versionadded:: 1.0</p></div>
     
   </div>
 </div><div class="basemethod private">
@@ -1082,9 +1215,10 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Prefixes ``command`` with all prefixes found in ``command_prefixes``.</p>
-<p>``command_prefixes`` is a list of strings which is modified by the `prefix` context manager.</p>
-</div>
+    <div><p class="pre">Prefixes ``command`` with all prefixes found in ``command_prefixes``.
+
+``command_prefixes`` is a list of strings which is modified by the
+`prefix` context manager.</p></div>
   </div>
 </div><div class="basemethod private">
   
@@ -1142,7 +1276,7 @@
   <div class="container">
     <a href="index.html">API Documentation</a> for invoke,
   generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
-    22.4.0.dev0 at 2022-04-11 16:10:53.
+    22.4.0.dev0 at 2022-04-23 06:42:04.
   </div>
 
   <!-- Search related scripts needs to be loaded at the end of HTML 

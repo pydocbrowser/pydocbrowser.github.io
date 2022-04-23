@@ -518,44 +518,43 @@
         </div>
 
         <div class="moduleDocstring">
-          <div><p>A service.</p>
-</div>
+          <div><p class="pre">A service.</p></div>
         </div>
 
         <div id="splitTables">
-          <table class="children sortable" id="id113">
+          <table class="children sortable" id="id1215">
   
   
   <tr class="method">
     
     <td>Method</td>
     <td><code><a href="#force_update" class="internal-link" title="docker.models.services.Service.force_update">force<wbr></wbr>_update</a></code></td>
-    <td><span class="undocumented">No summary</span></td>
+    <td>Force update the service even if no changes require it.</td>
   </tr><tr class="method">
     
     <td>Method</td>
     <td><code><a href="#logs" class="internal-link" title="docker.models.services.Service.logs">logs</a></code></td>
-    <td><span class="undocumented">No summary</span></td>
+    <td>Get log stream for the service. Note: This method works only for services with the ``json-file`` or ``journald`` logging drivers.</td>
   </tr><tr class="method">
     
     <td>Method</td>
     <td><code><a href="#remove" class="internal-link" title="docker.models.services.Service.remove">remove</a></code></td>
-    <td><span class="undocumented">No summary</span></td>
+    <td>Stop and remove the service.</td>
   </tr><tr class="method">
     
     <td>Method</td>
     <td><code><a href="#scale" class="internal-link" title="docker.models.services.Service.scale">scale</a></code></td>
-    <td><span class="undocumented">No summary</span></td>
+    <td>Scale service container.</td>
   </tr><tr class="method">
     
     <td>Method</td>
     <td><code><a href="#tasks" class="internal-link" title="docker.models.services.Service.tasks">tasks</a></code></td>
-    <td><span class="undocumented">No summary</span></td>
+    <td>List the tasks in this service.</td>
   </tr><tr class="method">
     
     <td>Method</td>
     <td><code><a href="#update" class="internal-link" title="docker.models.services.Service.update">update</a></code></td>
-    <td><span class="undocumented">No summary</span></td>
+    <td>Update a service's configuration. Similar to the ``docker service update`` command.</td>
   </tr><tr class="classvariable">
     
     <td>Class Variable</td>
@@ -577,7 +576,7 @@
             <p class="inheritedFrom">
               Inherited from <code><a href="docker.models.resource.Model.html" class="internal-link" title="docker.models.resource.Model">Model</a></code>:
             </p>
-            <table class="children sortable" id="id114">
+            <table class="children sortable" id="id1216">
   
   
   <tr class="basemethod">
@@ -658,7 +657,10 @@
   <div class="docstring functionBody">
     
     
-    <div></div>
+    <div><p class="pre">Force update the service even if no changes require it.
+
+Returns:
+    bool: ``True`` if successful.</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -680,7 +682,27 @@
   <div class="docstring functionBody">
     
     
-    <div></div>
+    <div><p class="pre">Get log stream for the service.
+Note: This method works only for services with the ``json-file``
+or ``journald`` logging drivers.
+
+Args:
+    details (bool): Show extra details provided to logs.
+        Default: ``False``
+    follow (bool): Keep connection open to read logs as they are
+        sent by the Engine. Default: ``False``
+    stdout (bool): Return logs from ``stdout``. Default: ``False``
+    stderr (bool): Return logs from ``stderr``. Default: ``False``
+    since (int): UNIX timestamp for the logs staring point.
+        Default: 0
+    timestamps (bool): Add timestamps to every log line.
+    tail (string or int): Number of log lines to be returned,
+        counting from the current end of the logs. Specify an
+        integer or ``'all'`` to output all log lines.
+        Default: ``all``
+
+Returns:
+    generator: Logs for the service.</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -702,7 +724,11 @@
   <div class="docstring functionBody">
     
     
-    <div></div>
+    <div><p class="pre">Stop and remove the service.
+
+Raises:
+    :py:class:`docker.errors.APIError`
+        If the server returns an error.</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -724,7 +750,13 @@
   <div class="docstring functionBody">
     
     
-    <div></div>
+    <div><p class="pre">Scale service container.
+
+Args:
+    replicas (int): The number of containers that should be running.
+
+Returns:
+    bool: ``True`` if successful.</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -746,7 +778,19 @@
   <div class="docstring functionBody">
     
     
-    <div></div>
+    <div><p class="pre">List the tasks in this service.
+
+Args:
+    filters (dict): A map of filters to process on the tasks list.
+        Valid filters: ``id``, ``name``, ``node``,
+        ``label``, and ``desired-state``.
+
+Returns:
+    :py:class:`list`: List of task dictionaries.
+
+Raises:
+    :py:class:`docker.errors.APIError`
+        If the server returns an error.</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -768,7 +812,14 @@
   <div class="docstring functionBody">
     
     
-    <div></div>
+    <div><p class="pre">Update a service's configuration. Similar to the ``docker service
+update`` command.
+
+Takes the same parameters as :py:meth:`~ServiceCollection.create`.
+
+Raises:
+    :py:class:`docker.errors.APIError`
+        If the server returns an error.</p></div>
   </div>
 </div><div class="baseclassvariable">
   
@@ -813,8 +864,7 @@
   <div class="functionBody">
     
     
-    <div><p>The service's name.</p>
-</div>
+    <div><p class="pre">The service's name.</p></div>
     
   </div>
 </div><div class="baseproperty">
@@ -837,8 +887,9 @@
   <div class="functionBody">
     
     
-    <div><p>The version number of the service. If this is not the same as the server, the :py:meth:`update` function will not work and you will need to call :py:meth:`reload` before calling it again.</p>
-</div>
+    <div><p class="pre">The version number of the service. If this is not the same as the
+server, the :py:meth:`update` function will not work and you will
+need to call :py:meth:`reload` before calling it again.</p></div>
     
   </div>
 </div>
@@ -853,7 +904,7 @@
   <div class="container">
     <a href="index.html">API Documentation</a> for docker,
   generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
-    22.4.0.dev0 at 2022-04-19 18:16:32.
+    22.4.0.dev0 at 2022-04-23 04:47:40.
   </div>
 
   <!-- Search related scripts needs to be loaded at the end of HTML 

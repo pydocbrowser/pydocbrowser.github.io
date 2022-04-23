@@ -785,32 +785,59 @@
         </div>
 
         <div class="moduleDocstring">
-          <div><p>This is the Django template system.</p>
-<p>How it works:</p>
-<p>The Lexer.tokenize() method converts a template string (i.e., a string containing markup with custom template tags) to tokens, which can be either plain text (TokenType.TEXT), variables (TokenType.VAR), or block statements (TokenType.BLOCK).</p>
-<p>The Parser() class takes a list of tokens in its constructor, and its parse() method returns a compiled template -- which is, under the hood, a list of Node objects.</p>
-<p>Each Node is responsible for creating some sort of output -- e.g. simple text (TextNode), variable values in a given context (VariableNode), results of basic logic (IfNode), results of looping (ForNode), or anything else. The core Node types are TextNode, VariableNode, IfNode and ForNode, but plugin modules can define their own custom node types.</p>
-<p>Each Node has a render() method, which takes a Context and returns a string of the rendered node. For example, the render() method of a Variable Node returns the variable's value as a string. The render() method of a ForNode returns the rendered output of whatever was inside the loop, recursively.</p>
-<p>The Template class is a convenient wrapper that takes care of template compilation and rendering.</p>
-<p>Usage:</p>
-<p>The only thing you should ever use directly in this file is the Template class. Create a compiled template object with a template_string, then call render() with a context. In the compilation stage, the TemplateSyntaxError exception will be raised if the template doesn't have proper syntax.</p>
-<p>Sample code:</p>
-<pre class="py-doctest">
-<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">from</span> django <span class="py-keyword">import</span> template
-<span class="py-prompt">&gt;&gt;&gt; </span>s = <span class="py-string">'&lt;html&gt;{% if test %}&lt;h1&gt;{{ varvalue }}&lt;/h1&gt;{% endif %}&lt;/html&gt;'</span>
-<span class="py-prompt">&gt;&gt;&gt; </span>t = template.Template(s)</pre><p>(t is now a compiled template, and its render() method can be called multiple times with multiple contexts)</p>
-<pre class="py-doctest">
-<span class="py-prompt">&gt;&gt;&gt; </span>c = template.Context({<span class="py-string">'test'</span>:<span class="py-builtin">True</span>, <span class="py-string">'varvalue'</span>: <span class="py-string">'Hello'</span>})
-<span class="py-prompt">&gt;&gt;&gt; </span>t.render(c)
-<span class="py-output">'&lt;html&gt;&lt;h1&gt;Hello&lt;/h1&gt;&lt;/html&gt;'</span>
-<span class="py-prompt">&gt;&gt;&gt; </span>c = template.Context({<span class="py-string">'test'</span>:<span class="py-builtin">False</span>, <span class="py-string">'varvalue'</span>: <span class="py-string">'Hello'</span>})
-<span class="py-prompt">&gt;&gt;&gt; </span>t.render(c)
-<span class="py-output">'&lt;html&gt;&lt;/html&gt;'</span>
-</pre></div>
+          <div><p class="pre">This is the Django template system.
+
+How it works:
+
+The Lexer.tokenize() method converts a template string (i.e., a string
+containing markup with custom template tags) to tokens, which can be either
+plain text (TokenType.TEXT), variables (TokenType.VAR), or block statements
+(TokenType.BLOCK).
+
+The Parser() class takes a list of tokens in its constructor, and its parse()
+method returns a compiled template -- which is, under the hood, a list of
+Node objects.
+
+Each Node is responsible for creating some sort of output -- e.g. simple text
+(TextNode), variable values in a given context (VariableNode), results of basic
+logic (IfNode), results of looping (ForNode), or anything else. The core Node
+types are TextNode, VariableNode, IfNode and ForNode, but plugin modules can
+define their own custom node types.
+
+Each Node has a render() method, which takes a Context and returns a string of
+the rendered node. For example, the render() method of a Variable Node returns
+the variable's value as a string. The render() method of a ForNode returns the
+rendered output of whatever was inside the loop, recursively.
+
+The Template class is a convenient wrapper that takes care of template
+compilation and rendering.
+
+Usage:
+
+The only thing you should ever use directly in this file is the Template class.
+Create a compiled template object with a template_string, then call render()
+with a context. In the compilation stage, the TemplateSyntaxError exception
+will be raised if the template doesn't have proper syntax.
+
+Sample code:
+
+&gt;&gt;&gt; from django import template
+&gt;&gt;&gt; s = '&lt;html&gt;{% if test %}&lt;h1&gt;{{ varvalue }}&lt;/h1&gt;{% endif %}&lt;/html&gt;'
+&gt;&gt;&gt; t = template.Template(s)
+
+(t is now a compiled template, and its render() method can be called multiple
+times with multiple contexts)
+
+&gt;&gt;&gt; c = template.Context({'test':True, 'varvalue': 'Hello'})
+&gt;&gt;&gt; t.render(c)
+'&lt;html&gt;&lt;h1&gt;Hello&lt;/h1&gt;&lt;/html&gt;'
+&gt;&gt;&gt; c = template.Context({'test':False, 'varvalue': 'Hello'})
+&gt;&gt;&gt; t.render(c)
+'&lt;html&gt;&lt;/html&gt;'</p></div>
         </div>
 
         <div id="splitTables">
-          <table class="children sortable" id="id5201">
+          <table class="children sortable" id="id6282">
   
   
   <tr class="class">
@@ -822,7 +849,7 @@
     
     <td>Class</td>
     <td><code><a href="django.template.base.FilterExpression.html" class="internal-link" title="django.template.base.FilterExpression"><wbr></wbr>Filter<wbr></wbr>Expression</a></code></td>
-    <td>Parse a variable token and its optional filters (all as a single string), and return a list of tuples of the filter name and arguments. Sample:</td>
+    <td>Parse a variable token and its optional filters (all as a single string), and return a list of tuples of the filter name and arguments. Sample::</td>
   </tr><tr class="class">
     
     <td>Class</td>
@@ -872,7 +899,7 @@
     
     <td>Class</td>
     <td><code><a href="django.template.base.Variable.html" class="internal-link" title="django.template.base.Variable"><wbr></wbr>Variable</a></code></td>
-    <td>A template variable, resolvable against a given context. The variable may be a hard-coded string (if it begins and ends with single or double quote marks):</td>
+    <td>A template variable, resolvable against a given context. The variable may be a hard-coded string (if it begins and ends with single or double quote marks)::</td>
   </tr><tr class="class">
     
     <td>Class</td>
@@ -1038,8 +1065,9 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Convert any value to a string to become part of a rendered template. This means escaping, if required, and conversion to a string. If value is a string, it's expected to already be translated.</p>
-</div>
+    <div><p class="pre">Convert any value to a string to become part of a rendered template. This
+means escaping, if required, and conversion to a string. If value is a
+string, it's expected to already be translated.</p></div>
   </div>
 </div><div class="basefunction">
   
@@ -1061,11 +1089,19 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Parse token keyword arguments and return a dictionary of the arguments retrieved from the ``bits`` token list.</p>
-<p>`bits` is a list containing the remainder of the token (split by spaces) that is to be checked for arguments. Valid arguments are removed from this list.</p>
-<p>`support_legacy` - if True, the legacy format ``1 as foo`` is accepted. Otherwise, only the standard ``foo=1`` format is allowed.</p>
-<p>There is no requirement for all remaining token ``bits`` to be keyword arguments, so return the dictionary as soon as an invalid argument format is reached.</p>
-</div>
+    <div><p class="pre">Parse token keyword arguments and return a dictionary of the arguments
+retrieved from the ``bits`` token list.
+
+`bits` is a list containing the remainder of the token (split by spaces)
+that is to be checked for arguments. Valid arguments are removed from this
+list.
+
+`support_legacy` - if True, the legacy format ``1 as foo`` is accepted.
+Otherwise, only the standard ``foo=1`` format is allowed.
+
+There is no requirement for all remaining token ``bits`` to be keyword
+arguments, so return the dictionary as soon as an invalid argument format
+is reached.</p></div>
   </div>
 </div><div class="baseconstant">
   
@@ -1493,7 +1529,7 @@
   <div class="container">
     <a href="index.html">API Documentation</a> for django,
   generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
-    22.4.0.dev0 at 2022-04-11 16:01:21.
+    22.4.0.dev0 at 2022-04-23 04:48:04.
   </div>
 
   <!-- Search related scripts needs to be loaded at the end of HTML 

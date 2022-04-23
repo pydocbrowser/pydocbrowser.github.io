@@ -840,7 +840,7 @@
         </div>
 
         <div id="splitTables">
-          <table class="children sortable" id="id5537">
+          <table class="children sortable" id="id6618">
   
   
   <tr class="function">
@@ -892,7 +892,7 @@
     
     <td>Function</td>
     <td><code><a href="#sanitize_strftime_format" class="internal-link" title="django.utils.formats.sanitize_strftime_format">sanitize<wbr></wbr>_strftime<wbr></wbr>_format</a></code></td>
-    <td><span class="undocumented">No summary</span></td>
+    <td>Ensure that certain specifiers are correctly padded with leading zeros.</td>
   </tr><tr class="function">
     
     <td>Function</td>
@@ -951,9 +951,11 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Format a datetime.date or datetime.datetime object using a localizable format.</p>
-<p>If use_l10n is provided and is not None, that will force the value to be localized (or not), overriding the value of settings.USE_L10N.</p>
-</div>
+    <div><p class="pre">Format a datetime.date or datetime.datetime object using a
+localizable format.
+
+If use_l10n is provided and is not None, that will force the value to
+be localized (or not), overriding the value of settings.USE_L10N.</p></div>
   </div>
 </div><div class="basefunction">
   
@@ -975,9 +977,12 @@
   <div class="docstring functionBody">
     
     
-    <div><p>For a specific format type, return the format for the current language (locale). Default to the format in the settings. format_type is the name of the format, e.g. 'DATE_FORMAT'.</p>
-<p>If use_l10n is provided and is not None, it forces the value to be localized (or not), overriding the value of settings.USE_L10N.</p>
-</div>
+    <div><p class="pre">For a specific format type, return the format for the current
+language (locale). Default to the format in the settings.
+format_type is the name of the format, e.g. 'DATE_FORMAT'.
+
+If use_l10n is provided and is not None, it forces the value to
+be localized (or not), overriding the value of settings.USE_L10N.</p></div>
   </div>
 </div><div class="basefunction">
   
@@ -999,8 +1004,7 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Return a list of the format modules found.</p>
-</div>
+    <div><p class="pre">Return a list of the format modules found.</p></div>
   </div>
 </div><div class="basefunction">
   
@@ -1022,8 +1026,7 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Find format modules.</p>
-</div>
+    <div><p class="pre">Find format modules.</p></div>
   </div>
 </div><div class="basefunction">
   
@@ -1045,9 +1048,11 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Check if value is a localizable type (date, number...) and return it formatted as a string using current locale format.</p>
-<p>If use_l10n is provided and is not None, it forces the value to be localized (or not), overriding the value of settings.USE_L10N.</p>
-</div>
+    <div><p class="pre">Check if value is a localizable type (date, number...) and return it
+formatted as a string using current locale format.
+
+If use_l10n is provided and is not None, it forces the value to
+be localized (or not), overriding the value of settings.USE_L10N.</p></div>
   </div>
 </div><div class="basefunction">
   
@@ -1069,8 +1074,8 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Check if an input value is a localizable type and return it formatted with the appropriate formatting string of the current locale.</p>
-</div>
+    <div><p class="pre">Check if an input value is a localizable type and return it
+formatted with the appropriate formatting string of the current locale.</p></div>
   </div>
 </div><div class="basefunction">
   
@@ -1092,9 +1097,10 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Format a numeric value using localization settings.</p>
-<p>If use_l10n is provided and is not None, it forces the value to be localized (or not), overriding the value of settings.USE_L10N.</p>
-</div>
+    <div><p class="pre">Format a numeric value using localization settings.
+
+If use_l10n is provided and is not None, it forces the value to
+be localized (or not), overriding the value of settings.USE_L10N.</p></div>
   </div>
 </div><div class="basefunction">
   
@@ -1116,9 +1122,10 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Clear any cached formats.</p>
-<p>This method is provided primarily for testing purposes, so that the effects of cached formats can be removed.</p>
-</div>
+    <div><p class="pre">Clear any cached formats.
+
+This method is provided primarily for testing purposes,
+so that the effects of cached formats can be removed.</p></div>
   </div>
 </div><div class="basefunction">
   
@@ -1140,8 +1147,8 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Sanitize a value according to the current decimal and thousand separator setting. Used with form field input.</p>
-</div>
+    <div><p class="pre">Sanitize a value according to the current decimal and
+thousand separator setting. Used with form field input.</p></div>
   </div>
 </div><div class="basefunction">
   
@@ -1163,7 +1170,25 @@
   <div class="docstring functionBody">
     
     
-    <div></div>
+    <div><p class="pre">Ensure that certain specifiers are correctly padded with leading zeros.
+
+For years &lt; 1000 specifiers %C, %F, %G, and %Y don't work as expected for
+strftime provided by glibc on Linux as they don't pad the year or century
+with leading zeros. Support for specifying the padding explicitly is
+available, however, which can be used to fix this issue.
+
+FreeBSD, macOS, and Windows do not support explicitly specifying the
+padding, but return four digit years (with leading zeros) as expected.
+
+This function checks whether the %Y produces a correctly padded string and,
+if not, makes the following substitutions:
+
+- %C → %02C
+- %F → %010F
+- %G → %04G
+- %Y → %04Y
+
+See https://bugs.python.org/issue13305 for more details.</p></div>
   </div>
 </div><div class="basefunction">
   
@@ -1185,9 +1210,10 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Format a datetime.time object using a localizable format.</p>
-<p>If use_l10n is provided and is not None, it forces the value to be localized (or not), overriding the value of settings.USE_L10N.</p>
-</div>
+    <div><p class="pre">Format a datetime.time object using a localizable format.
+
+If use_l10n is provided and is not None, it forces the value to
+be localized (or not), overriding the value of settings.USE_L10N.</p></div>
   </div>
 </div><div class="baseconstant">
   
@@ -1328,7 +1354,7 @@
   <div class="container">
     <a href="index.html">API Documentation</a> for django,
   generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
-    22.4.0.dev0 at 2022-04-11 16:01:21.
+    22.4.0.dev0 at 2022-04-23 04:48:04.
   </div>
 
   <!-- Search related scripts needs to be loaded at the end of HTML 

@@ -576,20 +576,20 @@
         </div>
 
         <div class="moduleDocstring">
-          <div><p>A collection of executable tasks. See :doc:`/concepts/namespaces`.</p>
-<p>.. versionadded:: 1.0</p>
-</div>
+          <div><p class="pre">A collection of executable tasks. See :doc:`/concepts/namespaces`.
+
+.. versionadded:: 1.0</p></div>
         </div>
 
         <div id="splitTables">
-          <table class="children sortable" id="id5865">
+          <table class="children sortable" id="id10677">
   
   
   <tr class="classmethod">
     
     <td>Class Method</td>
     <td><code><a href="#from_module" class="internal-link" title="invoke.collection.Collection.from_module">from<wbr></wbr>_module</a></code></td>
-    <td><span class="undocumented">No summary</span></td>
+    <td>Return a new `.Collection` created from ``module``.</td>
   </tr><tr class="method">
     
     <td>Method</td>
@@ -614,7 +614,7 @@
     
     <td>Method</td>
     <td><code><a href="#__init__" class="internal-link" title="invoke.collection.Collection.__init__">__init__</a></code></td>
-    <td><span class="undocumented">No summary</span></td>
+    <td>Create a new task collection/namespace.</td>
   </tr><tr class="method">
     
     <td>Method</td>
@@ -634,17 +634,17 @@
     
     <td>Method</td>
     <td><code><a href="#add_collection" class="internal-link" title="invoke.collection.Collection.add_collection">add<wbr></wbr>_collection</a></code></td>
-    <td><span class="undocumented">No summary</span></td>
+    <td>Add `.Collection` ``coll`` as a sub-collection of this one.</td>
   </tr><tr class="method">
     
     <td>Method</td>
     <td><code><a href="#add_task" class="internal-link" title="invoke.collection.Collection.add_task">add<wbr></wbr>_task</a></code></td>
-    <td><span class="undocumented">No summary</span></td>
+    <td>Add `.Task` ``task`` to this collection.</td>
   </tr><tr class="method">
     
     <td>Method</td>
     <td><code><a href="#configuration" class="internal-link" title="invoke.collection.Collection.configuration">configuration</a></code></td>
-    <td><span class="undocumented">No summary</span></td>
+    <td>Obtain merged configuration values from collection &amp; children.</td>
   </tr><tr class="method">
     
     <td>Method</td>
@@ -674,7 +674,7 @@
     
     <td>Method</td>
     <td><code><a href="#to_contexts" class="internal-link" title="invoke.collection.Collection.to_contexts">to<wbr></wbr>_contexts</a></code></td>
-    <td><span class="undocumented">No summary</span></td>
+    <td>Returns all contained tasks and subtasks as a list of parser contexts.</td>
   </tr><tr class="method">
     
     <td>Method</td>
@@ -773,7 +773,47 @@
   <div class="docstring functionBody">
     
     
-    <div></div>
+    <div><p class="pre">Return a new `.Collection` created from ``module``.
+
+Inspects ``module`` for any `.Task` instances and adds them to a new
+`.Collection`, returning it. If any explicit namespace collections
+exist (named ``ns`` or ``namespace``) a copy of that collection object
+is preferentially loaded instead.
+
+When the implicit/default collection is generated, it will be named
+after the module's ``__name__`` attribute, or its last dotted section
+if it's a submodule. (I.e. it should usually map to the actual ``.py``
+filename.)
+
+Explicitly given collections will only be given that module-derived
+name if they don't already have a valid ``.name`` attribute.
+
+If the module has a docstring (``__doc__``) it is copied onto the
+resulting `.Collection` (and used for display in help, list etc
+output.)
+
+:param str name:
+    A string, which if given will override any automatically derived
+    collection name (or name set on the module's root namespace, if it
+    has one.)
+
+:param dict config:
+    Used to set config options on the newly created `.Collection`
+    before returning it (saving you a call to `.configure`.)
+
+    If the imported module had a root namespace object, ``config`` is
+    merged on top of it (i.e. overriding any conflicts.)
+
+:param str loaded_from:
+    Identical to the same-named kwarg from the regular class
+    constructor - should be the path where the module was
+    found.
+
+:param bool auto_dash_names:
+    Identical to the same-named kwarg from the regular class
+    constructor - determines whether emitted names are auto-dashed.
+
+.. versionadded:: 1.0</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -861,11 +901,17 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Returns task named ``name``. Honors aliases and subcollections.</p>
-<p>If this collection has a default task, it is returned when ``name`` is empty or ``None``. If empty input is given and no task has been selected as the default, ValueError will be raised.</p>
-<p>Tasks within subcollections should be given in dotted form, e.g. 'foo.bar'. Subcollection default tasks will be returned on the subcollection's name.</p>
-<p>.. versionadded:: 1.0</p>
-</div>
+    <div><p class="pre">Returns task named ``name``. Honors aliases and subcollections.
+
+If this collection has a default task, it is returned when ``name`` is
+empty or ``None``. If empty input is given and no task has been
+selected as the default, ValueError will be raised.
+
+Tasks within subcollections should be given in dotted form, e.g.
+'foo.bar'. Subcollection default tasks will be returned on the
+subcollection's name.
+
+.. versionadded:: 1.0</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -887,7 +933,77 @@
   <div class="docstring functionBody">
     
     
-    <div></div>
+    <div><p class="pre">Create a new task collection/namespace.
+
+`.Collection` offers a set of methods for building a collection of
+tasks from scratch, plus a convenient constructor wrapping said API.
+
+In either case:
+
+* The first positional argument may be a string, which (if given) is
+  used as the collection's default name when performing namespace
+  lookups;
+* A ``loaded_from`` keyword argument may be given, which sets metadata
+  indicating the filesystem path the collection was loaded from. This
+  is used as a guide when loading per-project :ref:`configuration files
+  &lt;config-hierarchy&gt;`.
+* An ``auto_dash_names`` kwarg may be given, controlling whether task
+  and collection names have underscores turned to dashes in most cases;
+  it defaults to ``True`` but may be set to ``False`` to disable.
+
+  The CLI machinery will pass in the value of the
+  ``tasks.auto_dash_names`` config value to this kwarg.
+
+**The method approach**
+
+May initialize with no arguments and use methods (e.g.
+`.add_task`/`.add_collection`) to insert objects::
+
+    c = Collection()
+    c.add_task(some_task)
+
+If an initial string argument is given, it is used as the default name
+for this collection, should it be inserted into another collection as a
+sub-namespace::
+
+    docs = Collection('docs')
+    docs.add_task(doc_task)
+    ns = Collection()
+    ns.add_task(top_level_task)
+    ns.add_collection(docs)
+    # Valid identifiers are now 'top_level_task' and 'docs.doc_task'
+    # (assuming the task objects were actually named the same as the
+    # variables we're using :))
+
+For details, see the API docs for the rest of the class.
+
+**The constructor approach**
+
+All ``*args`` given to `.Collection` (besides the abovementioned
+optional positional 'name' argument and ``loaded_from`` kwarg) are
+expected to be `.Task` or `.Collection` instances which will be passed
+to `.add_task`/`.add_collection` as appropriate. Module objects are
+also valid (as they are for `.add_collection`). For example, the below
+snippet results in the same two task identifiers as the one above::
+
+    ns = Collection(top_level_task, Collection('docs', doc_task))
+
+If any ``**kwargs`` are given, the keywords are used as the initial
+name arguments for the respective values::
+
+    ns = Collection(
+        top_level_task=some_other_task,
+        docs=Collection(doc_task)
+    )
+
+That's exactly equivalent to::
+
+    docs = Collection(doc_task)
+    ns = Collection()
+    ns.add_task(some_other_task, 'top_level_task')
+    ns.add_collection(docs, 'docs')
+
+See individual methods' API docs for details.</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -975,7 +1091,21 @@
   <div class="docstring functionBody">
     
     
-    <div></div>
+    <div><p class="pre">Add `.Collection` ``coll`` as a sub-collection of this one.
+
+:param coll: The `.Collection` to add.
+
+:param str name:
+    The name to attach the collection as. Defaults to the collection's
+    own internal name.
+
+:param default:
+    Whether this sub-collection('s default task-or-collection) should
+    be the default invocation of the parent collection.
+
+.. versionadded:: 1.0
+.. versionchanged:: 1.5
+    Added the ``default`` parameter.</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -997,7 +1127,23 @@
   <div class="docstring functionBody">
     
     
-    <div></div>
+    <div><p class="pre">Add `.Task` ``task`` to this collection.
+
+:param task: The `.Task` object to add to this collection.
+
+:param name:
+    Optional string name to bind to (overrides the task's own
+    self-defined ``name`` attribute and/or any Python identifier (i.e.
+    ``.func_name``.)
+
+:param aliases:
+    Optional iterable of additional names to bind the task as, on top
+    of the primary name. These will be used in addition to any aliases
+    the task itself declares internally.
+
+:param default: Whether this task should be the collection default.
+
+.. versionadded:: 1.0</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -1019,7 +1165,17 @@
   <div class="docstring functionBody">
     
     
-    <div></div>
+    <div><p class="pre">Obtain merged configuration values from collection &amp; children.
+
+:param taskpath:
+    (Optional) Task name/path, identical to that used for
+    `~.Collection.__getitem__` (e.g. may be dotted for nested tasks,
+    etc.) Used to decide which path to follow in the collection tree
+    when merging config values.
+
+:returns: A `dict` containing configuration values.
+
+.. versionadded:: 1.0</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -1041,12 +1197,20 @@
   <div class="docstring functionBody">
     
     
-    <div><p>(Recursively) merge ``options`` into the current `.configuration`.</p>
-<p>Options configured this way will be available to all tasks. It is recommended to use unique keys to avoid potential clashes with other config options</p>
-<p>For example, if you were configuring a Sphinx docs build target directory, it's better to use a key like ``'sphinx.target'`` than simply ``'target'``.</p>
-<p>:param options: An object implementing the dictionary protocol. :returns: ``None``.</p>
-<p>.. versionadded:: 1.0</p>
-</div>
+    <div><p class="pre">(Recursively) merge ``options`` into the current `.configuration`.
+
+Options configured this way will be available to all tasks. It is
+recommended to use unique keys to avoid potential clashes with other
+config options
+
+For example, if you were configuring a Sphinx docs build target
+directory, it's better to use a key like ``'sphinx.target'`` than
+simply ``'target'``.
+
+:param options: An object implementing the dictionary protocol.
+:returns: ``None``.
+
+.. versionadded:: 1.0</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -1068,10 +1232,12 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Return an appropriate-for-serialization version of this object.</p>
-<p>See the documentation for `.Program` and its ``json`` task listing format; this method is the driver for that functionality.</p>
-<p>.. versionadded:: 1.0</p>
-</div>
+    <div><p class="pre">Return an appropriate-for-serialization version of this object.
+
+See the documentation for `.Program` and its ``json`` task listing
+format; this method is the driver for that functionality.
+
+.. versionadded:: 1.0</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -1093,9 +1259,9 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Given a ``path`` to a subcollection, return that subcollection.</p>
-<p>.. versionadded:: 1.0</p>
-</div>
+    <div><p class="pre">Given a ``path`` to a subcollection, return that subcollection.
+
+.. versionadded:: 1.0</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -1139,12 +1305,18 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Return task named ``name`` plus its configuration dict.</p>
-<p>E.g. in a deeply nested tree, this method returns the `.Task`, and a configuration dict created by merging that of this `.Collection` and any nested `Collections &lt;.Collection&gt;`, up through the one actually holding the `.Task`.</p>
-<p>See `~.Collection.__getitem__` for semantics of the ``name`` argument.</p>
-<p>:returns: Two-tuple of (`.Task`, `dict`).</p>
-<p>.. versionadded:: 1.0</p>
-</div>
+    <div><p class="pre">Return task named ``name`` plus its configuration dict.
+
+E.g. in a deeply nested tree, this method returns the `.Task`, and a
+configuration dict created by merging that of this `.Collection` and
+any nested `Collections &lt;.Collection&gt;`, up through the one actually
+holding the `.Task`.
+
+See `~.Collection.__getitem__` for semantics of the ``name`` argument.
+
+:returns: Two-tuple of (`.Task`, `dict`).
+
+.. versionadded:: 1.0</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -1166,7 +1338,15 @@
   <div class="docstring functionBody">
     
     
-    <div></div>
+    <div><p class="pre">Returns all contained tasks and subtasks as a list of parser contexts.
+
+:param bool ignore_unknown_help:
+    Passed on to each task's ``get_arguments()`` method. See the config
+    option by the same name for details.
+
+.. versionadded:: 1.0
+.. versionchanged:: 1.7
+    Added the ``ignore_unknown_help`` kwarg.</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -1188,11 +1368,17 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Transform ``name`` with the configured auto-dashes behavior.</p>
-<p>If the collection's ``auto_dash_names`` attribute is ``True`` (default), all non leading/trailing underscores are turned into dashes. (Leading/trailing underscores tend to get stripped elsewhere in the stack.)</p>
-<p>If it is ``False``, the inverse is applied - all dashes are turned into underscores.</p>
-<p>.. versionadded:: 1.0</p>
-</div>
+    <div><p class="pre">Transform ``name`` with the configured auto-dashes behavior.
+
+If the collection's ``auto_dash_names`` attribute is ``True``
+(default), all non leading/trailing underscores are turned into dashes.
+(Leading/trailing underscores tend to get stripped elsewhere in the
+stack.)
+
+If it is ``False``, the inverse is applied - all dashes are turned into
+underscores.
+
+.. versionadded:: 1.0</p></div>
   </div>
 </div><div class="baseinstancevariable">
   
@@ -1352,11 +1538,17 @@
   <div class="functionBody">
     
     
-    <div><p>Return all task identifiers for this collection as a one-level dict.</p>
-<p>Specifically, a dict with the primary/"real" task names as the key, and any aliases as a list value.</p>
-<p>It basically collapses the namespace tree into a single easily-scannable collection of invocation strings, and is thus suitable for things like flat-style task listings or transformation into parser contexts.</p>
-<p>.. versionadded:: 1.0</p>
-</div>
+    <div><p class="pre">Return all task identifiers for this collection as a one-level dict.
+
+Specifically, a dict with the primary/"real" task names as the key, and
+any aliases as a list value.
+
+It basically collapses the namespace tree into a single
+easily-scannable collection of invocation strings, and is thus suitable
+for things like flat-style task listings or transformation into parser
+contexts.
+
+.. versionadded:: 1.0</p></div>
     
   </div>
 </div><div class="basemethod private">
@@ -1423,10 +1615,13 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Obtain first collection + remainder, of a task path.</p>
-<p>E.g. for ``"subcollection.taskname"``, return ``("subcollection", "taskname")``; for ``"subcollection.nested.taskname"`` return ``("subcollection", "nested.taskname")``, etc.</p>
-<p>An empty path becomes simply ``('', '')``.</p>
-</div>
+    <div><p class="pre">Obtain first collection + remainder, of a task path.
+
+E.g. for ``"subcollection.taskname"``, return ``("subcollection",
+"taskname")``; for ``"subcollection.nested.taskname"`` return
+``("subcollection", "nested.taskname")``, etc.
+
+An empty path becomes simply ``('', '')``.</p></div>
   </div>
 </div><div class="basemethod private">
   
@@ -1470,9 +1665,9 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Take a Lexicon and apply `.transform` to its keys and aliases.</p>
-<p>:returns: A new Lexicon.</p>
-</div>
+    <div><p class="pre">Take a Lexicon and apply `.transform` to its keys and aliases.
+
+:returns: A new Lexicon.</p></div>
   </div>
 </div><div class="baseinstancevariable private">
   
@@ -1509,7 +1704,7 @@
   <div class="container">
     <a href="index.html">API Documentation</a> for invoke,
   generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
-    22.4.0.dev0 at 2022-04-11 16:10:53.
+    22.4.0.dev0 at 2022-04-23 06:42:04.
   </div>
 
   <!-- Search related scripts needs to be loaded at the end of HTML 

@@ -489,16 +489,31 @@
         </div>
 
         <div class="moduleDocstring">
-          <div><p>Load migration files from disk and their status from the database.</p>
-<p>Migration files are expected to live in the "migrations" directory of an app. Their names are entirely unimportant from a code perspective, but will probably follow the 1234_name.py convention.</p>
-<p>On initialization, this class will scan those directories, and open and read the Python files, looking for a class called Migration, which should inherit from django.db.migrations.Migration. See django.db.migrations.migration for what that looks like.</p>
-<p>Some migrations will be marked as "replacing" another set of migrations. These are loaded into a separate set of migrations away from the main ones. If all the migrations they replace are either unapplied or missing from disk, then they are injected into the main set, replacing the named migrations. Any dependency pointers to the replaced migrations are re-pointed to the new migration.</p>
-<p>This does mean that this class MUST also talk to the database as well as to disk, but this is probably fine. We're already not just operating in memory.</p>
-</div>
+          <div><p class="pre">Load migration files from disk and their status from the database.
+
+Migration files are expected to live in the "migrations" directory of
+an app. Their names are entirely unimportant from a code perspective,
+but will probably follow the 1234_name.py convention.
+
+On initialization, this class will scan those directories, and open and
+read the Python files, looking for a class called Migration, which should
+inherit from django.db.migrations.Migration. See
+django.db.migrations.migration for what that looks like.
+
+Some migrations will be marked as "replacing" another set of migrations.
+These are loaded into a separate set of migrations away from the main ones.
+If all the migrations they replace are either unapplied or missing from
+disk, then they are injected into the main set, replacing the named migrations.
+Any dependency pointers to the replaced migrations are re-pointed to the
+new migration.
+
+This does mean that this class MUST also talk to the database as well as
+to disk, but this is probably fine. We're already not just operating
+in memory.</p></div>
         </div>
 
         <div id="splitTables">
-          <table class="children sortable" id="id2975">
+          <table class="children sortable" id="id4056">
   
   
   <tr class="classmethod">
@@ -639,8 +654,9 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Return the path to the migrations module for the specified app_label and a boolean indicating if the module is specified in settings.MIGRATION_MODULE.</p>
-</div>
+    <div><p class="pre">Return the path to the migrations module for the specified app_label
+and a boolean indicating if the module is specified in
+settings.MIGRATION_MODULE.</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -706,8 +722,8 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Internal dependencies need to be added first to ensure `__first__` dependencies find the correct root node.</p>
-</div>
+    <div><p class="pre">Internal dependencies need to be added first to ensure `__first__`
+dependencies find the correct root node.</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -729,8 +745,9 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Build a migration dependency graph using both the disk and database. You'll need to rebuild the graph if you apply migrations. This isn't usually a problem as generally migration stuff runs in a one-shot process.</p>
-</div>
+    <div><p class="pre">Build a migration dependency graph using both the disk and database.
+You'll need to rebuild the graph if you apply migrations. This isn't
+usually a problem as generally migration stuff runs in a one-shot process.</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -752,8 +769,8 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Raise InconsistentMigrationHistory if any applied migrations have unapplied dependencies.</p>
-</div>
+    <div><p class="pre">Raise InconsistentMigrationHistory if any applied migrations have
+unapplied dependencies.</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -797,8 +814,8 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Take a migration plan and return a list of collected SQL statements that represent the best-efforts version of that plan.</p>
-</div>
+    <div><p class="pre">Take a migration plan and return a list of collected SQL statements
+that represent the best-efforts version of that plan.</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -820,8 +837,9 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Look through the loaded graph and detect any conflicts - apps with more than one leaf migration. Return a dict of the app labels that conflict with the migration names that conflict.</p>
-</div>
+    <div><p class="pre">Look through the loaded graph and detect any conflicts - apps
+with more than one leaf migration. Return a dict of the app labels
+that conflict with the migration names that conflict.</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -843,8 +861,7 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Return the named migration or raise NodeNotFoundError.</p>
-</div>
+    <div><p class="pre">Return the named migration or raise NodeNotFoundError.</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -866,8 +883,7 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Return the migration(s) which match the given app label and name_prefix.</p>
-</div>
+    <div><p class="pre">Return the migration(s) which match the given app label and name_prefix.</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -889,8 +905,7 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Load the migrations from all INSTALLED_APPS from disk.</p>
-</div>
+    <div><p class="pre">Load the migrations from all INSTALLED_APPS from disk.</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -912,9 +927,10 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Return a ProjectState object representing the most recent state that the loaded migrations represent.</p>
-<p>See graph.make_state() for the meaning of "nodes" and "at_end".</p>
-</div>
+    <div><p class="pre">Return a ProjectState object representing the most recent state
+that the loaded migrations represent.
+
+See graph.make_state() for the meaning of "nodes" and "at_end".</p></div>
   </div>
 </div><div class="baseinstancevariable">
   
@@ -1135,7 +1151,7 @@
   <div class="container">
     <a href="index.html">API Documentation</a> for django,
   generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
-    22.4.0.dev0 at 2022-04-11 16:01:21.
+    22.4.0.dev0 at 2022-04-23 04:48:04.
   </div>
 
   <!-- Search related scripts needs to be loaded at the end of HTML 

@@ -472,19 +472,18 @@
         </div>
 
         <div class="moduleDocstring">
-          <div><p>The ability to substitute XML or HTML entities for certain characters.</p>
-</div>
+          <div><p class="pre">The ability to substitute XML or HTML entities for certain characters.</p></div>
         </div>
 
         <div id="splitTables">
-          <table class="children sortable" id="id38">
+          <table class="children sortable" id="id679">
   
   
   <tr class="classmethod">
     
     <td>Class Method</td>
     <td><code><a href="#quoted_attribute_value" class="internal-link" title="bs4.dammit.EntitySubstitution.quoted_attribute_value">quoted<wbr></wbr>_attribute<wbr></wbr>_value</a></code></td>
-    <td><span class="undocumented">No summary</span></td>
+    <td>Make a value into a quoted XML attribute, possibly escaping it.</td>
   </tr><tr class="classmethod">
     
     <td>Class Method</td>
@@ -494,12 +493,12 @@
     
     <td>Class Method</td>
     <td><code><a href="#substitute_xml" class="internal-link" title="bs4.dammit.EntitySubstitution.substitute_xml">substitute<wbr></wbr>_xml</a></code></td>
-    <td><span class="undocumented">No summary</span></td>
+    <td>Substitute XML entities for special XML characters.</td>
   </tr><tr class="classmethod">
     
     <td>Class Method</td>
     <td><code><a href="#substitute_xml_containing_entities" class="internal-link" title="bs4.dammit.EntitySubstitution.substitute_xml_containing_entities">substitute<wbr></wbr>_xml<wbr></wbr>_containing<wbr></wbr>_entities</a></code></td>
-    <td><span class="undocumented">No summary</span></td>
+    <td>Substitute XML entities for special XML characters.</td>
   </tr><tr class="constant">
     
     <td>Constant</td>
@@ -573,7 +572,22 @@
   <div class="docstring functionBody">
     
     
-    <div></div>
+    <div><p class="pre">Make a value into a quoted XML attribute, possibly escaping it.
+
+Most strings will be quoted using double quotes.
+
+ Bob's Bar -&gt; "Bob's Bar"
+
+If a string contains double quotes, it will be quoted using
+single quotes.
+
+ Welcome to "my bar" -&gt; 'Welcome to "my bar"'
+
+If a string contains both single and double quotes, the
+double quotes will be escaped, and the string will be quoted
+using double quotes.
+
+ Welcome to "Bob's Bar" -&gt; "Welcome to &amp;quot;Bob's bar&amp;quot;</p></div>
   </div>
 </div><div class="baseclassmethod">
   
@@ -595,10 +609,17 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Replace certain Unicode characters with named HTML entities.</p>
-<p>This differs from data.encode(encoding, 'xmlcharrefreplace') in that the goal is to make the result more readable (to those with ASCII displays) rather than to recover from errors. There's absolutely nothing wrong with a UTF-8 string containg a LATIN SMALL LETTER E WITH ACUTE, but replacing that character with "&amp;eacute;" will make it more readable to some people.</p>
-<p>:param s: A Unicode string.</p>
-</div>
+    <div><p class="pre">Replace certain Unicode characters with named HTML entities.
+
+This differs from data.encode(encoding, 'xmlcharrefreplace')
+in that the goal is to make the result more readable (to those
+with ASCII displays) rather than to recover from
+errors. There's absolutely nothing wrong with a UTF-8 string
+containg a LATIN SMALL LETTER E WITH ACUTE, but replacing that
+character with "&amp;eacute;" will make it more readable to some
+people.
+
+:param s: A Unicode string.</p></div>
   </div>
 </div><div class="baseclassmethod">
   
@@ -620,7 +641,16 @@
   <div class="docstring functionBody">
     
     
-    <div></div>
+    <div><p class="pre">Substitute XML entities for special XML characters.
+
+:param value: A string to be substituted. The less-than sign
+  will become &amp;lt;, the greater-than sign will become &amp;gt;,
+  and any ampersands will become &amp;amp;. If you want ampersands
+  that appear to be part of an entity definition to be left
+  alone, use substitute_xml_containing_entities() instead.
+
+:param make_quoted_attribute: If True, then the string will be
+ quoted, as befits an attribute value.</p></div>
   </div>
 </div><div class="baseclassmethod">
   
@@ -642,7 +672,15 @@
   <div class="docstring functionBody">
     
     
-    <div></div>
+    <div><p class="pre">Substitute XML entities for special XML characters.
+
+:param value: A string to be substituted. The less-than sign will
+  become &amp;lt;, the greater-than sign will become &amp;gt;, and any
+  ampersands that are not part of an entity defition will
+  become &amp;amp;.
+
+:param make_quoted_attribute: If True, then the string will be
+ quoted, as befits an attribute value.</p></div>
   </div>
 </div><div class="baseconstant">
   
@@ -802,8 +840,8 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Used with a regular expression to substitute the appropriate HTML entity for a special character string.</p>
-</div>
+    <div><p class="pre">Used with a regular expression to substitute the
+appropriate HTML entity for a special character string.</p></div>
   </div>
 </div><div class="baseclassmethod private">
   
@@ -825,8 +863,8 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Used with a regular expression to substitute the appropriate XML entity for a special character string.</p>
-</div>
+    <div><p class="pre">Used with a regular expression to substitute the
+appropriate XML entity for a special character string.</p></div>
   </div>
 </div><div class="basemethod private">
   
@@ -848,12 +886,22 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Initialize variables used by this class to manage the plethora of HTML5 named entities.</p>
-<p>This function returns a 3-tuple containing two dictionaries and a regular expression:</p>
-<p>unicode_to_name - A mapping of Unicode strings like "⦨" to entity names like "angmsdaa". When a single Unicode string has multiple entity names, we try to choose the most commonly-used name.</p>
-<p>name_to_unicode: A mapping of entity names like "angmsdaa" to Unicode strings like "⦨".</p>
-<p>named_entity_re: A regular expression matching (almost) any Unicode string that corresponds to an HTML5 named entity.</p>
-</div>
+    <div><p class="pre">Initialize variables used by this class to manage the plethora of
+HTML5 named entities.
+
+This function returns a 3-tuple containing two dictionaries
+and a regular expression:
+
+unicode_to_name - A mapping of Unicode strings like "⦨" to
+entity names like "angmsdaa". When a single Unicode string has
+multiple entity names, we try to choose the most commonly-used
+name.
+
+name_to_unicode: A mapping of entity names like "angmsdaa" to 
+Unicode strings like "⦨".
+
+named_entity_re: A regular expression matching (almost) any
+Unicode string that corresponds to an HTML5 named entity.</p></div>
   </div>
 </div>
         </div>
@@ -867,7 +915,7 @@
   <div class="container">
     <a href="index.html">API Documentation</a> for bs4,
   generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
-    22.4.0.dev0 at 2022-04-11 16:00:53.
+    22.4.0.dev0 at 2022-04-23 04:46:24.
   </div>
 
   <!-- Search related scripts needs to be loaded at the end of HTML 

@@ -556,13 +556,13 @@
         </div>
 
         <div class="moduleDocstring">
-          <div><p>A registry that stores the configuration of installed applications.</p>
-<p>It also keeps track of models, e.g. to provide reverse relations.</p>
-</div>
+          <div><p class="pre">A registry that stores the configuration of installed applications.
+
+It also keeps track of models, e.g. to provide reverse relations.</p></div>
         </div>
 
         <div id="splitTables">
-          <table class="children sortable" id="id233">
+          <table class="children sortable" id="id1314">
   
   
   <tr class="method">
@@ -614,7 +614,7 @@
     
     <td>Method</td>
     <td><code><a href="#get_models" class="internal-link" title="django.apps.registry.Apps.get_models">get<wbr></wbr>_models</a></code></td>
-    <td><span class="undocumented">No summary</span></td>
+    <td>Return a list of all installed models.</td>
   </tr><tr class="method">
     
     <td>Method</td>
@@ -765,8 +765,7 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Raise an exception if all apps haven't been imported yet.</p>
-</div>
+    <div><p class="pre">Raise an exception if all apps haven't been imported yet.</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -788,8 +787,7 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Raise an exception if all models haven't been imported yet.</p>
-</div>
+    <div><p class="pre">Raise an exception if all models haven't been imported yet.</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -811,9 +809,9 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Clear all internal caches, for methods that alter the app registry.</p>
-<p>This is mostly used in tests.</p>
-</div>
+    <div><p class="pre">Clear all internal caches, for methods that alter the app registry.
+
+This is mostly used in tests.</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -835,8 +833,8 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Take a newly-prepared model and pass it to each function waiting for it. This is called at the very end of Apps.register_model().</p>
-</div>
+    <div><p class="pre">Take a newly-prepared model and pass it to each function waiting for
+it. This is called at the very end of Apps.register_model().</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -858,9 +856,9 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Import applications and returns an app config for the given label.</p>
-<p>Raise LookupError if no application exists with this label.</p>
-</div>
+    <div><p class="pre">Import applications and returns an app config for the given label.
+
+Raise LookupError if no application exists with this label.</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -882,8 +880,7 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Import applications and return an iterable of app configs.</p>
-</div>
+    <div><p class="pre">Import applications and return an iterable of app configs.</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -905,10 +902,12 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Look for an app config containing a given object.</p>
-<p>object_name is the dotted Python path to the object.</p>
-<p>Return the app config for the inner application in case of nesting. Return None if the object isn't in any registered app config.</p>
-</div>
+    <div><p class="pre">Look for an app config containing a given object.
+
+object_name is the dotted Python path to the object.
+
+Return the app config for the inner application in case of nesting.
+Return None if the object isn't in any registered app config.</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -930,11 +929,15 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Return the model matching the given app_label and model_name.</p>
-<p>As a shortcut, app_label may be in the form &lt;app_label&gt;.&lt;model_name&gt;.</p>
-<p>model_name is case-insensitive.</p>
-<p>Raise LookupError if no application exists with this label, or no model exists with this name in the application. Raise ValueError if called with a single argument that doesn't contain exactly one dot.</p>
-</div>
+    <div><p class="pre">Return the model matching the given app_label and model_name.
+
+As a shortcut, app_label may be in the form &lt;app_label&gt;.&lt;model_name&gt;.
+
+model_name is case-insensitive.
+
+Raise LookupError if no application exists with this label, or no
+model exists with this name in the application. Raise ValueError if
+called with a single argument that doesn't contain exactly one dot.</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -956,7 +959,15 @@
   <div class="docstring functionBody">
     
     
-    <div></div>
+    <div><p class="pre">Return a list of all installed models.
+
+By default, the following models aren't included:
+
+- auto-created models for many-to-many relations without
+  an explicit intermediate table,
+- models that have been swapped out.
+
+Set the corresponding keyword argument to True to include such models.</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -978,9 +989,11 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Similar to get_model(), but doesn't require that an app exists with the given app_label.</p>
-<p>It's safe to call this method at import time, even while the registry is being populated.</p>
-</div>
+    <div><p class="pre">Similar to get_model(), but doesn't require that an app exists with
+the given app_label.
+
+It's safe to call this method at import time, even while the registry
+is being populated.</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -1002,9 +1015,14 @@
   <div class="docstring functionBody">
     
     
-    <div><p>For a given model string (e.g. "auth.User"), return the name of the corresponding settings name if it refers to a swappable model. If the referred model is not swappable, return None.</p>
-<p>This method is decorated with lru_cache because it's performance critical when it comes to migrations. Since the swappable settings don't change after Django has loaded the settings, there is no reason to get the respective settings attribute over and over again.</p>
-</div>
+    <div><p class="pre">For a given model string (e.g. "auth.User"), return the name of the
+corresponding settings name if it refers to a swappable model. If the
+referred model is not swappable, return None.
+
+This method is decorated with lru_cache because it's performance
+critical when it comes to migrations. Since the swappable settings don't
+change after Django has loaded the settings, there is no reason to get
+the respective settings attribute over and over again.</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -1026,9 +1044,9 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Check whether an application with this name exists in the registry.</p>
-<p>app_name is the full name of the app e.g. 'django.contrib.admin'.</p>
-</div>
+    <div><p class="pre">Check whether an application with this name exists in the registry.
+
+app_name is the full name of the app e.g. 'django.contrib.admin'.</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -1050,9 +1068,12 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Take a function and a number of ("app_label", "modelname") tuples, and when all the corresponding models have been imported and registered, call the function with the model classes as its arguments.</p>
-<p>The function passed to this method must accept exactly n models as arguments, where n=len(model_keys).</p>
-</div>
+    <div><p class="pre">Take a function and a number of ("app_label", "modelname") tuples, and
+when all the corresponding models have been imported and registered,
+call the function with the model classes as its arguments.
+
+The function passed to this method must accept exactly n models as
+arguments, where n=len(model_keys).</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -1074,10 +1095,11 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Load application configurations and models.</p>
-<p>Import each application module and then each model module.</p>
-<p>It is thread-safe and idempotent, but not reentrant.</p>
-</div>
+    <div><p class="pre">Load application configurations and models.
+
+Import each application module and then each model module.
+
+It is thread-safe and idempotent, but not reentrant.</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -1121,12 +1143,15 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Restrict the set of installed apps used by get_app_config[s].</p>
-<p>available must be an iterable of application names.</p>
-<p>set_available_apps() must be balanced with unset_available_apps().</p>
-<p>Primarily used for performance optimization in TransactionTestCase.</p>
-<p>This method is safe in the sense that it doesn't trigger any imports.</p>
-</div>
+    <div><p class="pre">Restrict the set of installed apps used by get_app_config[s].
+
+available must be an iterable of application names.
+
+set_available_apps() must be balanced with unset_available_apps().
+
+Primarily used for performance optimization in TransactionTestCase.
+
+This method is safe in the sense that it doesn't trigger any imports.</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -1148,12 +1173,20 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Enable a different set of installed apps for get_app_config[s].</p>
-<p>installed must be an iterable in the same format as INSTALLED_APPS.</p>
-<p>set_installed_apps() must be balanced with unset_installed_apps(), even if it exits with an exception.</p>
-<p>Primarily used as a receiver of the setting_changed signal in tests.</p>
-<p>This method may trigger new imports, which may add new models to the registry of all imported models. They will stay in the registry even after unset_installed_apps(). Since it isn't possible to replay imports safely (e.g. that could lead to registering listeners twice), models are registered when they're imported and never removed.</p>
-</div>
+    <div><p class="pre">Enable a different set of installed apps for get_app_config[s].
+
+installed must be an iterable in the same format as INSTALLED_APPS.
+
+set_installed_apps() must be balanced with unset_installed_apps(),
+even if it exits with an exception.
+
+Primarily used as a receiver of the setting_changed signal in tests.
+
+This method may trigger new imports, which may add new models to the
+registry of all imported models. They will stay in the registry even
+after unset_installed_apps(). Since it isn't possible to replay
+imports safely (e.g. that could lead to registering listeners twice),
+models are registered when they're imported and never removed.</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -1175,8 +1208,7 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Cancel a previous call to set_available_apps().</p>
-</div>
+    <div><p class="pre">Cancel a previous call to set_available_apps().</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -1198,8 +1230,7 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Cancel a previous call to set_installed_apps().</p>
-</div>
+    <div><p class="pre">Cancel a previous call to set_installed_apps().</p></div>
   </div>
 </div><div class="baseinstancevariable">
   
@@ -1443,7 +1474,7 @@
   <div class="container">
     <a href="index.html">API Documentation</a> for django,
   generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
-    22.4.0.dev0 at 2022-04-11 16:01:21.
+    22.4.0.dev0 at 2022-04-23 04:48:04.
   </div>
 
   <!-- Search related scripts needs to be loaded at the end of HTML 

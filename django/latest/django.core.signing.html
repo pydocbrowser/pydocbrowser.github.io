@@ -549,30 +549,42 @@
         </div>
 
         <div class="moduleDocstring">
-          <div><p>Functions for creating and restoring url-safe signed JSON objects.</p>
-<p>The format used looks like this:</p>
-<pre class="py-doctest">
-<span class="py-prompt">&gt;&gt;&gt; </span>signing.dumps(<span class="py-string">"hello"</span>)
-<span class="py-output">'ImhlbGxvIg:1QaUZC:YIye-ze3TTx7gtSv422nZA4sgmk'</span>
-</pre><p>There are two components here, separated by a ':'. The first component is a URLsafe base64 encoded JSON of the object passed to dumps(). The second component is a base64 encoded hmac/SHA1 hash of "$first_component:$secret"</p>
-<p>signing.loads(s) checks the signature and returns the deserialized object. If the signature fails, a BadSignature exception is raised.</p>
-<pre class="py-doctest">
-<span class="py-prompt">&gt;&gt;&gt; </span>signing.loads(<span class="py-string">"ImhlbGxvIg:1QaUZC:YIye-ze3TTx7gtSv422nZA4sgmk"</span>)
-<span class="py-output">'hello'</span>
-<span class="py-prompt">&gt;&gt;&gt; </span>signing.loads(<span class="py-string">"ImhlbGxvIg:1QaUZC:YIye-ze3TTx7gtSv422nZA4sgmk-modified"</span>)
-<span class="py-more">...</span>
-<span class="py-output">BadSignature: Signature failed: ImhlbGxvIg:1QaUZC:YIye-ze3TTx7gtSv422nZA4sgmk-modified</span>
-</pre><p>You can optionally compress the JSON prior to base64 encoding it to save space, using the compress=True argument. This checks if compression actually helps and only applies compression if the result is a shorter string:</p>
-<pre class="py-doctest">
-<span class="py-prompt">&gt;&gt;&gt; </span>signing.dumps(<span class="py-builtin">list</span>(<span class="py-builtin">range</span>(1, 20)), compress=<span class="py-builtin">True</span>)
-<span class="py-output">'.eJwFwcERACAIwLCF-rCiILN47r-GyZVJsNgkxaFxoDgxcOHGxMKD_T7vhAml:1QaUaL:BA0thEZrp4FQVXIXuOvYJtLJSrQ'</span>
-</pre><p>The fact that the string is compressed is signalled by the prefixed '.' at the start of the base64 JSON.</p>
-<p>There are 65 url-safe characters: the 64 used by url-safe base64 and the ':'. These functions make use of all of them.</p>
-</div>
+          <div><p class="pre">Functions for creating and restoring url-safe signed JSON objects.
+
+The format used looks like this:
+
+&gt;&gt;&gt; signing.dumps("hello")
+'ImhlbGxvIg:1QaUZC:YIye-ze3TTx7gtSv422nZA4sgmk'
+
+There are two components here, separated by a ':'. The first component is a
+URLsafe base64 encoded JSON of the object passed to dumps(). The second
+component is a base64 encoded hmac/SHA1 hash of "$first_component:$secret"
+
+signing.loads(s) checks the signature and returns the deserialized object.
+If the signature fails, a BadSignature exception is raised.
+
+&gt;&gt;&gt; signing.loads("ImhlbGxvIg:1QaUZC:YIye-ze3TTx7gtSv422nZA4sgmk")
+'hello'
+&gt;&gt;&gt; signing.loads("ImhlbGxvIg:1QaUZC:YIye-ze3TTx7gtSv422nZA4sgmk-modified")
+...
+BadSignature: Signature failed: ImhlbGxvIg:1QaUZC:YIye-ze3TTx7gtSv422nZA4sgmk-modified
+
+You can optionally compress the JSON prior to base64 encoding it to save
+space, using the compress=True argument. This checks if compression actually
+helps and only applies compression if the result is a shorter string:
+
+&gt;&gt;&gt; signing.dumps(list(range(1, 20)), compress=True)
+'.eJwFwcERACAIwLCF-rCiILN47r-GyZVJsNgkxaFxoDgxcOHGxMKD_T7vhAml:1QaUaL:BA0thEZrp4FQVXIXuOvYJtLJSrQ'
+
+The fact that the string is compressed is signalled by the prefixed '.' at the
+start of the base64 JSON.
+
+There are 65 url-safe characters: the 64 used by url-safe base64 and the ':'.
+These functions make use of all of them.</p></div>
         </div>
 
         <div id="splitTables">
-          <table class="children sortable" id="id2741">
+          <table class="children sortable" id="id3822">
   
   
   <tr class="class">
@@ -788,11 +800,20 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Return URL-safe, hmac signed base64 compressed JSON string. If key is None, use settings.SECRET_KEY instead. The hmac algorithm is the default Signer algorithm.</p>
-<p>If compress is True (not the default), check if compressing using zlib can save some space. Prepend a '.' to signify compression. This is included in the signature, to protect against zip bombs.</p>
-<p>Salt can be used to namespace the hash, so that a signed string is only valid for a given namespace. Leaving this at the default value or re-using a salt value across different parts of your application without good cause is a security risk.</p>
-<p>The serializer is expected to return a bytestring.</p>
-</div>
+    <div><p class="pre">Return URL-safe, hmac signed base64 compressed JSON string. If key is
+None, use settings.SECRET_KEY instead. The hmac algorithm is the default
+Signer algorithm.
+
+If compress is True (not the default), check if compressing using zlib can
+save some space. Prepend a '.' to signify compression. This is included
+in the signature, to protect against zip bombs.
+
+Salt can be used to namespace the hash, so that a signed string is
+only valid for a given namespace. Leaving this at the default
+value or re-using a salt value across different parts of your
+application without good cause is a security risk.
+
+The serializer is expected to return a bytestring.</p></div>
   </div>
 </div><div class="basefunction">
   
@@ -836,9 +857,9 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Reverse of dumps(), raise BadSignature if signature fails.</p>
-<p>The serializer is expected to accept a bytestring.</p>
-</div>
+    <div><p class="pre">Reverse of dumps(), raise BadSignature if signature fails.
+
+The serializer is expected to accept a bytestring.</p></div>
   </div>
 </div><div class="baseconstant">
   
@@ -898,7 +919,7 @@
   <div class="container">
     <a href="index.html">API Documentation</a> for django,
   generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
-    22.4.0.dev0 at 2022-04-11 16:01:21.
+    22.4.0.dev0 at 2022-04-23 04:48:04.
   </div>
 
   <!-- Search related scripts needs to be loaded at the end of HTML 

@@ -719,7 +719,7 @@
         </div>
 
         <div id="splitTables">
-          <table class="children sortable" id="id5425">
+          <table class="children sortable" id="id6506">
   
   
   <tr class="class">
@@ -746,7 +746,7 @@
     
     <td>Class</td>
     <td><code><a href="django.test.utils.isolate_apps.html" class="internal-link" title="django.test.utils.isolate_apps">isolate<wbr></wbr>_apps</a></code></td>
-    <td><span class="undocumented">No summary</span></td>
+    <td>Act as either a decorator or a context manager to register models defined in its wrapped context to an isolated registry.</td>
   </tr><tr class="class">
     
     <td>Class</td>
@@ -781,7 +781,7 @@
     
     <td>Class</td>
     <td><code><a href="django.test.utils.TestContextDecorator.html" class="internal-link" title="django.test.utils.TestContextDecorator"><wbr></wbr>Test<wbr></wbr>Context<wbr></wbr>Decorator</a></code></td>
-    <td><span class="undocumented">No summary</span></td>
+    <td>A base class that can either be used as a context manager during tests or as a test function or unittest.TestCase subclass decorator to perform temporary alterations.</td>
   </tr><tr class="class">
     
     <td>Class</td>
@@ -791,22 +791,22 @@
     
     <td>Function</td>
     <td><code><a href="#captured_output" class="internal-link" title="django.test.utils.captured_output">captured<wbr></wbr>_output</a></code></td>
-    <td><span class="undocumented">No summary</span></td>
+    <td>Return a context manager used by captured_stdout/stdin/stderr that temporarily replaces the sys stream *stream_name* with a StringIO.</td>
   </tr><tr class="function">
     
     <td>Function</td>
     <td><code><a href="#captured_stderr" class="internal-link" title="django.test.utils.captured_stderr">captured<wbr></wbr>_stderr</a></code></td>
-    <td><span class="undocumented">No summary</span></td>
+    <td>Capture the output of sys.stderr:</td>
   </tr><tr class="function">
     
     <td>Function</td>
     <td><code><a href="#captured_stdin" class="internal-link" title="django.test.utils.captured_stdin">captured<wbr></wbr>_stdin</a></code></td>
-    <td><span class="undocumented">No summary</span></td>
+    <td>Capture the input to sys.stdin:</td>
   </tr><tr class="function">
     
     <td>Function</td>
     <td><code><a href="#captured_stdout" class="internal-link" title="django.test.utils.captured_stdout">captured<wbr></wbr>_stdout</a></code></td>
-    <td><span class="undocumented">No summary</span></td>
+    <td>Capture the output of sys.stdout:</td>
   </tr><tr class="function">
     
     <td>Function</td>
@@ -836,7 +836,7 @@
     
     <td>Function</td>
     <td><code><a href="#get_unique_databases_and_mirrors" class="internal-link" title="django.test.utils.get_unique_databases_and_mirrors">get<wbr></wbr>_unique<wbr></wbr>_databases<wbr></wbr>_and<wbr></wbr>_mirrors</a></code></td>
-    <td><span class="undocumented">No summary</span></td>
+    <td>Figure out which databases actually need to be created.</td>
   </tr><tr class="function">
     
     <td>Function</td>
@@ -935,7 +935,11 @@
   <div class="docstring functionBody">
     
     
-    <div></div>
+    <div><p class="pre">Return a context manager used by captured_stdout/stdin/stderr
+that temporarily replaces the sys stream *stream_name* with a StringIO.
+
+Note: This function and the following ``captured_std*`` are copied
+      from CPython's ``test.support`` module.</p></div>
   </div>
 </div><div class="basefunction">
   
@@ -957,7 +961,13 @@
   <div class="docstring functionBody">
     
     
-    <div></div>
+    <div><p class="pre">Capture the output of sys.stderr:
+
+    with captured_stderr() as stderr:
+        print("hello", file=sys.stderr)
+    self.assertEqual(stderr.getvalue(), "hello
+")
+    </p></div>
   </div>
 </div><div class="basefunction">
   
@@ -979,7 +989,16 @@
   <div class="docstring functionBody">
     
     
-    <div></div>
+    <div><p class="pre">Capture the input to sys.stdin:
+
+    with captured_stdin() as stdin:
+        stdin.write('hello
+')
+        stdin.seek(0)
+        # call test code that consumes from sys.stdin
+        captured = input()
+    self.assertEqual(captured, "hello")
+    </p></div>
   </div>
 </div><div class="basefunction">
   
@@ -1001,7 +1020,13 @@
   <div class="docstring functionBody">
     
     
-    <div></div>
+    <div><p class="pre">Capture the output of sys.stdout:
+
+    with captured_stdout() as stdout:
+        print("hello")
+    self.assertEqual(stdout.getvalue(), "hello
+")
+    </p></div>
   </div>
 </div><div class="basefunction">
   
@@ -1023,9 +1048,12 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Try to do a 'xml-comparison' of want and got. Plain string comparison doesn't always work because, for example, attribute ordering should not be important. Ignore comment nodes, processing instructions, document type node, and leading and trailing whitespaces.</p>
-<p>Based on https://github.com/lxml/lxml/blob/master/src/lxml/doctestcompare.py</p>
-</div>
+    <div><p class="pre">Try to do a 'xml-comparison' of want and got. Plain string comparison
+doesn't always work because, for example, attribute ordering should not be
+important. Ignore comment nodes, processing instructions, document type
+node, and leading and trailing whitespaces.
+
+Based on https://github.com/lxml/lxml/blob/master/src/lxml/doctestcompare.py</p></div>
   </div>
 </div><div class="basefunction">
   
@@ -1047,8 +1075,8 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Reorder test_databases into an order that honors the dependencies described in TEST[DEPENDENCIES].</p>
-</div>
+    <div><p class="pre">Reorder test_databases into an order that honors the dependencies
+described in TEST[DEPENDENCIES].</p></div>
   </div>
 </div><div class="basefunction">
   
@@ -1070,8 +1098,7 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Context manager to temporarily add paths to sys.path.</p>
-</div>
+    <div><p class="pre">Context manager to temporarily add paths to sys.path.</p></div>
   </div>
 </div><div class="basefunction">
   
@@ -1093,8 +1120,11 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Context manager to temporarily freeze time.time(). This temporarily modifies the time function of the time module. Modules which import the time function directly (e.g. `from time import time`) won't be affected This isn't meant as a public API, but helps reduce some repetitive code in Django's test suite.</p>
-</div>
+    <div><p class="pre">Context manager to temporarily freeze time.time(). This temporarily
+modifies the time function of the time module. Modules which import the
+time function directly (e.g. `from time import time`) won't be affected
+This isn't meant as a public API, but helps reduce some repetitive code in
+Django's test suite.</p></div>
   </div>
 </div><div class="basefunction">
   
@@ -1138,7 +1168,15 @@
   <div class="docstring functionBody">
     
     
-    <div></div>
+    <div><p class="pre">Figure out which databases actually need to be created.
+
+Deduplicate entries in DATABASES that correspond the same database or are
+configured as test mirrors.
+
+Return two values:
+- test_databases: ordered mapping of signatures to (name, list of aliases)
+                  where all aliases share the same underlying database.
+- mirrored_aliases: mapping of mirror aliases to original aliases.</p></div>
   </div>
 </div><div class="basefunction">
   
@@ -1160,8 +1198,8 @@
   <div class="docstring functionBody">
     
     
-    <div><p>An instrumented Template render method, providing a signal that can be intercepted by the test Client.</p>
-</div>
+    <div><p class="pre">An instrumented Template render method, providing a signal that can be
+intercepted by the test Client.</p></div>
   </div>
 </div><div class="basefunction">
   
@@ -1183,8 +1221,7 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Clear the cache of an LRU cache object on entering and exiting.</p>
-</div>
+    <div><p class="pre">Clear the cache of an LRU cache object on entering and exiting.</p></div>
   </div>
 </div><div class="basefunction">
   
@@ -1206,9 +1243,9 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Return an iterator over a test suite's unittest.TestCase objects.</p>
-<p>The tests argument can also be an iterable of TestCase objects.</p>
-</div>
+    <div><p class="pre">Return an iterator over a test suite's unittest.TestCase objects.
+
+The tests argument can also be an iterable of TestCase objects.</p></div>
   </div>
 </div><div class="basefunction">
   
@@ -1230,8 +1267,8 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Context manager to temporarily register lookups on a model field using lookup_name (or the lookup's lookup_name if not provided).</p>
-</div>
+    <div><p class="pre">Context manager to temporarily register lookups on a model field using
+lookup_name (or the lookup's lookup_name if not provided).</p></div>
   </div>
 </div><div class="basefunction">
   
@@ -1253,8 +1290,8 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Decorator to enable a Jinja2 template engine in addition to the regular Django template engine for a test or skip it if Jinja2 isn't available.</p>
-</div>
+    <div><p class="pre">Decorator to enable a Jinja2 template engine in addition to the regular
+Django template engine for a test or skip it if Jinja2 isn't available.</p></div>
   </div>
 </div><div class="basefunction">
   
@@ -1276,8 +1313,7 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Create the test databases.</p>
-</div>
+    <div><p class="pre">Create the test databases.</p></div>
   </div>
 </div><div class="basefunction">
   
@@ -1299,8 +1335,8 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Perform global pre-test setup, such as installing the instrumented template renderer and setting the email backend to the locmem email backend.</p>
-</div>
+    <div><p class="pre">Perform global pre-test setup, such as installing the instrumented template
+renderer and setting the email backend to the locmem email backend.</p></div>
   </div>
 </div><div class="basefunction">
   
@@ -1322,8 +1358,7 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Decorator to add tags to a test class or method.</p>
-</div>
+    <div><p class="pre">Decorator to add tags to a test class or method.</p></div>
   </div>
 </div><div class="basefunction">
   
@@ -1345,8 +1380,7 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Destroy all the non-mirror databases.</p>
-</div>
+    <div><p class="pre">Destroy all the non-mirror databases.</p></div>
   </div>
 </div><div class="basefunction">
   
@@ -1368,8 +1402,8 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Perform any global post-test teardown, such as restoring the original template renderer and restoring the email sending functions.</p>
-</div>
+    <div><p class="pre">Perform any global post-test teardown, such as restoring the original
+template renderer and restoring the email sending functions.</p></div>
   </div>
 </div><div class="baseconstant">
   
@@ -1452,7 +1486,7 @@
   <div class="container">
     <a href="index.html">API Documentation</a> for django,
   generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
-    22.4.0.dev0 at 2022-04-11 16:01:21.
+    22.4.0.dev0 at 2022-04-23 04:48:04.
   </div>
 
   <!-- Search related scripts needs to be loaded at the end of HTML 

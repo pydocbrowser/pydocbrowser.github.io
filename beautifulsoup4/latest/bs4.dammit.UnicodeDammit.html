@@ -592,24 +592,26 @@
         </div>
 
         <div class="moduleDocstring">
-          <div><p>A class for detecting the encoding of a *ML document and converting it to a Unicode string. If the source encoding is windows-1252, can replace MS smart quotes with their HTML or XML equivalents.</p>
-</div>
+          <div><p class="pre">A class for detecting the encoding of a *ML document and
+converting it to a Unicode string. If the source encoding is
+windows-1252, can replace MS smart quotes with their HTML or XML
+equivalents.</p></div>
         </div>
 
         <div id="splitTables">
-          <table class="children sortable" id="id40">
+          <table class="children sortable" id="id681">
   
   
   <tr class="classmethod">
     
     <td>Class Method</td>
     <td><code><a href="#detwingle" class="internal-link" title="bs4.dammit.UnicodeDammit.detwingle">detwingle</a></code></td>
-    <td><span class="undocumented">No summary</span></td>
+    <td>Fix characters from one encoding embedded in some other encoding.</td>
   </tr><tr class="method">
     
     <td>Method</td>
     <td><code><a href="#__init__" class="internal-link" title="bs4.dammit.UnicodeDammit.__init__">__init__</a></code></td>
-    <td><span class="undocumented">No summary</span></td>
+    <td>Constructor.</td>
   </tr><tr class="method">
     
     <td>Method</td>
@@ -753,7 +755,21 @@
   <div class="docstring functionBody">
     
     
-    <div></div>
+    <div><p class="pre">Fix characters from one encoding embedded in some other encoding.
+
+Currently the only situation supported is Windows-1252 (or its
+subset ISO-8859-1), embedded in UTF-8.
+
+:param in_bytes: A bytestring that you suspect contains
+    characters from multiple encodings. Note that this _must_
+    be a bytestring. If you've already converted the document
+    to Unicode, you're too late.
+:param main_encoding: The primary encoding of `in_bytes`.
+:param embedded_encoding: The encoding that was used to embed characters
+    in the main document.
+:return: A bytestring in which `embedded_encoding`
+  characters have been converted to their `main_encoding`
+  equivalents.</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -775,7 +791,38 @@
   <div class="docstring functionBody">
     
     
-    <div></div>
+    <div><p class="pre">Constructor.
+
+:param markup: A bytestring representing markup in an unknown encoding.
+
+:param known_definite_encodings: When determining the encoding
+    of `markup`, these encodings will be tried first, in
+    order. In HTML terms, this corresponds to the "known
+    definite encoding" step defined here:
+    https://html.spec.whatwg.org/multipage/parsing.html#parsing-with-a-known-character-encoding
+
+:param user_encodings: These encodings will be tried after the
+    `known_definite_encodings` have been tried and failed, and
+    after an attempt to sniff the encoding by looking at a
+    byte order mark has failed. In HTML terms, this
+    corresponds to the step "user has explicitly instructed
+    the user agent to override the document's character
+    encoding", defined here:
+    https://html.spec.whatwg.org/multipage/parsing.html#determining-the-character-encoding
+
+:param override_encodings: A deprecated alias for
+    known_definite_encodings. Any encodings here will be tried
+    immediately after the encodings in
+    known_definite_encodings.
+
+:param smart_quotes_to: By default, Microsoft smart quotes will, like all other characters, be converted
+   to Unicode characters. Setting this to 'ascii' will convert them to ASCII quotes instead.
+   Setting it to 'xml' will convert them to XML entity references, and setting it to 'html'
+   will convert them to HTML entity references.
+:param is_html: If True, this markup is considered to be HTML. Otherwise
+    it's assumed to be XML.
+:param exclude_encodings: These encodings will not be considered, even
+    if the sniffing code thinks they might make sense.</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -797,9 +844,10 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Convert the name of a character set to a codec name.</p>
-<p>:param charset: The name of a character set. :return: The name of a codec.</p>
-</div>
+    <div><p class="pre">Convert the name of a character set to a codec name.
+
+:param charset: The name of a character set.
+:return: The name of a codec.</p></div>
   </div>
 </div><div class="baseconstant">
   
@@ -1233,8 +1281,8 @@
   <div class="functionBody">
     
     
-    <div><p>If the markup is an HTML document, returns the encoding declared _within_ the document.</p>
-</div>
+    <div><p class="pre">If the markup is an HTML document, returns the encoding declared _within_
+the document.</p></div>
     
   </div>
 </div><div class="basemethod private">
@@ -1279,9 +1327,9 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Attempt to convert the markup to the proposed encoding.</p>
-<p>:param proposed: The name of a character encoding.</p>
-</div>
+    <div><p class="pre">Attempt to convert the markup to the proposed encoding.
+
+:param proposed: The name of a character encoding.</p></div>
   </div>
 </div><div class="basemethod private">
   
@@ -1303,8 +1351,8 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Changes a MS smart quote character to an XML or HTML entity, or an ASCII character.</p>
-</div>
+    <div><p class="pre">Changes a MS smart quote character to an XML or HTML
+entity, or an ASCII character.</p></div>
   </div>
 </div><div class="basemethod private">
   
@@ -1326,9 +1374,9 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Given a string and its encoding, decodes the string into Unicode.</p>
-<p>:param encoding: The name of an encoding.</p>
-</div>
+    <div><p class="pre">Given a string and its encoding, decodes the string into Unicode.
+
+:param encoding: The name of an encoding.</p></div>
   </div>
 </div>
         </div>
@@ -1342,7 +1390,7 @@
   <div class="container">
     <a href="index.html">API Documentation</a> for bs4,
   generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
-    22.4.0.dev0 at 2022-04-11 16:00:53.
+    22.4.0.dev0 at 2022-04-23 04:46:24.
   </div>
 
   <!-- Search related scripts needs to be loaded at the end of HTML 

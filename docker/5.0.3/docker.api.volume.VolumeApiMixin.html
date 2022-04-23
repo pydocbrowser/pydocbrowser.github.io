@@ -307,34 +307,34 @@
         </div>
 
         <div id="splitTables">
-          <table class="children sortable" id="id41">
+          <table class="children sortable" id="id1143">
   
   
   <tr class="method">
     
     <td>Method</td>
     <td><code><a href="#create_volume" class="internal-link" title="docker.api.volume.VolumeApiMixin.create_volume">create<wbr></wbr>_volume</a></code></td>
-    <td><span class="undocumented">No summary</span></td>
+    <td>Create and register a named volume</td>
   </tr><tr class="method">
     
     <td>Method</td>
     <td><code><a href="#inspect_volume" class="internal-link" title="docker.api.volume.VolumeApiMixin.inspect_volume">inspect<wbr></wbr>_volume</a></code></td>
-    <td><span class="undocumented">No summary</span></td>
+    <td>Retrieve volume info by name.</td>
   </tr><tr class="method">
     
     <td>Method</td>
     <td><code><a href="#prune_volumes" class="internal-link" title="docker.api.volume.VolumeApiMixin.prune_volumes">prune<wbr></wbr>_volumes</a></code></td>
-    <td><span class="undocumented">No summary</span></td>
+    <td>Delete unused volumes</td>
   </tr><tr class="method">
     
     <td>Method</td>
     <td><code><a href="#remove_volume" class="internal-link" title="docker.api.volume.VolumeApiMixin.remove_volume">remove<wbr></wbr>_volume</a></code></td>
-    <td><span class="undocumented">No summary</span></td>
+    <td>Remove a volume. Similar to the ``docker volume rm`` command.</td>
   </tr><tr class="method">
     
     <td>Method</td>
     <td><code><a href="#volumes" class="internal-link" title="docker.api.volume.VolumeApiMixin.volumes">volumes</a></code></td>
-    <td><span class="undocumented">No summary</span></td>
+    <td>List volumes currently registered by the docker daemon. Similar to the ``docker volume ls`` command.</td>
   </tr>
 </table>
           
@@ -363,7 +363,32 @@
   <div class="docstring functionBody">
     
     
-    <div></div>
+    <div><p class="pre">Create and register a named volume
+
+Args:
+    name (str): Name of the volume
+    driver (str): Name of the driver used to create the volume
+    driver_opts (dict): Driver options as a key-value dictionary
+    labels (dict): Labels to set on the volume
+
+Returns:
+    (dict): The created volume reference object
+
+Raises:
+    :py:class:`docker.errors.APIError`
+        If the server returns an error.
+
+Example:
+
+    &gt;&gt;&gt; volume = client.api.create_volume(name='foobar', driver='local',
+            driver_opts={'foo': 'bar', 'baz': 'false'},
+            labels={"key": "value"})
+    &gt;&gt;&gt; print(volume)
+    {u'Driver': u'local',
+     u'Labels': {u'key': u'value'},
+     u'Mountpoint': u'/var/lib/docker/volumes/foobar/_data',
+     u'Name': u'foobar',
+     u'Scope': u'local'}</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -385,7 +410,24 @@
   <div class="docstring functionBody">
     
     
-    <div></div>
+    <div><p class="pre">Retrieve volume info by name.
+
+Args:
+    name (str): volume name
+
+Returns:
+    (dict): Volume information dictionary
+
+Raises:
+    :py:class:`docker.errors.APIError`
+        If the server returns an error.
+
+Example:
+
+    &gt;&gt;&gt; client.api.inspect_volume('foobar')
+    {u'Driver': u'local',
+     u'Mountpoint': u'/var/lib/docker/volumes/foobar/_data',
+     u'Name': u'foobar'}</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -407,7 +449,18 @@
   <div class="docstring functionBody">
     
     
-    <div></div>
+    <div><p class="pre">Delete unused volumes
+
+Args:
+    filters (dict): Filters to process on the prune list.
+
+Returns:
+    (dict): A dict containing a list of deleted volume names and
+        the amount of disk space reclaimed in bytes.
+
+Raises:
+    :py:class:`docker.errors.APIError`
+        If the server returns an error.</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -429,7 +482,16 @@
   <div class="docstring functionBody">
     
     
-    <div></div>
+    <div><p class="pre">Remove a volume. Similar to the ``docker volume rm`` command.
+
+Args:
+    name (str): The volume's name
+    force (bool): Force removal of volumes that were already removed
+        out of band by the volume driver plugin.
+
+Raises:
+    :py:class:`docker.errors.APIError`
+        If volume failed to remove.</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -451,7 +513,29 @@
   <div class="docstring functionBody">
     
     
-    <div></div>
+    <div><p class="pre">List volumes currently registered by the docker daemon. Similar to the
+``docker volume ls`` command.
+
+Args:
+    filters (dict): Server-side list filtering options.
+
+Returns:
+    (dict): Dictionary with list of volume objects as value of the
+    ``Volumes`` key.
+
+Raises:
+    :py:class:`docker.errors.APIError`
+        If the server returns an error.
+
+Example:
+
+    &gt;&gt;&gt; client.api.volumes()
+    {u'Volumes': [{u'Driver': u'local',
+       u'Mountpoint': u'/var/lib/docker/volumes/foobar/_data',
+       u'Name': u'foobar'},
+      {u'Driver': u'local',
+       u'Mountpoint': u'/var/lib/docker/volumes/baz/_data',
+       u'Name': u'baz'}]}</p></div>
   </div>
 </div>
         </div>
@@ -465,7 +549,7 @@
   <div class="container">
     <a href="index.html">API Documentation</a> for docker,
   generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
-    22.4.0.dev0 at 2022-04-19 18:16:32.
+    22.4.0.dev0 at 2022-04-23 04:47:40.
   </div>
 
   <!-- Search related scripts needs to be loaded at the end of HTML 

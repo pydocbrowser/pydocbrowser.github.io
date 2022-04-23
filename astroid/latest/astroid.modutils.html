@@ -902,11 +902,16 @@
         </div>
 
         <div class="moduleDocstring">
-          <div><p>Python modules manipulation utility functions.</p>
-<p>:type PY_SOURCE_EXTS: tuple(str) :var PY_SOURCE_EXTS: list of possible python source file extension</p>
-<p>:type STD_LIB_DIRS: set of str :var STD_LIB_DIRS: directories where standard modules are located</p>
-<p>:type BUILTIN_MODULES: dict :var BUILTIN_MODULES: dictionary with builtin module names has key</p>
-</div>
+          <div><p class="pre">Python modules manipulation utility functions.
+
+:type PY_SOURCE_EXTS: tuple(str)
+:var PY_SOURCE_EXTS: list of possible python source file extension
+
+:type STD_LIB_DIRS: set of str
+:var STD_LIB_DIRS: directories where standard modules are located
+
+:type BUILTIN_MODULES: dict
+:var BUILTIN_MODULES: dictionary with builtin module names has key</p></div>
         </div>
 
         <div id="splitTables">
@@ -932,17 +937,17 @@
     
     <td>Function</td>
     <td><code><a href="#file_info_from_modpath" class="internal-link" title="astroid.modutils.file_info_from_modpath">file<wbr></wbr>_info<wbr></wbr>_from<wbr></wbr>_modpath</a></code></td>
-    <td><span class="undocumented">No summary</span></td>
+    <td>given a mod path (i.e. split module / package name), return the corresponding file, giving priority to source file over precompiled file if it exists</td>
   </tr><tr class="function">
     
     <td>Function</td>
     <td><code><a href="#get_module_files" class="internal-link" title="astroid.modutils.get_module_files">get<wbr></wbr>_module<wbr></wbr>_files</a></code></td>
-    <td><span class="undocumented">No summary</span></td>
+    <td>given a package directory return a list of all available python module's files in the package and its subpackages</td>
   </tr><tr class="function">
     
     <td>Function</td>
     <td><code><a href="#get_module_part" class="internal-link" title="astroid.modutils.get_module_part">get<wbr></wbr>_module<wbr></wbr>_part</a></code></td>
-    <td><span class="undocumented">No summary</span></td>
+    <td>given a dotted name return the module part of the name :</td>
   </tr><tr class="function">
     
     <td>Function</td>
@@ -972,12 +977,12 @@
     
     <td>Function</td>
     <td><code><a href="#is_relative" class="internal-link" title="astroid.modutils.is_relative">is<wbr></wbr>_relative</a></code></td>
-    <td><span class="undocumented">No summary</span></td>
+    <td>return true if the given module name is relative to the given file name</td>
   </tr><tr class="function">
     
     <td>Function</td>
     <td><code><a href="#is_standard_module" class="internal-link" title="astroid.modutils.is_standard_module">is<wbr></wbr>_standard<wbr></wbr>_module</a></code></td>
-    <td><span class="undocumented">No summary</span></td>
+    <td>try to guess if a module is a standard python module (by default, see `std_path` parameter's description)</td>
   </tr><tr class="function">
     
     <td>Function</td>
@@ -987,7 +992,7 @@
     
     <td>Function</td>
     <td><code><a href="#load_module_from_modpath" class="internal-link" title="astroid.modutils.load_module_from_modpath">load<wbr></wbr>_module<wbr></wbr>_from<wbr></wbr>_modpath</a></code></td>
-    <td><span class="undocumented">No summary</span></td>
+    <td>Load a python module from its split name.</td>
   </tr><tr class="function">
     
     <td>Function</td>
@@ -997,7 +1002,7 @@
     
     <td>Function</td>
     <td><code><a href="#modpath_from_file" class="internal-link" title="astroid.modutils.modpath_from_file">modpath<wbr></wbr>_from<wbr></wbr>_file</a></code></td>
-    <td><span class="undocumented">No summary</span></td>
+    <td>Get the corresponding split module's name from a filename</td>
   </tr><tr class="function">
     
     <td>Function</td>
@@ -1037,7 +1042,7 @@
     
     <td>Function</td>
     <td><code><a href="#_get_relative_base_path" class="internal-link" title="astroid.modutils._get_relative_base_path">_get<wbr></wbr>_relative<wbr></wbr>_base<wbr></wbr>_path</a></code></td>
-    <td><span class="undocumented">No summary</span></td>
+    <td>Extracts the relative mod path of the file to import from</td>
   </tr><tr class="function private">
     
     <td>Function</td>
@@ -1106,8 +1111,7 @@
   <div class="docstring functionBody">
     
     
-    <div><p>check there are some __init__.py all along the way</p>
-</div>
+    <div><p class="pre">check there are some __init__.py all along the way</p></div>
   </div>
 </div><div class="basefunction">
   
@@ -1151,7 +1155,34 @@
   <div class="docstring functionBody">
     
     
-    <div></div>
+    <div><p class="pre">given a mod path (i.e. split module / package name), return the
+corresponding file, giving priority to source file over precompiled
+file if it exists
+
+:type modpath: list or tuple
+:param modpath:
+  split module's name (i.e name of a module or package split
+  on '.')
+  (this means explicit relative imports that start with dots have
+  empty strings in this list!)
+
+:type path: list or None
+:param path:
+  optional list of path where the module or package should be
+  searched (use sys.path if nothing or None is given)
+
+:type context_file: str or None
+:param context_file:
+  context file to consider, necessary if the identifier has been
+  introduced using a relative import unresolvable in the actual
+  context (i.e. modutils)
+
+:raise ImportError: if there is no such module in the directory
+
+:rtype: (str or None, import type)
+:return:
+  the path to the module's file or None if it's an integrated
+  builtin module such as 'sys'</p></div>
   </div>
 </div><div class="basefunction">
   
@@ -1173,7 +1204,25 @@
   <div class="docstring functionBody">
     
     
-    <div></div>
+    <div><p class="pre">given a package directory return a list of all available python
+module's files in the package and its subpackages
+
+:type src_directory: str
+:param src_directory:
+  path of the directory corresponding to the package
+
+:type blacklist: list or tuple
+:param blacklist: iterable
+  list of files or directories to ignore.
+
+:type list_all: bool
+:param list_all:
+    get files from all paths, including ones without __init__.py
+
+:rtype: list
+:return:
+  the list of all available python module's files in the package and
+  its subpackages</p></div>
   </div>
 </div><div class="basefunction">
   
@@ -1195,7 +1244,30 @@
   <div class="docstring functionBody">
     
     
-    <div></div>
+    <div><p class="pre">given a dotted name return the module part of the name :
+
+&gt;&gt;&gt; get_module_part('astroid.as_string.dump')
+'astroid.as_string'
+
+:type dotted_name: str
+:param dotted_name: full name of the identifier we are interested in
+
+:type context_file: str or None
+:param context_file:
+  context file to consider, necessary if the identifier has been
+  introduced using a relative import unresolvable in the actual
+  context (i.e. modutils)
+
+
+:raise ImportError: if there is no such module in the directory
+
+:rtype: str or None
+:return:
+  the module part of the name or None if we have not been able at
+  all to import the given name
+
+XXX: deprecated, since it doesn't handle package precedence over module
+(see #10066)</p></div>
   </div>
 </div><div class="basefunction">
   
@@ -1217,11 +1289,18 @@
   <div class="docstring functionBody">
     
     
-    <div><p>given a python module's file name return the matching source file name (the filename will be returned identically if it's already an absolute path to a python source file...)</p>
-<p>:type filename: str :param filename: python module's file name</p>
-<p>:raise NoSourceFile: if no source file exists on the file system</p>
-<p>:rtype: str :return: the absolute path of the source file if it exists</p>
-</div>
+    <div><p class="pre">given a python module's file name return the matching source file
+name (the filename will be returned identically if it's already an
+absolute path to a python source file...)
+
+:type filename: str
+:param filename: python module's file name
+
+
+:raise NoSourceFile: if no source file exists on the file system
+
+:rtype: str
+:return: the absolute path of the source file if it exists</p></div>
   </div>
 </div><div class="basefunction">
   
@@ -1265,11 +1344,10 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Returns True if one part of the module name is in the package whitelist</p>
-<pre class="py-doctest">
-<span class="py-prompt">&gt;&gt;&gt; </span>is_module_name_part_of_extension_package_whitelist(<span class="py-string">'numpy.core.umath'</span>, {<span class="py-string">'numpy'</span>})
-<span class="py-output">True</span>
-</pre><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">module<wbr></wbr>_name:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">package<wbr></wbr>_whitelist:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Set" class="intersphinx-link">Set</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+    <div><p class="pre">Returns True if one part of the module name is in the package whitelist
+
+&gt;&gt;&gt; is_module_name_part_of_extension_package_whitelist('numpy.core.umath', {'numpy'})
+True</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">module<wbr></wbr>_name:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">package<wbr></wbr>_whitelist:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Set" class="intersphinx-link">Set</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basefunction">
   
@@ -1313,8 +1391,8 @@
   <div class="docstring functionBody">
     
     
-    <div><p>rtype: bool return: True if the filename is a python source file</p>
-</div>
+    <div><p class="pre">rtype: bool
+return: True if the filename is a python source file</p></div>
   </div>
 </div><div class="basefunction">
   
@@ -1336,7 +1414,19 @@
   <div class="docstring functionBody">
     
     
-    <div></div>
+    <div><p class="pre">return true if the given module name is relative to the given
+file name
+
+:type modname: str
+:param modname: name of the module we are interested in
+
+:type from_file: str
+:param from_file:
+  path of the module from which modname has been imported
+
+:rtype: bool
+:return:
+  true if the module has been imported relatively to `from_file`</p></div>
   </div>
 </div><div class="basefunction">
   
@@ -1358,7 +1448,21 @@
   <div class="docstring functionBody">
     
     
-    <div></div>
+    <div><p class="pre">try to guess if a module is a standard python module (by default,
+see `std_path` parameter's description)
+
+:type modname: str
+:param modname: name of the module we are interested in
+
+:type std_path: list(str) or tuple(str)
+:param std_path: list of path considered has standard
+
+
+:rtype: bool
+:return:
+  true if the module:
+  - is located on the path listed in one of the directory in `std_path`
+  - is a built-in module</p></div>
   </div>
 </div><div class="basefunction">
   
@@ -1380,11 +1484,15 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Load a Python module from it's path.</p>
-<p>:type filepath: str :param filepath: path to the python module or package</p>
-<p>:raise ImportError: if the module or package is not found</p>
-<p>:rtype: module :return: the loaded module</p>
-<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">filepath:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+    <div><p class="pre">Load a Python module from it's path.
+
+:type filepath: str
+:param filepath: path to the python module or package
+
+:raise ImportError: if the module or package is not found
+
+:rtype: module
+:return: the loaded module</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">filepath:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basefunction">
   
@@ -1406,7 +1514,16 @@
   <div class="docstring functionBody">
     
     
-    <div></div>
+    <div><p class="pre">Load a python module from its split name.
+
+:type parts: list(str) or tuple(str)
+:param parts:
+  python name of a module or package split on '.'
+
+:raise ImportError: if the module or package is not found
+
+:rtype: module
+:return: the loaded module</p></div>
   </div>
 </div><div class="basefunction">
   
@@ -1428,11 +1545,15 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Load a Python module from its name.</p>
-<p>:type dotted_name: str :param dotted_name: python name of a module or package</p>
-<p>:raise ImportError: if the module or package is not found</p>
-<p>:rtype: module :return: the loaded module</p>
-<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">dotted<wbr></wbr>_name:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/types.html#types.ModuleType" class="intersphinx-link">types.ModuleType</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+    <div><p class="pre">Load a Python module from its name.
+
+:type dotted_name: str
+:param dotted_name: python name of a module or package
+
+:raise ImportError: if the module or package is not found
+
+:rtype: module
+:return: the loaded module</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">dotted<wbr></wbr>_name:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/types.html#types.ModuleType" class="intersphinx-link">types.ModuleType</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basefunction">
   
@@ -1454,7 +1575,22 @@
   <div class="docstring functionBody">
     
     
-    <div></div>
+    <div><p class="pre">Get the corresponding split module's name from a filename
+
+This function will return the name of a module or package split on `.`.
+
+:type filename: str
+:param filename: file's path for which we want the module's name
+
+:type Optional[List[str]] path:
+  Optional list of path where the module or package should be
+  searched (use sys.path if nothing or None is given)
+
+:raise ImportError:
+  if the corresponding module's name has not been found
+
+:rtype: list(str)
+:return: the corresponding split module's name</p></div>
   </div>
 </div><div class="basefunction">
   
@@ -1613,8 +1749,7 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Normalize path with caching.</p>
-<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">path:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+    <div><p class="pre">Normalize path with caching.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">path:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basefunction private">
   
@@ -1636,7 +1771,20 @@
   <div class="docstring functionBody">
     
     
-    <div></div>
+    <div><p class="pre">Extracts the relative mod path of the file to import from
+
+Check if a file is within the passed in path and if so, returns the
+relative mod path from the one passed in.
+
+If the filename is no in path_to_check, returns None
+
+Note this function will look for both abs and realpath of the file,
+this allows to find the relative base path even if the file is a
+symlink of a file in the passed in path
+
+Examples:
+    _get_relative_base_path("/a/b/c/d.py", "/a/b") -&gt;  ["c","d"]
+    _get_relative_base_path("/a/b/c/d.py", "/dev") -&gt;  None</p></div>
   </div>
 </div><div class="basefunction private">
   
@@ -1658,9 +1806,9 @@
   <div class="docstring functionBody">
     
     
-    <div><p>remove files/directories in the black list</p>
-<p>dirnames/filenames are usually from os.walk</p>
-</div>
+    <div><p class="pre">remove files/directories in the black list
+
+dirnames/filenames are usually from os.walk</p></div>
   </div>
 </div><div class="basefunction private">
   
@@ -1682,8 +1830,8 @@
   <div class="docstring functionBody">
     
     
-    <div><p>if the given directory has a valid __init__ file, return its path, else return None</p>
-</div>
+    <div><p class="pre">if the given directory has a valid __init__ file, return its path,
+else return None</p></div>
   </div>
 </div><div class="basefunction private">
   
@@ -1705,9 +1853,9 @@
   <div class="docstring functionBody">
     
     
-    <div><p>return true if the given filename should be considered as a python file</p>
-<p>.pyc and .pyo are ignored</p>
-</div>
+    <div><p class="pre">return true if the given filename should be considered as a python file
+
+.pyc and .pyo are ignored</p></div>
   </div>
 </div><div class="basefunction private">
   
@@ -1729,10 +1877,12 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Resolve symlinks in path and convert to absolute path.</p>
-<p>Note that environment variables and ~ in the path need to be expanded in advance.</p>
-<p>This can be cached by using _cache_normalize_path.</p>
-<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">path:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+    <div><p class="pre">Resolve symlinks in path and convert to absolute path.
+
+Note that environment variables and ~ in the path need to be expanded in
+advance.
+
+This can be cached by using _cache_normalize_path.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">path:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basefunction private">
   
@@ -1798,9 +1948,11 @@
   <div class="docstring functionBody">
     
     
-    <div><p>given a mod path (i.e. split module / package name), return the corresponding spec</p>
-<p>this function is used internally, see `file_from_modpath`'s documentation for more information</p>
-</div>
+    <div><p class="pre">given a mod path (i.e. split module / package name), return the
+corresponding spec
+
+this function is used internally, see `file_from_modpath`'s
+documentation for more information</p></div>
   </div>
 </div><div class="baseconstant private">
   
@@ -1837,7 +1989,7 @@
   <div class="container">
     <a href="index.html">API Documentation</a> for astroid,
   generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
-    22.4.0.dev0 at 2022-04-20 01:08:25.
+    22.4.0.dev0 at 2022-04-23 04:44:39.
   </div>
 
   <!-- Search related scripts needs to be loaded at the end of HTML 

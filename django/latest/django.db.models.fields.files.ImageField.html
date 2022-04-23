@@ -1556,7 +1556,7 @@
         </div>
 
         <div id="splitTables">
-          <table class="children sortable" id="id3352">
+          <table class="children sortable" id="id4433">
   
   
   <tr class="method">
@@ -1578,7 +1578,7 @@
     
     <td>Method</td>
     <td><code><a href="#deconstruct" class="internal-link" title="django.db.models.fields.files.ImageField.deconstruct">deconstruct</a></code></td>
-    <td><span class="undocumented">No summary</span></td>
+    <td>Return enough information to recreate the field as a 4-tuple:</td>
   </tr><tr class="method">
     
     <td>Method</td>
@@ -1615,7 +1615,7 @@
             <p class="inheritedFrom">
               Inherited from <code><a href="django.db.models.fields.files.FileField.html" class="internal-link" title="django.db.models.fields.files.FileField">FileField</a></code>:
             </p>
-            <table class="children sortable" id="id3353">
+            <table class="children sortable" id="id4434">
   
   
   <tr class="basemethod">
@@ -1679,7 +1679,7 @@
             <p class="inheritedFrom">
               Inherited from <code><a href="django.db.models.fields.Field.html" class="internal-link" title="django.db.models.fields.Field">Field</a></code> (via <code><a href="django.db.models.fields.files.FileField.html" class="internal-link" title="django.db.models.fields.files.FileField">FileField</a></code>):
             </p>
-            <table class="children sortable" id="id3354">
+            <table class="children sortable" id="id4435">
   
   
   <tr class="basemethod">
@@ -2163,7 +2163,7 @@
             <p class="inheritedFrom">
               Inherited from <code><a href="django.db.models.query_utils.RegisterLookupMixin.html" class="internal-link" title="django.db.models.query_utils.RegisterLookupMixin">RegisterLookupMixin</a></code> (via <code><a href="django.db.models.fields.files.FileField.html" class="internal-link" title="django.db.models.fields.files.FileField">FileField</a></code>, <code><a href="django.db.models.fields.Field.html" class="internal-link" title="django.db.models.fields.Field">Field</a></code>):
             </p>
-            <table class="children sortable" id="id3355">
+            <table class="children sortable" id="id4436">
   
   
   <tr class="baseclassmethod">
@@ -2278,9 +2278,10 @@
   <div class="docstring functionBody">
     <div class="interfaceinfo">overrides <code><a href="django.db.models.fields.files.FileField.html#contribute_to_class" class="internal-link">django.db.models.fields.files.FileField.contribute_to_class</a></code></div>
     
-    <div><p>Register the field with the model class it belongs to.</p>
-<p>If private_only is True, create a separate instance of this field for every subclass of cls, even if cls is not an abstract model.</p>
-</div>
+    <div><p class="pre">Register the field with the model class it belongs to.
+
+If private_only is True, create a separate instance of this field
+for every subclass of cls, even if cls is not an abstract model.</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -2302,7 +2303,35 @@
   <div class="docstring functionBody">
     <div class="interfaceinfo">overrides <code><a href="django.db.models.fields.files.FileField.html#deconstruct" class="internal-link">django.db.models.fields.files.FileField.deconstruct</a></code></div>
     
-    <div></div>
+    <div><p class="pre">Return enough information to recreate the field as a 4-tuple:
+
+ * The name of the field on the model, if contribute_to_class() has
+   been run.
+ * The import path of the field, including the class, e.g.
+   django.db.models.IntegerField. This should be the most portable
+   version, so less specific may be better.
+ * A list of positional arguments.
+ * A dict of keyword arguments.
+
+Note that the positional or keyword arguments must contain values of
+the following types (including inner values of collection types):
+
+ * None, bool, str, int, float, complex, set, frozenset, list, tuple,
+   dict
+ * UUID
+ * datetime.datetime (naive), datetime.date
+ * top-level classes, top-level functions - will be referenced by their
+   full import path
+ * Storage instances - these have their own deconstruct() method
+
+This is because the values here must be serialized into a text format
+(possibly new Python code, possibly JSON) and these are the only types
+with encoding handlers defined.
+
+There's no need to return the exact way the field was instantiated this
+time, just ensure that the resulting field is the same - prefer keyword
+arguments over positional ones, and omit parameters with their default
+values.</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -2324,8 +2353,7 @@
   <div class="docstring functionBody">
     <div class="interfaceinfo">overrides <code><a href="django.db.models.fields.files.FileField.html#formfield" class="internal-link">django.db.models.fields.files.FileField.formfield</a></code></div>
     
-    <div><p>Return a django.forms.Field instance for this field.</p>
-</div>
+    <div><p class="pre">Return a django.forms.Field instance for this field.</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -2347,10 +2375,16 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Update field's width and height fields, if defined.</p>
-<p>This method is hooked up to model's post_init signal to update dimensions after instantiating a model instance.  However, dimensions won't be updated if the dimensions fields are already populated.  This avoids unnecessary recalculation when loading an object from the database.</p>
-<p>Dimensions can be forced to update with force=True, which is how ImageFileDescriptor.__set__ calls this method.</p>
-</div>
+    <div><p class="pre">Update field's width and height fields, if defined.
+
+This method is hooked up to model's post_init signal to update
+dimensions after instantiating a model instance.  However, dimensions
+won't be updated if the dimensions fields are already populated.  This
+avoids unnecessary recalculation when loading an object from the
+database.
+
+Dimensions can be forced to update with force=True, which is how
+ImageFileDescriptor.__set__ calls this method.</p></div>
   </div>
 </div><div class="baseclassvariable">
   
@@ -2455,7 +2489,7 @@
   <div class="container">
     <a href="index.html">API Documentation</a> for django,
   generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
-    22.4.0.dev0 at 2022-04-11 16:01:21.
+    22.4.0.dev0 at 2022-04-23 04:48:04.
   </div>
 
   <!-- Search related scripts needs to be loaded at the end of HTML 

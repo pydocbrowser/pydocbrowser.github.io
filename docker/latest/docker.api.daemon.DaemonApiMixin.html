@@ -330,39 +330,39 @@
         </div>
 
         <div id="splitTables">
-          <table class="children sortable" id="id25">
+          <table class="children sortable" id="id1127">
   
   
   <tr class="method">
     
     <td>Method</td>
     <td><code><a href="#df" class="internal-link" title="docker.api.daemon.DaemonApiMixin.df">df</a></code></td>
-    <td><span class="undocumented">No summary</span></td>
+    <td>Get data usage information.</td>
   </tr><tr class="method">
     
     <td>Method</td>
     <td><code><a href="#events" class="internal-link" title="docker.api.daemon.DaemonApiMixin.events">events</a></code></td>
-    <td><span class="undocumented">No summary</span></td>
+    <td>Get real-time events from the server. Similar to the ``docker events`` command.</td>
   </tr><tr class="method">
     
     <td>Method</td>
     <td><code><a href="#info" class="internal-link" title="docker.api.daemon.DaemonApiMixin.info">info</a></code></td>
-    <td><span class="undocumented">No summary</span></td>
+    <td>Display system-wide information. Identical to the ``docker info`` command.</td>
   </tr><tr class="method">
     
     <td>Method</td>
     <td><code><a href="#login" class="internal-link" title="docker.api.daemon.DaemonApiMixin.login">login</a></code></td>
-    <td><span class="undocumented">No summary</span></td>
+    <td>Authenticate with a registry. Similar to the ``docker login`` command.</td>
   </tr><tr class="method">
     
     <td>Method</td>
     <td><code><a href="#ping" class="internal-link" title="docker.api.daemon.DaemonApiMixin.ping">ping</a></code></td>
-    <td><span class="undocumented">No summary</span></td>
+    <td>Checks the server is responsive. An exception will be raised if it isn't responding.</td>
   </tr><tr class="method">
     
     <td>Method</td>
     <td><code><a href="#version" class="internal-link" title="docker.api.daemon.DaemonApiMixin.version">version</a></code></td>
-    <td><span class="undocumented">No summary</span></td>
+    <td>Returns version information from the server. Similar to the ``docker version`` command.</td>
   </tr><tr class="instancevariable private">
     
     <td>Instance Variable</td>
@@ -396,7 +396,15 @@
   <div class="docstring functionBody">
     
     
-    <div></div>
+    <div><p class="pre">Get data usage information.
+
+Returns:
+    (dict): A dictionary representing different resource categories
+    and their respective data usage.
+
+Raises:
+    :py:class:`docker.errors.APIError`
+        If the server returns an error.</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -418,7 +426,40 @@
   <div class="docstring functionBody">
     
     
-    <div></div>
+    <div><p class="pre">Get real-time events from the server. Similar to the ``docker events``
+command.
+
+Args:
+    since (UTC datetime or int): Get events from this point
+    until (UTC datetime or int): Get events until this point
+    filters (dict): Filter the events by event time, container or image
+    decode (bool): If set to true, stream will be decoded into dicts on
+        the fly. False by default.
+
+Returns:
+    A :py:class:`docker.types.daemon.CancellableStream` generator
+
+Raises:
+    :py:class:`docker.errors.APIError`
+        If the server returns an error.
+
+Example:
+
+    &gt;&gt;&gt; for event in client.events(decode=True)
+    ...   print(event)
+    {u'from': u'image/with:tag',
+     u'id': u'container-id',
+     u'status': u'start',
+     u'time': 1423339459}
+    ...
+
+    or
+
+    &gt;&gt;&gt; events = client.events()
+    &gt;&gt;&gt; for event in events:
+    ...   print(event)
+    &gt;&gt;&gt; # and cancel from another thread
+    &gt;&gt;&gt; events.close()</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -440,7 +481,15 @@
   <div class="docstring functionBody">
     
     
-    <div></div>
+    <div><p class="pre">Display system-wide information. Identical to the ``docker info``
+command.
+
+Returns:
+    (dict): The info as a dict
+
+Raises:
+    :py:class:`docker.errors.APIError`
+        If the server returns an error.</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -462,7 +511,26 @@
   <div class="docstring functionBody">
     
     
-    <div></div>
+    <div><p class="pre">Authenticate with a registry. Similar to the ``docker login`` command.
+
+Args:
+    username (str): The registry username
+    password (str): The plaintext password
+    email (str): The email for the registry account
+    registry (str): URL to the registry.  E.g.
+        ``https://index.docker.io/v1/``
+    reauth (bool): Whether or not to refresh existing authentication on
+        the Docker server.
+    dockercfg_path (str): Use a custom path for the Docker config file
+        (default ``$HOME/.docker/config.json`` if present,
+        otherwise ``$HOME/.dockercfg``)
+
+Returns:
+    (dict): The response from the login request
+
+Raises:
+    :py:class:`docker.errors.APIError`
+        If the server returns an error.</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -484,7 +552,15 @@
   <div class="docstring functionBody">
     
     
-    <div></div>
+    <div><p class="pre">Checks the server is responsive. An exception will be raised if it
+isn't responding.
+
+Returns:
+    (bool) The response from the server.
+
+Raises:
+    :py:class:`docker.errors.APIError`
+        If the server returns an error.</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -506,7 +582,15 @@
   <div class="docstring functionBody">
     
     
-    <div></div>
+    <div><p class="pre">Returns version information from the server. Similar to the ``docker
+version`` command.
+
+Returns:
+    (dict): The server version information
+
+Raises:
+    :py:class:`docker.errors.APIError`
+        If the server returns an error.</p></div>
   </div>
 </div><div class="baseinstancevariable private">
   
@@ -543,7 +627,7 @@
   <div class="container">
     <a href="index.html">API Documentation</a> for docker,
   generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
-    22.4.0.dev0 at 2022-04-19 18:16:32.
+    22.4.0.dev0 at 2022-04-23 04:47:40.
   </div>
 
   <!-- Search related scripts needs to be loaded at the end of HTML 

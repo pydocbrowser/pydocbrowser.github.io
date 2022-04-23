@@ -915,12 +915,11 @@
         </div>
 
         <div class="moduleDocstring">
-          <div><p>Default tags used by the template system, available to all templates.</p>
-</div>
+          <div><p class="pre">Default tags used by the template system, available to all templates.</p></div>
         </div>
 
         <div id="splitTables">
-          <table class="children sortable" id="id5231">
+          <table class="children sortable" id="id6312">
   
   
   <tr class="class">
@@ -1072,7 +1071,7 @@
     
     <td>Function</td>
     <td><code><a href="#do_for" class="internal-link" title="django.template.defaulttags.do_for">do<wbr></wbr>_for</a></code></td>
-    <td><span class="undocumented">No summary</span></td>
+    <td>Loop over each item in an array.</td>
   </tr><tr class="function">
     
     <td>Function</td>
@@ -1097,7 +1096,7 @@
     
     <td>Function</td>
     <td><code><a href="#ifchanged" class="internal-link" title="django.template.defaulttags.ifchanged">ifchanged</a></code></td>
-    <td><span class="undocumented">No summary</span></td>
+    <td>Check if a value has changed from the last iteration of a loop.</td>
   </tr><tr class="function">
     
     <td>Function</td>
@@ -1112,7 +1111,7 @@
     
     <td>Function</td>
     <td><code><a href="#lorem" class="internal-link" title="django.template.defaulttags.lorem">lorem</a></code></td>
-    <td><span class="undocumented">No summary</span></td>
+    <td>Create random Latin text useful for providing test data in templates.</td>
   </tr><tr class="function">
     
     <td>Function</td>
@@ -1122,7 +1121,7 @@
     
     <td>Function</td>
     <td><code><a href="#regroup" class="internal-link" title="django.template.defaulttags.regroup">regroup</a></code></td>
-    <td><span class="undocumented">No summary</span></td>
+    <td>Regroup a list of alike objects by a common attribute.</td>
   </tr><tr class="function">
     
     <td>Function</td>
@@ -1137,7 +1136,7 @@
     
     <td>Function</td>
     <td><code><a href="#templatetag" class="internal-link" title="django.template.defaulttags.templatetag">templatetag</a></code></td>
-    <td><span class="undocumented">No summary</span></td>
+    <td>Output one of the bits used to compose template tags.</td>
   </tr><tr class="function">
     
     <td>Function</td>
@@ -1191,8 +1190,7 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Force autoescape behavior for this block.</p>
-</div>
+    <div><p class="pre">Force autoescape behavior for this block.</p></div>
   </div>
 </div><div class="basefunction">
   
@@ -1214,8 +1212,7 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Ignore everything between ``{% comment %}`` and ``{% endcomment %}``.</p>
-</div>
+    <div><p class="pre">Ignore everything between ``{% comment %}`` and ``{% endcomment %}``.</p></div>
   </div>
 </div><div class="basefunction">
   
@@ -1259,30 +1256,35 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Cycle among the given strings each time this tag is encountered.</p>
-<p>Within a loop, cycles among the given strings each time through the loop:</p>
-<pre class="rst-literal-block">
+    <div><p class="pre">Cycle among the given strings each time this tag is encountered.
+
+Within a loop, cycles among the given strings each time through
+the loop::
+
     {% for o in some_list %}
         &lt;tr class="{% cycle 'row1' 'row2' %}"&gt;
             ...
         &lt;/tr&gt;
     {% endfor %}
-</pre>
-<p>Outside of a loop, give the values a unique name the first time you call it, then use that name each successive time through:</p>
-<pre class="rst-literal-block">
+
+Outside of a loop, give the values a unique name the first time you call
+it, then use that name each successive time through::
+
         &lt;tr class="{% cycle 'row1' 'row2' 'row3' as rowcolors %}"&gt;...&lt;/tr&gt;
         &lt;tr class="{% cycle rowcolors %}"&gt;...&lt;/tr&gt;
         &lt;tr class="{% cycle rowcolors %}"&gt;...&lt;/tr&gt;
-</pre>
-<p>You can use any number of values, separated by spaces. Commas can also be used to separate values; if a comma is used, the cycle values are interpreted as literal strings.</p>
-<p>The optional flag "silent" can be used to prevent the cycle declaration from returning any value:</p>
-<pre class="rst-literal-block">
+
+You can use any number of values, separated by spaces. Commas can also
+be used to separate values; if a comma is used, the cycle values are
+interpreted as literal strings.
+
+The optional flag "silent" can be used to prevent the cycle declaration
+from returning any value::
+
     {% for o in some_list %}
         {% cycle 'row1' 'row2' as rowcolors silent %}
         &lt;tr class="{{ rowcolors }}"&gt;{% include "subtemplate.html " %}&lt;/tr&gt;
-    {% endfor %}
-</pre>
-</div>
+    {% endfor %}</p></div>
   </div>
 </div><div class="basefunction">
   
@@ -1304,14 +1306,14 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Output a whole load of debugging information, including the current context and imported modules.</p>
-<p>Sample usage:</p>
-<pre class="rst-literal-block">
+    <div><p class="pre">Output a whole load of debugging information, including the current
+context and imported modules.
+
+Sample usage::
+
     &lt;pre&gt;
         {% debug %}
-    &lt;/pre&gt;
-</pre>
-</div>
+    &lt;/pre&gt;</p></div>
   </div>
 </div><div class="basefunction">
   
@@ -1333,16 +1335,20 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Filter the contents of the block through variable filters.</p>
-<p>Filters can also be piped through each other, and they can have arguments -- just like in variable syntax.</p>
-<p>Sample usage:</p>
-<pre class="rst-literal-block">
+    <div><p class="pre">Filter the contents of the block through variable filters.
+
+Filters can also be piped through each other, and they can have
+arguments -- just like in variable syntax.
+
+Sample usage::
+
     {% filter force_escape|lower %}
         This text will be HTML-escaped, and will appear in lowercase.
     {% endfilter %}
-</pre>
-<p>Note that the ``escape`` and ``safe`` filters are not acceptable arguments. Instead, use the ``autoescape`` tag to manage autoescaping for blocks of template code.</p>
-</div>
+
+Note that the ``escape`` and ``safe`` filters are not acceptable arguments.
+Instead, use the ``autoescape`` tag to manage autoescaping for blocks of
+template code.</p></div>
   </div>
 </div><div class="basefunction">
   
@@ -1364,7 +1370,65 @@
   <div class="docstring functionBody">
     
     
-    <div></div>
+    <div><p class="pre">Loop over each item in an array.
+
+For example, to display a list of athletes given ``athlete_list``::
+
+    &lt;ul&gt;
+    {% for athlete in athlete_list %}
+        &lt;li&gt;{{ athlete.name }}&lt;/li&gt;
+    {% endfor %}
+    &lt;/ul&gt;
+
+You can loop over a list in reverse by using
+``{% for obj in list reversed %}``.
+
+You can also unpack multiple values from a two-dimensional array::
+
+    {% for key,value in dict.items %}
+        {{ key }}: {{ value }}
+    {% endfor %}
+
+The ``for`` tag can take an optional ``{% empty %}`` clause that will
+be displayed if the given array is empty or could not be found::
+
+    &lt;ul&gt;
+      {% for athlete in athlete_list %}
+        &lt;li&gt;{{ athlete.name }}&lt;/li&gt;
+      {% empty %}
+        &lt;li&gt;Sorry, no athletes in this list.&lt;/li&gt;
+      {% endfor %}
+    &lt;ul&gt;
+
+The above is equivalent to -- but shorter, cleaner, and possibly faster
+than -- the following::
+
+    &lt;ul&gt;
+      {% if athlete_list %}
+        {% for athlete in athlete_list %}
+          &lt;li&gt;{{ athlete.name }}&lt;/li&gt;
+        {% endfor %}
+      {% else %}
+        &lt;li&gt;Sorry, no athletes in this list.&lt;/li&gt;
+      {% endif %}
+    &lt;/ul&gt;
+
+The for loop sets a number of variables available within the loop:
+
+    ==========================  ================================================
+    Variable                    Description
+    ==========================  ================================================
+    ``forloop.counter``         The current iteration of the loop (1-indexed)
+    ``forloop.counter0``        The current iteration of the loop (0-indexed)
+    ``forloop.revcounter``      The number of iterations from the end of the
+                                loop (1-indexed)
+    ``forloop.revcounter0``     The number of iterations from the end of the
+                                loop (0-indexed)
+    ``forloop.first``           True if this is the first time through the loop
+    ``forloop.last``            True if this is the last time through the loop
+    ``forloop.parentloop``      For nested loops, this is the loop "above" the
+                                current one
+    ==========================  ================================================</p></div>
   </div>
 </div><div class="basefunction">
   
@@ -1386,9 +1450,11 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Evaluate a variable, and if that variable is "true" (i.e., exists, is not empty, and is not a false boolean value), output the contents of the block:</p>
-<p>:</p>
-<pre class="rst-literal-block">
+    <div><p class="pre">Evaluate a variable, and if that variable is "true" (i.e., exists, is not
+empty, and is not a false boolean value), output the contents of the block:
+
+::
+
     {% if athlete_list %}
         Number of athletes: {{ athlete_list|count }}
     {% elif athlete_in_locker_room_list %}
@@ -1396,11 +1462,17 @@
     {% else %}
         No athletes.
     {% endif %}
-</pre>
-<p>In the above, if ``athlete_list`` is not empty, the number of athletes will be displayed by the ``{{ athlete_list|count }}`` variable.</p>
-<p>The ``if`` tag may take one or several `` {% elif %}`` clauses, as well as an ``{% else %}`` clause that will be displayed if all previous conditions fail. These clauses are optional.</p>
-<p>``if`` tags may use ``or``, ``and`` or ``not`` to test a number of variables or to negate a given variable:</p>
-<pre class="rst-literal-block">
+
+In the above, if ``athlete_list`` is not empty, the number of athletes will
+be displayed by the ``{{ athlete_list|count }}`` variable.
+
+The ``if`` tag may take one or several `` {% elif %}`` clauses, as well as
+an ``{% else %}`` clause that will be displayed if all previous conditions
+fail. These clauses are optional.
+
+``if`` tags may use ``or``, ``and`` or ``not`` to test a number of
+variables or to negate a given variable::
+
     {% if not athlete_list %}
         There are no athletes.
     {% endif %}
@@ -1420,15 +1492,19 @@
     {% if athlete_list and not coach_list %}
         There are some athletes and absolutely no coaches.
     {% endif %}
-</pre>
-<p>Comparison operators are also available, and the use of filters is also allowed, for example:</p>
-<pre class="rst-literal-block">
+
+Comparison operators are also available, and the use of filters is also
+allowed, for example::
+
     {% if articles|length &gt;= 5 %}...{% endif %}
-</pre>
-<p>Arguments and operators _must_ have a space between them, so ``{% if 1&gt;2 %}`` is not a valid if tag.</p>
-<p>All supported operators are: ``or``, ``and``, ``in``, ``not in`` ``==``, ``!=``, ``&gt;``, ``&gt;=``, ``&lt;`` and ``&lt;=``.</p>
-<p>Operator precedence follows Python.</p>
-</div>
+
+Arguments and operators _must_ have a space between them, so
+``{% if 1&gt;2 %}`` is not a valid if tag.
+
+All supported operators are: ``or``, ``and``, ``in``, ``not in``
+``==``, ``!=``, ``&gt;``, ``&gt;=``, ``&lt;`` and ``&lt;=``.
+
+Operator precedence follows Python.</p></div>
   </div>
 </div><div class="basefunction">
   
@@ -1450,21 +1526,23 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Add one or more values to the context (inside of this block) for caching and easy access.</p>
-<p>For example:</p>
-<pre class="rst-literal-block">
+    <div><p class="pre">Add one or more values to the context (inside of this block) for caching
+and easy access.
+
+For example::
+
     {% with total=person.some_sql_method %}
         {{ total }} object{{ total|pluralize }}
     {% endwith %}
-</pre>
-<p>Multiple values can be added to the context:</p>
-<pre class="rst-literal-block">
+
+Multiple values can be added to the context::
+
     {% with foo=1 bar=2 %}
         ...
     {% endwith %}
-</pre>
-<p>The legacy format of ``{% with person.some_sql_method as total %}`` is still accepted.</p>
-</div>
+
+The legacy format of ``{% with person.some_sql_method as total %}`` is
+still accepted.</p></div>
   </div>
 </div><div class="basefunction">
   
@@ -1508,14 +1586,16 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Output the first variable passed that is not False.</p>
-<p>Output nothing if all the passed variables are False.</p>
-<p>Sample usage:</p>
-<pre class="rst-literal-block">
+    <div><p class="pre">Output the first variable passed that is not False.
+
+Output nothing if all the passed variables are False.
+
+Sample usage::
+
     {% firstof var1 var2 var3 as myvar %}
-</pre>
-<p>This is equivalent to:</p>
-<pre class="rst-literal-block">
+
+This is equivalent to::
+
     {% if var1 %}
         {{ var1 }}
     {% elif var2 %}
@@ -1523,23 +1603,23 @@
     {% elif var3 %}
         {{ var3 }}
     {% endif %}
-</pre>
-<p>but much cleaner!</p>
-<p>You can also use a literal string as a fallback value in case all passed variables are False:</p>
-<pre class="rst-literal-block">
+
+but much cleaner!
+
+You can also use a literal string as a fallback value in case all
+passed variables are False::
+
     {% firstof var1 var2 var3 "fallback value" %}
-</pre>
-<p>If you want to disable auto-escaping of variables you can use:</p>
-<pre class="rst-literal-block">
+
+If you want to disable auto-escaping of variables you can use::
+
     {% autoescape off %}
         {% firstof var1 var2 var3 "&lt;strong&gt;fallback value&lt;/strong&gt;" %}
     {% autoescape %}
-</pre>
-<p>Or if only some variables should be escaped, you can use:</p>
-<pre class="rst-literal-block">
-    {% firstof var1 var2|safe var3 "&lt;strong&gt;fallback value&lt;/strong&gt;"|safe %}
-</pre>
-</div>
+
+Or if only some variables should be escaped, you can use::
+
+    {% firstof var1 var2|safe var3 "&lt;strong&gt;fallback value&lt;/strong&gt;"|safe %}</p></div>
   </div>
 </div><div class="basefunction">
   
@@ -1561,7 +1641,32 @@
   <div class="docstring functionBody">
     
     
-    <div></div>
+    <div><p class="pre">Check if a value has changed from the last iteration of a loop.
+
+The ``{% ifchanged %}`` block tag is used within a loop. It has two
+possible uses.
+
+1. Check its own rendered contents against its previous state and only
+   displays the content if it has changed. For example, this displays a
+   list of days, only displaying the month if it changes::
+
+        &lt;h1&gt;Archive for {{ year }}&lt;/h1&gt;
+
+        {% for date in days %}
+            {% ifchanged %}&lt;h3&gt;{{ date|date:"F" }}&lt;/h3&gt;{% endifchanged %}
+            &lt;a href="{{ date|date:"M/d"|lower }}/"&gt;{{ date|date:"j" }}&lt;/a&gt;
+        {% endfor %}
+
+2. If given one or more variables, check whether any variable has changed.
+   For example, the following shows the date every time it changes, while
+   showing the hour if either the hour or the date has changed::
+
+        {% for date in days %}
+            {% ifchanged date.date %} {{ date.date }} {% endifchanged %}
+            {% ifchanged date.hour date.date %}
+                {{ date.hour }}
+            {% endifchanged %}
+        {% endfor %}</p></div>
   </div>
 </div><div class="basefunction">
   
@@ -1583,16 +1688,17 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Load a custom template tag library into the parser.</p>
-<p>For example, to load the template tags in ``django/templatetags/news/photos.py``:</p>
-<pre class="rst-literal-block">
+    <div><p class="pre">Load a custom template tag library into the parser.
+
+For example, to load the template tags in
+``django/templatetags/news/photos.py``::
+
     {% load news.photos %}
-</pre>
-<p>Can also be used to load an individual tag/filter from a library:</p>
-<pre class="rst-literal-block">
-    {% load byline from news %}
-</pre>
-</div>
+
+Can also be used to load an individual tag/filter from
+a library::
+
+    {% load byline from news %}</p></div>
   </div>
 </div><div class="basefunction">
   
@@ -1614,8 +1720,7 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Return a subset of tags and filters from a library.</p>
-</div>
+    <div><p class="pre">Return a subset of tags and filters from a library.</p></div>
   </div>
 </div><div class="basefunction">
   
@@ -1637,7 +1742,27 @@
   <div class="docstring functionBody">
     
     
-    <div></div>
+    <div><p class="pre">Create random Latin text useful for providing test data in templates.
+
+Usage format::
+
+    {% lorem [count] [method] [random] %}
+
+``count`` is a number (or variable) containing the number of paragraphs or
+words to generate (default is 1).
+
+``method`` is either ``w`` for words, ``p`` for HTML paragraphs, ``b`` for
+plain-text paragraph blocks (default is ``b``).
+
+``random`` is the word ``random``, which if given, does not use the common
+paragraph (starting "Lorem ipsum dolor sit amet, consectetuer...").
+
+Examples:
+
+* ``{% lorem %}`` outputs the common "lorem ipsum" paragraph
+* ``{% lorem 3 p %}`` outputs the common "lorem ipsum" paragraph
+  and two random paragraphs each wrapped in HTML ``&lt;p&gt;`` tags
+* ``{% lorem 2 w random %}`` outputs two random latin words</p></div>
   </div>
 </div><div class="basefunction">
   
@@ -1659,13 +1784,14 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Display the date, formatted according to the given string.</p>
-<p>Use the same format as PHP's ``date()`` function; see https://php.net/date for all the possible values.</p>
-<p>Sample usage:</p>
-<pre class="rst-literal-block">
-    It is {% now "jS F Y H:i" %}
-</pre>
-</div>
+    <div><p class="pre">Display the date, formatted according to the given string.
+
+Use the same format as PHP's ``date()`` function; see https://php.net/date
+for all the possible values.
+
+Sample usage::
+
+    It is {% now "jS F Y H:i" %}</p></div>
   </div>
 </div><div class="basefunction">
   
@@ -1687,7 +1813,49 @@
   <div class="docstring functionBody">
     
     
-    <div></div>
+    <div><p class="pre">Regroup a list of alike objects by a common attribute.
+
+This complex tag is best illustrated by use of an example: say that
+``musicians`` is a list of ``Musician`` objects that have ``name`` and
+``instrument`` attributes, and you'd like to display a list that
+looks like:
+
+    * Guitar:
+        * Django Reinhardt
+        * Emily Remler
+    * Piano:
+        * Lovie Austin
+        * Bud Powell
+    * Trumpet:
+        * Duke Ellington
+
+The following snippet of template code would accomplish this dubious task::
+
+    {% regroup musicians by instrument as grouped %}
+    &lt;ul&gt;
+    {% for group in grouped %}
+        &lt;li&gt;{{ group.grouper }}
+        &lt;ul&gt;
+            {% for musician in group.list %}
+            &lt;li&gt;{{ musician.name }}&lt;/li&gt;
+            {% endfor %}
+        &lt;/ul&gt;
+    {% endfor %}
+    &lt;/ul&gt;
+
+As you can see, ``{% regroup %}`` populates a variable with a list of
+objects with ``grouper`` and ``list`` attributes. ``grouper`` contains the
+item that was grouped by; ``list`` contains the list of objects that share
+that ``grouper``. In this case, ``grouper`` would be ``Guitar``, ``Piano``
+and ``Trumpet``, and ``list`` is the list of musicians who play this
+instrument.
+
+Note that ``{% regroup %}`` does not work when the list to be grouped is not
+sorted by the key you are grouping by! This means that if your list of
+musicians was not sorted by instrument, you'd need to make sure it is sorted
+before using it, i.e.::
+
+    {% regroup musicians|dictsort:"instrument" by instrument as grouped %}</p></div>
   </div>
 </div><div class="basefunction">
   
@@ -1709,9 +1877,11 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Reset a cycle tag.</p>
-<p>If an argument is given, reset the last rendered cycle tag whose name matches the argument, else reset the last rendered cycle tag (named or unnamed).</p>
-</div>
+    <div><p class="pre">Reset a cycle tag.
+
+If an argument is given, reset the last rendered cycle tag whose name
+matches the argument, else reset the last rendered cycle tag (named or
+unnamed).</p></div>
   </div>
 </div><div class="basefunction">
   
@@ -1733,28 +1903,28 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Remove whitespace between HTML tags, including tab and newline characters.</p>
-<p>Example usage:</p>
-<pre class="rst-literal-block">
+    <div><p class="pre">Remove whitespace between HTML tags, including tab and newline characters.
+
+Example usage::
+
     {% spaceless %}
         &lt;p&gt;
             &lt;a href="foo/"&gt;Foo&lt;/a&gt;
         &lt;/p&gt;
     {% endspaceless %}
-</pre>
-<p>This example returns this HTML:</p>
-<pre class="rst-literal-block">
+
+This example returns this HTML::
+
     &lt;p&gt;&lt;a href="foo/"&gt;Foo&lt;/a&gt;&lt;/p&gt;
-</pre>
-<p>Only space between *tags* is normalized -- not space between tags and text. In this example, the space around ``Hello`` isn't stripped:</p>
-<pre class="rst-literal-block">
+
+Only space between *tags* is normalized -- not space between tags and text.
+In this example, the space around ``Hello`` isn't stripped::
+
     {% spaceless %}
         &lt;strong&gt;
             Hello
         &lt;/strong&gt;
-    {% endspaceless %}
-</pre>
-</div>
+    {% endspaceless %}</p></div>
   </div>
 </div><div class="basefunction">
   
@@ -1776,7 +1946,25 @@
   <div class="docstring functionBody">
     
     
-    <div></div>
+    <div><p class="pre">Output one of the bits used to compose template tags.
+
+Since the template system has no concept of "escaping", to display one of
+the bits used in template tags, you must use the ``{% templatetag %}`` tag.
+
+The argument tells which template bit to output:
+
+    ==================  =======
+    Argument            Outputs
+    ==================  =======
+    ``openblock``       ``{%``
+    ``closeblock``      ``%}``
+    ``openvariable``    ``{{``
+    ``closevariable``   ``}}``
+    ``openbrace``       ``{``
+    ``closebrace``      ``}``
+    ``opencomment``     ``{#``
+    ``closecomment``    ``#}``
+    ==================  =======</p></div>
   </div>
 </div><div class="basefunction">
   
@@ -1798,36 +1986,44 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Return an absolute URL matching the given view with its parameters.</p>
-<p>This is a way to define links that aren't tied to a particular URL configuration:</p>
-<pre class="rst-literal-block">
+    <div><p class="pre">Return an absolute URL matching the given view with its parameters.
+
+This is a way to define links that aren't tied to a particular URL
+configuration::
+
     {% url "url_name" arg1 arg2 %}
 
     or
 
     {% url "url_name" name1=value1 name2=value2 %}
-</pre>
-<p>The first argument is a URL pattern name. Other arguments are space-separated values that will be filled in place of positional and keyword arguments in the URL. Don't mix positional and keyword arguments. All arguments for the URL must be present.</p>
-<p>For example, if you have a view ``app_name.views.client_details`` taking the client's id and the corresponding line in a URLconf looks like this:</p>
-<pre class="rst-literal-block">
+
+The first argument is a URL pattern name. Other arguments are
+space-separated values that will be filled in place of positional and
+keyword arguments in the URL. Don't mix positional and keyword arguments.
+All arguments for the URL must be present.
+
+For example, if you have a view ``app_name.views.client_details`` taking
+the client's id and the corresponding line in a URLconf looks like this::
+
     path('client/&lt;int:id&gt;/', views.client_details, name='client-detail-view')
-</pre>
-<p>and this app's URLconf is included into the project's URLconf under some path:</p>
-<pre class="rst-literal-block">
+
+and this app's URLconf is included into the project's URLconf under some
+path::
+
     path('clients/', include('app_name.urls'))
-</pre>
-<p>then in a template you can create a link for a certain client like this:</p>
-<pre class="rst-literal-block">
+
+then in a template you can create a link for a certain client like this::
+
     {% url "client-detail-view" client.id %}
-</pre>
-<p>The URL will look like ``/clients/client/123/``.</p>
-<p>The first argument may also be the name of a template variable that will be evaluated to obtain the view name or the URL name, e.g.:</p>
-<pre class="rst-literal-block">
+
+The URL will look like ``/clients/client/123/``.
+
+The first argument may also be the name of a template variable that will be
+evaluated to obtain the view name or the URL name, e.g.::
+
     {% with url_name="client-detail-view" %}
     {% url url_name client.id %}
-    {% endwith %}
-</pre>
-</div>
+    {% endwith %}</p></div>
   </div>
 </div><div class="basefunction">
   
@@ -1849,20 +2045,20 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Stop the template engine from rendering the contents of this block tag.</p>
-<p>Usage:</p>
-<pre class="rst-literal-block">
+    <div><p class="pre">Stop the template engine from rendering the contents of this block tag.
+
+Usage::
+
     {% verbatim %}
         {% don't process this %}
     {% endverbatim %}
-</pre>
-<p>You can also designate a specific closing tag block (allowing the unrendered use of ``{% endverbatim %}``):</p>
-<pre class="rst-literal-block">
+
+You can also designate a specific closing tag block (allowing the
+unrendered use of ``{% endverbatim %}``)::
+
     {% verbatim myblock %}
         ...
-    {% endverbatim myblock %}
-</pre>
-</div>
+    {% endverbatim myblock %}</p></div>
   </div>
 </div><div class="basefunction">
   
@@ -1884,19 +2080,23 @@
   <div class="docstring functionBody">
     
     
-    <div><p>For creating bar charts and such. Calculate the ratio of a given value to a maximum value, and then apply that ratio to a constant.</p>
-<p>For example:</p>
-<pre class="rst-literal-block">
+    <div><p class="pre">For creating bar charts and such. Calculate the ratio of a given value to a
+maximum value, and then apply that ratio to a constant.
+
+For example::
+
     &lt;img src="bar.png" alt="Bar"
          height="10" width="{% widthratio this_value max_value max_width %}"&gt;
-</pre>
-<p>If ``this_value`` is 175, ``max_value`` is 200, and ``max_width`` is 100, the image in the above example will be 88 pixels wide (because 175/200 = .875; .875 * 100 = 87.5 which is rounded up to 88).</p>
-<p>In some cases you might want to capture the result of widthratio in a variable. It can be useful for instance in a blocktranslate like this:</p>
-<pre class="rst-literal-block">
+
+If ``this_value`` is 175, ``max_value`` is 200, and ``max_width`` is 100,
+the image in the above example will be 88 pixels wide
+(because 175/200 = .875; .875 * 100 = 87.5 which is rounded up to 88).
+
+In some cases you might want to capture the result of widthratio in a
+variable. It can be useful for instance in a blocktranslate like this::
+
     {% widthratio this_value max_value max_width as width %}
-    {% blocktranslate %}The width is: {{ width }}{% endblocktranslate %}
-</pre>
-</div>
+    {% blocktranslate %}The width is: {{ width }}{% endblocktranslate %}</p></div>
   </div>
 </div><div class="basevariable">
   
@@ -1956,7 +2156,7 @@
   <div class="container">
     <a href="index.html">API Documentation</a> for django,
   generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
-    22.4.0.dev0 at 2022-04-11 16:01:21.
+    22.4.0.dev0 at 2022-04-23 04:48:04.
   </div>
 
   <!-- Search related scripts needs to be loaded at the end of HTML 

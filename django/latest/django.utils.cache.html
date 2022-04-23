@@ -886,11 +886,26 @@
         </div>
 
         <div class="moduleDocstring">
-          <div></div>
+          <div><p class="pre">This module contains helper functions for controlling caching. It does so by
+managing the "Vary" header of responses. It includes functions to patch the
+header of response objects directly and decorators that change functions to do
+that header-patching themselves.
+
+For information on the Vary header, see:
+
+    https://tools.ietf.org/html/rfc7231#section-7.1.4
+
+Essentially, the "Vary" HTTP header defines which headers a cache should take
+into account when building its cache key. Requests with the same path but
+different header content for headers named in "Vary" need to get different
+cache keys to prevent delivery of wrong content.
+
+An example: i18n middleware would need to distinguish caches by the
+"Accept-language" header.</p></div>
         </div>
 
         <div id="splitTables">
-          <table class="children sortable" id="id5490">
+          <table class="children sortable" id="id6571">
   
   
   <tr class="function">
@@ -927,7 +942,7 @@
     
     <td>Function</td>
     <td><code><a href="#patch_cache_control" class="internal-link" title="django.utils.cache.patch_cache_control">patch<wbr></wbr>_cache<wbr></wbr>_control</a></code></td>
-    <td><span class="undocumented">No summary</span></td>
+    <td>Patch the Cache-Control header by adding all keyword arguments to it. The transformation is as follows:</td>
   </tr><tr class="function">
     
     <td>Function</td>
@@ -1026,8 +1041,7 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Add headers to a response to indicate that a page should never be cached.</p>
-</div>
+    <div><p class="pre">Add headers to a response to indicate that a page should never be cached.</p></div>
   </div>
 </div><div class="basefunction">
   
@@ -1049,9 +1063,13 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Return a cache key based on the request URL and query. It can be used in the request phase because it pulls the list of headers to take into account from the global URL registry and uses those to build a cache key to check against.</p>
-<p>If there isn't a headerlist stored, return None, indicating that the page needs to be rebuilt.</p>
-</div>
+    <div><p class="pre">Return a cache key based on the request URL and query. It can be used
+in the request phase because it pulls the list of headers to take into
+account from the global URL registry and uses those to build a cache key
+to check against.
+
+If there isn't a headerlist stored, return None, indicating that the page
+needs to be rebuilt.</p></div>
   </div>
 </div><div class="basefunction">
   
@@ -1095,8 +1113,8 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Return the max-age from the response Cache-Control header as an integer, or None if it wasn't found or wasn't an integer.</p>
-</div>
+    <div><p class="pre">Return the max-age from the response Cache-Control header as an integer,
+or None if it wasn't found or wasn't an integer.</p></div>
   </div>
 </div><div class="basefunction">
   
@@ -1118,8 +1136,7 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Check to see if the response has a given header name in its Vary header.</p>
-</div>
+    <div><p class="pre">Check to see if the response has a given header name in its Vary header.</p></div>
   </div>
 </div><div class="basefunction">
   
@@ -1141,9 +1158,16 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Learn what headers to take into account for some request URL from the response object. Store those headers in a global URL registry so that later access to that URL will know what headers to take into account without building the response object itself. The headers are named in the Vary header of the response, but we want to prevent response generation.</p>
-<p>The list of headers to use for cache key generation is stored in the same cache as the pages themselves. If the cache ages some data out of the cache, this just means that we have to build the response once to get at the Vary header and so at the list of headers to use for the cache key.</p>
-</div>
+    <div><p class="pre">Learn what headers to take into account for some request URL from the
+response object. Store those headers in a global URL registry so that
+later access to that URL will know what headers to take into account
+without building the response object itself. The headers are named in the
+Vary header of the response, but we want to prevent response generation.
+
+The list of headers to use for cache key generation is stored in the same
+cache as the pages themselves. If the cache ages some data out of the
+cache, this just means that we have to build the response once to get at
+the Vary header and so at the list of headers to use for the cache key.</p></div>
   </div>
 </div><div class="basefunction">
   
@@ -1165,7 +1189,15 @@
   <div class="docstring functionBody">
     
     
-    <div></div>
+    <div><p class="pre">Patch the Cache-Control header by adding all keyword arguments to it.
+The transformation is as follows:
+
+* All keyword parameter names are turned to lowercase, and underscores
+  are converted to hyphens.
+* If the value of a parameter is True (exactly True, not just a
+  true value), only the parameter name is added to the header.
+* All other parameters are added with their value, after applying
+  str() to it.</p></div>
   </div>
 </div><div class="basefunction">
   
@@ -1187,10 +1219,13 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Add HTTP caching headers to the given HttpResponse: Expires and Cache-Control.</p>
-<p>Each header is only added if it isn't already set.</p>
-<p>cache_timeout is in seconds. The CACHE_MIDDLEWARE_SECONDS setting is used by default.</p>
-</div>
+    <div><p class="pre">Add HTTP caching headers to the given HttpResponse: Expires and
+Cache-Control.
+
+Each header is only added if it isn't already set.
+
+cache_timeout is in seconds. The CACHE_MIDDLEWARE_SECONDS setting is used
+by default.</p></div>
   </div>
 </div><div class="basefunction">
   
@@ -1212,8 +1247,10 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Add (or update) the "Vary" header in the given HttpResponse object. newheaders is a list of header names that should be in "Vary". If headers contains an asterisk, then "Vary" header will consist of a single asterisk '*'. Otherwise, existing headers in "Vary" aren't removed.</p>
-</div>
+    <div><p class="pre">Add (or update) the "Vary" header in the given HttpResponse object.
+newheaders is a list of header names that should be in "Vary". If headers
+contains an asterisk, then "Vary" header will consist of a single asterisk
+'*'. Otherwise, existing headers in "Vary" aren't removed.</p></div>
   </div>
 </div><div class="basefunction">
   
@@ -1280,8 +1317,7 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Return a cache key for the header cache.</p>
-</div>
+    <div><p class="pre">Return a cache key for the header cache.</p></div>
   </div>
 </div><div class="basefunction private">
   
@@ -1303,8 +1339,7 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Return a cache key from the headers given in the header list.</p>
-</div>
+    <div><p class="pre">Return a cache key from the headers given in the header list.</p></div>
   </div>
 </div><div class="basefunction private">
   
@@ -1326,8 +1361,7 @@
   <div class="docstring functionBody">
     
     
-    <div><p>If necessary, add the current locale or time zone to the cache key.</p>
-</div>
+    <div><p class="pre">If necessary, add the current locale or time zone to the cache key.</p></div>
   </div>
 </div><div class="basefunction private">
   
@@ -1349,8 +1383,7 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Test the If-Match comparison as defined in section 3.1 of RFC 7232.</p>
-</div>
+    <div><p class="pre">Test the If-Match comparison as defined in section 3.1 of RFC 7232.</p></div>
   </div>
 </div><div class="basefunction private">
   
@@ -1372,8 +1405,7 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Test the If-Modified-Since comparison as defined in section 3.3 of RFC 7232.</p>
-</div>
+    <div><p class="pre">Test the If-Modified-Since comparison as defined in section 3.3 of RFC 7232.</p></div>
   </div>
 </div><div class="basefunction private">
   
@@ -1395,8 +1427,7 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Test the If-None-Match comparison as defined in section 3.2 of RFC 7232.</p>
-</div>
+    <div><p class="pre">Test the If-None-Match comparison as defined in section 3.2 of RFC 7232.</p></div>
   </div>
 </div><div class="basefunction private">
   
@@ -1418,8 +1449,8 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Test the If-Unmodified-Since comparison as defined in section 3.4 of RFC 7232.</p>
-</div>
+    <div><p class="pre">Test the If-Unmodified-Since comparison as defined in section 3.4 of
+RFC 7232.</p></div>
   </div>
 </div><div class="basefunction private">
   
@@ -1499,7 +1530,7 @@
   <div class="container">
     <a href="index.html">API Documentation</a> for django,
   generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
-    22.4.0.dev0 at 2022-04-11 16:01:21.
+    22.4.0.dev0 at 2022-04-23 04:48:04.
   </div>
 
   <!-- Search related scripts needs to be loaded at the end of HTML 

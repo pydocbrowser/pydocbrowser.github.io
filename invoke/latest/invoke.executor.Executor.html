@@ -336,21 +336,23 @@
         </div>
 
         <div class="moduleDocstring">
-          <div><p>An execution strategy for Task objects.</p>
-<p>Subclasses may override various extension points to change, add or remove behavior.</p>
-<p>.. versionadded:: 1.0</p>
-</div>
+          <div><p class="pre">An execution strategy for Task objects.
+
+Subclasses may override various extension points to change, add or remove
+behavior.
+
+.. versionadded:: 1.0</p></div>
         </div>
 
         <div id="splitTables">
-          <table class="children sortable" id="id5893">
+          <table class="children sortable" id="id10705">
   
   
   <tr class="method">
     
     <td>Method</td>
     <td><code><a href="#__init__" class="internal-link" title="invoke.executor.Executor.__init__">__init__</a></code></td>
-    <td><span class="undocumented">No summary</span></td>
+    <td>Initialize executor with handles to necessary data structures.</td>
   </tr><tr class="method">
     
     <td>Method</td>
@@ -360,7 +362,7 @@
     
     <td>Method</td>
     <td><code><a href="#execute" class="internal-link" title="invoke.executor.Executor.execute">execute</a></code></td>
-    <td><span class="undocumented">No summary</span></td>
+    <td>Execute one or more ``tasks`` in sequence.</td>
   </tr><tr class="method">
     
     <td>Method</td>
@@ -414,7 +416,19 @@
   <div class="docstring functionBody">
     
     
-    <div></div>
+    <div><p class="pre">Initialize executor with handles to necessary data structures.
+
+:param collection:
+    A `.Collection` used to look up requested tasks (and their default
+    config data, if any) by name during execution.
+
+:param config:
+    An optional `.Config` holding configuration state. Defaults to an
+    empty `.Config` if not given.
+
+:param core:
+    An optional `.ParseResult` holding parsed core program arguments.
+    Defaults to ``None``.</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -436,11 +450,13 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Deduplicate a list of `tasks &lt;.Call&gt;`.</p>
-<p>:param calls: An iterable of `.Call` objects representing tasks.</p>
-<p>:returns: A list of `.Call` objects.</p>
-<p>.. versionadded:: 1.0</p>
-</div>
+    <div><p class="pre">Deduplicate a list of `tasks &lt;.Call&gt;`.
+
+:param calls: An iterable of `.Call` objects representing tasks.
+
+:returns: A list of `.Call` objects.
+
+.. versionadded:: 1.0</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -462,7 +478,50 @@
   <div class="docstring functionBody">
     
     
-    <div></div>
+    <div><p class="pre">Execute one or more ``tasks`` in sequence.
+
+:param tasks:
+    An all-purpose iterable of "tasks to execute", each member of which
+    may take one of the following forms:
+
+    **A string** naming a task from the Executor's `.Collection`. This
+    name may contain dotted syntax appropriate for calling namespaced
+    tasks, e.g. ``subcollection.taskname``. Such tasks are executed
+    without arguments.
+
+    **A two-tuple** whose first element is a task name string (as
+    above) and whose second element is a dict suitable for use as
+    ``**kwargs`` when calling the named task. E.g.::
+
+        [
+            ('task1', {}),
+            ('task2', {'arg1': 'val1'}),
+            ...
+        ]
+
+    is equivalent, roughly, to::
+
+        task1()
+        task2(arg1='val1')
+
+    **A `.ParserContext`** instance, whose ``.name`` attribute is used
+    as the task name and whose ``.as_kwargs`` attribute is used as the
+    task kwargs (again following the above specifications).
+
+    .. note::
+        When called without any arguments at all (i.e. when ``*tasks``
+        is empty), the default task from ``self.collection`` is used
+        instead, if defined.
+
+:returns:
+    A dict mapping task objects to their return values.
+
+    This dict may include pre- and post-tasks if any were executed. For
+    example, in a collection with a ``build`` task depending on another
+    task named ``setup``, executing ``build`` will result in a dict
+    with two keys, one for ``build`` and one for ``setup``.
+
+.. versionadded:: 1.0</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -484,11 +543,16 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Expand a list of `.Call` objects into a near-final list of same.</p>
-<p>The default implementation of this method simply adds a task's pre/post-task list before/after the task itself, as necessary.</p>
-<p>Subclasses may wish to do other things in addition (or instead of) the above, such as multiplying the `calls &lt;.Call&gt;` by argument vectors or similar.</p>
-<p>.. versionadded:: 1.0</p>
-</div>
+    <div><p class="pre">Expand a list of `.Call` objects into a near-final list of same.
+
+The default implementation of this method simply adds a task's
+pre/post-task list before/after the task itself, as necessary.
+
+Subclasses may wish to do other things in addition (or instead of) the
+above, such as multiplying the `calls &lt;.Call&gt;` by argument vectors or
+similar.
+
+.. versionadded:: 1.0</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -510,10 +574,11 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Transform arbitrary task list w/ various types, into `.Call` objects.</p>
-<p>See docstring for `~.Executor.execute` for details.</p>
-<p>.. versionadded:: 1.0</p>
-</div>
+    <div><p class="pre">Transform arbitrary task list w/ various types, into `.Call` objects.
+
+See docstring for `~.Executor.execute` for details.
+
+.. versionadded:: 1.0</p></div>
   </div>
 </div><div class="baseinstancevariable">
   
@@ -596,7 +661,7 @@
   <div class="container">
     <a href="index.html">API Documentation</a> for invoke,
   generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
-    22.4.0.dev0 at 2022-04-11 16:10:53.
+    22.4.0.dev0 at 2022-04-23 06:42:04.
   </div>
 
   <!-- Search related scripts needs to be loaded at the end of HTML 

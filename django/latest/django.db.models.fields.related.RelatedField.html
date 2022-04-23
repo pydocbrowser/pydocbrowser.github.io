@@ -1698,12 +1698,11 @@
         </div>
 
         <div class="moduleDocstring">
-          <div><p>Base class that all relational fields inherit from.</p>
-</div>
+          <div><p class="pre">Base class that all relational fields inherit from.</p></div>
         </div>
 
         <div id="splitTables">
-          <table class="children sortable" id="id3551">
+          <table class="children sortable" id="id4632">
   
   
   <tr class="method">
@@ -1730,7 +1729,7 @@
     
     <td>Method</td>
     <td><code><a href="#deconstruct" class="internal-link" title="django.db.models.fields.related.RelatedField.deconstruct">deconstruct</a></code></td>
-    <td><span class="undocumented">No summary</span></td>
+    <td>Return enough information to recreate the field as a 4-tuple:</td>
   </tr><tr class="method">
     
     <td>Method</td>
@@ -1867,7 +1866,7 @@
             <p class="inheritedFrom">
               Inherited from <code><a href="django.db.models.fields.mixins.FieldCacheMixin.html" class="internal-link" title="django.db.models.fields.mixins.FieldCacheMixin">FieldCacheMixin</a></code>:
             </p>
-            <table class="children sortable" id="id3552">
+            <table class="children sortable" id="id4633">
   
   
   <tr class="basemethod">
@@ -1896,7 +1895,7 @@
             <p class="inheritedFrom">
               Inherited from <code><a href="django.db.models.fields.Field.html" class="internal-link" title="django.db.models.fields.Field">Field</a></code>:
             </p>
-            <table class="children sortable" id="id3553">
+            <table class="children sortable" id="id4634">
   
   
   <tr class="basemethod">
@@ -2365,7 +2364,7 @@
             <p class="inheritedFrom">
               Inherited from <code><a href="django.db.models.query_utils.RegisterLookupMixin.html" class="internal-link" title="django.db.models.query_utils.RegisterLookupMixin">RegisterLookupMixin</a></code> (via <code><a href="django.db.models.fields.Field.html" class="internal-link" title="django.db.models.fields.Field">Field</a></code>):
             </p>
-            <table class="children sortable" id="id3554">
+            <table class="children sortable" id="id4635">
   
   
   <tr class="baseclassmethod">
@@ -2480,9 +2479,10 @@
   <div class="docstring functionBody">
     <div class="interfaceinfo">overrides <code><a href="django.db.models.fields.Field.html#contribute_to_class" class="internal-link">django.db.models.fields.Field.contribute_to_class</a></code></div><div class="interfaceinfo">overridden in <code><a href="django.db.models.fields.related.ForeignObject.html" class="internal-link">django.db.models.fields.related.ForeignObject</a></code>, <code><a href="django.db.models.fields.related.ManyToManyField.html" class="internal-link">django.db.models.fields.related.ManyToManyField</a></code></div>
     
-    <div><p>Register the field with the model class it belongs to.</p>
-<p>If private_only is True, create a separate instance of this field for every subclass of cls, even if cls is not an abstract model.</p>
-</div>
+    <div><p class="pre">Register the field with the model class it belongs to.
+
+If private_only is True, create a separate instance of this field
+for every subclass of cls, even if cls is not an abstract model.</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -2504,8 +2504,8 @@
   <div class="docstring functionBody">
     <div class="interfaceinfo">overrides <code><a href="django.db.models.fields.Field.html#db_type" class="internal-link">django.db.models.fields.Field.db_type</a></code></div><div class="interfaceinfo">overridden in <code><a href="django.db.models.fields.related.ForeignKey.html" class="internal-link">django.db.models.fields.related.ForeignKey</a></code>, <code><a href="django.db.models.fields.related.ManyToManyField.html" class="internal-link">django.db.models.fields.related.ManyToManyField</a></code></div>
     
-    <div><p>Return the database column data type for this field, for the provided connection.</p>
-</div>
+    <div><p class="pre">Return the database column data type for this field, for the provided
+connection.</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -2527,7 +2527,35 @@
   <div class="docstring functionBody">
     <div class="interfaceinfo">overrides <code><a href="django.db.models.fields.Field.html#deconstruct" class="internal-link">django.db.models.fields.Field.deconstruct</a></code></div><div class="interfaceinfo">overridden in <code><a href="django.db.models.fields.related.ForeignObject.html" class="internal-link">django.db.models.fields.related.ForeignObject</a></code>, <code><a href="django.db.models.fields.related.ManyToManyField.html" class="internal-link">django.db.models.fields.related.ManyToManyField</a></code></div>
     
-    <div></div>
+    <div><p class="pre">Return enough information to recreate the field as a 4-tuple:
+
+ * The name of the field on the model, if contribute_to_class() has
+   been run.
+ * The import path of the field, including the class, e.g.
+   django.db.models.IntegerField. This should be the most portable
+   version, so less specific may be better.
+ * A list of positional arguments.
+ * A dict of keyword arguments.
+
+Note that the positional or keyword arguments must contain values of
+the following types (including inner values of collection types):
+
+ * None, bool, str, int, float, complex, set, frozenset, list, tuple,
+   dict
+ * UUID
+ * datetime.datetime (naive), datetime.date
+ * top-level classes, top-level functions - will be referenced by their
+   full import path
+ * Storage instances - these have their own deconstruct() method
+
+This is because the values here must be serialized into a text format
+(possibly new Python code, possibly JSON) and these are the only types
+with encoding handlers defined.
+
+There's no need to return the exact way the field was instantiated this
+time, just ensure that the resulting field is the same - prefer keyword
+arguments over positional ones, and omit parameters with their default
+values.</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -2571,9 +2599,11 @@
   <div class="docstring functionBody">
     <div class="interfaceinfo">overrides <code><a href="django.db.models.fields.Field.html#formfield" class="internal-link">django.db.models.fields.Field.formfield</a></code></div><div class="interfaceinfo">overridden in <code><a href="django.db.models.fields.related.ForeignKey.html" class="internal-link">django.db.models.fields.related.ForeignKey</a></code>, <code><a href="django.db.models.fields.related.ManyToManyField.html" class="internal-link">django.db.models.fields.related.ManyToManyField</a></code></div>
     
-    <div><p>Pass ``limit_choices_to`` to the field being constructed.</p>
-<p>Only passes it if there is a type that supports related fields. This is a similar strategy used to pass the ``queryset`` to the field being constructed.</p>
-</div>
+    <div><p class="pre">Pass ``limit_choices_to`` to the field being constructed.
+
+Only passes it if there is a type that supports related fields.
+This is a similar strategy used to pass the ``queryset`` to the field
+being constructed.</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -2617,8 +2647,11 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Return the keyword arguments that when supplied to self.model.object.filter(), would select all instances related through this field to the remote obj. This is used to build the querysets returned by related descriptors. obj is an instance of self.related_field.model.</p>
-</div>
+    <div><p class="pre">Return the keyword arguments that when supplied to
+self.model.object.filter(), would select all instances related through
+this field to the remote obj. This is used to build the querysets
+returned by related descriptors. obj is an instance of
+self.related_field.model.</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -2640,9 +2673,10 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Return ``limit_choices_to`` for this model field.</p>
-<p>If it is a callable, it will be invoked and the result will be returned.</p>
-</div>
+    <div><p class="pre">Return ``limit_choices_to`` for this model field.
+
+If it is a callable, it will be invoked and the result will be
+returned.</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -2664,8 +2698,10 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Complement to get_forward_related_filter(). Return the keyword arguments that when passed to self.related_field.model.object.filter() select all instances of self.related_field.model related through this field to obj. obj is an instance of self.model.</p>
-</div>
+    <div><p class="pre">Complement to get_forward_related_filter(). Return the keyword
+arguments that when passed to self.related_field.model.object.filter()
+select all instances of self.related_field.model related through
+this field to obj. obj is an instance of self.model.</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -2687,8 +2723,8 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Define the name that can be used to identify this related object in a table-spanning query.</p>
-</div>
+    <div><p class="pre">Define the name that can be used to identify this related object in a
+table-spanning query.</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -2916,8 +2952,8 @@
   <div class="functionBody">
     
     
-    <div><p>Get the setting that this is powered from for swapping, or None if it's not swapped in / marked with swappable=False.</p>
-</div>
+    <div><p class="pre">Get the setting that this is powered from for swapping, or None
+if it's not swapped in / marked with swappable=False.</p></div>
     
   </div>
 </div><div class="baseproperty">
@@ -2940,8 +2976,8 @@
   <div class="functionBody">
     <div class="interfaceinfo">overridden in <code><a href="django.db.models.fields.related.ForeignKey.html" class="internal-link">django.db.models.fields.related.ForeignKey</a></code></div>
     
-    <div><p>When filtering against this relation, return the field on the remote model against which the filtering should happen.</p>
-</div>
+    <div><p class="pre">When filtering against this relation, return the field on the remote
+model against which the filtering should happen.</p></div>
     
   </div>
 </div><div class="basemethod private">
@@ -2964,8 +3000,7 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Check accessor and reverse query name clashes.</p>
-</div>
+    <div><p class="pre">Check accessor and reverse query name clashes.</p></div>
   </div>
 </div><div class="basemethod private">
   
@@ -3136,7 +3171,7 @@
   <div class="container">
     <a href="index.html">API Documentation</a> for django,
   generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
-    22.4.0.dev0 at 2022-04-11 16:01:21.
+    22.4.0.dev0 at 2022-04-23 04:48:04.
   </div>
 
   <!-- Search related scripts needs to be loaded at the end of HTML 

@@ -1076,8 +1076,7 @@
         </div>
 
         <div class="moduleDocstring">
-          <div><p>Astroid hooks for various builtins.</p>
-</div>
+          <div><p class="pre">Astroid hooks for various builtins.</p></div>
         </div>
 
         <div id="splitTables">
@@ -1098,12 +1097,12 @@
     
     <td>Function</td>
     <td><code><a href="#infer_dict" class="internal-link" title="astroid.brain.brain_builtin_inference.infer_dict">infer<wbr></wbr>_dict</a></code></td>
-    <td><span class="undocumented">No summary</span></td>
+    <td>Try to infer a dict call to a Dict node.</td>
   </tr><tr class="function">
     
     <td>Function</td>
     <td><code><a href="#infer_dict_fromkeys" class="internal-link" title="astroid.brain.brain_builtin_inference.infer_dict_fromkeys">infer<wbr></wbr>_dict<wbr></wbr>_fromkeys</a></code></td>
-    <td><span class="undocumented">No summary</span></td>
+    <td>Infer dict.fromkeys</td>
   </tr><tr class="function">
     
     <td>Function</td>
@@ -1123,7 +1122,7 @@
     
     <td>Function</td>
     <td><code><a href="#infer_isinstance" class="internal-link" title="astroid.brain.brain_builtin_inference.infer_isinstance">infer<wbr></wbr>_isinstance</a></code></td>
-    <td><span class="undocumented">No summary</span></td>
+    <td>Infer isinstance calls</td>
   </tr><tr class="function">
     
     <td>Function</td>
@@ -1153,7 +1152,7 @@
     
     <td>Function</td>
     <td><code><a href="#infer_super" class="internal-link" title="astroid.brain.brain_builtin_inference.infer_super">infer<wbr></wbr>_super</a></code></td>
-    <td><span class="undocumented">No summary</span></td>
+    <td>Understand super calls.</td>
   </tr><tr class="function">
     
     <td>Function</td>
@@ -1282,8 +1281,7 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Understand bool calls.</p>
-</div>
+    <div><p class="pre">Understand bool calls.</p></div>
   </div>
 </div><div class="basefunction">
   
@@ -1305,9 +1303,12 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Understand callable calls</p>
-<p>This follows Python's semantics, where an object is callable if it provides an attribute __call__, even though that attribute is something which can't be called.</p>
-</div>
+    <div><p class="pre">Understand callable calls
+
+This follows Python's semantics, where an object
+is callable if it provides an attribute __call__,
+even though that attribute is something which can't be
+called.</p></div>
   </div>
 </div><div class="basefunction">
   
@@ -1329,7 +1330,18 @@
   <div class="docstring functionBody">
     
     
-    <div></div>
+    <div><p class="pre">Try to infer a dict call to a Dict node.
+
+The function treats the following cases:
+
+    * dict()
+    * dict(mapping)
+    * dict(iterable)
+    * dict(iterable, **kwargs)
+    * dict(mapping, **kwargs)
+    * dict(**kwargs)
+
+If a case can't be inferred, we'll fallback to default inference.</p></div>
   </div>
 </div><div class="basefunction">
   
@@ -1351,7 +1363,14 @@
   <div class="docstring functionBody">
     
     
-    <div></div>
+    <div><p class="pre">Infer dict.fromkeys
+
+:param nodes.Call node: dict.fromkeys() call to infer
+:param context.InferenceContext context: node context
+:rtype nodes.Dict:
+    a Dictionary containing the values that astroid was able to infer.
+    In case the inference failed for any reason, an empty dictionary
+    will be inferred instead.</p></div>
   </div>
 </div><div class="basefunction">
   
@@ -1373,9 +1392,11 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Understand getattr calls</p>
-<p>If one of the arguments is an Uninferable object, then the result will be an Uninferable object. Otherwise, the normal attribute lookup will be done.</p>
-</div>
+    <div><p class="pre">Understand getattr calls
+
+If one of the arguments is an Uninferable object, then the
+result will be an Uninferable object. Otherwise, the normal attribute
+lookup will be done.</p></div>
   </div>
 </div><div class="basefunction">
   
@@ -1397,9 +1418,13 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Understand hasattr calls</p>
-<p>This always guarantees three possible outcomes for calling hasattr: Const(False) when we are sure that the object doesn't have the intended attribute, Const(True) when we know that the object has the attribute and Uninferable when we are unsure of the outcome of the function call.</p>
-</div>
+    <div><p class="pre">Understand hasattr calls
+
+This always guarantees three possible outcomes for calling
+hasattr: Const(False) when we are sure that the object
+doesn't have the intended attribute, Const(True) when
+we know that the object has the attribute and Uninferable
+when we are unsure of the outcome of the function call.</p></div>
   </div>
 </div><div class="basefunction">
   
@@ -1421,9 +1446,11 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Infer int() calls</p>
-<p>:param nodes.Call node: int() call to infer :param context.InferenceContext: node context :rtype nodes.Const: a Const containing the integer value of the int() call</p>
-</div>
+    <div><p class="pre">Infer int() calls
+
+:param nodes.Call node: int() call to infer
+:param context.InferenceContext: node context
+:rtype nodes.Const: a Const containing the integer value of the int() call</p></div>
   </div>
 </div><div class="basefunction">
   
@@ -1445,7 +1472,14 @@
   <div class="docstring functionBody">
     
     
-    <div></div>
+    <div><p class="pre">Infer isinstance calls
+
+:param nodes.Call callnode: an isinstance call
+:param InferenceContext context: context for call
+    (currently unused but is a common interface for inference)
+:rtype nodes.Const: Boolean Const value of isinstance call
+
+:raises UseInferenceDefault: If the node cannot be inferred</p></div>
   </div>
 </div><div class="basefunction">
   
@@ -1467,9 +1501,12 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Infer issubclass() calls</p>
-<p>:param nodes.Call callnode: an `issubclass` call :param InferenceContext context: the context for the inference :rtype nodes.Const: Boolean Const value of the `issubclass` call :raises UseInferenceDefault: If the node cannot be inferred</p>
-</div>
+    <div><p class="pre">Infer issubclass() calls
+
+:param nodes.Call callnode: an `issubclass` call
+:param InferenceContext context: the context for the inference
+:rtype nodes.Const: Boolean Const value of the `issubclass` call
+:raises UseInferenceDefault: If the node cannot be inferred</p></div>
   </div>
 </div><div class="basefunction">
   
@@ -1491,9 +1528,11 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Infer length calls</p>
-<p>:param nodes.Call node: len call to infer :param context.InferenceContext: node context :rtype nodes.Const: a Const node with the inferred length, if possible</p>
-</div>
+    <div><p class="pre">Infer length calls
+
+:param nodes.Call node: len call to infer
+:param context.InferenceContext: node context
+:rtype nodes.Const: a Const node with the inferred length, if possible</p></div>
   </div>
 </div><div class="basefunction">
   
@@ -1515,9 +1554,10 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Understand `property` class</p>
-<p>This only infers the output of `property` call, not the arguments themselves.</p>
-<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">node:</span><code><a href="astroid.nodes.Call.html" class="internal-link" title="astroid.nodes.Call">nodes.Call</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">context:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">Optional</a>[<wbr></wbr><a href="astroid.context.InferenceContext.html" class="internal-link" title="astroid.context.InferenceContext">InferenceContext</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="astroid.objects.Property.html" class="internal-link" title="astroid.objects.Property">objects.Property</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+    <div><p class="pre">Understand `property` class
+
+This only infers the output of `property`
+call, not the arguments themselves.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">node:</span><code><a href="astroid.nodes.Call.html" class="internal-link" title="astroid.nodes.Call">nodes.Call</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">context:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">Optional</a>[<wbr></wbr><a href="astroid.context.InferenceContext.html" class="internal-link" title="astroid.context.InferenceContext">InferenceContext</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="astroid.objects.Property.html" class="internal-link" title="astroid.objects.Property">objects.Property</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basefunction">
   
@@ -1539,8 +1579,7 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Understand `slice` calls.</p>
-</div>
+    <div><p class="pre">Understand `slice` calls.</p></div>
   </div>
 </div><div class="basefunction">
   
@@ -1562,9 +1601,11 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Infer str() calls</p>
-<p>:param nodes.Call node: str() call to infer :param context.InferenceContext: node context :rtype nodes.Const: a Const containing an empty string</p>
-</div>
+    <div><p class="pre">Infer str() calls
+
+:param nodes.Call node: str() call to infer
+:param context.InferenceContext: node context
+:rtype nodes.Const: a Const containing an empty string</p></div>
   </div>
 </div><div class="basefunction">
   
@@ -1586,7 +1627,17 @@
   <div class="docstring functionBody">
     
     
-    <div></div>
+    <div><p class="pre">Understand super calls.
+
+There are some restrictions for what can be understood:
+
+    * unbounded super (one argument form) is not understood.
+
+    * if the super call is not inside a function (classmethod or method),
+      then the default inference will be used.
+
+    * if the super arguments can't be inferred, the default inference
+      will be used.</p></div>
   </div>
 </div><div class="basefunction">
   
@@ -1608,8 +1659,7 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Understand the one-argument form of *type*.</p>
-</div>
+    <div><p class="pre">Understand the one-argument form of *type*.</p></div>
   </div>
 </div><div class="basefunction">
   
@@ -1631,9 +1681,10 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Register a new transform function for the given *builtin_name*.</p>
-<p>The transform function must accept two parameters, a node and an optional context.</p>
-</div>
+    <div><p class="pre">Register a new transform function for the given *builtin_name*.
+
+The transform function must accept two parameters, a node and
+an optional context.</p></div>
   </div>
 </div><div class="baseconstant">
   
@@ -1940,8 +1991,7 @@
   <div class="docstring functionBody">
     
     
-    <div><p>function to extend builtin str/unicode class</p>
-</div>
+    <div><p class="pre">function to extend builtin str/unicode class</p></div>
   </div>
 </div><div class="basefunction private">
   
@@ -2051,9 +2101,9 @@
   <div class="docstring functionBody">
     
     
-    <div><p>Predicate before inference_tip</p>
-<p>Check if the given ClassDef has an @object.__new__ decorator</p>
-</div>
+    <div><p class="pre">Predicate before inference_tip
+
+Check if the given ClassDef has an @object.__new__ decorator</p></div>
   </div>
 </div>
         </div>
@@ -2067,7 +2117,7 @@
   <div class="container">
     <a href="index.html">API Documentation</a> for astroid,
   generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
-    22.4.0.dev0 at 2022-04-20 01:08:25.
+    22.4.0.dev0 at 2022-04-23 04:44:39.
   </div>
 
   <!-- Search related scripts needs to be loaded at the end of HTML 

@@ -1278,12 +1278,12 @@
         </div>
 
         <div class="moduleDocstring">
-          <div><p>An explicit subquery. It may contain OuterRef() references to the outer query which will be resolved when it is applied to that query.</p>
-</div>
+          <div><p class="pre">An explicit subquery. It may contain OuterRef() references to the outer
+query which will be resolved when it is applied to that query.</p></div>
         </div>
 
         <div id="splitTables">
-          <table class="children sortable" id="id3306">
+          <table class="children sortable" id="id4387">
   
   
   <tr class="method">
@@ -1295,7 +1295,7 @@
     
     <td>Method</td>
     <td><code><a href="#as_sql" class="internal-link" title="django.db.models.expressions.Subquery.as_sql">as<wbr></wbr>_sql</a></code></td>
-    <td><span class="undocumented">No summary</span></td>
+    <td>Responsible for returning a (sql, [params]) tuple to be included in the current query.</td>
   </tr><tr class="method">
     
     <td>Method</td>
@@ -1362,7 +1362,7 @@
             <p class="inheritedFrom">
               Inherited from <code><a href="django.db.models.expressions.BaseExpression.html" class="internal-link" title="django.db.models.expressions.BaseExpression">BaseExpression</a></code>:
             </p>
-            <table class="children sortable" id="id3307">
+            <table class="children sortable" id="id4388">
   
   
   <tr class="basemethod">
@@ -1414,7 +1414,7 @@
     
     <td>Method</td>
     <td><code><a href="django.db.models.expressions.BaseExpression.html#resolve_expression" class="internal-link" title="django.db.models.expressions.BaseExpression.resolve_expression">resolve<wbr></wbr>_expression</a></code></td>
-    <td><span class="undocumented">No summary</span></td>
+    <td>Provide the chance to do any preprocessing or validation before being added to the query.</td>
   </tr><tr class="basemethod">
     
     <td>Method</td>
@@ -1496,7 +1496,7 @@
             <p class="inheritedFrom">
               Inherited from <code><a href="django.db.models.expressions.Combinable.html" class="internal-link" title="django.db.models.expressions.Combinable">Combinable</a></code>:
             </p>
-            <table class="children sortable" id="id3308">
+            <table class="children sortable" id="id4389">
   
   
   <tr class="basemethod">
@@ -1719,7 +1719,29 @@
   <div class="docstring functionBody">
     <div class="interfaceinfo">overrides <code><a href="django.db.models.expressions.BaseExpression.html#as_sql" class="internal-link">django.db.models.expressions.BaseExpression.as_sql</a></code></div><div class="interfaceinfo">overridden in <code><a href="django.db.models.expressions.Exists.html" class="internal-link">django.db.models.expressions.Exists</a></code></div>
     
-    <div></div>
+    <div><p class="pre">Responsible for returning a (sql, [params]) tuple to be included
+in the current query.
+
+Different backends can provide their own implementation, by
+providing an `as_{vendor}` method and patching the Expression:
+
+```
+def override_as_sql(self, compiler, connection):
+    # custom logic
+    return super().as_sql(compiler, connection)
+setattr(Expression, 'as_' + connection.vendor, override_as_sql)
+```
+
+Arguments:
+ * compiler: the query compiler responsible for generating the query.
+   Must have a compile method, returning a (sql, [params]) tuple.
+   Calling compiler(value) will return a quoted `value`.
+
+ * connection: the database connection used for the current query.
+
+Return: (sql, params)
+  Where `sql` is a string containing ordered sql parameters to be
+  replaced with the elements of the list `params`.</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -1989,10 +2011,17 @@
   <div class="docstring functionBody">
     <div class="interfaceinfo">overrides <code><a href="django.db.models.expressions.BaseExpression.html#_resolve_output_field" class="internal-link">django.db.models.expressions.BaseExpression._resolve_output_field</a></code></div>
     
-    <div><p>Attempt to infer the output type of the expression. If the output fields of all source fields match then, simply infer the same type here. This isn't always correct, but it makes sense most of the time.</p>
-<p>Consider the difference between `2 + 2` and `2 / 3`. Inferring the type here is a convenience for the common case. The user should supply their own output_field with more complex computations.</p>
-<p>If a source's output field resolves to None, exclude it from this check. If all sources are None, then an error is raised higher up the stack in the output_field property.</p>
-</div>
+    <div><p class="pre">Attempt to infer the output type of the expression. If the output
+fields of all source fields match then, simply infer the same type
+here. This isn't always correct, but it makes sense most of the time.
+
+Consider the difference between `2 + 2` and `2 / 3`. Inferring
+the type here is a convenience for the common case. The user should
+supply their own output_field with more complex computations.
+
+If a source's output field resolves to None, exclude it from this check.
+If all sources are None, then an error is raised higher up the stack in
+the output_field property.</p></div>
   </div>
 </div>
         </div>
@@ -2006,7 +2035,7 @@
   <div class="container">
     <a href="index.html">API Documentation</a> for django,
   generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
-    22.4.0.dev0 at 2022-04-11 16:01:21.
+    22.4.0.dev0 at 2022-04-23 04:48:04.
   </div>
 
   <!-- Search related scripts needs to be loaded at the end of HTML 
