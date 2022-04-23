@@ -1,0 +1,2390 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  
+
+  <head>
+    
+    <title>mypy.stubgen.ReferenceFinder</title>
+    <meta name="generator" content="pydoctor 22.4.0.dev0"> 
+        
+    </meta>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1 maximum-scale=1" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+    <link rel="stylesheet" type="text/css" href="extra.css" />
+</head>
+
+  <body>
+
+    <div id="banner">    
+    <div>
+        <a href="/">Home</a>
+        &gt; mypy-0.942 <!-- This is a placeholder -->
+        
+        <!-- (<a href=""&gt;show all versions</a&gt;) -->
+    </div>
+</div>
+
+    <nav class="navbar navbar-default mainnavbar">
+      
+  
+  <div class="container-fluid">
+
+
+    <div class="navbar-header">
+      
+      <div class="navlinks">
+        <span class="navbar-brand">
+          mypy <a href="index.html">API Documentation</a>
+        </span>
+
+        <a href="moduleIndex.html">
+          Modules
+        </a>
+
+        <a href="classIndex.html">
+          Classes
+        </a>
+
+        <a href="nameIndex.html">
+          Names
+        </a>
+
+        <div id="search-box-container">
+          <div class="input-group">
+            <input id="search-box" type="search" name="search-query" placeholder="Search..." aria-label="Search" minlength="2" class="form-control" autocomplete="off" />
+            
+            <span class="input-group-btn">
+              <a style="display: none;" class="btn btn-default" id="search-clear-button" title="Clear" onclick="clearSearch()"><img src="fonts/x-circle.svg" alt="Clear" /></a>
+              <a class="btn btn-default" id="search-help-button" title="Help" onclick="toggleSearchHelpText()"><img src="fonts/info.svg" alt="Help" /></a>
+            </span>
+          </div>
+        </div>
+
+      </div>
+
+      <div id="search-results-container" style="display: none;">
+        
+        <div id="search-buttons">
+          <span class="label label-default" id="search-docstrings-button">
+          <label class="checkbox-inline">
+            <input type="checkbox" id="toggle-search-in-docstrings-checkbox" value="false" onclick="toggleSearchInDocstrings()">
+              search in docstrings
+            </input>
+          </label>
+          </span>
+          
+        </div>
+        
+        <noscript>
+            <h1>Cannot search: JavaScript is not supported/enabled in your browser.</h1>
+        </noscript>
+
+        <div class="hint" id="search-help-box">
+          <p class="rst-last">
+      
+            Search bar offers the following options:
+            <ul>   
+                <li>
+                  <strong>Term presence.</strong> The below example searches for documents that 
+                    must contain “foo”, might contain “bar” and must not contain “baz”: <code>+foo bar -baz</code>
+                </li> 
+
+                <li>
+                  <strong>Wildcards.</strong> The below example searches for documents with words beginning with “foo”: <code>foo*</code>
+                </li> 
+
+                <li>
+                  <strong>Search in specific fields.</strong> The following search matches all objects 
+                  in "twisted.mail" that matches “search”: <code>+qname:twisted.mail.* +search</code>
+
+                  <p>
+                    Possible fields: 'name', 'qname' (fully qualified name), 'docstring', and 'kind'.
+                    Last two fields are only applicable if "search in docstrings" is enabled.
+                  </p>
+                </li>
+
+                <li>
+                  <strong>Fuzzy matches.</strong> The following search matches all documents 
+                  that have a word within 1 edit distance of “foo”: <code>foo~1</code>
+                </li>
+            </ul>
+
+          </p>
+        </div>
+
+        <div id="search-status"> </div>
+
+        <div class="warning" id="search-warn-box" style="display: none;">
+          <p class="rst-last"><span id="search-warn"></span></p>
+        </div>
+
+        <table id="search-results">
+          <!-- Filled dynamically by JS -->
+        </table>
+        
+        <div style="margin-top: 8px;">
+          <p>Results provided by <a href="https://lunrjs.com">Lunr.js</a></p>
+        </div>
+      </div>
+
+    </div>
+
+
+  </div>
+</nav>
+    
+    <div class="container-fluid">
+
+      <!-- Side navigation -->
+      <div class="sidebarcontainer" style="display: none;">
+        
+        <div class="sidebar"><nav class="sidebar">
+  
+
+  <div>
+
+      <div class="thingTitle">
+        <span>Class</span>
+        <code class="thisobject"><a href="mypy.stubgen.ReferenceFinder.html" class="internal-link" title="This class"><wbr></wbr>Reference<wbr></wbr>Finder</a></code> 
+      </div>
+      
+      <div>
+        
+
+        
+         
+
+        
+        
+
+        <div class="childrenKindTitle">Methods</div>
+        <ul>
+    
+    <li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#__init__" class="internal-link" title="mypy.stubgen.ReferenceFinder.__init__">__init__</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#add_ref" class="internal-link" title="mypy.stubgen.ReferenceFinder.add_ref">add<wbr></wbr>_ref</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#visit_block" class="internal-link" title="mypy.stubgen.ReferenceFinder.visit_block">visit<wbr></wbr>_block</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#visit_callable_type" class="internal-link" title="mypy.stubgen.ReferenceFinder.visit_callable_type">visit<wbr></wbr>_callable<wbr></wbr>_type</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#visit_instance" class="internal-link" title="mypy.stubgen.ReferenceFinder.visit_instance">visit<wbr></wbr>_instance</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#visit_name_expr" class="internal-link" title="mypy.stubgen.ReferenceFinder.visit_name_expr">visit<wbr></wbr>_name<wbr></wbr>_expr</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#visit_tuple_type" class="internal-link" title="mypy.stubgen.ReferenceFinder.visit_tuple_type">visit<wbr></wbr>_tuple<wbr></wbr>_type</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#visit_unbound_type" class="internal-link" title="mypy.stubgen.ReferenceFinder.visit_unbound_type">visit<wbr></wbr>_unbound<wbr></wbr>_type</a></code>
+            </div>
+        
+
+    </li>
+</ul> 
+
+        <div class="childrenKindTitle">Inherited Methods</div>
+        <ul>
+    
+    <li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="mypy.mixedtraverser.MixedTraverserVisitor.html#visit__promote_expr" class="internal-link" title="mypy.mixedtraverser.MixedTraverserVisitor.visit__promote_expr">visit<wbr></wbr>_<wbr></wbr>_promote<wbr></wbr>_expr</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="mypy.mixedtraverser.MixedTraverserVisitor.html#visit_assignment_stmt" class="internal-link" title="mypy.mixedtraverser.MixedTraverserVisitor.visit_assignment_stmt">visit<wbr></wbr>_assignment<wbr></wbr>_stmt</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="mypy.mixedtraverser.MixedTraverserVisitor.html#visit_cast_expr" class="internal-link" title="mypy.mixedtraverser.MixedTraverserVisitor.visit_cast_expr">visit<wbr></wbr>_cast<wbr></wbr>_expr</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="mypy.mixedtraverser.MixedTraverserVisitor.html#visit_class_def" class="internal-link" title="mypy.mixedtraverser.MixedTraverserVisitor.visit_class_def">visit<wbr></wbr>_class<wbr></wbr>_def</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="mypy.mixedtraverser.MixedTraverserVisitor.html#visit_for_stmt" class="internal-link" title="mypy.mixedtraverser.MixedTraverserVisitor.visit_for_stmt">visit<wbr></wbr>_for<wbr></wbr>_stmt</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="mypy.mixedtraverser.MixedTraverserVisitor.html#visit_func" class="internal-link" title="mypy.mixedtraverser.MixedTraverserVisitor.visit_func">visit<wbr></wbr>_func</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="mypy.mixedtraverser.MixedTraverserVisitor.html#visit_namedtuple_expr" class="internal-link" title="mypy.mixedtraverser.MixedTraverserVisitor.visit_namedtuple_expr">visit<wbr></wbr>_namedtuple<wbr></wbr>_expr</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="mypy.mixedtraverser.MixedTraverserVisitor.html#visit_newtype_expr" class="internal-link" title="mypy.mixedtraverser.MixedTraverserVisitor.visit_newtype_expr">visit<wbr></wbr>_newtype<wbr></wbr>_expr</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="mypy.mixedtraverser.MixedTraverserVisitor.html#visit_optional_type" class="internal-link" title="mypy.mixedtraverser.MixedTraverserVisitor.visit_optional_type">visit<wbr></wbr>_optional<wbr></wbr>_type</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="mypy.mixedtraverser.MixedTraverserVisitor.html#visit_type_alias_expr" class="internal-link" title="mypy.mixedtraverser.MixedTraverserVisitor.visit_type_alias_expr">visit<wbr></wbr>_type<wbr></wbr>_alias<wbr></wbr>_expr</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="mypy.mixedtraverser.MixedTraverserVisitor.html#visit_type_application" class="internal-link" title="mypy.mixedtraverser.MixedTraverserVisitor.visit_type_application">visit<wbr></wbr>_type<wbr></wbr>_application</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="mypy.mixedtraverser.MixedTraverserVisitor.html#visit_type_var_expr" class="internal-link" title="mypy.mixedtraverser.MixedTraverserVisitor.visit_type_var_expr">visit<wbr></wbr>_type<wbr></wbr>_var<wbr></wbr>_expr</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="mypy.mixedtraverser.MixedTraverserVisitor.html#visit_typeddict_expr" class="internal-link" title="mypy.mixedtraverser.MixedTraverserVisitor.visit_typeddict_expr">visit<wbr></wbr>_typeddict<wbr></wbr>_expr</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="mypy.mixedtraverser.MixedTraverserVisitor.html#visit_var" class="internal-link" title="mypy.mixedtraverser.MixedTraverserVisitor.visit_var">visit<wbr></wbr>_var</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="mypy.mixedtraverser.MixedTraverserVisitor.html#visit_with_stmt" class="internal-link" title="mypy.mixedtraverser.MixedTraverserVisitor.visit_with_stmt">visit<wbr></wbr>_with<wbr></wbr>_stmt</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="mypy.traverser.TraverserVisitor.html#visit_as_pattern" class="internal-link" title="mypy.traverser.TraverserVisitor.visit_as_pattern">visit<wbr></wbr>_as<wbr></wbr>_pattern</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="mypy.traverser.TraverserVisitor.html#visit_assert_stmt" class="internal-link" title="mypy.traverser.TraverserVisitor.visit_assert_stmt">visit<wbr></wbr>_assert<wbr></wbr>_stmt</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="mypy.traverser.TraverserVisitor.html#visit_assignment_expr" class="internal-link" title="mypy.traverser.TraverserVisitor.visit_assignment_expr">visit<wbr></wbr>_assignment<wbr></wbr>_expr</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="mypy.traverser.TraverserVisitor.html#visit_await_expr" class="internal-link" title="mypy.traverser.TraverserVisitor.visit_await_expr">visit<wbr></wbr>_await<wbr></wbr>_expr</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="mypy.traverser.TraverserVisitor.html#visit_backquote_expr" class="internal-link" title="mypy.traverser.TraverserVisitor.visit_backquote_expr">visit<wbr></wbr>_backquote<wbr></wbr>_expr</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="mypy.traverser.TraverserVisitor.html#visit_call_expr" class="internal-link" title="mypy.traverser.TraverserVisitor.visit_call_expr">visit<wbr></wbr>_call<wbr></wbr>_expr</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="mypy.traverser.TraverserVisitor.html#visit_class_pattern" class="internal-link" title="mypy.traverser.TraverserVisitor.visit_class_pattern">visit<wbr></wbr>_class<wbr></wbr>_pattern</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="mypy.traverser.TraverserVisitor.html#visit_comparison_expr" class="internal-link" title="mypy.traverser.TraverserVisitor.visit_comparison_expr">visit<wbr></wbr>_comparison<wbr></wbr>_expr</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="mypy.traverser.TraverserVisitor.html#visit_conditional_expr" class="internal-link" title="mypy.traverser.TraverserVisitor.visit_conditional_expr">visit<wbr></wbr>_conditional<wbr></wbr>_expr</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="mypy.traverser.TraverserVisitor.html#visit_decorator" class="internal-link" title="mypy.traverser.TraverserVisitor.visit_decorator">visit<wbr></wbr>_decorator</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="mypy.traverser.TraverserVisitor.html#visit_del_stmt" class="internal-link" title="mypy.traverser.TraverserVisitor.visit_del_stmt">visit<wbr></wbr>_del<wbr></wbr>_stmt</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="mypy.traverser.TraverserVisitor.html#visit_dict_expr" class="internal-link" title="mypy.traverser.TraverserVisitor.visit_dict_expr">visit<wbr></wbr>_dict<wbr></wbr>_expr</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="mypy.traverser.TraverserVisitor.html#visit_dictionary_comprehension" class="internal-link" title="mypy.traverser.TraverserVisitor.visit_dictionary_comprehension">visit<wbr></wbr>_dictionary<wbr></wbr>_comprehension</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="mypy.traverser.TraverserVisitor.html#visit_exec_stmt" class="internal-link" title="mypy.traverser.TraverserVisitor.visit_exec_stmt">visit<wbr></wbr>_exec<wbr></wbr>_stmt</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="mypy.traverser.TraverserVisitor.html#visit_expression_stmt" class="internal-link" title="mypy.traverser.TraverserVisitor.visit_expression_stmt">visit<wbr></wbr>_expression<wbr></wbr>_stmt</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="mypy.traverser.TraverserVisitor.html#visit_func_def" class="internal-link" title="mypy.traverser.TraverserVisitor.visit_func_def">visit<wbr></wbr>_func<wbr></wbr>_def</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="mypy.traverser.TraverserVisitor.html#visit_generator_expr" class="internal-link" title="mypy.traverser.TraverserVisitor.visit_generator_expr">visit<wbr></wbr>_generator<wbr></wbr>_expr</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="mypy.traverser.TraverserVisitor.html#visit_if_stmt" class="internal-link" title="mypy.traverser.TraverserVisitor.visit_if_stmt">visit<wbr></wbr>_if<wbr></wbr>_stmt</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="mypy.traverser.TraverserVisitor.html#visit_import" class="internal-link" title="mypy.traverser.TraverserVisitor.visit_import">visit<wbr></wbr>_import</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="mypy.traverser.TraverserVisitor.html#visit_import_from" class="internal-link" title="mypy.traverser.TraverserVisitor.visit_import_from">visit<wbr></wbr>_import<wbr></wbr>_from</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="mypy.traverser.TraverserVisitor.html#visit_index_expr" class="internal-link" title="mypy.traverser.TraverserVisitor.visit_index_expr">visit<wbr></wbr>_index<wbr></wbr>_expr</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="mypy.traverser.TraverserVisitor.html#visit_lambda_expr" class="internal-link" title="mypy.traverser.TraverserVisitor.visit_lambda_expr">visit<wbr></wbr>_lambda<wbr></wbr>_expr</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="mypy.traverser.TraverserVisitor.html#visit_list_comprehension" class="internal-link" title="mypy.traverser.TraverserVisitor.visit_list_comprehension">visit<wbr></wbr>_list<wbr></wbr>_comprehension</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="mypy.traverser.TraverserVisitor.html#visit_list_expr" class="internal-link" title="mypy.traverser.TraverserVisitor.visit_list_expr">visit<wbr></wbr>_list<wbr></wbr>_expr</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="mypy.traverser.TraverserVisitor.html#visit_mapping_pattern" class="internal-link" title="mypy.traverser.TraverserVisitor.visit_mapping_pattern">visit<wbr></wbr>_mapping<wbr></wbr>_pattern</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="mypy.traverser.TraverserVisitor.html#visit_match_stmt" class="internal-link" title="mypy.traverser.TraverserVisitor.visit_match_stmt">visit<wbr></wbr>_match<wbr></wbr>_stmt</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="mypy.traverser.TraverserVisitor.html#visit_member_expr" class="internal-link" title="mypy.traverser.TraverserVisitor.visit_member_expr">visit<wbr></wbr>_member<wbr></wbr>_expr</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="mypy.traverser.TraverserVisitor.html#visit_mypy_file" class="internal-link" title="mypy.traverser.TraverserVisitor.visit_mypy_file">visit<wbr></wbr>_mypy<wbr></wbr>_file</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="mypy.traverser.TraverserVisitor.html#visit_op_expr" class="internal-link" title="mypy.traverser.TraverserVisitor.visit_op_expr">visit<wbr></wbr>_op<wbr></wbr>_expr</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="mypy.traverser.TraverserVisitor.html#visit_operator_assignment_stmt" class="internal-link" title="mypy.traverser.TraverserVisitor.visit_operator_assignment_stmt">visit<wbr></wbr>_operator<wbr></wbr>_assignment<wbr></wbr>_stmt</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="mypy.traverser.TraverserVisitor.html#visit_or_pattern" class="internal-link" title="mypy.traverser.TraverserVisitor.visit_or_pattern">visit<wbr></wbr>_or<wbr></wbr>_pattern</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="mypy.traverser.TraverserVisitor.html#visit_overloaded_func_def" class="internal-link" title="mypy.traverser.TraverserVisitor.visit_overloaded_func_def">visit<wbr></wbr>_overloaded<wbr></wbr>_func<wbr></wbr>_def</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="mypy.traverser.TraverserVisitor.html#visit_print_stmt" class="internal-link" title="mypy.traverser.TraverserVisitor.visit_print_stmt">visit<wbr></wbr>_print<wbr></wbr>_stmt</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="mypy.traverser.TraverserVisitor.html#visit_raise_stmt" class="internal-link" title="mypy.traverser.TraverserVisitor.visit_raise_stmt">visit<wbr></wbr>_raise<wbr></wbr>_stmt</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="mypy.traverser.TraverserVisitor.html#visit_return_stmt" class="internal-link" title="mypy.traverser.TraverserVisitor.visit_return_stmt">visit<wbr></wbr>_return<wbr></wbr>_stmt</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="mypy.traverser.TraverserVisitor.html#visit_reveal_expr" class="internal-link" title="mypy.traverser.TraverserVisitor.visit_reveal_expr">visit<wbr></wbr>_reveal<wbr></wbr>_expr</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="mypy.traverser.TraverserVisitor.html#visit_sequence_pattern" class="internal-link" title="mypy.traverser.TraverserVisitor.visit_sequence_pattern">visit<wbr></wbr>_sequence<wbr></wbr>_pattern</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="mypy.traverser.TraverserVisitor.html#visit_set_comprehension" class="internal-link" title="mypy.traverser.TraverserVisitor.visit_set_comprehension">visit<wbr></wbr>_set<wbr></wbr>_comprehension</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="mypy.traverser.TraverserVisitor.html#visit_set_expr" class="internal-link" title="mypy.traverser.TraverserVisitor.visit_set_expr">visit<wbr></wbr>_set<wbr></wbr>_expr</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="mypy.traverser.TraverserVisitor.html#visit_slice_expr" class="internal-link" title="mypy.traverser.TraverserVisitor.visit_slice_expr">visit<wbr></wbr>_slice<wbr></wbr>_expr</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="mypy.traverser.TraverserVisitor.html#visit_star_expr" class="internal-link" title="mypy.traverser.TraverserVisitor.visit_star_expr">visit<wbr></wbr>_star<wbr></wbr>_expr</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="mypy.traverser.TraverserVisitor.html#visit_starred_patten" class="internal-link" title="mypy.traverser.TraverserVisitor.visit_starred_patten">visit<wbr></wbr>_starred<wbr></wbr>_patten</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="mypy.traverser.TraverserVisitor.html#visit_super_expr" class="internal-link" title="mypy.traverser.TraverserVisitor.visit_super_expr">visit<wbr></wbr>_super<wbr></wbr>_expr</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="mypy.traverser.TraverserVisitor.html#visit_try_stmt" class="internal-link" title="mypy.traverser.TraverserVisitor.visit_try_stmt">visit<wbr></wbr>_try<wbr></wbr>_stmt</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="mypy.traverser.TraverserVisitor.html#visit_tuple_expr" class="internal-link" title="mypy.traverser.TraverserVisitor.visit_tuple_expr">visit<wbr></wbr>_tuple<wbr></wbr>_expr</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="mypy.traverser.TraverserVisitor.html#visit_unary_expr" class="internal-link" title="mypy.traverser.TraverserVisitor.visit_unary_expr">visit<wbr></wbr>_unary<wbr></wbr>_expr</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="mypy.traverser.TraverserVisitor.html#visit_value_pattern" class="internal-link" title="mypy.traverser.TraverserVisitor.visit_value_pattern">visit<wbr></wbr>_value<wbr></wbr>_pattern</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="mypy.traverser.TraverserVisitor.html#visit_while_stmt" class="internal-link" title="mypy.traverser.TraverserVisitor.visit_while_stmt">visit<wbr></wbr>_while<wbr></wbr>_stmt</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="mypy.traverser.TraverserVisitor.html#visit_yield_expr" class="internal-link" title="mypy.traverser.TraverserVisitor.visit_yield_expr">visit<wbr></wbr>_yield<wbr></wbr>_expr</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="mypy.traverser.TraverserVisitor.html#visit_yield_from_expr" class="internal-link" title="mypy.traverser.TraverserVisitor.visit_yield_from_expr">visit<wbr></wbr>_yield<wbr></wbr>_from<wbr></wbr>_expr</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="mypy.typetraverser.TypeTraverserVisitor.html#traverse_types" class="internal-link" title="mypy.typetraverser.TypeTraverserVisitor.traverse_types">traverse<wbr></wbr>_types</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="mypy.typetraverser.TypeTraverserVisitor.html#visit_any" class="internal-link" title="mypy.typetraverser.TypeTraverserVisitor.visit_any">visit<wbr></wbr>_any</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="mypy.typetraverser.TypeTraverserVisitor.html#visit_callable_argument" class="internal-link" title="mypy.typetraverser.TypeTraverserVisitor.visit_callable_argument">visit<wbr></wbr>_callable<wbr></wbr>_argument</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="mypy.typetraverser.TypeTraverserVisitor.html#visit_deleted_type" class="internal-link" title="mypy.typetraverser.TypeTraverserVisitor.visit_deleted_type">visit<wbr></wbr>_deleted<wbr></wbr>_type</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="mypy.typetraverser.TypeTraverserVisitor.html#visit_ellipsis_type" class="internal-link" title="mypy.typetraverser.TypeTraverserVisitor.visit_ellipsis_type">visit<wbr></wbr>_ellipsis<wbr></wbr>_type</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="mypy.typetraverser.TypeTraverserVisitor.html#visit_erased_type" class="internal-link" title="mypy.typetraverser.TypeTraverserVisitor.visit_erased_type">visit<wbr></wbr>_erased<wbr></wbr>_type</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="mypy.typetraverser.TypeTraverserVisitor.html#visit_literal_type" class="internal-link" title="mypy.typetraverser.TypeTraverserVisitor.visit_literal_type">visit<wbr></wbr>_literal<wbr></wbr>_type</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="mypy.typetraverser.TypeTraverserVisitor.html#visit_none_type" class="internal-link" title="mypy.typetraverser.TypeTraverserVisitor.visit_none_type">visit<wbr></wbr>_none<wbr></wbr>_type</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="mypy.typetraverser.TypeTraverserVisitor.html#visit_overloaded" class="internal-link" title="mypy.typetraverser.TypeTraverserVisitor.visit_overloaded">visit<wbr></wbr>_overloaded</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="mypy.typetraverser.TypeTraverserVisitor.html#visit_param_spec" class="internal-link" title="mypy.typetraverser.TypeTraverserVisitor.visit_param_spec">visit<wbr></wbr>_param<wbr></wbr>_spec</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="mypy.typetraverser.TypeTraverserVisitor.html#visit_partial_type" class="internal-link" title="mypy.typetraverser.TypeTraverserVisitor.visit_partial_type">visit<wbr></wbr>_partial<wbr></wbr>_type</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="mypy.typetraverser.TypeTraverserVisitor.html#visit_placeholder_type" class="internal-link" title="mypy.typetraverser.TypeTraverserVisitor.visit_placeholder_type">visit<wbr></wbr>_placeholder<wbr></wbr>_type</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="mypy.typetraverser.TypeTraverserVisitor.html#visit_raw_expression_type" class="internal-link" title="mypy.typetraverser.TypeTraverserVisitor.visit_raw_expression_type">visit<wbr></wbr>_raw<wbr></wbr>_expression<wbr></wbr>_type</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="mypy.typetraverser.TypeTraverserVisitor.html#visit_star_type" class="internal-link" title="mypy.typetraverser.TypeTraverserVisitor.visit_star_type">visit<wbr></wbr>_star<wbr></wbr>_type</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="mypy.typetraverser.TypeTraverserVisitor.html#visit_type_alias_type" class="internal-link" title="mypy.typetraverser.TypeTraverserVisitor.visit_type_alias_type">visit<wbr></wbr>_type<wbr></wbr>_alias<wbr></wbr>_type</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="mypy.typetraverser.TypeTraverserVisitor.html#visit_type_list" class="internal-link" title="mypy.typetraverser.TypeTraverserVisitor.visit_type_list">visit<wbr></wbr>_type<wbr></wbr>_list</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="mypy.typetraverser.TypeTraverserVisitor.html#visit_type_type" class="internal-link" title="mypy.typetraverser.TypeTraverserVisitor.visit_type_type">visit<wbr></wbr>_type<wbr></wbr>_type</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="mypy.typetraverser.TypeTraverserVisitor.html#visit_type_var" class="internal-link" title="mypy.typetraverser.TypeTraverserVisitor.visit_type_var">visit<wbr></wbr>_type<wbr></wbr>_var</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="mypy.typetraverser.TypeTraverserVisitor.html#visit_typeddict_type" class="internal-link" title="mypy.typetraverser.TypeTraverserVisitor.visit_typeddict_type">visit<wbr></wbr>_typeddict<wbr></wbr>_type</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="mypy.typetraverser.TypeTraverserVisitor.html#visit_uninhabited_type" class="internal-link" title="mypy.typetraverser.TypeTraverserVisitor.visit_uninhabited_type">visit<wbr></wbr>_uninhabited<wbr></wbr>_type</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="mypy.typetraverser.TypeTraverserVisitor.html#visit_union_type" class="internal-link" title="mypy.typetraverser.TypeTraverserVisitor.visit_union_type">visit<wbr></wbr>_union<wbr></wbr>_type</a></code>
+            </div>
+        
+
+    </li>
+</ul> 
+
+        <div class="childrenKindTitle">Attributes</div>
+        <ul>
+    
+    <li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#refs" class="internal-link" title="mypy.stubgen.ReferenceFinder.refs">refs</a></code>
+            </div>
+        
+
+    </li>
+</ul> 
+
+        
+         
+        
+      </div>
+  </div><div>
+
+      <div class="thingTitle">
+        <span>Module</span>
+        <code><a href="mypy.stubgen.html" class="internal-link" title="The parent of this class">stubgen</a></code> 
+      </div>
+      
+      <div>
+        
+
+        
+         
+
+        <div class="childrenKindTitle">Classes</div>
+        <ul>
+    
+    <li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="mypy.stubgen.AliasPrinter.html" class="internal-link" title="mypy.stubgen.AliasPrinter"><wbr></wbr>Alias<wbr></wbr>Printer</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="mypy.stubgen.AnnotationPrinter.html" class="internal-link" title="mypy.stubgen.AnnotationPrinter"><wbr></wbr>Annotation<wbr></wbr>Printer</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="mypy.stubgen.DefinitionFinder.html" class="internal-link" title="mypy.stubgen.DefinitionFinder"><wbr></wbr>Definition<wbr></wbr>Finder</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="mypy.stubgen.ImportTracker.html" class="internal-link" title="mypy.stubgen.ImportTracker"><wbr></wbr>Import<wbr></wbr>Tracker</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="mypy.stubgen.Options.html" class="internal-link" title="mypy.stubgen.Options"><wbr></wbr>Options</a></code>
+            </div>
+        
+
+    </li><li class=" thisobject">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="mypy.stubgen.ReferenceFinder.html" class="internal-link" title="mypy.stubgen.ReferenceFinder"><wbr></wbr>Reference<wbr></wbr>Finder</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="mypy.stubgen.SelfTraverser.html" class="internal-link" title="mypy.stubgen.SelfTraverser"><wbr></wbr>Self<wbr></wbr>Traverser</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="mypy.stubgen.StubGenerator.html" class="internal-link" title="mypy.stubgen.StubGenerator"><wbr></wbr>Stub<wbr></wbr>Generator</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="mypy.stubgen.StubSource.html" class="internal-link" title="mypy.stubgen.StubSource"><wbr></wbr>Stub<wbr></wbr>Source</a></code>
+            </div>
+        
+
+    </li>
+</ul>
+
+        <div class="childrenKindTitle">Functions</div>
+        <ul>
+    
+    <li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="mypy.stubgen.html#collect_build_targets" class="internal-link" title="mypy.stubgen.collect_build_targets">collect<wbr></wbr>_build<wbr></wbr>_targets</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="mypy.stubgen.html#collect_docs_signatures" class="internal-link" title="mypy.stubgen.collect_docs_signatures">collect<wbr></wbr>_docs<wbr></wbr>_signatures</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="mypy.stubgen.html#find_defined_names" class="internal-link" title="mypy.stubgen.find_defined_names">find<wbr></wbr>_defined<wbr></wbr>_names</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="mypy.stubgen.html#find_method_names" class="internal-link" title="mypy.stubgen.find_method_names">find<wbr></wbr>_method<wbr></wbr>_names</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="mypy.stubgen.html#find_module_paths_using_imports" class="internal-link" title="mypy.stubgen.find_module_paths_using_imports">find<wbr></wbr>_module<wbr></wbr>_paths<wbr></wbr>_using<wbr></wbr>_imports</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="mypy.stubgen.html#find_module_paths_using_search" class="internal-link" title="mypy.stubgen.find_module_paths_using_search">find<wbr></wbr>_module<wbr></wbr>_paths<wbr></wbr>_using<wbr></wbr>_search</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="mypy.stubgen.html#find_referenced_names" class="internal-link" title="mypy.stubgen.find_referenced_names">find<wbr></wbr>_referenced<wbr></wbr>_names</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="mypy.stubgen.html#find_self_initializers" class="internal-link" title="mypy.stubgen.find_self_initializers">find<wbr></wbr>_self<wbr></wbr>_initializers</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="mypy.stubgen.html#generate_asts_for_modules" class="internal-link" title="mypy.stubgen.generate_asts_for_modules">generate<wbr></wbr>_asts<wbr></wbr>_for<wbr></wbr>_modules</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="mypy.stubgen.html#generate_stub_from_ast" class="internal-link" title="mypy.stubgen.generate_stub_from_ast">generate<wbr></wbr>_stub<wbr></wbr>_from<wbr></wbr>_ast</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="mypy.stubgen.html#generate_stubs" class="internal-link" title="mypy.stubgen.generate_stubs">generate<wbr></wbr>_stubs</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="mypy.stubgen.html#get_qualified_name" class="internal-link" title="mypy.stubgen.get_qualified_name">get<wbr></wbr>_qualified<wbr></wbr>_name</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="mypy.stubgen.html#is_blacklisted_path" class="internal-link" title="mypy.stubgen.is_blacklisted_path">is<wbr></wbr>_blacklisted<wbr></wbr>_path</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="mypy.stubgen.html#is_non_library_module" class="internal-link" title="mypy.stubgen.is_non_library_module">is<wbr></wbr>_non<wbr></wbr>_library<wbr></wbr>_module</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="mypy.stubgen.html#main" class="internal-link" title="mypy.stubgen.main">main</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="mypy.stubgen.html#mypy_options" class="internal-link" title="mypy.stubgen.mypy_options">mypy<wbr></wbr>_options</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="mypy.stubgen.html#normalize_path_separators" class="internal-link" title="mypy.stubgen.normalize_path_separators">normalize<wbr></wbr>_path<wbr></wbr>_separators</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="mypy.stubgen.html#parse_options" class="internal-link" title="mypy.stubgen.parse_options">parse<wbr></wbr>_options</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="mypy.stubgen.html#parse_source_file" class="internal-link" title="mypy.stubgen.parse_source_file">parse<wbr></wbr>_source<wbr></wbr>_file</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="mypy.stubgen.html#remove_blacklisted_modules" class="internal-link" title="mypy.stubgen.remove_blacklisted_modules">remove<wbr></wbr>_blacklisted<wbr></wbr>_modules</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="mypy.stubgen.html#translate_module_name" class="internal-link" title="mypy.stubgen.translate_module_name">translate<wbr></wbr>_module<wbr></wbr>_name</a></code>
+            </div>
+        
+
+    </li>
+</ul> 
+
+        
+         
+
+        <div class="childrenKindTitle">Variables</div>
+        <ul>
+    
+    <li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="mypy.stubgen.html#BLACKLIST" class="internal-link" title="mypy.stubgen.BLACKLIST">BLACKLIST</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="mypy.stubgen.html#CLASS" class="internal-link" title="mypy.stubgen.CLASS">CLASS</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="mypy.stubgen.html#DESCRIPTION" class="internal-link" title="mypy.stubgen.DESCRIPTION">DESCRIPTION</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="mypy.stubgen.html#EMPTY" class="internal-link" title="mypy.stubgen.EMPTY">EMPTY</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="mypy.stubgen.html#EMPTY_CLASS" class="internal-link" title="mypy.stubgen.EMPTY_CLASS">EMPTY<wbr></wbr>_CLASS</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="mypy.stubgen.html#ERROR_MARKER" class="internal-link" title="mypy.stubgen.ERROR_MARKER">ERROR<wbr></wbr>_MARKER</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="mypy.stubgen.html#EXTRA_EXPORTED" class="internal-link" title="mypy.stubgen.EXTRA_EXPORTED">EXTRA<wbr></wbr>_EXPORTED</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="mypy.stubgen.html#FUNC" class="internal-link" title="mypy.stubgen.FUNC">FUNC</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="mypy.stubgen.html#HEADER" class="internal-link" title="mypy.stubgen.HEADER">HEADER</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="mypy.stubgen.html#IGNORED_DUNDERS" class="internal-link" title="mypy.stubgen.IGNORED_DUNDERS">IGNORED<wbr></wbr>_DUNDERS</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="mypy.stubgen.html#METHODS_WITH_RETURN_VALUE" class="internal-link" title="mypy.stubgen.METHODS_WITH_RETURN_VALUE">METHODS<wbr></wbr>_WITH<wbr></wbr>_RETURN<wbr></wbr>_VALUE</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="mypy.stubgen.html#NOT_IN_ALL" class="internal-link" title="mypy.stubgen.NOT_IN_ALL">NOT<wbr></wbr>_IN<wbr></wbr>_ALL</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="mypy.stubgen.html#VAR" class="internal-link" title="mypy.stubgen.VAR">VAR</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="mypy.stubgen.html#VENDOR_PACKAGES" class="internal-link" title="mypy.stubgen.VENDOR_PACKAGES">VENDOR<wbr></wbr>_PACKAGES</a></code>
+            </div>
+        
+
+    </li>
+</ul> 
+
+        
+         
+        
+      </div>
+  </div>
+
+</nav>
+        </div>
+        <div id="collapseSideBar">
+          <a class="btn btn-link" onclick="toggleSideBarCollapse()" title="Toggle Sidebar Collapse">
+          </a>
+        </div> 
+        <script src="sidebartoggle.js" type="text/javascript"></script>
+       
+      </div>
+
+      <div id="main" class="">
+        
+
+        
+
+        <div class="page-header">
+          <h1 class="class"><code><code><a href="index.html" class="internal-link">mypy</a></code><wbr></wbr>.<code><a href="mypy.stubgen.html" class="internal-link" title="mypy.stubgen">stubgen</a></code><wbr></wbr>.<code><a href="mypy.stubgen.ReferenceFinder.html" class="internal-link" title="mypy.stubgen.ReferenceFinder">ReferenceFinder</a></code></code></h1>
+          <div id="showPrivate">
+            <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+          </div>
+        </div>
+
+        <div class="categoryHeader">
+          class documentation
+        </div>
+
+        <div class="extrasDocstring">
+          <p><code><span class="py-keyword">class</span> <span class="py-defname">ReferenceFinder</span>(<a href="mypy.mixedtraverser.MixedTraverserVisitor.html" class="internal-link" title="mypy.mixedtraverser.MixedTraverserVisitor">mypy.mixedtraverser.MixedTraverserVisitor</a>): <a href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.942//mypy/stubgen.py#L487" class="sourceLink">(source)</a></code></p>
+          <p><a href="classIndex.html#mypy.stubgen.ReferenceFinder">View In Hierarchy</a></p>
+        </div>
+
+        <div class="moduleDocstring">
+          <div><p class="pre">Find all name references (both local and global).</p></div>
+        </div>
+
+        <div id="splitTables">
+          <table class="children sortable" id="id1487">
+  
+  
+  <tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__init__" class="internal-link" title="mypy.stubgen.ReferenceFinder.__init__">__init__</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#add_ref" class="internal-link" title="mypy.stubgen.ReferenceFinder.add_ref">add<wbr></wbr>_ref</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#visit_block" class="internal-link" title="mypy.stubgen.ReferenceFinder.visit_block">visit<wbr></wbr>_block</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#visit_callable_type" class="internal-link" title="mypy.stubgen.ReferenceFinder.visit_callable_type">visit<wbr></wbr>_callable<wbr></wbr>_type</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#visit_instance" class="internal-link" title="mypy.stubgen.ReferenceFinder.visit_instance">visit<wbr></wbr>_instance</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#visit_name_expr" class="internal-link" title="mypy.stubgen.ReferenceFinder.visit_name_expr">visit<wbr></wbr>_name<wbr></wbr>_expr</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#visit_tuple_type" class="internal-link" title="mypy.stubgen.ReferenceFinder.visit_tuple_type">visit<wbr></wbr>_tuple<wbr></wbr>_type</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#visit_unbound_type" class="internal-link" title="mypy.stubgen.ReferenceFinder.visit_unbound_type">visit<wbr></wbr>_unbound<wbr></wbr>_type</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#refs" class="internal-link" title="mypy.stubgen.ReferenceFinder.refs">refs</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+          
+            <p class="inheritedFrom">
+              Inherited from <code><a href="mypy.mixedtraverser.MixedTraverserVisitor.html" class="internal-link" title="mypy.mixedtraverser.MixedTraverserVisitor">MixedTraverserVisitor</a></code>:
+            </p>
+            <table class="children sortable" id="id1488">
+  
+  
+  <tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="mypy.mixedtraverser.MixedTraverserVisitor.html#visit__promote_expr" class="internal-link" title="mypy.mixedtraverser.MixedTraverserVisitor.visit__promote_expr">visit<wbr></wbr>_<wbr></wbr>_promote<wbr></wbr>_expr</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="mypy.mixedtraverser.MixedTraverserVisitor.html#visit_assignment_stmt" class="internal-link" title="mypy.mixedtraverser.MixedTraverserVisitor.visit_assignment_stmt">visit<wbr></wbr>_assignment<wbr></wbr>_stmt</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="mypy.mixedtraverser.MixedTraverserVisitor.html#visit_cast_expr" class="internal-link" title="mypy.mixedtraverser.MixedTraverserVisitor.visit_cast_expr">visit<wbr></wbr>_cast<wbr></wbr>_expr</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="mypy.mixedtraverser.MixedTraverserVisitor.html#visit_class_def" class="internal-link" title="mypy.mixedtraverser.MixedTraverserVisitor.visit_class_def">visit<wbr></wbr>_class<wbr></wbr>_def</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="mypy.mixedtraverser.MixedTraverserVisitor.html#visit_for_stmt" class="internal-link" title="mypy.mixedtraverser.MixedTraverserVisitor.visit_for_stmt">visit<wbr></wbr>_for<wbr></wbr>_stmt</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="mypy.mixedtraverser.MixedTraverserVisitor.html#visit_func" class="internal-link" title="mypy.mixedtraverser.MixedTraverserVisitor.visit_func">visit<wbr></wbr>_func</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="mypy.mixedtraverser.MixedTraverserVisitor.html#visit_namedtuple_expr" class="internal-link" title="mypy.mixedtraverser.MixedTraverserVisitor.visit_namedtuple_expr">visit<wbr></wbr>_namedtuple<wbr></wbr>_expr</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="mypy.mixedtraverser.MixedTraverserVisitor.html#visit_newtype_expr" class="internal-link" title="mypy.mixedtraverser.MixedTraverserVisitor.visit_newtype_expr">visit<wbr></wbr>_newtype<wbr></wbr>_expr</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="mypy.mixedtraverser.MixedTraverserVisitor.html#visit_optional_type" class="internal-link" title="mypy.mixedtraverser.MixedTraverserVisitor.visit_optional_type">visit<wbr></wbr>_optional<wbr></wbr>_type</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="mypy.mixedtraverser.MixedTraverserVisitor.html#visit_type_alias_expr" class="internal-link" title="mypy.mixedtraverser.MixedTraverserVisitor.visit_type_alias_expr">visit<wbr></wbr>_type<wbr></wbr>_alias<wbr></wbr>_expr</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="mypy.mixedtraverser.MixedTraverserVisitor.html#visit_type_application" class="internal-link" title="mypy.mixedtraverser.MixedTraverserVisitor.visit_type_application">visit<wbr></wbr>_type<wbr></wbr>_application</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="mypy.mixedtraverser.MixedTraverserVisitor.html#visit_type_var_expr" class="internal-link" title="mypy.mixedtraverser.MixedTraverserVisitor.visit_type_var_expr">visit<wbr></wbr>_type<wbr></wbr>_var<wbr></wbr>_expr</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="mypy.mixedtraverser.MixedTraverserVisitor.html#visit_typeddict_expr" class="internal-link" title="mypy.mixedtraverser.MixedTraverserVisitor.visit_typeddict_expr">visit<wbr></wbr>_typeddict<wbr></wbr>_expr</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="mypy.mixedtraverser.MixedTraverserVisitor.html#visit_var" class="internal-link" title="mypy.mixedtraverser.MixedTraverserVisitor.visit_var">visit<wbr></wbr>_var</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="mypy.mixedtraverser.MixedTraverserVisitor.html#visit_with_stmt" class="internal-link" title="mypy.mixedtraverser.MixedTraverserVisitor.visit_with_stmt">visit<wbr></wbr>_with<wbr></wbr>_stmt</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+            
+            <p class="inheritedFrom">
+              Inherited from <code><a href="mypy.traverser.TraverserVisitor.html" class="internal-link" title="mypy.traverser.TraverserVisitor">TraverserVisitor</a></code> (via <code><a href="mypy.mixedtraverser.MixedTraverserVisitor.html" class="internal-link" title="mypy.mixedtraverser.MixedTraverserVisitor">MixedTraverserVisitor</a></code>):
+            </p>
+            <table class="children sortable" id="id1489">
+  
+  
+  <tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="mypy.traverser.TraverserVisitor.html#visit_as_pattern" class="internal-link" title="mypy.traverser.TraverserVisitor.visit_as_pattern">visit<wbr></wbr>_as<wbr></wbr>_pattern</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="mypy.traverser.TraverserVisitor.html#visit_assert_stmt" class="internal-link" title="mypy.traverser.TraverserVisitor.visit_assert_stmt">visit<wbr></wbr>_assert<wbr></wbr>_stmt</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="mypy.traverser.TraverserVisitor.html#visit_assignment_expr" class="internal-link" title="mypy.traverser.TraverserVisitor.visit_assignment_expr">visit<wbr></wbr>_assignment<wbr></wbr>_expr</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="mypy.traverser.TraverserVisitor.html#visit_await_expr" class="internal-link" title="mypy.traverser.TraverserVisitor.visit_await_expr">visit<wbr></wbr>_await<wbr></wbr>_expr</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="mypy.traverser.TraverserVisitor.html#visit_backquote_expr" class="internal-link" title="mypy.traverser.TraverserVisitor.visit_backquote_expr">visit<wbr></wbr>_backquote<wbr></wbr>_expr</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="mypy.traverser.TraverserVisitor.html#visit_call_expr" class="internal-link" title="mypy.traverser.TraverserVisitor.visit_call_expr">visit<wbr></wbr>_call<wbr></wbr>_expr</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="mypy.traverser.TraverserVisitor.html#visit_class_pattern" class="internal-link" title="mypy.traverser.TraverserVisitor.visit_class_pattern">visit<wbr></wbr>_class<wbr></wbr>_pattern</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="mypy.traverser.TraverserVisitor.html#visit_comparison_expr" class="internal-link" title="mypy.traverser.TraverserVisitor.visit_comparison_expr">visit<wbr></wbr>_comparison<wbr></wbr>_expr</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="mypy.traverser.TraverserVisitor.html#visit_conditional_expr" class="internal-link" title="mypy.traverser.TraverserVisitor.visit_conditional_expr">visit<wbr></wbr>_conditional<wbr></wbr>_expr</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="mypy.traverser.TraverserVisitor.html#visit_decorator" class="internal-link" title="mypy.traverser.TraverserVisitor.visit_decorator">visit<wbr></wbr>_decorator</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="mypy.traverser.TraverserVisitor.html#visit_del_stmt" class="internal-link" title="mypy.traverser.TraverserVisitor.visit_del_stmt">visit<wbr></wbr>_del<wbr></wbr>_stmt</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="mypy.traverser.TraverserVisitor.html#visit_dict_expr" class="internal-link" title="mypy.traverser.TraverserVisitor.visit_dict_expr">visit<wbr></wbr>_dict<wbr></wbr>_expr</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="mypy.traverser.TraverserVisitor.html#visit_dictionary_comprehension" class="internal-link" title="mypy.traverser.TraverserVisitor.visit_dictionary_comprehension">visit<wbr></wbr>_dictionary<wbr></wbr>_comprehension</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="mypy.traverser.TraverserVisitor.html#visit_exec_stmt" class="internal-link" title="mypy.traverser.TraverserVisitor.visit_exec_stmt">visit<wbr></wbr>_exec<wbr></wbr>_stmt</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="mypy.traverser.TraverserVisitor.html#visit_expression_stmt" class="internal-link" title="mypy.traverser.TraverserVisitor.visit_expression_stmt">visit<wbr></wbr>_expression<wbr></wbr>_stmt</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="mypy.traverser.TraverserVisitor.html#visit_func_def" class="internal-link" title="mypy.traverser.TraverserVisitor.visit_func_def">visit<wbr></wbr>_func<wbr></wbr>_def</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="mypy.traverser.TraverserVisitor.html#visit_generator_expr" class="internal-link" title="mypy.traverser.TraverserVisitor.visit_generator_expr">visit<wbr></wbr>_generator<wbr></wbr>_expr</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="mypy.traverser.TraverserVisitor.html#visit_if_stmt" class="internal-link" title="mypy.traverser.TraverserVisitor.visit_if_stmt">visit<wbr></wbr>_if<wbr></wbr>_stmt</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="mypy.traverser.TraverserVisitor.html#visit_import" class="internal-link" title="mypy.traverser.TraverserVisitor.visit_import">visit<wbr></wbr>_import</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="mypy.traverser.TraverserVisitor.html#visit_import_from" class="internal-link" title="mypy.traverser.TraverserVisitor.visit_import_from">visit<wbr></wbr>_import<wbr></wbr>_from</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="mypy.traverser.TraverserVisitor.html#visit_index_expr" class="internal-link" title="mypy.traverser.TraverserVisitor.visit_index_expr">visit<wbr></wbr>_index<wbr></wbr>_expr</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="mypy.traverser.TraverserVisitor.html#visit_lambda_expr" class="internal-link" title="mypy.traverser.TraverserVisitor.visit_lambda_expr">visit<wbr></wbr>_lambda<wbr></wbr>_expr</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="mypy.traverser.TraverserVisitor.html#visit_list_comprehension" class="internal-link" title="mypy.traverser.TraverserVisitor.visit_list_comprehension">visit<wbr></wbr>_list<wbr></wbr>_comprehension</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="mypy.traverser.TraverserVisitor.html#visit_list_expr" class="internal-link" title="mypy.traverser.TraverserVisitor.visit_list_expr">visit<wbr></wbr>_list<wbr></wbr>_expr</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="mypy.traverser.TraverserVisitor.html#visit_mapping_pattern" class="internal-link" title="mypy.traverser.TraverserVisitor.visit_mapping_pattern">visit<wbr></wbr>_mapping<wbr></wbr>_pattern</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="mypy.traverser.TraverserVisitor.html#visit_match_stmt" class="internal-link" title="mypy.traverser.TraverserVisitor.visit_match_stmt">visit<wbr></wbr>_match<wbr></wbr>_stmt</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="mypy.traverser.TraverserVisitor.html#visit_member_expr" class="internal-link" title="mypy.traverser.TraverserVisitor.visit_member_expr">visit<wbr></wbr>_member<wbr></wbr>_expr</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="mypy.traverser.TraverserVisitor.html#visit_mypy_file" class="internal-link" title="mypy.traverser.TraverserVisitor.visit_mypy_file">visit<wbr></wbr>_mypy<wbr></wbr>_file</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="mypy.traverser.TraverserVisitor.html#visit_op_expr" class="internal-link" title="mypy.traverser.TraverserVisitor.visit_op_expr">visit<wbr></wbr>_op<wbr></wbr>_expr</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="mypy.traverser.TraverserVisitor.html#visit_operator_assignment_stmt" class="internal-link" title="mypy.traverser.TraverserVisitor.visit_operator_assignment_stmt">visit<wbr></wbr>_operator<wbr></wbr>_assignment<wbr></wbr>_stmt</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="mypy.traverser.TraverserVisitor.html#visit_or_pattern" class="internal-link" title="mypy.traverser.TraverserVisitor.visit_or_pattern">visit<wbr></wbr>_or<wbr></wbr>_pattern</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="mypy.traverser.TraverserVisitor.html#visit_overloaded_func_def" class="internal-link" title="mypy.traverser.TraverserVisitor.visit_overloaded_func_def">visit<wbr></wbr>_overloaded<wbr></wbr>_func<wbr></wbr>_def</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="mypy.traverser.TraverserVisitor.html#visit_print_stmt" class="internal-link" title="mypy.traverser.TraverserVisitor.visit_print_stmt">visit<wbr></wbr>_print<wbr></wbr>_stmt</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="mypy.traverser.TraverserVisitor.html#visit_raise_stmt" class="internal-link" title="mypy.traverser.TraverserVisitor.visit_raise_stmt">visit<wbr></wbr>_raise<wbr></wbr>_stmt</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="mypy.traverser.TraverserVisitor.html#visit_return_stmt" class="internal-link" title="mypy.traverser.TraverserVisitor.visit_return_stmt">visit<wbr></wbr>_return<wbr></wbr>_stmt</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="mypy.traverser.TraverserVisitor.html#visit_reveal_expr" class="internal-link" title="mypy.traverser.TraverserVisitor.visit_reveal_expr">visit<wbr></wbr>_reveal<wbr></wbr>_expr</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="mypy.traverser.TraverserVisitor.html#visit_sequence_pattern" class="internal-link" title="mypy.traverser.TraverserVisitor.visit_sequence_pattern">visit<wbr></wbr>_sequence<wbr></wbr>_pattern</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="mypy.traverser.TraverserVisitor.html#visit_set_comprehension" class="internal-link" title="mypy.traverser.TraverserVisitor.visit_set_comprehension">visit<wbr></wbr>_set<wbr></wbr>_comprehension</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="mypy.traverser.TraverserVisitor.html#visit_set_expr" class="internal-link" title="mypy.traverser.TraverserVisitor.visit_set_expr">visit<wbr></wbr>_set<wbr></wbr>_expr</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="mypy.traverser.TraverserVisitor.html#visit_slice_expr" class="internal-link" title="mypy.traverser.TraverserVisitor.visit_slice_expr">visit<wbr></wbr>_slice<wbr></wbr>_expr</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="mypy.traverser.TraverserVisitor.html#visit_star_expr" class="internal-link" title="mypy.traverser.TraverserVisitor.visit_star_expr">visit<wbr></wbr>_star<wbr></wbr>_expr</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="mypy.traverser.TraverserVisitor.html#visit_starred_patten" class="internal-link" title="mypy.traverser.TraverserVisitor.visit_starred_patten">visit<wbr></wbr>_starred<wbr></wbr>_patten</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="mypy.traverser.TraverserVisitor.html#visit_super_expr" class="internal-link" title="mypy.traverser.TraverserVisitor.visit_super_expr">visit<wbr></wbr>_super<wbr></wbr>_expr</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="mypy.traverser.TraverserVisitor.html#visit_try_stmt" class="internal-link" title="mypy.traverser.TraverserVisitor.visit_try_stmt">visit<wbr></wbr>_try<wbr></wbr>_stmt</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="mypy.traverser.TraverserVisitor.html#visit_tuple_expr" class="internal-link" title="mypy.traverser.TraverserVisitor.visit_tuple_expr">visit<wbr></wbr>_tuple<wbr></wbr>_expr</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="mypy.traverser.TraverserVisitor.html#visit_unary_expr" class="internal-link" title="mypy.traverser.TraverserVisitor.visit_unary_expr">visit<wbr></wbr>_unary<wbr></wbr>_expr</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="mypy.traverser.TraverserVisitor.html#visit_value_pattern" class="internal-link" title="mypy.traverser.TraverserVisitor.visit_value_pattern">visit<wbr></wbr>_value<wbr></wbr>_pattern</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="mypy.traverser.TraverserVisitor.html#visit_while_stmt" class="internal-link" title="mypy.traverser.TraverserVisitor.visit_while_stmt">visit<wbr></wbr>_while<wbr></wbr>_stmt</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="mypy.traverser.TraverserVisitor.html#visit_yield_expr" class="internal-link" title="mypy.traverser.TraverserVisitor.visit_yield_expr">visit<wbr></wbr>_yield<wbr></wbr>_expr</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="mypy.traverser.TraverserVisitor.html#visit_yield_from_expr" class="internal-link" title="mypy.traverser.TraverserVisitor.visit_yield_from_expr">visit<wbr></wbr>_yield<wbr></wbr>_from<wbr></wbr>_expr</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+            
+            <p class="inheritedFrom">
+              Inherited from <code><a href="mypy.typetraverser.TypeTraverserVisitor.html" class="internal-link" title="mypy.typetraverser.TypeTraverserVisitor">TypeTraverserVisitor</a></code> (via <code><a href="mypy.mixedtraverser.MixedTraverserVisitor.html" class="internal-link" title="mypy.mixedtraverser.MixedTraverserVisitor">MixedTraverserVisitor</a></code>):
+            </p>
+            <table class="children sortable" id="id1490">
+  
+  
+  <tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="mypy.typetraverser.TypeTraverserVisitor.html#traverse_types" class="internal-link" title="mypy.typetraverser.TypeTraverserVisitor.traverse_types">traverse<wbr></wbr>_types</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="mypy.typetraverser.TypeTraverserVisitor.html#visit_any" class="internal-link" title="mypy.typetraverser.TypeTraverserVisitor.visit_any">visit<wbr></wbr>_any</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="mypy.typetraverser.TypeTraverserVisitor.html#visit_callable_argument" class="internal-link" title="mypy.typetraverser.TypeTraverserVisitor.visit_callable_argument">visit<wbr></wbr>_callable<wbr></wbr>_argument</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="mypy.typetraverser.TypeTraverserVisitor.html#visit_deleted_type" class="internal-link" title="mypy.typetraverser.TypeTraverserVisitor.visit_deleted_type">visit<wbr></wbr>_deleted<wbr></wbr>_type</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="mypy.typetraverser.TypeTraverserVisitor.html#visit_ellipsis_type" class="internal-link" title="mypy.typetraverser.TypeTraverserVisitor.visit_ellipsis_type">visit<wbr></wbr>_ellipsis<wbr></wbr>_type</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="mypy.typetraverser.TypeTraverserVisitor.html#visit_erased_type" class="internal-link" title="mypy.typetraverser.TypeTraverserVisitor.visit_erased_type">visit<wbr></wbr>_erased<wbr></wbr>_type</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="mypy.typetraverser.TypeTraverserVisitor.html#visit_literal_type" class="internal-link" title="mypy.typetraverser.TypeTraverserVisitor.visit_literal_type">visit<wbr></wbr>_literal<wbr></wbr>_type</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="mypy.typetraverser.TypeTraverserVisitor.html#visit_none_type" class="internal-link" title="mypy.typetraverser.TypeTraverserVisitor.visit_none_type">visit<wbr></wbr>_none<wbr></wbr>_type</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="mypy.typetraverser.TypeTraverserVisitor.html#visit_overloaded" class="internal-link" title="mypy.typetraverser.TypeTraverserVisitor.visit_overloaded">visit<wbr></wbr>_overloaded</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="mypy.typetraverser.TypeTraverserVisitor.html#visit_param_spec" class="internal-link" title="mypy.typetraverser.TypeTraverserVisitor.visit_param_spec">visit<wbr></wbr>_param<wbr></wbr>_spec</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="mypy.typetraverser.TypeTraverserVisitor.html#visit_partial_type" class="internal-link" title="mypy.typetraverser.TypeTraverserVisitor.visit_partial_type">visit<wbr></wbr>_partial<wbr></wbr>_type</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="mypy.typetraverser.TypeTraverserVisitor.html#visit_placeholder_type" class="internal-link" title="mypy.typetraverser.TypeTraverserVisitor.visit_placeholder_type">visit<wbr></wbr>_placeholder<wbr></wbr>_type</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="mypy.typetraverser.TypeTraverserVisitor.html#visit_raw_expression_type" class="internal-link" title="mypy.typetraverser.TypeTraverserVisitor.visit_raw_expression_type">visit<wbr></wbr>_raw<wbr></wbr>_expression<wbr></wbr>_type</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="mypy.typetraverser.TypeTraverserVisitor.html#visit_star_type" class="internal-link" title="mypy.typetraverser.TypeTraverserVisitor.visit_star_type">visit<wbr></wbr>_star<wbr></wbr>_type</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="mypy.typetraverser.TypeTraverserVisitor.html#visit_type_alias_type" class="internal-link" title="mypy.typetraverser.TypeTraverserVisitor.visit_type_alias_type">visit<wbr></wbr>_type<wbr></wbr>_alias<wbr></wbr>_type</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="mypy.typetraverser.TypeTraverserVisitor.html#visit_type_list" class="internal-link" title="mypy.typetraverser.TypeTraverserVisitor.visit_type_list">visit<wbr></wbr>_type<wbr></wbr>_list</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="mypy.typetraverser.TypeTraverserVisitor.html#visit_type_type" class="internal-link" title="mypy.typetraverser.TypeTraverserVisitor.visit_type_type">visit<wbr></wbr>_type<wbr></wbr>_type</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="mypy.typetraverser.TypeTraverserVisitor.html#visit_type_var" class="internal-link" title="mypy.typetraverser.TypeTraverserVisitor.visit_type_var">visit<wbr></wbr>_type<wbr></wbr>_var</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="mypy.typetraverser.TypeTraverserVisitor.html#visit_typeddict_type" class="internal-link" title="mypy.typetraverser.TypeTraverserVisitor.visit_typeddict_type">visit<wbr></wbr>_typeddict<wbr></wbr>_type</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="mypy.typetraverser.TypeTraverserVisitor.html#visit_uninhabited_type" class="internal-link" title="mypy.typetraverser.TypeTraverserVisitor.visit_uninhabited_type">visit<wbr></wbr>_uninhabited<wbr></wbr>_type</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="mypy.typetraverser.TypeTraverserVisitor.html#visit_union_type" class="internal-link" title="mypy.typetraverser.TypeTraverserVisitor.visit_union_type">visit<wbr></wbr>_union<wbr></wbr>_type</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+            
+
+            
+        </div>
+
+        <div id="childList">
+          <div class="basemethod">
+  
+  
+  <a name="mypy.stubgen.ReferenceFinder.__init__">
+    
+  </a>
+  <a name="__init__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__init__</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.942//mypy/stubgen.py#L492">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overrides <code><a href="mypy.traverser.TraverserVisitor.html#__init__" class="internal-link">mypy.traverser.TraverserVisitor.__init__</a></code></div>
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="mypy.stubgen.ReferenceFinder.add_ref">
+    
+  </a>
+  <a name="add_ref">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">add_ref</span>(self, fullname):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.942//mypy/stubgen.py#L522">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">fullname:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="mypy.stubgen.ReferenceFinder.visit_block">
+    
+  </a>
+  <a name="visit_block">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">visit_block</span>(self, block):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.942//mypy/stubgen.py#L496">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overrides <code><a href="mypy.traverser.TraverserVisitor.html#visit_block" class="internal-link">mypy.traverser.TraverserVisitor.visit_block</a></code></div>
+    
+    <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">block:</span><code><a href="mypy.nodes.Block.html" class="internal-link" title="mypy.nodes.Block">Block</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="mypy.stubgen.ReferenceFinder.visit_callable_type">
+    
+  </a>
+  <a name="visit_callable_type">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">visit_callable_type</span>(self, t):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.942//mypy/stubgen.py#L516">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overrides <code><a href="mypy.typetraverser.TypeTraverserVisitor.html#visit_callable_type" class="internal-link">mypy.typetraverser.TypeTraverserVisitor.visit_callable_type</a></code></div>
+    
+    <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">t:</span><code><a href="mypy.types.CallableType.html" class="internal-link" title="mypy.types.CallableType">CallableType</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="mypy.stubgen.ReferenceFinder.visit_instance">
+    
+  </a>
+  <a name="visit_instance">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">visit_instance</span>(self, t):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.942//mypy/stubgen.py#L503">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overrides <code><a href="mypy.typetraverser.TypeTraverserVisitor.html#visit_instance" class="internal-link">mypy.typetraverser.TypeTraverserVisitor.visit_instance</a></code></div>
+    
+    <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">t:</span><code><a href="mypy.types.Instance.html" class="internal-link" title="mypy.types.Instance">Instance</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="mypy.stubgen.ReferenceFinder.visit_name_expr">
+    
+  </a>
+  <a name="visit_name_expr">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">visit_name_expr</span>(self, e):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.942//mypy/stubgen.py#L500">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">e:</span><code><a href="mypy.nodes.NameExpr.html" class="internal-link" title="mypy.nodes.NameExpr">NameExpr</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="mypy.stubgen.ReferenceFinder.visit_tuple_type">
+    
+  </a>
+  <a name="visit_tuple_type">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">visit_tuple_type</span>(self, t):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.942//mypy/stubgen.py#L511">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overrides <code><a href="mypy.typetraverser.TypeTraverserVisitor.html#visit_tuple_type" class="internal-link">mypy.typetraverser.TypeTraverserVisitor.visit_tuple_type</a></code></div>
+    
+    <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">t:</span><code><a href="mypy.types.TupleType.html" class="internal-link" title="mypy.types.TupleType">TupleType</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="mypy.stubgen.ReferenceFinder.visit_unbound_type">
+    
+  </a>
+  <a name="visit_unbound_type">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">visit_unbound_type</span>(self, t):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.942//mypy/stubgen.py#L507">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overrides <code><a href="mypy.typetraverser.TypeTraverserVisitor.html#visit_unbound_type" class="internal-link">mypy.typetraverser.TypeTraverserVisitor.visit_unbound_type</a></code></div>
+    
+    <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">t:</span><code><a href="mypy.types.UnboundType.html" class="internal-link" title="mypy.types.UnboundType">UnboundType</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="mypy.stubgen.ReferenceFinder.refs">
+    
+  </a>
+  <a name="refs">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">refs</span>: <code><a href="https://docs.python.org/3/library/typing.html#typing.Set" class="intersphinx-link">Set</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]</code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.942//mypy/stubgen.py#L494">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div>
+        </div>
+      
+      </div>
+    </div>
+
+    <footer class="navbar navbar-default">
+
+  
+  <div class="container">
+    <a href="index.html">API Documentation</a> for mypy,
+  generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
+    22.4.0.dev0 at 2022-04-23 06:56:12.
+  </div>
+
+  <!-- Search related scripts needs to be loaded at the end of HTML 
+    parsing not to introduce overhead and display HTML data asap -->
+  <script src="ajax.js" type="text/javascript"></script>
+  <script src="searchlib.js" type="text/javascript"></script>
+  <script src="search.js" type="text/javascript"></script>
+
+</footer>
+  
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+  </body>
+</html>

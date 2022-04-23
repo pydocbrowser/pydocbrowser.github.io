@@ -1,0 +1,975 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  
+
+  <head>
+    
+    <title>scrapy.utils.request</title>
+    <meta name="generator" content="pydoctor 22.4.0.dev0"> 
+        
+    </meta>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1 maximum-scale=1" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+    <link rel="stylesheet" type="text/css" href="extra.css" />
+</head>
+
+  <body>
+
+    <div id="banner">    
+    <div>
+        <a href="/">Home</a>
+        &gt; scrapy-2.6.1 <!-- This is a placeholder -->
+        
+        <!-- (<a href=""&gt;show all versions</a&gt;) -->
+    </div>
+</div>
+
+    <nav class="navbar navbar-default mainnavbar">
+      
+  
+  <div class="container-fluid">
+
+
+    <div class="navbar-header">
+      
+      <div class="navlinks">
+        <span class="navbar-brand">
+          scrapy <a href="index.html">API Documentation</a>
+        </span>
+
+        <a href="moduleIndex.html">
+          Modules
+        </a>
+
+        <a href="classIndex.html">
+          Classes
+        </a>
+
+        <a href="nameIndex.html">
+          Names
+        </a>
+
+        <div id="search-box-container">
+          <div class="input-group">
+            <input id="search-box" type="search" name="search-query" placeholder="Search..." aria-label="Search" minlength="2" class="form-control" autocomplete="off" />
+            
+            <span class="input-group-btn">
+              <a style="display: none;" class="btn btn-default" id="search-clear-button" title="Clear" onclick="clearSearch()"><img src="fonts/x-circle.svg" alt="Clear" /></a>
+              <a class="btn btn-default" id="search-help-button" title="Help" onclick="toggleSearchHelpText()"><img src="fonts/info.svg" alt="Help" /></a>
+            </span>
+          </div>
+        </div>
+
+      </div>
+
+      <div id="search-results-container" style="display: none;">
+        
+        <div id="search-buttons">
+          <span class="label label-default" id="search-docstrings-button">
+          <label class="checkbox-inline">
+            <input type="checkbox" id="toggle-search-in-docstrings-checkbox" value="false" onclick="toggleSearchInDocstrings()">
+              search in docstrings
+            </input>
+          </label>
+          </span>
+          
+        </div>
+        
+        <noscript>
+            <h1>Cannot search: JavaScript is not supported/enabled in your browser.</h1>
+        </noscript>
+
+        <div class="hint" id="search-help-box">
+          <p class="rst-last">
+      
+            Search bar offers the following options:
+            <ul>   
+                <li>
+                  <strong>Term presence.</strong> The below example searches for documents that 
+                    must contain “foo”, might contain “bar” and must not contain “baz”: <code>+foo bar -baz</code>
+                </li> 
+
+                <li>
+                  <strong>Wildcards.</strong> The below example searches for documents with words beginning with “foo”: <code>foo*</code>
+                </li> 
+
+                <li>
+                  <strong>Search in specific fields.</strong> The following search matches all objects 
+                  in "twisted.mail" that matches “search”: <code>+qname:twisted.mail.* +search</code>
+
+                  <p>
+                    Possible fields: 'name', 'qname' (fully qualified name), 'docstring', and 'kind'.
+                    Last two fields are only applicable if "search in docstrings" is enabled.
+                  </p>
+                </li>
+
+                <li>
+                  <strong>Fuzzy matches.</strong> The following search matches all documents 
+                  that have a word within 1 edit distance of “foo”: <code>foo~1</code>
+                </li>
+            </ul>
+
+          </p>
+        </div>
+
+        <div id="search-status"> </div>
+
+        <div class="warning" id="search-warn-box" style="display: none;">
+          <p class="rst-last"><span id="search-warn"></span></p>
+        </div>
+
+        <table id="search-results">
+          <!-- Filled dynamically by JS -->
+        </table>
+        
+        <div style="margin-top: 8px;">
+          <p>Results provided by <a href="https://lunrjs.com">Lunr.js</a></p>
+        </div>
+      </div>
+
+    </div>
+
+
+  </div>
+</nav>
+    
+    <div class="container-fluid">
+
+      <!-- Side navigation -->
+      <div class="sidebarcontainer" style="display: none;">
+        
+        <div class="sidebar"><nav class="sidebar">
+  
+
+  <div>
+
+      <div class="thingTitle">
+        <span>Module</span>
+        <code class="thisobject"><a href="scrapy.utils.request.html" class="internal-link" title="This module">request</a></code> 
+      </div>
+      
+      <div>
+        
+
+        
+         
+
+        
+        
+
+        <div class="childrenKindTitle">Functions</div>
+        <ul>
+    
+    <li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#referer_str" class="internal-link" title="scrapy.utils.request.referer_str">referer<wbr></wbr>_str</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#request_authenticate" class="internal-link" title="scrapy.utils.request.request_authenticate">request<wbr></wbr>_authenticate</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#request_fingerprint" class="internal-link" title="scrapy.utils.request.request_fingerprint">request<wbr></wbr>_fingerprint</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#request_from_dict" class="internal-link" title="scrapy.utils.request.request_from_dict">request<wbr></wbr>_from<wbr></wbr>_dict</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#request_httprepr" class="internal-link" title="scrapy.utils.request.request_httprepr">request<wbr></wbr>_httprepr</a></code>
+            </div>
+        
+
+    </li><li class="private">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#_get_method" class="internal-link" title="scrapy.utils.request._get_method">_get<wbr></wbr>_method</a></code>
+            </div>
+        
+
+    </li>
+</ul> 
+
+        
+         
+
+        <div class="childrenKindTitle">Variables</div>
+        <ul>
+    
+    <li class="private">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#_fingerprint_cache" class="internal-link" title="scrapy.utils.request._fingerprint_cache">_fingerprint<wbr></wbr>_cache</a></code>
+            </div>
+        
+
+    </li>
+</ul> 
+
+        
+         
+        
+      </div>
+  </div><div>
+
+      <div class="thingTitle">
+        <span>Package</span>
+        <code><a href="scrapy.utils.html" class="internal-link" title="The parent of this module">utils</a></code> 
+      </div>
+      
+      <div>
+        
+
+        <div class="childrenKindTitle">Modules</div>
+        <ul>
+    
+    <li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="scrapy.utils.asyncgen.html" class="internal-link" title="scrapy.utils.asyncgen">asyncgen</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="scrapy.utils.benchserver.html" class="internal-link" title="scrapy.utils.benchserver">benchserver</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="scrapy.utils.boto.html" class="internal-link" title="scrapy.utils.boto">boto</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="scrapy.utils.conf.html" class="internal-link" title="scrapy.utils.conf">conf</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="scrapy.utils.console.html" class="internal-link" title="scrapy.utils.console">console</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="scrapy.utils.curl.html" class="internal-link" title="scrapy.utils.curl">curl</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="scrapy.utils.datatypes.html" class="internal-link" title="scrapy.utils.datatypes">datatypes</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="scrapy.utils.decorators.html" class="internal-link" title="scrapy.utils.decorators">decorators</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="scrapy.utils.defer.html" class="internal-link" title="scrapy.utils.defer">defer</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="scrapy.utils.deprecate.html" class="internal-link" title="scrapy.utils.deprecate">deprecate</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="scrapy.utils.display.html" class="internal-link" title="scrapy.utils.display">display</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="scrapy.utils.engine.html" class="internal-link" title="scrapy.utils.engine">engine</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="scrapy.utils.ftp.html" class="internal-link" title="scrapy.utils.ftp">ftp</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="scrapy.utils.gz.html" class="internal-link" title="scrapy.utils.gz">gz</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="scrapy.utils.httpobj.html" class="internal-link" title="scrapy.utils.httpobj">httpobj</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="scrapy.utils.iterators.html" class="internal-link" title="scrapy.utils.iterators">iterators</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="scrapy.utils.job.html" class="internal-link" title="scrapy.utils.job">job</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="scrapy.utils.log.html" class="internal-link" title="scrapy.utils.log">log</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="scrapy.utils.misc.html" class="internal-link" title="scrapy.utils.misc">misc</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="scrapy.utils.ossignal.html" class="internal-link" title="scrapy.utils.ossignal">ossignal</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="scrapy.utils.project.html" class="internal-link" title="scrapy.utils.project">project</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="scrapy.utils.py36.html" class="internal-link" title="scrapy.utils.py36">py36</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="scrapy.utils.python.html" class="internal-link" title="scrapy.utils.python">python</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="scrapy.utils.reactor.html" class="internal-link" title="scrapy.utils.reactor">reactor</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="scrapy.utils.reqser.html" class="internal-link" title="scrapy.utils.reqser">reqser</a></code>
+            </div>
+        
+
+    </li><li class=" thisobject">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="scrapy.utils.request.html" class="internal-link" title="scrapy.utils.request">request</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="scrapy.utils.response.html" class="internal-link" title="scrapy.utils.response">response</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="scrapy.utils.serialize.html" class="internal-link" title="scrapy.utils.serialize">serialize</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="scrapy.utils.signal.html" class="internal-link" title="scrapy.utils.signal">signal</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="scrapy.utils.sitemap.html" class="internal-link" title="scrapy.utils.sitemap">sitemap</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="scrapy.utils.spider.html" class="internal-link" title="scrapy.utils.spider">spider</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="scrapy.utils.ssl.html" class="internal-link" title="scrapy.utils.ssl">ssl</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="scrapy.utils.template.html" class="internal-link" title="scrapy.utils.template">template</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="scrapy.utils.test.html" class="internal-link" title="scrapy.utils.test">test</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="scrapy.utils.testproc.html" class="internal-link" title="scrapy.utils.testproc">testproc</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="scrapy.utils.testsite.html" class="internal-link" title="scrapy.utils.testsite">testsite</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="scrapy.utils.trackref.html" class="internal-link" title="scrapy.utils.trackref">trackref</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="scrapy.utils.url.html" class="internal-link" title="scrapy.utils.url">url</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="scrapy.utils.versions.html" class="internal-link" title="scrapy.utils.versions">versions</a></code>
+            </div>
+        
+
+    </li>
+</ul> 
+
+        
+        
+
+        
+         
+
+        
+         
+
+        
+         
+
+        
+         
+        
+      </div>
+  </div>
+
+</nav>
+        </div>
+        <div id="collapseSideBar">
+          <a class="btn btn-link" onclick="toggleSideBarCollapse()" title="Toggle Sidebar Collapse">
+          </a>
+        </div> 
+        <script src="sidebartoggle.js" type="text/javascript"></script>
+       
+      </div>
+
+      <div id="main" class="">
+        
+
+        
+
+        <div class="page-header">
+          <h1 class="module"><code><code><a href="index.html" class="internal-link">scrapy</a></code><wbr></wbr>.<code><a href="scrapy.utils.html" class="internal-link" title="scrapy.utils">utils</a></code><wbr></wbr>.<code><a href="scrapy.utils.request.html" class="internal-link" title="scrapy.utils.request">request</a></code></code></h1>
+          <div id="showPrivate">
+            <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+          </div>
+        </div>
+
+        <div class="categoryHeader">
+          module documentation
+        </div>
+
+        <div class="extrasDocstring">
+          <a href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/scrapy-2.6.1//scrapy/utils/request.py" class="sourceLink">(source)</a>
+          <p></p>
+        </div>
+
+        <div class="moduleDocstring">
+          <div><p class="pre">This module provides some useful functions for working with
+scrapy.http.Request objects</p></div>
+        </div>
+
+        <div id="splitTables">
+          <table class="children sortable" id="id7741">
+  
+  
+  <tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#referer_str" class="internal-link" title="scrapy.utils.request.referer_str">referer<wbr></wbr>_str</a></code></td>
+    <td>Return Referer HTTP header suitable for logging. </td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#request_authenticate" class="internal-link" title="scrapy.utils.request.request_authenticate">request<wbr></wbr>_authenticate</a></code></td>
+    <td>Authenticate the given request (in place) using the HTTP basic access authentication mechanism (RFC 2617) and the given username and password</td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#request_fingerprint" class="internal-link" title="scrapy.utils.request.request_fingerprint">request<wbr></wbr>_fingerprint</a></code></td>
+    <td>Return the request fingerprint.</td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#request_from_dict" class="internal-link" title="scrapy.utils.request.request_from_dict">request<wbr></wbr>_from<wbr></wbr>_dict</a></code></td>
+    <td>Create a :class:`~scrapy.Request` object from a dict.</td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#request_httprepr" class="internal-link" title="scrapy.utils.request.request_httprepr">request<wbr></wbr>_httprepr</a></code></td>
+    <td>Return the raw HTTP representation (as bytes) of the given request. This is provided only for reference since it's not the actual stream of bytes that will be send when performing the request (that's controlled by Twisted).</td>
+  </tr><tr class="function private">
+    
+    <td>Function</td>
+    <td><code><a href="#_get_method" class="internal-link" title="scrapy.utils.request._get_method">_get<wbr></wbr>_method</a></code></td>
+    <td>Helper function for request_from_dict</td>
+  </tr><tr class="variable private">
+    
+    <td>Variable</td>
+    <td><code><a href="#_fingerprint_cache" class="internal-link" title="scrapy.utils.request._fingerprint_cache">_fingerprint<wbr></wbr>_cache</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+          
+
+            
+        </div>
+
+        <div id="childList">
+          <div class="basefunction">
+  
+  
+  <a name="scrapy.utils.request.referer_str">
+    
+  </a>
+  <a name="referer_str">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">referer_str</span>(request):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/scrapy-2.6.1//scrapy/utils/request.py#L104">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="pre">Return Referer HTTP header suitable for logging. </p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">request:</span><code><a href="scrapy.Request.html" class="internal-link" title="scrapy.Request">Request</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="scrapy.utils.request.request_authenticate">
+    
+  </a>
+  <a name="request_authenticate">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">request_authenticate</span>(request, username, password):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/scrapy-2.6.1//scrapy/utils/request.py#L80">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="pre">Authenticate the given request (in place) using the HTTP basic access
+authentication mechanism (RFC 2617) and the given username and password</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">request:</span><code><a href="scrapy.Request.html" class="internal-link" title="scrapy.Request">Request</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">username:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">password:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="scrapy.utils.request.request_fingerprint">
+    
+  </a>
+  <a name="request_fingerprint">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">request_fingerprint</span>(request, include_headers=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, keep_fragments=<a href="https://docs.python.org/3/library/constants.html#False" class="intersphinx-link">False</a>):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/scrapy-2.6.1//scrapy/utils/request.py#L24">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="pre">Return the request fingerprint.
+
+The request fingerprint is a hash that uniquely identifies the resource the
+request points to. For example, take the following two urls:
+
+http://www.example.com/query?id=111&amp;cat=222
+http://www.example.com/query?cat=222&amp;id=111
+
+Even though those are two different URLs both point to the same resource
+and are equivalent (i.e. they should return the same response).
+
+Another example are cookies used to store session ids. Suppose the
+following page is only accessible to authenticated users:
+
+http://www.example.com/members/offers.html
+
+Lot of sites use a cookie to store the session id, which adds a random
+component to the HTTP Request and thus should be ignored when calculating
+the fingerprint.
+
+For this reason, request headers are ignored by default when calculating
+the fingerprint. If you want to include specific headers use the
+include_headers argument, which is a list of Request headers to include.
+
+Also, servers usually ignore fragments in urls when handling requests,
+so they are also ignored by default when calculating the fingerprint.
+If you want to include them, set the keep_fragments argument to True
+(for instance when handling requests with a headless browser).</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">request:</span><code><a href="scrapy.Request.html" class="internal-link" title="scrapy.Request">Request</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">include<wbr></wbr>_headers:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Iterable" class="intersphinx-link">Iterable</a>[<wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Union" class="intersphinx-link">Union</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#bytes" class="intersphinx-link">bytes</a>, <wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]]]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">keep<wbr></wbr>_fragments:</span><code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="scrapy.utils.request.request_from_dict">
+    
+  </a>
+  <a name="request_from_dict">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">request_from_dict</span>(d, *, spider=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/scrapy-2.6.1//scrapy/utils/request.py#L112">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="pre">Create a :class:`~scrapy.Request` object from a dict.
+
+If a spider is given, it will try to resolve the callbacks looking at the
+spider for methods with the same name.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">d:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#dict" class="intersphinx-link">dict</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">spider:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">Optional</a>[<wbr></wbr><a href="scrapy.Spider.html" class="internal-link" title="scrapy.Spider">Spider</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="scrapy.Request.html" class="internal-link" title="scrapy.Request">Request</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="scrapy.utils.request.request_httprepr">
+    
+  </a>
+  <a name="request_httprepr">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">request_httprepr</span>(request):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/scrapy-2.6.1//scrapy/utils/request.py#L87">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="pre">Return the raw HTTP representation (as bytes) of the given request.
+This is provided only for reference since it's not the actual stream of
+bytes that will be send when performing the request (that's controlled
+by Twisted).</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">request:</span><code><a href="scrapy.Request.html" class="internal-link" title="scrapy.Request">Request</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/stdtypes.html#bytes" class="intersphinx-link">bytes</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basefunction private">
+  
+  
+  <a name="scrapy.utils.request._get_method">
+    
+  </a>
+  <a name="_get_method">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_get_method</span>(obj, name):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/scrapy-2.6.1//scrapy/utils/request.py#L127">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="pre">Helper function for request_from_dict</p></div>
+  </div>
+</div><div class="basevariable private">
+  
+  
+  <a name="scrapy.utils.request._fingerprint_cache">
+    
+  </a>
+  <a name="_fingerprint_cache">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_fingerprint_cache</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/scrapy-2.6.1//scrapy/utils/request.py#L20">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div>
+        </div>
+      
+      </div>
+    </div>
+
+    <footer class="navbar navbar-default">
+
+  
+  <div class="container">
+    <a href="index.html">API Documentation</a> for scrapy,
+  generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
+    22.4.0.dev0 at 2022-04-23 07:11:44.
+  </div>
+
+  <!-- Search related scripts needs to be loaded at the end of HTML 
+    parsing not to introduce overhead and display HTML data asap -->
+  <script src="ajax.js" type="text/javascript"></script>
+  <script src="searchlib.js" type="text/javascript"></script>
+  <script src="search.js" type="text/javascript"></script>
+
+</footer>
+  
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+  </body>
+</html>
