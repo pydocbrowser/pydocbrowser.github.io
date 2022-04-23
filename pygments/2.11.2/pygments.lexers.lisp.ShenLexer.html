@@ -1,0 +1,1394 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  
+
+  <head>
+    
+    <title>pygments.lexers.lisp.ShenLexer</title>
+    <meta name="generator" content="pydoctor 22.4.0.dev0"> 
+        
+    </meta>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1 maximum-scale=1" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+    <link rel="stylesheet" type="text/css" href="extra.css" />
+</head>
+
+  <body>
+
+    <div id="banner">    
+    <div>
+        <a href="/">Home</a>
+        &gt; pygments-2.11.2 <!-- This is a placeholder -->
+        
+        <!-- (<a href=""&gt;show all versions</a&gt;) -->
+    </div>
+</div>
+
+    <nav class="navbar navbar-default mainnavbar">
+      
+  
+  <div class="container-fluid">
+
+
+    <div class="navbar-header">
+      
+      <div class="navlinks">
+        <span class="navbar-brand">
+          pygments <a href="index.html">API Documentation</a>
+        </span>
+
+        <a href="moduleIndex.html">
+          Modules
+        </a>
+
+        <a href="classIndex.html">
+          Classes
+        </a>
+
+        <a href="nameIndex.html">
+          Names
+        </a>
+
+        <div id="search-box-container">
+          <div class="input-group">
+            <input id="search-box" type="search" name="search-query" placeholder="Search..." aria-label="Search" minlength="2" class="form-control" autocomplete="off" />
+            
+            <span class="input-group-btn">
+              <a style="display: none;" class="btn btn-default" id="search-clear-button" title="Clear" onclick="clearSearch()"><img src="fonts/x-circle.svg" alt="Clear" /></a>
+              <a class="btn btn-default" id="search-help-button" title="Help" onclick="toggleSearchHelpText()"><img src="fonts/info.svg" alt="Help" /></a>
+            </span>
+          </div>
+        </div>
+
+      </div>
+
+      <div id="search-results-container" style="display: none;">
+        
+        <div id="search-buttons">
+          <span class="label label-default" id="search-docstrings-button">
+          <label class="checkbox-inline">
+            <input type="checkbox" id="toggle-search-in-docstrings-checkbox" value="false" onclick="toggleSearchInDocstrings()">
+              search in docstrings
+            </input>
+          </label>
+          </span>
+          
+        </div>
+        
+        <noscript>
+            <h1>Cannot search: JavaScript is not supported/enabled in your browser.</h1>
+        </noscript>
+
+        <div class="hint" id="search-help-box">
+          <p class="rst-last">
+      
+            Search bar offers the following options:
+            <ul>   
+                <li>
+                  <strong>Term presence.</strong> The below example searches for documents that 
+                    must contain “foo”, might contain “bar” and must not contain “baz”: <code>+foo bar -baz</code>
+                </li> 
+
+                <li>
+                  <strong>Wildcards.</strong> The below example searches for documents with words beginning with “foo”: <code>foo*</code>
+                </li> 
+
+                <li>
+                  <strong>Search in specific fields.</strong> The following search matches all objects 
+                  in "twisted.mail" that matches “search”: <code>+qname:twisted.mail.* +search</code>
+
+                  <p>
+                    Possible fields: 'name', 'qname' (fully qualified name), 'docstring', and 'kind'.
+                    Last two fields are only applicable if "search in docstrings" is enabled.
+                  </p>
+                </li>
+
+                <li>
+                  <strong>Fuzzy matches.</strong> The following search matches all documents 
+                  that have a word within 1 edit distance of “foo”: <code>foo~1</code>
+                </li>
+            </ul>
+
+          </p>
+        </div>
+
+        <div id="search-status"> </div>
+
+        <div class="warning" id="search-warn-box" style="display: none;">
+          <p class="rst-last"><span id="search-warn"></span></p>
+        </div>
+
+        <table id="search-results">
+          <!-- Filled dynamically by JS -->
+        </table>
+        
+        <div style="margin-top: 8px;">
+          <p>Results provided by <a href="https://lunrjs.com">Lunr.js</a></p>
+        </div>
+      </div>
+
+    </div>
+
+
+  </div>
+</nav>
+    
+    <div class="container-fluid">
+
+      <!-- Side navigation -->
+      <div class="sidebarcontainer" style="display: none;">
+        
+        <div class="sidebar"><nav class="sidebar">
+  
+
+  <div>
+
+      <div class="thingTitle">
+        <span>Class</span>
+        <code class="thisobject"><a href="pygments.lexers.lisp.ShenLexer.html" class="internal-link" title="This class"><wbr></wbr>Shen<wbr></wbr>Lexer</a></code> 
+      </div>
+      
+      <div>
+        
+
+        
+         
+
+        
+        
+
+        <div class="childrenKindTitle">Methods</div>
+        <ul>
+    
+    <li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#get_tokens_unprocessed" class="internal-link" title="pygments.lexers.lisp.ShenLexer.get_tokens_unprocessed">get<wbr></wbr>_tokens<wbr></wbr>_unprocessed</a></code>
+            </div>
+        
+
+    </li><li class="private">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#_process_declaration" class="internal-link" title="pygments.lexers.lisp.ShenLexer._process_declaration">_process<wbr></wbr>_declaration</a></code>
+            </div>
+        
+
+    </li><li class="private">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#_process_declarations" class="internal-link" title="pygments.lexers.lisp.ShenLexer._process_declarations">_process<wbr></wbr>_declarations</a></code>
+            </div>
+        
+
+    </li><li class="private">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#_process_signature" class="internal-link" title="pygments.lexers.lisp.ShenLexer._process_signature">_process<wbr></wbr>_signature</a></code>
+            </div>
+        
+
+    </li><li class="private">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#_process_symbols" class="internal-link" title="pygments.lexers.lisp.ShenLexer._process_symbols">_process<wbr></wbr>_symbols</a></code>
+            </div>
+        
+
+    </li><li class="private">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#_relevant" class="internal-link" title="pygments.lexers.lisp.ShenLexer._relevant">_relevant</a></code>
+            </div>
+        
+
+    </li>
+</ul> 
+
+        <div class="childrenKindTitle">Inherited Methods</div>
+        <ul>
+    
+    <li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="pygments.lexer.Lexer.html#__init__" class="internal-link" title="pygments.lexer.Lexer.__init__">__init__</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="pygments.lexer.Lexer.html#__repr__" class="internal-link" title="pygments.lexer.Lexer.__repr__">__repr__</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="pygments.lexer.Lexer.html#add_filter" class="internal-link" title="pygments.lexer.Lexer.add_filter">add<wbr></wbr>_filter</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="pygments.lexer.Lexer.html#analyse_text" class="internal-link" title="pygments.lexer.Lexer.analyse_text">analyse<wbr></wbr>_text</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="pygments.lexer.Lexer.html#get_tokens" class="internal-link" title="pygments.lexer.Lexer.get_tokens">get<wbr></wbr>_tokens</a></code>
+            </div>
+        
+
+    </li>
+</ul> 
+
+        <div class="childrenKindTitle">Attributes</div>
+        <ul>
+    
+    <li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#BUILTINS" class="internal-link" title="pygments.lexers.lisp.ShenLexer.BUILTINS">BUILTINS</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#BUILTINS_ANYWHERE" class="internal-link" title="pygments.lexers.lisp.ShenLexer.BUILTINS_ANYWHERE">BUILTINS<wbr></wbr>_ANYWHERE</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#DECLARATIONS" class="internal-link" title="pygments.lexers.lisp.ShenLexer.DECLARATIONS">DECLARATIONS</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#MAPPINGS" class="internal-link" title="pygments.lexers.lisp.ShenLexer.MAPPINGS">MAPPINGS</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#SPECIAL_FORMS" class="internal-link" title="pygments.lexers.lisp.ShenLexer.SPECIAL_FORMS">SPECIAL<wbr></wbr>_FORMS</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#aliases" class="internal-link" title="pygments.lexers.lisp.ShenLexer.aliases">aliases</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#filenames" class="internal-link" title="pygments.lexers.lisp.ShenLexer.filenames">filenames</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#mimetypes" class="internal-link" title="pygments.lexers.lisp.ShenLexer.mimetypes">mimetypes</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#name" class="internal-link" title="pygments.lexers.lisp.ShenLexer.name">name</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#symbol_name" class="internal-link" title="pygments.lexers.lisp.ShenLexer.symbol_name">symbol<wbr></wbr>_name</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#tokens" class="internal-link" title="pygments.lexers.lisp.ShenLexer.tokens">tokens</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#valid_name" class="internal-link" title="pygments.lexers.lisp.ShenLexer.valid_name">valid<wbr></wbr>_name</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#valid_symbol_chars" class="internal-link" title="pygments.lexers.lisp.ShenLexer.valid_symbol_chars">valid<wbr></wbr>_symbol<wbr></wbr>_chars</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#variable" class="internal-link" title="pygments.lexers.lisp.ShenLexer.variable">variable</a></code>
+            </div>
+        
+
+    </li>
+</ul> 
+
+        <div class="childrenKindTitle">Inherited Attributes</div>
+        <ul>
+    
+    <li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="pygments.lexer.Lexer.html#alias_filenames" class="internal-link" title="pygments.lexer.Lexer.alias_filenames">alias<wbr></wbr>_filenames</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="pygments.lexer.Lexer.html#priority" class="internal-link" title="pygments.lexer.Lexer.priority">priority</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="pygments.lexer.Lexer.html#encoding" class="internal-link" title="pygments.lexer.Lexer.encoding">encoding</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="pygments.lexer.Lexer.html#ensurenl" class="internal-link" title="pygments.lexer.Lexer.ensurenl">ensurenl</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="pygments.lexer.Lexer.html#filters" class="internal-link" title="pygments.lexer.Lexer.filters">filters</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="pygments.lexer.Lexer.html#options" class="internal-link" title="pygments.lexer.Lexer.options">options</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="pygments.lexer.Lexer.html#stripall" class="internal-link" title="pygments.lexer.Lexer.stripall">stripall</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="pygments.lexer.Lexer.html#stripnl" class="internal-link" title="pygments.lexer.Lexer.stripnl">stripnl</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="pygments.lexer.Lexer.html#tabsize" class="internal-link" title="pygments.lexer.Lexer.tabsize">tabsize</a></code>
+            </div>
+        
+
+    </li>
+</ul> 
+        
+      </div>
+  </div><div>
+
+      <div class="thingTitle">
+        <span>Module</span>
+        <code><a href="pygments.lexers.lisp.html" class="internal-link" title="The parent of this class">lisp</a></code> 
+      </div>
+      
+      <div>
+        
+
+        
+         
+
+        <div class="childrenKindTitle">Classes</div>
+        <ul>
+    
+    <li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="pygments.lexers.lisp.CommonLispLexer.html" class="internal-link" title="pygments.lexers.lisp.CommonLispLexer"><wbr></wbr>Common<wbr></wbr>Lisp<wbr></wbr>Lexer</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="pygments.lexers.lisp.CPSALexer.html" class="internal-link" title="pygments.lexers.lisp.CPSALexer"><wbr></wbr>CPSALexer</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="pygments.lexers.lisp.EmacsLispLexer.html" class="internal-link" title="pygments.lexers.lisp.EmacsLispLexer"><wbr></wbr>Emacs<wbr></wbr>Lisp<wbr></wbr>Lexer</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="pygments.lexers.lisp.FennelLexer.html" class="internal-link" title="pygments.lexers.lisp.FennelLexer"><wbr></wbr>Fennel<wbr></wbr>Lexer</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="pygments.lexers.lisp.HyLexer.html" class="internal-link" title="pygments.lexers.lisp.HyLexer"><wbr></wbr>Hy<wbr></wbr>Lexer</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="pygments.lexers.lisp.NewLispLexer.html" class="internal-link" title="pygments.lexers.lisp.NewLispLexer"><wbr></wbr>New<wbr></wbr>Lisp<wbr></wbr>Lexer</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="pygments.lexers.lisp.RacketLexer.html" class="internal-link" title="pygments.lexers.lisp.RacketLexer"><wbr></wbr>Racket<wbr></wbr>Lexer</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="pygments.lexers.lisp.SchemeLexer.html" class="internal-link" title="pygments.lexers.lisp.SchemeLexer"><wbr></wbr>Scheme<wbr></wbr>Lexer</a></code>
+            </div>
+        
+
+    </li><li class=" thisobject">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="pygments.lexers.lisp.ShenLexer.html" class="internal-link" title="pygments.lexers.lisp.ShenLexer"><wbr></wbr>Shen<wbr></wbr>Lexer</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="pygments.lexers.lisp.XtlangLexer.html" class="internal-link" title="pygments.lexers.lisp.XtlangLexer"><wbr></wbr>Xtlang<wbr></wbr>Lexer</a></code>
+            </div>
+        
+
+    </li>
+</ul>
+
+        
+         
+
+        
+         
+
+        
+         
+
+        
+         
+        
+      </div>
+  </div>
+
+</nav>
+        </div>
+        <div id="collapseSideBar">
+          <a class="btn btn-link" onclick="toggleSideBarCollapse()" title="Toggle Sidebar Collapse">
+          </a>
+        </div> 
+        <script src="sidebartoggle.js" type="text/javascript"></script>
+       
+      </div>
+
+      <div id="main" class="">
+        
+
+        
+
+        <div class="page-header">
+          <h1 class="class"><code><code><a href="index.html" class="internal-link">pygments</a></code><wbr></wbr>.<code><a href="pygments.lexers.html" class="internal-link" title="pygments.lexers">lexers</a></code><wbr></wbr>.<code><a href="pygments.lexers.lisp.html" class="internal-link" title="pygments.lexers.lisp">lisp</a></code><wbr></wbr>.<code><a href="pygments.lexers.lisp.ShenLexer.html" class="internal-link" title="pygments.lexers.lisp.ShenLexer">ShenLexer</a></code></code></h1>
+          <div id="showPrivate">
+            <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+          </div>
+        </div>
+
+        <div class="categoryHeader">
+          class documentation
+        </div>
+
+        <div class="extrasDocstring">
+          <p><code><span class="py-keyword">class</span> <span class="py-defname">ShenLexer</span>(<a href="pygments.lexer.RegexLexer.html" class="internal-link" title="pygments.lexer.RegexLexer">RegexLexer</a>): <a href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/pygments-2.11.2//pygments/lexers/lisp.py#L2202" class="sourceLink">(source)</a></code></p>
+          <p><a href="classIndex.html#pygments.lexers.lisp.ShenLexer">View In Hierarchy</a></p>
+        </div>
+
+        <div class="moduleDocstring">
+          <div><p class="pre">Lexer for `Shen &lt;http://shenlanguage.org/&gt;`_ source code.
+
+.. versionadded:: 2.1</p></div>
+        </div>
+
+        <div id="splitTables">
+          <table class="children sortable" id="id5431">
+  
+  
+  <tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#get_tokens_unprocessed" class="internal-link" title="pygments.lexers.lisp.ShenLexer.get_tokens_unprocessed">get<wbr></wbr>_tokens<wbr></wbr>_unprocessed</a></code></td>
+    <td>Split ``text`` into (tokentype, text) pairs.</td>
+  </tr><tr class="constant">
+    
+    <td>Constant</td>
+    <td><code><a href="#BUILTINS" class="internal-link" title="pygments.lexers.lisp.ShenLexer.BUILTINS">BUILTINS</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="constant">
+    
+    <td>Constant</td>
+    <td><code><a href="#BUILTINS_ANYWHERE" class="internal-link" title="pygments.lexers.lisp.ShenLexer.BUILTINS_ANYWHERE">BUILTINS<wbr></wbr>_ANYWHERE</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="constant">
+    
+    <td>Constant</td>
+    <td><code><a href="#DECLARATIONS" class="internal-link" title="pygments.lexers.lisp.ShenLexer.DECLARATIONS">DECLARATIONS</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="constant">
+    
+    <td>Constant</td>
+    <td><code><a href="#MAPPINGS" class="internal-link" title="pygments.lexers.lisp.ShenLexer.MAPPINGS">MAPPINGS</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="constant">
+    
+    <td>Constant</td>
+    <td><code><a href="#SPECIAL_FORMS" class="internal-link" title="pygments.lexers.lisp.ShenLexer.SPECIAL_FORMS">SPECIAL<wbr></wbr>_FORMS</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="classvariable">
+    
+    <td>Class Variable</td>
+    <td><code><a href="#aliases" class="internal-link" title="pygments.lexers.lisp.ShenLexer.aliases">aliases</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="classvariable">
+    
+    <td>Class Variable</td>
+    <td><code><a href="#filenames" class="internal-link" title="pygments.lexers.lisp.ShenLexer.filenames">filenames</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="classvariable">
+    
+    <td>Class Variable</td>
+    <td><code><a href="#mimetypes" class="internal-link" title="pygments.lexers.lisp.ShenLexer.mimetypes">mimetypes</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="classvariable">
+    
+    <td>Class Variable</td>
+    <td><code><a href="#name" class="internal-link" title="pygments.lexers.lisp.ShenLexer.name">name</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="classvariable">
+    
+    <td>Class Variable</td>
+    <td><code><a href="#symbol_name" class="internal-link" title="pygments.lexers.lisp.ShenLexer.symbol_name">symbol<wbr></wbr>_name</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="classvariable">
+    
+    <td>Class Variable</td>
+    <td><code><a href="#tokens" class="internal-link" title="pygments.lexers.lisp.ShenLexer.tokens">tokens</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="classvariable">
+    
+    <td>Class Variable</td>
+    <td><code><a href="#valid_name" class="internal-link" title="pygments.lexers.lisp.ShenLexer.valid_name">valid<wbr></wbr>_name</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="classvariable">
+    
+    <td>Class Variable</td>
+    <td><code><a href="#valid_symbol_chars" class="internal-link" title="pygments.lexers.lisp.ShenLexer.valid_symbol_chars">valid<wbr></wbr>_symbol<wbr></wbr>_chars</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="classvariable">
+    
+    <td>Class Variable</td>
+    <td><code><a href="#variable" class="internal-link" title="pygments.lexers.lisp.ShenLexer.variable">variable</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_process_declaration" class="internal-link" title="pygments.lexers.lisp.ShenLexer._process_declaration">_process<wbr></wbr>_declaration</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_process_declarations" class="internal-link" title="pygments.lexers.lisp.ShenLexer._process_declarations">_process<wbr></wbr>_declarations</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_process_signature" class="internal-link" title="pygments.lexers.lisp.ShenLexer._process_signature">_process<wbr></wbr>_signature</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_process_symbols" class="internal-link" title="pygments.lexers.lisp.ShenLexer._process_symbols">_process<wbr></wbr>_symbols</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_relevant" class="internal-link" title="pygments.lexers.lisp.ShenLexer._relevant">_relevant</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+          
+            <p class="inheritedFrom">
+              Inherited from <code><a href="pygments.lexer.Lexer.html" class="internal-link" title="pygments.lexer.Lexer">Lexer</a></code> (via <code><a href="pygments.lexer.RegexLexer.html" class="internal-link" title="pygments.lexer.RegexLexer">RegexLexer</a></code>):
+            </p>
+            <table class="children sortable" id="id5432">
+  
+  
+  <tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="pygments.lexer.Lexer.html#__init__" class="internal-link" title="pygments.lexer.Lexer.__init__">__init__</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="pygments.lexer.Lexer.html#__repr__" class="internal-link" title="pygments.lexer.Lexer.__repr__">__repr__</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="pygments.lexer.Lexer.html#add_filter" class="internal-link" title="pygments.lexer.Lexer.add_filter">add<wbr></wbr>_filter</a></code></td>
+    <td>Add a new stream filter to this lexer.</td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="pygments.lexer.Lexer.html#analyse_text" class="internal-link" title="pygments.lexer.Lexer.analyse_text">analyse<wbr></wbr>_text</a></code></td>
+    <td>Has to return a float between ``0`` and ``1`` that indicates if a lexer wants to highlight this text. Used by ``guess_lexer``. If this method returns ``0`` it won't highlight it in any case, if it returns ``1`` highlighting with this lexer is guaranteed.</td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="pygments.lexer.Lexer.html#get_tokens" class="internal-link" title="pygments.lexer.Lexer.get_tokens">get<wbr></wbr>_tokens</a></code></td>
+    <td>Return an iterable of (tokentype, value) pairs generated from `text`. If `unfiltered` is set to `True`, the filtering mechanism is bypassed even if filters are defined.</td>
+  </tr><tr class="baseclassvariable">
+    
+    <td>Class Variable</td>
+    <td><code><a href="pygments.lexer.Lexer.html#alias_filenames" class="internal-link" title="pygments.lexer.Lexer.alias_filenames">alias<wbr></wbr>_filenames</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="baseclassvariable">
+    
+    <td>Class Variable</td>
+    <td><code><a href="pygments.lexer.Lexer.html#priority" class="internal-link" title="pygments.lexer.Lexer.priority">priority</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="baseinstancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="pygments.lexer.Lexer.html#encoding" class="internal-link" title="pygments.lexer.Lexer.encoding">encoding</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="baseinstancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="pygments.lexer.Lexer.html#ensurenl" class="internal-link" title="pygments.lexer.Lexer.ensurenl">ensurenl</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="baseinstancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="pygments.lexer.Lexer.html#filters" class="internal-link" title="pygments.lexer.Lexer.filters">filters</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="baseinstancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="pygments.lexer.Lexer.html#options" class="internal-link" title="pygments.lexer.Lexer.options">options</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="baseinstancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="pygments.lexer.Lexer.html#stripall" class="internal-link" title="pygments.lexer.Lexer.stripall">stripall</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="baseinstancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="pygments.lexer.Lexer.html#stripnl" class="internal-link" title="pygments.lexer.Lexer.stripnl">stripnl</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="baseinstancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="pygments.lexer.Lexer.html#tabsize" class="internal-link" title="pygments.lexer.Lexer.tabsize">tabsize</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+            
+
+            
+        </div>
+
+        <div id="childList">
+          <div class="basemethod">
+  
+  
+  <a name="pygments.lexers.lisp.ShenLexer.get_tokens_unprocessed">
+    
+  </a>
+  <a name="get_tokens_unprocessed">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">get_tokens_unprocessed</span>(self, text):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/pygments-2.11.2//pygments/lexers/lisp.py#L2289">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overrides <code><a href="pygments.lexer.RegexLexer.html#get_tokens_unprocessed" class="internal-link">pygments.lexer.RegexLexer.get_tokens_unprocessed</a></code></div>
+    
+    <div><p class="pre">Split ``text`` into (tokentype, text) pairs.
+
+``stack`` is the inital stack (default: ``['root']``)</p></div>
+  </div>
+</div><div class="baseconstant">
+  
+  
+  <a name="pygments.lexers.lisp.ShenLexer.BUILTINS">
+    
+  </a>
+  <a name="BUILTINS">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">BUILTINS</span>: <code><a href="https://docs.python.org/3/library/stdtypes.html#tuple" class="intersphinx-link">tuple</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>, <wbr></wbr><span class="rst-variable-ellipsis">...</span>]</code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/pygments-2.11.2//pygments/lexers/lisp.py#L2225">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    <table class="valueTable"><tr class="fieldStart"><td class="fieldName">Value</td></tr><tr><td><pre class="constant-value"><code>(<wbr></wbr><span class="rst-variable-quote">'</span><span class="rst-variable-string">==</span><span class="rst-variable-quote">'</span>,
+ <wbr></wbr><span class="rst-variable-quote">'</span><span class="rst-variable-string">=</span><span class="rst-variable-quote">'</span>,
+ <wbr></wbr><span class="rst-variable-quote">'</span><span class="rst-variable-string">*</span><span class="rst-variable-quote">'</span>,
+ <wbr></wbr><span class="rst-variable-quote">'</span><span class="rst-variable-string">+</span><span class="rst-variable-quote">'</span>,
+ <wbr></wbr><span class="rst-variable-quote">'</span><span class="rst-variable-string">-</span><span class="rst-variable-quote">'</span>,
+ <wbr></wbr><span class="rst-variable-quote">'</span><span class="rst-variable-string">/</span><span class="rst-variable-quote">'</span>,
+ <wbr></wbr><span class="rst-variable-quote">'</span><span class="rst-variable-string">&lt;</span><span class="rst-variable-quote">'</span>,
+<span class="rst-variable-ellipsis">...</span></code></pre></td></tr></table>
+  </div>
+</div><div class="baseconstant">
+  
+  
+  <a name="pygments.lexers.lisp.ShenLexer.BUILTINS_ANYWHERE">
+    
+  </a>
+  <a name="BUILTINS_ANYWHERE">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">BUILTINS_ANYWHERE</span>: <code><a href="https://docs.python.org/3/library/stdtypes.html#tuple" class="intersphinx-link">tuple</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>, <wbr></wbr><span class="rst-variable-ellipsis">...</span>]</code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/pygments-2.11.2//pygments/lexers/lisp.py#L2252">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    <table class="valueTable"><tr class="fieldStart"><td class="fieldName">Value</td></tr><tr><td><pre class="constant-value"><code>(<wbr></wbr><span class="rst-variable-quote">'</span><span class="rst-variable-string">where</span><span class="rst-variable-quote">'</span>, <wbr></wbr><span class="rst-variable-quote">'</span><span class="rst-variable-string">skip</span><span class="rst-variable-quote">'</span>, <wbr></wbr><span class="rst-variable-quote">'</span><span class="rst-variable-string">&gt;&gt;</span><span class="rst-variable-quote">'</span>, <wbr></wbr><span class="rst-variable-quote">'</span><span class="rst-variable-string">_</span><span class="rst-variable-quote">'</span>, <wbr></wbr><span class="rst-variable-quote">'</span><span class="rst-variable-string">!</span><span class="rst-variable-quote">'</span>, <wbr></wbr><span class="rst-variable-quote">'</span><span class="rst-variable-string">&lt;e&gt;</span><span class="rst-variable-quote">'</span>, <wbr></wbr><span class="rst-variable-quote">'</span><span class="rst-variable-string">&lt;!&gt;</span><span class="rst-variable-quote">'</span>)</code></pre></td></tr></table>
+  </div>
+</div><div class="baseconstant">
+  
+  
+  <a name="pygments.lexers.lisp.ShenLexer.DECLARATIONS">
+    
+  </a>
+  <a name="DECLARATIONS">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">DECLARATIONS</span>: <code><a href="https://docs.python.org/3/library/stdtypes.html#tuple" class="intersphinx-link">tuple</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>, <wbr></wbr><span class="rst-variable-ellipsis">...</span>]</code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/pygments-2.11.2//pygments/lexers/lisp.py#L2213">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    <table class="valueTable"><tr class="fieldStart"><td class="fieldName">Value</td></tr><tr><td><pre class="constant-value"><code>(<wbr></wbr><span class="rst-variable-quote">'</span><span class="rst-variable-string">datatype</span><span class="rst-variable-quote">'</span>,
+ <wbr></wbr><span class="rst-variable-quote">'</span><span class="rst-variable-string">define</span><span class="rst-variable-quote">'</span>,
+ <wbr></wbr><span class="rst-variable-quote">'</span><span class="rst-variable-string">defmacro</span><span class="rst-variable-quote">'</span>,
+ <wbr></wbr><span class="rst-variable-quote">'</span><span class="rst-variable-string">defprolog</span><span class="rst-variable-quote">'</span>,
+ <wbr></wbr><span class="rst-variable-quote">'</span><span class="rst-variable-string">defcc</span><span class="rst-variable-quote">'</span>,
+ <wbr></wbr><span class="rst-variable-quote">'</span><span class="rst-variable-string">synonyms</span><span class="rst-variable-quote">'</span>,
+ <wbr></wbr><span class="rst-variable-quote">'</span><span class="rst-variable-string">declare</span><span class="rst-variable-quote">'</span>,
+<span class="rst-variable-ellipsis">...</span></code></pre></td></tr></table>
+  </div>
+</div><div class="baseconstant">
+  
+  
+  <a name="pygments.lexers.lisp.ShenLexer.MAPPINGS">
+    
+  </a>
+  <a name="MAPPINGS">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">MAPPINGS</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/pygments-2.11.2//pygments/lexers/lisp.py#L2254">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    <table class="valueTable"><tr class="fieldStart"><td class="fieldName">Value</td></tr><tr><td><pre class="constant-value"><code>{s: Keyword for s in DECLARATIONS}</code></pre></td></tr></table>
+  </div>
+</div><div class="baseconstant">
+  
+  
+  <a name="pygments.lexers.lisp.ShenLexer.SPECIAL_FORMS">
+    
+  </a>
+  <a name="SPECIAL_FORMS">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">SPECIAL_FORMS</span>: <code><a href="https://docs.python.org/3/library/stdtypes.html#tuple" class="intersphinx-link">tuple</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>, <wbr></wbr><span class="rst-variable-ellipsis">...</span>]</code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/pygments-2.11.2//pygments/lexers/lisp.py#L2218">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    <table class="valueTable"><tr class="fieldStart"><td class="fieldName">Value</td></tr><tr><td><pre class="constant-value"><code>(<wbr></wbr><span class="rst-variable-quote">'</span><span class="rst-variable-string">lambda</span><span class="rst-variable-quote">'</span>,
+ <wbr></wbr><span class="rst-variable-quote">'</span><span class="rst-variable-string">get</span><span class="rst-variable-quote">'</span>,
+ <wbr></wbr><span class="rst-variable-quote">'</span><span class="rst-variable-string">let</span><span class="rst-variable-quote">'</span>,
+ <wbr></wbr><span class="rst-variable-quote">'</span><span class="rst-variable-string">if</span><span class="rst-variable-quote">'</span>,
+ <wbr></wbr><span class="rst-variable-quote">'</span><span class="rst-variable-string">cases</span><span class="rst-variable-quote">'</span>,
+ <wbr></wbr><span class="rst-variable-quote">'</span><span class="rst-variable-string">cond</span><span class="rst-variable-quote">'</span>,
+ <wbr></wbr><span class="rst-variable-quote">'</span><span class="rst-variable-string">put</span><span class="rst-variable-quote">'</span>,
+<span class="rst-variable-ellipsis">...</span></code></pre></td></tr></table>
+  </div>
+</div><div class="baseclassvariable">
+  
+  
+  <a name="pygments.lexers.lisp.ShenLexer.aliases">
+    
+  </a>
+  <a name="aliases">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">aliases</span>: <code><a href="https://docs.python.org/3/library/stdtypes.html#list" class="intersphinx-link">list</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]</code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/pygments-2.11.2//pygments/lexers/lisp.py#L2209">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">overrides <code><a href="pygments.lexer.Lexer.html#aliases" class="internal-link">pygments.lexer.Lexer.aliases</a></code></div>
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseclassvariable">
+  
+  
+  <a name="pygments.lexers.lisp.ShenLexer.filenames">
+    
+  </a>
+  <a name="filenames">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">filenames</span>: <code><a href="https://docs.python.org/3/library/stdtypes.html#list" class="intersphinx-link">list</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]</code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/pygments-2.11.2//pygments/lexers/lisp.py#L2210">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">overrides <code><a href="pygments.lexer.Lexer.html#filenames" class="internal-link">pygments.lexer.Lexer.filenames</a></code></div>
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseclassvariable">
+  
+  
+  <a name="pygments.lexers.lisp.ShenLexer.mimetypes">
+    
+  </a>
+  <a name="mimetypes">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">mimetypes</span>: <code><a href="https://docs.python.org/3/library/stdtypes.html#list" class="intersphinx-link">list</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]</code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/pygments-2.11.2//pygments/lexers/lisp.py#L2211">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">overrides <code><a href="pygments.lexer.Lexer.html#mimetypes" class="internal-link">pygments.lexer.Lexer.mimetypes</a></code></div>
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseclassvariable">
+  
+  
+  <a name="pygments.lexers.lisp.ShenLexer.name">
+    
+  </a>
+  <a name="name">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">name</span>: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/pygments-2.11.2//pygments/lexers/lisp.py#L2208">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">overrides <code><a href="pygments.lexer.Lexer.html#name" class="internal-link">pygments.lexer.Lexer.name</a></code></div>
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseclassvariable">
+  
+  
+  <a name="pygments.lexers.lisp.ShenLexer.symbol_name">
+    
+  </a>
+  <a name="symbol_name">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">symbol_name</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/pygments-2.11.2//pygments/lexers/lisp.py#L2260">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseclassvariable">
+  
+  
+  <a name="pygments.lexers.lisp.ShenLexer.tokens">
+    
+  </a>
+  <a name="tokens">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">tokens</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/pygments-2.11.2//pygments/lexers/lisp.py#L2263">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">overrides <code><a href="pygments.lexer.RegexLexer.html#tokens" class="internal-link">pygments.lexer.RegexLexer.tokens</a></code></div>
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseclassvariable">
+  
+  
+  <a name="pygments.lexers.lisp.ShenLexer.valid_name">
+    
+  </a>
+  <a name="valid_name">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">valid_name</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/pygments-2.11.2//pygments/lexers/lisp.py#L2259">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseclassvariable">
+  
+  
+  <a name="pygments.lexers.lisp.ShenLexer.valid_symbol_chars">
+    
+  </a>
+  <a name="valid_symbol_chars">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">valid_symbol_chars</span>: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/pygments-2.11.2//pygments/lexers/lisp.py#L2258">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseclassvariable">
+  
+  
+  <a name="pygments.lexers.lisp.ShenLexer.variable">
+    
+  </a>
+  <a name="variable">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">variable</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/pygments-2.11.2//pygments/lexers/lisp.py#L2261">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="pygments.lexers.lisp.ShenLexer._process_declaration">
+    
+  </a>
+  <a name="_process_declaration">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_process_declaration</span>(self, declaration, tokens):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/pygments-2.11.2//pygments/lexers/lisp.py#L2318">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="pygments.lexers.lisp.ShenLexer._process_declarations">
+    
+  </a>
+  <a name="_process_declarations">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_process_declarations</span>(self, tokens):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/pygments-2.11.2//pygments/lexers/lisp.py#L2298">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="pygments.lexers.lisp.ShenLexer._process_signature">
+    
+  </a>
+  <a name="_process_signature">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_process_signature</span>(self, tokens):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/pygments-2.11.2//pygments/lexers/lisp.py#L2356">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="pygments.lexers.lisp.ShenLexer._process_symbols">
+    
+  </a>
+  <a name="_process_symbols">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_process_symbols</span>(self, tokens):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/pygments-2.11.2//pygments/lexers/lisp.py#L2308">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="pygments.lexers.lisp.ShenLexer._relevant">
+    
+  </a>
+  <a name="_relevant">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_relevant</span>(self, token):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/pygments-2.11.2//pygments/lexers/lisp.py#L2295">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div>
+        </div>
+      
+      </div>
+    </div>
+
+    <footer class="navbar navbar-default">
+
+  
+  <div class="container">
+    <a href="index.html">API Documentation</a> for pygments,
+  generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
+    22.4.0.dev0 at 2022-04-23 07:06:52.
+  </div>
+
+  <!-- Search related scripts needs to be loaded at the end of HTML 
+    parsing not to introduce overhead and display HTML data asap -->
+  <script src="ajax.js" type="text/javascript"></script>
+  <script src="searchlib.js" type="text/javascript"></script>
+  <script src="search.js" type="text/javascript"></script>
+
+</footer>
+  
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+  </body>
+</html>
