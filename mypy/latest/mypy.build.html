@@ -7,7 +7,7 @@
   <head>
     
     <title>mypy.build</title>
-    <meta name="generator" content="pydoctor 22.5.0.dev0"> 
+    <meta name="generator" content="pydoctor 22.5.1.dev0"> 
         
     </meta>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
@@ -22,7 +22,7 @@
     <div id="banner">    
     <div>
         <a href="/">Home</a>
-        &gt; mypy-0.950 <!-- This is a placeholder -->
+        &gt; mypy-0.960 <!-- This is a placeholder -->
         
         <!-- (<a href=""&gt;show all versions</a&gt;) -->
     </div>
@@ -187,7 +187,7 @@
         
 
         
-            <div class="itemName"><code><a href="mypy.build.BuildSourceSet.html" class="internal-link" title="mypy.build.BuildSourceSet"><wbr></wbr>Build<wbr></wbr>Source<wbr></wbr>Set</a></code>
+            <div class="itemName"><code><a href="mypy.build.CacheMeta.html" class="internal-link" title="mypy.build.CacheMeta"><wbr></wbr>Cache<wbr></wbr>Meta</a></code>
             </div>
         
 
@@ -334,6 +334,16 @@
 
         
             <div class="itemName"><code><a href="#dump_graph" class="internal-link" title="mypy.build.dump_graph">dump<wbr></wbr>_graph</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#dump_timing_stats" class="internal-link" title="mypy.build.dump_timing_stats">dump<wbr></wbr>_timing<wbr></wbr>_stats</a></code>
             </div>
         
 
@@ -883,16 +893,6 @@
 
         
             <div class="itemName"><code><a href="#T" class="internal-link" title="mypy.build.T">T</a></code>
-            </div>
-        
-
-    </li><li class="">
-        
-        
-        
-
-        
-            <div class="itemName"><code><a href="#CacheMeta" class="internal-link" title="mypy.build.CacheMeta"><wbr></wbr>Cache<wbr></wbr>Meta</a></code>
             </div>
         
 
@@ -2024,7 +2024,7 @@
         </div>
 
         <div class="extrasDocstring">
-          <a href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.950//mypy/build.py" class="sourceLink">(source)</a>
+          <a href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.960//mypy/build.py" class="sourceLink">(source)</a>
           <p></p>
         </div>
 
@@ -2057,8 +2057,8 @@ The function build() is the main interface to this module.</p></div>
   </tr><tr class="class">
     
     <td>Class</td>
-    <td><code><a href="mypy.build.BuildSourceSet.html" class="internal-link" title="mypy.build.BuildSourceSet"><wbr></wbr>Build<wbr></wbr>Source<wbr></wbr>Set</a></code></td>
-    <td>Efficiently test a file's membership in the set of build sources.</td>
+    <td><code><a href="mypy.build.CacheMeta.html" class="internal-link" title="mypy.build.CacheMeta"><wbr></wbr>Cache<wbr></wbr>Meta</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
   </tr><tr class="class">
     
     <td>Class</td>
@@ -2129,6 +2129,11 @@ The function build() is the main interface to this module.</p></div>
     <td>Function</td>
     <td><code><a href="#dump_graph" class="internal-link" title="mypy.build.dump_graph">dump<wbr></wbr>_graph</a></code></td>
     <td>Dump the graph as a JSON string to stdout.</td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#dump_timing_stats" class="internal-link" title="mypy.build.dump_timing_stats">dump<wbr></wbr>_timing<wbr></wbr>_stats</a></code></td>
+    <td>Dump timing stats for each file in the given graph</td>
   </tr><tr class="function">
     
     <td>Function</td>
@@ -2387,11 +2392,6 @@ The function build() is the main interface to this module.</p></div>
   </tr><tr class="variable">
     
     <td>Variable</td>
-    <td><code><a href="#CacheMeta" class="internal-link" title="mypy.build.CacheMeta"><wbr></wbr>Cache<wbr></wbr>Meta</a></code></td>
-    <td><span class="undocumented">Undocumented</span></td>
-  </tr><tr class="variable">
-    
-    <td>Variable</td>
     <td><code><a href="#FgDepMeta" class="internal-link" title="mypy.build.FgDepMeta"><wbr></wbr>Fg<wbr></wbr>Dep<wbr></wbr>Meta</a></code></td>
     <td><span class="undocumented">Undocumented</span></td>
   </tr><tr class="variable">
@@ -2434,13 +2434,12 @@ The function build() is the main interface to this module.</p></div>
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">add_catch_all_gitignore</span>(target_dir):
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.950//mypy/build.py#L1132">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.960//mypy/build.py#L1109">
       
       (source)
     </a>
   </div>
   <div class="docstring functionBody">
-    
     
     <div><p class="pre">Add catch-all .gitignore to an existing directory.
 
@@ -2458,13 +2457,12 @@ No-op if the .gitignore already exists.</p><table class="fieldTable"><tr class="
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">build</span>(sources, options, alt_lib_path=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, flush_errors=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, fscache=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, stdout=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, stderr=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, extra_plugins=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>):
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.950//mypy/build.py#L136">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.960//mypy/build.py#L110">
       
       (source)
     </a>
   </div>
   <div class="docstring functionBody">
-    
     
     <div><p class="pre">Analyze a program.
 
@@ -2499,19 +2497,18 @@ Args:
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">cache_meta_from_dict</span>(meta, data_json):
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.950//mypy/build.py#L327">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.960//mypy/build.py#L303">
       
       (source)
     </a>
   </div>
   <div class="docstring functionBody">
     
-    
     <div><p class="pre">Build a CacheMeta object from a json metadata dictionary
 
 Args:
   meta: JSON metadata read from the metadata cache file
-  data_json: Path to the .data.json file containing the AST trees</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">meta:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Dict" class="intersphinx-link">Dict</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>, <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">Any</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">data<wbr></wbr>_json:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="#CacheMeta" class="internal-link" title="mypy.build.CacheMeta">CacheMeta</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  data_json: Path to the .data.json file containing the AST trees</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">meta:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Dict" class="intersphinx-link">Dict</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>, <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">Any</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">data<wbr></wbr>_json:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="mypy.build.CacheMeta.html" class="internal-link" title="mypy.build.CacheMeta">CacheMeta</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basefunction">
   
@@ -2525,13 +2522,12 @@ Args:
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">compute_hash</span>(text):
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.950//mypy/build.py#L1434">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.960//mypy/build.py#L1411">
       
       (source)
     </a>
   </div>
   <div class="docstring functionBody">
-    
     
     <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">text:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
@@ -2547,13 +2543,12 @@ Args:
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">create_metastore</span>(options):
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.950//mypy/build.py#L1162">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.960//mypy/build.py#L1139">
       
       (source)
     </a>
   </div>
   <div class="docstring functionBody">
-    
     
     <div><p class="pre">Create the appropriate metadata store.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">options:</span><code><a href="mypy.options.Options.html" class="internal-link" title="mypy.options.Options">Options</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="mypy.metastore.MetadataStore.html" class="internal-link" title="mypy.metastore.MetadataStore">MetadataStore</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
@@ -2569,13 +2564,12 @@ Args:
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">default_data_dir</span>():
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.950//mypy/build.py#L279">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.960//mypy/build.py#L255">
       
       (source)
     </a>
   </div>
   <div class="docstring functionBody">
-    
     
     <div><p class="pre">Returns directory containing typeshed directory.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
@@ -2591,13 +2585,12 @@ Args:
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">delete_cache</span>(id, path, manager):
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.950//mypy/build.py#L1578">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.960//mypy/build.py#L1554">
       
       (source)
     </a>
   </div>
   <div class="docstring functionBody">
-    
     
     <div><p class="pre">Delete cache files for a module.
 
@@ -2617,13 +2610,12 @@ see #4043 for an example.</p><table class="fieldTable"><tr class="fieldStart"><t
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">deps_filtered</span>(graph, vertices, id, pri_max):
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.950//mypy/build.py#L3242">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.960//mypy/build.py#L3248">
       
       (source)
     </a>
   </div>
   <div class="docstring functionBody">
-    
     
     <div><p class="pre">Filter dependencies for id with pri &lt; pri_max.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">graph:</span><code><a href="#Graph" class="internal-link" title="mypy.build.Graph">Graph</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">vertices:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.AbstractSet" class="intersphinx-link">AbstractSet</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">id:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">pri<wbr></wbr>_max:</span><code><a href="https://docs.python.org/3/library/functions.html#int" class="intersphinx-link">int</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.List" class="intersphinx-link">List</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
@@ -2639,13 +2631,12 @@ see #4043 for an example.</p><table class="fieldTable"><tr class="fieldStart"><t
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">deps_to_json</span>(x):
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.950//mypy/build.py#L869">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.960//mypy/build.py#L846">
       
       (source)
     </a>
   </div>
   <div class="docstring functionBody">
-    
     
     <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">x:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Dict" class="intersphinx-link">Dict</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>, <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Set" class="intersphinx-link">Set</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
@@ -2661,13 +2652,12 @@ see #4043 for an example.</p><table class="fieldTable"><tr class="fieldStart"><t
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">dispatch</span>(sources, manager, stdout):
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.950//mypy/build.py#L2673">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.960//mypy/build.py#L2669">
       
       (source)
     </a>
   </div>
   <div class="docstring functionBody">
-    
     
     <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">sources:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.List" class="intersphinx-link">List</a>[<wbr></wbr><a href="mypy.modulefinder.BuildSource.html" class="internal-link" title="mypy.modulefinder.BuildSource">BuildSource</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">manager:</span><code><a href="mypy.build.BuildManager.html" class="internal-link" title="mypy.build.BuildManager">BuildManager</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">stdout:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.TextIO" class="intersphinx-link">TextIO</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="#Graph" class="internal-link" title="mypy.build.Graph">Graph</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
@@ -2683,18 +2673,38 @@ see #4043 for an example.</p><table class="fieldTable"><tr class="fieldStart"><t
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">dump_graph</span>(graph, stdout=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>):
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.950//mypy/build.py#L2774">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.960//mypy/build.py#L2780">
       
       (source)
     </a>
   </div>
   <div class="docstring functionBody">
     
-    
     <div><p class="pre">Dump the graph as a JSON string to stdout.
 
 This copies some of the work by process_graph()
 (sorted_components() and order_ascc()).</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">graph:</span><code><a href="#Graph" class="internal-link" title="mypy.build.Graph">Graph</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">stdout:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.TextIO" class="intersphinx-link">TextIO</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="mypy.build.dump_timing_stats">
+    
+  </a>
+  <a name="dump_timing_stats">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">dump_timing_stats</span>(path, graph):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.960//mypy/build.py#L2770">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p class="pre">Dump timing stats for each file in the given graph</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">path:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">graph:</span><code><a href="#Graph" class="internal-link" title="mypy.build.Graph">Graph</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basefunction">
   
@@ -2708,13 +2718,12 @@ This copies some of the work by process_graph()
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">exclude_from_backups</span>(target_dir):
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.950//mypy/build.py#L1146">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.960//mypy/build.py#L1123">
       
       (source)
     </a>
   </div>
   <div class="docstring functionBody">
-    
     
     <div><p class="pre">Exclude the directory from various archives and backups supporting CACHEDIR.TAG.
 
@@ -2732,13 +2741,12 @@ If the CACHEDIR.TAG file exists the function is a no-op.</p><table class="fieldT
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">exist_added_packages</span>(suppressed, manager, options):
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.950//mypy/build.py#L2511">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.960//mypy/build.py#L2507">
       
       (source)
     </a>
   </div>
   <div class="docstring functionBody">
-    
     
     <div><p class="pre">Find if there are any newly added packages that were previously suppressed.
 
@@ -2756,13 +2764,12 @@ Exclude everything not in build for follow-imports=skip.</p><table class="fieldT
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">find_cache_meta</span>(id, path, manager):
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.950//mypy/build.py#L1207">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.960//mypy/build.py#L1184">
       
       (source)
     </a>
   </div>
   <div class="docstring functionBody">
-    
     
     <div><p class="pre">Find cache data for a module.
 
@@ -2773,7 +2780,7 @@ Args:
 
 Returns:
   A CacheMeta instance if the cache data was found and appears
-  valid; otherwise None.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">id:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">path:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">manager:</span><code><a href="mypy.build.BuildManager.html" class="internal-link" title="mypy.build.BuildManager">BuildManager</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">Optional</a>[<wbr></wbr><a href="#CacheMeta" class="internal-link" title="mypy.build.CacheMeta">CacheMeta</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  valid; otherwise None.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">id:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">path:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">manager:</span><code><a href="mypy.build.BuildManager.html" class="internal-link" title="mypy.build.BuildManager">BuildManager</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">Optional</a>[<wbr></wbr><a href="mypy.build.CacheMeta.html" class="internal-link" title="mypy.build.CacheMeta">CacheMeta</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basefunction">
   
@@ -2787,13 +2794,12 @@ Returns:
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">find_config_file_line_number</span>(path, section, setting_name):
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.950//mypy/build.py#L506">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.960//mypy/build.py#L482">
       
       (source)
     </a>
   </div>
   <div class="docstring functionBody">
-    
     
     <div><p class="pre">Return the approximate location of setting_name within mypy config file.
 
@@ -2811,13 +2817,12 @@ Return -1 if can't determine the line unambiguously.</p><table class="fieldTable
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">find_module_and_diagnose</span>(manager, id, options, caller_state=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, caller_line=0, ancestor_for=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, root_source=<a href="https://docs.python.org/3/library/constants.html#False" class="intersphinx-link">False</a>, skip_diagnose=<a href="https://docs.python.org/3/library/constants.html#False" class="intersphinx-link">False</a>):
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.950//mypy/build.py#L2394">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.960//mypy/build.py#L2390">
       
       (source)
     </a>
   </div>
   <div class="docstring functionBody">
-    
     
     <div><p class="pre">Find a module by name, respecting follow_imports and producing diagnostics.
 
@@ -2851,13 +2856,12 @@ Returns a tuple containing (file path, target's effective follow_imports setting
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">find_module_simple</span>(id, manager):
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.950//mypy/build.py#L2535">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.960//mypy/build.py#L2531">
       
       (source)
     </a>
   </div>
   <div class="docstring functionBody">
-    
     
     <div><p class="pre">Find a filesystem path for module `id` or `None` if not found.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">id:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">manager:</span><code><a href="mypy.build.BuildManager.html" class="internal-link" title="mypy.build.BuildManager">BuildManager</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
@@ -2873,13 +2877,12 @@ Returns a tuple containing (file path, target's effective follow_imports setting
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">find_module_with_reason</span>(id, manager):
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.950//mypy/build.py#L2543">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.960//mypy/build.py#L2539">
       
       (source)
     </a>
   </div>
   <div class="docstring functionBody">
-    
     
     <div><p class="pre">Find a filesystem path for module `id` or the reason it can't be found.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">id:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">manager:</span><code><a href="mypy.build.BuildManager.html" class="internal-link" title="mypy.build.BuildManager">BuildManager</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="mypy.modulefinder.html#ModuleSearchResult" class="internal-link" title="mypy.modulefinder.ModuleSearchResult">ModuleSearchResult</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
@@ -2895,13 +2898,12 @@ Returns a tuple containing (file path, target's effective follow_imports setting
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">generate_deps_for_cache</span>(manager, graph):
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.950//mypy/build.py#L974">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.960//mypy/build.py#L951">
       
       (source)
     </a>
   </div>
   <div class="docstring functionBody">
-    
     
     <div><p class="pre">Generate fine-grained dependencies into a form suitable for serializing.
 
@@ -2927,13 +2929,12 @@ fake module FAKE_ROOT_MODULE if none are.</p><table class="fieldTable"><tr class
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">get_cache_names</span>(id, path, options):
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.950//mypy/build.py#L1171">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.960//mypy/build.py#L1148">
       
       (source)
     </a>
   </div>
   <div class="docstring functionBody">
-    
     
     <div><p class="pre">Return the file names for the cache files.
 
@@ -2959,13 +2960,12 @@ Returns:
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">import_priority</span>(imp, toplevel_priority):
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.950//mypy/build.py#L366">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.960//mypy/build.py#L342">
       
       (source)
     </a>
   </div>
   <div class="docstring functionBody">
-    
     
     <div><p class="pre">Compute import priority from an import node.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">imp:</span><code><a href="mypy.nodes.ImportBase.html" class="internal-link" title="mypy.nodes.ImportBase">ImportBase</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">toplevel<wbr></wbr>_priority:</span><code><a href="https://docs.python.org/3/library/functions.html#int" class="intersphinx-link">int</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/functions.html#int" class="intersphinx-link">int</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
@@ -2981,13 +2981,12 @@ Returns:
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">in_partial_package</span>(id, manager):
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.950//mypy/build.py#L2551">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.960//mypy/build.py#L2547">
       
       (source)
     </a>
   </div>
   <div class="docstring functionBody">
-    
     
     <div><p class="pre">Check if a missing module can potentially be a part of a package.
 
@@ -3006,13 +3005,12 @@ defines a module-level __getattr__ (a.k.a. partial stub package).</p><table clas
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">invert_deps</span>(deps, graph):
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.950//mypy/build.py#L947">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.960//mypy/build.py#L924">
       
       (source)
     </a>
   </div>
   <div class="docstring functionBody">
-    
     
     <div><p class="pre">Splits fine-grained dependencies based on the module of the trigger.
 
@@ -3033,13 +3031,12 @@ fake module FAKE_ROOT_MODULE if none are.</p><table class="fieldTable"><tr class
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">json_dumps</span>(obj, debug_cache):
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.950//mypy/build.py#L1443">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.960//mypy/build.py#L1420">
       
       (source)
     </a>
   </div>
   <div class="docstring functionBody">
-    
     
     <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">obj:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">Any</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">debug<wbr></wbr>_cache:</span><code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
@@ -3055,13 +3052,12 @@ fake module FAKE_ROOT_MODULE if none are.</p><table class="fieldTable"><tr class
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">load_graph</span>(sources, manager, old_graph=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, new_modules=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>):
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.950//mypy/build.py#L2812">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.960//mypy/build.py#L2818">
       
       (source)
     </a>
   </div>
   <div class="docstring functionBody">
-    
     
     <div><p class="pre">Given some source files, load the full dependency graph.
 
@@ -3087,13 +3083,12 @@ there are syntax errors.</p><table class="fieldTable"><tr class="fieldStart"><td
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">load_plugins</span>(options, errors, stdout, extra_plugins):
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.950//mypy/build.py#L466">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.960//mypy/build.py#L442">
       
       (source)
     </a>
   </div>
   <div class="docstring functionBody">
-    
     
     <div><p class="pre">Load all configured plugins.
 
@@ -3114,13 +3109,12 @@ plugins (for cache validation).</p><table class="fieldTable"><tr class="fieldSta
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">load_plugins_from_config</span>(options, errors, stdout):
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.950//mypy/build.py#L378">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.960//mypy/build.py#L354">
       
       (source)
     </a>
   </div>
   <div class="docstring functionBody">
-    
     
     <div><p class="pre">Load all configured plugins.
 
@@ -3140,13 +3134,12 @@ plugins (for cache validation).</p><table class="fieldTable"><tr class="fieldSta
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">log_configuration</span>(manager, sources):
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.950//mypy/build.py#L2638">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.960//mypy/build.py#L2634">
       
       (source)
     </a>
   </div>
   <div class="docstring functionBody">
-    
     
     <div><p class="pre">Output useful configuration information to LOG and TRACE</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">manager:</span><code><a href="mypy.build.BuildManager.html" class="internal-link" title="mypy.build.BuildManager">BuildManager</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">sources:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.List" class="intersphinx-link">List</a>[<wbr></wbr><a href="mypy.modulefinder.BuildSource.html" class="internal-link" title="mypy.modulefinder.BuildSource">BuildSource</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
@@ -3162,13 +3155,12 @@ plugins (for cache validation).</p><table class="fieldTable"><tr class="fieldSta
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">missing_stubs_file</span>(cache_dir):
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.950//mypy/build.py#L3347">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.960//mypy/build.py#L3353">
       
       (source)
     </a>
   </div>
   <div class="docstring functionBody">
-    
     
     <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">cache<wbr></wbr>_dir:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
@@ -3184,13 +3176,12 @@ plugins (for cache validation).</p><table class="fieldTable"><tr class="fieldSta
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">module_not_found</span>(manager, line, caller_state, target, reason):
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.950//mypy/build.py#L2580">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.960//mypy/build.py#L2576">
       
       (source)
     </a>
   </div>
   <div class="docstring functionBody">
-    
     
     <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">manager:</span><code><a href="mypy.build.BuildManager.html" class="internal-link" title="mypy.build.BuildManager">BuildManager</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">line:</span><code><a href="https://docs.python.org/3/library/functions.html#int" class="intersphinx-link">int</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">caller<wbr></wbr>_state:</span><code><a href="mypy.build.State.html" class="internal-link" title="mypy.build.State">State</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">target:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">reason:</span><code><a href="mypy.modulefinder.ModuleNotFoundReason.html" class="internal-link" title="mypy.modulefinder.ModuleNotFoundReason">ModuleNotFoundReason</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
@@ -3206,13 +3197,12 @@ plugins (for cache validation).</p><table class="fieldTable"><tr class="fieldSta
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">normpath</span>(path, options):
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.950//mypy/build.py#L284">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.960//mypy/build.py#L260">
       
       (source)
     </a>
   </div>
   <div class="docstring functionBody">
-    
     
     <div><p class="pre">Convert path to absolute; but to relative in bazel mode.
 
@@ -3231,13 +3221,12 @@ end up in output files.)</p><table class="fieldTable"><tr class="fieldStart"><td
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">order_ascc</span>(graph, ascc, pri_max=<a href="#PRI_ALL" class="internal-link" title="mypy.build.PRI_ALL">PRI_ALL</a>):
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.950//mypy/build.py#L3094">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.960//mypy/build.py#L3100">
       
       (source)
     </a>
   </div>
   <div class="docstring functionBody">
-    
     
     <div><p class="pre">Come up with the ideal processing order within an SCC.
 
@@ -3278,13 +3267,12 @@ strongly_connected_components() below for a reference.</p><table class="fieldTab
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">process_fresh_modules</span>(graph, modules, manager):
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.950//mypy/build.py#L3141">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.960//mypy/build.py#L3147">
       
       (source)
     </a>
   </div>
   <div class="docstring functionBody">
-    
     
     <div><p class="pre">Process the modules in one group of modules from their cached data.
 
@@ -3303,13 +3291,12 @@ This involves loading the tree from JSON and then doing various cleanups.</p><ta
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">process_graph</span>(graph, manager):
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.950//mypy/build.py#L2953">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.960//mypy/build.py#L2959">
       
       (source)
     </a>
   </div>
   <div class="docstring functionBody">
-    
     
     <div><p class="pre">Process everything in dependency order.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">graph:</span><code><a href="#Graph" class="internal-link" title="mypy.build.Graph">Graph</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">manager:</span><code><a href="mypy.build.BuildManager.html" class="internal-link" title="mypy.build.BuildManager">BuildManager</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
@@ -3325,13 +3312,12 @@ This involves loading the tree from JSON and then doing various cleanups.</p><ta
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">process_stale_scc</span>(graph, scc, manager):
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.950//mypy/build.py#L3157">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.960//mypy/build.py#L3163">
       
       (source)
     </a>
   </div>
   <div class="docstring functionBody">
-    
     
     <div><p class="pre">Process the modules in one SCC from source code.
 
@@ -3349,13 +3335,12 @@ Exception: If quick_and_dirty is set, use the cache for fresh modules.</p><table
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">read_deps_cache</span>(manager, graph):
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.950//mypy/build.py#L1048">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.960//mypy/build.py#L1025">
       
       (source)
     </a>
   </div>
   <div class="docstring functionBody">
-    
     
     <div><p class="pre">Read and validate the fine-grained dependencies cache.
 
@@ -3376,13 +3361,12 @@ Returns None if the cache was invalid in some way.</p><table class="fieldTable">
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">read_plugins_snapshot</span>(manager):
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.950//mypy/build.py#L1014">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.960//mypy/build.py#L991">
       
       (source)
     </a>
   </div>
   <div class="docstring functionBody">
-    
     
     <div><p class="pre">Read cached snapshot of versions and hashes of plugins from previous run.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">manager:</span><code><a href="mypy.build.BuildManager.html" class="internal-link" title="mypy.build.BuildManager">BuildManager</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Dict" class="intersphinx-link">Dict</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>, <wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
@@ -3398,13 +3382,12 @@ Returns None if the cache was invalid in some way.</p><table class="fieldTable">
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">read_quickstart_file</span>(options, stdout):
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.950//mypy/build.py#L1028">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.960//mypy/build.py#L1005">
       
       (source)
     </a>
   </div>
   <div class="docstring functionBody">
-    
     
     <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">options:</span><code><a href="mypy.options.Options.html" class="internal-link" title="mypy.options.Options">Options</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">stdout:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.TextIO" class="intersphinx-link">TextIO</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Dict" class="intersphinx-link">Dict</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>, <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Tuple" class="intersphinx-link">Tuple</a>[<wbr></wbr><a href="https://docs.python.org/3/library/functions.html#float" class="intersphinx-link">float</a>, <wbr></wbr><a href="https://docs.python.org/3/library/functions.html#int" class="intersphinx-link">int</a>, <wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]]]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
@@ -3420,13 +3403,12 @@ Returns None if the cache was invalid in some way.</p><table class="fieldTable">
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">record_missing_stub_packages</span>(cache_dir, missing_stub_packages):
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.950//mypy/build.py#L3351">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.960//mypy/build.py#L3357">
       
       (source)
     </a>
   </div>
   <div class="docstring functionBody">
-    
     
     <div><p class="pre">Write a file containing missing stub packages.
 
@@ -3445,13 +3427,12 @@ to install missing stub packages.</p><table class="fieldTable"><tr class="fieldS
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">skipping_ancestor</span>(manager, id, path, ancestor_for):
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.950//mypy/build.py#L2623">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.960//mypy/build.py#L2619">
       
       (source)
     </a>
   </div>
   <div class="docstring functionBody">
-    
     
     <div><p class="pre">Produce an error for an ancestor ignored due to --follow_imports=error</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">manager:</span><code><a href="mypy.build.BuildManager.html" class="internal-link" title="mypy.build.BuildManager">BuildManager</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">id:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">path:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">ancestor<wbr></wbr>_for:</span><code><a href="mypy.build.State.html" class="internal-link" title="mypy.build.State">State</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
@@ -3467,13 +3448,12 @@ to install missing stub packages.</p><table class="fieldTable"><tr class="fieldS
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">skipping_module</span>(manager, line, caller_state, id, path):
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.950//mypy/build.py#L2607">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.960//mypy/build.py#L2603">
       
       (source)
     </a>
   </div>
   <div class="docstring functionBody">
-    
     
     <div><p class="pre">Produce an error for an import ignored due to --follow_imports=error</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">manager:</span><code><a href="mypy.build.BuildManager.html" class="internal-link" title="mypy.build.BuildManager">BuildManager</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">line:</span><code><a href="https://docs.python.org/3/library/functions.html#int" class="intersphinx-link">int</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">caller<wbr></wbr>_state:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">Optional</a>[<wbr></wbr><a href="mypy.build.State.html" class="internal-link" title="mypy.build.State">State</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">id:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">path:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
@@ -3489,13 +3469,12 @@ to install missing stub packages.</p><table class="fieldTable"><tr class="fieldS
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">sorted_components</span>(graph, vertices=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, pri_max=<a href="#PRI_ALL" class="internal-link" title="mypy.build.PRI_ALL">PRI_ALL</a>):
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.950//mypy/build.py#L3203">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.960//mypy/build.py#L3209">
       
       (source)
     </a>
   </div>
   <div class="docstring functionBody">
-    
     
     <div><p class="pre">Return the graph's SCCs, topologically sorted by dependencies.
 
@@ -3517,13 +3496,12 @@ dependencies that aren't present in graph.keys() are ignored.</p><table class="f
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">strongly_connected_components</span>(vertices, edges):
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.950//mypy/build.py#L3252">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.960//mypy/build.py#L3258">
       
       (source)
     </a>
   </div>
   <div class="docstring functionBody">
-    
     
     <div><p class="pre">Compute Strongly Connected Components of a directed graph.
 
@@ -3551,13 +3529,12 @@ From http://code.activestate.com/recipes/578507/.</p><table class="fieldTable"><
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">take_module_snapshot</span>(module):
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.950//mypy/build.py#L490">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.960//mypy/build.py#L466">
       
       (source)
     </a>
   </div>
   <div class="docstring functionBody">
-    
     
     <div><p class="pre">Take plugin module snapshot by recording its version and hash.
 
@@ -3576,13 +3553,12 @@ We record _both_ hash and the version to detect more possible changes
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">topsort</span>(data):
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.950//mypy/build.py#L3300">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.960//mypy/build.py#L3306">
       
       (source)
     </a>
   </div>
   <div class="docstring functionBody">
-    
     
     <div><p class="pre">Topological sort.
 
@@ -3626,20 +3602,19 @@ From http://code.activestate.com/recipes/577413/.</p><table class="fieldTable"><
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">validate_meta</span>(meta, id, path, ignore_all, manager):
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.950//mypy/build.py#L1291">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.960//mypy/build.py#L1268">
       
       (source)
     </a>
   </div>
   <div class="docstring functionBody">
     
-    
     <div><p class="pre">Checks whether the cached AST of this module can be used.
 
 Returns:
   None, if the cached AST is unusable.
   Original meta, if mtime/size matched.
-  Meta with mtime updated to match source file, if hash/size matched but mtime/path didn't.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">meta:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">Optional</a>[<wbr></wbr><a href="#CacheMeta" class="internal-link" title="mypy.build.CacheMeta">CacheMeta</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">id:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">path:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">ignore<wbr></wbr>_all:</span><code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">manager:</span><code><a href="mypy.build.BuildManager.html" class="internal-link" title="mypy.build.BuildManager">BuildManager</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">Optional</a>[<wbr></wbr><a href="#CacheMeta" class="internal-link" title="mypy.build.CacheMeta">CacheMeta</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  Meta with mtime updated to match source file, if hash/size matched but mtime/path didn't.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">meta:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">Optional</a>[<wbr></wbr><a href="mypy.build.CacheMeta.html" class="internal-link" title="mypy.build.CacheMeta">CacheMeta</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">id:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">path:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">ignore<wbr></wbr>_all:</span><code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">manager:</span><code><a href="mypy.build.BuildManager.html" class="internal-link" title="mypy.build.BuildManager">BuildManager</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">Optional</a>[<wbr></wbr><a href="mypy.build.CacheMeta.html" class="internal-link" title="mypy.build.CacheMeta">CacheMeta</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basefunction">
   
@@ -3653,13 +3628,12 @@ Returns:
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">write_cache</span>(id, path, tree, dependencies, suppressed, dep_prios, dep_lines, old_interface_hash, source_hash, ignore_all, manager):
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.950//mypy/build.py#L1450">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.960//mypy/build.py#L1427">
       
       (source)
     </a>
   </div>
   <div class="docstring functionBody">
-    
     
     <div><p class="pre">Write cache files for a module.
 
@@ -3683,7 +3657,7 @@ Args:
 Returns:
   A tuple containing the interface hash and CacheMeta
   corresponding to the metadata that was written (the latter may
-  be None if the cache could not be written).</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">id:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">path:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">tree:</span><code><a href="mypy.nodes.MypyFile.html" class="internal-link" title="mypy.nodes.MypyFile">MypyFile</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">dependencies:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.List" class="intersphinx-link">List</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">suppressed:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.List" class="intersphinx-link">List</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">dep<wbr></wbr>_prios:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.List" class="intersphinx-link">List</a>[<wbr></wbr><a href="https://docs.python.org/3/library/functions.html#int" class="intersphinx-link">int</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">dep<wbr></wbr>_lines:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.List" class="intersphinx-link">List</a>[<wbr></wbr><a href="https://docs.python.org/3/library/functions.html#int" class="intersphinx-link">int</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">old<wbr></wbr>_interface<wbr></wbr>_hash:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">source<wbr></wbr>_hash:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">ignore<wbr></wbr>_all:</span><code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">manager:</span><code><a href="mypy.build.BuildManager.html" class="internal-link" title="mypy.build.BuildManager">BuildManager</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Tuple" class="intersphinx-link">Tuple</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>, <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">Optional</a>[<wbr></wbr><a href="#CacheMeta" class="internal-link" title="mypy.build.CacheMeta">CacheMeta</a>]]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  be None if the cache could not be written).</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">id:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">path:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">tree:</span><code><a href="mypy.nodes.MypyFile.html" class="internal-link" title="mypy.nodes.MypyFile">MypyFile</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">dependencies:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.List" class="intersphinx-link">List</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">suppressed:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.List" class="intersphinx-link">List</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">dep<wbr></wbr>_prios:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.List" class="intersphinx-link">List</a>[<wbr></wbr><a href="https://docs.python.org/3/library/functions.html#int" class="intersphinx-link">int</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">dep<wbr></wbr>_lines:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.List" class="intersphinx-link">List</a>[<wbr></wbr><a href="https://docs.python.org/3/library/functions.html#int" class="intersphinx-link">int</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">old<wbr></wbr>_interface<wbr></wbr>_hash:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">source<wbr></wbr>_hash:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">ignore<wbr></wbr>_all:</span><code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">manager:</span><code><a href="mypy.build.BuildManager.html" class="internal-link" title="mypy.build.BuildManager">BuildManager</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Tuple" class="intersphinx-link">Tuple</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>, <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">Optional</a>[<wbr></wbr><a href="mypy.build.CacheMeta.html" class="internal-link" title="mypy.build.CacheMeta">CacheMeta</a>]]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basefunction">
   
@@ -3697,13 +3671,12 @@ Returns:
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">write_deps_cache</span>(rdeps, manager, graph):
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.950//mypy/build.py#L883">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.960//mypy/build.py#L860">
       
       (source)
     </a>
   </div>
   <div class="docstring functionBody">
-    
     
     <div><p class="pre">Write cache files for fine-grained dependencies.
 
@@ -3736,13 +3709,12 @@ fine-grained dependencies in a global cache file:
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">write_plugins_snapshot</span>(manager):
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.950//mypy/build.py#L1006">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.960//mypy/build.py#L983">
       
       (source)
     </a>
   </div>
   <div class="docstring functionBody">
-    
     
     <div><p class="pre">Write snapshot of versions and hashes of currently active plugins.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">manager:</span><code><a href="mypy.build.BuildManager.html" class="internal-link" title="mypy.build.BuildManager">BuildManager</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
@@ -3758,13 +3730,12 @@ fine-grained dependencies in a global cache file:
   <div class="functionHeader">
     
     <span class="py-defname">CORE_BUILTIN_MODULES</span>: <code><a href="https://docs.python.org/3/library/stdtypes.html#set" class="intersphinx-link">set</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]</code> =
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.950//mypy/build.py#L73">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.960//mypy/build.py#L74">
       
       (source)
     </a>
   </div>
   <div class="functionBody">
-    
     
     <div><p class="undocumented">Undocumented</p></div>
     <table class="valueTable"><tr class="fieldStart"><td class="fieldName">Value</td></tr><tr><td><pre class="constant-value"><code>set([<wbr></wbr><span class="rst-variable-quote">'</span><span class="rst-variable-string">builtins</span><span class="rst-variable-quote">'</span>,
@@ -3788,13 +3759,12 @@ fine-grained dependencies in a global cache file:
   <div class="functionHeader">
     
     <span class="py-defname">DEBUG_FINE_GRAINED</span>: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code> =
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.950//mypy/build.py#L70">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.960//mypy/build.py#L71">
       
       (source)
     </a>
   </div>
   <div class="functionBody">
-    
     
     <div><p class="undocumented">Undocumented</p></div>
     <table class="valueTable"><tr class="fieldStart"><td class="fieldName">Value</td></tr><tr><td><pre class="constant-value"><code><a href="https://docs.python.org/3/library/constants.html#False" class="intersphinx-link">False</a></code></pre></td></tr></table>
@@ -3811,13 +3781,12 @@ fine-grained dependencies in a global cache file:
   <div class="functionHeader">
     
     <span class="py-defname">DEPS_META_FILE</span>: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code> =
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.950//mypy/build.py#L874">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.960//mypy/build.py#L851">
       
       (source)
     </a>
   </div>
   <div class="functionBody">
-    
     
     <div><p class="undocumented">Undocumented</p></div>
     <table class="valueTable"><tr class="fieldStart"><td class="fieldName">Value</td></tr><tr><td><pre class="constant-value"><code><span class="rst-variable-quote">'</span><span class="rst-variable-string">@deps.meta.json</span><span class="rst-variable-quote">'</span></code></pre></td></tr></table>
@@ -3834,13 +3803,12 @@ fine-grained dependencies in a global cache file:
   <div class="functionHeader">
     
     <span class="py-defname">DEPS_ROOT_FILE</span>: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code> =
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.950//mypy/build.py#L876">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.960//mypy/build.py#L853">
       
       (source)
     </a>
   </div>
   <div class="functionBody">
-    
     
     <div><p class="undocumented">Undocumented</p></div>
     <table class="valueTable"><tr class="fieldStart"><td class="fieldName">Value</td></tr><tr><td><pre class="constant-value"><code><span class="rst-variable-quote">'</span><span class="rst-variable-string">@root.deps.json</span><span class="rst-variable-quote">'</span></code></pre></td></tr></table>
@@ -3857,13 +3825,12 @@ fine-grained dependencies in a global cache file:
   <div class="functionHeader">
     
     <span class="py-defname">FAKE_ROOT_MODULE</span>: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code> =
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.950//mypy/build.py#L880">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.960//mypy/build.py#L857">
       
       (source)
     </a>
   </div>
   <div class="functionBody">
-    
     
     <div><p class="undocumented">Undocumented</p></div>
     <table class="valueTable"><tr class="fieldStart"><td class="fieldName">Value</td></tr><tr><td><pre class="constant-value"><code><span class="rst-variable-quote">'</span><span class="rst-variable-string">@root</span><span class="rst-variable-quote">'</span></code></pre></td></tr></table>
@@ -3880,13 +3847,12 @@ fine-grained dependencies in a global cache file:
   <div class="functionHeader">
     
     <span class="py-defname">PLUGIN_SNAPSHOT_FILE</span>: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code> =
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.950//mypy/build.py#L1003">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.960//mypy/build.py#L980">
       
       (source)
     </a>
   </div>
   <div class="functionBody">
-    
     
     <div><p class="undocumented">Undocumented</p></div>
     <table class="valueTable"><tr class="fieldStart"><td class="fieldName">Value</td></tr><tr><td><pre class="constant-value"><code><span class="rst-variable-quote">'</span><span class="rst-variable-string">@plugins_snapshot.json</span><span class="rst-variable-quote">'</span></code></pre></td></tr></table>
@@ -3903,13 +3869,12 @@ fine-grained dependencies in a global cache file:
   <div class="functionHeader">
     
     <span class="py-defname">PRI_ALL</span>: <code><a href="https://docs.python.org/3/library/functions.html#int" class="intersphinx-link">int</a></code> =
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.950//mypy/build.py#L363">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.960//mypy/build.py#L339">
       
       (source)
     </a>
   </div>
   <div class="functionBody">
-    
     
     <div><p class="undocumented">Undocumented</p></div>
     <table class="valueTable"><tr class="fieldStart"><td class="fieldName">Value</td></tr><tr><td><pre class="constant-value"><code>99</code></pre></td></tr></table>
@@ -3926,13 +3891,12 @@ fine-grained dependencies in a global cache file:
   <div class="functionHeader">
     
     <span class="py-defname">PRI_HIGH</span>: <code><a href="https://docs.python.org/3/library/functions.html#int" class="intersphinx-link">int</a></code> =
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.950//mypy/build.py#L358">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.960//mypy/build.py#L334">
       
       (source)
     </a>
   </div>
   <div class="functionBody">
-    
     
     <div><p class="undocumented">Undocumented</p></div>
     <table class="valueTable"><tr class="fieldStart"><td class="fieldName">Value</td></tr><tr><td><pre class="constant-value"><code>5</code></pre></td></tr></table>
@@ -3949,13 +3913,12 @@ fine-grained dependencies in a global cache file:
   <div class="functionHeader">
     
     <span class="py-defname">PRI_INDIRECT</span>: <code><a href="https://docs.python.org/3/library/functions.html#int" class="intersphinx-link">int</a></code> =
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.950//mypy/build.py#L362">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.960//mypy/build.py#L338">
       
       (source)
     </a>
   </div>
   <div class="functionBody">
-    
     
     <div><p class="undocumented">Undocumented</p></div>
     <table class="valueTable"><tr class="fieldStart"><td class="fieldName">Value</td></tr><tr><td><pre class="constant-value"><code>30</code></pre></td></tr></table>
@@ -3972,13 +3935,12 @@ fine-grained dependencies in a global cache file:
   <div class="functionHeader">
     
     <span class="py-defname">PRI_LOW</span>: <code><a href="https://docs.python.org/3/library/functions.html#int" class="intersphinx-link">int</a></code> =
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.950//mypy/build.py#L360">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.960//mypy/build.py#L336">
       
       (source)
     </a>
   </div>
   <div class="functionBody">
-    
     
     <div><p class="undocumented">Undocumented</p></div>
     <table class="valueTable"><tr class="fieldStart"><td class="fieldName">Value</td></tr><tr><td><pre class="constant-value"><code>20</code></pre></td></tr></table>
@@ -3995,13 +3957,12 @@ fine-grained dependencies in a global cache file:
   <div class="functionHeader">
     
     <span class="py-defname">PRI_MED</span>: <code><a href="https://docs.python.org/3/library/functions.html#int" class="intersphinx-link">int</a></code> =
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.950//mypy/build.py#L359">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.960//mypy/build.py#L335">
       
       (source)
     </a>
   </div>
   <div class="functionBody">
-    
     
     <div><p class="undocumented">Undocumented</p></div>
     <table class="valueTable"><tr class="fieldStart"><td class="fieldName">Value</td></tr><tr><td><pre class="constant-value"><code>10</code></pre></td></tr></table>
@@ -4018,13 +3979,12 @@ fine-grained dependencies in a global cache file:
   <div class="functionHeader">
     
     <span class="py-defname">PRI_MYPY</span>: <code><a href="https://docs.python.org/3/library/functions.html#int" class="intersphinx-link">int</a></code> =
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.950//mypy/build.py#L361">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.960//mypy/build.py#L337">
       
       (source)
     </a>
   </div>
   <div class="functionBody">
-    
     
     <div><p class="undocumented">Undocumented</p></div>
     <table class="valueTable"><tr class="fieldStart"><td class="fieldName">Value</td></tr><tr><td><pre class="constant-value"><code>25</code></pre></td></tr></table>
@@ -4041,39 +4001,15 @@ fine-grained dependencies in a global cache file:
   <div class="functionHeader">
     
     <span class="py-defname">T</span> =
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.950//mypy/build.py#L3297">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.960//mypy/build.py#L3303">
       
       (source)
     </a>
   </div>
   <div class="functionBody">
-    
     
     <div><p class="undocumented">Undocumented</p></div>
     <table class="valueTable"><tr class="fieldStart"><td class="fieldName">Value</td></tr><tr><td><pre class="constant-value"><code><a href="https://docs.python.org/3/library/typing.html#typing.TypeVar" class="intersphinx-link">TypeVar</a>(<wbr></wbr><span class="rst-variable-quote">'</span><span class="rst-variable-string">T</span><span class="rst-variable-quote">'</span>)</code></pre></td></tr></table>
-  </div>
-</div><div class="basevariable">
-  
-  
-  <a name="mypy.build.CacheMeta">
-    
-  </a>
-  <a name="CacheMeta">
-    
-  </a>
-  <div class="functionHeader">
-    
-    <span class="py-defname">CacheMeta</span> =
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.950//mypy/build.py#L299">
-      
-      (source)
-    </a>
-  </div>
-  <div class="functionBody">
-    
-    
-    <div><p class="undocumented">Undocumented</p></div>
-    
   </div>
 </div><div class="basevariable">
   
@@ -4087,13 +4023,12 @@ fine-grained dependencies in a global cache file:
   <div class="functionHeader">
     
     <span class="py-defname">FgDepMeta</span> =
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.950//mypy/build.py#L324">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.960//mypy/build.py#L300">
       
       (source)
     </a>
   </div>
   <div class="functionBody">
-    
     
     <div><p class="undocumented">Undocumented</p></div>
     
@@ -4110,13 +4045,12 @@ fine-grained dependencies in a global cache file:
   <div class="functionHeader">
     
     <span class="py-defname">Graph</span>: <code>_TypeAlias</code> =
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.950//mypy/build.py#L85">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.960//mypy/build.py#L86">
       
       (source)
     </a>
   </div>
   <div class="functionBody">
-    
     
     <div><p class="undocumented">Undocumented</p></div>
     
@@ -4133,13 +4067,12 @@ fine-grained dependencies in a global cache file:
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">_build</span>(sources, options, alt_lib_path, flush_errors, fscache, stdout, stderr, extra_plugins):
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.950//mypy/build.py#L196">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.960//mypy/build.py#L170">
       
       (source)
     </a>
   </div>
   <div class="docstring functionBody">
-    
     
     <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">sources:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.List" class="intersphinx-link">List</a>[<wbr></wbr><a href="mypy.modulefinder.BuildSource.html" class="internal-link" title="mypy.modulefinder.BuildSource">BuildSource</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">options:</span><code><a href="mypy.options.Options.html" class="internal-link" title="mypy.options.Options">Options</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">alt<wbr></wbr>_lib<wbr></wbr>_path:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">flush<wbr></wbr>_errors:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Callable" class="intersphinx-link">Callable</a>[<wbr></wbr>[<wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.List" class="intersphinx-link">List</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>], <wbr></wbr><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a>], <wbr></wbr><a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">fscache:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">Optional</a>[<wbr></wbr><a href="mypy.fscache.FileSystemCache.html" class="internal-link" title="mypy.fscache.FileSystemCache">FileSystemCache</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">stdout:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.TextIO" class="intersphinx-link">TextIO</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">stderr:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.TextIO" class="intersphinx-link">TextIO</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">extra<wbr></wbr>_plugins:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Sequence" class="intersphinx-link">Sequence</a>[<wbr></wbr><a href="mypy.plugin.Plugin.html" class="internal-link" title="mypy.plugin.Plugin">Plugin</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="mypy.build.BuildResult.html" class="internal-link" title="mypy.build.BuildResult">BuildResult</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
@@ -4155,13 +4088,12 @@ fine-grained dependencies in a global cache file:
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">_cache_dir_prefix</span>(options):
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.950//mypy/build.py#L1121">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.960//mypy/build.py#L1098">
       
       (source)
     </a>
   </div>
   <div class="docstring functionBody">
-    
     
     <div><p class="pre">Get current cache directory (or file if id is given).</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">options:</span><code><a href="mypy.options.Options.html" class="internal-link" title="mypy.options.Options">Options</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
@@ -4177,13 +4109,12 @@ fine-grained dependencies in a global cache file:
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">_load_json_file</span>(file, manager, log_success, log_error):
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.950//mypy/build.py#L1089">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.960//mypy/build.py#L1066">
       
       (source)
     </a>
   </div>
   <div class="docstring functionBody">
-    
     
     <div><p class="pre">A simple helper to read a JSON file with logging.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">file:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">manager:</span><code><a href="mypy.build.BuildManager.html" class="internal-link" title="mypy.build.BuildManager">BuildManager</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">log<wbr></wbr>_success:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">log<wbr></wbr>_error:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Dict" class="intersphinx-link">Dict</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>, <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">Any</a>]]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
@@ -4199,7 +4130,7 @@ fine-grained dependencies in a global cache file:
   <div class="container">
     <a href="index.html">API Documentation</a> for mypy,
   generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
-    22.5.0.dev0 at 2022-04-28 01:22:35.
+    22.5.1.dev0 at 2022-05-26 01:08:43.
   </div>
 
   <!-- Search related scripts needs to be loaded at the end of HTML 

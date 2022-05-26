@@ -7,7 +7,7 @@
   <head>
     
     <title>mypy.plugins.attrs</title>
-    <meta name="generator" content="pydoctor 22.5.0.dev0"> 
+    <meta name="generator" content="pydoctor 22.5.1.dev0"> 
         
     </meta>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
@@ -22,7 +22,7 @@
     <div id="banner">    
     <div>
         <a href="/">Home</a>
-        &gt; mypy-0.950 <!-- This is a placeholder -->
+        &gt; mypy-0.960 <!-- This is a placeholder -->
         
         <!-- (<a href=""&gt;show all versions</a&gt;) -->
     </div>
@@ -213,6 +213,16 @@
         
 
         
+            <div class="itemName"><code><a href="#attr_tag_callback" class="internal-link" title="mypy.plugins.attrs.attr_tag_callback">attr<wbr></wbr>_tag<wbr></wbr>_callback</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
             <div class="itemName"><code><a href="#is_valid_overloaded_converter" class="internal-link" title="mypy.plugins.attrs.is_valid_overloaded_converter">is<wbr></wbr>_valid<wbr></wbr>_overloaded<wbr></wbr>_converter</a></code>
             </div>
         
@@ -224,6 +234,16 @@
 
         
             <div class="itemName"><code><a href="#_add_attrs_magic_attribute" class="internal-link" title="mypy.plugins.attrs._add_attrs_magic_attribute">_add<wbr></wbr>_attrs<wbr></wbr>_magic<wbr></wbr>_attribute</a></code>
+            </div>
+        
+
+    </li><li class="private">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#_add_empty_metadata" class="internal-link" title="mypy.plugins.attrs._add_empty_metadata">_add<wbr></wbr>_empty<wbr></wbr>_metadata</a></code>
             </div>
         
 
@@ -644,7 +664,7 @@
         </div>
 
         <div class="extrasDocstring">
-          <a href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.950//mypy/plugins/attrs.py" class="sourceLink">(source)</a>
+          <a href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.960//mypy/plugins/attrs.py" class="sourceLink">(source)</a>
           <p></p>
         </div>
 
@@ -653,7 +673,7 @@
         </div>
 
         <div id="splitTables">
-          <table class="children sortable" id="id483">
+          <table class="children sortable" id="id505">
   
   
   <tr class="class">
@@ -676,6 +696,11 @@
     <td>Function</td>
     <td><code><a href="#attr_class_maker_callback" class="internal-link" title="mypy.plugins.attrs.attr_class_maker_callback">attr<wbr></wbr>_class<wbr></wbr>_maker<wbr></wbr>_callback</a></code></td>
     <td>Add necessary dunder methods to classes decorated with attr.s.</td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#attr_tag_callback" class="internal-link" title="mypy.plugins.attrs.attr_tag_callback">attr<wbr></wbr>_tag<wbr></wbr>_callback</a></code></td>
+    <td>Record that we have an attrs class in the main semantic analysis pass.</td>
   </tr><tr class="function">
     
     <td>Function</td>
@@ -736,6 +761,11 @@
     <td>Function</td>
     <td><code><a href="#_add_attrs_magic_attribute" class="internal-link" title="mypy.plugins.attrs._add_attrs_magic_attribute">_add<wbr></wbr>_attrs<wbr></wbr>_magic<wbr></wbr>_attribute</a></code></td>
     <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="function private">
+    
+    <td>Function</td>
+    <td><code><a href="#_add_empty_metadata" class="internal-link" title="mypy.plugins.attrs._add_empty_metadata">_add<wbr></wbr>_empty<wbr></wbr>_metadata</a></code></td>
+    <td>Add empty metadata to mark that we've finished processing this class.</td>
   </tr><tr class="function private">
     
     <td>Function</td>
@@ -836,13 +866,12 @@
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">attr_class_maker_callback</span>(ctx, auto_attribs_default=<a href="https://docs.python.org/3/library/constants.html#False" class="intersphinx-link">False</a>, frozen_default=<a href="https://docs.python.org/3/library/constants.html#False" class="intersphinx-link">False</a>):
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.950//mypy/plugins/attrs.py#L261">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.960//mypy/plugins/attrs.py#L260">
       
       (source)
     </a>
   </div>
   <div class="docstring functionBody">
-    
     
     <div><p class="pre">Add necessary dunder methods to classes decorated with attr.s.
 
@@ -853,7 +882,34 @@ annotated variables if auto_attribs=True), then depending on how the decorator i
 it will add an __init__ or all the __cmp__ methods.  For frozen=True it will turn the attrs
 into properties.
 
-See http://www.attrs.org/en/stable/how-does-it-work.html for information on how attrs works.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">ctx:</span><code><a href="mypy.plugin.html#ClassDefContext" class="internal-link">mypy.plugin.ClassDefContext</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">auto<wbr></wbr>_attribs<wbr></wbr>_default:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">frozen<wbr></wbr>_default:</span><code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+See http://www.attrs.org/en/stable/how-does-it-work.html for information on how attrs works.
+
+If this returns False, some required metadata was not ready yet and we need another
+pass.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">ctx:</span><code><a href="mypy.plugin.ClassDefContext.html" class="internal-link">mypy.plugin.ClassDefContext</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">auto<wbr></wbr>_attribs<wbr></wbr>_default:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">frozen<wbr></wbr>_default:</span><code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="mypy.plugins.attrs.attr_tag_callback">
+    
+  </a>
+  <a name="attr_tag_callback">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">attr_tag_callback</span>(ctx):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.960//mypy/plugins/attrs.py#L250">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p class="pre">Record that we have an attrs class in the main semantic analysis pass.
+
+The later pass implemented by attr_class_maker_callback will use this
+to detect attrs lasses in base classes.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">ctx:</span><code><a href="mypy.plugin.ClassDefContext.html" class="internal-link">mypy.plugin.ClassDefContext</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basefunction">
   
@@ -867,13 +923,12 @@ See http://www.attrs.org/en/stable/how-does-it-work.html for information on how 
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">is_valid_overloaded_converter</span>(defn):
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.950//mypy/plugins/attrs.py#L632">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.960//mypy/plugins/attrs.py#L652">
       
       (source)
     </a>
   </div>
   <div class="docstring functionBody">
-    
     
     <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">defn:</span><code><a href="mypy.nodes.OverloadedFuncDef.html" class="internal-link" title="mypy.nodes.OverloadedFuncDef">OverloadedFuncDef</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
@@ -889,13 +944,12 @@ See http://www.attrs.org/en/stable/how-does-it-work.html for information on how 
   <div class="functionHeader">
     
     <span class="py-defname">attr_attrib_makers</span>: <code><a href="https://docs.python.org/3/library/stdtypes.html#set" class="intersphinx-link">set</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]</code> =
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.950//mypy/plugins/attrs.py#L46">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.960//mypy/plugins/attrs.py#L45">
       
       (source)
     </a>
   </div>
   <div class="functionBody">
-    
     
     <div><p class="undocumented">Undocumented</p></div>
     <table class="valueTable"><tr class="fieldStart"><td class="fieldName">Value</td></tr><tr><td><pre class="constant-value"><code>set([<wbr></wbr><span class="rst-variable-quote">'</span><span class="rst-variable-string">attr.ib</span><span class="rst-variable-quote">'</span>, <wbr></wbr><span class="rst-variable-quote">'</span><span class="rst-variable-string">attr.attrib</span><span class="rst-variable-quote">'</span>, <wbr></wbr><span class="rst-variable-quote">'</span><span class="rst-variable-string">attr.attr</span><span class="rst-variable-quote">'</span>, <wbr></wbr><span class="rst-variable-quote">'</span><span class="rst-variable-string">attr.field</span><span class="rst-variable-quote">'</span>, <wbr></wbr><span class="rst-variable-quote">'</span><span class="rst-variable-string">attrs.field</span><span class="rst-variable-quote">'</span>])</code></pre></td></tr></table>
@@ -912,13 +966,12 @@ See http://www.attrs.org/en/stable/how-does-it-work.html for information on how 
   <div class="functionHeader">
     
     <span class="py-defname">attr_class_makers</span>: <code><a href="https://docs.python.org/3/library/stdtypes.html#set" class="intersphinx-link">set</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]</code> =
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.950//mypy/plugins/attrs.py#L36">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.960//mypy/plugins/attrs.py#L35">
       
       (source)
     </a>
   </div>
   <div class="functionBody">
-    
     
     <div><p class="undocumented">Undocumented</p></div>
     <table class="valueTable"><tr class="fieldStart"><td class="fieldName">Value</td></tr><tr><td><pre class="constant-value"><code>set([<wbr></wbr><span class="rst-variable-quote">'</span><span class="rst-variable-string">attr.s</span><span class="rst-variable-quote">'</span>, <wbr></wbr><span class="rst-variable-quote">'</span><span class="rst-variable-string">attr.attrs</span><span class="rst-variable-quote">'</span>, <wbr></wbr><span class="rst-variable-quote">'</span><span class="rst-variable-string">attr.attributes</span><span class="rst-variable-quote">'</span>])</code></pre></td></tr></table>
@@ -935,13 +988,12 @@ See http://www.attrs.org/en/stable/how-does-it-work.html for information on how 
   <div class="functionHeader">
     
     <span class="py-defname">attr_dataclass_makers</span>: <code><a href="https://docs.python.org/3/library/stdtypes.html#set" class="intersphinx-link">set</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]</code> =
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.950//mypy/plugins/attrs.py#L41">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.960//mypy/plugins/attrs.py#L40">
       
       (source)
     </a>
   </div>
   <div class="functionBody">
-    
     
     <div><p class="undocumented">Undocumented</p></div>
     <table class="valueTable"><tr class="fieldStart"><td class="fieldName">Value</td></tr><tr><td><pre class="constant-value"><code>set([<wbr></wbr><span class="rst-variable-quote">'</span><span class="rst-variable-string">attr.dataclass</span><span class="rst-variable-quote">'</span>])</code></pre></td></tr></table>
@@ -958,13 +1010,12 @@ See http://www.attrs.org/en/stable/how-does-it-work.html for information on how 
   <div class="functionHeader">
     
     <span class="py-defname">attr_define_makers</span>: <code><a href="https://docs.python.org/3/library/stdtypes.html#set" class="intersphinx-link">set</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]</code> =
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.950//mypy/plugins/attrs.py#L45">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.960//mypy/plugins/attrs.py#L44">
       
       (source)
     </a>
   </div>
   <div class="functionBody">
-    
     
     <div><p class="undocumented">Undocumented</p></div>
     <table class="valueTable"><tr class="fieldStart"><td class="fieldName">Value</td></tr><tr><td><pre class="constant-value"><code>set([<wbr></wbr><span class="rst-variable-quote">'</span><span class="rst-variable-string">attr.define</span><span class="rst-variable-quote">'</span>, <wbr></wbr><span class="rst-variable-quote">'</span><span class="rst-variable-string">attr.mutable</span><span class="rst-variable-quote">'</span>, <wbr></wbr><span class="rst-variable-quote">'</span><span class="rst-variable-string">attrs.define</span><span class="rst-variable-quote">'</span>, <wbr></wbr><span class="rst-variable-quote">'</span><span class="rst-variable-string">attrs.mutable</span><span class="rst-variable-quote">'</span>])</code></pre></td></tr></table>
@@ -981,13 +1032,12 @@ See http://www.attrs.org/en/stable/how-does-it-work.html for information on how 
   <div class="functionHeader">
     
     <span class="py-defname">attr_frozen_makers</span>: <code><a href="https://docs.python.org/3/library/stdtypes.html#set" class="intersphinx-link">set</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]</code> =
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.950//mypy/plugins/attrs.py#L44">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.960//mypy/plugins/attrs.py#L43">
       
       (source)
     </a>
   </div>
   <div class="functionBody">
-    
     
     <div><p class="undocumented">Undocumented</p></div>
     <table class="valueTable"><tr class="fieldStart"><td class="fieldName">Value</td></tr><tr><td><pre class="constant-value"><code>set([<wbr></wbr><span class="rst-variable-quote">'</span><span class="rst-variable-string">attr.frozen</span><span class="rst-variable-quote">'</span>, <wbr></wbr><span class="rst-variable-quote">'</span><span class="rst-variable-string">attrs.frozen</span><span class="rst-variable-quote">'</span>])</code></pre></td></tr></table>
@@ -1004,13 +1054,12 @@ See http://www.attrs.org/en/stable/how-does-it-work.html for information on how 
   <div class="functionHeader">
     
     <span class="py-defname">attr_optional_converters</span>: <code><a href="https://docs.python.org/3/library/stdtypes.html#set" class="intersphinx-link">set</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]</code> =
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.950//mypy/plugins/attrs.py#L53">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.960//mypy/plugins/attrs.py#L52">
       
       (source)
     </a>
   </div>
   <div class="functionBody">
-    
     
     <div><p class="undocumented">Undocumented</p></div>
     <table class="valueTable"><tr class="fieldStart"><td class="fieldName">Value</td></tr><tr><td><pre class="constant-value"><code>set([<wbr></wbr><span class="rst-variable-quote">'</span><span class="rst-variable-string">attr.converters.optional</span><span class="rst-variable-quote">'</span>, <wbr></wbr><span class="rst-variable-quote">'</span><span class="rst-variable-string">attrs.converters.optional</span><span class="rst-variable-quote">'</span>])</code></pre></td></tr></table>
@@ -1027,13 +1076,12 @@ See http://www.attrs.org/en/stable/how-does-it-work.html for information on how 
   <div class="functionHeader">
     
     <span class="py-defname">KW_ONLY_PYTHON_2_UNSUPPORTED</span>: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code> =
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.950//mypy/plugins/attrs.py#L33">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.960//mypy/plugins/attrs.py#L32">
       
       (source)
     </a>
   </div>
   <div class="functionBody">
-    
     
     <div><p class="undocumented">Undocumented</p></div>
     <table class="valueTable"><tr class="fieldStart"><td class="fieldName">Value</td></tr><tr><td><pre class="constant-value"><code><span class="rst-variable-quote">'</span><span class="rst-variable-string">kw_only is not supported in Python 2</span><span class="rst-variable-quote">'</span></code></pre></td></tr></table>
@@ -1050,13 +1098,12 @@ See http://www.attrs.org/en/stable/how-does-it-work.html for information on how 
   <div class="functionHeader">
     
     <span class="py-defname">MAGIC_ATTR_CLS_NAME</span>: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code> =
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.950//mypy/plugins/attrs.py#L57">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.960//mypy/plugins/attrs.py#L56">
       
       (source)
     </a>
   </div>
   <div class="functionBody">
-    
     
     <div><p class="undocumented">Undocumented</p></div>
     <table class="valueTable"><tr class="fieldStart"><td class="fieldName">Value</td></tr><tr><td><pre class="constant-value"><code><span class="rst-variable-quote">'</span><span class="rst-variable-string">_AttrsAttributes</span><span class="rst-variable-quote">'</span></code></pre></td></tr></table>
@@ -1073,13 +1120,12 @@ See http://www.attrs.org/en/stable/how-does-it-work.html for information on how 
   <div class="functionHeader">
     
     <span class="py-defname">MAGIC_ATTR_NAME</span>: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code> =
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.950//mypy/plugins/attrs.py#L56">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.960//mypy/plugins/attrs.py#L55">
       
       (source)
     </a>
   </div>
   <div class="functionBody">
-    
     
     <div><p class="undocumented">Undocumented</p></div>
     <table class="valueTable"><tr class="fieldStart"><td class="fieldName">Value</td></tr><tr><td><pre class="constant-value"><code><span class="rst-variable-quote">'</span><span class="rst-variable-string">__attrs_attrs__</span><span class="rst-variable-quote">'</span></code></pre></td></tr></table>
@@ -1096,13 +1142,12 @@ See http://www.attrs.org/en/stable/how-does-it-work.html for information on how 
   <div class="functionHeader">
     
     <span class="py-defname">SELF_TVAR_NAME</span>: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code> =
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.950//mypy/plugins/attrs.py#L55">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.960//mypy/plugins/attrs.py#L54">
       
       (source)
     </a>
   </div>
   <div class="functionBody">
-    
     
     <div><p class="undocumented">Undocumented</p></div>
     <table class="valueTable"><tr class="fieldStart"><td class="fieldName">Value</td></tr><tr><td><pre class="constant-value"><code><span class="rst-variable-quote">'</span><span class="rst-variable-string">_AT</span><span class="rst-variable-quote">'</span></code></pre></td></tr></table>
@@ -1119,15 +1164,35 @@ See http://www.attrs.org/en/stable/how-does-it-work.html for information on how 
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">_add_attrs_magic_attribute</span>(ctx, attrs):
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.950//mypy/plugins/attrs.py#L722">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.960//mypy/plugins/attrs.py#L742">
       
       (source)
     </a>
   </div>
   <div class="docstring functionBody">
     
+    <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">ctx:</span><code><a href="mypy.plugin.ClassDefContext.html" class="internal-link">mypy.plugin.ClassDefContext</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">attrs:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.List" class="intersphinx-link">List</a>[<wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Tuple" class="intersphinx-link">Tuple</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>, <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">Optional</a>[<wbr></wbr><a href="mypy.types.Type.html" class="internal-link" title="mypy.types.Type">Type</a>]]]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basefunction private">
+  
+  
+  <a name="mypy.plugins.attrs._add_empty_metadata">
     
-    <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">ctx:</span><code><a href="mypy.plugin.html#ClassDefContext" class="internal-link">mypy.plugin.ClassDefContext</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">attrs:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.List" class="intersphinx-link">List</a>[<wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Tuple" class="intersphinx-link">Tuple</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>, <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">Optional</a>[<wbr></wbr><a href="mypy.types.Type.html" class="internal-link" title="mypy.types.Type">Type</a>]]]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </a>
+  <a name="_add_empty_metadata">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_add_empty_metadata</span>(info):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.960//mypy/plugins/attrs.py#L437">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p class="pre">Add empty metadata to mark that we've finished processing this class.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">info:</span><code><a href="mypy.nodes.TypeInfo.html" class="internal-link" title="mypy.nodes.TypeInfo">TypeInfo</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basefunction private">
   
@@ -1141,15 +1206,14 @@ See http://www.attrs.org/en/stable/how-does-it-work.html for information on how 
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">_add_init</span>(ctx, attributes, adder):
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.950//mypy/plugins/attrs.py#L691">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.960//mypy/plugins/attrs.py#L711">
       
       (source)
     </a>
   </div>
   <div class="docstring functionBody">
     
-    
-    <div><p class="pre">Generate an __init__ method for the attributes and add it to the class.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">ctx:</span><code><a href="mypy.plugin.html#ClassDefContext" class="internal-link">mypy.plugin.ClassDefContext</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">attributes:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.List" class="intersphinx-link">List</a>[<wbr></wbr><a href="mypy.plugins.attrs.Attribute.html" class="internal-link" title="mypy.plugins.attrs.Attribute">Attribute</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">adder:</span><code><a href="mypy.plugins.attrs.MethodAdder.html" class="internal-link" title="mypy.plugins.attrs.MethodAdder">MethodAdder</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+    <div><p class="pre">Generate an __init__ method for the attributes and add it to the class.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">ctx:</span><code><a href="mypy.plugin.ClassDefContext.html" class="internal-link">mypy.plugin.ClassDefContext</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">attributes:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.List" class="intersphinx-link">List</a>[<wbr></wbr><a href="mypy.plugins.attrs.Attribute.html" class="internal-link" title="mypy.plugins.attrs.Attribute">Attribute</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">adder:</span><code><a href="mypy.plugins.attrs.MethodAdder.html" class="internal-link" title="mypy.plugins.attrs.MethodAdder">MethodAdder</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basefunction private">
   
@@ -1163,15 +1227,14 @@ See http://www.attrs.org/en/stable/how-does-it-work.html for information on how 
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">_add_match_args</span>(ctx, attributes):
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.950//mypy/plugins/attrs.py#L764">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.960//mypy/plugins/attrs.py#L784">
       
       (source)
     </a>
   </div>
   <div class="docstring functionBody">
     
-    
-    <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">ctx:</span><code><a href="mypy.plugin.html#ClassDefContext" class="internal-link">mypy.plugin.ClassDefContext</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">attributes:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.List" class="intersphinx-link">List</a>[<wbr></wbr><a href="mypy.plugins.attrs.Attribute.html" class="internal-link" title="mypy.plugins.attrs.Attribute">Attribute</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+    <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">ctx:</span><code><a href="mypy.plugin.ClassDefContext.html" class="internal-link">mypy.plugin.ClassDefContext</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">attributes:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.List" class="intersphinx-link">List</a>[<wbr></wbr><a href="mypy.plugins.attrs.Attribute.html" class="internal-link" title="mypy.plugins.attrs.Attribute">Attribute</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basefunction private">
   
@@ -1185,15 +1248,14 @@ See http://www.attrs.org/en/stable/how-does-it-work.html for information on how 
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">_add_order</span>(ctx, adder):
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.950//mypy/plugins/attrs.py#L654">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.960//mypy/plugins/attrs.py#L674">
       
       (source)
     </a>
   </div>
   <div class="docstring functionBody">
     
-    
-    <div><p class="pre">Generate all the ordering methods for this class.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">ctx:</span><code><a href="mypy.plugin.html#ClassDefContext" class="internal-link">mypy.plugin.ClassDefContext</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">adder:</span><code><a href="mypy.plugins.attrs.MethodAdder.html" class="internal-link" title="mypy.plugins.attrs.MethodAdder">MethodAdder</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+    <div><p class="pre">Generate all the ordering methods for this class.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">ctx:</span><code><a href="mypy.plugin.ClassDefContext.html" class="internal-link">mypy.plugin.ClassDefContext</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">adder:</span><code><a href="mypy.plugins.attrs.MethodAdder.html" class="internal-link" title="mypy.plugins.attrs.MethodAdder">MethodAdder</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basefunction private">
   
@@ -1207,15 +1269,14 @@ See http://www.attrs.org/en/stable/how-does-it-work.html for information on how 
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">_add_slots</span>(ctx, attributes):
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.950//mypy/plugins/attrs.py#L758">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.960//mypy/plugins/attrs.py#L778">
       
       (source)
     </a>
   </div>
   <div class="docstring functionBody">
     
-    
-    <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">ctx:</span><code><a href="mypy.plugin.html#ClassDefContext" class="internal-link">mypy.plugin.ClassDefContext</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">attributes:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.List" class="intersphinx-link">List</a>[<wbr></wbr><a href="mypy.plugins.attrs.Attribute.html" class="internal-link" title="mypy.plugins.attrs.Attribute">Attribute</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+    <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">ctx:</span><code><a href="mypy.plugin.ClassDefContext.html" class="internal-link">mypy.plugin.ClassDefContext</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">attributes:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.List" class="intersphinx-link">List</a>[<wbr></wbr><a href="mypy.plugins.attrs.Attribute.html" class="internal-link" title="mypy.plugins.attrs.Attribute">Attribute</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basefunction private">
   
@@ -1229,19 +1290,18 @@ See http://www.attrs.org/en/stable/how-does-it-work.html for information on how 
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">_analyze_class</span>(ctx, auto_attribs, kw_only):
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.950//mypy/plugins/attrs.py#L345">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.960//mypy/plugins/attrs.py#L356">
       
       (source)
     </a>
   </div>
   <div class="docstring functionBody">
     
-    
     <div><p class="pre">Analyze the class body of an attr maker, its parents, and return the Attributes found.
 
 auto_attribs=True means we'll generate attributes from type annotations also.
 auto_attribs=None means we'll detect which mode to use.
-kw_only=True means that all attributes created here will be keyword only args in __init__.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">ctx:</span><code><a href="mypy.plugin.html#ClassDefContext" class="internal-link">mypy.plugin.ClassDefContext</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">auto<wbr></wbr>_attribs:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">kw<wbr></wbr>_only:</span><code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.List" class="intersphinx-link">List</a>[<wbr></wbr><a href="mypy.plugins.attrs.Attribute.html" class="internal-link" title="mypy.plugins.attrs.Attribute">Attribute</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+kw_only=True means that all attributes created here will be keyword only args in __init__.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">ctx:</span><code><a href="mypy.plugin.ClassDefContext.html" class="internal-link">mypy.plugin.ClassDefContext</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">auto<wbr></wbr>_attribs:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">kw<wbr></wbr>_only:</span><code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.List" class="intersphinx-link">List</a>[<wbr></wbr><a href="mypy.plugins.attrs.Attribute.html" class="internal-link" title="mypy.plugins.attrs.Attribute">Attribute</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basefunction private">
   
@@ -1255,15 +1315,14 @@ kw_only=True means that all attributes created here will be keyword only args in
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">_attribute_from_attrib_maker</span>(ctx, auto_attribs, kw_only, lhs, rvalue, stmt):
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.950//mypy/plugins/attrs.py#L529">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.960//mypy/plugins/attrs.py#L548">
       
       (source)
     </a>
   </div>
   <div class="docstring functionBody">
     
-    
-    <div><p class="pre">Return an Attribute from the assignment or None if you can't make one.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">ctx:</span><code><a href="mypy.plugin.html#ClassDefContext" class="internal-link">mypy.plugin.ClassDefContext</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">auto<wbr></wbr>_attribs:</span><code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">kw<wbr></wbr>_only:</span><code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">lhs:</span><code><a href="mypy.nodes.NameExpr.html" class="internal-link" title="mypy.nodes.NameExpr">NameExpr</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">rvalue:</span><code><a href="mypy.nodes.CallExpr.html" class="internal-link" title="mypy.nodes.CallExpr">CallExpr</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">stmt:</span><code><a href="mypy.nodes.AssignmentStmt.html" class="internal-link" title="mypy.nodes.AssignmentStmt">AssignmentStmt</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">Optional</a>[<wbr></wbr><a href="mypy.plugins.attrs.Attribute.html" class="internal-link" title="mypy.plugins.attrs.Attribute">Attribute</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+    <div><p class="pre">Return an Attribute from the assignment or None if you can't make one.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">ctx:</span><code><a href="mypy.plugin.ClassDefContext.html" class="internal-link">mypy.plugin.ClassDefContext</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">auto<wbr></wbr>_attribs:</span><code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">kw<wbr></wbr>_only:</span><code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">lhs:</span><code><a href="mypy.nodes.NameExpr.html" class="internal-link" title="mypy.nodes.NameExpr">NameExpr</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">rvalue:</span><code><a href="mypy.nodes.CallExpr.html" class="internal-link" title="mypy.nodes.CallExpr">CallExpr</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">stmt:</span><code><a href="mypy.nodes.AssignmentStmt.html" class="internal-link" title="mypy.nodes.AssignmentStmt">AssignmentStmt</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">Optional</a>[<wbr></wbr><a href="mypy.plugins.attrs.Attribute.html" class="internal-link" title="mypy.plugins.attrs.Attribute">Attribute</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basefunction private">
   
@@ -1277,15 +1336,14 @@ kw_only=True means that all attributes created here will be keyword only args in
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">_attribute_from_auto_attrib</span>(ctx, kw_only, lhs, rvalue, stmt):
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.950//mypy/plugins/attrs.py#L515">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.960//mypy/plugins/attrs.py#L534">
       
       (source)
     </a>
   </div>
   <div class="docstring functionBody">
     
-    
-    <div><p class="pre">Return an Attribute for a new type assignment.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">ctx:</span><code><a href="mypy.plugin.html#ClassDefContext" class="internal-link">mypy.plugin.ClassDefContext</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">kw<wbr></wbr>_only:</span><code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">lhs:</span><code><a href="mypy.nodes.NameExpr.html" class="internal-link" title="mypy.nodes.NameExpr">NameExpr</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">rvalue:</span><code><a href="mypy.nodes.Expression.html" class="internal-link" title="mypy.nodes.Expression">Expression</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">stmt:</span><code><a href="mypy.nodes.AssignmentStmt.html" class="internal-link" title="mypy.nodes.AssignmentStmt">AssignmentStmt</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="mypy.plugins.attrs.Attribute.html" class="internal-link" title="mypy.plugins.attrs.Attribute">Attribute</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+    <div><p class="pre">Return an Attribute for a new type assignment.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">ctx:</span><code><a href="mypy.plugin.ClassDefContext.html" class="internal-link">mypy.plugin.ClassDefContext</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">kw<wbr></wbr>_only:</span><code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">lhs:</span><code><a href="mypy.nodes.NameExpr.html" class="internal-link" title="mypy.nodes.NameExpr">NameExpr</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">rvalue:</span><code><a href="mypy.nodes.Expression.html" class="internal-link" title="mypy.nodes.Expression">Expression</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">stmt:</span><code><a href="mypy.nodes.AssignmentStmt.html" class="internal-link" title="mypy.nodes.AssignmentStmt">AssignmentStmt</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="mypy.plugins.attrs.Attribute.html" class="internal-link" title="mypy.plugins.attrs.Attribute">Attribute</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basefunction private">
   
@@ -1299,13 +1357,12 @@ kw_only=True means that all attributes created here will be keyword only args in
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">_attributes_from_assignment</span>(ctx, stmt, auto_attribs, kw_only):
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.950//mypy/plugins/attrs.py#L453">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.960//mypy/plugins/attrs.py#L472">
       
       (source)
     </a>
   </div>
   <div class="docstring functionBody">
-    
     
     <div><p class="pre">Return Attribute objects that are created by this assignment.
 
@@ -1315,7 +1372,7 @@ The assignments can look like this:
     x, y = attr.ib(), attr.ib()
 or if auto_attribs is enabled also like this:
     x: type
-    x: type = default_value</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">ctx:</span><code><a href="mypy.plugin.html#ClassDefContext" class="internal-link">mypy.plugin.ClassDefContext</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">stmt:</span><code><a href="mypy.nodes.AssignmentStmt.html" class="internal-link" title="mypy.nodes.AssignmentStmt">AssignmentStmt</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">auto<wbr></wbr>_attribs:</span><code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">kw<wbr></wbr>_only:</span><code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Iterable" class="intersphinx-link">Iterable</a>[<wbr></wbr><a href="mypy.plugins.attrs.Attribute.html" class="internal-link" title="mypy.plugins.attrs.Attribute">Attribute</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+    x: type = default_value</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">ctx:</span><code><a href="mypy.plugin.ClassDefContext.html" class="internal-link">mypy.plugin.ClassDefContext</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">stmt:</span><code><a href="mypy.nodes.AssignmentStmt.html" class="internal-link" title="mypy.nodes.AssignmentStmt">AssignmentStmt</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">auto<wbr></wbr>_attribs:</span><code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">kw<wbr></wbr>_only:</span><code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Iterable" class="intersphinx-link">Iterable</a>[<wbr></wbr><a href="mypy.plugins.attrs.Attribute.html" class="internal-link" title="mypy.plugins.attrs.Attribute">Attribute</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basefunction private">
   
@@ -1329,13 +1386,12 @@ or if auto_attribs is enabled also like this:
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">_cleanup_decorator</span>(stmt, attr_map):
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.950//mypy/plugins/attrs.py#L486">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.960//mypy/plugins/attrs.py#L505">
       
       (source)
     </a>
   </div>
   <div class="docstring functionBody">
-    
     
     <div><p class="pre">Handle decorators in class bodies.
 
@@ -1354,17 +1410,16 @@ or if auto_attribs is enabled also like this:
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">_detect_auto_attribs</span>(ctx):
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.950//mypy/plugins/attrs.py#L426">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.960//mypy/plugins/attrs.py#L445">
       
       (source)
     </a>
   </div>
   <div class="docstring functionBody">
     
-    
     <div><p class="pre">Return whether auto_attribs should be enabled or disabled.
 
-It's disabled if there are any unannotated attribs()</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">ctx:</span><code><a href="mypy.plugin.html#ClassDefContext" class="internal-link">mypy.plugin.ClassDefContext</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+It's disabled if there are any unannotated attribs()</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">ctx:</span><code><a href="mypy.plugin.ClassDefContext.html" class="internal-link">mypy.plugin.ClassDefContext</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basefunction private">
   
@@ -1378,16 +1433,15 @@ It's disabled if there are any unannotated attribs()</p><table class="fieldTable
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">_determine_eq_order</span>(ctx):
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.950//mypy/plugins/attrs.py#L206">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.960//mypy/plugins/attrs.py#L195">
       
       (source)
     </a>
   </div>
   <div class="docstring functionBody">
     
-    
     <div><p class="pre">Validate the combination of *cmp*, *eq*, and *order*. Derive the effective
-value of order.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">ctx:</span><code><a href="mypy.plugin.html#ClassDefContext" class="internal-link">mypy.plugin.ClassDefContext</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+value of order.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">ctx:</span><code><a href="mypy.plugin.ClassDefContext.html" class="internal-link">mypy.plugin.ClassDefContext</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basefunction private">
   
@@ -1401,17 +1455,16 @@ value of order.</p><table class="fieldTable"><tr class="fieldStart"><td class="f
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">_get_decorator_optional_bool_argument</span>(ctx, name, default=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>):
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.950//mypy/plugins/attrs.py#L235">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.960//mypy/plugins/attrs.py#L224">
       
       (source)
     </a>
   </div>
   <div class="docstring functionBody">
     
-    
     <div><p class="pre">Return the Optional[bool] argument for the decorator.
 
-This handles both @decorator(...) and @decorator.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">ctx:</span><code><a href="mypy.plugin.html#ClassDefContext" class="internal-link">mypy.plugin.ClassDefContext</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">name:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">default:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+This handles both @decorator(...) and @decorator.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">ctx:</span><code><a href="mypy.plugin.ClassDefContext.html" class="internal-link">mypy.plugin.ClassDefContext</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">name:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">default:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basefunction private">
   
@@ -1425,15 +1478,14 @@ This handles both @decorator(...) and @decorator.</p><table class="fieldTable"><
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">_get_frozen</span>(ctx, frozen_default):
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.950//mypy/plugins/attrs.py#L334">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.960//mypy/plugins/attrs.py#L345">
       
       (source)
     </a>
   </div>
   <div class="docstring functionBody">
     
-    
-    <div><p class="pre">Return whether this class is frozen.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">ctx:</span><code><a href="mypy.plugin.html#ClassDefContext" class="internal-link">mypy.plugin.ClassDefContext</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">frozen<wbr></wbr>_default:</span><code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+    <div><p class="pre">Return whether this class is frozen.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">ctx:</span><code><a href="mypy.plugin.ClassDefContext.html" class="internal-link">mypy.plugin.ClassDefContext</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">frozen<wbr></wbr>_default:</span><code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basefunction private">
   
@@ -1447,15 +1499,14 @@ This handles both @decorator(...) and @decorator.</p><table class="fieldTable"><
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">_make_frozen</span>(ctx, attributes):
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.950//mypy/plugins/attrs.py#L673">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.960//mypy/plugins/attrs.py#L693">
       
       (source)
     </a>
   </div>
   <div class="docstring functionBody">
     
-    
-    <div><p class="pre">Turn all the attributes into properties to simulate frozen classes.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">ctx:</span><code><a href="mypy.plugin.html#ClassDefContext" class="internal-link">mypy.plugin.ClassDefContext</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">attributes:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.List" class="intersphinx-link">List</a>[<wbr></wbr><a href="mypy.plugins.attrs.Attribute.html" class="internal-link" title="mypy.plugins.attrs.Attribute">Attribute</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+    <div><p class="pre">Turn all the attributes into properties to simulate frozen classes.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">ctx:</span><code><a href="mypy.plugin.ClassDefContext.html" class="internal-link">mypy.plugin.ClassDefContext</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">attributes:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.List" class="intersphinx-link">List</a>[<wbr></wbr><a href="mypy.plugins.attrs.Attribute.html" class="internal-link" title="mypy.plugins.attrs.Attribute">Attribute</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basefunction private">
   
@@ -1469,13 +1520,12 @@ This handles both @decorator(...) and @decorator.</p><table class="fieldTable"><
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">_parse_assignments</span>(lvalue, stmt):
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.950//mypy/plugins/attrs.py#L637">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.960//mypy/plugins/attrs.py#L657">
       
       (source)
     </a>
   </div>
   <div class="docstring functionBody">
-    
     
     <div><p class="pre">Convert a possibly complex assignment expression into lists of lvalues and rvalues.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">lvalue:</span><code><a href="mypy.nodes.Expression.html" class="internal-link" title="mypy.nodes.Expression">Expression</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">stmt:</span><code><a href="mypy.nodes.AssignmentStmt.html" class="internal-link" title="mypy.nodes.AssignmentStmt">AssignmentStmt</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Tuple" class="intersphinx-link">Tuple</a>[<wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.List" class="intersphinx-link">List</a>[<wbr></wbr><a href="mypy.nodes.NameExpr.html" class="internal-link" title="mypy.nodes.NameExpr">NameExpr</a>], <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.List" class="intersphinx-link">List</a>[<wbr></wbr><a href="mypy.nodes.Expression.html" class="internal-link" title="mypy.nodes.Expression">Expression</a>]]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
@@ -1491,15 +1541,14 @@ This handles both @decorator(...) and @decorator.</p><table class="fieldTable"><
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">_parse_converter</span>(ctx, converter):
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.950//mypy/plugins/attrs.py#L596">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.960//mypy/plugins/attrs.py#L615">
       
       (source)
     </a>
   </div>
   <div class="docstring functionBody">
     
-    
-    <div><p class="pre">Return the Converter object from an Expression.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">ctx:</span><code><a href="mypy.plugin.html#ClassDefContext" class="internal-link">mypy.plugin.ClassDefContext</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">converter:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">Optional</a>[<wbr></wbr><a href="mypy.nodes.Expression.html" class="internal-link" title="mypy.nodes.Expression">Expression</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="mypy.plugins.attrs.Converter.html" class="internal-link" title="mypy.plugins.attrs.Converter">Converter</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+    <div><p class="pre">Return the Converter object from an Expression.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">ctx:</span><code><a href="mypy.plugin.ClassDefContext.html" class="internal-link">mypy.plugin.ClassDefContext</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">converter:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">Optional</a>[<wbr></wbr><a href="mypy.nodes.Expression.html" class="internal-link" title="mypy.nodes.Expression">Expression</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="mypy.plugins.attrs.Converter.html" class="internal-link" title="mypy.plugins.attrs.Converter">Converter</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div>
         </div>
@@ -1513,7 +1562,7 @@ This handles both @decorator(...) and @decorator.</p><table class="fieldTable"><
   <div class="container">
     <a href="index.html">API Documentation</a> for mypy,
   generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
-    22.5.0.dev0 at 2022-04-28 01:22:35.
+    22.5.1.dev0 at 2022-05-26 01:08:43.
   </div>
 
   <!-- Search related scripts needs to be loaded at the end of HTML 

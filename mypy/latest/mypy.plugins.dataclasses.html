@@ -7,7 +7,7 @@
   <head>
     
     <title>mypy.plugins.dataclasses</title>
-    <meta name="generator" content="pydoctor 22.5.0.dev0"> 
+    <meta name="generator" content="pydoctor 22.5.1.dev0"> 
         
     </meta>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
@@ -22,7 +22,7 @@
     <div id="banner">    
     <div>
         <a href="/">Home</a>
-        &gt; mypy-0.950 <!-- This is a placeholder -->
+        &gt; mypy-0.960 <!-- This is a placeholder -->
         
         <!-- (<a href=""&gt;show all versions</a&gt;) -->
     </div>
@@ -194,6 +194,16 @@
 
         
             <div class="itemName"><code><a href="#dataclass_class_maker_callback" class="internal-link" title="mypy.plugins.dataclasses.dataclass_class_maker_callback">dataclass<wbr></wbr>_class<wbr></wbr>_maker<wbr></wbr>_callback</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#dataclass_tag_callback" class="internal-link" title="mypy.plugins.dataclasses.dataclass_tag_callback">dataclass<wbr></wbr>_tag<wbr></wbr>_callback</a></code>
             </div>
         
 
@@ -394,7 +404,7 @@
         </div>
 
         <div class="extrasDocstring">
-          <a href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.950//mypy/plugins/dataclasses.py" class="sourceLink">(source)</a>
+          <a href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.960//mypy/plugins/dataclasses.py" class="sourceLink">(source)</a>
           <p></p>
         </div>
 
@@ -403,7 +413,7 @@
         </div>
 
         <div id="splitTables">
-          <table class="children sortable" id="id489">
+          <table class="children sortable" id="id511">
   
   
   <tr class="class">
@@ -415,12 +425,17 @@
     
     <td>Class</td>
     <td><code><a href="mypy.plugins.dataclasses.DataclassTransformer.html" class="internal-link" title="mypy.plugins.dataclasses.DataclassTransformer"><wbr></wbr>Dataclass<wbr></wbr>Transformer</a></code></td>
-    <td><span class="undocumented">No class docstring; 0/1 instance variable, 6/9 methods documented</span></td>
+    <td>Implement the behavior of @dataclass.</td>
   </tr><tr class="function">
     
     <td>Function</td>
     <td><code><a href="#dataclass_class_maker_callback" class="internal-link" title="mypy.plugins.dataclasses.dataclass_class_maker_callback">dataclass<wbr></wbr>_class<wbr></wbr>_maker<wbr></wbr>_callback</a></code></td>
     <td>Hooks into the class typechecking process to add support for dataclasses.     </td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#dataclass_tag_callback" class="internal-link" title="mypy.plugins.dataclasses.dataclass_tag_callback">dataclass<wbr></wbr>_tag<wbr></wbr>_callback</a></code></td>
+    <td>Record that we have a dataclass in the main semantic analysis pass.</td>
   </tr><tr class="constant">
     
     <td>Constant</td>
@@ -461,16 +476,39 @@
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">dataclass_class_maker_callback</span>(ctx):
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.950//mypy/plugins/dataclasses.py#L520">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.960//mypy/plugins/dataclasses.py#L557">
       
       (source)
     </a>
   </div>
   <div class="docstring functionBody">
     
-    
     <div><p class="pre">Hooks into the class typechecking process to add support for dataclasses.
-    </p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">ctx:</span><code><a href="mypy.plugin.html#ClassDefContext" class="internal-link" title="mypy.plugin.ClassDefContext">ClassDefContext</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+    </p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">ctx:</span><code><a href="mypy.plugin.ClassDefContext.html" class="internal-link" title="mypy.plugin.ClassDefContext">ClassDefContext</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="mypy.plugins.dataclasses.dataclass_tag_callback">
+    
+  </a>
+  <a name="dataclass_tag_callback">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">dataclass_tag_callback</span>(ctx):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.960//mypy/plugins/dataclasses.py#L547">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p class="pre">Record that we have a dataclass in the main semantic analysis pass.
+
+The later pass implemented by DataclassTransformer will use this
+to detect dataclasses in base classes.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">ctx:</span><code><a href="mypy.plugin.ClassDefContext.html" class="internal-link" title="mypy.plugin.ClassDefContext">ClassDefContext</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="baseconstant">
   
@@ -484,13 +522,12 @@
   <div class="functionHeader">
     
     <span class="py-defname">dataclass_makers</span>: <code><a href="https://docs.python.org/3/library/stdtypes.html#set" class="intersphinx-link">set</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]</code> =
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.950//mypy/plugins/dataclasses.py#L25">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.960//mypy/plugins/dataclasses.py#L25">
       
       (source)
     </a>
   </div>
   <div class="functionBody">
-    
     
     <div><p class="undocumented">Undocumented</p></div>
     <table class="valueTable"><tr class="fieldStart"><td class="fieldName">Value</td></tr><tr><td><pre class="constant-value"><code>set([<wbr></wbr><span class="rst-variable-quote">'</span><span class="rst-variable-string">dataclass</span><span class="rst-variable-quote">'</span>, <wbr></wbr><span class="rst-variable-quote">'</span><span class="rst-variable-string">dataclasses.dataclass</span><span class="rst-variable-quote">'</span>])</code></pre></td></tr></table>
@@ -507,13 +544,12 @@
   <div class="functionHeader">
     
     <span class="py-defname">field_makers</span>: <code><a href="https://docs.python.org/3/library/stdtypes.html#set" class="intersphinx-link">set</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]</code> =
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.950//mypy/plugins/dataclasses.py#L30">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.960//mypy/plugins/dataclasses.py#L30">
       
       (source)
     </a>
   </div>
   <div class="functionBody">
-    
     
     <div><p class="undocumented">Undocumented</p></div>
     <table class="valueTable"><tr class="fieldStart"><td class="fieldName">Value</td></tr><tr><td><pre class="constant-value"><code>set([<wbr></wbr><span class="rst-variable-quote">'</span><span class="rst-variable-string">dataclasses.field</span><span class="rst-variable-quote">'</span>])</code></pre></td></tr></table>
@@ -530,13 +566,12 @@
   <div class="functionHeader">
     
     <span class="py-defname">SELF_TVAR_NAME</span>: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code> =
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.950//mypy/plugins/dataclasses.py#L35">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.960//mypy/plugins/dataclasses.py#L35">
       
       (source)
     </a>
   </div>
   <div class="functionBody">
-    
     
     <div><p class="undocumented">Undocumented</p></div>
     <table class="valueTable"><tr class="fieldStart"><td class="fieldName">Value</td></tr><tr><td><pre class="constant-value"><code><span class="rst-variable-quote">'</span><span class="rst-variable-string">_DT</span><span class="rst-variable-quote">'</span></code></pre></td></tr></table>
@@ -553,17 +588,16 @@
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">_collect_field_args</span>(expr, ctx):
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.950//mypy/plugins/dataclasses.py#L527">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.960//mypy/plugins/dataclasses.py#L564">
       
       (source)
     </a>
   </div>
   <div class="docstring functionBody">
     
-    
     <div><p class="pre">Returns a tuple where the first value represents whether or not
 the expression is a call to dataclass.field and the second is a
-dictionary of the keyword arguments that field() was called with.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">expr:</span><code><a href="mypy.nodes.Expression.html" class="internal-link" title="mypy.nodes.Expression">Expression</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">ctx:</span><code><a href="mypy.plugin.html#ClassDefContext" class="internal-link" title="mypy.plugin.ClassDefContext">ClassDefContext</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Tuple" class="intersphinx-link">Tuple</a>[<wbr></wbr><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a>, <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Dict" class="intersphinx-link">Dict</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>, <wbr></wbr><a href="mypy.nodes.Expression.html" class="internal-link" title="mypy.nodes.Expression">Expression</a>]]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+dictionary of the keyword arguments that field() was called with.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">expr:</span><code><a href="mypy.nodes.Expression.html" class="internal-link" title="mypy.nodes.Expression">Expression</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">ctx:</span><code><a href="mypy.plugin.ClassDefContext.html" class="internal-link" title="mypy.plugin.ClassDefContext">ClassDefContext</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Tuple" class="intersphinx-link">Tuple</a>[<wbr></wbr><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a>, <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Dict" class="intersphinx-link">Dict</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>, <wbr></wbr><a href="mypy.nodes.Expression.html" class="internal-link" title="mypy.nodes.Expression">Expression</a>]]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div>
         </div>
@@ -577,7 +611,7 @@ dictionary of the keyword arguments that field() was called with.</p><table clas
   <div class="container">
     <a href="index.html">API Documentation</a> for mypy,
   generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
-    22.5.0.dev0 at 2022-04-28 01:22:35.
+    22.5.1.dev0 at 2022-05-26 01:08:43.
   </div>
 
   <!-- Search related scripts needs to be loaded at the end of HTML 

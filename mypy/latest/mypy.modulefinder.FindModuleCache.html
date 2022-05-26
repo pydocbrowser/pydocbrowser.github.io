@@ -7,7 +7,7 @@
   <head>
     
     <title>mypy.modulefinder.FindModuleCache</title>
-    <meta name="generator" content="pydoctor 22.5.0.dev0"> 
+    <meta name="generator" content="pydoctor 22.5.1.dev0"> 
         
     </meta>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
@@ -22,7 +22,7 @@
     <div id="banner">    
     <div>
         <a href="/">Home</a>
-        &gt; mypy-0.950 <!-- This is a placeholder -->
+        &gt; mypy-0.960 <!-- This is a placeholder -->
         
         <!-- (<a href=""&gt;show all versions</a&gt;) -->
     </div>
@@ -210,6 +210,16 @@
         
 
         
+            <div class="itemName"><code><a href="#find_module_via_source_set" class="internal-link" title="mypy.modulefinder.FindModuleCache.find_module_via_source_set">find<wbr></wbr>_module<wbr></wbr>_via<wbr></wbr>_source<wbr></wbr>_set</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
             <div class="itemName"><code><a href="#find_modules_recursive" class="internal-link" title="mypy.modulefinder.FindModuleCache.find_modules_recursive">find<wbr></wbr>_modules<wbr></wbr>_recursive</a></code>
             </div>
         
@@ -369,6 +379,16 @@
         
 
         
+            <div class="itemName"><code><a href="#source_set" class="internal-link" title="mypy.modulefinder.FindModuleCache.source_set">source<wbr></wbr>_set</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
             <div class="itemName"><code><a href="#stdlib_py_versions" class="internal-link" title="mypy.modulefinder.FindModuleCache.stdlib_py_versions">stdlib<wbr></wbr>_py<wbr></wbr>_versions</a></code>
             </div>
         
@@ -403,6 +423,16 @@
 
         
             <div class="itemName"><code><a href="mypy.modulefinder.BuildSource.html" class="internal-link" title="mypy.modulefinder.BuildSource"><wbr></wbr>Build<wbr></wbr>Source</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="mypy.modulefinder.BuildSourceSet.html" class="internal-link" title="mypy.modulefinder.BuildSourceSet"><wbr></wbr>Build<wbr></wbr>Source<wbr></wbr>Set</a></code>
             </div>
         
 
@@ -707,7 +737,7 @@
         </div>
 
         <div class="extrasDocstring">
-          <p><code><span class="py-keyword">class</span> <span class="py-defname">FindModuleCache</span>: <a href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.950//mypy/modulefinder.py#L123" class="sourceLink">(source)</a></code></p>
+          <p><code><span class="py-keyword">class</span> <span class="py-defname">FindModuleCache</span>: <a href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.960//mypy/modulefinder.py#L157" class="sourceLink">(source)</a></code></p>
           <p><a href="classIndex.html#mypy.modulefinder.FindModuleCache">View In Hierarchy</a></p>
         </div>
 
@@ -723,7 +753,7 @@ cleared by client code.</p></div>
         </div>
 
         <div id="splitTables">
-          <table class="children sortable" id="id127">
+          <table class="children sortable" id="id134">
   
   
   <tr class="method">
@@ -746,6 +776,11 @@ cleared by client code.</p></div>
     <td>Method</td>
     <td><code><a href="#find_module" class="internal-link" title="mypy.modulefinder.FindModuleCache.find_module">find<wbr></wbr>_module</a></code></td>
     <td>Return the path of the module source file or why it wasn't found.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#find_module_via_source_set" class="internal-link" title="mypy.modulefinder.FindModuleCache.find_module_via_source_set">find<wbr></wbr>_module<wbr></wbr>_via<wbr></wbr>_source<wbr></wbr>_set</a></code></td>
+    <td>Fast path to find modules by looking through the input sources</td>
   </tr><tr class="method">
     
     <td>Method</td>
@@ -790,6 +825,11 @@ cleared by client code.</p></div>
     
     <td>Instance Variable</td>
     <td><code><a href="#search_paths" class="internal-link" title="mypy.modulefinder.FindModuleCache.search_paths">search<wbr></wbr>_paths</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#source_set" class="internal-link" title="mypy.modulefinder.FindModuleCache.source_set">source<wbr></wbr>_set</a></code></td>
     <td><span class="undocumented">Undocumented</span></td>
   </tr><tr class="instancevariable">
     
@@ -845,16 +885,15 @@ cleared by client code.</p></div>
   </a>
   <div class="functionHeader">
     
-    <span class="py-keyword">def</span> <span class="py-defname">__init__</span>(self, search_paths, fscache, options, stdlib_py_versions=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>):
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.950//mypy/modulefinder.py#L134">
+    <span class="py-keyword">def</span> <span class="py-defname">__init__</span>(self, search_paths, fscache, options, stdlib_py_versions=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, source_set=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.960//mypy/modulefinder.py#L168">
       
       (source)
     </a>
   </div>
   <div class="docstring functionBody">
     
-    
-    <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">search<wbr></wbr>_paths:</span><code><a href="mypy.modulefinder.html#SearchPaths" class="internal-link" title="mypy.modulefinder.SearchPaths">SearchPaths</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">fscache:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">Optional</a>[<wbr></wbr><a href="mypy.fscache.FileSystemCache.html" class="internal-link" title="mypy.fscache.FileSystemCache">FileSystemCache</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">options:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">Optional</a>[<wbr></wbr><a href="mypy.options.Options.html" class="internal-link" title="mypy.options.Options">Options</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">stdlib<wbr></wbr>_py<wbr></wbr>_versions:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">Optional</a>[<wbr></wbr><a href="mypy.modulefinder.html#StdlibVersions" class="internal-link" title="mypy.modulefinder.StdlibVersions">StdlibVersions</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+    <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">search<wbr></wbr>_paths:</span><code><a href="mypy.modulefinder.html#SearchPaths" class="internal-link" title="mypy.modulefinder.SearchPaths">SearchPaths</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">fscache:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">Optional</a>[<wbr></wbr><a href="mypy.fscache.FileSystemCache.html" class="internal-link" title="mypy.fscache.FileSystemCache">FileSystemCache</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">options:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">Optional</a>[<wbr></wbr><a href="mypy.options.Options.html" class="internal-link" title="mypy.options.Options">Options</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">stdlib<wbr></wbr>_py<wbr></wbr>_versions:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">Optional</a>[<wbr></wbr><a href="mypy.modulefinder.html#StdlibVersions" class="internal-link" title="mypy.modulefinder.StdlibVersions">StdlibVersions</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">source<wbr></wbr>_set:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">Optional</a>[<wbr></wbr><a href="mypy.modulefinder.BuildSourceSet.html" class="internal-link" title="mypy.modulefinder.BuildSourceSet">BuildSourceSet</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basemethod">
   
@@ -868,13 +907,12 @@ cleared by client code.</p></div>
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">clear</span>(self):
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.950//mypy/modulefinder.py#L156">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.960//mypy/modulefinder.py#L192">
       
       (source)
     </a>
   </div>
   <div class="docstring functionBody">
-    
     
     <div><p class="undocumented">Undocumented</p></div>
   </div>
@@ -890,13 +928,12 @@ cleared by client code.</p></div>
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">find_lib_path_dirs</span>(self, id, lib_path):
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.950//mypy/modulefinder.py#L161">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.960//mypy/modulefinder.py#L244">
       
       (source)
     </a>
   </div>
   <div class="docstring functionBody">
-    
     
     <div><p class="pre">Find which elements of a lib_path have the directory a module needs to exist.
 
@@ -914,18 +951,40 @@ This is run for the python_path, mypy_path, and typeshed_path search paths.</p><
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">find_module</span>(self, id, *, fast_path=<a href="https://docs.python.org/3/library/constants.html#False" class="intersphinx-link">False</a>):
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.950//mypy/modulefinder.py#L212">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.960//mypy/modulefinder.py#L295">
       
       (source)
     </a>
   </div>
   <div class="docstring functionBody">
     
-    
     <div><p class="pre">Return the path of the module source file or why it wasn't found.
 
 If fast_path is True, prioritize performance over generating detailed
 error descriptions.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">id:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">fast<wbr></wbr>_path:</span><code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="mypy.modulefinder.html#ModuleSearchResult" class="internal-link" title="mypy.modulefinder.ModuleSearchResult">ModuleSearchResult</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="mypy.modulefinder.FindModuleCache.find_module_via_source_set">
+    
+  </a>
+  <a name="find_module_via_source_set">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">find_module_via_source_set</span>(self, id):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.960//mypy/modulefinder.py#L197">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p class="pre">Fast path to find modules by looking through the input sources
+
+This is only used when --fast-module-lookup is passed on the command line.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">id:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">Optional</a>[<wbr></wbr><a href="mypy.modulefinder.html#ModuleSearchResult" class="internal-link" title="mypy.modulefinder.ModuleSearchResult">ModuleSearchResult</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
 </div><div class="basemethod">
   
@@ -939,13 +998,12 @@ error descriptions.</p><table class="fieldTable"><tr class="fieldStart"><td clas
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">find_modules_recursive</span>(self, module):
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.950//mypy/modulefinder.py#L465">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.960//mypy/modulefinder.py#L581">
       
       (source)
     </a>
   </div>
   <div class="docstring functionBody">
-    
     
     <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">module:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.List" class="intersphinx-link">List</a>[<wbr></wbr><a href="mypy.modulefinder.BuildSource.html" class="internal-link" title="mypy.modulefinder.BuildSource">BuildSource</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
@@ -961,13 +1019,12 @@ error descriptions.</p><table class="fieldTable"><tr class="fieldStart"><td clas
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">get_toplevel_possibilities</span>(self, lib_path, id):
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.950//mypy/modulefinder.py#L177">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.960//mypy/modulefinder.py#L260">
       
       (source)
     </a>
   </div>
   <div class="docstring functionBody">
-    
     
     <div><p class="pre">Find which elements of lib_path could contain a particular top-level module.
 
@@ -990,13 +1047,12 @@ the lib_path could contain each potential top-level module that appears.</p><tab
   <div class="functionHeader">
     
     <span class="py-defname">fscache</span> =
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.950//mypy/modulefinder.py#L140">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.960//mypy/modulefinder.py#L176">
       
       (source)
     </a>
   </div>
   <div class="functionBody">
-    
     
     <div><p class="undocumented">Undocumented</p></div>
     
@@ -1013,13 +1069,12 @@ the lib_path could contain each potential top-level module that appears.</p><tab
   <div class="functionHeader">
     
     <span class="py-defname">initial_components</span>: <code><a href="https://docs.python.org/3/library/typing.html#typing.Dict" class="intersphinx-link">Dict</a>[<wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Tuple" class="intersphinx-link">Tuple</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>, <wbr></wbr><span class="rst-variable-ellipsis">...</span>], <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Dict" class="intersphinx-link">Dict</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>, <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.List" class="intersphinx-link">List</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]]]</code> =
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.950//mypy/modulefinder.py#L143">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.960//mypy/modulefinder.py#L179">
       
       (source)
     </a>
   </div>
   <div class="functionBody">
-    
     
     <div><p class="undocumented">Undocumented</p></div>
     
@@ -1036,13 +1091,12 @@ the lib_path could contain each potential top-level module that appears.</p><tab
   <div class="functionHeader">
     
     <span class="py-defname">ns_ancestors</span>: <code><a href="https://docs.python.org/3/library/typing.html#typing.Dict" class="intersphinx-link">Dict</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>, <wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]</code> =
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.950//mypy/modulefinder.py#L146">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.960//mypy/modulefinder.py#L182">
       
       (source)
     </a>
   </div>
   <div class="functionBody">
-    
     
     <div><p class="undocumented">Undocumented</p></div>
     
@@ -1059,13 +1113,12 @@ the lib_path could contain each potential top-level module that appears.</p><tab
   <div class="functionHeader">
     
     <span class="py-defname">options</span> =
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.950//mypy/modulefinder.py#L147">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.960//mypy/modulefinder.py#L183">
       
       (source)
     </a>
   </div>
   <div class="functionBody">
-    
     
     <div><p class="undocumented">Undocumented</p></div>
     
@@ -1082,13 +1135,12 @@ the lib_path could contain each potential top-level module that appears.</p><tab
   <div class="functionHeader">
     
     <span class="py-defname">python_major_ver</span> =
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.950//mypy/modulefinder.py#L154">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.960//mypy/modulefinder.py#L190">
       
       (source)
     </a>
   </div>
   <div class="functionBody">
-    
     
     <div><p class="undocumented">Undocumented</p></div>
     
@@ -1105,13 +1157,12 @@ the lib_path could contain each potential top-level module that appears.</p><tab
   <div class="functionHeader">
     
     <span class="py-defname">results</span>: <code><a href="https://docs.python.org/3/library/typing.html#typing.Dict" class="intersphinx-link">Dict</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>, <wbr></wbr><a href="mypy.modulefinder.html#ModuleSearchResult" class="internal-link" title="mypy.modulefinder.ModuleSearchResult">ModuleSearchResult</a>]</code> =
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.950//mypy/modulefinder.py#L145">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.960//mypy/modulefinder.py#L181">
       
       (source)
     </a>
   </div>
   <div class="functionBody">
-    
     
     <div><p class="undocumented">Undocumented</p></div>
     
@@ -1128,13 +1179,34 @@ the lib_path could contain each potential top-level module that appears.</p><tab
   <div class="functionHeader">
     
     <span class="py-defname">search_paths</span> =
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.950//mypy/modulefinder.py#L139">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.960//mypy/modulefinder.py#L174">
       
       (source)
     </a>
   </div>
   <div class="functionBody">
     
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="mypy.modulefinder.FindModuleCache.source_set">
+    
+  </a>
+  <a name="source_set">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">source_set</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.960//mypy/modulefinder.py#L175">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
     
     <div><p class="undocumented">Undocumented</p></div>
     
@@ -1151,13 +1223,12 @@ the lib_path could contain each potential top-level module that appears.</p><tab
   <div class="functionHeader">
     
     <span class="py-defname">stdlib_py_versions</span> =
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.950//mypy/modulefinder.py#L151">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.960//mypy/modulefinder.py#L187">
       
       (source)
     </a>
   </div>
   <div class="functionBody">
-    
     
     <div><p class="undocumented">Undocumented</p></div>
     
@@ -1174,13 +1245,12 @@ the lib_path could contain each potential top-level module that appears.</p><tab
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">_can_find_module_in_parent_dir</span>(self, id):
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.950//mypy/modulefinder.py#L270">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.960//mypy/modulefinder.py#L353">
       
       (source)
     </a>
   </div>
   <div class="docstring functionBody">
-    
     
     <div><p class="pre">Test if a module can be found by checking the parent directories
 of the current working directory.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">id:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
@@ -1197,13 +1267,12 @@ of the current working directory.</p><table class="fieldTable"><tr class="fieldS
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">_find_module</span>(self, id, use_typeshed):
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.950//mypy/modulefinder.py#L289">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.960//mypy/modulefinder.py#L372">
       
       (source)
     </a>
   </div>
   <div class="docstring functionBody">
-    
     
     <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">id:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">use<wbr></wbr>_typeshed:</span><code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="mypy.modulefinder.html#ModuleSearchResult" class="internal-link" title="mypy.modulefinder.ModuleSearchResult">ModuleSearchResult</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
@@ -1219,13 +1288,12 @@ of the current working directory.</p><table class="fieldTable"><tr class="fieldS
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">_find_module_non_stub_helper</span>(self, components, pkg_dir):
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.950//mypy/modulefinder.py#L239">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.960//mypy/modulefinder.py#L322">
       
       (source)
     </a>
   </div>
   <div class="docstring functionBody">
-    
     
     <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">components:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.List" class="intersphinx-link">List</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">pkg<wbr></wbr>_dir:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Union" class="intersphinx-link">Union</a>[<wbr></wbr><a href="mypy.modulefinder.html#OnePackageDir" class="internal-link" title="mypy.modulefinder.OnePackageDir">OnePackageDir</a>, <wbr></wbr><a href="mypy.modulefinder.ModuleNotFoundReason.html" class="internal-link" title="mypy.modulefinder.ModuleNotFoundReason">ModuleNotFoundReason</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
@@ -1241,13 +1309,12 @@ of the current working directory.</p><table class="fieldTable"><tr class="fieldS
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">_is_compatible_stub_package</span>(self, stub_dir):
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.950//mypy/modulefinder.py#L449">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.960//mypy/modulefinder.py#L565">
       
       (source)
     </a>
   </div>
   <div class="docstring functionBody">
-    
     
     <div><p class="pre">Does a stub package support the target Python version?
 
@@ -1266,13 +1333,12 @@ whether the stubs are compatible with Python 2 and 3.</p><table class="fieldTabl
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">_typeshed_has_version</span>(self, module):
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.950//mypy/modulefinder.py#L232">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.960//mypy/modulefinder.py#L315">
       
       (source)
     </a>
   </div>
   <div class="docstring functionBody">
-    
     
     <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">module:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
@@ -1288,13 +1354,12 @@ whether the stubs are compatible with Python 2 and 3.</p><table class="fieldTabl
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">_update_ns_ancestors</span>(self, components, match):
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.950//mypy/modulefinder.py#L262">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.960//mypy/modulefinder.py#L345">
       
       (source)
     </a>
   </div>
   <div class="docstring functionBody">
-    
     
     <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">components:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.List" class="intersphinx-link">List</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">match:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Tuple" class="intersphinx-link">Tuple</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>, <wbr></wbr><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
   </div>
@@ -1310,7 +1375,7 @@ whether the stubs are compatible with Python 2 and 3.</p><table class="fieldTabl
   <div class="container">
     <a href="index.html">API Documentation</a> for mypy,
   generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
-    22.5.0.dev0 at 2022-04-28 01:22:35.
+    22.5.1.dev0 at 2022-05-26 01:08:43.
   </div>
 
   <!-- Search related scripts needs to be loaded at the end of HTML 
