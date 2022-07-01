@@ -22,7 +22,7 @@
     <div id="banner">    
     <div>
         <a href="/">Home</a>
-        &gt; sqlalchemy-1.4.37 <!-- This is a placeholder -->
+        &gt; sqlalchemy-1.4.39 <!-- This is a placeholder -->
         
         <!-- (<a href=""&gt;show all versions</a&gt;) -->
     </div>
@@ -471,7 +471,7 @@
         </div>
 
         <div class="extrasDocstring">
-          <a href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.37//lib/sqlalchemy/ext/automap.py" class="sourceLink">(source)</a>
+          <a href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.39//lib/sqlalchemy/ext/automap.py" class="sourceLink">(source)</a>
           <p></p>
         </div>
 
@@ -479,8 +479,6 @@
           <div><p class="pre">Define an extension to the :mod:`sqlalchemy.ext.declarative` system
 which automatically generates mapped classes and relationships from a database
 schema, typically though not necessarily one which is reflected.
-
-.. versionadded:: 0.9.1 Added :mod:`sqlalchemy.ext.automap`.
 
 It is hoped that the :class:`.AutomapBase` system provides a quick
 and modernized solution to the problem that the very famous
@@ -491,6 +489,15 @@ at the mapper configuration level, and integrating fully with existing
 Declarative class techniques, :class:`.AutomapBase` seeks to provide
 a well-integrated approach to the issue of expediently auto-generating ad-hoc
 mappings.
+
+.. tip:: The :ref:`automap_toplevel` extension is geared towards a
+   "zero declaration" approach, where a complete ORM model including classes
+   and pre-named relationships can be generated on the fly from a database
+   schema. For applications that still want to use explicit class declarations
+   including explicit relationship definitions in conjunction with reflection
+   of tables, the :class:`.DeferredReflection` class, described at
+   :ref:`orm_declarative_reflected_deferred_reflection`, is a better choice.
+
 
 
 Basic Use
@@ -512,7 +519,7 @@ asking it to reflect the schema and produce mappings::
     engine = create_engine("sqlite:///mydatabase.db")
 
     # reflect the tables
-    Base.prepare(engine, reflect=True)
+    Base.prepare(autoload_with=engine)
 
     # mapped classes are now created with names by default
     # matching that of the table name.
@@ -592,6 +599,9 @@ explicit table declaration::
 Specifying Classes Explicitly
 =============================
 
+.. tip:: If explicit classes are expected to be prominent in an application,
+   consider using :class:`.DeferredReflection` instead.
+
 The :mod:`.sqlalchemy.ext.automap` extension allows classes to be defined
 explicitly, in a way similar to that of the :class:`.DeferredReflection` class.
 Classes that extend from :class:`.AutomapBase` act like regular declarative
@@ -622,7 +632,7 @@ established based on the table name we use.  If our schema contains tables
 
     # reflect
     engine = create_engine("sqlite:///mydatabase.db")
-    Base.prepare(engine, reflect=True)
+    Base.prepare(autoload_with=engine)
 
     # we still have Address generated from the tablename "address",
     # but User is the same as Base.classes.User now
@@ -686,7 +696,7 @@ scheme for class names and a "pluralizer" for collection names using the
 
     engine = create_engine("sqlite:///mydatabase.db")
 
-    Base.prepare(engine, reflect=True,
+    Base.prepare(autoload_with=engine,
                 classname_for_table=camelize_classname,
                 name_for_collection_relationship=pluralize_collection
         )
@@ -804,7 +814,7 @@ options along to all one-to-many relationships::
     Base = automap_base()
 
     engine = create_engine("sqlite:///mydatabase.db")
-    Base.prepare(engine, reflect=True,
+    Base.prepare(autoload_with=engine,
                 generate_relationship=_gen_relationship)
 
 Many-to-Many relationships
@@ -935,7 +945,7 @@ We can resolve this conflict by using an underscore as follows::
         return name
 
 
-    Base.prepare(engine, reflect=True,
+    Base.prepare(autoload_with=engine,
         name_for_scalar_relationship=name_for_scalar_relationship)
 
 Alternatively, we can change the name on the column side.   The columns
@@ -949,7 +959,7 @@ to a new name::
         __tablename__ = 'table_b'
         _table_a = Column('table_a', ForeignKey('table_a.id'))
 
-    Base.prepare(engine, reflect=True)
+    Base.prepare(autoload_with=engine)
 
 
 Using Automap with Explicit Declarations
@@ -1018,7 +1028,7 @@ be applied as::
         column_info['key'] = "attr_%s" % column_info['name'].lower()
 
     # run reflection
-    Base.prepare(engine, reflect=True)
+    Base.prepare(autoload_with=engine)
 
 .. versionadded:: 1.4.0b2 the :meth:`_events.DDLEvents.column_reflect` event
    may be applied to a :class:`_schema.MetaData` object.
@@ -1031,7 +1041,7 @@ be applied as::
         </div>
 
         <div id="splitTables">
-          <table class="children sortable" id="id2839">
+          <table class="children sortable" id="id2280">
   
   
   <tr class="class">
@@ -1099,7 +1109,7 @@ be applied as::
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">automap_base</span>(declarative_base=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, **kw):
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.37//lib/sqlalchemy/ext/automap.py#L962">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.39//lib/sqlalchemy/ext/automap.py#L972">
       
       (source)
     </a>
@@ -1136,7 +1146,7 @@ function.
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">classname_for_table</span>(base, tablename, table):
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.37//lib/sqlalchemy/ext/automap.py#L575">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.39//lib/sqlalchemy/ext/automap.py#L585">
       
       (source)
     </a>
@@ -1183,7 +1193,7 @@ parameter.
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">generate_relationship</span>(base, direction, return_fn, attrname, local_cls, referred_cls, **kw):
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.37//lib/sqlalchemy/ext/automap.py#L661">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.39//lib/sqlalchemy/ext/automap.py#L671">
       
       (source)
     </a>
@@ -1249,7 +1259,7 @@ The default implementation of this function is as follows::
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">name_for_collection_relationship</span>(base, local_cls, referred_cls, constraint):
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.37//lib/sqlalchemy/ext/automap.py#L633">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.39//lib/sqlalchemy/ext/automap.py#L643">
       
       (source)
     </a>
@@ -1289,7 +1299,7 @@ parameter.
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">name_for_scalar_relationship</span>(base, local_cls, referred_cls, constraint):
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.37//lib/sqlalchemy/ext/automap.py#L608">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.39//lib/sqlalchemy/ext/automap.py#L618">
       
       (source)
     </a>
@@ -1328,7 +1338,7 @@ parameter.
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">_is_many_to_many</span>(automap_base, table):
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.37//lib/sqlalchemy/ext/automap.py#L994">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.39//lib/sqlalchemy/ext/automap.py#L1004">
       
       (source)
     </a>
@@ -1349,7 +1359,7 @@ parameter.
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">_m2m_relationship</span>(automap_base, lcl_m2m, rem_m2m, m2m_const, table, table_to_map_config, collection_class, name_for_scalar_relationship, name_for_collection_relationship, generate_relationship):
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.37//lib/sqlalchemy/ext/automap.py#L1126">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.39//lib/sqlalchemy/ext/automap.py#L1136">
       
       (source)
     </a>
@@ -1370,7 +1380,7 @@ parameter.
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">_relationships_for_fks</span>(automap_base, map_config, table_to_map_config, collection_class, name_for_scalar_relationship, name_for_collection_relationship, generate_relationship):
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.37//lib/sqlalchemy/ext/automap.py#L1021">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-1.4.39//lib/sqlalchemy/ext/automap.py#L1031">
       
       (source)
     </a>
@@ -1391,7 +1401,7 @@ parameter.
   <div class="container">
     <a href="index.html">API Documentation</a> for sqlalchemy,
   generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
-    22.5.1.dev0 at 2022-06-01 01:15:04.
+    22.5.1.dev0 at 2022-06-25 01:05:43.
   </div>
 
   <!-- Search related scripts needs to be loaded at the end of HTML 

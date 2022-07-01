@@ -22,7 +22,7 @@
     <div id="banner">    
     <div>
         <a href="/">Home</a>
-        &gt; numpy-1.22.4 <!-- This is a placeholder -->
+        &gt; numpy-1.23.0 <!-- This is a placeholder -->
         
         <!-- (<a href=""&gt;show all versions</a&gt;) -->
     </div>
@@ -513,6 +513,16 @@
         
 
         
+            <div class="itemName"><code><a href="#ndenumerate" class="internal-link" title="numpy.ma.extras.ndenumerate">ndenumerate</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
             <div class="itemName"><code><a href="#notmasked_contiguous" class="internal-link" title="numpy.ma.extras.notmasked_contiguous">notmasked<wbr></wbr>_contiguous</a></code>
             </div>
         
@@ -907,7 +917,7 @@
         </div>
 
         <div class="extrasDocstring">
-          <a href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.22.4//numpy/ma/extras.py" class="sourceLink">(source)</a>
+          <a href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.23.0//numpy/ma/extras.py" class="sourceLink">(source)</a>
           <p></p>
         </div>
 
@@ -1005,7 +1015,7 @@
     
     <td>Function</td>
     <td><code><a href="#flatnotmasked_contiguous" class="internal-link" title="numpy.ma.extras.flatnotmasked_contiguous">flatnotmasked<wbr></wbr>_contiguous</a></code></td>
-    <td>Find contiguous unmasked data in a masked array along the given axis.</td>
+    <td>Find contiguous unmasked data in a masked array.</td>
   </tr><tr class="function">
     
     <td>Function</td>
@@ -1066,6 +1076,11 @@
     <td>Function</td>
     <td><code><a href="#median" class="internal-link" title="numpy.ma.extras.median">median</a></code></td>
     <td>Compute the median along the specified axis.</td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#ndenumerate" class="internal-link" title="numpy.ma.extras.ndenumerate">ndenumerate</a></code></td>
+    <td>Multidimensional index iterator.</td>
   </tr><tr class="function">
     
     <td>Function</td>
@@ -1226,7 +1241,7 @@
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">apply_along_axis</span>(func1d, axis, arr, *args, **kwargs):
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.22.4//numpy/ma/extras.py#L371">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.23.0//numpy/ma/extras.py#L371">
       
       (source)
     </a>
@@ -1248,7 +1263,7 @@
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">apply_over_axes</span>(func, a, axes):
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.22.4//numpy/ma/extras.py#L454">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.23.0//numpy/ma/extras.py#L454">
       
       (source)
     </a>
@@ -1269,8 +1284,8 @@
   </a>
   <div class="functionHeader">
     
-    <span class="py-keyword">def</span> <span class="py-defname">average</span>(a, axis=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, weights=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, returned=<a href="https://docs.python.org/3/library/constants.html#False" class="intersphinx-link">False</a>):
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.22.4//numpy/ma/extras.py#L527">
+    <span class="py-keyword">def</span> <span class="py-defname">average</span>(a, axis=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, weights=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, returned=<a href="https://docs.python.org/3/library/constants.html#False" class="intersphinx-link">False</a>, *, keepdims=<a href="numpy._globals.html#_NoValue" class="internal-link" title="numpy._globals._NoValue">np._NoValue</a>):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.23.0//numpy/ma/extras.py#L528">
       
       (source)
     </a>
@@ -1299,13 +1314,22 @@
 <span class="py-output">masked_array(data=[2.6666666666666665, 3.6666666666666665],</span>
 <span class="py-output">             mask=[False, False],</span>
 <span class="py-output">       fill_value=1e+20)</span>
+</pre><p>With <tt class="rst-docutils literal">keepdims=True</tt>, the following result has shape (3, 1).</p>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>np.ma.average(x, axis=1, keepdims=<span class="py-builtin">True</span>)
+<span class="py-output">masked_array(</span>
+<span class="py-output">  data=[[0.5],</span>
+<span class="py-output">        [2.5],</span>
+<span class="py-output">        [4.5]],</span>
+<span class="py-output">  mask=False,</span>
+<span class="py-output">  fill_value=1e+20)</span>
 </pre></div>
 <table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">a:</span><code>array_like</code></td><td class="fieldArgDesc">Data to be averaged.
-Masked entries are not taken into account in the computation.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">axis:</span><code><a href="https://docs.python.org/3/library/functions.html#int" class="intersphinx-link">int</a></code>, <em>optional</em></td><td class="fieldArgDesc">Axis along which to average <code>a</code>. If None, averaging is done over
+Masked entries are not taken into account in the computation.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">axis:</span><code><a href="https://docs.python.org/3/library/functions.html#int" class="intersphinx-link">int</a></code>, <em>optional</em></td><td class="fieldArgDesc">Axis along which to average <code><a href="numpy._pyinstaller.pyinstaller-smoke.html#a" class="internal-link" title="numpy._pyinstaller.pyinstaller-smoke.a">a</a></code>. If None, averaging is done over
 the flattened array.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">weights:</span><code>array_like</code>, <em>optional</em></td><td class="fieldArgDesc"><p>The importance that each element has in the computation of the average.
 The weights array can either be 1-D (in which case its length must be
-the size of <code>a</code> along the given axis) or of the same shape as <code>a</code>.
-If <tt class="rst-docutils literal">weights=None</tt>, then all data in <code>a</code> are assumed to have a
+the size of <code><a href="numpy._pyinstaller.pyinstaller-smoke.html#a" class="internal-link" title="numpy._pyinstaller.pyinstaller-smoke.a">a</a></code> along the given axis) or of the same shape as <code><a href="numpy._pyinstaller.pyinstaller-smoke.html#a" class="internal-link" title="numpy._pyinstaller.pyinstaller-smoke.a">a</a></code>.
+If <tt class="rst-docutils literal">weights=None</tt>, then all data in <code><a href="numpy._pyinstaller.pyinstaller-smoke.html#a" class="internal-link" title="numpy._pyinstaller.pyinstaller-smoke.a">a</a></code> are assumed to have a
 weight equal to one.  The 1-D calculation is:</p>
 <pre class="rst-literal-block">
 avg = sum(a * weights) / sum(weights)
@@ -1313,12 +1337,19 @@ avg = sum(a * weights) / sum(weights)
 <p>The only constraint on <code>weights</code> is that <code>sum(weights)</code> must not be 0.</p>
 </td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">returned:</span><code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code>, <em>optional</em></td><td class="fieldArgDesc">Flag indicating whether a tuple <tt class="rst-docutils literal">(result, sum of weights)</tt>
 should be returned as output (True), or just the result (False).
-Default is False.</td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer">(tuple of)<blockquote>
+Default is False.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">keepdims:</span><code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code>, <em>optional</em></td><td class="fieldArgDesc"><p>If this is set to True, the axes which are reduced are left
+in the result as dimensions with size one. With this option,
+the result will broadcast correctly against the original <code><a href="numpy._pyinstaller.pyinstaller-smoke.html#a" class="internal-link" title="numpy._pyinstaller.pyinstaller-smoke.a">a</a></code>.
+<em>Note:</em> <code>keepdims</code> will not work with instances of <code>numpy.matrix</code>
+or other classes whose methods do not support <code>keepdims</code>.</p>
+<div class="rst-versionadded">
+<span class="rst-versionmodified rst-added">New in version 1.23.0.</span></div>
+</td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer">(tuple of)<blockquote>
 scalar</blockquote>
  or <code><a href="https://pydocbrowser.github.io/numpy/latest/numpy.ma.core.MaskedArray.html" class="intersphinx-link">MaskedArray</a></code></td><td class="fieldArgDesc"><strong>average, [sum_of_weights]</strong> - The average along the specified axis. When returned is <code><a href="https://docs.python.org/3/library/constants.html#True" class="intersphinx-link">True</a></code>,
 return a tuple with the average as the first element and the sum
 of the weights as the second element. The return type is <code>np.float64</code>
-if <code>a</code> is of integer type and floats smaller than <code><a href="numpy.array_api._dtypes.html#float64" class="internal-link" title="numpy.array_api._dtypes.float64">float64</a></code>, or the
+if <code><a href="numpy._pyinstaller.pyinstaller-smoke.html#a" class="internal-link" title="numpy._pyinstaller.pyinstaller-smoke.a">a</a></code> is of integer type and floats smaller than <code><a href="numpy.array_api._dtypes.html#float64" class="internal-link" title="numpy.array_api._dtypes.float64">float64</a></code>, or the
 input data-type, otherwise. If returned, <code>sum_of_weights</code> is always
 <code><a href="numpy.array_api._dtypes.html#float64" class="internal-link" title="numpy.array_api._dtypes.float64">float64</a></code>.</td></tr></table></div>
   </div>
@@ -1334,7 +1365,7 @@ input data-type, otherwise. If returned, <code>sum_of_weights</code> is always
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">clump_masked</span>(a):
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.22.4//numpy/ma/extras.py#L1829">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.23.0//numpy/ma/extras.py#L1931">
       
       (source)
     </a>
@@ -1361,7 +1392,7 @@ input data-type, otherwise. If returned, <code>sum_of_weights</code> is always
 <span class="py-output">[slice(0, 3, None), slice(6, 7, None), slice(8, 10, None)]</span>
 </pre></div>
 <table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">a:</span><code>ndarray</code></td><td class="fieldArgDesc">A one-dimensional masked array.</td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/stdtypes.html#list" class="intersphinx-link">list</a></code> of <code><a href="https://docs.python.org/3/library/functions.html#slice" class="intersphinx-link">slice</a></code></td><td class="fieldArgDesc"><strong>slices</strong> - The list of slices, one for each continuous region of masked elements
-in <code>a</code>.</td></tr></table></div>
+in <code><a href="numpy._pyinstaller.pyinstaller-smoke.html#a" class="internal-link" title="numpy._pyinstaller.pyinstaller-smoke.a">a</a></code>.</td></tr></table></div>
   </div>
 </div><div class="basefunction">
   
@@ -1375,7 +1406,7 @@ in <code>a</code>.</td></tr></table></div>
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">clump_unmasked</span>(a):
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.22.4//numpy/ma/extras.py#L1790">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.23.0//numpy/ma/extras.py#L1892">
       
       (source)
     </a>
@@ -1402,7 +1433,7 @@ in <code>a</code>.</td></tr></table></div>
 <span class="py-output">[slice(3, 6, None), slice(7, 8, None)]</span>
 </pre></div>
 <table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">a:</span><code>ndarray</code></td><td class="fieldArgDesc">A one-dimensional masked array.</td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/stdtypes.html#list" class="intersphinx-link">list</a></code> of <code><a href="https://docs.python.org/3/library/functions.html#slice" class="intersphinx-link">slice</a></code></td><td class="fieldArgDesc"><strong>slices</strong> - The list of slices, one for each continuous region of unmasked
-elements in <code>a</code>.</td></tr></table></div>
+elements in <code><a href="numpy._pyinstaller.pyinstaller-smoke.html#a" class="internal-link" title="numpy._pyinstaller.pyinstaller-smoke.a">a</a></code>.</td></tr></table></div>
   </div>
 </div><div class="basefunction">
   
@@ -1416,7 +1447,7 @@ elements in <code>a</code>.</td></tr></table></div>
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">compress_cols</span>(a):
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.22.4//numpy/ma/extras.py#L914">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.23.0//numpy/ma/extras.py#L944">
       
       (source)
     </a>
@@ -1444,7 +1475,7 @@ elements in <code>a</code>.</td></tr></table></div>
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">compress_nd</span>(x, axis=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>):
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.22.4//numpy/ma/extras.py#L800">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.23.0//numpy/ma/extras.py#L828">
       
       (source)
     </a>
@@ -1472,7 +1503,7 @@ parameter.
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">compress_rowcols</span>(x, axis=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>):
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.22.4//numpy/ma/extras.py#L842">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.23.0//numpy/ma/extras.py#L871">
       
       (source)
     </a>
@@ -1528,7 +1559,7 @@ elements are masked), <code>x</code> is interpreted as a MaskedArray with
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">compress_rows</span>(a):
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.22.4//numpy/ma/extras.py#L897">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.23.0//numpy/ma/extras.py#L926">
       
       (source)
     </a>
@@ -1556,7 +1587,7 @@ elements are masked), <code>x</code> is interpreted as a MaskedArray with
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">corrcoef</span>(x, y=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, rowvar=<a href="https://docs.python.org/3/library/constants.html#True" class="intersphinx-link">True</a>, bias=<a href="numpy._globals.html#_NoValue" class="internal-link" title="numpy._globals._NoValue">np._NoValue</a>, allow_masked=<a href="https://docs.python.org/3/library/constants.html#True" class="intersphinx-link">True</a>, ddof=<a href="numpy._globals.html#_NoValue" class="internal-link" title="numpy._globals._NoValue">np._NoValue</a>):
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.22.4//numpy/ma/extras.py#L1375">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.23.0//numpy/ma/extras.py#L1407">
       
       (source)
     </a>
@@ -1611,7 +1642,7 @@ argument needs to be treated as keyword only to avoid a warning.</td></tr><tr><t
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">count_masked</span>(arr, axis=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>):
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.22.4//numpy/ma/extras.py#L50">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.23.0//numpy/ma/extras.py#L50">
       
       (source)
     </a>
@@ -1669,7 +1700,7 @@ of masked elements along each slice of the given axis.</td></tr></table></div>
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">cov</span>(x, y=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, rowvar=<a href="https://docs.python.org/3/library/constants.html#True" class="intersphinx-link">True</a>, bias=<a href="https://docs.python.org/3/library/constants.html#False" class="intersphinx-link">False</a>, allow_masked=<a href="https://docs.python.org/3/library/constants.html#True" class="intersphinx-link">True</a>, ddof=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>):
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.22.4//numpy/ma/extras.py#L1302">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.23.0//numpy/ma/extras.py#L1334">
       
       (source)
     </a>
@@ -1718,7 +1749,7 @@ the number of observations; this overrides the value implied by
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">dot</span>(a, b, strict=<a href="https://docs.python.org/3/library/constants.html#False" class="intersphinx-link">False</a>, out=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>):
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.22.4//numpy/ma/core.py#L7549">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.23.0//numpy/ma/core.py#L7597">
       
       (source)
     </a>
@@ -1787,7 +1818,7 @@ to be flexible.</p>
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">ediff1d</span>(arr, to_end=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, to_begin=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>):
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.22.4//numpy/ma/extras.py#L1035">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.23.0//numpy/ma/extras.py#L1067">
       
       (source)
     </a>
@@ -1818,14 +1849,14 @@ values into account, see <code>numpy.ediff1d</code> for details.</p>
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">flatnotmasked_contiguous</span>(a):
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.22.4//numpy/ma/extras.py#L1628">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.23.0//numpy/ma/extras.py#L1729">
       
       (source)
     </a>
   </div>
   <div class="docstring functionBody">
     
-    <div><p>Find contiguous unmasked data in a masked array along the given axis.</p>
+    <div><p>Find contiguous unmasked data in a masked array.</p>
 <div class="rst-admonition seealso">
 <p class="rst-first rst-admonition-title">See Also</p>
 <p class="rst-last"><code><a href="https://pydocbrowser.github.io/numpy/latest/numpy.ma.extras.html#flatnotmasked_edges" class="intersphinx-link">flatnotmasked_edges</a></code>, <code><a href="https://pydocbrowser.github.io/numpy/latest/numpy.ma.extras.html#notmasked_contiguous" class="intersphinx-link">notmasked_contiguous</a></code>, <code><a href="https://pydocbrowser.github.io/numpy/latest/numpy.ma.extras.html#notmasked_edges" class="intersphinx-link">notmasked_edges</a></code>, <code><a href="https://pydocbrowser.github.io/numpy/latest/numpy.ma.extras.html#clump_masked" class="intersphinx-link">clump_masked</a></code>, <code><a href="https://pydocbrowser.github.io/numpy/latest/numpy.ma.extras.html#clump_unmasked" class="intersphinx-link">clump_unmasked</a></code></p>
@@ -1852,7 +1883,7 @@ values into account, see <code>numpy.ediff1d</code> for details.</p>
 <span class="py-prompt">&gt;&gt;&gt; </span>np.ma.flatnotmasked_contiguous(a)
 <span class="py-output">[]</span>
 </pre></div>
-<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">a:</span><code>narray</code></td><td class="fieldArgDesc">The input array.</td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/stdtypes.html#list" class="intersphinx-link">list</a></code></td><td class="fieldArgDesc"><p><strong>slice_list</strong> - A sorted sequence of <code><a href="https://docs.python.org/3/library/functions.html#slice" class="intersphinx-link">slice</a></code> objects (start index, end index).</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">a:</span><code>array_like</code></td><td class="fieldArgDesc">The input array.</td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/stdtypes.html#list" class="intersphinx-link">list</a></code></td><td class="fieldArgDesc"><p><strong>slice_list</strong> - A sorted sequence of <code><a href="https://docs.python.org/3/library/functions.html#slice" class="intersphinx-link">slice</a></code> objects (start index, end index).</p>
 <div class="rst-versionchanged">
 <span class="rst-versionmodified rst-changed">Changed in version 1.15.0: </span><span>Now returns an empty list instead of None for a fully masked array</span></div>
 </td></tr></table></div>
@@ -1869,7 +1900,7 @@ values into account, see <code>numpy.ediff1d</code> for details.</p>
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">flatnotmasked_edges</span>(a):
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.22.4//numpy/ma/extras.py#L1522">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.23.0//numpy/ma/extras.py#L1623">
       
       (source)
     </a>
@@ -1920,7 +1951,7 @@ Returns None if all values are masked.</td></tr></table></div>
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">flatten_inplace</span>(seq):
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.22.4//numpy/ma/extras.py#L361">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.23.0//numpy/ma/extras.py#L361">
       
       (source)
     </a>
@@ -1942,7 +1973,7 @@ Returns None if all values are masked.</td></tr></table></div>
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">in1d</span>(ar1, ar2, assume_unique=<a href="https://docs.python.org/3/library/constants.html#False" class="intersphinx-link">False</a>, invert=<a href="https://docs.python.org/3/library/constants.html#False" class="intersphinx-link">False</a>):
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.22.4//numpy/ma/extras.py#L1147">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.23.0//numpy/ma/extras.py#L1179">
       
       (source)
     </a>
@@ -1981,7 +2012,7 @@ array.</p>
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">intersect1d</span>(ar1, ar2, assume_unique=<a href="https://docs.python.org/3/library/constants.html#False" class="intersphinx-link">False</a>):
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.22.4//numpy/ma/extras.py#L1088">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.23.0//numpy/ma/extras.py#L1120">
       
       (source)
     </a>
@@ -2023,7 +2054,7 @@ The output is always a masked array.</p>
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">isin</span>(element, test_elements, assume_unique=<a href="https://docs.python.org/3/library/constants.html#False" class="intersphinx-link">False</a>, invert=<a href="https://docs.python.org/3/library/constants.html#False" class="intersphinx-link">False</a>):
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.22.4//numpy/ma/extras.py#L1189">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.23.0//numpy/ma/extras.py#L1221">
       
       (source)
     </a>
@@ -2062,7 +2093,7 @@ See <code>numpy.isin</code> for more details.</p>
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">issequence</span>(seq):
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.22.4//numpy/ma/extras.py#L42">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.23.0//numpy/ma/extras.py#L42">
       
       (source)
     </a>
@@ -2084,7 +2115,7 @@ See <code>numpy.isin</code> for more details.</p>
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">mask_cols</span>(a, axis=<a href="numpy._globals.html#_NoValue" class="internal-link" title="numpy._globals._NoValue">np._NoValue</a>):
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.22.4//numpy/ma/extras.py#L981">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.23.0//numpy/ma/extras.py#L1013">
       
       (source)
     </a>
@@ -2146,7 +2177,7 @@ See <code>numpy.isin</code> for more details.</p>
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">mask_rowcols</span>(a, axis=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>):
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.22.4//numpy/ma/core.py#L7457">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.23.0//numpy/ma/core.py#L7505">
       
       (source)
     </a>
@@ -2213,7 +2244,7 @@ masked values.  The masking behavior is selected using the
 elements are masked).  The result is a MaskedArray with <code>mask</code> set
 to <code><a href="https://pydocbrowser.github.io/numpy/latest/numpy.ma.core.html#nomask" class="intersphinx-link">nomask</a></code> (False). Must be a 2D array.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">axis:</span><code><a href="https://docs.python.org/3/library/functions.html#int" class="intersphinx-link">int</a></code>, <em>optional</em></td><td class="fieldArgDesc">Axis along which to perform the operation. If None, applies to a
 flattened version of the array.</td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://pydocbrowser.github.io/numpy/latest/numpy.ma.core.MaskedArray.html" class="intersphinx-link">MaskedArray</a></code></td><td class="fieldArgDesc"><strong>a</strong> - A modified version of the input array, masked depending on the value
-of the <code>axis</code> parameter.</td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Raises</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/exceptions.html#NotImplementedError" class="intersphinx-link">NotImplementedError</a></code></td><td>If input array <code>a</code> is not 2D.</td></tr></table></div>
+of the <code>axis</code> parameter.</td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Raises</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/exceptions.html#NotImplementedError" class="intersphinx-link">NotImplementedError</a></code></td><td>If input array <code><a href="numpy._pyinstaller.pyinstaller-smoke.html#a" class="internal-link" title="numpy._pyinstaller.pyinstaller-smoke.a">a</a></code> is not 2D.</td></tr></table></div>
   </div>
 </div><div class="basefunction">
   
@@ -2227,7 +2258,7 @@ of the <code>axis</code> parameter.</td></tr><tr class="fieldStart"><td class="f
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">mask_rows</span>(a, axis=<a href="numpy._globals.html#_NoValue" class="internal-link" title="numpy._globals._NoValue">np._NoValue</a>):
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.22.4//numpy/ma/extras.py#L931">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.23.0//numpy/ma/extras.py#L962">
       
       (source)
     </a>
@@ -2290,7 +2321,7 @@ of the <code>axis</code> parameter.</td></tr><tr class="fieldStart"><td class="f
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">masked_all</span>(shape, dtype=<a href="https://docs.python.org/3/library/functions.html#float" class="intersphinx-link">float</a>):
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.22.4//numpy/ma/extras.py#L104">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.23.0//numpy/ma/extras.py#L104">
       
       (source)
     </a>
@@ -2330,7 +2361,7 @@ data are masked.</p>
 <span class="py-prompt">&gt;&gt;&gt; </span>a.dtype
 <span class="py-output">dtype('int32')</span>
 </pre></div>
-<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">shape:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#tuple" class="intersphinx-link">tuple</a></code></td><td class="fieldArgDesc">Shape of the required MaskedArray.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">dtype:</span><code>dtype</code>, <em>optional</em></td><td class="fieldArgDesc">Data type of the output.</td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://pydocbrowser.github.io/numpy/latest/numpy.ma.core.MaskedArray.html" class="intersphinx-link">MaskedArray</a></code></td><td class="fieldArgDesc"><strong>a</strong> - A masked array with all data masked.</td></tr></table></div>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">shape:</span><code><a href="https://docs.python.org/3/library/functions.html#int" class="intersphinx-link">int</a></code> or <code><a href="https://docs.python.org/3/library/stdtypes.html#tuple" class="intersphinx-link">tuple</a></code> of <code><a href="numpy.core.code_generators.generate_umath.html#ints" class="internal-link" title="numpy.core.code_generators.generate_umath.ints">ints</a></code></td><td class="fieldArgDesc">Shape of the required MaskedArray, e.g., <tt class="rst-docutils literal">(2, 3)</tt> or <tt class="rst-docutils literal">2</tt>.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">dtype:</span><code>dtype</code>, <em>optional</em></td><td class="fieldArgDesc">Data type of the output.</td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://pydocbrowser.github.io/numpy/latest/numpy.ma.core.MaskedArray.html" class="intersphinx-link">MaskedArray</a></code></td><td class="fieldArgDesc"><strong>a</strong> - A masked array with all data masked.</td></tr></table></div>
   </div>
 </div><div class="basefunction">
   
@@ -2344,7 +2375,7 @@ data are masked.</p>
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">masked_all_like</span>(arr):
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.22.4//numpy/ma/extras.py#L156">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.23.0//numpy/ma/extras.py#L156">
       
       (source)
     </a>
@@ -2398,7 +2429,7 @@ the array <code>arr</code>, where all the data are masked.</p>
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">median</span>(a, axis=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, out=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, overwrite_input=<a href="https://docs.python.org/3/library/constants.html#False" class="intersphinx-link">False</a>, keepdims=<a href="https://docs.python.org/3/library/constants.html#False" class="intersphinx-link">False</a>):
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.22.4//numpy/ma/extras.py#L633">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.23.0//numpy/ma/extras.py#L660">
       
       (source)
     </a>
@@ -2455,6 +2486,82 @@ Return data-type is <code><a href="numpy.array_api._dtypes.html#float64" class="
 </div><div class="basefunction">
   
   
+  <a name="numpy.ma.extras.ndenumerate">
+    
+  </a>
+  <a name="ndenumerate">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">ndenumerate</span>(a, compressed=<a href="https://docs.python.org/3/library/constants.html#True" class="intersphinx-link">True</a>):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.23.0//numpy/ma/extras.py#L1555">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Multidimensional index iterator.</p>
+<p>Return an iterator yielding pairs of array coordinates and values,
+skipping elements that are masked. With <code>compressed=False</code>,
+<code><a href="https://pydocbrowser.github.io/numpy/latest/numpy.ma.core.html#masked" class="intersphinx-link">ma.masked</a></code> is yielded as the value of masked elements. This
+behavior differs from that of <code>numpy.ndenumerate</code>, which yields the
+value of the underlying data array.</p>
+<div class="rst-admonition rst-admonition-notes">
+<p class="rst-first rst-admonition-title">Notes</p>
+<div class="rst-last rst-versionadded">
+<span class="rst-versionmodified rst-added">New in version 1.23.0.</span></div>
+</div>
+<div class="rst-admonition seealso">
+<p class="rst-first rst-admonition-title">See Also</p>
+<dl class="rst-last rst-docutils">
+<dt><code>numpy.ndenumerate</code></dt>
+<dd>Equivalent function ignoring any mask.</dd>
+</dl>
+</div>
+<div class="rst-admonition rst-admonition-examples">
+<p class="rst-first rst-admonition-title">Examples</p>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>a = np.ma.arange(9).reshape((3, 3))
+<span class="py-prompt">&gt;&gt;&gt; </span>a[1, 0] = np.ma.masked
+<span class="py-prompt">&gt;&gt;&gt; </span>a[1, 2] = np.ma.masked
+<span class="py-prompt">&gt;&gt;&gt; </span>a[2, 1] = np.ma.masked
+<span class="py-prompt">&gt;&gt;&gt; </span>a
+<span class="py-output">masked_array(</span>
+<span class="py-output">  data=[[0, 1, 2],</span>
+<span class="py-output">        [--, 4, --],</span>
+<span class="py-output">        [6, --, 8]],</span>
+<span class="py-output">  mask=[[False, False, False],</span>
+<span class="py-output">        [ True, False,  True],</span>
+<span class="py-output">        [False,  True, False]],</span>
+<span class="py-output">  fill_value=999999)</span>
+<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">for</span> index, x <span class="py-keyword">in</span> np.ma.ndenumerate(a):
+<span class="py-more">... </span>    <span class="py-builtin">print</span>(index, x)
+<span class="py-output">(0, 0) 0</span>
+<span class="py-output">(0, 1) 1</span>
+<span class="py-output">(0, 2) 2</span>
+<span class="py-output">(1, 1) 4</span>
+<span class="py-output">(2, 0) 6</span>
+<span class="py-output">(2, 2) 8</span>
+</pre><pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">for</span> index, x <span class="py-keyword">in</span> np.ma.ndenumerate(a, compressed=<span class="py-builtin">False</span>):
+<span class="py-more">... </span>    <span class="py-builtin">print</span>(index, x)
+<span class="py-output">(0, 0) 0</span>
+<span class="py-output">(0, 1) 1</span>
+<span class="py-output">(0, 2) 2</span>
+<span class="py-output">(1, 0) --</span>
+<span class="py-output">(1, 1) 4</span>
+<span class="py-output">(1, 2) --</span>
+<span class="py-output">(2, 0) 6</span>
+<span class="py-output">(2, 1) --</span>
+<span class="py-output">(2, 2) 8</span>
+</pre></div>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">a:</span><code>array_like</code></td><td class="fieldArgDesc">An array with (possibly) masked elements.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">compressed:</span><code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code>, <em>optional</em></td><td class="fieldArgDesc">If True (default), masked elements are skipped.</td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  
   <a name="numpy.ma.extras.notmasked_contiguous">
     
   </a>
@@ -2464,7 +2571,7 @@ Return data-type is <code><a href="numpy.array_api._dtypes.html#float64" class="
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">notmasked_contiguous</span>(a, axis=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>):
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.22.4//numpy/ma/extras.py#L1684">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.23.0//numpy/ma/extras.py#L1786">
       
       (source)
     </a>
@@ -2527,7 +2634,7 @@ in the array.</p>
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">notmasked_edges</span>(a, axis=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>):
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.22.4//numpy/ma/extras.py#L1577">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.23.0//numpy/ma/extras.py#L1678">
       
       (source)
     </a>
@@ -2572,7 +2679,7 @@ list of the first and last index.</td></tr></table></div>
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">polyfit</span>(x, y, deg, rcond=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, full=<a href="https://docs.python.org/3/library/constants.html#False" class="intersphinx-link">False</a>, w=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, cov=<a href="https://docs.python.org/3/library/constants.html#False" class="intersphinx-link">False</a>):
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.22.4//numpy/ma/extras.py#L1887">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.23.0//numpy/ma/extras.py#L1989">
       
       (source)
     </a>
@@ -2594,7 +2701,7 @@ list of the first and last index.</td></tr></table></div>
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">setdiff1d</span>(ar1, ar2, assume_unique=<a href="https://docs.python.org/3/library/constants.html#False" class="intersphinx-link">False</a>):
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.22.4//numpy/ma/extras.py#L1226">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.23.0//numpy/ma/extras.py#L1258">
       
       (source)
     </a>
@@ -2634,7 +2741,7 @@ details.</p>
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">setxor1d</span>(ar1, ar2, assume_unique=<a href="https://docs.python.org/3/library/constants.html#False" class="intersphinx-link">False</a>):
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.22.4//numpy/ma/extras.py#L1120">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.23.0//numpy/ma/extras.py#L1152">
       
       (source)
     </a>
@@ -2664,7 +2771,7 @@ details.</p>
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">union1d</span>(ar1, ar2):
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.22.4//numpy/ma/extras.py#L1212">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.23.0//numpy/ma/extras.py#L1244">
       
       (source)
     </a>
@@ -2694,7 +2801,7 @@ details.</p>
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">unique</span>(ar1, return_index=<a href="https://docs.python.org/3/library/constants.html#False" class="intersphinx-link">False</a>, return_inverse=<a href="https://docs.python.org/3/library/constants.html#False" class="intersphinx-link">False</a>):
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.22.4//numpy/ma/extras.py#L1064">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.23.0//numpy/ma/extras.py#L1096">
       
       (source)
     </a>
@@ -2725,7 +2832,7 @@ is always a masked array. See <code>numpy.unique</code> for more details.</p>
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">vander</span>(x, n=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>):
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.22.4//numpy/ma/extras.py#L1873">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.23.0//numpy/ma/extras.py#L1975">
       
       (source)
     </a>
@@ -2747,7 +2854,7 @@ is always a masked array. See <code>numpy.unique</code> for more details.</p>
   <div class="functionHeader">
     
     <span class="py-defname">atleast_1d</span> =
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.22.4//numpy/ma/extras.py#L343">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.23.0//numpy/ma/extras.py#L343">
       
       (source)
     </a>
@@ -2769,7 +2876,7 @@ is always a masked array. See <code>numpy.unique</code> for more details.</p>
   <div class="functionHeader">
     
     <span class="py-defname">atleast_2d</span> =
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.22.4//numpy/ma/extras.py#L344">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.23.0//numpy/ma/extras.py#L344">
       
       (source)
     </a>
@@ -2791,7 +2898,7 @@ is always a masked array. See <code>numpy.unique</code> for more details.</p>
   <div class="functionHeader">
     
     <span class="py-defname">atleast_3d</span> =
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.22.4//numpy/ma/extras.py#L345">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.23.0//numpy/ma/extras.py#L345">
       
       (source)
     </a>
@@ -2813,7 +2920,7 @@ is always a masked array. See <code>numpy.unique</code> for more details.</p>
   <div class="functionHeader">
     
     <span class="py-defname">column_stack</span> =
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.22.4//numpy/ma/extras.py#L349">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.23.0//numpy/ma/extras.py#L349">
       
       (source)
     </a>
@@ -2835,7 +2942,7 @@ is always a masked array. See <code>numpy.unique</code> for more details.</p>
   <div class="functionHeader">
     
     <span class="py-defname">diagflat</span> =
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.22.4//numpy/ma/extras.py#L355">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.23.0//numpy/ma/extras.py#L355">
       
       (source)
     </a>
@@ -2857,7 +2964,7 @@ is always a masked array. See <code>numpy.unique</code> for more details.</p>
   <div class="functionHeader">
     
     <span class="py-defname">dstack</span> =
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.22.4//numpy/ma/extras.py#L350">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.23.0//numpy/ma/extras.py#L350">
       
       (source)
     </a>
@@ -2879,7 +2986,7 @@ is always a masked array. See <code>numpy.unique</code> for more details.</p>
   <div class="functionHeader">
     
     <span class="py-defname">hsplit</span> =
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.22.4//numpy/ma/extras.py#L353">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.23.0//numpy/ma/extras.py#L353">
       
       (source)
     </a>
@@ -2901,7 +3008,7 @@ is always a masked array. See <code>numpy.unique</code> for more details.</p>
   <div class="functionHeader">
     
     <span class="py-defname">hstack</span> =
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.22.4//numpy/ma/extras.py#L348">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.23.0//numpy/ma/extras.py#L348">
       
       (source)
     </a>
@@ -2923,7 +3030,7 @@ is always a masked array. See <code>numpy.unique</code> for more details.</p>
   <div class="functionHeader">
     
     <span class="py-defname">mr_</span> =
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.22.4//numpy/ma/extras.py#L1516">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.23.0//numpy/ma/extras.py#L1548">
       
       (source)
     </a>
@@ -2945,7 +3052,7 @@ is always a masked array. See <code>numpy.unique</code> for more details.</p>
   <div class="functionHeader">
     
     <span class="py-defname">row_stack</span> =
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.22.4//numpy/ma/extras.py#L347">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.23.0//numpy/ma/extras.py#L347">
       
       (source)
     </a>
@@ -2967,7 +3074,7 @@ is always a masked array. See <code>numpy.unique</code> for more details.</p>
   <div class="functionHeader">
     
     <span class="py-defname">stack</span> =
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.22.4//numpy/ma/extras.py#L351">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.23.0//numpy/ma/extras.py#L351">
       
       (source)
     </a>
@@ -2989,7 +3096,7 @@ is always a masked array. See <code>numpy.unique</code> for more details.</p>
   <div class="functionHeader">
     
     <span class="py-defname">vstack</span> =
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.22.4//numpy/ma/extras.py#L347">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.23.0//numpy/ma/extras.py#L347">
       
       (source)
     </a>
@@ -3011,7 +3118,7 @@ is always a masked array. See <code>numpy.unique</code> for more details.</p>
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">_covhelper</span>(x, y=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, rowvar=<a href="https://docs.python.org/3/library/constants.html#True" class="intersphinx-link">True</a>, allow_masked=<a href="https://docs.python.org/3/library/constants.html#True" class="intersphinx-link">True</a>):
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.22.4//numpy/ma/extras.py#L1259">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.23.0//numpy/ma/extras.py#L1291">
       
       (source)
     </a>
@@ -3034,7 +3141,7 @@ coefficients.</p>
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">_ezclump</span>(mask):
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.22.4//numpy/ma/extras.py#L1761">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.23.0//numpy/ma/extras.py#L1863">
       
       (source)
     </a>
@@ -3057,7 +3164,7 @@ coefficients.</p>
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">_median</span>(a, axis=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, out=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, overwrite_input=<a href="https://docs.python.org/3/library/constants.html#False" class="intersphinx-link">False</a>):
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.22.4//numpy/ma/extras.py#L715">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.23.0//numpy/ma/extras.py#L743">
       
       (source)
     </a>
@@ -3078,7 +3185,7 @@ coefficients.</p>
   <div class="container">
     <a href="index.html">API Documentation</a> for numpy,
   generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
-    22.5.1.dev0 at 2022-05-21 00:57:13.
+    22.5.1.dev0 at 2022-06-23 01:01:17.
   </div>
 
   <!-- Search related scripts needs to be loaded at the end of HTML 

@@ -22,7 +22,7 @@
     <div id="banner">    
     <div>
         <a href="/">Home</a>
-        &gt; numpy-1.22.4 <!-- This is a placeholder -->
+        &gt; numpy-1.23.0 <!-- This is a placeholder -->
         
         <!-- (<a href=""&gt;show all versions</a&gt;) -->
     </div>
@@ -313,7 +313,27 @@
         
 
         
-            <div class="itemName"><code><a href="#_floatconv" class="internal-link" title="numpy.lib.npyio._floatconv">_floatconv</a></code>
+            <div class="itemName"><code><a href="#_check_nonneg_int" class="internal-link" title="numpy.lib.npyio._check_nonneg_int">_check<wbr></wbr>_nonneg<wbr></wbr>_int</a></code>
+            </div>
+        
+
+    </li><li class="private">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#_ensure_ndmin_ndarray" class="internal-link" title="numpy.lib.npyio._ensure_ndmin_ndarray">_ensure<wbr></wbr>_ndmin<wbr></wbr>_ndarray</a></code>
+            </div>
+        
+
+    </li><li class="private">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#_ensure_ndmin_ndarray_check_param" class="internal-link" title="numpy.lib.npyio._ensure_ndmin_ndarray_check_param">_ensure<wbr></wbr>_ndmin<wbr></wbr>_ndarray<wbr></wbr>_check<wbr></wbr>_param</a></code>
             </div>
         
 
@@ -333,16 +353,6 @@
         
 
         
-            <div class="itemName"><code><a href="#_getconv" class="internal-link" title="numpy.lib.npyio._getconv">_getconv</a></code>
-            </div>
-        
-
-    </li><li class="private">
-        
-        
-        
-
-        
             <div class="itemName"><code><a href="#_loadtxt_dispatcher" class="internal-link" title="numpy.lib.npyio._loadtxt_dispatcher">_loadtxt<wbr></wbr>_dispatcher</a></code>
             </div>
         
@@ -353,7 +363,7 @@
         
 
         
-            <div class="itemName"><code><a href="#_loadtxt_flatten_dtype_internal" class="internal-link" title="numpy.lib.npyio._loadtxt_flatten_dtype_internal">_loadtxt<wbr></wbr>_flatten<wbr></wbr>_dtype<wbr></wbr>_internal</a></code>
+            <div class="itemName"><code><a href="#_preprocess_comments" class="internal-link" title="numpy.lib.npyio._preprocess_comments">_preprocess<wbr></wbr>_comments</a></code>
             </div>
         
 
@@ -363,7 +373,7 @@
         
 
         
-            <div class="itemName"><code><a href="#_loadtxt_pack_items" class="internal-link" title="numpy.lib.npyio._loadtxt_pack_items">_loadtxt<wbr></wbr>_pack<wbr></wbr>_items</a></code>
+            <div class="itemName"><code><a href="#_read" class="internal-link" title="numpy.lib.npyio._read">_read</a></code>
             </div>
         
 
@@ -433,16 +443,6 @@
 
         
             <div class="itemName"><code><a href="#array_function_dispatch" class="internal-link" title="numpy.lib.npyio.array_function_dispatch">array<wbr></wbr>_function<wbr></wbr>_dispatch</a></code>
-            </div>
-        
-
-    </li><li class="private">
-        
-        
-        
-
-        
-            <div class="itemName"><code><a href="#_CONVERTERS" class="internal-link" title="numpy.lib.npyio._CONVERTERS">_CONVERTERS</a></code>
             </div>
         
 
@@ -807,7 +807,7 @@
         </div>
 
         <div class="extrasDocstring">
-          <a href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.22.4//numpy/lib/npyio.py" class="sourceLink">(source)</a>
+          <a href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.23.0//numpy/lib/npyio.py" class="sourceLink">(source)</a>
           <p></p>
         </div>
 
@@ -816,7 +816,7 @@
         </div>
 
         <div id="splitTables">
-          <table class="children sortable" id="id1435">
+          <table class="children sortable" id="id1467">
   
   
   <tr class="class">
@@ -897,8 +897,18 @@
   </tr><tr class="function private">
     
     <td>Function</td>
-    <td><code><a href="#_floatconv" class="internal-link" title="numpy.lib.npyio._floatconv">_floatconv</a></code></td>
+    <td><code><a href="#_check_nonneg_int" class="internal-link" title="numpy.lib.npyio._check_nonneg_int">_check<wbr></wbr>_nonneg<wbr></wbr>_int</a></code></td>
     <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="function private">
+    
+    <td>Function</td>
+    <td><code><a href="#_ensure_ndmin_ndarray" class="internal-link" title="numpy.lib.npyio._ensure_ndmin_ndarray">_ensure<wbr></wbr>_ndmin<wbr></wbr>_ndarray</a></code></td>
+    <td>This is a helper function of loadtxt and genfromtxt to ensure proper minimum dimension as requested</td>
+  </tr><tr class="function private">
+    
+    <td>Function</td>
+    <td><code><a href="#_ensure_ndmin_ndarray_check_param" class="internal-link" title="numpy.lib.npyio._ensure_ndmin_ndarray_check_param">_ensure<wbr></wbr>_ndmin<wbr></wbr>_ndarray<wbr></wbr>_check<wbr></wbr>_param</a></code></td>
+    <td>Just checks if the param ndmin is supported on _ensure_ndmin_ndarray. It is intended to be used as verification before running anything expensive. e.g. loadtxt, genfromtxt</td>
   </tr><tr class="function private">
     
     <td>Function</td>
@@ -907,23 +917,18 @@
   </tr><tr class="function private">
     
     <td>Function</td>
-    <td><code><a href="#_getconv" class="internal-link" title="numpy.lib.npyio._getconv">_getconv</a></code></td>
-    <td>Find the correct dtype converter. Adapted from matplotlib.</td>
-  </tr><tr class="function private">
-    
-    <td>Function</td>
     <td><code><a href="#_loadtxt_dispatcher" class="internal-link" title="numpy.lib.npyio._loadtxt_dispatcher">_loadtxt<wbr></wbr>_dispatcher</a></code></td>
     <td><span class="undocumented">Undocumented</span></td>
   </tr><tr class="function private">
     
     <td>Function</td>
-    <td><code><a href="#_loadtxt_flatten_dtype_internal" class="internal-link" title="numpy.lib.npyio._loadtxt_flatten_dtype_internal">_loadtxt<wbr></wbr>_flatten<wbr></wbr>_dtype<wbr></wbr>_internal</a></code></td>
-    <td>Unpack a structured data-type, and produce a packer function.</td>
+    <td><code><a href="#_preprocess_comments" class="internal-link" title="numpy.lib.npyio._preprocess_comments">_preprocess<wbr></wbr>_comments</a></code></td>
+    <td>Generator that consumes a line iterated iterable and strips out the multiple (or multi-character) comments from lines. This is a pre-processing step to achieve feature parity with loadtxt (we assume that this feature is a nieche feature).</td>
   </tr><tr class="function private">
     
     <td>Function</td>
-    <td><code><a href="#_loadtxt_pack_items" class="internal-link" title="numpy.lib.npyio._loadtxt_pack_items">_loadtxt<wbr></wbr>_pack<wbr></wbr>_items</a></code></td>
-    <td>Pack items into nested lists based on re-packing info.</td>
+    <td><code><a href="#_read" class="internal-link" title="numpy.lib.npyio._read">_read</a></code></td>
+    <td>Read a NumPy array from a text file.</td>
   </tr><tr class="function private">
     
     <td>Function</td>
@@ -948,11 +953,6 @@
     
     <td>Function</td>
     <td><code><a href="#_savez_dispatcher" class="internal-link" title="numpy.lib.npyio._savez_dispatcher">_savez<wbr></wbr>_dispatcher</a></code></td>
-    <td><span class="undocumented">Undocumented</span></td>
-  </tr><tr class="constant private">
-    
-    <td>Constant</td>
-    <td><code><a href="#_CONVERTERS" class="internal-link" title="numpy.lib.npyio._CONVERTERS">_CONVERTERS</a></code></td>
     <td><span class="undocumented">Undocumented</span></td>
   </tr><tr class="variable private">
     
@@ -989,7 +989,7 @@
   <div class="functionHeader">
     @<a href="numpy.core.overrides.html#set_module" class="internal-link" title="numpy.core.overrides.set_module">set_module</a>(<wbr></wbr><span class="rst-variable-quote">'</span><span class="rst-variable-string">numpy</span><span class="rst-variable-quote">'</span>)<br />
     <span class="py-keyword">def</span> <span class="py-defname">fromregex</span>(file, regexp, dtype, encoding=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>):
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.22.4//numpy/lib/npyio.py#L1465">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.23.0//numpy/lib/npyio.py#L1568">
       
       (source)
     </a>
@@ -1045,8 +1045,8 @@ was matched by <code>regexp</code>. <code>output</code> is always a structured a
   </a>
   <div class="functionHeader">
     @<a href="numpy.core.overrides.html#set_array_function_like_doc" class="internal-link" title="numpy.core.overrides.set_array_function_like_doc">set_array_function_like_doc</a><br />@<a href="numpy.core.overrides.html#set_module" class="internal-link" title="numpy.core.overrides.set_module">set_module</a>(<wbr></wbr><span class="rst-variable-quote">'</span><span class="rst-variable-string">numpy</span><span class="rst-variable-quote">'</span>)<br />
-    <span class="py-keyword">def</span> <span class="py-defname">genfromtxt</span>(fname, dtype=<a href="https://docs.python.org/3/library/functions.html#float" class="intersphinx-link">float</a>, comments=<span class="rst-variable-quote">'</span><span class="rst-variable-string">#</span><span class="rst-variable-quote">'</span>, delimiter=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, skip_header=0, skip_footer=0, converters=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, missing_values=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, filling_values=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, usecols=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, names=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, excludelist=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, deletechars="""""".join(<wbr></wbr><a href="https://docs.python.org/3/library/functions.html#sorted" class="intersphinx-link">sorted</a>(<wbr></wbr><a href="numpy.lib._iotools.NameValidator.html#defaultdeletechars" class="internal-link" title="numpy.lib._iotools.NameValidator.defaultdeletechars">NameValidator.defaultdeletechars</a>)), replace_space=<span class="rst-variable-quote">'</span><span class="rst-variable-string">_</span><span class="rst-variable-quote">'</span>, autostrip=<a href="https://docs.python.org/3/library/constants.html#False" class="intersphinx-link">False</a>, case_sensitive=<a href="https://docs.python.org/3/library/constants.html#True" class="intersphinx-link">True</a>, defaultfmt=<span class="rst-variable-quote">'</span><span class="rst-variable-string">f%i</span><span class="rst-variable-quote">'</span>, unpack=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, usemask=<a href="https://docs.python.org/3/library/constants.html#False" class="intersphinx-link">False</a>, loose=<a href="https://docs.python.org/3/library/constants.html#True" class="intersphinx-link">True</a>, invalid_raise=<a href="https://docs.python.org/3/library/constants.html#True" class="intersphinx-link">True</a>, max_rows=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, encoding=<span class="rst-variable-quote">'</span><span class="rst-variable-string">bytes</span><span class="rst-variable-quote">'</span>, *, like=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>):
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.22.4//numpy/lib/npyio.py#L1580">
+    <span class="py-keyword">def</span> <span class="py-defname">genfromtxt</span>(fname, dtype=<a href="https://docs.python.org/3/library/functions.html#float" class="intersphinx-link">float</a>, comments=<span class="rst-variable-quote">'</span><span class="rst-variable-string">#</span><span class="rst-variable-quote">'</span>, delimiter=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, skip_header=0, skip_footer=0, converters=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, missing_values=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, filling_values=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, usecols=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, names=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, excludelist=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, deletechars="""""".join(<wbr></wbr><a href="https://docs.python.org/3/library/functions.html#sorted" class="intersphinx-link">sorted</a>(<wbr></wbr><a href="numpy.lib._iotools.NameValidator.html#defaultdeletechars" class="internal-link" title="numpy.lib._iotools.NameValidator.defaultdeletechars">NameValidator.defaultdeletechars</a>)), replace_space=<span class="rst-variable-quote">'</span><span class="rst-variable-string">_</span><span class="rst-variable-quote">'</span>, autostrip=<a href="https://docs.python.org/3/library/constants.html#False" class="intersphinx-link">False</a>, case_sensitive=<a href="https://docs.python.org/3/library/constants.html#True" class="intersphinx-link">True</a>, defaultfmt=<span class="rst-variable-quote">'</span><span class="rst-variable-string">f%i</span><span class="rst-variable-quote">'</span>, unpack=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, usemask=<a href="https://docs.python.org/3/library/constants.html#False" class="intersphinx-link">False</a>, loose=<a href="https://docs.python.org/3/library/constants.html#True" class="intersphinx-link">True</a>, invalid_raise=<a href="https://docs.python.org/3/library/constants.html#True" class="intersphinx-link">True</a>, max_rows=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, encoding=<span class="rst-variable-quote">'</span><span class="rst-variable-string">bytes</span><span class="rst-variable-quote">'</span>, *, ndmin=0, like=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.23.0//numpy/lib/npyio.py#L1683">
       
       (source)
     </a>
@@ -1174,6 +1174,9 @@ receive unicode arrays and pass strings as input to converters.  If set
 to None the system default is used. The default value is 'bytes'.</p>
 <div class="rst-versionadded">
 <span class="rst-versionmodified rst-added">New in version 1.14.0.</span></div>
+</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">ndmin:</span><code><a href="https://docs.python.org/3/library/functions.html#int" class="intersphinx-link">int</a></code>, <em>optional</em></td><td class="fieldArgDesc"><p>Same parameter as <code><a href="https://pydocbrowser.github.io/numpy/latest/numpy.lib.npyio.html#loadtxt" class="intersphinx-link">loadtxt</a></code></p>
+<div class="rst-versionadded">
+<span class="rst-versionmodified rst-added">New in version 1.23.0.</span></div>
 </td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">like</span></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">skiprows:</span><code><a href="https://docs.python.org/3/library/functions.html#int" class="intersphinx-link">int</a></code>, <em>optional</em></td><td class="fieldArgDesc"><code>skiprows</code> was removed in numpy 1.10. Please use <code>skip_header</code> instead.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">missing:</span><code>variable</code>, <em>optional</em></td><td class="fieldArgDesc"><code>missing</code> was removed in numpy 1.10. Please use <code>missing_values</code>
 instead.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">${ARRAY<wbr></wbr>_FUNCTION<wbr></wbr>_LIKE}</span></td><td class="fieldArgDesc"></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code>ndarray</code></td><td class="fieldArgDesc"><strong>out</strong> - Data read from the text file. If <code>usemask</code> is True, this is a
 masked array.</td></tr></table></div>
@@ -1190,7 +1193,7 @@ masked array.</td></tr></table></div>
   <div class="functionHeader">
     @<a href="numpy.core.overrides.html#set_module" class="internal-link" title="numpy.core.overrides.set_module">set_module</a>(<wbr></wbr><span class="rst-variable-quote">'</span><span class="rst-variable-string">numpy</span><span class="rst-variable-quote">'</span>)<br />
     <span class="py-keyword">def</span> <span class="py-defname">load</span>(file, mmap_mode=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, allow_pickle=<a href="https://docs.python.org/3/library/constants.html#False" class="intersphinx-link">False</a>, fix_imports=<a href="https://docs.python.org/3/library/constants.html#True" class="intersphinx-link">True</a>, encoding=<span class="rst-variable-quote">'</span><span class="rst-variable-string">ASCII</span><span class="rst-variable-quote">'</span>):
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.22.4//numpy/lib/npyio.py#L272">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.23.0//numpy/lib/npyio.py#L254">
       
       (source)
     </a>
@@ -1266,7 +1269,8 @@ directly from disk:</p>
 <span class="py-output">memmap([4, 5, 6])</span>
 </pre></div>
 <table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">file:</span>file-like object, <code><a href="https://docs.python.org/3/library/string.html#module-string" class="intersphinx-link">string</a></code>, or <code><a href="https://docs.python.org/3/library/pathlib.html#pathlib.Path" class="intersphinx-link">pathlib.Path</a></code></td><td class="fieldArgDesc">The file to read. File-like objects must support the
-<tt class="rst-docutils literal">seek()</tt> and <tt class="rst-docutils literal">read()</tt> methods. Pickled files require that the
+<tt class="rst-docutils literal">seek()</tt> and <tt class="rst-docutils literal">read()</tt> methods and must always
+be opened in binary mode.  Pickled files require that the
 file-like object support the <tt class="rst-docutils literal">readline()</tt> method as well.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">mmap<wbr></wbr>_mode:</span><span class="literal">{None</span>, <span class="literal">'r+'</span>, <span class="literal">'r'</span>, <span class="literal">'w+'</span>, <span class="literal">'c'</span><span class="literal">}</span>, <em>optional</em></td><td class="fieldArgDesc">If not None, then memory-map the file, using the given mode (see
 <code>numpy.memmap</code> for a detailed description of the modes).  A
 memory-mapped array is kept on disk. However, it can be accessed
@@ -1299,8 +1303,8 @@ of NpzFile class must be closed to avoid leaking file descriptors.</td></tr><tr 
   </a>
   <div class="functionHeader">
     @<a href="numpy.core.overrides.html#set_array_function_like_doc" class="internal-link" title="numpy.core.overrides.set_array_function_like_doc">set_array_function_like_doc</a><br />@<a href="numpy.core.overrides.html#set_module" class="internal-link" title="numpy.core.overrides.set_module">set_module</a>(<wbr></wbr><span class="rst-variable-quote">'</span><span class="rst-variable-string">numpy</span><span class="rst-variable-quote">'</span>)<br />
-    <span class="py-keyword">def</span> <span class="py-defname">loadtxt</span>(fname, dtype=<a href="https://docs.python.org/3/library/functions.html#float" class="intersphinx-link">float</a>, comments=<span class="rst-variable-quote">'</span><span class="rst-variable-string">#</span><span class="rst-variable-quote">'</span>, delimiter=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, converters=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, skiprows=0, usecols=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, unpack=<a href="https://docs.python.org/3/library/constants.html#False" class="intersphinx-link">False</a>, ndmin=0, encoding=<span class="rst-variable-quote">'</span><span class="rst-variable-string">bytes</span><span class="rst-variable-quote">'</span>, max_rows=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, *, like=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>):
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.22.4//numpy/lib/npyio.py#L829">
+    <span class="py-keyword">def</span> <span class="py-defname">loadtxt</span>(fname, dtype=<a href="https://docs.python.org/3/library/functions.html#float" class="intersphinx-link">float</a>, comments=<span class="rst-variable-quote">'</span><span class="rst-variable-string">#</span><span class="rst-variable-quote">'</span>, delimiter=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, converters=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, skiprows=0, usecols=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, unpack=<a href="https://docs.python.org/3/library/constants.html#False" class="intersphinx-link">False</a>, ndmin=0, encoding=<span class="rst-variable-quote">'</span><span class="rst-variable-string">bytes</span><span class="rst-variable-quote">'</span>, max_rows=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, *, quotechar=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, like=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.23.0//numpy/lib/npyio.py#L1061">
       
       (source)
     </a>
@@ -1351,6 +1355,27 @@ input for floats.</p>
 <span class="py-output">array([1., 3.])</span>
 <span class="py-prompt">&gt;&gt;&gt; </span>y
 <span class="py-output">array([2., 4.])</span>
+</pre><p>The <code>converters</code> argument is used to specify functions to preprocess the
+text prior to parsing. <code>converters</code> can be a dictionary that maps
+preprocessing functions to each column:</p>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>s = StringIO(<span class="py-string">"1.618, 2.296\n3.141, 4.669\n"</span>)
+<span class="py-prompt">&gt;&gt;&gt; </span>conv = {
+<span class="py-more">... </span>    0: <span class="py-keyword">lambda</span> x: np.floor(<span class="py-builtin">float</span>(x)),  <span class="py-comment"># conversion fn for column 0</span>
+<span class="py-more">... </span>    1: <span class="py-keyword">lambda</span> x: np.ceil(<span class="py-builtin">float</span>(x)),  <span class="py-comment"># conversion fn for column 1</span>
+<span class="py-more">... </span>}
+<span class="py-prompt">&gt;&gt;&gt; </span>np.loadtxt(s, delimiter=<span class="py-string">","</span>, converters=conv)
+<span class="py-output">array([[1., 3.],</span>
+<span class="py-output">       [3., 5.]])</span>
+</pre><p><code>converters</code> can be a callable instead of a dictionary, in which case it
+is applied to all columns:</p>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>s = StringIO(<span class="py-string">"0xDE 0xAD\n0xC0 0xDE"</span>)
+<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">import</span> functools
+<span class="py-prompt">&gt;&gt;&gt; </span>conv = functools.partial(<span class="py-builtin">int</span>, base=16)
+<span class="py-prompt">&gt;&gt;&gt; </span>np.loadtxt(s, converters=conv)
+<span class="py-output">array([[222., 173.],</span>
+<span class="py-output">       [192., 222.]])</span>
 </pre><p>This example shows how <code>converters</code> can be used to convert a field
 with a trailing minus sign into a negative number.</p>
 <pre class="py-doctest">
@@ -1358,10 +1383,52 @@ with a trailing minus sign into a negative number.</p>
 <span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">def</span> <span class="py-defname">conv</span>(fld):
 <span class="py-more">... </span>    <span class="py-keyword">return</span> -<span class="py-builtin">float</span>(fld[:-1]) <span class="py-keyword">if</span> fld.endswith(b<span class="py-string">'-'</span>) <span class="py-keyword">else</span> <span class="py-builtin">float</span>(fld)
 <span class="py-more">...</span>
-<span class="py-prompt">&gt;&gt;&gt; </span>np.loadtxt(s, converters={0: conv, 1: conv})
+<span class="py-prompt">&gt;&gt;&gt; </span>np.loadtxt(s, converters=conv)
 <span class="py-output">array([[ 10.01, -31.25],</span>
 <span class="py-output">       [ 19.22,  64.31],</span>
 <span class="py-output">       [-17.57,  63.94]])</span>
+</pre><p>Using a callable as the converter can be particularly useful for handling
+values with different formatting, e.g. floats with underscores:</p>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>s = StringIO(<span class="py-string">"1 2.7 100_000"</span>)
+<span class="py-prompt">&gt;&gt;&gt; </span>np.loadtxt(s, converters=<span class="py-builtin">float</span>)
+<span class="py-output">array([1.e+00, 2.7e+00, 1.e+05])</span>
+</pre><p>This idea can be extended to automatically handle values specified in
+many different formats:</p>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">def</span> <span class="py-defname">conv</span>(val):
+<span class="py-more">... </span>    <span class="py-keyword">try</span>:
+<span class="py-more">... </span>        <span class="py-keyword">return</span> <span class="py-builtin">float</span>(val)
+<span class="py-more">... </span>    <span class="py-keyword">except</span> <span class="py-builtin">ValueError</span>:
+<span class="py-more">... </span>        <span class="py-keyword">return</span> <span class="py-builtin">float</span>.fromhex(val)
+<span class="py-prompt">&gt;&gt;&gt; </span>s = StringIO(<span class="py-string">"1, 2.5, 3_000, 0b4, 0x1.4000000000000p+2"</span>)
+<span class="py-prompt">&gt;&gt;&gt; </span>np.loadtxt(s, delimiter=<span class="py-string">","</span>, converters=conv, encoding=<span class="py-builtin">None</span>)
+<span class="py-output">array([1.0e+00, 2.5e+00, 3.0e+03, 1.8e+02, 5.0e+00])</span>
+</pre><p>Note that with the default <tt class="rst-docutils literal"><span class="pre">encoding="bytes"</span></tt>, the inputs to the
+converter function are latin-1 encoded byte strings. To deactivate the
+implicit encoding prior to conversion, use <tt class="rst-docutils literal">encoding=None</tt></p>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>s = StringIO(<span class="py-string">'10.01 31.25-\n19.22 64.31\n17.57- 63.94'</span>)
+<span class="py-prompt">&gt;&gt;&gt; </span>conv = <span class="py-keyword">lambda</span> x: -<span class="py-builtin">float</span>(x[:-1]) <span class="py-keyword">if</span> x.endswith(<span class="py-string">'-'</span>) <span class="py-keyword">else</span> <span class="py-builtin">float</span>(x)
+<span class="py-prompt">&gt;&gt;&gt; </span>np.loadtxt(s, converters=conv, encoding=<span class="py-builtin">None</span>)
+<span class="py-output">array([[ 10.01, -31.25],</span>
+<span class="py-output">       [ 19.22,  64.31],</span>
+<span class="py-output">       [-17.57,  63.94]])</span>
+</pre><p>Support for quoted fields is enabled with the <code>quotechar</code> parameter.
+Comment and delimiter characters are ignored when they appear within a
+quoted item delineated by <code>quotechar</code>:</p>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>s = StringIO(<span class="py-string">'"alpha, #42", 10.0\n"beta, #64", 2.0\n'</span>)
+<span class="py-prompt">&gt;&gt;&gt; </span>dtype = np.dtype([(<span class="py-string">"label"</span>, <span class="py-string">"U12"</span>), (<span class="py-string">"value"</span>, <span class="py-builtin">float</span>)])
+<span class="py-prompt">&gt;&gt;&gt; </span>np.loadtxt(s, dtype=dtype, delimiter=<span class="py-string">","</span>, quotechar=<span class="py-string">'"'</span>)
+<span class="py-output">array([('alpha, #42', 10.), ('beta, #64',  2.)],</span>
+<span class="py-output">      dtype=[('label', '&lt;U12'), ('value', '&lt;f8')])</span>
+</pre><p>Two consecutive quote characters within a quoted field are treated as a
+single escaped character:</p>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>s = StringIO(<span class="py-string">'"Hello, my name is ""Monty""!"'</span>)
+<span class="py-prompt">&gt;&gt;&gt; </span>np.loadtxt(s, dtype=<span class="py-string">"U"</span>, delimiter=<span class="py-string">","</span>, quotechar=<span class="py-string">'"'</span>)
+<span class="py-output">array('Hello, my name is "Monty"!', dtype='&lt;U26')</span>
 </pre></div>
 <table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">fname:</span><code>file</code>, <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code>, <code><a href="https://docs.python.org/3/library/pathlib.html#pathlib.Path" class="intersphinx-link">pathlib.Path</a></code>, <code><a href="https://docs.python.org/3/library/stdtypes.html#list" class="intersphinx-link">list</a></code> of <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code>, <code>generator</code></td><td class="fieldArgDesc">File, filename, list, or generator to read.  If the filename
 extension is <tt class="rst-docutils literal">.gz</tt> or <tt class="rst-docutils literal">.bz2</tt>, the file is first decompressed. Note
@@ -1370,14 +1437,15 @@ in a list or produced by a generator are treated as lines.</td></tr><tr><td clas
 structured data-type, the resulting array will be 1-dimensional, and
 each row will be interpreted as an element of the array.  In this
 case, the number of columns used must match the number of fields in
-the data-type.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">comments:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code> or <code>sequence</code> of <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code>, <em>optional</em></td><td class="fieldArgDesc">The characters or list of characters used to indicate the start of a
+the data-type.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">comments:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code> or <code>sequence</code> of <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code> or <code><a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a></code>, <em>optional</em></td><td class="fieldArgDesc">The characters or list of characters used to indicate the start of a
 comment. None implies no comments. For backwards compatibility, byte
 strings will be decoded as 'latin1'. The default is '#'.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">delimiter:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code>, <em>optional</em></td><td class="fieldArgDesc">The string used to separate values. For backwards compatibility, byte
-strings will be decoded as 'latin1'. The default is whitespace.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">converters:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#dict" class="intersphinx-link">dict</a></code>, <em>optional</em></td><td class="fieldArgDesc">A dictionary mapping column number to a function that will parse the
-column string into the desired value.  E.g., if column 0 is a date
-string: <tt class="rst-docutils literal">converters = {0: datestr2num}</tt>.  Converters can also be
-used to provide a default value for missing data (but see also
-<code><a href="https://pydocbrowser.github.io/numpy/latest/numpy.lib.npyio.html#genfromtxt" class="intersphinx-link">genfromtxt</a></code>): <tt class="rst-docutils literal">converters = {3: lambda s: float(s.strip() or 0)}</tt>.
+strings will be decoded as 'latin1'. The default is whitespace.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">converters:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#dict" class="intersphinx-link">dict</a></code> or <code><a href="https://docs.python.org/3/library/functions.html#callable" class="intersphinx-link">callable</a></code>, <em>optional</em></td><td class="fieldArgDesc">A function to parse all columns strings into the desired value, or
+a dictionary mapping column number to a parser function.
+E.g. if column 0 is a date string: <tt class="rst-docutils literal">converters = {0: datestr2num}</tt>.
+Converters can also be used to provide a default value for missing
+data, e.g. <tt class="rst-docutils literal">converters = lambda s: float(s.strip() or 0)</tt> will
+convert empty fields to 0.
 Default: None.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">skiprows:</span><code><a href="https://docs.python.org/3/library/functions.html#int" class="intersphinx-link">int</a></code>, <em>optional</em></td><td class="fieldArgDesc">Skip the first <code>skiprows</code> lines, including comments; default: 0.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">usecols:</span><code><a href="https://docs.python.org/3/library/functions.html#int" class="intersphinx-link">int</a></code> or <code>sequence</code>, <em>optional</em></td><td class="fieldArgDesc"><p>Which columns to read, with 0 being the first. For example,
 <tt class="rst-docutils literal">usecols = (1,4,5)</tt> will extract the 2nd, 5th and 6th columns.
 The default, None, results in all columns being read.</p>
@@ -1405,6 +1473,14 @@ the system default is used. The default value is 'bytes'.</p>
 is to read all the lines.</p>
 <div class="rst-versionadded">
 <span class="rst-versionmodified rst-added">New in version 1.16.0.</span></div>
+</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">quotechar:</span>unicode character or <code><a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a></code>, <em>optional</em></td><td class="fieldArgDesc"><p>The character used to denote the start and end of a quoted item.
+Occurrences of the delimiter or comment characters are ignored within
+a quoted item. The default value is <tt class="rst-docutils literal">quotechar=None</tt>, which means
+quoting support is disabled.</p>
+<p>If two consecutive instances of <code>quotechar</code> are found within a quoted
+field, the first is treated as an escape character. See examples.</p>
+<div class="rst-versionadded">
+<span class="rst-versionmodified rst-added">New in version 1.23.0.</span></div>
 </td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">like</span></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">${ARRAY<wbr></wbr>_FUNCTION<wbr></wbr>_LIKE}</span></td><td class="fieldArgDesc"></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code>ndarray</code></td><td class="fieldArgDesc"><strong>out</strong> - Data read from the text file.</td></tr></table></div>
   </div>
 </div><div class="basefunction">
@@ -1419,7 +1495,7 @@ is to read all the lines.</p>
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">recfromcsv</span>(fname, **kwargs):
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.22.4//numpy/lib/npyio.py#L2345">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.23.0//numpy/lib/npyio.py#L2456">
       
       (source)
     </a>
@@ -1456,7 +1532,7 @@ array will be determined from the data.</p>
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">recfromtxt</span>(fname, **kwargs):
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.22.4//numpy/lib/npyio.py#L2313">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.23.0//numpy/lib/npyio.py#L2424">
       
       (source)
     </a>
@@ -1492,7 +1568,7 @@ array will be determined from the data.</p>
   <div class="functionHeader">
     @<a href="#array_function_dispatch" class="internal-link" title="numpy.lib.npyio.array_function_dispatch">array_function_dispatch</a>(<wbr></wbr><a href="#_save_dispatcher" class="internal-link" title="numpy.lib.npyio._save_dispatcher">_save_dispatcher</a>)<br />
     <span class="py-keyword">def</span> <span class="py-defname">save</span>(file, arr, allow_pickle=<a href="https://docs.python.org/3/library/constants.html#True" class="intersphinx-link">True</a>, fix_imports=<a href="https://docs.python.org/3/library/constants.html#True" class="intersphinx-link">True</a>):
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.22.4//numpy/lib/npyio.py#L448">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.23.0//numpy/lib/npyio.py#L431">
       
       (source)
     </a>
@@ -1559,7 +1635,7 @@ Python 2, so that the pickle data stream is readable with Python 2.</td></tr></t
   <div class="functionHeader">
     @<a href="#array_function_dispatch" class="internal-link" title="numpy.lib.npyio.array_function_dispatch">array_function_dispatch</a>(<wbr></wbr><a href="#_savetxt_dispatcher" class="internal-link" title="numpy.lib.npyio._savetxt_dispatcher">_savetxt_dispatcher</a>)<br />
     <span class="py-keyword">def</span> <span class="py-defname">savetxt</span>(fname, X, fmt=<span class="rst-variable-quote">'</span><span class="rst-variable-string">%.18e</span><span class="rst-variable-quote">'</span>, delimiter=<span class="rst-variable-quote">'</span><span class="rst-variable-string"> </span><span class="rst-variable-quote">'</span>, newline=<span class="rst-variable-quote">'</span><span class="rst-variable-string">\n</span><span class="rst-variable-quote">'</span>, header=<span class="rst-variable-quote">'</span><span class="rst-variable-string"></span><span class="rst-variable-quote">'</span>, footer=<span class="rst-variable-quote">'</span><span class="rst-variable-string"></span><span class="rst-variable-quote">'</span>, comments=<span class="rst-variable-quote">'</span><span class="rst-variable-string"># </span><span class="rst-variable-quote">'</span>, encoding=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>):
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.22.4//numpy/lib/npyio.py#L1217">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.23.0//numpy/lib/npyio.py#L1320">
       
       (source)
     </a>
@@ -1682,7 +1758,7 @@ is 'latin1'.</p>
   <div class="functionHeader">
     @<a href="#array_function_dispatch" class="internal-link" title="numpy.lib.npyio.array_function_dispatch">array_function_dispatch</a>(<wbr></wbr><a href="#_savez_dispatcher" class="internal-link" title="numpy.lib.npyio._savez_dispatcher">_savez_dispatcher</a>)<br />
     <span class="py-keyword">def</span> <span class="py-defname">savez</span>(file, *args, **kwds):
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.22.4//numpy/lib/npyio.py#L528">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.23.0//numpy/lib/npyio.py#L511">
       
       (source)
     </a>
@@ -1768,7 +1844,7 @@ output file with its corresponding keyword name.</td></tr><tr class="fieldStart"
   <div class="functionHeader">
     @<a href="#array_function_dispatch" class="internal-link" title="numpy.lib.npyio.array_function_dispatch">array_function_dispatch</a>(<wbr></wbr><a href="#_savez_compressed_dispatcher" class="internal-link" title="numpy.lib.npyio._savez_compressed_dispatcher">_savez_compressed_dispatcher</a>)<br />
     <span class="py-keyword">def</span> <span class="py-defname">savez_compressed</span>(file, *args, **kwds):
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.22.4//numpy/lib/npyio.py#L620">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.23.0//numpy/lib/npyio.py#L603">
       
       (source)
     </a>
@@ -1837,7 +1913,7 @@ output file with its corresponding keyword name.</td></tr><tr class="fieldStart"
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">zipfile_factory</span>(file, *args, **kwargs):
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.22.4//numpy/lib/npyio.py#L89">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.23.0//numpy/lib/npyio.py#L91">
       
       (source)
     </a>
@@ -1862,7 +1938,7 @@ constructor.</p>
   <div class="functionHeader">
     
     <span class="py-defname">array_function_dispatch</span> =
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.22.4//numpy/lib/npyio.py#L36">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.23.0//numpy/lib/npyio.py#L38">
       
       (source)
     </a>
@@ -1875,16 +1951,16 @@ constructor.</p>
 </div><div class="basefunction private">
   
   
-  <a name="numpy.lib.npyio._floatconv">
+  <a name="numpy.lib.npyio._check_nonneg_int">
     
   </a>
-  <a name="_floatconv">
+  <a name="_check_nonneg_int">
     
   </a>
   <div class="functionHeader">
     
-    <span class="py-keyword">def</span> <span class="py-defname">_floatconv</span>(x):
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.22.4//numpy/lib/npyio.py#L723">
+    <span class="py-keyword">def</span> <span class="py-defname">_check_nonneg_int</span>(value, name=<span class="rst-variable-quote">'</span><span class="rst-variable-string">argument</span><span class="rst-variable-quote">'</span>):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.23.0//numpy/lib/npyio.py#L750">
       
       (source)
     </a>
@@ -1892,6 +1968,62 @@ constructor.</p>
   <div class="docstring functionBody">
     
     <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basefunction private">
+  
+  
+  <a name="numpy.lib.npyio._ensure_ndmin_ndarray">
+    
+  </a>
+  <a name="_ensure_ndmin_ndarray">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_ensure_ndmin_ndarray</span>(a, *, ndmin):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.23.0//numpy/lib/npyio.py#L716">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>This is a helper function of loadtxt and genfromtxt to ensure
+proper minimum dimension as requested</p>
+<dl class="rst-docutils">
+<dt>ndim <span class="classifier-delimiter">:</span> <span class="rst-classifier">int. Supported values 1, 2, 3</span></dt>
+<dd><dl class="rst-first rst-last rst-docutils">
+<dt>^^ whenever this changes, keep in sync with</dt>
+<dd>_ensure_ndmin_ndarray_check_param</dd>
+</dl>
+</dd>
+</dl>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">a</span></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">ndmin:</span><code><a href="https://docs.python.org/3/library/functions.html#int" class="intersphinx-link">int</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basefunction private">
+  
+  
+  <a name="numpy.lib.npyio._ensure_ndmin_ndarray_check_param">
+    
+  </a>
+  <a name="_ensure_ndmin_ndarray_check_param">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_ensure_ndmin_ndarray_check_param</span>(ndmin):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.23.0//numpy/lib/npyio.py#L706">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Just checks if the param ndmin is supported on
+_ensure_ndmin_ndarray. It is intended to be used as
+verification before running anything expensive.
+e.g. loadtxt, genfromtxt</p>
+</div>
   </div>
 </div><div class="basefunction private">
   
@@ -1904,8 +2036,8 @@ constructor.</p>
   </a>
   <div class="functionHeader">
     
-    <span class="py-keyword">def</span> <span class="py-defname">_genfromtxt_dispatcher</span>(fname, dtype=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, comments=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, delimiter=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, skip_header=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, skip_footer=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, converters=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, missing_values=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, filling_values=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, usecols=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, names=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, excludelist=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, deletechars=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, replace_space=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, autostrip=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, case_sensitive=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, defaultfmt=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, unpack=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, usemask=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, loose=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, invalid_raise=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, max_rows=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, encoding=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, *, like=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>):
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.22.4//numpy/lib/npyio.py#L1569">
+    <span class="py-keyword">def</span> <span class="py-defname">_genfromtxt_dispatcher</span>(fname, dtype=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, comments=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, delimiter=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, skip_header=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, skip_footer=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, converters=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, missing_values=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, filling_values=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, usecols=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, names=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, excludelist=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, deletechars=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, replace_space=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, autostrip=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, case_sensitive=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, defaultfmt=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, unpack=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, usemask=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, loose=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, invalid_raise=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, max_rows=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, encoding=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, *, ndmin=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, like=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.23.0//numpy/lib/npyio.py#L1672">
       
       (source)
     </a>
@@ -1913,30 +2045,6 @@ constructor.</p>
   <div class="docstring functionBody">
     
     <div><p class="undocumented">Undocumented</p></div>
-  </div>
-</div><div class="basefunction private">
-  
-  
-  <a name="numpy.lib.npyio._getconv">
-    
-  </a>
-  <a name="_getconv">
-    
-  </a>
-  <div class="functionHeader">
-    
-    <span class="py-keyword">def</span> <span class="py-defname">_getconv</span>(dtype):
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.22.4//numpy/lib/npyio.py#L748">
-      
-      (source)
-    </a>
-  </div>
-  <div class="docstring functionBody">
-    
-    <div><p>Find the correct dtype converter. Adapted from matplotlib.</p>
-<p>Even when a lambda is returned, it is defined at the toplevel, to allow
-testing for equality and enabling optimization for single-type data.</p>
-</div>
   </div>
 </div><div class="basefunction private">
   
@@ -1950,7 +2058,7 @@ testing for equality and enabling optimization for single-type data.</p>
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">_loadtxt_dispatcher</span>(fname, dtype=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, comments=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, delimiter=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, converters=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, skiprows=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, usecols=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, unpack=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, ndmin=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, encoding=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, max_rows=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, *, like=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>):
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.22.4//numpy/lib/npyio.py#L823">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.23.0//numpy/lib/npyio.py#L743">
       
       (source)
     </a>
@@ -1962,46 +2070,98 @@ testing for equality and enabling optimization for single-type data.</p>
 </div><div class="basefunction private">
   
   
-  <a name="numpy.lib.npyio._loadtxt_flatten_dtype_internal">
+  <a name="numpy.lib.npyio._preprocess_comments">
     
   </a>
-  <a name="_loadtxt_flatten_dtype_internal">
+  <a name="_preprocess_comments">
     
   </a>
   <div class="functionHeader">
     
-    <span class="py-keyword">def</span> <span class="py-defname">_loadtxt_flatten_dtype_internal</span>(dt):
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.22.4//numpy/lib/npyio.py#L769">
+    <span class="py-keyword">def</span> <span class="py-defname">_preprocess_comments</span>(iterable, comments, encoding):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.23.0//numpy/lib/npyio.py#L759">
       
       (source)
     </a>
   </div>
   <div class="docstring functionBody">
     
-    <div><p>Unpack a structured data-type, and produce a packer function.</p>
+    <div><p>Generator that consumes a line iterated iterable and strips out the
+multiple (or multi-character) comments from lines.
+This is a pre-processing step to achieve feature parity with loadtxt
+(we assume that this feature is a nieche feature).</p>
 </div>
   </div>
 </div><div class="basefunction private">
   
   
-  <a name="numpy.lib.npyio._loadtxt_pack_items">
+  <a name="numpy.lib.npyio._read">
     
   </a>
-  <a name="_loadtxt_pack_items">
+  <a name="_read">
     
   </a>
   <div class="functionHeader">
     
-    <span class="py-keyword">def</span> <span class="py-defname">_loadtxt_pack_items</span>(packing, items):
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.22.4//numpy/lib/npyio.py#L801">
+    <span class="py-keyword">def</span> <span class="py-defname">_read</span>(fname, *, delimiter=<span class="rst-variable-quote">'</span><span class="rst-variable-string">,</span><span class="rst-variable-quote">'</span>, comment=<span class="rst-variable-quote">'</span><span class="rst-variable-string">#</span><span class="rst-variable-quote">'</span>, quote=<span class="rst-variable-quote">'</span><span class="rst-variable-string">"</span><span class="rst-variable-quote">'</span>, imaginary_unit=<span class="rst-variable-quote">'</span><span class="rst-variable-string">j</span><span class="rst-variable-quote">'</span>, usecols=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, skiplines=0, max_rows=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, converters=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, ndmin=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, unpack=<a href="https://docs.python.org/3/library/constants.html#False" class="intersphinx-link">False</a>, dtype=np.float64, encoding=<span class="rst-variable-quote">'</span><span class="rst-variable-string">bytes</span><span class="rst-variable-quote">'</span>):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.23.0//numpy/lib/npyio.py#L781">
       
       (source)
     </a>
   </div>
   <div class="docstring functionBody">
     
-    <div><p>Pack items into nested lists based on re-packing info.</p>
-</div>
+    <div><p>Read a NumPy array from a text file.</p>
+<div class="rst-admonition rst-admonition-examples">
+<p class="rst-first rst-admonition-title">Examples</p>
+<p>First we create a file for the example.</p>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>s1 = <span class="py-string">'1.0,2.0,3.0\n4.0,5.0,6.0\n'</span>
+<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">with</span> <span class="py-builtin">open</span>(<span class="py-string">'example1.csv'</span>, <span class="py-string">'w'</span>) <span class="py-keyword">as</span> f:
+<span class="py-more">... </span>    f.write(s1)
+<span class="py-prompt">&gt;&gt;&gt; </span>a1 = read_from_filename(<span class="py-string">'example1.csv'</span>)
+<span class="py-prompt">&gt;&gt;&gt; </span>a1
+<span class="py-output">array([[1., 2., 3.],</span>
+<span class="py-output">       [4., 5., 6.]])</span>
+</pre><p>The second example has columns with different data types, so a
+one-dimensional array with a structured data type is returned.
+The tab character is used as the field delimiter.</p>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>s2 = <span class="py-string">'1.0\t10\talpha\n2.3\t25\tbeta\n4.5\t16\tgamma\n'</span>
+<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">with</span> <span class="py-builtin">open</span>(<span class="py-string">'example2.tsv'</span>, <span class="py-string">'w'</span>) <span class="py-keyword">as</span> f:
+<span class="py-more">... </span>    f.write(s2)
+<span class="py-prompt">&gt;&gt;&gt; </span>a2 = read_from_filename(<span class="py-string">'example2.tsv'</span>, delimiter=<span class="py-string">'\t'</span>)
+<span class="py-prompt">&gt;&gt;&gt; </span>a2
+<span class="py-output">array([(1. , 10, b'alpha'), (2.3, 25, b'beta'), (4.5, 16, b'gamma')],</span>
+<span class="py-output">      dtype=[('f0', '&lt;f8'), ('f1', 'u1'), ('f2', 'S5')])</span>
+</pre></div>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">fname:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code> or file object</td><td class="fieldArgDesc">The filename or the file to be read.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">delimiter:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code>, <em>optional</em></td><td class="fieldArgDesc">Field delimiter of the fields in line of the file.
+Default is a comma, ','.  If None any sequence of whitespace is
+considered a delimiter.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">comment:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code> or <code>sequence</code> of <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code> or <code><a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a></code>, <em>optional</em></td><td class="fieldArgDesc">Character that begins a comment.  All text from the comment
+character to the end of the line is ignored.
+Multiple comments or multiple-character comment strings are supported,
+but may be slower and <code>quote</code> must be empty if used.
+Use None to disable all use of comments.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">quote:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code> or <code><a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a></code>, <em>optional</em></td><td class="fieldArgDesc">Character that is used to quote string fields. Default is '"'
+(a double quote). Use None to disable quote support.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">imaginary<wbr></wbr>_unit:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code>, <em>optional</em></td><td class="fieldArgDesc">Character that represent the imaginay unit <code>sqrt(-1)</code>.
+Default is 'j'.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">usecols:</span><code>array_like</code>, <em>optional</em></td><td class="fieldArgDesc">A one-dimensional array of integer column numbers.  These are the
+columns from the file to be included in the array.  If this value
+is not given, all the columns are used.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">skiplines:</span><code><a href="https://docs.python.org/3/library/functions.html#int" class="intersphinx-link">int</a></code>, <em>optional</em></td><td class="fieldArgDesc">Number of lines to skip before interpreting the data in the file.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">max<wbr></wbr>_rows:</span><code><a href="https://docs.python.org/3/library/functions.html#int" class="intersphinx-link">int</a></code>, <em>optional</em></td><td class="fieldArgDesc">Maximum number of rows of data to read.  Default is to read the
+entire file.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">converters:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#dict" class="intersphinx-link">dict</a></code> or <code><a href="https://docs.python.org/3/library/functions.html#callable" class="intersphinx-link">callable</a></code>, <em>optional</em></td><td class="fieldArgDesc">A function to parse all columns strings into the desired value, or
+a dictionary mapping column number to a parser function.
+E.g. if column 0 is a date string: <tt class="rst-docutils literal">converters = {0: datestr2num}</tt>.
+Converters can also be used to provide a default value for missing
+data, e.g. <tt class="rst-docutils literal">converters = lambda s: float(s.strip() or 0)</tt> will
+convert empty fields to 0.
+Default: None</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">ndmin:</span><code><a href="https://docs.python.org/3/library/functions.html#int" class="intersphinx-link">int</a></code>, <em>optional</em></td><td class="fieldArgDesc">Minimum dimension of the array returned.
+Allowed values are 0, 1 or 2.  Default is 0.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">unpack:</span><code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code>, <em>optional</em></td><td class="fieldArgDesc">If True, the returned array is transposed, so that arguments may be
+unpacked using <tt class="rst-docutils literal">x, y, z = <span class="pre">read(...)</span></tt>.  When used with a structured
+data-type, arrays are returned for each field.  Default is False.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">dtype:</span>numpy data type</td><td class="fieldArgDesc">A NumPy dtype instance, can be a structured dtype to map to the
+columns of the file.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">encoding:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code>, <em>optional</em></td><td class="fieldArgDesc">Encoding used to decode the inputfile. The special value 'bytes'
+(the default) enables backwards-compatible behavior for <code>converters</code>,
+ensuring that inputs to the converter functions are encoded
+bytes objects. The special value 'bytes' has no additional effect if
+<tt class="rst-docutils literal">converters=None</tt>. If encoding is <tt class="rst-docutils literal">'bytes'</tt> or <tt class="rst-docutils literal">None</tt>, the
+default system encoding is used.</td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code>ndarray</code></td><td class="fieldArgDesc">NumPy array.</td></tr></table></div>
   </div>
 </div><div class="basefunction private">
   
@@ -2015,7 +2175,7 @@ testing for equality and enabling optimization for single-type data.</p>
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">_save_dispatcher</span>(file, arr, allow_pickle=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, fix_imports=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>):
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.22.4//numpy/lib/npyio.py#L444">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.23.0//numpy/lib/npyio.py#L427">
       
       (source)
     </a>
@@ -2036,7 +2196,7 @@ testing for equality and enabling optimization for single-type data.</p>
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">_savetxt_dispatcher</span>(fname, X, fmt=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, delimiter=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, newline=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, header=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, footer=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, comments=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, encoding=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>):
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.22.4//numpy/lib/npyio.py#L1211">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.23.0//numpy/lib/npyio.py#L1314">
       
       (source)
     </a>
@@ -2057,7 +2217,7 @@ testing for equality and enabling optimization for single-type data.</p>
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">_savez</span>(file, args, kwds, compress, allow_pickle=<a href="https://docs.python.org/3/library/constants.html#True" class="intersphinx-link">True</a>, pickle_kwargs=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>):
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.22.4//numpy/lib/npyio.py#L686">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.23.0//numpy/lib/npyio.py#L669">
       
       (source)
     </a>
@@ -2078,7 +2238,7 @@ testing for equality and enabling optimization for single-type data.</p>
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">_savez_compressed_dispatcher</span>(file, *args, **kwds):
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.22.4//numpy/lib/npyio.py#L615">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.23.0//numpy/lib/npyio.py#L598">
       
       (source)
     </a>
@@ -2099,7 +2259,7 @@ testing for equality and enabling optimization for single-type data.</p>
   <div class="functionHeader">
     
     <span class="py-keyword">def</span> <span class="py-defname">_savez_dispatcher</span>(file, *args, **kwds):
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.22.4//numpy/lib/npyio.py#L523">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.23.0//numpy/lib/npyio.py#L506">
       
       (source)
     </a>
@@ -2107,35 +2267,6 @@ testing for equality and enabling optimization for single-type data.</p>
   <div class="docstring functionBody">
     
     <div><p class="undocumented">Undocumented</p></div>
-  </div>
-</div><div class="baseconstant private">
-  
-  
-  <a name="numpy.lib.npyio._CONVERTERS">
-    
-  </a>
-  <a name="_CONVERTERS">
-    
-  </a>
-  <div class="functionHeader">
-    
-    <span class="py-defname">_CONVERTERS</span> =
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.22.4//numpy/lib/npyio.py#L735">
-      
-      (source)
-    </a>
-  </div>
-  <div class="functionBody">
-    
-    <div><p class="undocumented">Undocumented</p></div>
-    <table class="valueTable"><tr class="fieldStart"><td class="fieldName">Value</td></tr><tr><td><pre class="constant-value"><code>[<wbr></wbr>(<wbr></wbr>np.bool_, <wbr></wbr>(lambda x: bool(int(x)))),
- <wbr></wbr>(<wbr></wbr>np.uint64, <wbr></wbr>np.uint64),
- <wbr></wbr>(<wbr></wbr>np.int64, <wbr></wbr>np.int64),
- <wbr></wbr>(<wbr></wbr>np.integer, <wbr></wbr>(lambda x: int(float(x)))),
- <wbr></wbr>(<wbr></wbr>np.longdouble, <wbr></wbr>np.longdouble),
- <wbr></wbr>(<wbr></wbr>np.floating, <wbr></wbr><a href="#_floatconv" class="internal-link" title="numpy.lib.npyio._floatconv">_floatconv</a>),
- <wbr></wbr>(<wbr></wbr><a href="https://docs.python.org/3/library/functions.html#complex" class="intersphinx-link">complex</a>, <wbr></wbr>(lambda x: complex(x.replace('+-', '-')))),
-<span class="rst-variable-ellipsis">...</span></code></pre></td></tr></table>
   </div>
 </div><div class="basevariable private">
   
@@ -2149,7 +2280,7 @@ testing for equality and enabling optimization for single-type data.</p>
   <div class="functionHeader">
     
     <span class="py-defname">_genfromtxt_with_like</span> =
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.22.4//numpy/lib/npyio.py#L2308">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.23.0//numpy/lib/npyio.py#L2419">
       
       (source)
     </a>
@@ -2171,7 +2302,7 @@ testing for equality and enabling optimization for single-type data.</p>
   <div class="functionHeader">
     
     <span class="py-defname">_loadtxt_chunksize</span>: <code><a href="https://docs.python.org/3/library/functions.html#int" class="intersphinx-link">int</a></code> =
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.22.4//numpy/lib/npyio.py#L820">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.23.0//numpy/lib/npyio.py#L740">
       
       (source)
     </a>
@@ -2193,7 +2324,7 @@ testing for equality and enabling optimization for single-type data.</p>
   <div class="functionHeader">
     
     <span class="py-defname">_loadtxt_with_like</span> =
-    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.22.4//numpy/lib/npyio.py#L1206">
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/numpy-1.23.0//numpy/lib/npyio.py#L1309">
       
       (source)
     </a>
@@ -2215,7 +2346,7 @@ testing for equality and enabling optimization for single-type data.</p>
   <div class="container">
     <a href="index.html">API Documentation</a> for numpy,
   generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
-    22.5.1.dev0 at 2022-05-21 00:57:13.
+    22.5.1.dev0 at 2022-06-23 01:01:17.
   </div>
 
   <!-- Search related scripts needs to be loaded at the end of HTML 
