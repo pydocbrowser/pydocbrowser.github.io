@@ -1,0 +1,868 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  
+
+  <head>
+    
+    <title>twisted.internet.protocol.ProcessProtocol</title>
+    <meta name="generator" content="pydoctor 22.5.1"> 
+        
+    </meta>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1 maximum-scale=1" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+    <link rel="stylesheet" type="text/css" href="extra.css" />
+</head>
+
+  <body>
+
+    <div id="banner">    
+    <div>
+        <a href="/">Home</a>
+        &gt; twisted-22.4.0 <!-- This is a placeholder -->
+        
+        <!-- (<a href=""&gt;show all versions</a&gt;) -->
+    </div>
+</div>
+
+    <nav class="navbar navbar-default mainnavbar">
+      
+  
+  <div class="container-fluid">
+
+
+    <div class="navbar-header">
+      
+      <div class="navlinks">
+        <span class="navbar-brand">
+          twisted <a href="index.html">API Documentation</a>
+        </span>
+
+        <a href="moduleIndex.html">
+          Modules
+        </a>
+
+        <a href="classIndex.html">
+          Classes
+        </a>
+
+        <a href="nameIndex.html">
+          Names
+        </a>
+
+        <div id="search-box-container">
+          <div class="input-group">
+            <input id="search-box" type="search" name="search-query" placeholder="Search..." aria-label="Search" minlength="2" class="form-control" autocomplete="off" />
+            
+            <span class="input-group-btn">
+              <a style="display: none;" class="btn btn-default" id="search-clear-button" title="Clear" onclick="clearSearch()"><img src="fonts/x-circle.svg" alt="Clear" /></a>
+              <a class="btn btn-default" id="search-help-button" title="Help" onclick="toggleSearchHelpText()"><img src="fonts/info.svg" alt="Help" /></a>
+            </span>
+          </div>
+        </div>
+
+      </div>
+
+      <div id="search-results-container" style="display: none;">
+        
+        <div id="search-buttons">
+          <span class="label label-default" id="search-docstrings-button">
+          <label class="checkbox-inline">
+            <input type="checkbox" id="toggle-search-in-docstrings-checkbox" value="false" onclick="toggleSearchInDocstrings()">
+              search in docstrings
+            </input>
+          </label>
+          </span>
+          
+        </div>
+        
+        <noscript>
+            <h1>Cannot search: JavaScript is not supported/enabled in your browser.</h1>
+        </noscript>
+
+        <div class="hint" id="search-help-box">
+          <p class="rst-last">
+      
+            Search bar offers the following options:
+            <ul>   
+                <li>
+                  <strong>Term presence.</strong> The below example searches for documents that 
+                    must contain “foo”, might contain “bar” and must not contain “baz”: <code>+foo bar -baz</code>
+                </li> 
+
+                <li>
+                  <strong>Wildcards.</strong> The below example searches for documents with words beginning with “foo”: <code>foo*</code>
+                </li> 
+
+                <li>
+                  <strong>Search in specific fields.</strong> The following search matches all objects 
+                  in "twisted.mail" that matches “search”: <code>+qname:twisted.mail.* +search</code>
+
+                  <p>
+                    Possible fields: 'name', 'qname' (fully qualified name), 'docstring', and 'kind'.
+                    Last two fields are only applicable if "search in docstrings" is enabled.
+                  </p>
+                </li>
+
+                <li>
+                  <strong>Fuzzy matches.</strong> The following search matches all documents 
+                  that have a word within 1 edit distance of “foo”: <code>foo~1</code>
+                </li>
+            </ul>
+
+          </p>
+        </div>
+
+        <div id="search-status"> </div>
+
+        <div class="warning" id="search-warn-box" style="display: none;">
+          <p class="rst-last"><span id="search-warn"></span></p>
+        </div>
+
+        <table id="search-results">
+          <!-- Filled dynamically by JS -->
+        </table>
+        
+        <div style="margin-top: 8px;">
+          <p>Results provided by <a href="https://lunrjs.com">Lunr.js</a></p>
+        </div>
+      </div>
+
+    </div>
+
+
+  </div>
+</nav>
+    
+    <div class="container-fluid">
+
+      <!-- Side navigation -->
+      <div class="sidebarcontainer" style="display: none;">
+        
+        <div class="sidebar"><nav class="sidebar">
+  
+
+  <div>
+
+      <div class="thingTitle">
+        <span>Class</span>
+        <code class="thisobject"><a href="twisted.internet.protocol.ProcessProtocol.html" class="internal-link" title="This class"><wbr></wbr>Process<wbr></wbr>Protocol</a></code> 
+      </div>
+      
+      <div>
+        
+
+        
+         
+
+        
+        
+
+        <div class="childrenKindTitle">Methods</div>
+        <ul>
+    
+    <li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#childConnectionLost" class="internal-link" title="twisted.internet.protocol.ProcessProtocol.childConnectionLost">child<wbr></wbr>Connection<wbr></wbr>Lost</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#childDataReceived" class="internal-link" title="twisted.internet.protocol.ProcessProtocol.childDataReceived">child<wbr></wbr>Data<wbr></wbr>Received</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#errConnectionLost" class="internal-link" title="twisted.internet.protocol.ProcessProtocol.errConnectionLost">err<wbr></wbr>Connection<wbr></wbr>Lost</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#errReceived" class="internal-link" title="twisted.internet.protocol.ProcessProtocol.errReceived">err<wbr></wbr>Received</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#inConnectionLost" class="internal-link" title="twisted.internet.protocol.ProcessProtocol.inConnectionLost">in<wbr></wbr>Connection<wbr></wbr>Lost</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#outConnectionLost" class="internal-link" title="twisted.internet.protocol.ProcessProtocol.outConnectionLost">out<wbr></wbr>Connection<wbr></wbr>Lost</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#outReceived" class="internal-link" title="twisted.internet.protocol.ProcessProtocol.outReceived">out<wbr></wbr>Received</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#processEnded" class="internal-link" title="twisted.internet.protocol.ProcessProtocol.processEnded">process<wbr></wbr>Ended</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#processExited" class="internal-link" title="twisted.internet.protocol.ProcessProtocol.processExited">process<wbr></wbr>Exited</a></code>
+            </div>
+        
+
+    </li>
+</ul> 
+
+        <div class="childrenKindTitle">Inherited Methods</div>
+        <ul>
+    
+    <li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="twisted.internet.protocol.BaseProtocol.html#connectionMade" class="internal-link" title="twisted.internet.protocol.BaseProtocol.connectionMade">connection<wbr></wbr>Made</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="twisted.internet.protocol.BaseProtocol.html#makeConnection" class="internal-link" title="twisted.internet.protocol.BaseProtocol.makeConnection">make<wbr></wbr>Connection</a></code>
+            </div>
+        
+
+    </li>
+</ul> 
+
+        
+         
+
+        <div class="childrenKindTitle">Inherited Attributes</div>
+        <ul>
+    
+    <li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="twisted.internet.protocol.BaseProtocol.html#connected" class="internal-link" title="twisted.internet.protocol.BaseProtocol.connected">connected</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="twisted.internet.protocol.BaseProtocol.html#transport" class="internal-link" title="twisted.internet.protocol.BaseProtocol.transport">transport</a></code>
+            </div>
+        
+
+    </li>
+</ul> 
+        
+      </div>
+  </div><div>
+
+      <div class="thingTitle">
+        <span>Module</span>
+        <code><a href="twisted.internet.protocol.html" class="internal-link" title="The parent of this class">protocol</a></code> 
+      </div>
+      
+      <div>
+        
+
+        
+         
+
+        <div class="childrenKindTitle">Classes</div>
+        <ul>
+    
+    <li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="twisted.internet.protocol.AbstractDatagramProtocol.html" class="internal-link" title="twisted.internet.protocol.AbstractDatagramProtocol"><wbr></wbr>Abstract<wbr></wbr>Datagram<wbr></wbr>Protocol</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="twisted.internet.protocol.BaseProtocol.html" class="internal-link" title="twisted.internet.protocol.BaseProtocol"><wbr></wbr>Base<wbr></wbr>Protocol</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="twisted.internet.protocol.ClientCreator.html" class="internal-link" title="twisted.internet.protocol.ClientCreator"><wbr></wbr>Client<wbr></wbr>Creator</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="twisted.internet.protocol.ClientFactory.html" class="internal-link" title="twisted.internet.protocol.ClientFactory"><wbr></wbr>Client<wbr></wbr>Factory</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="twisted.internet.protocol.ConnectedDatagramProtocol.html" class="internal-link" title="twisted.internet.protocol.ConnectedDatagramProtocol"><wbr></wbr>Connected<wbr></wbr>Datagram<wbr></wbr>Protocol</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="twisted.internet.protocol.ConsumerToProtocolAdapter.html" class="internal-link" title="twisted.internet.protocol.ConsumerToProtocolAdapter"><wbr></wbr>Consumer<wbr></wbr>To<wbr></wbr>Protocol<wbr></wbr>Adapter</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="twisted.internet.protocol.DatagramProtocol.html" class="internal-link" title="twisted.internet.protocol.DatagramProtocol"><wbr></wbr>Datagram<wbr></wbr>Protocol</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="twisted.internet.protocol.Factory.html" class="internal-link" title="twisted.internet.protocol.Factory"><wbr></wbr>Factory</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="twisted.internet.protocol.FileWrapper.html" class="internal-link" title="twisted.internet.protocol.FileWrapper"><wbr></wbr>File<wbr></wbr>Wrapper</a></code>
+            </div>
+        
+
+    </li><li class=" thisobject">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="twisted.internet.protocol.ProcessProtocol.html" class="internal-link" title="twisted.internet.protocol.ProcessProtocol"><wbr></wbr>Process<wbr></wbr>Protocol</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="twisted.internet.protocol.Protocol.html" class="internal-link" title="twisted.internet.protocol.Protocol"><wbr></wbr>Protocol</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="twisted.internet.protocol.ProtocolToConsumerAdapter.html" class="internal-link" title="twisted.internet.protocol.ProtocolToConsumerAdapter"><wbr></wbr>Protocol<wbr></wbr>To<wbr></wbr>Consumer<wbr></wbr>Adapter</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="twisted.internet.protocol.ReconnectingClientFactory.html" class="internal-link" title="twisted.internet.protocol.ReconnectingClientFactory"><wbr></wbr>Reconnecting<wbr></wbr>Client<wbr></wbr>Factory</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="twisted.internet.protocol.ServerFactory.html" class="internal-link" title="twisted.internet.protocol.ServerFactory"><wbr></wbr>Server<wbr></wbr>Factory</a></code>
+            </div>
+        
+
+    </li><li class="private">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="twisted.internet.protocol._InstanceFactory.html" class="internal-link" title="twisted.internet.protocol._InstanceFactory">_<wbr></wbr>Instance<wbr></wbr>Factory</a></code>
+            </div>
+        
+
+    </li>
+</ul>
+
+        
+         
+
+        
+         
+
+        <div class="childrenKindTitle">Variables</div>
+        <ul>
+    
+    <li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="twisted.internet.protocol.html#connectionDone" class="internal-link" title="twisted.internet.protocol.connectionDone">connection<wbr></wbr>Done</a></code>
+            </div>
+        
+
+    </li>
+</ul> 
+
+        
+         
+        
+      </div>
+  </div>
+
+</nav>
+        </div>
+        <div id="collapseSideBar">
+          <a class="btn btn-link" onclick="toggleSideBarCollapse()" title="Toggle Sidebar Collapse">
+          </a>
+        </div> 
+        <script src="sidebartoggle.js" type="text/javascript"></script>
+       
+      </div>
+
+      <div id="main" class="">
+        
+
+        
+
+        <div class="page-header">
+          <h1 class="class"><code><code><a href="index.html" class="internal-link">twisted</a></code><wbr></wbr>.<code><a href="twisted.internet.html" class="internal-link" title="twisted.internet">internet</a></code><wbr></wbr>.<code><a href="twisted.internet.protocol.html" class="internal-link" title="twisted.internet.protocol">protocol</a></code><wbr></wbr>.<code><a href="twisted.internet.protocol.ProcessProtocol.html" class="internal-link" title="twisted.internet.protocol.ProcessProtocol">ProcessProtocol</a></code></code></h1>
+          <div id="showPrivate">
+            <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+          </div>
+        </div>
+
+        <div class="categoryHeader">
+          class documentation
+        </div>
+
+        <div class="extrasDocstring">
+          <p><code><span class="py-keyword">class</span> <span class="py-defname">ProcessProtocol</span>(<a href="twisted.internet.protocol.BaseProtocol.html" class="internal-link" title="twisted.internet.protocol.BaseProtocol">BaseProtocol</a>): <a href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.4.0//src/twisted/internet/protocol.py#L619" class="sourceLink">(source)</a></code></p><p>Known subclasses: <code><a href="twisted.conch.ssh.session.SSHSessionProcessProtocol.html" class="internal-link">twisted.conch.ssh.session.SSHSessionProcessProtocol</a></code>, <code><a href="twisted.conch.stdio.TerminalProcessProtocol.html" class="internal-link">twisted.conch.stdio.TerminalProcessProtocol</a></code>, <code><a href="twisted.conch.test.test_cftp.SFTPTestProcess.html" class="internal-link">twisted.conch.test.test_cftp.SFTPTestProcess</a></code>, <code><a href="twisted.conch.test.test_conch.ConchTestForwardingProcess.html" class="internal-link">twisted.conch.test.test_conch.ConchTestForwardingProcess</a></code>, <code><a href="twisted.conch.test.test_conch.ConchTestOpenSSHProcess.html" class="internal-link">twisted.conch.test.test_conch.ConchTestOpenSSHProcess</a></code>, <code><a href="twisted.mail.alias.ProcessAliasProtocol.html" class="internal-link">twisted.mail.alias.ProcessAliasProtocol</a></code>, <code><a href="twisted.python.test.test_sendmsg.StartStopProcessProtocol.html" class="internal-link">twisted.python.test.test_sendmsg.StartStopProcessProtocol</a></code>, <code><a href="twisted.python.test.test_util.PasswordTestingProcessProtocol.html" class="internal-link">twisted.python.test.test_util.PasswordTestingProcessProtocol</a></code>, <code><a href="twisted.runner.procmon.LoggingProtocol.html" class="internal-link">twisted.runner.procmon.LoggingProtocol</a></code>, <code><a href="twisted.test.test_internet.ChildResolveProtocol.html" class="internal-link">twisted.test.test_internet.ChildResolveProtocol</a></code>, <code><a href="twisted.test.test_process.Accumulator.html" class="internal-link">twisted.test.test_process.Accumulator</a></code>, <code><a href="twisted.test.test_process.ClosingPipesProcessProtocol.html" class="internal-link">twisted.test.test_process.ClosingPipesProcessProtocol</a></code>, <code><a href="twisted.test.test_process.EchoProtocol.html" class="internal-link">twisted.test.test_process.EchoProtocol</a></code>, <code><a href="twisted.test.test_process.FDChecker.html" class="internal-link">twisted.test.test_process.FDChecker</a></code>, <code><a href="twisted.test.test_process.SignalProtocol.html" class="internal-link">twisted.test.test_process.SignalProtocol</a></code>, <code><a href="twisted.test.test_process.StubProcessProtocol.html" class="internal-link">twisted.test.test_process.StubProcessProtocol</a></code>, <code><a href="twisted.test.test_process.TestProcessProtocol.html" class="internal-link">twisted.test.test_process.TestProcessProtocol</a></code>, <code><a href="twisted.test.test_process.TrivialProcessProtocol.html" class="internal-link">twisted.test.test_process.TrivialProcessProtocol</a></code>, <code><a href="twisted.test.test_process.TwoProcessProtocol.html" class="internal-link">twisted.test.test_process.TwoProcessProtocol</a></code>, <code><a href="twisted.test.test_process.UtilityProcessProtocol.html" class="internal-link">twisted.test.test_process.UtilityProcessProtocol</a></code>, <code><a href="twisted.test.test_stdio.StandardIOTestProcessProtocol.html" class="internal-link">twisted.test.test_stdio.StandardIOTestProcessProtocol</a></code>, <code><a href="twisted.test.test_threads.ThreadStartupProcessProtocol.html" class="internal-link">twisted.test.test_threads.ThreadStartupProcessProtocol</a></code>, <code><a href="twisted.trial._dist.worker.LocalWorker.html" class="internal-link">twisted.trial._dist.worker.LocalWorker</a></code>, <code><a href="twisted.web.twcgi.CGIProcessProtocol.html" class="internal-link">twisted.web.twcgi.CGIProcessProtocol</a></code>, <code><a href="twisted.conch.ssh.session._ProtocolWrapper.html" class="internal-link">twisted.conch.ssh.session._ProtocolWrapper</a></code>, <code><a href="twisted.internet.endpoints._WrapIProtocol.html" class="internal-link">twisted.internet.endpoints._WrapIProtocol</a></code>, <code><a href="twisted.internet.test.test_process._ShutdownCallbackProcessProtocol.html" class="internal-link">twisted.internet.test.test_process._ShutdownCallbackProcessProtocol</a></code>, <code><a href="twisted.internet.utils._BackRelay.html" class="internal-link">twisted.internet.utils._BackRelay</a></code>, <code><a href="twisted.internet.utils._EverythingGetter.html" class="internal-link">twisted.internet.utils._EverythingGetter</a></code>, <code><a href="twisted.internet.utils._ValueGetter.html" class="internal-link">twisted.internet.utils._ValueGetter</a></code></p><p>Implements interfaces: <code><a href="twisted.internet.interfaces.IProcessProtocol.html" class="internal-link">twisted.internet.interfaces.IProcessProtocol</a></code></p>
+          <p><a href="classIndex.html#twisted.internet.protocol.ProcessProtocol">View In Hierarchy</a></p>
+        </div>
+
+        <div class="moduleDocstring">
+          <div><p>Base process protocol implementation which does simple dispatching for stdin, stdout, and stderr file descriptors.</p>
+</div>
+        </div>
+
+        <div id="splitTables">
+          <table class="children sortable" id="id21479">
+  
+  
+  <tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#childConnectionLost" class="internal-link" title="twisted.internet.protocol.ProcessProtocol.childConnectionLost">child<wbr></wbr>Connection<wbr></wbr>Lost</a></code></td>
+    <td>Called when a file descriptor associated with the child process is closed.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#childDataReceived" class="internal-link" title="twisted.internet.protocol.ProcessProtocol.childDataReceived">child<wbr></wbr>Data<wbr></wbr>Received</a></code></td>
+    <td>Called when data arrives from the child process.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#errConnectionLost" class="internal-link" title="twisted.internet.protocol.ProcessProtocol.errConnectionLost">err<wbr></wbr>Connection<wbr></wbr>Lost</a></code></td>
+    <td>This will be called when stderr is closed.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#errReceived" class="internal-link" title="twisted.internet.protocol.ProcessProtocol.errReceived">err<wbr></wbr>Received</a></code></td>
+    <td>Some data was received from stderr.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#inConnectionLost" class="internal-link" title="twisted.internet.protocol.ProcessProtocol.inConnectionLost">in<wbr></wbr>Connection<wbr></wbr>Lost</a></code></td>
+    <td>This will be called when stdin is closed.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#outConnectionLost" class="internal-link" title="twisted.internet.protocol.ProcessProtocol.outConnectionLost">out<wbr></wbr>Connection<wbr></wbr>Lost</a></code></td>
+    <td>This will be called when stdout is closed.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#outReceived" class="internal-link" title="twisted.internet.protocol.ProcessProtocol.outReceived">out<wbr></wbr>Received</a></code></td>
+    <td>Some data was received from stdout.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#processEnded" class="internal-link" title="twisted.internet.protocol.ProcessProtocol.processEnded">process<wbr></wbr>Ended</a></code></td>
+    <td>Called when the child process exits and all file descriptors associated with it have been closed.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#processExited" class="internal-link" title="twisted.internet.protocol.ProcessProtocol.processExited">process<wbr></wbr>Exited</a></code></td>
+    <td>This will be called when the subprocess exits.</td>
+  </tr>
+</table>
+          
+            <p class="inheritedFrom">
+              Inherited from <code><a href="twisted.internet.protocol.BaseProtocol.html" class="internal-link" title="twisted.internet.protocol.BaseProtocol">BaseProtocol</a></code>:
+            </p>
+            <table class="children sortable" id="id21480">
+  
+  
+  <tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="twisted.internet.protocol.BaseProtocol.html#connectionMade" class="internal-link" title="twisted.internet.protocol.BaseProtocol.connectionMade">connection<wbr></wbr>Made</a></code></td>
+    <td>Called when a connection is made.</td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="twisted.internet.protocol.BaseProtocol.html#makeConnection" class="internal-link" title="twisted.internet.protocol.BaseProtocol.makeConnection">make<wbr></wbr>Connection</a></code></td>
+    <td>Make a connection to a transport and a server.</td>
+  </tr><tr class="baseinstancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="twisted.internet.protocol.BaseProtocol.html#connected" class="internal-link" title="twisted.internet.protocol.BaseProtocol.connected">connected</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="baseinstancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="twisted.internet.protocol.BaseProtocol.html#transport" class="internal-link" title="twisted.internet.protocol.BaseProtocol.transport">transport</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+            
+
+            
+        </div>
+
+        <div id="childList">
+          <div class="basemethod">
+  
+  
+  <a name="twisted.internet.protocol.ProcessProtocol.childConnectionLost">
+    
+  </a>
+  <a name="childConnectionLost">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">childConnectionLost</span>(self, childFD):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.4.0//src/twisted/internet/protocol.py#L642">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <code><a href="twisted.internet.interfaces.IProcessProtocol.html#childConnectionLost" class="internal-link" title="twisted.internet.interfaces.IProcessProtocol.childConnectionLost">twisted.internet.interfaces.IProcessProtocol</a></code></div><div class="interfaceinfo">overridden in <code><a href="twisted.conch.stdio.TerminalProcessProtocol.html" class="internal-link">twisted.conch.stdio.TerminalProcessProtocol</a></code>, <code><a href="twisted.test.test_process.FDChecker.html" class="internal-link">twisted.test.test_process.FDChecker</a></code>, <code><a href="twisted.test.test_process.TestProcessProtocol.html" class="internal-link">twisted.test.test_process.TestProcessProtocol</a></code></div>
+    
+    <div><p>Called when a file descriptor associated with the child process is closed.</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">child<wbr></wbr>FD:</span><code><a href="https://docs.python.org/3/library/functions.html#int" class="intersphinx-link">int</a></code></td><td class="fieldArgDesc">The file descriptor which was closed.</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.internet.protocol.ProcessProtocol.childDataReceived">
+    
+  </a>
+  <a name="childDataReceived">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">childDataReceived</span>(self, childFD, data):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.4.0//src/twisted/internet/protocol.py#L626">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <code><a href="twisted.internet.interfaces.IProcessProtocol.html#childDataReceived" class="internal-link" title="twisted.internet.interfaces.IProcessProtocol.childDataReceived">twisted.internet.interfaces.IProcessProtocol</a></code></div><div class="interfaceinfo">overridden in <code><a href="twisted.python.test.test_util.PasswordTestingProcessProtocol.html" class="internal-link">twisted.python.test.test_util.PasswordTestingProcessProtocol</a></code>, <code><a href="twisted.test.test_process.FDChecker.html" class="internal-link">twisted.test.test_process.FDChecker</a></code>, <code><a href="twisted.test.test_process.TestProcessProtocol.html" class="internal-link">twisted.test.test_process.TestProcessProtocol</a></code>, <code><a href="twisted.test.test_stdio.StandardIOTestProcessProtocol.html" class="internal-link">twisted.test.test_stdio.StandardIOTestProcessProtocol</a></code>, <code><a href="twisted.trial._dist.worker.LocalWorker.html" class="internal-link">twisted.trial._dist.worker.LocalWorker</a></code>, <code><a href="twisted.internet.endpoints._WrapIProtocol.html" class="internal-link">twisted.internet.endpoints._WrapIProtocol</a></code>, <code><a href="twisted.internet.test.test_process._ShutdownCallbackProcessProtocol.html" class="internal-link">twisted.internet.test.test_process._ShutdownCallbackProcessProtocol</a></code></div>
+    
+    <div><p>Called when data arrives from the child process.</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">child<wbr></wbr>FD:</span><code><a href="https://docs.python.org/3/library/functions.html#int" class="intersphinx-link">int</a></code></td><td class="fieldArgDesc">The file descriptor from which the data was received.</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">data:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#bytes" class="intersphinx-link">bytes</a></code></td><td class="fieldArgDesc">The data read from the child's file descriptor.</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.internet.protocol.ProcessProtocol.errConnectionLost">
+    
+  </a>
+  <a name="errConnectionLost">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">errConnectionLost</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.4.0//src/twisted/internet/protocol.py#L660">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="twisted.conch.ssh.session.SSHSessionProcessProtocol.html" class="internal-link">twisted.conch.ssh.session.SSHSessionProcessProtocol</a></code>, <code><a href="twisted.test.test_process.Accumulator.html" class="internal-link">twisted.test.test_process.Accumulator</a></code>, <code><a href="twisted.test.test_process.StubProcessProtocol.html" class="internal-link">twisted.test.test_process.StubProcessProtocol</a></code></div>
+    
+    <div><p>This will be called when stderr is closed.</p>
+</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.internet.protocol.ProcessProtocol.errReceived">
+    
+  </a>
+  <a name="errReceived">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">errReceived</span>(self, data):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.4.0//src/twisted/internet/protocol.py#L637">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="twisted.conch.ssh.session.SSHSessionProcessProtocol.html" class="internal-link">twisted.conch.ssh.session.SSHSessionProcessProtocol</a></code>, <code><a href="twisted.conch.stdio.TerminalProcessProtocol.html" class="internal-link">twisted.conch.stdio.TerminalProcessProtocol</a></code>, <code><a href="twisted.conch.test.test_cftp.SFTPTestProcess.html" class="internal-link">twisted.conch.test.test_cftp.SFTPTestProcess</a></code>, <code><a href="twisted.conch.test.test_conch.ConchTestOpenSSHProcess.html" class="internal-link">twisted.conch.test.test_conch.ConchTestOpenSSHProcess</a></code>, <code><a href="twisted.python.test.test_sendmsg.StartStopProcessProtocol.html" class="internal-link">twisted.python.test.test_sendmsg.StartStopProcessProtocol</a></code>, <code><a href="twisted.runner.procmon.LoggingProtocol.html" class="internal-link">twisted.runner.procmon.LoggingProtocol</a></code>, <code><a href="twisted.test.test_internet.ChildResolveProtocol.html" class="internal-link">twisted.test.test_internet.ChildResolveProtocol</a></code>, <code><a href="twisted.test.test_process.Accumulator.html" class="internal-link">twisted.test.test_process.Accumulator</a></code>, <code><a href="twisted.test.test_process.ClosingPipesProcessProtocol.html" class="internal-link">twisted.test.test_process.ClosingPipesProcessProtocol</a></code>, <code><a href="twisted.test.test_process.SignalProtocol.html" class="internal-link">twisted.test.test_process.SignalProtocol</a></code>, <code><a href="twisted.test.test_process.StubProcessProtocol.html" class="internal-link">twisted.test.test_process.StubProcessProtocol</a></code>, <code><a href="twisted.test.test_process.TrivialProcessProtocol.html" class="internal-link">twisted.test.test_process.TrivialProcessProtocol</a></code>, <code><a href="twisted.test.test_threads.ThreadStartupProcessProtocol.html" class="internal-link">twisted.test.test_threads.ThreadStartupProcessProtocol</a></code>, <code><a href="twisted.trial._dist.worker.LocalWorker.html" class="internal-link">twisted.trial._dist.worker.LocalWorker</a></code>, <code><a href="twisted.web.twcgi.CGIProcessProtocol.html" class="internal-link">twisted.web.twcgi.CGIProcessProtocol</a></code></div>
+    
+    <div><p>Some data was received from stderr.</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">data:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#bytes" class="intersphinx-link">bytes</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.internet.protocol.ProcessProtocol.inConnectionLost">
+    
+  </a>
+  <a name="inConnectionLost">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">inConnectionLost</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.4.0//src/twisted/internet/protocol.py#L650">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="twisted.test.test_process.StubProcessProtocol.html" class="internal-link">twisted.test.test_process.StubProcessProtocol</a></code></div>
+    
+    <div><p>This will be called when stdin is closed.</p>
+</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.internet.protocol.ProcessProtocol.outConnectionLost">
+    
+  </a>
+  <a name="outConnectionLost">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">outConnectionLost</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.4.0//src/twisted/internet/protocol.py#L655">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="twisted.conch.ssh.session.SSHSessionProcessProtocol.html" class="internal-link">twisted.conch.ssh.session.SSHSessionProcessProtocol</a></code>, <code><a href="twisted.test.test_process.Accumulator.html" class="internal-link">twisted.test.test_process.Accumulator</a></code>, <code><a href="twisted.test.test_process.StubProcessProtocol.html" class="internal-link">twisted.test.test_process.StubProcessProtocol</a></code></div>
+    
+    <div><p>This will be called when stdout is closed.</p>
+</div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.internet.protocol.ProcessProtocol.outReceived">
+    
+  </a>
+  <a name="outReceived">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">outReceived</span>(self, data):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.4.0//src/twisted/internet/protocol.py#L632">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="twisted.conch.ssh.session.SSHSessionProcessProtocol.html" class="internal-link">twisted.conch.ssh.session.SSHSessionProcessProtocol</a></code>, <code><a href="twisted.conch.stdio.TerminalProcessProtocol.html" class="internal-link">twisted.conch.stdio.TerminalProcessProtocol</a></code>, <code><a href="twisted.conch.test.test_cftp.SFTPTestProcess.html" class="internal-link">twisted.conch.test.test_cftp.SFTPTestProcess</a></code>, <code><a href="twisted.conch.test.test_conch.ConchTestOpenSSHProcess.html" class="internal-link">twisted.conch.test.test_conch.ConchTestOpenSSHProcess</a></code>, <code><a href="twisted.python.test.test_sendmsg.StartStopProcessProtocol.html" class="internal-link">twisted.python.test.test_sendmsg.StartStopProcessProtocol</a></code>, <code><a href="twisted.runner.procmon.LoggingProtocol.html" class="internal-link">twisted.runner.procmon.LoggingProtocol</a></code>, <code><a href="twisted.test.test_internet.ChildResolveProtocol.html" class="internal-link">twisted.test.test_internet.ChildResolveProtocol</a></code>, <code><a href="twisted.test.test_process.Accumulator.html" class="internal-link">twisted.test.test_process.Accumulator</a></code>, <code><a href="twisted.test.test_process.ClosingPipesProcessProtocol.html" class="internal-link">twisted.test.test_process.ClosingPipesProcessProtocol</a></code>, <code><a href="twisted.test.test_process.EchoProtocol.html" class="internal-link">twisted.test.test_process.EchoProtocol</a></code>, <code><a href="twisted.test.test_process.SignalProtocol.html" class="internal-link">twisted.test.test_process.SignalProtocol</a></code>, <code><a href="twisted.test.test_process.StubProcessProtocol.html" class="internal-link">twisted.test.test_process.StubProcessProtocol</a></code>, <code><a href="twisted.test.test_process.TrivialProcessProtocol.html" class="internal-link">twisted.test.test_process.TrivialProcessProtocol</a></code>, <code><a href="twisted.test.test_process.TwoProcessProtocol.html" class="internal-link">twisted.test.test_process.TwoProcessProtocol</a></code>, <code><a href="twisted.test.test_process.UtilityProcessProtocol.html" class="internal-link">twisted.test.test_process.UtilityProcessProtocol</a></code>, <code><a href="twisted.test.test_threads.ThreadStartupProcessProtocol.html" class="internal-link">twisted.test.test_threads.ThreadStartupProcessProtocol</a></code>, <code><a href="twisted.trial._dist.worker.LocalWorker.html" class="internal-link">twisted.trial._dist.worker.LocalWorker</a></code>, <code><a href="twisted.web.twcgi.CGIProcessProtocol.html" class="internal-link">twisted.web.twcgi.CGIProcessProtocol</a></code>, <code><a href="twisted.conch.ssh.session._ProtocolWrapper.html" class="internal-link">twisted.conch.ssh.session._ProtocolWrapper</a></code>, <code><a href="twisted.internet.utils._BackRelay.html" class="internal-link">twisted.internet.utils._BackRelay</a></code></div>
+    
+    <div><p>Some data was received from stdout.</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">data:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#bytes" class="intersphinx-link">bytes</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.internet.protocol.ProcessProtocol.processEnded">
+    
+  </a>
+  <a name="processEnded">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">processEnded</span>(self, reason):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.4.0//src/twisted/internet/protocol.py#L672">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <code><a href="twisted.internet.interfaces.IProcessProtocol.html#processEnded" class="internal-link" title="twisted.internet.interfaces.IProcessProtocol.processEnded">twisted.internet.interfaces.IProcessProtocol</a></code></div><div class="interfaceinfo">overridden in <code><a href="twisted.conch.ssh.session.SSHSessionProcessProtocol.html" class="internal-link">twisted.conch.ssh.session.SSHSessionProcessProtocol</a></code>, <code><a href="twisted.conch.stdio.TerminalProcessProtocol.html" class="internal-link">twisted.conch.stdio.TerminalProcessProtocol</a></code>, <code><a href="twisted.conch.test.test_cftp.SFTPTestProcess.html" class="internal-link">twisted.conch.test.test_cftp.SFTPTestProcess</a></code>, <code><a href="twisted.conch.test.test_conch.ConchTestForwardingProcess.html" class="internal-link">twisted.conch.test.test_conch.ConchTestForwardingProcess</a></code>, <code><a href="twisted.conch.test.test_conch.ConchTestOpenSSHProcess.html" class="internal-link">twisted.conch.test.test_conch.ConchTestOpenSSHProcess</a></code>, <code><a href="twisted.mail.alias.ProcessAliasProtocol.html" class="internal-link">twisted.mail.alias.ProcessAliasProtocol</a></code>, <code><a href="twisted.python.test.test_sendmsg.StartStopProcessProtocol.html" class="internal-link">twisted.python.test.test_sendmsg.StartStopProcessProtocol</a></code>, <code><a href="twisted.python.test.test_util.PasswordTestingProcessProtocol.html" class="internal-link">twisted.python.test.test_util.PasswordTestingProcessProtocol</a></code>, <code><a href="twisted.runner.procmon.LoggingProtocol.html" class="internal-link">twisted.runner.procmon.LoggingProtocol</a></code>, <code><a href="twisted.test.test_internet.ChildResolveProtocol.html" class="internal-link">twisted.test.test_internet.ChildResolveProtocol</a></code>, <code><a href="twisted.test.test_process.Accumulator.html" class="internal-link">twisted.test.test_process.Accumulator</a></code>, <code><a href="twisted.test.test_process.ClosingPipesProcessProtocol.html" class="internal-link">twisted.test.test_process.ClosingPipesProcessProtocol</a></code>, <code><a href="twisted.test.test_process.EchoProtocol.html" class="internal-link">twisted.test.test_process.EchoProtocol</a></code>, <code><a href="twisted.test.test_process.FDChecker.html" class="internal-link">twisted.test.test_process.FDChecker</a></code>, <code><a href="twisted.test.test_process.SignalProtocol.html" class="internal-link">twisted.test.test_process.SignalProtocol</a></code>, <code><a href="twisted.test.test_process.TestProcessProtocol.html" class="internal-link">twisted.test.test_process.TestProcessProtocol</a></code>, <code><a href="twisted.test.test_process.TrivialProcessProtocol.html" class="internal-link">twisted.test.test_process.TrivialProcessProtocol</a></code>, <code><a href="twisted.test.test_process.TwoProcessProtocol.html" class="internal-link">twisted.test.test_process.TwoProcessProtocol</a></code>, <code><a href="twisted.test.test_process.UtilityProcessProtocol.html" class="internal-link">twisted.test.test_process.UtilityProcessProtocol</a></code>, <code><a href="twisted.test.test_stdio.StandardIOTestProcessProtocol.html" class="internal-link">twisted.test.test_stdio.StandardIOTestProcessProtocol</a></code>, <code><a href="twisted.test.test_threads.ThreadStartupProcessProtocol.html" class="internal-link">twisted.test.test_threads.ThreadStartupProcessProtocol</a></code>, <code><a href="twisted.trial._dist.worker.LocalWorker.html" class="internal-link">twisted.trial._dist.worker.LocalWorker</a></code>, <code><a href="twisted.web.twcgi.CGIProcessProtocol.html" class="internal-link">twisted.web.twcgi.CGIProcessProtocol</a></code>, <code><a href="twisted.conch.ssh.session._ProtocolWrapper.html" class="internal-link">twisted.conch.ssh.session._ProtocolWrapper</a></code>, <code><a href="twisted.internet.endpoints._WrapIProtocol.html" class="internal-link">twisted.internet.endpoints._WrapIProtocol</a></code>, <code><a href="twisted.internet.test.test_process._ShutdownCallbackProcessProtocol.html" class="internal-link">twisted.internet.test.test_process._ShutdownCallbackProcessProtocol</a></code>, <code><a href="twisted.internet.utils._BackRelay.html" class="internal-link">twisted.internet.utils._BackRelay</a></code>, <code><a href="twisted.internet.utils._EverythingGetter.html" class="internal-link">twisted.internet.utils._EverythingGetter</a></code>, <code><a href="twisted.internet.utils._ValueGetter.html" class="internal-link">twisted.internet.utils._ValueGetter</a></code></div>
+    
+    <div><p>Called when the child process exits and all file descriptors associated with it have been closed.</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">reason:</span><code><a href="twisted.python.failure.Failure.html" class="internal-link" title="twisted.python.failure.Failure">twisted.python.failure.Failure</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="twisted.internet.protocol.ProcessProtocol.processExited">
+    
+  </a>
+  <a name="processExited">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">processExited</span>(self, reason):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/twisted-22.4.0//src/twisted/internet/protocol.py#L665">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <code><a href="twisted.internet.interfaces.IProcessProtocol.html#processExited" class="internal-link" title="twisted.internet.interfaces.IProcessProtocol.processExited">twisted.internet.interfaces.IProcessProtocol</a></code></div>
+    
+    <div><p>This will be called when the subprocess exits.</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">reason:</span><code><a href="twisted.python.failure.Failure.html" class="internal-link" title="twisted.python.failure.Failure">twisted.python.failure.Failure</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div>
+        </div>
+      
+      </div>
+    </div>
+
+    <footer class="navbar navbar-default">
+
+  
+  <div class="container">
+    <a href="index.html">API Documentation</a> for twisted,
+  generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
+    22.5.1 at 2022-07-13 21:04:14.
+  </div>
+
+  <!-- Search related scripts needs to be loaded at the end of HTML 
+    parsing not to introduce overhead and display HTML data asap -->
+  <script src="ajax.js" type="text/javascript"></script>
+  <script src="searchlib.js" type="text/javascript"></script>
+  <script src="search.js" type="text/javascript"></script>
+
+</footer>
+  
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+  </body>
+</html>
