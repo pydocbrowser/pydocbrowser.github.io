@@ -1,0 +1,4660 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  
+
+  <head>
+    
+    <title>mypy.options.Options</title>
+    <meta name="generator" content="pydoctor 22.5.1"> 
+        
+    </meta>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1 maximum-scale=1" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+    <link rel="stylesheet" type="text/css" href="extra.css" />
+</head>
+
+  <body>
+
+    <div id="banner">    
+    <div>
+        <a href="/">Home</a>
+        &gt; mypy-0.961 <!-- This is a placeholder -->
+        
+        <!-- (<a href=""&gt;show all versions</a&gt;) -->
+    </div>
+</div>
+
+    <nav class="navbar navbar-default mainnavbar">
+      
+  
+  <div class="container-fluid">
+
+
+    <div class="navbar-header">
+      
+      <div class="navlinks">
+        <span class="navbar-brand">
+          mypy <a href="index.html">API Documentation</a>
+        </span>
+
+        <a href="moduleIndex.html">
+          Modules
+        </a>
+
+        <a href="classIndex.html">
+          Classes
+        </a>
+
+        <a href="nameIndex.html">
+          Names
+        </a>
+
+        <div id="search-box-container">
+          <div class="input-group">
+            <input id="search-box" type="search" name="search-query" placeholder="Search..." aria-label="Search" minlength="2" class="form-control" autocomplete="off" />
+            
+            <span class="input-group-btn">
+              <a style="display: none;" class="btn btn-default" id="search-clear-button" title="Clear" onclick="clearSearch()"><img src="fonts/x-circle.svg" alt="Clear" /></a>
+              <a class="btn btn-default" id="search-help-button" title="Help" onclick="toggleSearchHelpText()"><img src="fonts/info.svg" alt="Help" /></a>
+            </span>
+          </div>
+        </div>
+
+      </div>
+
+      <div id="search-results-container" style="display: none;">
+        
+        <div id="search-buttons">
+          <span class="label label-default" id="search-docstrings-button">
+          <label class="checkbox-inline">
+            <input type="checkbox" id="toggle-search-in-docstrings-checkbox" value="false" onclick="toggleSearchInDocstrings()">
+              search in docstrings
+            </input>
+          </label>
+          </span>
+          
+        </div>
+        
+        <noscript>
+            <h1>Cannot search: JavaScript is not supported/enabled in your browser.</h1>
+        </noscript>
+
+        <div class="hint" id="search-help-box">
+          <p class="rst-last">
+      
+            Search bar offers the following options:
+            <ul>   
+                <li>
+                  <strong>Term presence.</strong> The below example searches for documents that 
+                    must contain “foo”, might contain “bar” and must not contain “baz”: <code>+foo bar -baz</code>
+                </li> 
+
+                <li>
+                  <strong>Wildcards.</strong> The below example searches for documents with words beginning with “foo”: <code>foo*</code>
+                </li> 
+
+                <li>
+                  <strong>Search in specific fields.</strong> The following search matches all objects 
+                  in "twisted.mail" that matches “search”: <code>+qname:twisted.mail.* +search</code>
+
+                  <p>
+                    Possible fields: 'name', 'qname' (fully qualified name), 'docstring', and 'kind'.
+                    Last two fields are only applicable if "search in docstrings" is enabled.
+                  </p>
+                </li>
+
+                <li>
+                  <strong>Fuzzy matches.</strong> The following search matches all documents 
+                  that have a word within 1 edit distance of “foo”: <code>foo~1</code>
+                </li>
+            </ul>
+
+          </p>
+        </div>
+
+        <div id="search-status"> </div>
+
+        <div class="warning" id="search-warn-box" style="display: none;">
+          <p class="rst-last"><span id="search-warn"></span></p>
+        </div>
+
+        <table id="search-results">
+          <!-- Filled dynamically by JS -->
+        </table>
+        
+        <div style="margin-top: 8px;">
+          <p>Results provided by <a href="https://lunrjs.com">Lunr.js</a></p>
+        </div>
+      </div>
+
+    </div>
+
+
+  </div>
+</nav>
+    
+    <div class="container-fluid">
+
+      <!-- Side navigation -->
+      <div class="sidebarcontainer" style="display: none;">
+        
+        <div class="sidebar"><nav class="sidebar">
+  
+
+  <div>
+
+      <div class="thingTitle">
+        <span>Class</span>
+        <code class="thisobject"><a href="mypy.options.Options.html" class="internal-link" title="This class"><wbr></wbr>Options</a></code> 
+      </div>
+      
+      <div>
+        
+
+        
+         
+
+        
+        
+
+        <div class="childrenKindTitle">Methods</div>
+        <ul>
+    
+    <li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#__init__" class="internal-link" title="mypy.options.Options.__init__">__init__</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#__repr__" class="internal-link" title="mypy.options.Options.__repr__">__repr__</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#apply_changes" class="internal-link" title="mypy.options.Options.apply_changes">apply<wbr></wbr>_changes</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#build_per_module_cache" class="internal-link" title="mypy.options.Options.build_per_module_cache">build<wbr></wbr>_per<wbr></wbr>_module<wbr></wbr>_cache</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#clone_for_module" class="internal-link" title="mypy.options.Options.clone_for_module">clone<wbr></wbr>_for<wbr></wbr>_module</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#compile_glob" class="internal-link" title="mypy.options.Options.compile_glob">compile<wbr></wbr>_glob</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#select_options_affecting_cache" class="internal-link" title="mypy.options.Options.select_options_affecting_cache">select<wbr></wbr>_options<wbr></wbr>_affecting<wbr></wbr>_cache</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#snapshot" class="internal-link" title="mypy.options.Options.snapshot">snapshot</a></code>
+            </div>
+        
+
+    </li>
+</ul> 
+
+        
+         
+
+        <div class="childrenKindTitle">Attributes</div>
+        <ul>
+    
+    <li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#allow_redefinition" class="internal-link" title="mypy.options.Options.allow_redefinition">allow<wbr></wbr>_redefinition</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#allow_untyped_globals" class="internal-link" title="mypy.options.Options.allow_untyped_globals">allow<wbr></wbr>_untyped<wbr></wbr>_globals</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#always_false" class="internal-link" title="mypy.options.Options.always_false">always<wbr></wbr>_false</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#always_true" class="internal-link" title="mypy.options.Options.always_true">always<wbr></wbr>_true</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#bazel" class="internal-link" title="mypy.options.Options.bazel">bazel</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#build_type" class="internal-link" title="mypy.options.Options.build_type">build<wbr></wbr>_type</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#cache_dir" class="internal-link" title="mypy.options.Options.cache_dir">cache<wbr></wbr>_dir</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#cache_fine_grained" class="internal-link" title="mypy.options.Options.cache_fine_grained">cache<wbr></wbr>_fine<wbr></wbr>_grained</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#cache_map" class="internal-link" title="mypy.options.Options.cache_map">cache<wbr></wbr>_map</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#check_untyped_defs" class="internal-link" title="mypy.options.Options.check_untyped_defs">check<wbr></wbr>_untyped<wbr></wbr>_defs</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#color_output" class="internal-link" title="mypy.options.Options.color_output">color<wbr></wbr>_output</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#config_file" class="internal-link" title="mypy.options.Options.config_file">config<wbr></wbr>_file</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#custom_typeshed_dir" class="internal-link" title="mypy.options.Options.custom_typeshed_dir">custom<wbr></wbr>_typeshed<wbr></wbr>_dir</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#custom_typing_module" class="internal-link" title="mypy.options.Options.custom_typing_module">custom<wbr></wbr>_typing<wbr></wbr>_module</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#debug_cache" class="internal-link" title="mypy.options.Options.debug_cache">debug<wbr></wbr>_cache</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#disable_error_code" class="internal-link" title="mypy.options.Options.disable_error_code">disable<wbr></wbr>_error<wbr></wbr>_code</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#disabled_error_codes" class="internal-link" title="mypy.options.Options.disabled_error_codes">disabled<wbr></wbr>_error<wbr></wbr>_codes</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#disallow_any_decorated" class="internal-link" title="mypy.options.Options.disallow_any_decorated">disallow<wbr></wbr>_any<wbr></wbr>_decorated</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#disallow_any_explicit" class="internal-link" title="mypy.options.Options.disallow_any_explicit">disallow<wbr></wbr>_any<wbr></wbr>_explicit</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#disallow_any_expr" class="internal-link" title="mypy.options.Options.disallow_any_expr">disallow<wbr></wbr>_any<wbr></wbr>_expr</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#disallow_any_generics" class="internal-link" title="mypy.options.Options.disallow_any_generics">disallow<wbr></wbr>_any<wbr></wbr>_generics</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#disallow_any_unimported" class="internal-link" title="mypy.options.Options.disallow_any_unimported">disallow<wbr></wbr>_any<wbr></wbr>_unimported</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#disallow_incomplete_defs" class="internal-link" title="mypy.options.Options.disallow_incomplete_defs">disallow<wbr></wbr>_incomplete<wbr></wbr>_defs</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#disallow_subclassing_any" class="internal-link" title="mypy.options.Options.disallow_subclassing_any">disallow<wbr></wbr>_subclassing<wbr></wbr>_any</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#disallow_untyped_calls" class="internal-link" title="mypy.options.Options.disallow_untyped_calls">disallow<wbr></wbr>_untyped<wbr></wbr>_calls</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#disallow_untyped_decorators" class="internal-link" title="mypy.options.Options.disallow_untyped_decorators">disallow<wbr></wbr>_untyped<wbr></wbr>_decorators</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#disallow_untyped_defs" class="internal-link" title="mypy.options.Options.disallow_untyped_defs">disallow<wbr></wbr>_untyped<wbr></wbr>_defs</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#dump_build_stats" class="internal-link" title="mypy.options.Options.dump_build_stats">dump<wbr></wbr>_build<wbr></wbr>_stats</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#dump_deps" class="internal-link" title="mypy.options.Options.dump_deps">dump<wbr></wbr>_deps</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#dump_graph" class="internal-link" title="mypy.options.Options.dump_graph">dump<wbr></wbr>_graph</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#dump_inference_stats" class="internal-link" title="mypy.options.Options.dump_inference_stats">dump<wbr></wbr>_inference<wbr></wbr>_stats</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#dump_type_stats" class="internal-link" title="mypy.options.Options.dump_type_stats">dump<wbr></wbr>_type<wbr></wbr>_stats</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#enable_error_code" class="internal-link" title="mypy.options.Options.enable_error_code">enable<wbr></wbr>_error<wbr></wbr>_code</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#enable_incomplete_features" class="internal-link" title="mypy.options.Options.enable_incomplete_features">enable<wbr></wbr>_incomplete<wbr></wbr>_features</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#enabled_error_codes" class="internal-link" title="mypy.options.Options.enabled_error_codes">enabled<wbr></wbr>_error<wbr></wbr>_codes</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#error_summary" class="internal-link" title="mypy.options.Options.error_summary">error<wbr></wbr>_summary</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#exclude" class="internal-link" title="mypy.options.Options.exclude">exclude</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#explicit_package_bases" class="internal-link" title="mypy.options.Options.explicit_package_bases">explicit<wbr></wbr>_package<wbr></wbr>_bases</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#export_types" class="internal-link" title="mypy.options.Options.export_types">export<wbr></wbr>_types</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#fast_exit" class="internal-link" title="mypy.options.Options.fast_exit">fast<wbr></wbr>_exit</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#fast_module_lookup" class="internal-link" title="mypy.options.Options.fast_module_lookup">fast<wbr></wbr>_module<wbr></wbr>_lookup</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#files" class="internal-link" title="mypy.options.Options.files">files</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#fine_grained_incremental" class="internal-link" title="mypy.options.Options.fine_grained_incremental">fine<wbr></wbr>_grained<wbr></wbr>_incremental</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#follow_imports" class="internal-link" title="mypy.options.Options.follow_imports">follow<wbr></wbr>_imports</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#follow_imports_for_stubs" class="internal-link" title="mypy.options.Options.follow_imports_for_stubs">follow<wbr></wbr>_imports<wbr></wbr>_for<wbr></wbr>_stubs</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#ignore_errors" class="internal-link" title="mypy.options.Options.ignore_errors">ignore<wbr></wbr>_errors</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#ignore_missing_imports" class="internal-link" title="mypy.options.Options.ignore_missing_imports">ignore<wbr></wbr>_missing<wbr></wbr>_imports</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#ignore_missing_imports_per_module" class="internal-link" title="mypy.options.Options.ignore_missing_imports_per_module">ignore<wbr></wbr>_missing<wbr></wbr>_imports<wbr></wbr>_per<wbr></wbr>_module</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#implicit_reexport" class="internal-link" title="mypy.options.Options.implicit_reexport">implicit<wbr></wbr>_reexport</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#incremental" class="internal-link" title="mypy.options.Options.incremental">incremental</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#install_types" class="internal-link" title="mypy.options.Options.install_types">install<wbr></wbr>_types</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#junit_xml" class="internal-link" title="mypy.options.Options.junit_xml">junit<wbr></wbr>_xml</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#local_partial_types" class="internal-link" title="mypy.options.Options.local_partial_types">local<wbr></wbr>_partial<wbr></wbr>_types</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#logical_deps" class="internal-link" title="mypy.options.Options.logical_deps">logical<wbr></wbr>_deps</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#many_errors_threshold" class="internal-link" title="mypy.options.Options.many_errors_threshold">many<wbr></wbr>_errors<wbr></wbr>_threshold</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#mypy_path" class="internal-link" title="mypy.options.Options.mypy_path">mypy<wbr></wbr>_path</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#mypyc" class="internal-link" title="mypy.options.Options.mypyc">mypyc</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#namespace_packages" class="internal-link" title="mypy.options.Options.namespace_packages">namespace<wbr></wbr>_packages</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#no_implicit_optional" class="internal-link" title="mypy.options.Options.no_implicit_optional">no<wbr></wbr>_implicit<wbr></wbr>_optional</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#no_silence_site_packages" class="internal-link" title="mypy.options.Options.no_silence_site_packages">no<wbr></wbr>_silence<wbr></wbr>_site<wbr></wbr>_packages</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#no_site_packages" class="internal-link" title="mypy.options.Options.no_site_packages">no<wbr></wbr>_site<wbr></wbr>_packages</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#non_interactive" class="internal-link" title="mypy.options.Options.non_interactive">non<wbr></wbr>_interactive</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#package_root" class="internal-link" title="mypy.options.Options.package_root">package<wbr></wbr>_root</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#pdb" class="internal-link" title="mypy.options.Options.pdb">pdb</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#per_module_options" class="internal-link" title="mypy.options.Options.per_module_options">per<wbr></wbr>_module<wbr></wbr>_options</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#platform" class="internal-link" title="mypy.options.Options.platform">platform</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#plugins" class="internal-link" title="mypy.options.Options.plugins">plugins</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#preserve_asts" class="internal-link" title="mypy.options.Options.preserve_asts">preserve<wbr></wbr>_asts</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#pretty" class="internal-link" title="mypy.options.Options.pretty">pretty</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#python_executable" class="internal-link" title="mypy.options.Options.python_executable">python<wbr></wbr>_executable</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#python_version" class="internal-link" title="mypy.options.Options.python_version">python<wbr></wbr>_version</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#quickstart_file" class="internal-link" title="mypy.options.Options.quickstart_file">quickstart<wbr></wbr>_file</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#raise_exceptions" class="internal-link" title="mypy.options.Options.raise_exceptions">raise<wbr></wbr>_exceptions</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#report_dirs" class="internal-link" title="mypy.options.Options.report_dirs">report<wbr></wbr>_dirs</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#scripts_are_modules" class="internal-link" title="mypy.options.Options.scripts_are_modules">scripts<wbr></wbr>_are<wbr></wbr>_modules</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#semantic_analysis_only" class="internal-link" title="mypy.options.Options.semantic_analysis_only">semantic<wbr></wbr>_analysis<wbr></wbr>_only</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#shadow_file" class="internal-link" title="mypy.options.Options.shadow_file">shadow<wbr></wbr>_file</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#show_absolute_path" class="internal-link" title="mypy.options.Options.show_absolute_path">show<wbr></wbr>_absolute<wbr></wbr>_path</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#show_column_numbers" class="internal-link" title="mypy.options.Options.show_column_numbers">show<wbr></wbr>_column<wbr></wbr>_numbers</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#show_error_codes" class="internal-link" title="mypy.options.Options.show_error_codes">show<wbr></wbr>_error<wbr></wbr>_codes</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#show_error_context" class="internal-link" title="mypy.options.Options.show_error_context">show<wbr></wbr>_error<wbr></wbr>_context</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#show_none_errors" class="internal-link" title="mypy.options.Options.show_none_errors">show<wbr></wbr>_none<wbr></wbr>_errors</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#show_traceback" class="internal-link" title="mypy.options.Options.show_traceback">show<wbr></wbr>_traceback</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#skip_cache_mtime_checks" class="internal-link" title="mypy.options.Options.skip_cache_mtime_checks">skip<wbr></wbr>_cache<wbr></wbr>_mtime<wbr></wbr>_checks</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#skip_version_check" class="internal-link" title="mypy.options.Options.skip_version_check">skip<wbr></wbr>_version<wbr></wbr>_check</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#sqlite_cache" class="internal-link" title="mypy.options.Options.sqlite_cache">sqlite<wbr></wbr>_cache</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#strict_concatenate" class="internal-link" title="mypy.options.Options.strict_concatenate">strict<wbr></wbr>_concatenate</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#strict_equality" class="internal-link" title="mypy.options.Options.strict_equality">strict<wbr></wbr>_equality</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#strict_optional" class="internal-link" title="mypy.options.Options.strict_optional">strict<wbr></wbr>_optional</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#strict_optional_whitelist" class="internal-link" title="mypy.options.Options.strict_optional_whitelist">strict<wbr></wbr>_optional<wbr></wbr>_whitelist</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#timing_stats" class="internal-link" title="mypy.options.Options.timing_stats">timing<wbr></wbr>_stats</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#transform_source" class="internal-link" title="mypy.options.Options.transform_source">transform<wbr></wbr>_source</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#unused_configs" class="internal-link" title="mypy.options.Options.unused_configs">unused<wbr></wbr>_configs</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#use_builtins_fixtures" class="internal-link" title="mypy.options.Options.use_builtins_fixtures">use<wbr></wbr>_builtins<wbr></wbr>_fixtures</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#use_fine_grained_cache" class="internal-link" title="mypy.options.Options.use_fine_grained_cache">use<wbr></wbr>_fine<wbr></wbr>_grained<wbr></wbr>_cache</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#verbosity" class="internal-link" title="mypy.options.Options.verbosity">verbosity</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#warn_incomplete_stub" class="internal-link" title="mypy.options.Options.warn_incomplete_stub">warn<wbr></wbr>_incomplete<wbr></wbr>_stub</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#warn_no_return" class="internal-link" title="mypy.options.Options.warn_no_return">warn<wbr></wbr>_no<wbr></wbr>_return</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#warn_redundant_casts" class="internal-link" title="mypy.options.Options.warn_redundant_casts">warn<wbr></wbr>_redundant<wbr></wbr>_casts</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#warn_return_any" class="internal-link" title="mypy.options.Options.warn_return_any">warn<wbr></wbr>_return<wbr></wbr>_any</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#warn_unreachable" class="internal-link" title="mypy.options.Options.warn_unreachable">warn<wbr></wbr>_unreachable</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#warn_unused_configs" class="internal-link" title="mypy.options.Options.warn_unused_configs">warn<wbr></wbr>_unused<wbr></wbr>_configs</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#warn_unused_ignores" class="internal-link" title="mypy.options.Options.warn_unused_ignores">warn<wbr></wbr>_unused<wbr></wbr>_ignores</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#new_semantic_analyzer" class="internal-link" title="mypy.options.Options.new_semantic_analyzer">new<wbr></wbr>_semantic<wbr></wbr>_analyzer</a></code>
+            </div>
+        
+
+    </li><li class="private">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#_glob_options" class="internal-link" title="mypy.options.Options._glob_options">_glob<wbr></wbr>_options</a></code>
+            </div>
+        
+
+    </li><li class="private">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#_per_module_cache" class="internal-link" title="mypy.options.Options._per_module_cache">_per<wbr></wbr>_module<wbr></wbr>_cache</a></code>
+            </div>
+        
+
+    </li>
+</ul> 
+
+        
+         
+        
+      </div>
+  </div><div>
+
+      <div class="thingTitle">
+        <span>Module</span>
+        <code><a href="mypy.options.html" class="internal-link" title="The parent of this class">options</a></code> 
+      </div>
+      
+      <div>
+        
+
+        
+         
+
+        <div class="childrenKindTitle">Classes</div>
+        <ul>
+    
+    <li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="mypy.options.BuildType.html" class="internal-link" title="mypy.options.BuildType"><wbr></wbr>Build<wbr></wbr>Type</a></code>
+            </div>
+        
+
+    </li><li class=" thisobject">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="mypy.options.Options.html" class="internal-link" title="mypy.options.Options"><wbr></wbr>Options</a></code>
+            </div>
+        
+
+    </li>
+</ul>
+
+        
+         
+
+        
+         
+
+        <div class="childrenKindTitle">Variables</div>
+        <ul>
+    
+    <li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="mypy.options.html#OPTIONS_AFFECTING_CACHE" class="internal-link" title="mypy.options.OPTIONS_AFFECTING_CACHE">OPTIONS<wbr></wbr>_AFFECTING<wbr></wbr>_CACHE</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="mypy.options.html#PER_MODULE_OPTIONS" class="internal-link" title="mypy.options.PER_MODULE_OPTIONS">PER<wbr></wbr>_MODULE<wbr></wbr>_OPTIONS</a></code>
+            </div>
+        
+
+    </li>
+</ul> 
+
+        
+         
+        
+      </div>
+  </div>
+
+</nav>
+        </div>
+        <div id="collapseSideBar">
+          <a class="btn btn-link" onclick="toggleSideBarCollapse()" title="Toggle Sidebar Collapse">
+          </a>
+        </div> 
+        <script src="sidebartoggle.js" type="text/javascript"></script>
+       
+      </div>
+
+      <div id="main" class="">
+        
+
+        
+
+        <div class="page-header">
+          <h1 class="class"><code><code><a href="index.html" class="internal-link">mypy</a></code><wbr></wbr>.<code><a href="mypy.options.html" class="internal-link" title="mypy.options">options</a></code><wbr></wbr>.<code><a href="mypy.options.Options.html" class="internal-link" title="mypy.options.Options">Options</a></code></code></h1>
+          <div id="showPrivate">
+            <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+          </div>
+        </div>
+
+        <div class="categoryHeader">
+          class documentation
+        </div>
+
+        <div class="extrasDocstring">
+          <p><code><span class="py-keyword">class</span> <span class="py-defname">Options</span>: <a href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.961//mypy/options.py#L64" class="sourceLink">(source)</a></code></p>
+          <p><a href="classIndex.html#mypy.options.Options">View In Hierarchy</a></p>
+        </div>
+
+        <div class="moduleDocstring">
+          <div><p class="pre">Options collected from flags.</p></div>
+        </div>
+
+        <div id="splitTables">
+          <table class="children sortable" id="id2453">
+  
+  
+  <tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__init__" class="internal-link" title="mypy.options.Options.__init__">__init__</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__repr__" class="internal-link" title="mypy.options.Options.__repr__">__repr__</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#apply_changes" class="internal-link" title="mypy.options.Options.apply_changes">apply<wbr></wbr>_changes</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#build_per_module_cache" class="internal-link" title="mypy.options.Options.build_per_module_cache">build<wbr></wbr>_per<wbr></wbr>_module<wbr></wbr>_cache</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#clone_for_module" class="internal-link" title="mypy.options.Options.clone_for_module">clone<wbr></wbr>_for<wbr></wbr>_module</a></code></td>
+    <td>Create an Options object that incorporates per-module options.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#compile_glob" class="internal-link" title="mypy.options.Options.compile_glob">compile<wbr></wbr>_glob</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#select_options_affecting_cache" class="internal-link" title="mypy.options.Options.select_options_affecting_cache">select<wbr></wbr>_options<wbr></wbr>_affecting<wbr></wbr>_cache</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#snapshot" class="internal-link" title="mypy.options.Options.snapshot">snapshot</a></code></td>
+    <td>Produce a comparable snapshot of this Option</td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#allow_redefinition" class="internal-link" title="mypy.options.Options.allow_redefinition">allow<wbr></wbr>_redefinition</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#allow_untyped_globals" class="internal-link" title="mypy.options.Options.allow_untyped_globals">allow<wbr></wbr>_untyped<wbr></wbr>_globals</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#always_false" class="internal-link" title="mypy.options.Options.always_false">always<wbr></wbr>_false</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#always_true" class="internal-link" title="mypy.options.Options.always_true">always<wbr></wbr>_true</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#bazel" class="internal-link" title="mypy.options.Options.bazel">bazel</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#build_type" class="internal-link" title="mypy.options.Options.build_type">build<wbr></wbr>_type</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#cache_dir" class="internal-link" title="mypy.options.Options.cache_dir">cache<wbr></wbr>_dir</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#cache_fine_grained" class="internal-link" title="mypy.options.Options.cache_fine_grained">cache<wbr></wbr>_fine<wbr></wbr>_grained</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#cache_map" class="internal-link" title="mypy.options.Options.cache_map">cache<wbr></wbr>_map</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#check_untyped_defs" class="internal-link" title="mypy.options.Options.check_untyped_defs">check<wbr></wbr>_untyped<wbr></wbr>_defs</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#color_output" class="internal-link" title="mypy.options.Options.color_output">color<wbr></wbr>_output</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#config_file" class="internal-link" title="mypy.options.Options.config_file">config<wbr></wbr>_file</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#custom_typeshed_dir" class="internal-link" title="mypy.options.Options.custom_typeshed_dir">custom<wbr></wbr>_typeshed<wbr></wbr>_dir</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#custom_typing_module" class="internal-link" title="mypy.options.Options.custom_typing_module">custom<wbr></wbr>_typing<wbr></wbr>_module</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#debug_cache" class="internal-link" title="mypy.options.Options.debug_cache">debug<wbr></wbr>_cache</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#disable_error_code" class="internal-link" title="mypy.options.Options.disable_error_code">disable<wbr></wbr>_error<wbr></wbr>_code</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#disabled_error_codes" class="internal-link" title="mypy.options.Options.disabled_error_codes">disabled<wbr></wbr>_error<wbr></wbr>_codes</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#disallow_any_decorated" class="internal-link" title="mypy.options.Options.disallow_any_decorated">disallow<wbr></wbr>_any<wbr></wbr>_decorated</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#disallow_any_explicit" class="internal-link" title="mypy.options.Options.disallow_any_explicit">disallow<wbr></wbr>_any<wbr></wbr>_explicit</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#disallow_any_expr" class="internal-link" title="mypy.options.Options.disallow_any_expr">disallow<wbr></wbr>_any<wbr></wbr>_expr</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#disallow_any_generics" class="internal-link" title="mypy.options.Options.disallow_any_generics">disallow<wbr></wbr>_any<wbr></wbr>_generics</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#disallow_any_unimported" class="internal-link" title="mypy.options.Options.disallow_any_unimported">disallow<wbr></wbr>_any<wbr></wbr>_unimported</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#disallow_incomplete_defs" class="internal-link" title="mypy.options.Options.disallow_incomplete_defs">disallow<wbr></wbr>_incomplete<wbr></wbr>_defs</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#disallow_subclassing_any" class="internal-link" title="mypy.options.Options.disallow_subclassing_any">disallow<wbr></wbr>_subclassing<wbr></wbr>_any</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#disallow_untyped_calls" class="internal-link" title="mypy.options.Options.disallow_untyped_calls">disallow<wbr></wbr>_untyped<wbr></wbr>_calls</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#disallow_untyped_decorators" class="internal-link" title="mypy.options.Options.disallow_untyped_decorators">disallow<wbr></wbr>_untyped<wbr></wbr>_decorators</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#disallow_untyped_defs" class="internal-link" title="mypy.options.Options.disallow_untyped_defs">disallow<wbr></wbr>_untyped<wbr></wbr>_defs</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#dump_build_stats" class="internal-link" title="mypy.options.Options.dump_build_stats">dump<wbr></wbr>_build<wbr></wbr>_stats</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#dump_deps" class="internal-link" title="mypy.options.Options.dump_deps">dump<wbr></wbr>_deps</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#dump_graph" class="internal-link" title="mypy.options.Options.dump_graph">dump<wbr></wbr>_graph</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#dump_inference_stats" class="internal-link" title="mypy.options.Options.dump_inference_stats">dump<wbr></wbr>_inference<wbr></wbr>_stats</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#dump_type_stats" class="internal-link" title="mypy.options.Options.dump_type_stats">dump<wbr></wbr>_type<wbr></wbr>_stats</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#enable_error_code" class="internal-link" title="mypy.options.Options.enable_error_code">enable<wbr></wbr>_error<wbr></wbr>_code</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#enable_incomplete_features" class="internal-link" title="mypy.options.Options.enable_incomplete_features">enable<wbr></wbr>_incomplete<wbr></wbr>_features</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#enabled_error_codes" class="internal-link" title="mypy.options.Options.enabled_error_codes">enabled<wbr></wbr>_error<wbr></wbr>_codes</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#error_summary" class="internal-link" title="mypy.options.Options.error_summary">error<wbr></wbr>_summary</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#exclude" class="internal-link" title="mypy.options.Options.exclude">exclude</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#explicit_package_bases" class="internal-link" title="mypy.options.Options.explicit_package_bases">explicit<wbr></wbr>_package<wbr></wbr>_bases</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#export_types" class="internal-link" title="mypy.options.Options.export_types">export<wbr></wbr>_types</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#fast_exit" class="internal-link" title="mypy.options.Options.fast_exit">fast<wbr></wbr>_exit</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#fast_module_lookup" class="internal-link" title="mypy.options.Options.fast_module_lookup">fast<wbr></wbr>_module<wbr></wbr>_lookup</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#files" class="internal-link" title="mypy.options.Options.files">files</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#fine_grained_incremental" class="internal-link" title="mypy.options.Options.fine_grained_incremental">fine<wbr></wbr>_grained<wbr></wbr>_incremental</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#follow_imports" class="internal-link" title="mypy.options.Options.follow_imports">follow<wbr></wbr>_imports</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#follow_imports_for_stubs" class="internal-link" title="mypy.options.Options.follow_imports_for_stubs">follow<wbr></wbr>_imports<wbr></wbr>_for<wbr></wbr>_stubs</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#ignore_errors" class="internal-link" title="mypy.options.Options.ignore_errors">ignore<wbr></wbr>_errors</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#ignore_missing_imports" class="internal-link" title="mypy.options.Options.ignore_missing_imports">ignore<wbr></wbr>_missing<wbr></wbr>_imports</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#ignore_missing_imports_per_module" class="internal-link" title="mypy.options.Options.ignore_missing_imports_per_module">ignore<wbr></wbr>_missing<wbr></wbr>_imports<wbr></wbr>_per<wbr></wbr>_module</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#implicit_reexport" class="internal-link" title="mypy.options.Options.implicit_reexport">implicit<wbr></wbr>_reexport</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#incremental" class="internal-link" title="mypy.options.Options.incremental">incremental</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#install_types" class="internal-link" title="mypy.options.Options.install_types">install<wbr></wbr>_types</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#junit_xml" class="internal-link" title="mypy.options.Options.junit_xml">junit<wbr></wbr>_xml</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#local_partial_types" class="internal-link" title="mypy.options.Options.local_partial_types">local<wbr></wbr>_partial<wbr></wbr>_types</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#logical_deps" class="internal-link" title="mypy.options.Options.logical_deps">logical<wbr></wbr>_deps</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#many_errors_threshold" class="internal-link" title="mypy.options.Options.many_errors_threshold">many<wbr></wbr>_errors<wbr></wbr>_threshold</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#mypy_path" class="internal-link" title="mypy.options.Options.mypy_path">mypy<wbr></wbr>_path</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#mypyc" class="internal-link" title="mypy.options.Options.mypyc">mypyc</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#namespace_packages" class="internal-link" title="mypy.options.Options.namespace_packages">namespace<wbr></wbr>_packages</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#no_implicit_optional" class="internal-link" title="mypy.options.Options.no_implicit_optional">no<wbr></wbr>_implicit<wbr></wbr>_optional</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#no_silence_site_packages" class="internal-link" title="mypy.options.Options.no_silence_site_packages">no<wbr></wbr>_silence<wbr></wbr>_site<wbr></wbr>_packages</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#no_site_packages" class="internal-link" title="mypy.options.Options.no_site_packages">no<wbr></wbr>_site<wbr></wbr>_packages</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#non_interactive" class="internal-link" title="mypy.options.Options.non_interactive">non<wbr></wbr>_interactive</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#package_root" class="internal-link" title="mypy.options.Options.package_root">package<wbr></wbr>_root</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#pdb" class="internal-link" title="mypy.options.Options.pdb">pdb</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#per_module_options" class="internal-link" title="mypy.options.Options.per_module_options">per<wbr></wbr>_module<wbr></wbr>_options</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#platform" class="internal-link" title="mypy.options.Options.platform">platform</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#plugins" class="internal-link" title="mypy.options.Options.plugins">plugins</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#preserve_asts" class="internal-link" title="mypy.options.Options.preserve_asts">preserve<wbr></wbr>_asts</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#pretty" class="internal-link" title="mypy.options.Options.pretty">pretty</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#python_executable" class="internal-link" title="mypy.options.Options.python_executable">python<wbr></wbr>_executable</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#python_version" class="internal-link" title="mypy.options.Options.python_version">python<wbr></wbr>_version</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#quickstart_file" class="internal-link" title="mypy.options.Options.quickstart_file">quickstart<wbr></wbr>_file</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#raise_exceptions" class="internal-link" title="mypy.options.Options.raise_exceptions">raise<wbr></wbr>_exceptions</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#report_dirs" class="internal-link" title="mypy.options.Options.report_dirs">report<wbr></wbr>_dirs</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#scripts_are_modules" class="internal-link" title="mypy.options.Options.scripts_are_modules">scripts<wbr></wbr>_are<wbr></wbr>_modules</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#semantic_analysis_only" class="internal-link" title="mypy.options.Options.semantic_analysis_only">semantic<wbr></wbr>_analysis<wbr></wbr>_only</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#shadow_file" class="internal-link" title="mypy.options.Options.shadow_file">shadow<wbr></wbr>_file</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#show_absolute_path" class="internal-link" title="mypy.options.Options.show_absolute_path">show<wbr></wbr>_absolute<wbr></wbr>_path</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#show_column_numbers" class="internal-link" title="mypy.options.Options.show_column_numbers">show<wbr></wbr>_column<wbr></wbr>_numbers</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#show_error_codes" class="internal-link" title="mypy.options.Options.show_error_codes">show<wbr></wbr>_error<wbr></wbr>_codes</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#show_error_context" class="internal-link" title="mypy.options.Options.show_error_context">show<wbr></wbr>_error<wbr></wbr>_context</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#show_none_errors" class="internal-link" title="mypy.options.Options.show_none_errors">show<wbr></wbr>_none<wbr></wbr>_errors</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#show_traceback" class="internal-link" title="mypy.options.Options.show_traceback">show<wbr></wbr>_traceback</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#skip_cache_mtime_checks" class="internal-link" title="mypy.options.Options.skip_cache_mtime_checks">skip<wbr></wbr>_cache<wbr></wbr>_mtime<wbr></wbr>_checks</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#skip_version_check" class="internal-link" title="mypy.options.Options.skip_version_check">skip<wbr></wbr>_version<wbr></wbr>_check</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#sqlite_cache" class="internal-link" title="mypy.options.Options.sqlite_cache">sqlite<wbr></wbr>_cache</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#strict_concatenate" class="internal-link" title="mypy.options.Options.strict_concatenate">strict<wbr></wbr>_concatenate</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#strict_equality" class="internal-link" title="mypy.options.Options.strict_equality">strict<wbr></wbr>_equality</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#strict_optional" class="internal-link" title="mypy.options.Options.strict_optional">strict<wbr></wbr>_optional</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#strict_optional_whitelist" class="internal-link" title="mypy.options.Options.strict_optional_whitelist">strict<wbr></wbr>_optional<wbr></wbr>_whitelist</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#timing_stats" class="internal-link" title="mypy.options.Options.timing_stats">timing<wbr></wbr>_stats</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#transform_source" class="internal-link" title="mypy.options.Options.transform_source">transform<wbr></wbr>_source</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#unused_configs" class="internal-link" title="mypy.options.Options.unused_configs">unused<wbr></wbr>_configs</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#use_builtins_fixtures" class="internal-link" title="mypy.options.Options.use_builtins_fixtures">use<wbr></wbr>_builtins<wbr></wbr>_fixtures</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#use_fine_grained_cache" class="internal-link" title="mypy.options.Options.use_fine_grained_cache">use<wbr></wbr>_fine<wbr></wbr>_grained<wbr></wbr>_cache</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#verbosity" class="internal-link" title="mypy.options.Options.verbosity">verbosity</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#warn_incomplete_stub" class="internal-link" title="mypy.options.Options.warn_incomplete_stub">warn<wbr></wbr>_incomplete<wbr></wbr>_stub</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#warn_no_return" class="internal-link" title="mypy.options.Options.warn_no_return">warn<wbr></wbr>_no<wbr></wbr>_return</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#warn_redundant_casts" class="internal-link" title="mypy.options.Options.warn_redundant_casts">warn<wbr></wbr>_redundant<wbr></wbr>_casts</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#warn_return_any" class="internal-link" title="mypy.options.Options.warn_return_any">warn<wbr></wbr>_return<wbr></wbr>_any</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#warn_unreachable" class="internal-link" title="mypy.options.Options.warn_unreachable">warn<wbr></wbr>_unreachable</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#warn_unused_configs" class="internal-link" title="mypy.options.Options.warn_unused_configs">warn<wbr></wbr>_unused<wbr></wbr>_configs</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#warn_unused_ignores" class="internal-link" title="mypy.options.Options.warn_unused_ignores">warn<wbr></wbr>_unused<wbr></wbr>_ignores</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="property">
+    
+    <td>Property</td>
+    <td><code><a href="#new_semantic_analyzer" class="internal-link" title="mypy.options.Options.new_semantic_analyzer">new<wbr></wbr>_semantic<wbr></wbr>_analyzer</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#_glob_options" class="internal-link" title="mypy.options.Options._glob_options">_glob<wbr></wbr>_options</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#_per_module_cache" class="internal-link" title="mypy.options.Options._per_module_cache">_per<wbr></wbr>_module<wbr></wbr>_cache</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+          
+
+            
+        </div>
+
+        <div id="childList">
+          <div class="basemethod">
+  
+  
+  <a name="mypy.options.Options.__init__">
+    
+  </a>
+  <a name="__init__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__init__</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.961//mypy/options.py#L67">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="mypy.options.Options.__repr__">
+    
+  </a>
+  <a name="__repr__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__repr__</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.961//mypy/options.py#L329">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="mypy.options.Options.apply_changes">
+    
+  </a>
+  <a name="apply_changes">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">apply_changes</span>(self, changes):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.961//mypy/options.py#L332">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">changes:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Dict" class="intersphinx-link">Dict</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>, <wbr></wbr><a href="https://docs.python.org/3/library/functions.html#object" class="intersphinx-link">object</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="mypy.options.Options.html" class="internal-link" title="mypy.options.Options">Options</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="mypy.options.Options.build_per_module_cache">
+    
+  </a>
+  <a name="build_per_module_cache">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">build_per_module_cache</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.961//mypy/options.py#L344">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="mypy.options.Options.clone_for_module">
+    
+  </a>
+  <a name="clone_for_module">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">clone_for_module</span>(self, module):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.961//mypy/options.py#L389">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="pre">Create an Options object that incorporates per-module options.
+
+NOTE: Once this method is called all Options objects should be
+considered read-only, else the caching might be incorrect.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">module:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="mypy.options.Options.html" class="internal-link" title="mypy.options.Options">Options</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="mypy.options.Options.compile_glob">
+    
+  </a>
+  <a name="compile_glob">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">compile_glob</span>(self, s):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.961//mypy/options.py#L432">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">s:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Pattern" class="intersphinx-link">Pattern</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="mypy.options.Options.select_options_affecting_cache">
+    
+  </a>
+  <a name="select_options_affecting_cache">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">select_options_affecting_cache</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.961//mypy/options.py#L442">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Mapping" class="intersphinx-link">Mapping</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>, <wbr></wbr><a href="https://docs.python.org/3/library/functions.html#object" class="intersphinx-link">object</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="mypy.options.Options.snapshot">
+    
+  </a>
+  <a name="snapshot">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">snapshot</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.961//mypy/options.py#L318">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="pre">Produce a comparable snapshot of this Option</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/functions.html#object" class="intersphinx-link">object</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="mypy.options.Options.allow_redefinition">
+    
+  </a>
+  <a name="allow_redefinition">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">allow_redefinition</span>: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.961//mypy/options.py#L181">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="mypy.options.Options.allow_untyped_globals">
+    
+  </a>
+  <a name="allow_untyped_globals">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">allow_untyped_globals</span>: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.961//mypy/options.py#L177">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="mypy.options.Options.always_false">
+    
+  </a>
+  <a name="always_false">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">always_false</span>: <code><a href="https://docs.python.org/3/library/typing.html#typing.List" class="intersphinx-link">List</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]</code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.961//mypy/options.py#L198">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="mypy.options.Options.always_true">
+    
+  </a>
+  <a name="always_true">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">always_true</span>: <code><a href="https://docs.python.org/3/library/typing.html#typing.List" class="intersphinx-link">List</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]</code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.961//mypy/options.py#L195">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="mypy.options.Options.bazel">
+    
+  </a>
+  <a name="bazel">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">bazel</span>: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.961//mypy/options.py#L287">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="mypy.options.Options.build_type">
+    
+  </a>
+  <a name="build_type">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">build_type</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.961//mypy/options.py#L72">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="mypy.options.Options.cache_dir">
+    
+  </a>
+  <a name="cache_dir">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">cache_dir</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.961//mypy/options.py#L228">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="mypy.options.Options.cache_fine_grained">
+    
+  </a>
+  <a name="cache_fine_grained">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">cache_fine_grained</span>: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.961//mypy/options.py#L235">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="mypy.options.Options.cache_map">
+    
+  </a>
+  <a name="cache_map">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">cache_map</span>: <code><a href="https://docs.python.org/3/library/typing.html#typing.Dict" class="intersphinx-link">Dict</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>, <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Tuple" class="intersphinx-link">Tuple</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>, <wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]]</code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.961//mypy/options.py#L293">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="mypy.options.Options.check_untyped_defs">
+    
+  </a>
+  <a name="check_untyped_defs">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">check_untyped_defs</span>: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.961//mypy/options.py#L123">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="mypy.options.Options.color_output">
+    
+  </a>
+  <a name="color_output">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">color_output</span>: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.961//mypy/options.py#L160">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="mypy.options.Options.config_file">
+    
+  </a>
+  <a name="config_file">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">config_file</span>: <code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]</code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.961//mypy/options.py#L212">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="mypy.options.Options.custom_typeshed_dir">
+    
+  </a>
+  <a name="custom_typeshed_dir">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">custom_typeshed_dir</span>: <code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]</code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.961//mypy/options.py#L79">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="mypy.options.Options.custom_typing_module">
+    
+  </a>
+  <a name="custom_typing_module">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">custom_typing_module</span>: <code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]</code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.961//mypy/options.py#L78">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="mypy.options.Options.debug_cache">
+    
+  </a>
+  <a name="debug_cache">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">debug_cache</span>: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.961//mypy/options.py#L230">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="mypy.options.Options.disable_error_code">
+    
+  </a>
+  <a name="disable_error_code">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">disable_error_code</span>: <code><a href="https://docs.python.org/3/library/typing.html#typing.List" class="intersphinx-link">List</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]</code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.961//mypy/options.py#L201">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="mypy.options.Options.disabled_error_codes">
+    
+  </a>
+  <a name="disabled_error_codes">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">disabled_error_codes</span>: <code><a href="https://docs.python.org/3/library/typing.html#typing.Set" class="intersphinx-link">Set</a>[<wbr></wbr>ErrorCode]</code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.961//mypy/options.py#L202">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="mypy.options.Options.disallow_any_decorated">
+    
+  </a>
+  <a name="disallow_any_decorated">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">disallow_any_decorated</span>: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.961//mypy/options.py#L110">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="mypy.options.Options.disallow_any_explicit">
+    
+  </a>
+  <a name="disallow_any_explicit">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">disallow_any_explicit</span>: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.961//mypy/options.py#L111">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="mypy.options.Options.disallow_any_expr">
+    
+  </a>
+  <a name="disallow_any_expr">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">disallow_any_expr</span>: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.961//mypy/options.py#L109">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="mypy.options.Options.disallow_any_generics">
+    
+  </a>
+  <a name="disallow_any_generics">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">disallow_any_generics</span>: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.961//mypy/options.py#L107">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="mypy.options.Options.disallow_any_unimported">
+    
+  </a>
+  <a name="disallow_any_unimported">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">disallow_any_unimported</span>: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.961//mypy/options.py#L108">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="mypy.options.Options.disallow_incomplete_defs">
+    
+  </a>
+  <a name="disallow_incomplete_defs">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">disallow_incomplete_defs</span>: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.961//mypy/options.py#L120">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="mypy.options.Options.disallow_subclassing_any">
+    
+  </a>
+  <a name="disallow_subclassing_any">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">disallow_subclassing_any</span>: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.961//mypy/options.py#L129">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="mypy.options.Options.disallow_untyped_calls">
+    
+  </a>
+  <a name="disallow_untyped_calls">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">disallow_untyped_calls</span>: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.961//mypy/options.py#L114">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="mypy.options.Options.disallow_untyped_decorators">
+    
+  </a>
+  <a name="disallow_untyped_decorators">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">disallow_untyped_decorators</span>: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.961//mypy/options.py#L126">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="mypy.options.Options.disallow_untyped_defs">
+    
+  </a>
+  <a name="disallow_untyped_defs">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">disallow_untyped_defs</span>: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.961//mypy/options.py#L117">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="mypy.options.Options.dump_build_stats">
+    
+  </a>
+  <a name="dump_build_stats">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">dump_build_stats</span>: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.961//mypy/options.py#L264">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="mypy.options.Options.dump_deps">
+    
+  </a>
+  <a name="dump_deps">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">dump_deps</span>: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.961//mypy/options.py#L282">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="mypy.options.Options.dump_graph">
+    
+  </a>
+  <a name="dump_graph">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">dump_graph</span>: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.961//mypy/options.py#L281">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="mypy.options.Options.dump_inference_stats">
+    
+  </a>
+  <a name="dump_inference_stats">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">dump_inference_stats</span>: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.961//mypy/options.py#L263">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="mypy.options.Options.dump_type_stats">
+    
+  </a>
+  <a name="dump_type_stats">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">dump_type_stats</span>: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.961//mypy/options.py#L262">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="mypy.options.Options.enable_error_code">
+    
+  </a>
+  <a name="enable_error_code">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">enable_error_code</span>: <code><a href="https://docs.python.org/3/library/typing.html#typing.List" class="intersphinx-link">List</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]</code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.961//mypy/options.py#L205">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="mypy.options.Options.enable_incomplete_features">
+    
+  </a>
+  <a name="enable_incomplete_features">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">enable_incomplete_features</span>: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.961//mypy/options.py#L265">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="mypy.options.Options.enabled_error_codes">
+    
+  </a>
+  <a name="enabled_error_codes">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">enabled_error_codes</span>: <code><a href="https://docs.python.org/3/library/typing.html#typing.Set" class="intersphinx-link">Set</a>[<wbr></wbr>ErrorCode]</code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.961//mypy/options.py#L206">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="mypy.options.Options.error_summary">
+    
+  </a>
+  <a name="error_summary">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">error_summary</span>: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.961//mypy/options.py#L161">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="mypy.options.Options.exclude">
+    
+  </a>
+  <a name="exclude">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">exclude</span>: <code><a href="https://docs.python.org/3/library/typing.html#typing.List" class="intersphinx-link">List</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]</code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.961//mypy/options.py#L104">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="mypy.options.Options.explicit_package_bases">
+    
+  </a>
+  <a name="explicit_package_bases">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">explicit_package_bases</span>: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.961//mypy/options.py#L102">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="mypy.options.Options.export_types">
+    
+  </a>
+  <a name="export_types">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">export_types</span>: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.961//mypy/options.py#L289">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="mypy.options.Options.fast_exit">
+    
+  </a>
+  <a name="fast_exit">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">fast_exit</span>: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.961//mypy/options.py#L295">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="mypy.options.Options.fast_module_lookup">
+    
+  </a>
+  <a name="fast_module_lookup">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">fast_module_lookup</span>: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.961//mypy/options.py#L297">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="mypy.options.Options.files">
+    
+  </a>
+  <a name="files">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">files</span>: <code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.List" class="intersphinx-link">List</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]]</code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.961//mypy/options.py#L221">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="mypy.options.Options.fine_grained_incremental">
+    
+  </a>
+  <a name="fine_grained_incremental">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">fine_grained_incremental</span>: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.961//mypy/options.py#L233">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="mypy.options.Options.follow_imports">
+    
+  </a>
+  <a name="follow_imports">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">follow_imports</span>: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.961//mypy/options.py#L88">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="mypy.options.Options.follow_imports_for_stubs">
+    
+  </a>
+  <a name="follow_imports_for_stubs">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">follow_imports_for_stubs</span>: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.961//mypy/options.py#L91">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="mypy.options.Options.ignore_errors">
+    
+  </a>
+  <a name="ignore_errors">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">ignore_errors</span>: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.961//mypy/options.py#L151">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="mypy.options.Options.ignore_missing_imports">
+    
+  </a>
+  <a name="ignore_missing_imports">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">ignore_missing_imports</span>: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.961//mypy/options.py#L85">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="mypy.options.Options.ignore_missing_imports_per_module">
+    
+  </a>
+  <a name="ignore_missing_imports_per_module">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">ignore_missing_imports_per_module</span>: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.961//mypy/options.py#L87">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="mypy.options.Options.implicit_reexport">
+    
+  </a>
+  <a name="implicit_reexport">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">implicit_reexport</span>: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.961//mypy/options.py#L174">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="mypy.options.Options.incremental">
+    
+  </a>
+  <a name="incremental">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">incremental</span>: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.961//mypy/options.py#L227">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="mypy.options.Options.install_types">
+    
+  </a>
+  <a name="install_types">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">install_types</span>: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.961//mypy/options.py#L304">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="mypy.options.Options.junit_xml">
+    
+  </a>
+  <a name="junit_xml">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">junit_xml</span>: <code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]</code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.961//mypy/options.py#L224">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="mypy.options.Options.local_partial_types">
+    
+  </a>
+  <a name="local_partial_types">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">local_partial_types</span>: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.961//mypy/options.py#L285">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="mypy.options.Options.logical_deps">
+    
+  </a>
+  <a name="logical_deps">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">logical_deps</span>: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.961//mypy/options.py#L283">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="mypy.options.Options.many_errors_threshold">
+    
+  </a>
+  <a name="many_errors_threshold">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">many_errors_threshold</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.961//mypy/options.py#L311">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="mypy.options.Options.mypy_path">
+    
+  </a>
+  <a name="mypy_path">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">mypy_path</span>: <code><a href="https://docs.python.org/3/library/typing.html#typing.List" class="intersphinx-link">List</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]</code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.961//mypy/options.py#L80">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="mypy.options.Options.mypyc">
+    
+  </a>
+  <a name="mypyc">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">mypyc</span>: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.961//mypy/options.py#L241">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="mypy.options.Options.namespace_packages">
+    
+  </a>
+  <a name="namespace_packages">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">namespace_packages</span>: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.961//mypy/options.py#L96">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="mypy.options.Options.no_implicit_optional">
+    
+  </a>
+  <a name="no_implicit_optional">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">no_implicit_optional</span>: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.961//mypy/options.py#L171">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="mypy.options.Options.no_silence_site_packages">
+    
+  </a>
+  <a name="no_silence_site_packages">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">no_silence_site_packages</span>: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.961//mypy/options.py#L83">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="mypy.options.Options.no_site_packages">
+    
+  </a>
+  <a name="no_site_packages">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">no_site_packages</span>: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.961//mypy/options.py#L84">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="mypy.options.Options.non_interactive">
+    
+  </a>
+  <a name="non_interactive">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">non_interactive</span>: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.961//mypy/options.py#L307">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="mypy.options.Options.package_root">
+    
+  </a>
+  <a name="package_root">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">package_root</span>: <code><a href="https://docs.python.org/3/library/typing.html#typing.List" class="intersphinx-link">List</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]</code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.961//mypy/options.py#L292">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="mypy.options.Options.pdb">
+    
+  </a>
+  <a name="pdb">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">pdb</span>: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.961//mypy/options.py#L259">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="mypy.options.Options.per_module_options">
+    
+  </a>
+  <a name="per_module_options">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">per_module_options</span>: <code>OrderedDict[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>, <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Dict" class="intersphinx-link">Dict</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>, <wbr></wbr><a href="https://docs.python.org/3/library/functions.html#object" class="intersphinx-link">object</a>]]</code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.961//mypy/options.py#L253">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="mypy.options.Options.platform">
+    
+  </a>
+  <a name="platform">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">platform</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.961//mypy/options.py#L77">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="mypy.options.Options.plugins">
+    
+  </a>
+  <a name="plugins">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">plugins</span>: <code><a href="https://docs.python.org/3/library/typing.html#typing.List" class="intersphinx-link">List</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]</code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.961//mypy/options.py#L250">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="mypy.options.Options.preserve_asts">
+    
+  </a>
+  <a name="preserve_asts">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">preserve_asts</span>: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.961//mypy/options.py#L247">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="mypy.options.Options.pretty">
+    
+  </a>
+  <a name="pretty">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">pretty</span>: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.961//mypy/options.py#L280">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="mypy.options.Options.python_executable">
+    
+  </a>
+  <a name="python_executable">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">python_executable</span>: <code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]</code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.961//mypy/options.py#L76">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="mypy.options.Options.python_version">
+    
+  </a>
+  <a name="python_version">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">python_version</span>: <code><a href="https://docs.python.org/3/library/typing.html#typing.Tuple" class="intersphinx-link">Tuple</a>[<wbr></wbr><a href="https://docs.python.org/3/library/functions.html#int" class="intersphinx-link">int</a>, <wbr></wbr><a href="https://docs.python.org/3/library/functions.html#int" class="intersphinx-link">int</a>]</code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.961//mypy/options.py#L73">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="mypy.options.Options.quickstart_file">
+    
+  </a>
+  <a name="quickstart_file">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">quickstart_file</span>: <code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]</code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.961//mypy/options.py#L217">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="mypy.options.Options.raise_exceptions">
+    
+  </a>
+  <a name="raise_exceptions">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">raise_exceptions</span>: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.961//mypy/options.py#L261">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="mypy.options.Options.report_dirs">
+    
+  </a>
+  <a name="report_dirs">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">report_dirs</span>: <code><a href="https://docs.python.org/3/library/typing.html#typing.Dict" class="intersphinx-link">Dict</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>, <wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]</code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.961//mypy/options.py#L81">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="mypy.options.Options.scripts_are_modules">
+    
+  </a>
+  <a name="scripts_are_modules">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">scripts_are_modules</span>: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.961//mypy/options.py#L209">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="mypy.options.Options.semantic_analysis_only">
+    
+  </a>
+  <a name="semantic_analysis_only">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">semantic_analysis_only</span>: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.961//mypy/options.py#L270">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="mypy.options.Options.shadow_file">
+    
+  </a>
+  <a name="shadow_file">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">shadow_file</span>: <code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.List" class="intersphinx-link">List</a>[<wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.List" class="intersphinx-link">List</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]]]</code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.961//mypy/options.py#L276">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="mypy.options.Options.show_absolute_path">
+    
+  </a>
+  <a name="show_absolute_path">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">show_absolute_path</span>: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.961//mypy/options.py#L302">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="mypy.options.Options.show_column_numbers">
+    
+  </a>
+  <a name="show_column_numbers">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">show_column_numbers</span>: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.961//mypy/options.py#L277">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="mypy.options.Options.show_error_codes">
+    
+  </a>
+  <a name="show_error_codes">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">show_error_codes</span>: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.961//mypy/options.py#L278">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="mypy.options.Options.show_error_context">
+    
+  </a>
+  <a name="show_error_context">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">show_error_context</span>: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.961//mypy/options.py#L157">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="mypy.options.Options.show_none_errors">
+    
+  </a>
+  <a name="show_none_errors">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">show_none_errors</span>: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.961//mypy/options.py#L168">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="mypy.options.Options.show_traceback">
+    
+  </a>
+  <a name="show_traceback">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">show_traceback</span>: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.961//mypy/options.py#L260">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="mypy.options.Options.skip_cache_mtime_checks">
+    
+  </a>
+  <a name="skip_cache_mtime_checks">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">skip_cache_mtime_checks</span>: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.961//mypy/options.py#L232">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="mypy.options.Options.skip_version_check">
+    
+  </a>
+  <a name="skip_version_check">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">skip_version_check</span>: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.961//mypy/options.py#L231">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="mypy.options.Options.sqlite_cache">
+    
+  </a>
+  <a name="sqlite_cache">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">sqlite_cache</span>: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.961//mypy/options.py#L229">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="mypy.options.Options.strict_concatenate">
+    
+  </a>
+  <a name="strict_concatenate">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">strict_concatenate</span>: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.961//mypy/options.py#L188">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="mypy.options.Options.strict_equality">
+    
+  </a>
+  <a name="strict_equality">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">strict_equality</span>: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.961//mypy/options.py#L185">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="mypy.options.Options.strict_optional">
+    
+  </a>
+  <a name="strict_optional">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">strict_optional</span>: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.961//mypy/options.py#L154">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="mypy.options.Options.strict_optional_whitelist">
+    
+  </a>
+  <a name="strict_optional_whitelist">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">strict_optional_whitelist</span>: <code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.List" class="intersphinx-link">List</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]]</code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.961//mypy/options.py#L165">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="mypy.options.Options.timing_stats">
+    
+  </a>
+  <a name="timing_stats">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">timing_stats</span>: <code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]</code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.961//mypy/options.py#L266">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="mypy.options.Options.transform_source">
+    
+  </a>
+  <a name="transform_source">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">transform_source</span>: <code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Callable" class="intersphinx-link">Callable</a>[<wbr></wbr>[<wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">Any</a>], <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">Any</a>]]</code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.961//mypy/options.py#L300">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="mypy.options.Options.unused_configs">
+    
+  </a>
+  <a name="unused_configs">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">unused_configs</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.961//mypy/options.py#L255">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="mypy.options.Options.use_builtins_fixtures">
+    
+  </a>
+  <a name="use_builtins_fixtures">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">use_builtins_fixtures</span>: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.961//mypy/options.py#L273">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="mypy.options.Options.use_fine_grained_cache">
+    
+  </a>
+  <a name="use_fine_grained_cache">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">use_fine_grained_cache</span>: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.961//mypy/options.py#L237">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="mypy.options.Options.verbosity">
+    
+  </a>
+  <a name="verbosity">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">verbosity</span>: <code><a href="https://docs.python.org/3/library/functions.html#int" class="intersphinx-link">int</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.961//mypy/options.py#L258">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="mypy.options.Options.warn_incomplete_stub">
+    
+  </a>
+  <a name="warn_incomplete_stub">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">warn_incomplete_stub</span>: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.961//mypy/options.py#L132">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="mypy.options.Options.warn_no_return">
+    
+  </a>
+  <a name="warn_no_return">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">warn_no_return</span>: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.961//mypy/options.py#L138">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="mypy.options.Options.warn_redundant_casts">
+    
+  </a>
+  <a name="warn_redundant_casts">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">warn_redundant_casts</span>: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.961//mypy/options.py#L135">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="mypy.options.Options.warn_return_any">
+    
+  </a>
+  <a name="warn_return_any">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">warn_return_any</span>: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.961//mypy/options.py#L142">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="mypy.options.Options.warn_unreachable">
+    
+  </a>
+  <a name="warn_unreachable">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">warn_unreachable</span>: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.961//mypy/options.py#L192">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="mypy.options.Options.warn_unused_configs">
+    
+  </a>
+  <a name="warn_unused_configs">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">warn_unused_configs</span>: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.961//mypy/options.py#L148">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="mypy.options.Options.warn_unused_ignores">
+    
+  </a>
+  <a name="warn_unused_ignores">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">warn_unused_ignores</span>: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.961//mypy/options.py#L145">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseproperty">
+  
+  
+  <a name="mypy.options.Options.new_semantic_analyzer">
+    
+  </a>
+  <a name="new_semantic_analyzer">
+    
+  </a>
+  <div class="functionHeader">
+    @<a href="https://docs.python.org/3/library/functions.html#property" class="intersphinx-link">property</a><br />
+    <span class="py-defname">new_semantic_analyzer</span>: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.961//mypy/options.py#L314">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  
+  <a name="mypy.options.Options._glob_options">
+    
+  </a>
+  <a name="_glob_options">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_glob_options</span>: <code><a href="https://docs.python.org/3/library/typing.html#typing.List" class="intersphinx-link">List</a>[<wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Tuple" class="intersphinx-link">Tuple</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>, <wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Pattern" class="intersphinx-link">Pattern</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]]]</code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.961//mypy/options.py#L254">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  
+  <a name="mypy.options.Options._per_module_cache">
+    
+  </a>
+  <a name="_per_module_cache">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_per_module_cache</span>: <code><a href="https://docs.python.org/3/library/stdtypes.html#dict" class="intersphinx-link">dict</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.961//mypy/options.py#L69">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div>
+        </div>
+      
+      </div>
+    </div>
+
+    <footer class="navbar navbar-default">
+
+  
+  <div class="container">
+    <a href="index.html">API Documentation</a> for mypy,
+  generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
+    22.5.1 at 2022-07-13 20:31:13.
+  </div>
+
+  <!-- Search related scripts needs to be loaded at the end of HTML 
+    parsing not to introduce overhead and display HTML data asap -->
+  <script src="ajax.js" type="text/javascript"></script>
+  <script src="searchlib.js" type="text/javascript"></script>
+  <script src="search.js" type="text/javascript"></script>
+
+</footer>
+  
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+  </body>
+</html>

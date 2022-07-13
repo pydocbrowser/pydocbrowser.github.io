@@ -1,0 +1,1711 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  
+
+  <head>
+    
+    <title>scrapy.core.engine.ExecutionEngine</title>
+    <meta name="generator" content="pydoctor 22.5.1"> 
+        
+    </meta>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1 maximum-scale=1" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+    <link rel="stylesheet" type="text/css" href="extra.css" />
+</head>
+
+  <body>
+
+    <div id="banner">    
+    <div>
+        <a href="/">Home</a>
+        &gt; scrapy-2.6.1 <!-- This is a placeholder -->
+        
+        <!-- (<a href=""&gt;show all versions</a&gt;) -->
+    </div>
+</div>
+
+    <nav class="navbar navbar-default mainnavbar">
+      
+  
+  <div class="container-fluid">
+
+
+    <div class="navbar-header">
+      
+      <div class="navlinks">
+        <span class="navbar-brand">
+          scrapy <a href="index.html">API Documentation</a>
+        </span>
+
+        <a href="moduleIndex.html">
+          Modules
+        </a>
+
+        <a href="classIndex.html">
+          Classes
+        </a>
+
+        <a href="nameIndex.html">
+          Names
+        </a>
+
+        <div id="search-box-container">
+          <div class="input-group">
+            <input id="search-box" type="search" name="search-query" placeholder="Search..." aria-label="Search" minlength="2" class="form-control" autocomplete="off" />
+            
+            <span class="input-group-btn">
+              <a style="display: none;" class="btn btn-default" id="search-clear-button" title="Clear" onclick="clearSearch()"><img src="fonts/x-circle.svg" alt="Clear" /></a>
+              <a class="btn btn-default" id="search-help-button" title="Help" onclick="toggleSearchHelpText()"><img src="fonts/info.svg" alt="Help" /></a>
+            </span>
+          </div>
+        </div>
+
+      </div>
+
+      <div id="search-results-container" style="display: none;">
+        
+        <div id="search-buttons">
+          <span class="label label-default" id="search-docstrings-button">
+          <label class="checkbox-inline">
+            <input type="checkbox" id="toggle-search-in-docstrings-checkbox" value="false" onclick="toggleSearchInDocstrings()">
+              search in docstrings
+            </input>
+          </label>
+          </span>
+          
+        </div>
+        
+        <noscript>
+            <h1>Cannot search: JavaScript is not supported/enabled in your browser.</h1>
+        </noscript>
+
+        <div class="hint" id="search-help-box">
+          <p class="rst-last">
+      
+            Search bar offers the following options:
+            <ul>   
+                <li>
+                  <strong>Term presence.</strong> The below example searches for documents that 
+                    must contain “foo”, might contain “bar” and must not contain “baz”: <code>+foo bar -baz</code>
+                </li> 
+
+                <li>
+                  <strong>Wildcards.</strong> The below example searches for documents with words beginning with “foo”: <code>foo*</code>
+                </li> 
+
+                <li>
+                  <strong>Search in specific fields.</strong> The following search matches all objects 
+                  in "twisted.mail" that matches “search”: <code>+qname:twisted.mail.* +search</code>
+
+                  <p>
+                    Possible fields: 'name', 'qname' (fully qualified name), 'docstring', and 'kind'.
+                    Last two fields are only applicable if "search in docstrings" is enabled.
+                  </p>
+                </li>
+
+                <li>
+                  <strong>Fuzzy matches.</strong> The following search matches all documents 
+                  that have a word within 1 edit distance of “foo”: <code>foo~1</code>
+                </li>
+            </ul>
+
+          </p>
+        </div>
+
+        <div id="search-status"> </div>
+
+        <div class="warning" id="search-warn-box" style="display: none;">
+          <p class="rst-last"><span id="search-warn"></span></p>
+        </div>
+
+        <table id="search-results">
+          <!-- Filled dynamically by JS -->
+        </table>
+        
+        <div style="margin-top: 8px;">
+          <p>Results provided by <a href="https://lunrjs.com">Lunr.js</a></p>
+        </div>
+      </div>
+
+    </div>
+
+
+  </div>
+</nav>
+    
+    <div class="container-fluid">
+
+      <!-- Side navigation -->
+      <div class="sidebarcontainer" style="display: none;">
+        
+        <div class="sidebar"><nav class="sidebar">
+  
+
+  <div>
+
+      <div class="thingTitle">
+        <span>Class</span>
+        <code class="thisobject"><a href="scrapy.core.engine.ExecutionEngine.html" class="internal-link" title="This class"><wbr></wbr>Execution<wbr></wbr>Engine</a></code> 
+      </div>
+      
+      <div>
+        
+
+        
+         
+
+        
+        
+
+        <div class="childrenKindTitle">Methods</div>
+        <ul>
+    
+    <li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#__init__" class="internal-link" title="scrapy.core.engine.ExecutionEngine.__init__">__init__</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#close" class="internal-link" title="scrapy.core.engine.ExecutionEngine.close">close</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#close_spider" class="internal-link" title="scrapy.core.engine.ExecutionEngine.close_spider">close<wbr></wbr>_spider</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#crawl" class="internal-link" title="scrapy.core.engine.ExecutionEngine.crawl">crawl</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#download" class="internal-link" title="scrapy.core.engine.ExecutionEngine.download">download</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#has_capacity" class="internal-link" title="scrapy.core.engine.ExecutionEngine.has_capacity">has<wbr></wbr>_capacity</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#open_spider" class="internal-link" title="scrapy.core.engine.ExecutionEngine.open_spider">open<wbr></wbr>_spider</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#pause" class="internal-link" title="scrapy.core.engine.ExecutionEngine.pause">pause</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#schedule" class="internal-link" title="scrapy.core.engine.ExecutionEngine.schedule">schedule</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#spider_is_idle" class="internal-link" title="scrapy.core.engine.ExecutionEngine.spider_is_idle">spider<wbr></wbr>_is<wbr></wbr>_idle</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#start" class="internal-link" title="scrapy.core.engine.ExecutionEngine.start">start</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#stop" class="internal-link" title="scrapy.core.engine.ExecutionEngine.stop">stop</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#unpause" class="internal-link" title="scrapy.core.engine.ExecutionEngine.unpause">unpause</a></code>
+            </div>
+        
+
+    </li><li class="private">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#_download" class="internal-link" title="scrapy.core.engine.ExecutionEngine._download">_download</a></code>
+            </div>
+        
+
+    </li><li class="private">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#_downloaded" class="internal-link" title="scrapy.core.engine.ExecutionEngine._downloaded">_downloaded</a></code>
+            </div>
+        
+
+    </li><li class="private">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#_get_scheduler_class" class="internal-link" title="scrapy.core.engine.ExecutionEngine._get_scheduler_class">_get<wbr></wbr>_scheduler<wbr></wbr>_class</a></code>
+            </div>
+        
+
+    </li><li class="private">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#_handle_downloader_output" class="internal-link" title="scrapy.core.engine.ExecutionEngine._handle_downloader_output">_handle<wbr></wbr>_downloader<wbr></wbr>_output</a></code>
+            </div>
+        
+
+    </li><li class="private">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#_needs_backout" class="internal-link" title="scrapy.core.engine.ExecutionEngine._needs_backout">_needs<wbr></wbr>_backout</a></code>
+            </div>
+        
+
+    </li><li class="private">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#_next_request" class="internal-link" title="scrapy.core.engine.ExecutionEngine._next_request">_next<wbr></wbr>_request</a></code>
+            </div>
+        
+
+    </li><li class="private">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#_next_request_from_scheduler" class="internal-link" title="scrapy.core.engine.ExecutionEngine._next_request_from_scheduler">_next<wbr></wbr>_request<wbr></wbr>_from<wbr></wbr>_scheduler</a></code>
+            </div>
+        
+
+    </li><li class="private">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#_schedule_request" class="internal-link" title="scrapy.core.engine.ExecutionEngine._schedule_request">_schedule<wbr></wbr>_request</a></code>
+            </div>
+        
+
+    </li><li class="private">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#_spider_idle" class="internal-link" title="scrapy.core.engine.ExecutionEngine._spider_idle">_spider<wbr></wbr>_idle</a></code>
+            </div>
+        
+
+    </li>
+</ul> 
+
+        
+         
+
+        <div class="childrenKindTitle">Attributes</div>
+        <ul>
+    
+    <li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#crawler" class="internal-link" title="scrapy.core.engine.ExecutionEngine.crawler">crawler</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#downloader" class="internal-link" title="scrapy.core.engine.ExecutionEngine.downloader">downloader</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#logformatter" class="internal-link" title="scrapy.core.engine.ExecutionEngine.logformatter">logformatter</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#paused" class="internal-link" title="scrapy.core.engine.ExecutionEngine.paused">paused</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#running" class="internal-link" title="scrapy.core.engine.ExecutionEngine.running">running</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#scheduler_cls" class="internal-link" title="scrapy.core.engine.ExecutionEngine.scheduler_cls">scheduler<wbr></wbr>_cls</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#scraper" class="internal-link" title="scrapy.core.engine.ExecutionEngine.scraper">scraper</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#settings" class="internal-link" title="scrapy.core.engine.ExecutionEngine.settings">settings</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#signals" class="internal-link" title="scrapy.core.engine.ExecutionEngine.signals">signals</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#slot" class="internal-link" title="scrapy.core.engine.ExecutionEngine.slot">slot</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#spider" class="internal-link" title="scrapy.core.engine.ExecutionEngine.spider">spider</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#start_time" class="internal-link" title="scrapy.core.engine.ExecutionEngine.start_time">start<wbr></wbr>_time</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#open_spiders" class="internal-link" title="scrapy.core.engine.ExecutionEngine.open_spiders">open<wbr></wbr>_spiders</a></code>
+            </div>
+        
+
+    </li><li class="private">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#_closewait" class="internal-link" title="scrapy.core.engine.ExecutionEngine._closewait">_closewait</a></code>
+            </div>
+        
+
+    </li><li class="private">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#_spider_closed_callback" class="internal-link" title="scrapy.core.engine.ExecutionEngine._spider_closed_callback">_spider<wbr></wbr>_closed<wbr></wbr>_callback</a></code>
+            </div>
+        
+
+    </li>
+</ul> 
+
+        
+         
+        
+      </div>
+  </div><div>
+
+      <div class="thingTitle">
+        <span>Module</span>
+        <code><a href="scrapy.core.engine.html" class="internal-link" title="The parent of this class">engine</a></code> 
+      </div>
+      
+      <div>
+        
+
+        
+         
+
+        <div class="childrenKindTitle">Classes</div>
+        <ul>
+    
+    <li class=" thisobject">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="scrapy.core.engine.ExecutionEngine.html" class="internal-link" title="scrapy.core.engine.ExecutionEngine"><wbr></wbr>Execution<wbr></wbr>Engine</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="scrapy.core.engine.Slot.html" class="internal-link" title="scrapy.core.engine.Slot"><wbr></wbr>Slot</a></code>
+            </div>
+        
+
+    </li>
+</ul>
+
+        
+         
+
+        
+         
+
+        <div class="childrenKindTitle">Variables</div>
+        <ul>
+    
+    <li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="scrapy.core.engine.html#logger" class="internal-link" title="scrapy.core.engine.logger">logger</a></code>
+            </div>
+        
+
+    </li>
+</ul> 
+
+        
+         
+        
+      </div>
+  </div>
+
+</nav>
+        </div>
+        <div id="collapseSideBar">
+          <a class="btn btn-link" onclick="toggleSideBarCollapse()" title="Toggle Sidebar Collapse">
+          </a>
+        </div> 
+        <script src="sidebartoggle.js" type="text/javascript"></script>
+       
+      </div>
+
+      <div id="main" class="">
+        
+
+        
+
+        <div class="page-header">
+          <h1 class="class"><code><code><a href="index.html" class="internal-link">scrapy</a></code><wbr></wbr>.<code><a href="scrapy.core.html" class="internal-link" title="scrapy.core">core</a></code><wbr></wbr>.<code><a href="scrapy.core.engine.html" class="internal-link" title="scrapy.core.engine">engine</a></code><wbr></wbr>.<code><a href="scrapy.core.engine.ExecutionEngine.html" class="internal-link" title="scrapy.core.engine.ExecutionEngine">ExecutionEngine</a></code></code></h1>
+          <div id="showPrivate">
+            <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+          </div>
+        </div>
+
+        <div class="categoryHeader">
+          class documentation
+        </div>
+
+        <div class="extrasDocstring">
+          <p><code><span class="py-keyword">class</span> <span class="py-defname">ExecutionEngine</span>: <a href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/scrapy-2.6.1//scrapy/core/engine.py#L71" class="sourceLink">(source)</a></code></p>
+          <p><a href="classIndex.html#scrapy.core.engine.ExecutionEngine">View In Hierarchy</a></p>
+        </div>
+
+        <div class="moduleDocstring">
+          <div><p class="undocumented">Undocumented</p></div>
+        </div>
+
+        <div id="splitTables">
+          <table class="children sortable" id="id8779">
+  
+  
+  <tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__init__" class="internal-link" title="scrapy.core.engine.ExecutionEngine.__init__">__init__</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#close" class="internal-link" title="scrapy.core.engine.ExecutionEngine.close">close</a></code></td>
+    <td>Gracefully close the execution engine. If it has already been started, stop it. In all cases, close the spider and the downloader.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#close_spider" class="internal-link" title="scrapy.core.engine.ExecutionEngine.close_spider">close<wbr></wbr>_spider</a></code></td>
+    <td>Close (cancel) spider and clear all its outstanding requests</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#crawl" class="internal-link" title="scrapy.core.engine.ExecutionEngine.crawl">crawl</a></code></td>
+    <td>Inject the request into the spider &lt;-&gt; downloader pipeline</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#download" class="internal-link" title="scrapy.core.engine.ExecutionEngine.download">download</a></code></td>
+    <td>Return a Deferred which fires with a Response as result, only downloader middlewares are applied</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#has_capacity" class="internal-link" title="scrapy.core.engine.ExecutionEngine.has_capacity">has<wbr></wbr>_capacity</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#open_spider" class="internal-link" title="scrapy.core.engine.ExecutionEngine.open_spider">open<wbr></wbr>_spider</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#pause" class="internal-link" title="scrapy.core.engine.ExecutionEngine.pause">pause</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#schedule" class="internal-link" title="scrapy.core.engine.ExecutionEngine.schedule">schedule</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#spider_is_idle" class="internal-link" title="scrapy.core.engine.ExecutionEngine.spider_is_idle">spider<wbr></wbr>_is<wbr></wbr>_idle</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#start" class="internal-link" title="scrapy.core.engine.ExecutionEngine.start">start</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#stop" class="internal-link" title="scrapy.core.engine.ExecutionEngine.stop">stop</a></code></td>
+    <td>Gracefully stop the execution engine</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#unpause" class="internal-link" title="scrapy.core.engine.ExecutionEngine.unpause">unpause</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#crawler" class="internal-link" title="scrapy.core.engine.ExecutionEngine.crawler">crawler</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#downloader" class="internal-link" title="scrapy.core.engine.ExecutionEngine.downloader">downloader</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#logformatter" class="internal-link" title="scrapy.core.engine.ExecutionEngine.logformatter">logformatter</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#paused" class="internal-link" title="scrapy.core.engine.ExecutionEngine.paused">paused</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#running" class="internal-link" title="scrapy.core.engine.ExecutionEngine.running">running</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#scheduler_cls" class="internal-link" title="scrapy.core.engine.ExecutionEngine.scheduler_cls">scheduler<wbr></wbr>_cls</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#scraper" class="internal-link" title="scrapy.core.engine.ExecutionEngine.scraper">scraper</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#settings" class="internal-link" title="scrapy.core.engine.ExecutionEngine.settings">settings</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#signals" class="internal-link" title="scrapy.core.engine.ExecutionEngine.signals">signals</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#slot" class="internal-link" title="scrapy.core.engine.ExecutionEngine.slot">slot</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#spider" class="internal-link" title="scrapy.core.engine.ExecutionEngine.spider">spider</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#start_time" class="internal-link" title="scrapy.core.engine.ExecutionEngine.start_time">start<wbr></wbr>_time</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="property">
+    
+    <td>Property</td>
+    <td><code><a href="#open_spiders" class="internal-link" title="scrapy.core.engine.ExecutionEngine.open_spiders">open<wbr></wbr>_spiders</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_download" class="internal-link" title="scrapy.core.engine.ExecutionEngine._download">_download</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_downloaded" class="internal-link" title="scrapy.core.engine.ExecutionEngine._downloaded">_downloaded</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_get_scheduler_class" class="internal-link" title="scrapy.core.engine.ExecutionEngine._get_scheduler_class">_get<wbr></wbr>_scheduler<wbr></wbr>_class</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_handle_downloader_output" class="internal-link" title="scrapy.core.engine.ExecutionEngine._handle_downloader_output">_handle<wbr></wbr>_downloader<wbr></wbr>_output</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_needs_backout" class="internal-link" title="scrapy.core.engine.ExecutionEngine._needs_backout">_needs<wbr></wbr>_backout</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_next_request" class="internal-link" title="scrapy.core.engine.ExecutionEngine._next_request">_next<wbr></wbr>_request</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_next_request_from_scheduler" class="internal-link" title="scrapy.core.engine.ExecutionEngine._next_request_from_scheduler">_next<wbr></wbr>_request<wbr></wbr>_from<wbr></wbr>_scheduler</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_schedule_request" class="internal-link" title="scrapy.core.engine.ExecutionEngine._schedule_request">_schedule<wbr></wbr>_request</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_spider_idle" class="internal-link" title="scrapy.core.engine.ExecutionEngine._spider_idle">_spider<wbr></wbr>_idle</a></code></td>
+    <td>Called when a spider gets idle, i.e. when there are no remaining requests to download or schedule. It can be called multiple times. If a handler for the spider_idle signal raises a DontCloseSpider exception, the spider is not closed until the next loop and this function is guaranteed to be called (at least) once again...</td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#_closewait" class="internal-link" title="scrapy.core.engine.ExecutionEngine._closewait">_closewait</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#_spider_closed_callback" class="internal-link" title="scrapy.core.engine.ExecutionEngine._spider_closed_callback">_spider<wbr></wbr>_closed<wbr></wbr>_callback</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+          
+
+            
+        </div>
+
+        <div id="childList">
+          <div class="basemethod">
+  
+  
+  <a name="scrapy.core.engine.ExecutionEngine.__init__">
+    
+  </a>
+  <a name="__init__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__init__</span>(self, crawler, spider_closed_callback):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/scrapy-2.6.1//scrapy/core/engine.py#L72">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">crawler</span></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">spider<wbr></wbr>_closed<wbr></wbr>_callback:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Callable" class="intersphinx-link">Callable</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="scrapy.core.engine.ExecutionEngine.close">
+    
+  </a>
+  <a name="close">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">close</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/scrapy-2.6.1//scrapy/core/engine.py#L121">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="pre">Gracefully close the execution engine.
+If it has already been started, stop it. In all cases, close the spider and the downloader.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://pydocbrowser.github.io/twisted/latest/twisted.internet.defer.Deferred.html" class="intersphinx-link">Deferred</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="scrapy.core.engine.ExecutionEngine.close_spider">
+    
+  </a>
+  <a name="close_spider">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">close_spider</span>(self, spider, reason=<span class="rst-variable-quote">'</span><span class="rst-variable-string">cancelled</span><span class="rst-variable-quote">'</span>):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/scrapy-2.6.1//scrapy/core/engine.py#L350">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="pre">Close (cancel) spider and clear all its outstanding requests</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">spider:</span><code>Spider</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">reason:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://pydocbrowser.github.io/twisted/latest/twisted.internet.defer.Deferred.html" class="intersphinx-link">Deferred</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="scrapy.core.engine.ExecutionEngine.crawl">
+    
+  </a>
+  <a name="crawl">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">crawl</span>(self, request, spider=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/scrapy-2.6.1//scrapy/core/engine.py#L235">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="pre">Inject the request into the spider &lt;-&gt; downloader pipeline</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">request:</span><code>Request</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">spider:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">Optional</a>[<wbr></wbr>Spider]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="scrapy.core.engine.ExecutionEngine.download">
+    
+  </a>
+  <a name="download">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">download</span>(self, request, spider=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/scrapy-2.6.1//scrapy/core/engine.py#L255">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="pre">Return a Deferred which fires with a Response as result, only downloader middlewares are applied</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">request:</span><code>Request</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">spider:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">Optional</a>[<wbr></wbr>Spider]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://pydocbrowser.github.io/twisted/latest/twisted.internet.defer.Deferred.html" class="intersphinx-link">Deferred</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="scrapy.core.engine.ExecutionEngine.has_capacity">
+    
+  </a>
+  <a name="has_capacity">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">has_capacity</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/scrapy-2.6.1//scrapy/core/engine.py#L406">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="scrapy.core.engine.ExecutionEngine.open_spider">
+    
+  </a>
+  <a name="open_spider">
+    
+  </a>
+  <div class="functionHeader">
+    @<a href="https://pydocbrowser.github.io/twisted/latest/twisted.internet.defer.html#inlineCallbacks" class="intersphinx-link">inlineCallbacks</a><br />
+    <span class="py-keyword">def</span> <span class="py-defname">open_spider</span>(self, spider, start_requests=(), close_if_idle=<a href="https://docs.python.org/3/library/constants.html#True" class="intersphinx-link">True</a>):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/scrapy-2.6.1//scrapy/core/engine.py#L309">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">spider:</span><code>Spider</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">start<wbr></wbr>_requests:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Iterable" class="intersphinx-link">Iterable</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">close<wbr></wbr>_if<wbr></wbr>_idle:</span><code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="scrapy.core.engine.ExecutionEngine.pause">
+    
+  </a>
+  <a name="pause">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">pause</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/scrapy-2.6.1//scrapy/core/engine.py#L132">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="scrapy.core.engine.ExecutionEngine.schedule">
+    
+  </a>
+  <a name="schedule">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">schedule</span>(self, request, spider):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/scrapy-2.6.1//scrapy/core/engine.py#L410">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">request:</span><code>Request</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">spider:</span><code>Spider</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="scrapy.core.engine.ExecutionEngine.spider_is_idle">
+    
+  </a>
+  <a name="spider_is_idle">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">spider_is_idle</span>(self, spider=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/scrapy-2.6.1//scrapy/core/engine.py#L216">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">spider:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">Optional</a>[<wbr></wbr>Spider]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="scrapy.core.engine.ExecutionEngine.start">
+    
+  </a>
+  <a name="start">
+    
+  </a>
+  <div class="functionHeader">
+    @<a href="https://pydocbrowser.github.io/twisted/latest/twisted.internet.defer.html#inlineCallbacks" class="intersphinx-link">inlineCallbacks</a><br />
+    <span class="py-keyword">def</span> <span class="py-defname">start</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/scrapy-2.6.1//scrapy/core/engine.py#L97">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://pydocbrowser.github.io/twisted/latest/twisted.internet.defer.Deferred.html" class="intersphinx-link">Deferred</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="scrapy.core.engine.ExecutionEngine.stop">
+    
+  </a>
+  <a name="stop">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">stop</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/scrapy-2.6.1//scrapy/core/engine.py#L107">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="pre">Gracefully stop the execution engine</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://pydocbrowser.github.io/twisted/latest/twisted.internet.defer.Deferred.html" class="intersphinx-link">Deferred</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="scrapy.core.engine.ExecutionEngine.unpause">
+    
+  </a>
+  <a name="unpause">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">unpause</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/scrapy-2.6.1//scrapy/core/engine.py#L135">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="scrapy.core.engine.ExecutionEngine.crawler">
+    
+  </a>
+  <a name="crawler">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">crawler</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/scrapy-2.6.1//scrapy/core/engine.py#L73">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="scrapy.core.engine.ExecutionEngine.downloader">
+    
+  </a>
+  <a name="downloader">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">downloader</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/scrapy-2.6.1//scrapy/core/engine.py#L83">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="scrapy.core.engine.ExecutionEngine.logformatter">
+    
+  </a>
+  <a name="logformatter">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">logformatter</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/scrapy-2.6.1//scrapy/core/engine.py#L76">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="scrapy.core.engine.ExecutionEngine.paused">
+    
+  </a>
+  <a name="paused">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">paused</span>: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/scrapy-2.6.1//scrapy/core/engine.py#L80">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="scrapy.core.engine.ExecutionEngine.running">
+    
+  </a>
+  <a name="running">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">running</span>: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/scrapy-2.6.1//scrapy/core/engine.py#L79">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="scrapy.core.engine.ExecutionEngine.scheduler_cls">
+    
+  </a>
+  <a name="scheduler_cls">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">scheduler_cls</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/scrapy-2.6.1//scrapy/core/engine.py#L81">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="scrapy.core.engine.ExecutionEngine.scraper">
+    
+  </a>
+  <a name="scraper">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">scraper</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/scrapy-2.6.1//scrapy/core/engine.py#L84">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="scrapy.core.engine.ExecutionEngine.settings">
+    
+  </a>
+  <a name="settings">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">settings</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/scrapy-2.6.1//scrapy/core/engine.py#L74">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="scrapy.core.engine.ExecutionEngine.signals">
+    
+  </a>
+  <a name="signals">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">signals</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/scrapy-2.6.1//scrapy/core/engine.py#L75">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="scrapy.core.engine.ExecutionEngine.slot">
+    
+  </a>
+  <a name="slot">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">slot</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/scrapy-2.6.1//scrapy/core/engine.py#L77">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="scrapy.core.engine.ExecutionEngine.spider">
+    
+  </a>
+  <a name="spider">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">spider</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/scrapy-2.6.1//scrapy/core/engine.py#L78">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="scrapy.core.engine.ExecutionEngine.start_time">
+    
+  </a>
+  <a name="start_time">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">start_time</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/scrapy-2.6.1//scrapy/core/engine.py#L101">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseproperty">
+  
+  
+  <a name="scrapy.core.engine.ExecutionEngine.open_spiders">
+    
+  </a>
+  <a name="open_spiders">
+    
+  </a>
+  <div class="functionHeader">
+    @<a href="https://docs.python.org/3/library/functions.html#property" class="intersphinx-link">property</a><br />
+    <span class="py-defname">open_spiders</span>: <code><a href="https://docs.python.org/3/library/stdtypes.html#list" class="intersphinx-link">list</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/scrapy-2.6.1//scrapy/core/engine.py#L397">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="scrapy.core.engine.ExecutionEngine._download">
+    
+  </a>
+  <a name="_download">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_download</span>(self, request, spider):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/scrapy-2.6.1//scrapy/core/engine.py#L278">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">request:</span><code>Request</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">spider:</span><code>Spider</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://pydocbrowser.github.io/twisted/latest/twisted.internet.defer.Deferred.html" class="intersphinx-link">Deferred</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="scrapy.core.engine.ExecutionEngine._downloaded">
+    
+  </a>
+  <a name="_downloaded">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_downloaded</span>(self, result, request, spider):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/scrapy-2.6.1//scrapy/core/engine.py#L271">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">result:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Union" class="intersphinx-link">Union</a>[<wbr></wbr>Response, <wbr></wbr>Request]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">request:</span><code>Request</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">spider:</span><code>Spider</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Union" class="intersphinx-link">Union</a>[<wbr></wbr><a href="https://pydocbrowser.github.io/twisted/latest/twisted.internet.defer.Deferred.html" class="intersphinx-link">Deferred</a>, <wbr></wbr>Response]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="scrapy.core.engine.ExecutionEngine._get_scheduler_class">
+    
+  </a>
+  <a name="_get_scheduler_class">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_get_scheduler_class</span>(self, settings):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/scrapy-2.6.1//scrapy/core/engine.py#L87">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">settings:</span><code><a href="scrapy.settings.BaseSettings.html" class="internal-link" title="scrapy.settings.BaseSettings">BaseSettings</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/functions.html#type" class="intersphinx-link">type</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="scrapy.core.engine.ExecutionEngine._handle_downloader_output">
+    
+  </a>
+  <a name="_handle_downloader_output">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_handle_downloader_output</span>(self, result, request):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/scrapy-2.6.1//scrapy/core/engine.py#L193">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">result:</span><code><a href="https://docs.python.org/3/library/typing.html#typing.Union" class="intersphinx-link">Union</a>[<wbr></wbr>Request, <wbr></wbr>Response, <wbr></wbr><a href="https://pydocbrowser.github.io/twisted/latest/twisted.python.failure.Failure.html" class="intersphinx-link">Failure</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">request:</span><code>Request</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">Optional</a>[<wbr></wbr><a href="https://pydocbrowser.github.io/twisted/latest/twisted.internet.defer.Deferred.html" class="intersphinx-link">Deferred</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="scrapy.core.engine.ExecutionEngine._needs_backout">
+    
+  </a>
+  <a name="_needs_backout">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_needs_backout</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/scrapy-2.6.1//scrapy/core/engine.py#L162">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="scrapy.core.engine.ExecutionEngine._next_request">
+    
+  </a>
+  <a name="_next_request">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_next_request</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/scrapy-2.6.1//scrapy/core/engine.py#L138">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="scrapy.core.engine.ExecutionEngine._next_request_from_scheduler">
+    
+  </a>
+  <a name="_next_request_from_scheduler">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_next_request_from_scheduler</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/scrapy-2.6.1//scrapy/core/engine.py#L170">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">Optional</a>[<wbr></wbr><a href="https://pydocbrowser.github.io/twisted/latest/twisted.internet.defer.Deferred.html" class="intersphinx-link">Deferred</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="scrapy.core.engine.ExecutionEngine._schedule_request">
+    
+  </a>
+  <a name="_schedule_request">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_schedule_request</span>(self, request, spider):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/scrapy-2.6.1//scrapy/core/engine.py#L250">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">request:</span><code>Request</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">spider:</span><code>Spider</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="scrapy.core.engine.ExecutionEngine._spider_idle">
+    
+  </a>
+  <a name="_spider_idle">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_spider_idle</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/scrapy-2.6.1//scrapy/core/engine.py#L327">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="pre">Called when a spider gets idle, i.e. when there are no remaining requests to download or schedule.
+It can be called multiple times. If a handler for the spider_idle signal raises a DontCloseSpider
+exception, the spider is not closed until the next loop and this function is guaranteed to be called
+(at least) once again. A handler can raise CloseSpider to provide a custom closing reason.</p></div>
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  
+  <a name="scrapy.core.engine.ExecutionEngine._closewait">
+    
+  </a>
+  <a name="_closewait">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_closewait</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/scrapy-2.6.1//scrapy/core/engine.py#L104">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  
+  <a name="scrapy.core.engine.ExecutionEngine._spider_closed_callback">
+    
+  </a>
+  <a name="_spider_closed_callback">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_spider_closed_callback</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/scrapy-2.6.1//scrapy/core/engine.py#L85">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div>
+        </div>
+      
+      </div>
+    </div>
+
+    <footer class="navbar navbar-default">
+
+  
+  <div class="container">
+    <a href="index.html">API Documentation</a> for scrapy,
+  generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
+    22.5.1 at 2022-07-13 20:48:43.
+  </div>
+
+  <!-- Search related scripts needs to be loaded at the end of HTML 
+    parsing not to introduce overhead and display HTML data asap -->
+  <script src="ajax.js" type="text/javascript"></script>
+  <script src="searchlib.js" type="text/javascript"></script>
+  <script src="search.js" type="text/javascript"></script>
+
+</footer>
+  
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+  </body>
+</html>
