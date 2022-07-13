@@ -1,0 +1,4284 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  
+
+  <head>
+    
+    <title>django.db.models.query.QuerySet</title>
+    <meta name="generator" content="pydoctor 22.5.1"> 
+        
+    </meta>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1 maximum-scale=1" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+    <link rel="stylesheet" type="text/css" href="extra.css" />
+</head>
+
+  <body>
+
+    <div id="banner">    
+    <div>
+        <a href="/">Home</a>
+        &gt; django-4.0.6 <!-- This is a placeholder -->
+        
+        <!-- (<a href=""&gt;show all versions</a&gt;) -->
+    </div>
+</div>
+
+    <nav class="navbar navbar-default mainnavbar">
+      
+  
+  <div class="container-fluid">
+
+
+    <div class="navbar-header">
+      
+      <div class="navlinks">
+        <span class="navbar-brand">
+          django <a href="index.html">API Documentation</a>
+        </span>
+
+        <a href="moduleIndex.html">
+          Modules
+        </a>
+
+        <a href="classIndex.html">
+          Classes
+        </a>
+
+        <a href="nameIndex.html">
+          Names
+        </a>
+
+        <div id="search-box-container">
+          <div class="input-group">
+            <input id="search-box" type="search" name="search-query" placeholder="Search..." aria-label="Search" minlength="2" class="form-control" autocomplete="off" />
+            
+            <span class="input-group-btn">
+              <a style="display: none;" class="btn btn-default" id="search-clear-button" title="Clear" onclick="clearSearch()"><img src="fonts/x-circle.svg" alt="Clear" /></a>
+              <a class="btn btn-default" id="search-help-button" title="Help" onclick="toggleSearchHelpText()"><img src="fonts/info.svg" alt="Help" /></a>
+            </span>
+          </div>
+        </div>
+
+      </div>
+
+      <div id="search-results-container" style="display: none;">
+        
+        <div id="search-buttons">
+          <span class="label label-default" id="search-docstrings-button">
+          <label class="checkbox-inline">
+            <input type="checkbox" id="toggle-search-in-docstrings-checkbox" value="false" onclick="toggleSearchInDocstrings()">
+              search in docstrings
+            </input>
+          </label>
+          </span>
+          
+        </div>
+        
+        <noscript>
+            <h1>Cannot search: JavaScript is not supported/enabled in your browser.</h1>
+        </noscript>
+
+        <div class="hint" id="search-help-box">
+          <p class="rst-last">
+      
+            Search bar offers the following options:
+            <ul>   
+                <li>
+                  <strong>Term presence.</strong> The below example searches for documents that 
+                    must contain “foo”, might contain “bar” and must not contain “baz”: <code>+foo bar -baz</code>
+                </li> 
+
+                <li>
+                  <strong>Wildcards.</strong> The below example searches for documents with words beginning with “foo”: <code>foo*</code>
+                </li> 
+
+                <li>
+                  <strong>Search in specific fields.</strong> The following search matches all objects 
+                  in "twisted.mail" that matches “search”: <code>+qname:twisted.mail.* +search</code>
+
+                  <p>
+                    Possible fields: 'name', 'qname' (fully qualified name), 'docstring', and 'kind'.
+                    Last two fields are only applicable if "search in docstrings" is enabled.
+                  </p>
+                </li>
+
+                <li>
+                  <strong>Fuzzy matches.</strong> The following search matches all documents 
+                  that have a word within 1 edit distance of “foo”: <code>foo~1</code>
+                </li>
+            </ul>
+
+          </p>
+        </div>
+
+        <div id="search-status"> </div>
+
+        <div class="warning" id="search-warn-box" style="display: none;">
+          <p class="rst-last"><span id="search-warn"></span></p>
+        </div>
+
+        <table id="search-results">
+          <!-- Filled dynamically by JS -->
+        </table>
+        
+        <div style="margin-top: 8px;">
+          <p>Results provided by <a href="https://lunrjs.com">Lunr.js</a></p>
+        </div>
+      </div>
+
+    </div>
+
+
+  </div>
+</nav>
+    
+    <div class="container-fluid">
+
+      <!-- Side navigation -->
+      <div class="sidebarcontainer" style="display: none;">
+        
+        <div class="sidebar"><nav class="sidebar">
+  
+
+  <div>
+
+      <div class="thingTitle">
+        <span>Class</span>
+        <code class="thisobject"><a href="django.db.models.query.QuerySet.html" class="internal-link" title="This class"><wbr></wbr>Query<wbr></wbr>Set</a></code> 
+      </div>
+      
+      <div>
+        
+
+        
+         
+
+        
+        
+
+        <div class="childrenKindTitle">Methods</div>
+        <ul>
+    
+    <li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#as_manager" class="internal-link" title="django.db.models.query.QuerySet.as_manager">as<wbr></wbr>_manager</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#__and__" class="internal-link" title="django.db.models.query.QuerySet.__and__">__and__</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#__bool__" class="internal-link" title="django.db.models.query.QuerySet.__bool__">__bool__</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#__class_getitem__" class="internal-link" title="django.db.models.query.QuerySet.__class_getitem__">__class<wbr></wbr>_getitem__</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#__deepcopy__" class="internal-link" title="django.db.models.query.QuerySet.__deepcopy__">__deepcopy__</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#__getitem__" class="internal-link" title="django.db.models.query.QuerySet.__getitem__">__getitem__</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#__getstate__" class="internal-link" title="django.db.models.query.QuerySet.__getstate__">__getstate__</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#__init__" class="internal-link" title="django.db.models.query.QuerySet.__init__">__init__</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#__iter__" class="internal-link" title="django.db.models.query.QuerySet.__iter__">__iter__</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#__len__" class="internal-link" title="django.db.models.query.QuerySet.__len__">__len__</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#__or__" class="internal-link" title="django.db.models.query.QuerySet.__or__">__or__</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#__repr__" class="internal-link" title="django.db.models.query.QuerySet.__repr__">__repr__</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#__setstate__" class="internal-link" title="django.db.models.query.QuerySet.__setstate__">__setstate__</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#aggregate" class="internal-link" title="django.db.models.query.QuerySet.aggregate">aggregate</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#alias" class="internal-link" title="django.db.models.query.QuerySet.alias">alias</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#all" class="internal-link" title="django.db.models.query.QuerySet.all">all</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#annotate" class="internal-link" title="django.db.models.query.QuerySet.annotate">annotate</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#bulk_create" class="internal-link" title="django.db.models.query.QuerySet.bulk_create">bulk<wbr></wbr>_create</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#bulk_update" class="internal-link" title="django.db.models.query.QuerySet.bulk_update">bulk<wbr></wbr>_update</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#complex_filter" class="internal-link" title="django.db.models.query.QuerySet.complex_filter">complex<wbr></wbr>_filter</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#contains" class="internal-link" title="django.db.models.query.QuerySet.contains">contains</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#count" class="internal-link" title="django.db.models.query.QuerySet.count">count</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#create" class="internal-link" title="django.db.models.query.QuerySet.create">create</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#dates" class="internal-link" title="django.db.models.query.QuerySet.dates">dates</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#datetimes" class="internal-link" title="django.db.models.query.QuerySet.datetimes">datetimes</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#defer" class="internal-link" title="django.db.models.query.QuerySet.defer">defer</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#delete" class="internal-link" title="django.db.models.query.QuerySet.delete">delete</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#difference" class="internal-link" title="django.db.models.query.QuerySet.difference">difference</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#distinct" class="internal-link" title="django.db.models.query.QuerySet.distinct">distinct</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#earliest" class="internal-link" title="django.db.models.query.QuerySet.earliest">earliest</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#exclude" class="internal-link" title="django.db.models.query.QuerySet.exclude">exclude</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#exists" class="internal-link" title="django.db.models.query.QuerySet.exists">exists</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#explain" class="internal-link" title="django.db.models.query.QuerySet.explain">explain</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#extra" class="internal-link" title="django.db.models.query.QuerySet.extra">extra</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#filter" class="internal-link" title="django.db.models.query.QuerySet.filter">filter</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#first" class="internal-link" title="django.db.models.query.QuerySet.first">first</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#get" class="internal-link" title="django.db.models.query.QuerySet.get">get</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#get_or_create" class="internal-link" title="django.db.models.query.QuerySet.get_or_create">get<wbr></wbr>_or<wbr></wbr>_create</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#in_bulk" class="internal-link" title="django.db.models.query.QuerySet.in_bulk">in<wbr></wbr>_bulk</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#intersection" class="internal-link" title="django.db.models.query.QuerySet.intersection">intersection</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#iterator" class="internal-link" title="django.db.models.query.QuerySet.iterator">iterator</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#last" class="internal-link" title="django.db.models.query.QuerySet.last">last</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#latest" class="internal-link" title="django.db.models.query.QuerySet.latest">latest</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#none" class="internal-link" title="django.db.models.query.QuerySet.none">none</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#only" class="internal-link" title="django.db.models.query.QuerySet.only">only</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#order_by" class="internal-link" title="django.db.models.query.QuerySet.order_by">order<wbr></wbr>_by</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#prefetch_related" class="internal-link" title="django.db.models.query.QuerySet.prefetch_related">prefetch<wbr></wbr>_related</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#query.setter" class="internal-link" title="django.db.models.query.QuerySet.query.setter">query<wbr></wbr>.setter</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#raw" class="internal-link" title="django.db.models.query.QuerySet.raw">raw</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#resolve_expression" class="internal-link" title="django.db.models.query.QuerySet.resolve_expression">resolve<wbr></wbr>_expression</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#reverse" class="internal-link" title="django.db.models.query.QuerySet.reverse">reverse</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#select_for_update" class="internal-link" title="django.db.models.query.QuerySet.select_for_update">select<wbr></wbr>_for<wbr></wbr>_update</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#select_related" class="internal-link" title="django.db.models.query.QuerySet.select_related">select<wbr></wbr>_related</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#union" class="internal-link" title="django.db.models.query.QuerySet.union">union</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#update" class="internal-link" title="django.db.models.query.QuerySet.update">update</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#update_or_create" class="internal-link" title="django.db.models.query.QuerySet.update_or_create">update<wbr></wbr>_or<wbr></wbr>_create</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#using" class="internal-link" title="django.db.models.query.QuerySet.using">using</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#values" class="internal-link" title="django.db.models.query.QuerySet.values">values</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#values_list" class="internal-link" title="django.db.models.query.QuerySet.values_list">values<wbr></wbr>_list</a></code>
+            </div>
+        
+
+    </li><li class="private">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#_validate_values_are_expressions" class="internal-link" title="django.db.models.query.QuerySet._validate_values_are_expressions">_validate<wbr></wbr>_values<wbr></wbr>_are<wbr></wbr>_expressions</a></code>
+            </div>
+        
+
+    </li><li class="private">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#_add_hints" class="internal-link" title="django.db.models.query.QuerySet._add_hints">_add<wbr></wbr>_hints</a></code>
+            </div>
+        
+
+    </li><li class="private">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#_annotate" class="internal-link" title="django.db.models.query.QuerySet._annotate">_annotate</a></code>
+            </div>
+        
+
+    </li><li class="private">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#_batched_insert" class="internal-link" title="django.db.models.query.QuerySet._batched_insert">_batched<wbr></wbr>_insert</a></code>
+            </div>
+        
+
+    </li><li class="private">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#_chain" class="internal-link" title="django.db.models.query.QuerySet._chain">_chain</a></code>
+            </div>
+        
+
+    </li><li class="private">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#_clone" class="internal-link" title="django.db.models.query.QuerySet._clone">_clone</a></code>
+            </div>
+        
+
+    </li><li class="private">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#_combinator_query" class="internal-link" title="django.db.models.query.QuerySet._combinator_query">_combinator<wbr></wbr>_query</a></code>
+            </div>
+        
+
+    </li><li class="private">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#_earliest" class="internal-link" title="django.db.models.query.QuerySet._earliest">_earliest</a></code>
+            </div>
+        
+
+    </li><li class="private">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#_extract_model_params" class="internal-link" title="django.db.models.query.QuerySet._extract_model_params">_extract<wbr></wbr>_model<wbr></wbr>_params</a></code>
+            </div>
+        
+
+    </li><li class="private">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#_fetch_all" class="internal-link" title="django.db.models.query.QuerySet._fetch_all">_fetch<wbr></wbr>_all</a></code>
+            </div>
+        
+
+    </li><li class="private">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#_filter_or_exclude" class="internal-link" title="django.db.models.query.QuerySet._filter_or_exclude">_filter<wbr></wbr>_or<wbr></wbr>_exclude</a></code>
+            </div>
+        
+
+    </li><li class="private">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#_filter_or_exclude_inplace" class="internal-link" title="django.db.models.query.QuerySet._filter_or_exclude_inplace">_filter<wbr></wbr>_or<wbr></wbr>_exclude<wbr></wbr>_inplace</a></code>
+            </div>
+        
+
+    </li><li class="private">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#_has_filters" class="internal-link" title="django.db.models.query.QuerySet._has_filters">_has<wbr></wbr>_filters</a></code>
+            </div>
+        
+
+    </li><li class="private">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#_insert" class="internal-link" title="django.db.models.query.QuerySet._insert">_insert</a></code>
+            </div>
+        
+
+    </li><li class="private">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#_iterator" class="internal-link" title="django.db.models.query.QuerySet._iterator">_iterator</a></code>
+            </div>
+        
+
+    </li><li class="private">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#_merge_known_related_objects" class="internal-link" title="django.db.models.query.QuerySet._merge_known_related_objects">_merge<wbr></wbr>_known<wbr></wbr>_related<wbr></wbr>_objects</a></code>
+            </div>
+        
+
+    </li><li class="private">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#_merge_sanity_check" class="internal-link" title="django.db.models.query.QuerySet._merge_sanity_check">_merge<wbr></wbr>_sanity<wbr></wbr>_check</a></code>
+            </div>
+        
+
+    </li><li class="private">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#_next_is_sticky" class="internal-link" title="django.db.models.query.QuerySet._next_is_sticky">_next<wbr></wbr>_is<wbr></wbr>_sticky</a></code>
+            </div>
+        
+
+    </li><li class="private">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#_not_support_combined_queries" class="internal-link" title="django.db.models.query.QuerySet._not_support_combined_queries">_not<wbr></wbr>_support<wbr></wbr>_combined<wbr></wbr>_queries</a></code>
+            </div>
+        
+
+    </li><li class="private">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#_prefetch_related_objects" class="internal-link" title="django.db.models.query.QuerySet._prefetch_related_objects">_prefetch<wbr></wbr>_related<wbr></wbr>_objects</a></code>
+            </div>
+        
+
+    </li><li class="private">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#_prepare_for_bulk_create" class="internal-link" title="django.db.models.query.QuerySet._prepare_for_bulk_create">_prepare<wbr></wbr>_for<wbr></wbr>_bulk<wbr></wbr>_create</a></code>
+            </div>
+        
+
+    </li><li class="private">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#_raw_delete" class="internal-link" title="django.db.models.query.QuerySet._raw_delete">_raw<wbr></wbr>_delete</a></code>
+            </div>
+        
+
+    </li><li class="private">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#_update" class="internal-link" title="django.db.models.query.QuerySet._update">_update</a></code>
+            </div>
+        
+
+    </li><li class="private">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#_values" class="internal-link" title="django.db.models.query.QuerySet._values">_values</a></code>
+            </div>
+        
+
+    </li>
+</ul> 
+
+        
+         
+
+        <div class="childrenKindTitle">Attributes</div>
+        <ul>
+    
+    <li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#model" class="internal-link" title="django.db.models.query.QuerySet.model">model</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#db" class="internal-link" title="django.db.models.query.QuerySet.db">db</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#ordered" class="internal-link" title="django.db.models.query.QuerySet.ordered">ordered</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#query" class="internal-link" title="django.db.models.query.QuerySet.query">query</a></code>
+            </div>
+        
+
+    </li><li class="private">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#_db" class="internal-link" title="django.db.models.query.QuerySet._db">_db</a></code>
+            </div>
+        
+
+    </li><li class="private">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#_defer_next_filter" class="internal-link" title="django.db.models.query.QuerySet._defer_next_filter">_defer<wbr></wbr>_next<wbr></wbr>_filter</a></code>
+            </div>
+        
+
+    </li><li class="private">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#_deferred_filter" class="internal-link" title="django.db.models.query.QuerySet._deferred_filter">_deferred<wbr></wbr>_filter</a></code>
+            </div>
+        
+
+    </li><li class="private">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#_fields" class="internal-link" title="django.db.models.query.QuerySet._fields">_fields</a></code>
+            </div>
+        
+
+    </li><li class="private">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#_for_write" class="internal-link" title="django.db.models.query.QuerySet._for_write">_for<wbr></wbr>_write</a></code>
+            </div>
+        
+
+    </li><li class="private">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#_hints" class="internal-link" title="django.db.models.query.QuerySet._hints">_hints</a></code>
+            </div>
+        
+
+    </li><li class="private">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#_iterable_class" class="internal-link" title="django.db.models.query.QuerySet._iterable_class">_iterable<wbr></wbr>_class</a></code>
+            </div>
+        
+
+    </li><li class="private">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#_known_related_objects" class="internal-link" title="django.db.models.query.QuerySet._known_related_objects">_known<wbr></wbr>_related<wbr></wbr>_objects</a></code>
+            </div>
+        
+
+    </li><li class="private">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#_prefetch_done" class="internal-link" title="django.db.models.query.QuerySet._prefetch_done">_prefetch<wbr></wbr>_done</a></code>
+            </div>
+        
+
+    </li><li class="private">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#_prefetch_related_lookups" class="internal-link" title="django.db.models.query.QuerySet._prefetch_related_lookups">_prefetch<wbr></wbr>_related<wbr></wbr>_lookups</a></code>
+            </div>
+        
+
+    </li><li class="private">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#_query" class="internal-link" title="django.db.models.query.QuerySet._query">_query</a></code>
+            </div>
+        
+
+    </li><li class="private">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#_result_cache" class="internal-link" title="django.db.models.query.QuerySet._result_cache">_result<wbr></wbr>_cache</a></code>
+            </div>
+        
+
+    </li><li class="private">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#_sticky_filter" class="internal-link" title="django.db.models.query.QuerySet._sticky_filter">_sticky<wbr></wbr>_filter</a></code>
+            </div>
+        
+
+    </li>
+</ul> 
+
+        
+         
+        
+      </div>
+  </div><div>
+
+      <div class="thingTitle">
+        <span>Module</span>
+        <code><a href="django.db.models.query.html" class="internal-link" title="The parent of this class">query</a></code> 
+      </div>
+      
+      <div>
+        
+
+        
+         
+
+        <div class="childrenKindTitle">Classes</div>
+        <ul>
+    
+    <li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="django.db.models.query.BaseIterable.html" class="internal-link" title="django.db.models.query.BaseIterable"><wbr></wbr>Base<wbr></wbr>Iterable</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="django.db.models.query.EmptyQuerySet.html" class="internal-link" title="django.db.models.query.EmptyQuerySet"><wbr></wbr>Empty<wbr></wbr>Query<wbr></wbr>Set</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="django.db.models.query.FlatValuesListIterable.html" class="internal-link" title="django.db.models.query.FlatValuesListIterable"><wbr></wbr>Flat<wbr></wbr>Values<wbr></wbr>List<wbr></wbr>Iterable</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="django.db.models.query.InstanceCheckMeta.html" class="internal-link" title="django.db.models.query.InstanceCheckMeta"><wbr></wbr>Instance<wbr></wbr>Check<wbr></wbr>Meta</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="django.db.models.query.ModelIterable.html" class="internal-link" title="django.db.models.query.ModelIterable"><wbr></wbr>Model<wbr></wbr>Iterable</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="django.db.models.query.NamedValuesListIterable.html" class="internal-link" title="django.db.models.query.NamedValuesListIterable"><wbr></wbr>Named<wbr></wbr>Values<wbr></wbr>List<wbr></wbr>Iterable</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="django.db.models.query.Prefetch.html" class="internal-link" title="django.db.models.query.Prefetch"><wbr></wbr>Prefetch</a></code>
+            </div>
+        
+
+    </li><li class=" thisobject">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="django.db.models.query.QuerySet.html" class="internal-link" title="django.db.models.query.QuerySet"><wbr></wbr>Query<wbr></wbr>Set</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="django.db.models.query.RawQuerySet.html" class="internal-link" title="django.db.models.query.RawQuerySet"><wbr></wbr>Raw<wbr></wbr>Query<wbr></wbr>Set</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="django.db.models.query.RelatedPopulator.html" class="internal-link" title="django.db.models.query.RelatedPopulator"><wbr></wbr>Related<wbr></wbr>Populator</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="django.db.models.query.ValuesIterable.html" class="internal-link" title="django.db.models.query.ValuesIterable"><wbr></wbr>Values<wbr></wbr>Iterable</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="django.db.models.query.ValuesListIterable.html" class="internal-link" title="django.db.models.query.ValuesListIterable"><wbr></wbr>Values<wbr></wbr>List<wbr></wbr>Iterable</a></code>
+            </div>
+        
+
+    </li>
+</ul>
+
+        <div class="childrenKindTitle">Functions</div>
+        <ul>
+    
+    <li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="django.db.models.query.html#get_prefetcher" class="internal-link" title="django.db.models.query.get_prefetcher">get<wbr></wbr>_prefetcher</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="django.db.models.query.html#get_related_populators" class="internal-link" title="django.db.models.query.get_related_populators">get<wbr></wbr>_related<wbr></wbr>_populators</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="django.db.models.query.html#normalize_prefetch_lookups" class="internal-link" title="django.db.models.query.normalize_prefetch_lookups">normalize<wbr></wbr>_prefetch<wbr></wbr>_lookups</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="django.db.models.query.html#prefetch_one_level" class="internal-link" title="django.db.models.query.prefetch_one_level">prefetch<wbr></wbr>_one<wbr></wbr>_level</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="django.db.models.query.html#prefetch_related_objects" class="internal-link" title="django.db.models.query.prefetch_related_objects">prefetch<wbr></wbr>_related<wbr></wbr>_objects</a></code>
+            </div>
+        
+
+    </li>
+</ul> 
+
+        
+         
+
+        <div class="childrenKindTitle">Variables</div>
+        <ul>
+    
+    <li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="django.db.models.query.html#MAX_GET_RESULTS" class="internal-link" title="django.db.models.query.MAX_GET_RESULTS">MAX<wbr></wbr>_GET<wbr></wbr>_RESULTS</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="django.db.models.query.html#REPR_OUTPUT_SIZE" class="internal-link" title="django.db.models.query.REPR_OUTPUT_SIZE">REPR<wbr></wbr>_OUTPUT<wbr></wbr>_SIZE</a></code>
+            </div>
+        
+
+    </li>
+</ul> 
+
+        
+         
+        
+      </div>
+  </div>
+
+</nav>
+        </div>
+        <div id="collapseSideBar">
+          <a class="btn btn-link" onclick="toggleSideBarCollapse()" title="Toggle Sidebar Collapse">
+          </a>
+        </div> 
+        <script src="sidebartoggle.js" type="text/javascript"></script>
+       
+      </div>
+
+      <div id="main" class="">
+        
+
+        
+
+        <div class="page-header">
+          <h1 class="class"><code><code><a href="index.html" class="internal-link">django</a></code><wbr></wbr>.<code><a href="django.db.html" class="internal-link" title="django.db">db</a></code><wbr></wbr>.<code><a href="django.db.models.html" class="internal-link" title="django.db.models">models</a></code><wbr></wbr>.<code><a href="django.db.models.query.html" class="internal-link" title="django.db.models.query">query</a></code><wbr></wbr>.<code><a href="django.db.models.query.QuerySet.html" class="internal-link" title="django.db.models.query.QuerySet">QuerySet</a></code></code></h1>
+          <div id="showPrivate">
+            <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+          </div>
+        </div>
+
+        <div class="categoryHeader">
+          class documentation
+        </div>
+
+        <div class="extrasDocstring">
+          <p><code><span class="py-keyword">class</span> <span class="py-defname">QuerySet</span>: <a href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/django-4.0.6//django/db/models/query.py#L213" class="sourceLink">(source)</a></code></p>
+          <p><a href="classIndex.html#django.db.models.query.QuerySet">View In Hierarchy</a></p>
+        </div>
+
+        <div class="moduleDocstring">
+          <div><p class="pre">Represent a lazy database lookup for a set of objects.</p></div>
+        </div>
+
+        <div id="splitTables">
+          <table class="children sortable" id="id5922">
+  
+  
+  <tr class="classmethod">
+    
+    <td>Class Method</td>
+    <td><code><a href="#as_manager" class="internal-link" title="django.db.models.query.QuerySet.as_manager">as<wbr></wbr>_manager</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__and__" class="internal-link" title="django.db.models.query.QuerySet.__and__">__and__</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__bool__" class="internal-link" title="django.db.models.query.QuerySet.__bool__">__bool__</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__class_getitem__" class="internal-link" title="django.db.models.query.QuerySet.__class_getitem__">__class<wbr></wbr>_getitem__</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__deepcopy__" class="internal-link" title="django.db.models.query.QuerySet.__deepcopy__">__deepcopy__</a></code></td>
+    <td>Don't populate the QuerySet's cache.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__getitem__" class="internal-link" title="django.db.models.query.QuerySet.__getitem__">__getitem__</a></code></td>
+    <td>Retrieve an item or slice from the set of results.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__getstate__" class="internal-link" title="django.db.models.query.QuerySet.__getstate__">__getstate__</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__init__" class="internal-link" title="django.db.models.query.QuerySet.__init__">__init__</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__iter__" class="internal-link" title="django.db.models.query.QuerySet.__iter__">__iter__</a></code></td>
+    <td>The queryset iterator protocol uses three nested iterators in the default case:     1. sql.compiler.execute_sql()        - Returns 100 rows at time (constants.GET_ITERATOR_CHUNK_SIZE)          using cursor...</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__len__" class="internal-link" title="django.db.models.query.QuerySet.__len__">__len__</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__or__" class="internal-link" title="django.db.models.query.QuerySet.__or__">__or__</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__repr__" class="internal-link" title="django.db.models.query.QuerySet.__repr__">__repr__</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__setstate__" class="internal-link" title="django.db.models.query.QuerySet.__setstate__">__setstate__</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#aggregate" class="internal-link" title="django.db.models.query.QuerySet.aggregate">aggregate</a></code></td>
+    <td>Return a dictionary containing the calculations (aggregation) over the current queryset.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#alias" class="internal-link" title="django.db.models.query.QuerySet.alias">alias</a></code></td>
+    <td>Return a query set with added aliases for extra data or aggregations.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#all" class="internal-link" title="django.db.models.query.QuerySet.all">all</a></code></td>
+    <td>Return a new QuerySet that is a copy of the current one. This allows a QuerySet to proxy for a model manager in some cases.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#annotate" class="internal-link" title="django.db.models.query.QuerySet.annotate">annotate</a></code></td>
+    <td>Return a query set in which the returned objects have been annotated with extra data or aggregations.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#bulk_create" class="internal-link" title="django.db.models.query.QuerySet.bulk_create">bulk<wbr></wbr>_create</a></code></td>
+    <td>Insert each of the instances into the database. Do *not* call save() on each of the instances, do not send any pre/post_save signals, and do not set the primary key attribute if it is an autoincrement field (except if features...</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#bulk_update" class="internal-link" title="django.db.models.query.QuerySet.bulk_update">bulk<wbr></wbr>_update</a></code></td>
+    <td>Update the given fields in each of the given objects in the database.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#complex_filter" class="internal-link" title="django.db.models.query.QuerySet.complex_filter">complex<wbr></wbr>_filter</a></code></td>
+    <td>Return a new QuerySet instance with filter_obj added to the filters.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#contains" class="internal-link" title="django.db.models.query.QuerySet.contains">contains</a></code></td>
+    <td>Return True if the queryset contains an object.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#count" class="internal-link" title="django.db.models.query.QuerySet.count">count</a></code></td>
+    <td>Perform a SELECT COUNT() and return the number of records as an integer.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#create" class="internal-link" title="django.db.models.query.QuerySet.create">create</a></code></td>
+    <td>Create a new object with the given kwargs, saving it to the database and returning the created object.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#dates" class="internal-link" title="django.db.models.query.QuerySet.dates">dates</a></code></td>
+    <td>Return a list of date objects representing all available dates for the given field_name, scoped to 'kind'.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#datetimes" class="internal-link" title="django.db.models.query.QuerySet.datetimes">datetimes</a></code></td>
+    <td>Return a list of datetime objects representing all available datetimes for the given field_name, scoped to 'kind'.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#defer" class="internal-link" title="django.db.models.query.QuerySet.defer">defer</a></code></td>
+    <td>Defer the loading of data for certain fields until they are accessed. Add the set of deferred fields to any existing set of deferred fields. The only exception to this is if None is passed in as the only parameter, in which case removal all deferrals.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#delete" class="internal-link" title="django.db.models.query.QuerySet.delete">delete</a></code></td>
+    <td>Delete the records in the current QuerySet.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#difference" class="internal-link" title="django.db.models.query.QuerySet.difference">difference</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#distinct" class="internal-link" title="django.db.models.query.QuerySet.distinct">distinct</a></code></td>
+    <td>Return a new QuerySet instance that will select only distinct results.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#earliest" class="internal-link" title="django.db.models.query.QuerySet.earliest">earliest</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#exclude" class="internal-link" title="django.db.models.query.QuerySet.exclude">exclude</a></code></td>
+    <td>Return a new QuerySet instance with NOT (args) ANDed to the existing set.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#exists" class="internal-link" title="django.db.models.query.QuerySet.exists">exists</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#explain" class="internal-link" title="django.db.models.query.QuerySet.explain">explain</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#extra" class="internal-link" title="django.db.models.query.QuerySet.extra">extra</a></code></td>
+    <td>Add extra SQL fragments to the query.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#filter" class="internal-link" title="django.db.models.query.QuerySet.filter">filter</a></code></td>
+    <td>Return a new QuerySet instance with the args ANDed to the existing set.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#first" class="internal-link" title="django.db.models.query.QuerySet.first">first</a></code></td>
+    <td>Return the first object of a query or None if no match is found.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#get" class="internal-link" title="django.db.models.query.QuerySet.get">get</a></code></td>
+    <td>Perform the query and return a single object matching the given keyword arguments.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#get_or_create" class="internal-link" title="django.db.models.query.QuerySet.get_or_create">get<wbr></wbr>_or<wbr></wbr>_create</a></code></td>
+    <td>Look up an object with the given kwargs, creating one if necessary. Return a tuple of (object, created), where created is a boolean specifying whether an object was created.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#in_bulk" class="internal-link" title="django.db.models.query.QuerySet.in_bulk">in<wbr></wbr>_bulk</a></code></td>
+    <td>Return a dictionary mapping each of the given IDs to the object with that ID. If `id_list` isn't provided, evaluate the entire QuerySet.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#intersection" class="internal-link" title="django.db.models.query.QuerySet.intersection">intersection</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#iterator" class="internal-link" title="django.db.models.query.QuerySet.iterator">iterator</a></code></td>
+    <td>An iterator over the results from applying this QuerySet to the database.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#last" class="internal-link" title="django.db.models.query.QuerySet.last">last</a></code></td>
+    <td>Return the last object of a query or None if no match is found.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#latest" class="internal-link" title="django.db.models.query.QuerySet.latest">latest</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#none" class="internal-link" title="django.db.models.query.QuerySet.none">none</a></code></td>
+    <td>Return an empty QuerySet.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#only" class="internal-link" title="django.db.models.query.QuerySet.only">only</a></code></td>
+    <td>Essentially, the opposite of defer(). Only the fields passed into this method and that are not already specified as deferred are loaded immediately when the queryset is evaluated.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#order_by" class="internal-link" title="django.db.models.query.QuerySet.order_by">order<wbr></wbr>_by</a></code></td>
+    <td>Return a new QuerySet instance with the ordering changed.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#prefetch_related" class="internal-link" title="django.db.models.query.QuerySet.prefetch_related">prefetch<wbr></wbr>_related</a></code></td>
+    <td>Return a new QuerySet instance that will prefetch the specified Many-To-One and Many-To-Many related objects when the QuerySet is evaluated.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#query.setter" class="internal-link" title="django.db.models.query.QuerySet.query.setter">query<wbr></wbr>.setter</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#raw" class="internal-link" title="django.db.models.query.QuerySet.raw">raw</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#resolve_expression" class="internal-link" title="django.db.models.query.QuerySet.resolve_expression">resolve<wbr></wbr>_expression</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#reverse" class="internal-link" title="django.db.models.query.QuerySet.reverse">reverse</a></code></td>
+    <td>Reverse the ordering of the QuerySet.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#select_for_update" class="internal-link" title="django.db.models.query.QuerySet.select_for_update">select<wbr></wbr>_for<wbr></wbr>_update</a></code></td>
+    <td>Return a new QuerySet instance that will select objects with a FOR UPDATE lock.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#select_related" class="internal-link" title="django.db.models.query.QuerySet.select_related">select<wbr></wbr>_related</a></code></td>
+    <td>Return a new QuerySet instance that will select related objects.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#union" class="internal-link" title="django.db.models.query.QuerySet.union">union</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#update" class="internal-link" title="django.db.models.query.QuerySet.update">update</a></code></td>
+    <td>Update all elements in the current QuerySet, setting all the given fields to the appropriate values.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#update_or_create" class="internal-link" title="django.db.models.query.QuerySet.update_or_create">update<wbr></wbr>_or<wbr></wbr>_create</a></code></td>
+    <td>Look up an object with the given kwargs, updating one with defaults if it exists, otherwise create a new one. Return a tuple (object, created), where created is a boolean specifying whether an object was created.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#using" class="internal-link" title="django.db.models.query.QuerySet.using">using</a></code></td>
+    <td>Select which database this QuerySet should execute against.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#values" class="internal-link" title="django.db.models.query.QuerySet.values">values</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#values_list" class="internal-link" title="django.db.models.query.QuerySet.values_list">values<wbr></wbr>_list</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#model" class="internal-link" title="django.db.models.query.QuerySet.model">model</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="property">
+    
+    <td>Property</td>
+    <td><code><a href="#db" class="internal-link" title="django.db.models.query.QuerySet.db">db</a></code></td>
+    <td>Return the database used if this query is executed now.</td>
+  </tr><tr class="property">
+    
+    <td>Property</td>
+    <td><code><a href="#ordered" class="internal-link" title="django.db.models.query.QuerySet.ordered">ordered</a></code></td>
+    <td>Return True if the QuerySet is ordered -- i.e. has an order_by() clause or a default ordering on the model (or is empty).</td>
+  </tr><tr class="property">
+    
+    <td>Property</td>
+    <td><code><a href="#query" class="internal-link" title="django.db.models.query.QuerySet.query">query</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="staticmethod private">
+    
+    <td>Static Method</td>
+    <td><code><a href="#_validate_values_are_expressions" class="internal-link" title="django.db.models.query.QuerySet._validate_values_are_expressions">_validate<wbr></wbr>_values<wbr></wbr>_are<wbr></wbr>_expressions</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_add_hints" class="internal-link" title="django.db.models.query.QuerySet._add_hints">_add<wbr></wbr>_hints</a></code></td>
+    <td>Update hinting information for use by routers. Add new key/values or overwrite existing key/values.</td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_annotate" class="internal-link" title="django.db.models.query.QuerySet._annotate">_annotate</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_batched_insert" class="internal-link" title="django.db.models.query.QuerySet._batched_insert">_batched<wbr></wbr>_insert</a></code></td>
+    <td>Helper method for bulk_create() to insert objs one batch at a time.</td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_chain" class="internal-link" title="django.db.models.query.QuerySet._chain">_chain</a></code></td>
+    <td>Return a copy of the current QuerySet that's ready for another operation.</td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_clone" class="internal-link" title="django.db.models.query.QuerySet._clone">_clone</a></code></td>
+    <td>Return a copy of the current QuerySet. A lightweight alternative to deepcopy().</td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_combinator_query" class="internal-link" title="django.db.models.query.QuerySet._combinator_query">_combinator<wbr></wbr>_query</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_earliest" class="internal-link" title="django.db.models.query.QuerySet._earliest">_earliest</a></code></td>
+    <td>Return the earliest object according to fields (if given) or by the model's Meta.get_latest_by.</td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_extract_model_params" class="internal-link" title="django.db.models.query.QuerySet._extract_model_params">_extract<wbr></wbr>_model<wbr></wbr>_params</a></code></td>
+    <td>Prepare `params` for creating a model instance based on the given kwargs; for use by get_or_create().</td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_fetch_all" class="internal-link" title="django.db.models.query.QuerySet._fetch_all">_fetch<wbr></wbr>_all</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_filter_or_exclude" class="internal-link" title="django.db.models.query.QuerySet._filter_or_exclude">_filter<wbr></wbr>_or<wbr></wbr>_exclude</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_filter_or_exclude_inplace" class="internal-link" title="django.db.models.query.QuerySet._filter_or_exclude_inplace">_filter<wbr></wbr>_or<wbr></wbr>_exclude<wbr></wbr>_inplace</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_has_filters" class="internal-link" title="django.db.models.query.QuerySet._has_filters">_has<wbr></wbr>_filters</a></code></td>
+    <td>Check if this QuerySet has any filtering going on. This isn't equivalent with checking if all objects are present in results, for example, qs[1:]._has_filters() -&gt; False.</td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_insert" class="internal-link" title="django.db.models.query.QuerySet._insert">_insert</a></code></td>
+    <td>Insert a new record for the given model. This provides an interface to the InsertQuery class and is how Model.save() is implemented.</td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_iterator" class="internal-link" title="django.db.models.query.QuerySet._iterator">_iterator</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_merge_known_related_objects" class="internal-link" title="django.db.models.query.QuerySet._merge_known_related_objects">_merge<wbr></wbr>_known<wbr></wbr>_related<wbr></wbr>_objects</a></code></td>
+    <td>Keep track of all known related objects from either QuerySet instance.</td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_merge_sanity_check" class="internal-link" title="django.db.models.query.QuerySet._merge_sanity_check">_merge<wbr></wbr>_sanity<wbr></wbr>_check</a></code></td>
+    <td>Check that two QuerySet classes may be merged.</td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_next_is_sticky" class="internal-link" title="django.db.models.query.QuerySet._next_is_sticky">_next<wbr></wbr>_is<wbr></wbr>_sticky</a></code></td>
+    <td>Indicate that the next filter call and the one following that should be treated as a single filter. This is only important when it comes to determining when to reuse tables for many-to-many filters. Required so that we can filter naturally on the results of related managers.</td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_not_support_combined_queries" class="internal-link" title="django.db.models.query.QuerySet._not_support_combined_queries">_not<wbr></wbr>_support<wbr></wbr>_combined<wbr></wbr>_queries</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_prefetch_related_objects" class="internal-link" title="django.db.models.query.QuerySet._prefetch_related_objects">_prefetch<wbr></wbr>_related<wbr></wbr>_objects</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_prepare_for_bulk_create" class="internal-link" title="django.db.models.query.QuerySet._prepare_for_bulk_create">_prepare<wbr></wbr>_for<wbr></wbr>_bulk<wbr></wbr>_create</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_raw_delete" class="internal-link" title="django.db.models.query.QuerySet._raw_delete">_raw<wbr></wbr>_delete</a></code></td>
+    <td>Delete objects found from the given queryset in single direct SQL query. No signals are sent and there is no protection for cascades.</td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_update" class="internal-link" title="django.db.models.query.QuerySet._update">_update</a></code></td>
+    <td>A version of update() that accepts field objects instead of field names. Used primarily for model saving and not intended for use by general code (it requires too much poking around at model internals to be useful at that level).</td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_values" class="internal-link" title="django.db.models.query.QuerySet._values">_values</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#_db" class="internal-link" title="django.db.models.query.QuerySet._db">_db</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#_defer_next_filter" class="internal-link" title="django.db.models.query.QuerySet._defer_next_filter">_defer<wbr></wbr>_next<wbr></wbr>_filter</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#_deferred_filter" class="internal-link" title="django.db.models.query.QuerySet._deferred_filter">_deferred<wbr></wbr>_filter</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#_fields" class="internal-link" title="django.db.models.query.QuerySet._fields">_fields</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#_for_write" class="internal-link" title="django.db.models.query.QuerySet._for_write">_for<wbr></wbr>_write</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#_hints" class="internal-link" title="django.db.models.query.QuerySet._hints">_hints</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#_iterable_class" class="internal-link" title="django.db.models.query.QuerySet._iterable_class">_iterable<wbr></wbr>_class</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#_known_related_objects" class="internal-link" title="django.db.models.query.QuerySet._known_related_objects">_known<wbr></wbr>_related<wbr></wbr>_objects</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#_prefetch_done" class="internal-link" title="django.db.models.query.QuerySet._prefetch_done">_prefetch<wbr></wbr>_done</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#_prefetch_related_lookups" class="internal-link" title="django.db.models.query.QuerySet._prefetch_related_lookups">_prefetch<wbr></wbr>_related<wbr></wbr>_lookups</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#_query" class="internal-link" title="django.db.models.query.QuerySet._query">_query</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#_result_cache" class="internal-link" title="django.db.models.query.QuerySet._result_cache">_result<wbr></wbr>_cache</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#_sticky_filter" class="internal-link" title="django.db.models.query.QuerySet._sticky_filter">_sticky<wbr></wbr>_filter</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+          
+
+            
+        </div>
+
+        <div id="childList">
+          <div class="baseclassmethod">
+  
+  
+  <a name="django.db.models.query.QuerySet.as_manager">
+    
+  </a>
+  <a name="as_manager">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">as_manager</span>(cls):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/django-4.0.6//django/db/models/query.py#L246">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="django.db.models.query.QuerySet.__and__">
+    
+  </a>
+  <a name="__and__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__and__</span>(self, other):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/django-4.0.6//django/db/models/query.py#L367">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="django.db.models.query.QuerySet.__bool__">
+    
+  </a>
+  <a name="__bool__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__bool__</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/django-4.0.6//django/db/models/query.py#L323">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="django.db.models.query.QuerySet.__class_getitem__">
+    
+  </a>
+  <a name="__class_getitem__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__class_getitem__</span>(cls, *args, **kwargs):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/django-4.0.6//django/db/models/query.py#L364">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="django.db.models.query.QuerySet.__deepcopy__">
+    
+  </a>
+  <a name="__deepcopy__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__deepcopy__</span>(self, memo):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/django-4.0.6//django/db/models/query.py#L261">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="pre">Don't populate the QuerySet's cache.</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="django.db.models.query.QuerySet.__getitem__">
+    
+  </a>
+  <a name="__getitem__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__getitem__</span>(self, k):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/django-4.0.6//django/db/models/query.py#L327">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="pre">Retrieve an item or slice from the set of results.</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="django.db.models.query.QuerySet.__getstate__">
+    
+  </a>
+  <a name="__getstate__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__getstate__</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/django-4.0.6//django/db/models/query.py#L271">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="django.db.models.query.QuerySet.__init__">
+    
+  </a>
+  <a name="__init__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__init__</span>(self, model=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, query=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, using=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, hints=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/django-4.0.6//django/db/models/query.py#L216">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="django.db.models.query.QuerySet.__iter__">
+    
+  </a>
+  <a name="__iter__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__iter__</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/django-4.0.6//django/db/models/query.py#L305">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="pre">The queryset iterator protocol uses three nested iterators in the
+default case:
+    1. sql.compiler.execute_sql()
+       - Returns 100 rows at time (constants.GET_ITERATOR_CHUNK_SIZE)
+         using cursor.fetchmany(). This part is responsible for
+         doing some column masking, and returning the rows in chunks.
+    2. sql.compiler.results_iter()
+       - Returns one row at time. At this point the rows are still just
+         tuples. In some cases the return values are converted to
+         Python values at this location.
+    3. self.iterator()
+       - Responsible for turning the rows into model objects.</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="django.db.models.query.QuerySet.__len__">
+    
+  </a>
+  <a name="__len__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__len__</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/django-4.0.6//django/db/models/query.py#L301">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="django.db.models.query.QuerySet.__or__">
+    
+  </a>
+  <a name="__or__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__or__</span>(self, other):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/django-4.0.6//django/db/models/query.py#L378">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="django.db.models.query.QuerySet.__repr__">
+    
+  </a>
+  <a name="__repr__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__repr__</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/django-4.0.6//django/db/models/query.py#L295">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="django.db.models.query.QuerySet.__setstate__">
+    
+  </a>
+  <a name="__setstate__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__setstate__</span>(self, state):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/django-4.0.6//django/db/models/query.py#L276">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="django.db.models.query.QuerySet.aggregate">
+    
+  </a>
+  <a name="aggregate">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">aggregate</span>(self, *args, **kwargs):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/django-4.0.6//django/db/models/query.py#L417">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="pre">Return a dictionary containing the calculations (aggregation)
+over the current queryset.
+
+If args is present the expression is passed as a kwarg using
+the Aggregate object's default alias.</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="django.db.models.query.QuerySet.alias">
+    
+  </a>
+  <a name="alias">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">alias</span>(self, *args, **kwargs):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/django-4.0.6//django/db/models/query.py#L1227">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="pre">Return a query set with added aliases for extra data or aggregations.</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="django.db.models.query.QuerySet.all">
+    
+  </a>
+  <a name="all">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">all</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/django-4.0.6//django/db/models/query.py#L1058">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="pre">Return a new QuerySet that is a copy of the current one. This allows a
+QuerySet to proxy for a model manager in some cases.</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="django.db.models.query.QuerySet.annotate">
+    
+  </a>
+  <a name="annotate">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">annotate</span>(self, *args, **kwargs):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/django-4.0.6//django/db/models/query.py#L1219">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="pre">Return a query set in which the returned objects have been annotated
+with extra data or aggregations.</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="django.db.models.query.QuerySet.bulk_create">
+    
+  </a>
+  <a name="bulk_create">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">bulk_create</span>(self, objs, batch_size=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, ignore_conflicts=<a href="https://docs.python.org/3/library/constants.html#False" class="intersphinx-link">False</a>):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/django-4.0.6//django/db/models/query.py#L524">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="pre">Insert each of the instances into the database. Do *not* call
+save() on each of the instances, do not send any pre/post_save
+signals, and do not set the primary key attribute if it is an
+autoincrement field (except if features.can_return_rows_from_bulk_insert=True).
+Multi-table models are not supported.</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="django.db.models.query.QuerySet.bulk_update">
+    
+  </a>
+  <a name="bulk_update">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">bulk_update</span>(self, objs, fields, batch_size=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/django-4.0.6//django/db/models/query.py#L598">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="pre">Update the given fields in each of the given objects in the database.</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="django.db.models.query.QuerySet.complex_filter">
+    
+  </a>
+  <a name="complex_filter">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">complex_filter</span>(self, filter_obj):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/django-4.0.6//django/db/models/query.py#L1098">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="pre">Return a new QuerySet instance with filter_obj added to the filters.
+
+filter_obj can be a Q object or a dictionary of keyword lookup
+arguments.
+
+This exists to support framework features such as 'limit_choices_to',
+and usually it will be more natural to use other methods.</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="django.db.models.query.QuerySet.contains">
+    
+  </a>
+  <a name="contains">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">contains</span>(self, obj):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/django-4.0.6//django/db/models/query.py#L895">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="pre">Return True if the queryset contains an object.</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="django.db.models.query.QuerySet.count">
+    
+  </a>
+  <a name="count">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">count</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/django-4.0.6//django/db/models/query.py#L459">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="pre">Perform a SELECT COUNT() and return the number of records as an
+integer.
+
+If the QuerySet is already fully cached, return the length of the
+cached results set to avoid multiple SELECT COUNT(*) calls.</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="django.db.models.query.QuerySet.create">
+    
+  </a>
+  <a name="create">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">create</span>(self, **kwargs):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/django-4.0.6//django/db/models/query.py#L507">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="pre">Create a new object with the given kwargs, saving it to the database
+and returning the created object.</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="django.db.models.query.QuerySet.dates">
+    
+  </a>
+  <a name="dates">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">dates</span>(self, field_name, kind, order=<span class="rst-variable-quote">'</span><span class="rst-variable-string">ASC</span><span class="rst-variable-quote">'</span>):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/django-4.0.6//django/db/models/query.py#L990">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="pre">Return a list of date objects representing all available dates for
+the given field_name, scoped to 'kind'.</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="django.db.models.query.QuerySet.datetimes">
+    
+  </a>
+  <a name="datetimes">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">datetimes</span>(self, field_name, kind, order=<span class="rst-variable-quote">'</span><span class="rst-variable-string">ASC</span><span class="rst-variable-quote">'</span>, tzinfo=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, is_dst=<a href="django.utils.timezone.html#NOT_PASSED" class="internal-link" title="django.utils.timezone.NOT_PASSED">timezone.NOT_PASSED</a>):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/django-4.0.6//django/db/models/query.py#L1012">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="pre">Return a list of datetime objects representing all available
+datetimes for the given field_name, scoped to 'kind'.</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="django.db.models.query.QuerySet.defer">
+    
+  </a>
+  <a name="defer">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">defer</span>(self, *fields):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/django-4.0.6//django/db/models/query.py#L1336">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="pre">Defer the loading of data for certain fields until they are accessed.
+Add the set of deferred fields to any existing set of deferred fields.
+The only exception to this is if None is passed in as the only
+parameter, in which case removal all deferrals.</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="django.db.models.query.QuerySet.delete">
+    
+  </a>
+  <a name="delete">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">delete</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/django-4.0.6//django/db/models/query.py#L803">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="pre">Delete the records in the current QuerySet.</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="django.db.models.query.QuerySet.difference">
+    
+  </a>
+  <a name="difference">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">difference</span>(self, *other_qs):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/django-4.0.6//django/db/models/query.py#L1148">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="django.db.models.query.QuerySet.distinct">
+    
+  </a>
+  <a name="distinct">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">distinct</span>(self, *field_names):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/django-4.0.6//django/db/models/query.py#L1298">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="pre">Return a new QuerySet instance that will select only distinct results.</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="django.db.models.query.QuerySet.earliest">
+    
+  </a>
+  <a name="earliest">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">earliest</span>(self, *fields):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/django-4.0.6//django/db/models/query.py#L741">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="django.db.models.query.QuerySet.exclude">
+    
+  </a>
+  <a name="exclude">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">exclude</span>(self, *args, **kwargs):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/django-4.0.6//django/db/models/query.py#L1073">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="pre">Return a new QuerySet instance with NOT (args) ANDed to the existing
+set.</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="django.db.models.query.QuerySet.exists">
+    
+  </a>
+  <a name="exists">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">exists</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/django-4.0.6//django/db/models/query.py#L890">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="django.db.models.query.QuerySet.explain">
+    
+  </a>
+  <a name="explain">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">explain</span>(self, *, format=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, **options):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/django-4.0.6//django/db/models/query.py#L918">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="django.db.models.query.QuerySet.extra">
+    
+  </a>
+  <a name="extra">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">extra</span>(self, select=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, where=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, params=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, tables=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, order_by=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, select_params=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/django-4.0.6//django/db/models/query.py#L1311">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="pre">Add extra SQL fragments to the query.</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="django.db.models.query.QuerySet.filter">
+    
+  </a>
+  <a name="filter">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">filter</span>(self, *args, **kwargs):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/django-4.0.6//django/db/models/query.py#L1065">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="pre">Return a new QuerySet instance with the args ANDed to the existing
+set.</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="django.db.models.query.QuerySet.first">
+    
+  </a>
+  <a name="first">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">first</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/django-4.0.6//django/db/models/query.py#L751">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="pre">Return the first object of a query or None if no match is found.</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="django.db.models.query.QuerySet.get">
+    
+  </a>
+  <a name="get">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">get</span>(self, *args, **kwargs):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/django-4.0.6//django/db/models/query.py#L472">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="pre">Perform the query and return a single object matching the given
+keyword arguments.</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="django.db.models.query.QuerySet.get_or_create">
+    
+  </a>
+  <a name="get_or_create">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">get_or_create</span>(self, defaults=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, **kwargs):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/django-4.0.6//django/db/models/query.py#L647">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="pre">Look up an object with the given kwargs, creating one if necessary.
+Return a tuple of (object, created), where created is a boolean
+specifying whether an object was created.</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="django.db.models.query.QuerySet.in_bulk">
+    
+  </a>
+  <a name="in_bulk">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">in_bulk</span>(self, id_list=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, *, field_name=<span class="rst-variable-quote">'</span><span class="rst-variable-string">pk</span><span class="rst-variable-quote">'</span>):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/django-4.0.6//django/db/models/query.py#L761">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="pre">Return a dictionary mapping each of the given IDs to the object with
+that ID. If `id_list` isn't provided, evaluate the entire QuerySet.</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="django.db.models.query.QuerySet.intersection">
+    
+  </a>
+  <a name="intersection">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">intersection</span>(self, *other_qs):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/django-4.0.6//django/db/models/query.py#L1139">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="django.db.models.query.QuerySet.iterator">
+    
+  </a>
+  <a name="iterator">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">iterator</span>(self, chunk_size=2000):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/django-4.0.6//django/db/models/query.py#L405">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="pre">An iterator over the results from applying this QuerySet to the
+database.</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="django.db.models.query.QuerySet.last">
+    
+  </a>
+  <a name="last">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">last</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/django-4.0.6//django/db/models/query.py#L756">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="pre">Return the last object of a query or None if no match is found.</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="django.db.models.query.QuerySet.latest">
+    
+  </a>
+  <a name="latest">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">latest</span>(self, *fields):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/django-4.0.6//django/db/models/query.py#L746">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="django.db.models.query.QuerySet.none">
+    
+  </a>
+  <a name="none">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">none</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/django-4.0.6//django/db/models/query.py#L1048">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="pre">Return an empty QuerySet.</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="django.db.models.query.QuerySet.only">
+    
+  </a>
+  <a name="only">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">only</span>(self, *fields):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/django-4.0.6//django/db/models/query.py#L1353">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="pre">Essentially, the opposite of defer(). Only the fields passed into this
+method and that are not already specified as deferred are loaded
+immediately when the queryset is evaluated.</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="django.db.models.query.QuerySet.order_by">
+    
+  </a>
+  <a name="order_by">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">order_by</span>(self, *field_names):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/django-4.0.6//django/db/models/query.py#L1289">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="pre">Return a new QuerySet instance with the ordering changed.</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="django.db.models.query.QuerySet.prefetch_related">
+    
+  </a>
+  <a name="prefetch_related">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">prefetch_related</span>(self, *lookups):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/django-4.0.6//django/db/models/query.py#L1194">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="pre">Return a new QuerySet instance that will prefetch the specified
+Many-To-One and Many-To-Many related objects when the QuerySet is
+evaluated.
+
+When prefetch_related() is called more than once, append to the list of
+prefetch lookups. If prefetch_related(None) is called, clear the list.</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="django.db.models.query.QuerySet.query.setter">
+    
+  </a>
+  <a name="query.setter">
+    
+  </a>
+  <div class="functionHeader">
+    @<a href="#query.setter" class="internal-link" title="django.db.models.query.QuerySet.query.setter">query.setter</a><br />
+    <span class="py-keyword">def</span> <span class="py-defname">query</span>(self, value):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/django-4.0.6//django/db/models/query.py#L240">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="django.db.models.query.QuerySet.raw">
+    
+  </a>
+  <a name="raw">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">raw</span>(self, raw_query, params=(), translations=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, using=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/django-4.0.6//django/db/models/query.py#L925">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="django.db.models.query.QuerySet.resolve_expression">
+    
+  </a>
+  <a name="resolve_expression">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">resolve_expression</span>(self, *args, **kwargs):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/django-4.0.6//django/db/models/query.py#L1544">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="django.db.models.query.QuerySet.reverse">
+    
+  </a>
+  <a name="reverse">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">reverse</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/django-4.0.6//django/db/models/query.py#L1328">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="pre">Reverse the ordering of the QuerySet.</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="django.db.models.query.QuerySet.select_for_update">
+    
+  </a>
+  <a name="select_for_update">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">select_for_update</span>(self, nowait=<a href="https://docs.python.org/3/library/constants.html#False" class="intersphinx-link">False</a>, skip_locked=<a href="https://docs.python.org/3/library/constants.html#False" class="intersphinx-link">False</a>, of=(), no_key=<a href="https://docs.python.org/3/library/constants.html#False" class="intersphinx-link">False</a>):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/django-4.0.6//django/db/models/query.py#L1154">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="pre">Return a new QuerySet instance that will select objects with a
+FOR UPDATE lock.</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="django.db.models.query.QuerySet.select_related">
+    
+  </a>
+  <a name="select_related">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">select_related</span>(self, *fields):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/django-4.0.6//django/db/models/query.py#L1170">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="pre">Return a new QuerySet instance that will select related objects.
+
+If fields are specified, they must be ForeignKey fields and only those
+related objects are included in the selection.
+
+If select_related(None) is called, clear the list.</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="django.db.models.query.QuerySet.union">
+    
+  </a>
+  <a name="union">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">union</span>(self, *other_qs, all=<a href="https://docs.python.org/3/library/constants.html#False" class="intersphinx-link">False</a>):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/django-4.0.6//django/db/models/query.py#L1128">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="django.db.models.query.QuerySet.update">
+    
+  </a>
+  <a name="update">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">update</span>(self, **kwargs):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/django-4.0.6//django/db/models/query.py#L851">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="pre">Update all elements in the current QuerySet, setting all the given
+fields to the appropriate values.</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="django.db.models.query.QuerySet.update_or_create">
+    
+  </a>
+  <a name="update_or_create">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">update_or_create</span>(self, defaults=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, **kwargs):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/django-4.0.6//django/db/models/query.py#L672">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="pre">Look up an object with the given kwargs, updating one with defaults
+if it exists, otherwise create a new one.
+Return a tuple (object, created), where created is a boolean
+specifying whether an object was created.</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="django.db.models.query.QuerySet.using">
+    
+  </a>
+  <a name="using">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">using</span>(self, alias):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/django-4.0.6//django/db/models/query.py#L1374">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="pre">Select which database this QuerySet should execute against.</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="django.db.models.query.QuerySet.values">
+    
+  </a>
+  <a name="values">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">values</span>(self, *fields, **expressions):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/django-4.0.6//django/db/models/query.py#L946">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="django.db.models.query.QuerySet.values_list">
+    
+  </a>
+  <a name="values_list">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">values_list</span>(self, *fields, flat=<a href="https://docs.python.org/3/library/constants.html#False" class="intersphinx-link">False</a>, named=<a href="https://docs.python.org/3/library/constants.html#False" class="intersphinx-link">False</a>):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/django-4.0.6//django/db/models/query.py#L952">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="django.db.models.query.QuerySet.model">
+    
+  </a>
+  <a name="model">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">model</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/django-4.0.6//django/db/models/query.py#L217">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseproperty">
+  
+  
+  <a name="django.db.models.query.QuerySet.db">
+    
+  </a>
+  <a name="db">
+    
+  </a>
+  <div class="functionHeader">
+    @<a href="https://docs.python.org/3/library/functions.html#property" class="intersphinx-link">property</a><br />
+    <span class="py-defname">db</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/django-4.0.6//django/db/models/query.py#L1405">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="pre">Return the database used if this query is executed now.</p></div>
+    
+  </div>
+</div><div class="baseproperty">
+  
+  
+  <a name="django.db.models.query.QuerySet.ordered">
+    
+  </a>
+  <a name="ordered">
+    
+  </a>
+  <div class="functionHeader">
+    @<a href="https://docs.python.org/3/library/functions.html#property" class="intersphinx-link">property</a><br />
+    <span class="py-defname">ordered</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/django-4.0.6//django/db/models/query.py#L1384">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="pre">Return True if the QuerySet is ordered -- i.e. has an order_by()
+clause or a default ordering on the model (or is empty).</p></div>
+    
+  </div>
+</div><div class="baseproperty">
+  
+  
+  <a name="django.db.models.query.QuerySet.query">
+    
+  </a>
+  <a name="query">
+    
+  </a>
+  <div class="functionHeader">
+    @<a href="https://docs.python.org/3/library/functions.html#property" class="intersphinx-link">property</a><br />
+    <span class="py-defname">query</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/django-4.0.6//django/db/models/query.py#L232">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="basestaticmethod private">
+  
+  
+  <a name="django.db.models.query.QuerySet._validate_values_are_expressions">
+    
+  </a>
+  <a name="_validate_values_are_expressions">
+    
+  </a>
+  <div class="functionHeader">
+    @<a href="https://docs.python.org/3/library/functions.html#staticmethod" class="intersphinx-link">staticmethod</a><br />
+    <span class="py-keyword">def</span> <span class="py-defname">_validate_values_are_expressions</span>(values, method_name):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/django-4.0.6//django/db/models/query.py#L1570">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="django.db.models.query.QuerySet._add_hints">
+    
+  </a>
+  <a name="_add_hints">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_add_hints</span>(self, **hints):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/django-4.0.6//django/db/models/query.py#L1555">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="pre">Update hinting information for use by routers. Add new key/values or
+overwrite existing key/values.</p></div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="django.db.models.query.QuerySet._annotate">
+    
+  </a>
+  <a name="_annotate">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_annotate</span>(self, args, kwargs, select=<a href="https://docs.python.org/3/library/constants.html#True" class="intersphinx-link">True</a>):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/django-4.0.6//django/db/models/query.py#L1234">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="django.db.models.query.QuerySet._batched_insert">
+    
+  </a>
+  <a name="_batched_insert">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_batched_insert</span>(self, objs, fields, batch_size, ignore_conflicts=<a href="https://docs.python.org/3/library/constants.html#False" class="intersphinx-link">False</a>):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/django-4.0.6//django/db/models/query.py#L1439">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="pre">Helper method for bulk_create() to insert objs one batch at a time.</p></div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="django.db.models.query.QuerySet._chain">
+    
+  </a>
+  <a name="_chain">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_chain</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/django-4.0.6//django/db/models/query.py#L1475">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="pre">Return a copy of the current QuerySet that's ready for another
+operation.</p></div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="django.db.models.query.QuerySet._clone">
+    
+  </a>
+  <a name="_clone">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_clone</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/django-4.0.6//django/db/models/query.py#L1486">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="pre">Return a copy of the current QuerySet. A lightweight alternative
+to deepcopy().</p></div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="django.db.models.query.QuerySet._combinator_query">
+    
+  </a>
+  <a name="_combinator_query">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_combinator_query</span>(self, combinator, *other_qs, all=<a href="https://docs.python.org/3/library/constants.html#False" class="intersphinx-link">False</a>):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/django-4.0.6//django/db/models/query.py#L1115">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="django.db.models.query.QuerySet._earliest">
+    
+  </a>
+  <a name="_earliest">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_earliest</span>(self, *fields):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/django-4.0.6//django/db/models/query.py#L719">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="pre">Return the earliest object according to fields (if given) or by the
+model's Meta.get_latest_by.</p></div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="django.db.models.query.QuerySet._extract_model_params">
+    
+  </a>
+  <a name="_extract_model_params">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_extract_model_params</span>(self, defaults, **kwargs):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/django-4.0.6//django/db/models/query.py#L692">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="pre">Prepare `params` for creating a model instance based on the given
+kwargs; for use by get_or_create().</p></div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="django.db.models.query.QuerySet._fetch_all">
+    
+  </a>
+  <a name="_fetch_all">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_fetch_all</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/django-4.0.6//django/db/models/query.py#L1505">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="django.db.models.query.QuerySet._filter_or_exclude">
+    
+  </a>
+  <a name="_filter_or_exclude">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_filter_or_exclude</span>(self, negate, args, kwargs):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/django-4.0.6//django/db/models/query.py#L1081">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="django.db.models.query.QuerySet._filter_or_exclude_inplace">
+    
+  </a>
+  <a name="_filter_or_exclude_inplace">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_filter_or_exclude_inplace</span>(self, negate, args, kwargs):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/django-4.0.6//django/db/models/query.py#L1092">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="django.db.models.query.QuerySet._has_filters">
+    
+  </a>
+  <a name="_has_filters">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_has_filters</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/django-4.0.6//django/db/models/query.py#L1562">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="pre">Check if this QuerySet has any filtering going on. This isn't
+equivalent with checking if all objects are present in results, for
+example, qs[1:]._has_filters() -&gt; False.</p></div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="django.db.models.query.QuerySet._insert">
+    
+  </a>
+  <a name="_insert">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_insert</span>(self, objs, fields, returning_fields=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, raw=<a href="https://docs.python.org/3/library/constants.html#False" class="intersphinx-link">False</a>, using=<a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, ignore_conflicts=<a href="https://docs.python.org/3/library/constants.html#False" class="intersphinx-link">False</a>):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/django-4.0.6//django/db/models/query.py#L1416">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="pre">Insert a new record for the given model. This provides an interface to
+the InsertQuery class and is how Model.save() is implemented.</p></div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="django.db.models.query.QuerySet._iterator">
+    
+  </a>
+  <a name="_iterator">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_iterator</span>(self, use_chunked_fetch, chunk_size):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/django-4.0.6//django/db/models/query.py#L400">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="django.db.models.query.QuerySet._merge_known_related_objects">
+    
+  </a>
+  <a name="_merge_known_related_objects">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_merge_known_related_objects</span>(self, other):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/django-4.0.6//django/db/models/query.py#L1537">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="pre">Keep track of all known related objects from either QuerySet instance.</p></div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="django.db.models.query.QuerySet._merge_sanity_check">
+    
+  </a>
+  <a name="_merge_sanity_check">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_merge_sanity_check</span>(self, other):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/django-4.0.6//django/db/models/query.py#L1525">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="pre">Check that two QuerySet classes may be merged.</p></div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="django.db.models.query.QuerySet._next_is_sticky">
+    
+  </a>
+  <a name="_next_is_sticky">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_next_is_sticky</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/django-4.0.6//django/db/models/query.py#L1511">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="pre">Indicate that the next filter call and the one following that should
+be treated as a single filter. This is only important when it comes to
+determining when to reuse tables for many-to-many filters. Required so
+that we can filter naturally on the results of related managers.
+
+This doesn't return a clone of the current QuerySet (it returns
+"self"). The method is only used internally and should be immediately
+followed by a filter() that does create a clone.</p></div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="django.db.models.query.QuerySet._not_support_combined_queries">
+    
+  </a>
+  <a name="_not_support_combined_queries">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_not_support_combined_queries</span>(self, operation_name):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/django-4.0.6//django/db/models/query.py#L1584">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="django.db.models.query.QuerySet._prefetch_related_objects">
+    
+  </a>
+  <a name="_prefetch_related_objects">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_prefetch_related_objects</span>(self):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/django-4.0.6//django/db/models/query.py#L913">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="django.db.models.query.QuerySet._prepare_for_bulk_create">
+    
+  </a>
+  <a name="_prepare_for_bulk_create">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_prepare_for_bulk_create</span>(self, objs):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/django-4.0.6//django/db/models/query.py#L517">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="django.db.models.query.QuerySet._raw_delete">
+    
+  </a>
+  <a name="_raw_delete">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_raw_delete</span>(self, using):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/django-4.0.6//django/db/models/query.py#L836">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="pre">Delete objects found from the given queryset in single direct SQL
+query. No signals are sent and there is no protection for cascades.</p></div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="django.db.models.query.QuerySet._update">
+    
+  </a>
+  <a name="_update">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_update</span>(self, values):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/django-4.0.6//django/db/models/query.py#L871">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="pre">A version of update() that accepts field objects instead of field names.
+Used primarily for model saving and not intended for use by general
+code (it requires too much poking around at model internals to be
+useful at that level).</p></div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="django.db.models.query.QuerySet._values">
+    
+  </a>
+  <a name="_values">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_values</span>(self, *fields, **expressions):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/django-4.0.6//django/db/models/query.py#L938">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  
+  <a name="django.db.models.query.QuerySet._db">
+    
+  </a>
+  <a name="_db">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_db</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/django-4.0.6//django/db/models/query.py#L218">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  
+  <a name="django.db.models.query.QuerySet._defer_next_filter">
+    
+  </a>
+  <a name="_defer_next_filter">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_defer_next_filter</span>: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/django-4.0.6//django/db/models/query.py#L229">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  
+  <a name="django.db.models.query.QuerySet._deferred_filter">
+    
+  </a>
+  <a name="_deferred_filter">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_deferred_filter</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/django-4.0.6//django/db/models/query.py#L230">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  
+  <a name="django.db.models.query.QuerySet._fields">
+    
+  </a>
+  <a name="_fields">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_fields</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/django-4.0.6//django/db/models/query.py#L228">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  
+  <a name="django.db.models.query.QuerySet._for_write">
+    
+  </a>
+  <a name="_for_write">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_for_write</span>: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/django-4.0.6//django/db/models/query.py#L223">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  
+  <a name="django.db.models.query.QuerySet._hints">
+    
+  </a>
+  <a name="_hints">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_hints</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/django-4.0.6//django/db/models/query.py#L219">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  
+  <a name="django.db.models.query.QuerySet._iterable_class">
+    
+  </a>
+  <a name="_iterable_class">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_iterable_class</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/django-4.0.6//django/db/models/query.py#L227">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  
+  <a name="django.db.models.query.QuerySet._known_related_objects">
+    
+  </a>
+  <a name="_known_related_objects">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_known_related_objects</span>: <code><a href="https://docs.python.org/3/library/stdtypes.html#dict" class="intersphinx-link">dict</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/django-4.0.6//django/db/models/query.py#L226">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  
+  <a name="django.db.models.query.QuerySet._prefetch_done">
+    
+  </a>
+  <a name="_prefetch_done">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_prefetch_done</span>: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/django-4.0.6//django/db/models/query.py#L225">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  
+  <a name="django.db.models.query.QuerySet._prefetch_related_lookups">
+    
+  </a>
+  <a name="_prefetch_related_lookups">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_prefetch_related_lookups</span>: <code><a href="https://docs.python.org/3/library/stdtypes.html#tuple" class="intersphinx-link">tuple</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/django-4.0.6//django/db/models/query.py#L224">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  
+  <a name="django.db.models.query.QuerySet._query">
+    
+  </a>
+  <a name="_query">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_query</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/django-4.0.6//django/db/models/query.py#L220">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  
+  <a name="django.db.models.query.QuerySet._result_cache">
+    
+  </a>
+  <a name="_result_cache">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_result_cache</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/django-4.0.6//django/db/models/query.py#L221">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  
+  <a name="django.db.models.query.QuerySet._sticky_filter">
+    
+  </a>
+  <a name="_sticky_filter">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_sticky_filter</span>: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/django-4.0.6//django/db/models/query.py#L222">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div>
+        </div>
+      
+      </div>
+    </div>
+
+    <footer class="navbar navbar-default">
+
+  
+  <div class="container">
+    <a href="index.html">API Documentation</a> for django,
+  generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
+    22.5.1 at 2022-07-13 18:22:46.
+  </div>
+
+  <!-- Search related scripts needs to be loaded at the end of HTML 
+    parsing not to introduce overhead and display HTML data asap -->
+  <script src="ajax.js" type="text/javascript"></script>
+  <script src="searchlib.js" type="text/javascript"></script>
+  <script src="search.js" type="text/javascript"></script>
+
+</footer>
+  
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+  </body>
+</html>

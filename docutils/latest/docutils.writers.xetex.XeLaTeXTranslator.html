@@ -1,0 +1,4487 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  
+
+  <head>
+    
+    <title>docutils.writers.xetex.XeLaTeXTranslator</title>
+    <meta name="generator" content="pydoctor 22.5.1"> 
+        
+    </meta>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1 maximum-scale=1" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+    <link rel="stylesheet" type="text/css" href="extra.css" />
+</head>
+
+  <body>
+
+    <div id="banner">    
+    <div>
+        <a href="/">Home</a>
+        &gt; docutils-0.19 <!-- This is a placeholder -->
+        
+        <!-- (<a href=""&gt;show all versions</a&gt;) -->
+    </div>
+</div>
+
+    <nav class="navbar navbar-default mainnavbar">
+      
+  
+  <div class="container-fluid">
+
+
+    <div class="navbar-header">
+      
+      <div class="navlinks">
+        <span class="navbar-brand">
+          docutils <a href="index.html">API Documentation</a>
+        </span>
+
+        <a href="moduleIndex.html">
+          Modules
+        </a>
+
+        <a href="classIndex.html">
+          Classes
+        </a>
+
+        <a href="nameIndex.html">
+          Names
+        </a>
+
+        <div id="search-box-container">
+          <div class="input-group">
+            <input id="search-box" type="search" name="search-query" placeholder="Search..." aria-label="Search" minlength="2" class="form-control" autocomplete="off" />
+            
+            <span class="input-group-btn">
+              <a style="display: none;" class="btn btn-default" id="search-clear-button" title="Clear" onclick="clearSearch()"><img src="fonts/x-circle.svg" alt="Clear" /></a>
+              <a class="btn btn-default" id="search-help-button" title="Help" onclick="toggleSearchHelpText()"><img src="fonts/info.svg" alt="Help" /></a>
+            </span>
+          </div>
+        </div>
+
+      </div>
+
+      <div id="search-results-container" style="display: none;">
+        
+        <div id="search-buttons">
+          <span class="label label-default" id="search-docstrings-button">
+          <label class="checkbox-inline">
+            <input type="checkbox" id="toggle-search-in-docstrings-checkbox" value="false" onclick="toggleSearchInDocstrings()">
+              search in docstrings
+            </input>
+          </label>
+          </span>
+          
+        </div>
+        
+        <noscript>
+            <h1>Cannot search: JavaScript is not supported/enabled in your browser.</h1>
+        </noscript>
+
+        <div class="hint" id="search-help-box">
+          <p class="rst-last">
+      
+            Search bar offers the following options:
+            <ul>   
+                <li>
+                  <strong>Term presence.</strong> The below example searches for documents that 
+                    must contain “foo”, might contain “bar” and must not contain “baz”: <code>+foo bar -baz</code>
+                </li> 
+
+                <li>
+                  <strong>Wildcards.</strong> The below example searches for documents with words beginning with “foo”: <code>foo*</code>
+                </li> 
+
+                <li>
+                  <strong>Search in specific fields.</strong> The following search matches all objects 
+                  in "twisted.mail" that matches “search”: <code>+qname:twisted.mail.* +search</code>
+
+                  <p>
+                    Possible fields: 'name', 'qname' (fully qualified name), 'docstring', and 'kind'.
+                    Last two fields are only applicable if "search in docstrings" is enabled.
+                  </p>
+                </li>
+
+                <li>
+                  <strong>Fuzzy matches.</strong> The following search matches all documents 
+                  that have a word within 1 edit distance of “foo”: <code>foo~1</code>
+                </li>
+            </ul>
+
+          </p>
+        </div>
+
+        <div id="search-status"> </div>
+
+        <div class="warning" id="search-warn-box" style="display: none;">
+          <p class="rst-last"><span id="search-warn"></span></p>
+        </div>
+
+        <table id="search-results">
+          <!-- Filled dynamically by JS -->
+        </table>
+        
+        <div style="margin-top: 8px;">
+          <p>Results provided by <a href="https://lunrjs.com">Lunr.js</a></p>
+        </div>
+      </div>
+
+    </div>
+
+
+  </div>
+</nav>
+    
+    <div class="container-fluid">
+
+      <!-- Side navigation -->
+      <div class="sidebarcontainer" style="display: none;">
+        
+        <div class="sidebar"><nav class="sidebar">
+  
+
+  <div>
+
+      <div class="thingTitle">
+        <span>Class</span>
+        <code class="thisobject"><a href="docutils.writers.xetex.XeLaTeXTranslator.html" class="internal-link" title="This class"><wbr></wbr>Xe<wbr></wbr>La<wbr></wbr>Te<wbr></wbr>XTranslator</a></code> 
+      </div>
+      
+      <div>
+        
+
+        
+         
+
+        
+        
+
+        <div class="childrenKindTitle">Methods</div>
+        <ul>
+    
+    <li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#__init__" class="internal-link" title="docutils.writers.xetex.XeLaTeXTranslator.__init__">__init__</a></code>
+            </div>
+        
+
+    </li>
+</ul> 
+
+        <div class="childrenKindTitle">Inherited Methods</div>
+        <ul>
+    
+    <li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.nodes.NodeVisitor.html#dispatch_departure" class="internal-link" title="docutils.nodes.NodeVisitor.dispatch_departure">dispatch<wbr></wbr>_departure</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.nodes.NodeVisitor.html#dispatch_visit" class="internal-link" title="docutils.nodes.NodeVisitor.dispatch_visit">dispatch<wbr></wbr>_visit</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.nodes.NodeVisitor.html#unknown_departure" class="internal-link" title="docutils.nodes.NodeVisitor.unknown_departure">unknown<wbr></wbr>_departure</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.nodes.NodeVisitor.html#unknown_visit" class="internal-link" title="docutils.nodes.NodeVisitor.unknown_visit">unknown<wbr></wbr>_visit</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#append_hypertargets" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.append_hypertargets">append<wbr></wbr>_hypertargets</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#attval" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.attval">attval</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_abbreviation" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_abbreviation">depart<wbr></wbr>_abbreviation</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_acronym" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_acronym">depart<wbr></wbr>_acronym</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_address" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_address">depart<wbr></wbr>_address</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_admonition" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_admonition">depart<wbr></wbr>_admonition</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_attribution" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_attribution">depart<wbr></wbr>_attribution</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_author" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_author">depart<wbr></wbr>_author</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_authors" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_authors">depart<wbr></wbr>_authors</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_block_quote" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_block_quote">depart<wbr></wbr>_block<wbr></wbr>_quote</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_bullet_list" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_bullet_list">depart<wbr></wbr>_bullet<wbr></wbr>_list</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_caption" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_caption">depart<wbr></wbr>_caption</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_citation" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_citation">depart<wbr></wbr>_citation</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_citation_reference" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_citation_reference">depart<wbr></wbr>_citation<wbr></wbr>_reference</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_classifier" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_classifier">depart<wbr></wbr>_classifier</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_colspec" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_colspec">depart<wbr></wbr>_colspec</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_comment" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_comment">depart<wbr></wbr>_comment</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_compound" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_compound">depart<wbr></wbr>_compound</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_contact" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_contact">depart<wbr></wbr>_contact</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_container" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_container">depart<wbr></wbr>_container</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_copyright" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_copyright">depart<wbr></wbr>_copyright</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_date" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_date">depart<wbr></wbr>_date</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_decoration" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_decoration">depart<wbr></wbr>_decoration</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_definition" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_definition">depart<wbr></wbr>_definition</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_definition_list" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_definition_list">depart<wbr></wbr>_definition<wbr></wbr>_list</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_definition_list_item" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_definition_list_item">depart<wbr></wbr>_definition<wbr></wbr>_list<wbr></wbr>_item</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_description" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_description">depart<wbr></wbr>_description</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_docinfo" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_docinfo">depart<wbr></wbr>_docinfo</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_docinfo_item" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_docinfo_item">depart<wbr></wbr>_docinfo<wbr></wbr>_item</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_doctest_block" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_doctest_block">depart<wbr></wbr>_doctest<wbr></wbr>_block</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_document" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_document">depart<wbr></wbr>_document</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_emphasis" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_emphasis">depart<wbr></wbr>_emphasis</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_entry" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_entry">depart<wbr></wbr>_entry</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_enumerated_list" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_enumerated_list">depart<wbr></wbr>_enumerated<wbr></wbr>_list</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_field" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_field">depart<wbr></wbr>_field</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_field_body" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_field_body">depart<wbr></wbr>_field<wbr></wbr>_body</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_field_list" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_field_list">depart<wbr></wbr>_field<wbr></wbr>_list</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_field_name" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_field_name">depart<wbr></wbr>_field<wbr></wbr>_name</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_figure" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_figure">depart<wbr></wbr>_figure</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_footer" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_footer">depart<wbr></wbr>_footer</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_footnote" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_footnote">depart<wbr></wbr>_footnote</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_footnote_reference" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_footnote_reference">depart<wbr></wbr>_footnote<wbr></wbr>_reference</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_generated" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_generated">depart<wbr></wbr>_generated</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_header" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_header">depart<wbr></wbr>_header</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_image" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_image">depart<wbr></wbr>_image</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_inline" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_inline">depart<wbr></wbr>_inline</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_label" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_label">depart<wbr></wbr>_label</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_legend" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_legend">depart<wbr></wbr>_legend</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_line" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_line">depart<wbr></wbr>_line</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_line_block" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_line_block">depart<wbr></wbr>_line<wbr></wbr>_block</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_list_item" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_list_item">depart<wbr></wbr>_list<wbr></wbr>_item</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_literal" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_literal">depart<wbr></wbr>_literal</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_literal_block" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_literal_block">depart<wbr></wbr>_literal<wbr></wbr>_block</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_math" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_math">depart<wbr></wbr>_math</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_math_block" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_math_block">depart<wbr></wbr>_math<wbr></wbr>_block</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_meta" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_meta">depart<wbr></wbr>_meta</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_option" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_option">depart<wbr></wbr>_option</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_option_argument" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_option_argument">depart<wbr></wbr>_option<wbr></wbr>_argument</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_option_group" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_option_group">depart<wbr></wbr>_option<wbr></wbr>_group</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_option_list" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_option_list">depart<wbr></wbr>_option<wbr></wbr>_list</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_option_list_item" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_option_list_item">depart<wbr></wbr>_option<wbr></wbr>_list<wbr></wbr>_item</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_option_string" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_option_string">depart<wbr></wbr>_option<wbr></wbr>_string</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_organization" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_organization">depart<wbr></wbr>_organization</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_paragraph" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_paragraph">depart<wbr></wbr>_paragraph</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_problematic" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_problematic">depart<wbr></wbr>_problematic</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_raw" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_raw">depart<wbr></wbr>_raw</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_reference" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_reference">depart<wbr></wbr>_reference</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_revision" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_revision">depart<wbr></wbr>_revision</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_row" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_row">depart<wbr></wbr>_row</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_rubric" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_rubric">depart<wbr></wbr>_rubric</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_section" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_section">depart<wbr></wbr>_section</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_sidebar" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_sidebar">depart<wbr></wbr>_sidebar</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_status" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_status">depart<wbr></wbr>_status</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_strong" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_strong">depart<wbr></wbr>_strong</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_subscript" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_subscript">depart<wbr></wbr>_subscript</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_subtitle" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_subtitle">depart<wbr></wbr>_subtitle</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_superscript" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_superscript">depart<wbr></wbr>_superscript</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_system_message" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_system_message">depart<wbr></wbr>_system<wbr></wbr>_message</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_table" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_table">depart<wbr></wbr>_table</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_target" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_target">depart<wbr></wbr>_target</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_tbody" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_tbody">depart<wbr></wbr>_tbody</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_term" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_term">depart<wbr></wbr>_term</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_Text" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_Text">depart_<wbr></wbr>Text</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_tgroup" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_tgroup">depart<wbr></wbr>_tgroup</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_thead" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_thead">depart<wbr></wbr>_thead</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_title" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_title">depart<wbr></wbr>_title</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_title_reference" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_title_reference">depart<wbr></wbr>_title<wbr></wbr>_reference</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_topic" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_topic">depart<wbr></wbr>_topic</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_transition" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_transition">depart<wbr></wbr>_transition</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_version" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_version">depart<wbr></wbr>_version</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#duclass_close" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.duclass_close">duclass<wbr></wbr>_close</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#duclass_open" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.duclass_open">duclass<wbr></wbr>_open</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#encode" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.encode">encode</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#has_unbalanced_braces" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.has_unbalanced_braces">has<wbr></wbr>_unbalanced<wbr></wbr>_braces</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#ids_to_labels" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.ids_to_labels">ids<wbr></wbr>_to<wbr></wbr>_labels</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#insert_additional_table_colum_delimiters" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.insert_additional_table_colum_delimiters">insert<wbr></wbr>_additional<wbr></wbr>_table<wbr></wbr>_colum<wbr></wbr>_delimiters</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#insert_align_declaration" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.insert_align_declaration">insert<wbr></wbr>_align<wbr></wbr>_declaration</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#is_inline" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.is_inline">is<wbr></wbr>_inline</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#is_plaintext" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.is_plaintext">is<wbr></wbr>_plaintext</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#label_delim" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.label_delim">label<wbr></wbr>_delim</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#language_label" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.language_label">language<wbr></wbr>_label</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#pop_output_collector" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.pop_output_collector">pop<wbr></wbr>_output<wbr></wbr>_collector</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#push_output_collector" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.push_output_collector">push<wbr></wbr>_output<wbr></wbr>_collector</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#set_align_from_classes" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.set_align_from_classes">set<wbr></wbr>_align<wbr></wbr>_from<wbr></wbr>_classes</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#stylesheet_call" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.stylesheet_call">stylesheet<wbr></wbr>_call</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#term_postfix" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.term_postfix">term<wbr></wbr>_postfix</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#thead_depth" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.thead_depth">thead<wbr></wbr>_depth</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#to_latex_encoding" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.to_latex_encoding">to<wbr></wbr>_latex<wbr></wbr>_encoding</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#to_latex_length" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.to_latex_length">to<wbr></wbr>_latex<wbr></wbr>_length</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#unimplemented_visit" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.unimplemented_visit">unimplemented<wbr></wbr>_visit</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_abbreviation" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_abbreviation">visit<wbr></wbr>_abbreviation</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_acronym" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_acronym">visit<wbr></wbr>_acronym</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_address" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_address">visit<wbr></wbr>_address</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_admonition" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_admonition">visit<wbr></wbr>_admonition</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_attribution" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_attribution">visit<wbr></wbr>_attribution</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_author" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_author">visit<wbr></wbr>_author</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_authors" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_authors">visit<wbr></wbr>_authors</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_block_quote" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_block_quote">visit<wbr></wbr>_block<wbr></wbr>_quote</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_bullet_list" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_bullet_list">visit<wbr></wbr>_bullet<wbr></wbr>_list</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_caption" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_caption">visit<wbr></wbr>_caption</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_citation" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_citation">visit<wbr></wbr>_citation</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_citation_reference" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_citation_reference">visit<wbr></wbr>_citation<wbr></wbr>_reference</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_classifier" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_classifier">visit<wbr></wbr>_classifier</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_colspec" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_colspec">visit<wbr></wbr>_colspec</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_comment" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_comment">visit<wbr></wbr>_comment</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_compound" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_compound">visit<wbr></wbr>_compound</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_contact" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_contact">visit<wbr></wbr>_contact</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_container" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_container">visit<wbr></wbr>_container</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_contents" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_contents">visit<wbr></wbr>_contents</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_copyright" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_copyright">visit<wbr></wbr>_copyright</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_date" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_date">visit<wbr></wbr>_date</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_decoration" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_decoration">visit<wbr></wbr>_decoration</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_definition" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_definition">visit<wbr></wbr>_definition</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_definition_list" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_definition_list">visit<wbr></wbr>_definition<wbr></wbr>_list</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_definition_list_item" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_definition_list_item">visit<wbr></wbr>_definition<wbr></wbr>_list<wbr></wbr>_item</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_description" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_description">visit<wbr></wbr>_description</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_docinfo" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_docinfo">visit<wbr></wbr>_docinfo</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_docinfo_item" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_docinfo_item">visit<wbr></wbr>_docinfo<wbr></wbr>_item</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_doctest_block" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_doctest_block">visit<wbr></wbr>_doctest<wbr></wbr>_block</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_document" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_document">visit<wbr></wbr>_document</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_emphasis" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_emphasis">visit<wbr></wbr>_emphasis</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_entry" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_entry">visit<wbr></wbr>_entry</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_enumerated_list" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_enumerated_list">visit<wbr></wbr>_enumerated<wbr></wbr>_list</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_field" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_field">visit<wbr></wbr>_field</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_field_body" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_field_body">visit<wbr></wbr>_field<wbr></wbr>_body</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_field_list" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_field_list">visit<wbr></wbr>_field<wbr></wbr>_list</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_field_name" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_field_name">visit<wbr></wbr>_field<wbr></wbr>_name</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_figure" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_figure">visit<wbr></wbr>_figure</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_footer" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_footer">visit<wbr></wbr>_footer</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_footnote" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_footnote">visit<wbr></wbr>_footnote</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_footnote_reference" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_footnote_reference">visit<wbr></wbr>_footnote<wbr></wbr>_reference</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_generated" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_generated">visit<wbr></wbr>_generated</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_header" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_header">visit<wbr></wbr>_header</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_image" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_image">visit<wbr></wbr>_image</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_inline" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_inline">visit<wbr></wbr>_inline</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_label" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_label">visit<wbr></wbr>_label</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_legend" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_legend">visit<wbr></wbr>_legend</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_line" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_line">visit<wbr></wbr>_line</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_line_block" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_line_block">visit<wbr></wbr>_line<wbr></wbr>_block</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_list_item" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_list_item">visit<wbr></wbr>_list<wbr></wbr>_item</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_literal" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_literal">visit<wbr></wbr>_literal</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_literal_block" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_literal_block">visit<wbr></wbr>_literal<wbr></wbr>_block</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_math" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_math">visit<wbr></wbr>_math</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_math_block" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_math_block">visit<wbr></wbr>_math<wbr></wbr>_block</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_meta" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_meta">visit<wbr></wbr>_meta</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_option" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_option">visit<wbr></wbr>_option</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_option_argument" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_option_argument">visit<wbr></wbr>_option<wbr></wbr>_argument</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_option_group" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_option_group">visit<wbr></wbr>_option<wbr></wbr>_group</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_option_list" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_option_list">visit<wbr></wbr>_option<wbr></wbr>_list</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_option_list_item" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_option_list_item">visit<wbr></wbr>_option<wbr></wbr>_list<wbr></wbr>_item</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_option_string" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_option_string">visit<wbr></wbr>_option<wbr></wbr>_string</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_organization" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_organization">visit<wbr></wbr>_organization</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_paragraph" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_paragraph">visit<wbr></wbr>_paragraph</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_problematic" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_problematic">visit<wbr></wbr>_problematic</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_raw" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_raw">visit<wbr></wbr>_raw</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_reference" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_reference">visit<wbr></wbr>_reference</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_revision" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_revision">visit<wbr></wbr>_revision</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_row" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_row">visit<wbr></wbr>_row</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_rubric" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_rubric">visit<wbr></wbr>_rubric</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_section" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_section">visit<wbr></wbr>_section</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_sidebar" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_sidebar">visit<wbr></wbr>_sidebar</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_status" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_status">visit<wbr></wbr>_status</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_strong" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_strong">visit<wbr></wbr>_strong</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_subscript" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_subscript">visit<wbr></wbr>_subscript</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_substitution_definition" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_substitution_definition">visit<wbr></wbr>_substitution<wbr></wbr>_definition</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_substitution_reference" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_substitution_reference">visit<wbr></wbr>_substitution<wbr></wbr>_reference</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_subtitle" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_subtitle">visit<wbr></wbr>_subtitle</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_superscript" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_superscript">visit<wbr></wbr>_superscript</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_system_message" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_system_message">visit<wbr></wbr>_system<wbr></wbr>_message</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_table" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_table">visit<wbr></wbr>_table</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_target" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_target">visit<wbr></wbr>_target</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_tbody" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_tbody">visit<wbr></wbr>_tbody</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_term" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_term">visit<wbr></wbr>_term</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_Text" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_Text">visit_<wbr></wbr>Text</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_tgroup" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_tgroup">visit<wbr></wbr>_tgroup</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_thead" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_thead">visit<wbr></wbr>_thead</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_title" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_title">visit<wbr></wbr>_title</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_title_reference" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_title_reference">visit<wbr></wbr>_title<wbr></wbr>_reference</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_topic" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_topic">visit<wbr></wbr>_topic</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_transition" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_transition">visit<wbr></wbr>_transition</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_version" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_version">visit<wbr></wbr>_version</a></code>
+            </div>
+        
+
+    </li>
+</ul> 
+
+        <div class="childrenKindTitle">Attributes</div>
+        <ul>
+    
+    <li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#is_xetex" class="internal-link" title="docutils.writers.xetex.XeLaTeXTranslator.is_xetex">is<wbr></wbr>_xetex</a></code>
+            </div>
+        
+
+    </li>
+</ul> 
+
+        <div class="childrenKindTitle">Inherited Attributes</div>
+        <ul>
+    
+    <li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.nodes.NodeVisitor.html#optional" class="internal-link" title="docutils.nodes.NodeVisitor.optional">optional</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#attribution_formats" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.attribution_formats">attribution<wbr></wbr>_formats</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#has_latex_toc" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.has_latex_toc">has<wbr></wbr>_latex<wbr></wbr>_toc</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#section_level" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.section_level">section<wbr></wbr>_level</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.nodes.NodeVisitor.html#document" class="internal-link" title="docutils.nodes.NodeVisitor.document">document</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#abstract" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.abstract">abstract</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#active_table" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.active_table">active<wbr></wbr>_table</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#alltt" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.alltt">alltt</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#author_separator" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.author_separator">author<wbr></wbr>_separator</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#author_stack" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.author_stack">author<wbr></wbr>_stack</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#babel" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.babel">babel</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#bibtex" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.bibtex">bibtex</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#body" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.body">body</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#body_pre_docinfo" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.body_pre_docinfo">body<wbr></wbr>_pre<wbr></wbr>_docinfo</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#compound_enumerators" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.compound_enumerators">compound<wbr></wbr>_enumerators</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#context" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.context">context</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#d_class" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.d_class">d<wbr></wbr>_class</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#date" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.date">date</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#dedication" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.dedication">dedication</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#docinfo" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.docinfo">docinfo</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#documentoptions" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.documentoptions">documentoptions</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#docutils_footnotes" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.docutils_footnotes">docutils<wbr></wbr>_footnotes</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#error" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.error">error</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#fallback_stylesheet" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.fallback_stylesheet">fallback<wbr></wbr>_stylesheet</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#fallbacks" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.fallbacks">fallbacks</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#font_encoding" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.font_encoding">font<wbr></wbr>_encoding</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#graphicx_package" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.graphicx_package">graphicx<wbr></wbr>_package</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#head_prefix" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.head_prefix">head<wbr></wbr>_prefix</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#hyperlink_color" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.hyperlink_color">hyperlink<wbr></wbr>_color</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#hyperref_options" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.hyperref_options">hyperref<wbr></wbr>_options</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#insert_newline" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.insert_newline">insert<wbr></wbr>_newline</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#insert_non_breaking_blanks" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.insert_non_breaking_blanks">insert<wbr></wbr>_non<wbr></wbr>_breaking<wbr></wbr>_blanks</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#inside_citation_reference_label" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.inside_citation_reference_label">inside<wbr></wbr>_citation<wbr></wbr>_reference<wbr></wbr>_label</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#language_module" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.language_module">language<wbr></wbr>_module</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#latex_encoding" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.latex_encoding">latex<wbr></wbr>_encoding</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#latex_preamble" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.latex_preamble">latex<wbr></wbr>_preamble</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#literal" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.literal">literal</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#literal_block_env" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.literal_block_env">literal<wbr></wbr>_block<wbr></wbr>_env</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#literal_block_options" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.literal_block_options">literal<wbr></wbr>_block<wbr></wbr>_options</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#out" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.out">out</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#out_stack" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.out_stack">out<wbr></wbr>_stack</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#pdfauthor" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.pdfauthor">pdfauthor</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#pdfinfo" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.pdfinfo">pdfinfo</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#pdfsetup" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.pdfsetup">pdfsetup</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#requirements" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.requirements">requirements</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#section_enumerator_separator" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.section_enumerator_separator">section<wbr></wbr>_enumerator<wbr></wbr>_separator</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#section_prefix_for_enumerators" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.section_prefix_for_enumerators">section<wbr></wbr>_prefix<wbr></wbr>_for<wbr></wbr>_enumerators</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#settings" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.settings">settings</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#stylesheet" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.stylesheet">stylesheet</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#subtitle" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.subtitle">subtitle</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#subtitle_labels" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.subtitle_labels">subtitle<wbr></wbr>_labels</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#table_stack" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.table_stack">table<wbr></wbr>_stack</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#title" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.title">title</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#title_labels" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.title_labels">title<wbr></wbr>_labels</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#titledata" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.titledata">titledata</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#use_latex_citations" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.use_latex_citations">use<wbr></wbr>_latex<wbr></wbr>_citations</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#use_latex_docinfo" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.use_latex_docinfo">use<wbr></wbr>_latex<wbr></wbr>_docinfo</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#use_latex_toc" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.use_latex_toc">use<wbr></wbr>_latex<wbr></wbr>_toc</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#verbatim" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.verbatim">verbatim</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#warn" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.warn">warn</a></code>
+            </div>
+        
+
+    </li><li class="private">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#_thead_depth" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator._thead_depth">_thead<wbr></wbr>_depth</a></code>
+            </div>
+        
+
+    </li><li class="private">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#_bibitems" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator._bibitems">_bibitems</a></code>
+            </div>
+        
+
+    </li><li class="private">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#_enumeration_counters" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator._enumeration_counters">_enumeration<wbr></wbr>_counters</a></code>
+            </div>
+        
+
+    </li><li class="private">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#_max_enumeration_counters" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator._max_enumeration_counters">_max<wbr></wbr>_enumeration<wbr></wbr>_counters</a></code>
+            </div>
+        
+
+    </li><li class="private">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#_reference_label" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator._reference_label">_reference<wbr></wbr>_label</a></code>
+            </div>
+        
+
+    </li><li class="private">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#_section_number" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator._section_number">_section<wbr></wbr>_number</a></code>
+            </div>
+        
+
+    </li>
+</ul> 
+        
+      </div>
+  </div><div>
+
+      <div class="thingTitle">
+        <span>Package</span>
+        <code><a href="docutils.writers.xetex.html" class="internal-link" title="The parent of this class">xetex</a></code> 
+      </div>
+      
+      <div>
+        
+
+        
+         
+
+        <div class="childrenKindTitle">Classes</div>
+        <ul>
+    
+    <li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.xetex.Babel.html" class="internal-link" title="docutils.writers.xetex.Babel"><wbr></wbr>Babel</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.xetex.Writer.html" class="internal-link" title="docutils.writers.xetex.Writer"><wbr></wbr>Writer</a></code>
+            </div>
+        
+
+    </li><li class=" thisobject">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="docutils.writers.xetex.XeLaTeXTranslator.html" class="internal-link" title="docutils.writers.xetex.XeLaTeXTranslator"><wbr></wbr>Xe<wbr></wbr>La<wbr></wbr>Te<wbr></wbr>XTranslator</a></code>
+            </div>
+        
+
+    </li>
+</ul>
+
+        
+         
+
+        
+         
+
+        
+         
+
+        
+         
+        
+      </div>
+  </div>
+
+</nav>
+        </div>
+        <div id="collapseSideBar">
+          <a class="btn btn-link" onclick="toggleSideBarCollapse()" title="Toggle Sidebar Collapse">
+          </a>
+        </div> 
+        <script src="sidebartoggle.js" type="text/javascript"></script>
+       
+      </div>
+
+      <div id="main" class="">
+        
+
+        
+
+        <div class="page-header">
+          <h1 class="class"><code><code><a href="index.html" class="internal-link">docutils</a></code><wbr></wbr>.<code><a href="docutils.writers.html" class="internal-link" title="docutils.writers">writers</a></code><wbr></wbr>.<code><a href="docutils.writers.xetex.html" class="internal-link" title="docutils.writers.xetex">xetex</a></code><wbr></wbr>.<code><a href="docutils.writers.xetex.XeLaTeXTranslator.html" class="internal-link" title="docutils.writers.xetex.XeLaTeXTranslator">XeLaTeXTranslator</a></code></code></h1>
+          <div id="showPrivate">
+            <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+          </div>
+        </div>
+
+        <div class="categoryHeader">
+          class documentation
+        </div>
+
+        <div class="extrasDocstring">
+          <p><code><span class="py-keyword">class</span> <span class="py-defname">XeLaTeXTranslator</span>(<a href="docutils.writers.latex2e.LaTeXTranslator.html" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator">latex2e.LaTeXTranslator</a>): <a href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/docutils-0.19//docutils/writers/xetex/__init__.py#L134" class="sourceLink">(source)</a></code></p>
+          <p><a href="classIndex.html#docutils.writers.xetex.XeLaTeXTranslator">View In Hierarchy</a></p>
+        </div>
+
+        <div class="moduleDocstring">
+          <div><p class="pre">Generate code for LaTeX using Unicode fonts (XeLaTex or LuaLaTeX).
+
+See the docstring of docutils.writers._html_base.HTMLTranslator for
+notes on and examples of safe subclassing.</p></div>
+        </div>
+
+        <div id="splitTables">
+          <table class="children sortable" id="id8753">
+  
+  
+  <tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__init__" class="internal-link" title="docutils.writers.xetex.XeLaTeXTranslator.__init__">__init__</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#is_xetex" class="internal-link" title="docutils.writers.xetex.XeLaTeXTranslator.is_xetex">is<wbr></wbr>_xetex</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+          
+            <p class="inheritedFrom">
+              Inherited from <code><a href="docutils.writers.latex2e.LaTeXTranslator.html" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator">LaTeXTranslator</a></code>:
+            </p>
+            <table class="children sortable" id="id8754">
+  
+  
+  <tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#append_hypertargets" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.append_hypertargets">append<wbr></wbr>_hypertargets</a></code></td>
+    <td>Append hypertargets for all ids of `node`</td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#attval" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.attval">attval</a></code></td>
+    <td>Cleanse, encode, and return attribute value text.</td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_abbreviation" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_abbreviation">depart<wbr></wbr>_abbreviation</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_acronym" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_acronym">depart<wbr></wbr>_acronym</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_address" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_address">depart<wbr></wbr>_address</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_admonition" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_admonition">depart<wbr></wbr>_admonition</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_attribution" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_attribution">depart<wbr></wbr>_attribution</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_author" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_author">depart<wbr></wbr>_author</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_authors" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_authors">depart<wbr></wbr>_authors</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_block_quote" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_block_quote">depart<wbr></wbr>_block<wbr></wbr>_quote</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_bullet_list" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_bullet_list">depart<wbr></wbr>_bullet<wbr></wbr>_list</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_caption" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_caption">depart<wbr></wbr>_caption</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_citation" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_citation">depart<wbr></wbr>_citation</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_citation_reference" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_citation_reference">depart<wbr></wbr>_citation<wbr></wbr>_reference</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_classifier" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_classifier">depart<wbr></wbr>_classifier</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_colspec" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_colspec">depart<wbr></wbr>_colspec</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_comment" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_comment">depart<wbr></wbr>_comment</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_compound" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_compound">depart<wbr></wbr>_compound</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_contact" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_contact">depart<wbr></wbr>_contact</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_container" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_container">depart<wbr></wbr>_container</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_copyright" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_copyright">depart<wbr></wbr>_copyright</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_date" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_date">depart<wbr></wbr>_date</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_decoration" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_decoration">depart<wbr></wbr>_decoration</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_definition" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_definition">depart<wbr></wbr>_definition</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_definition_list" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_definition_list">depart<wbr></wbr>_definition<wbr></wbr>_list</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_definition_list_item" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_definition_list_item">depart<wbr></wbr>_definition<wbr></wbr>_list<wbr></wbr>_item</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_description" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_description">depart<wbr></wbr>_description</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_docinfo" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_docinfo">depart<wbr></wbr>_docinfo</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_docinfo_item" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_docinfo_item">depart<wbr></wbr>_docinfo<wbr></wbr>_item</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_doctest_block" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_doctest_block">depart<wbr></wbr>_doctest<wbr></wbr>_block</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_document" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_document">depart<wbr></wbr>_document</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_emphasis" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_emphasis">depart<wbr></wbr>_emphasis</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_entry" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_entry">depart<wbr></wbr>_entry</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_enumerated_list" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_enumerated_list">depart<wbr></wbr>_enumerated<wbr></wbr>_list</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_field" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_field">depart<wbr></wbr>_field</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_field_body" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_field_body">depart<wbr></wbr>_field<wbr></wbr>_body</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_field_list" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_field_list">depart<wbr></wbr>_field<wbr></wbr>_list</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_field_name" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_field_name">depart<wbr></wbr>_field<wbr></wbr>_name</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_figure" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_figure">depart<wbr></wbr>_figure</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_footer" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_footer">depart<wbr></wbr>_footer</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_footnote" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_footnote">depart<wbr></wbr>_footnote</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_footnote_reference" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_footnote_reference">depart<wbr></wbr>_footnote<wbr></wbr>_reference</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_generated" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_generated">depart<wbr></wbr>_generated</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_header" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_header">depart<wbr></wbr>_header</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_image" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_image">depart<wbr></wbr>_image</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_inline" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_inline">depart<wbr></wbr>_inline</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_label" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_label">depart<wbr></wbr>_label</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_legend" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_legend">depart<wbr></wbr>_legend</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_line" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_line">depart<wbr></wbr>_line</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_line_block" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_line_block">depart<wbr></wbr>_line<wbr></wbr>_block</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_list_item" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_list_item">depart<wbr></wbr>_list<wbr></wbr>_item</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_literal" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_literal">depart<wbr></wbr>_literal</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_literal_block" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_literal_block">depart<wbr></wbr>_literal<wbr></wbr>_block</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_math" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_math">depart<wbr></wbr>_math</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_math_block" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_math_block">depart<wbr></wbr>_math<wbr></wbr>_block</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_meta" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_meta">depart<wbr></wbr>_meta</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_option" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_option">depart<wbr></wbr>_option</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_option_argument" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_option_argument">depart<wbr></wbr>_option<wbr></wbr>_argument</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_option_group" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_option_group">depart<wbr></wbr>_option<wbr></wbr>_group</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_option_list" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_option_list">depart<wbr></wbr>_option<wbr></wbr>_list</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_option_list_item" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_option_list_item">depart<wbr></wbr>_option<wbr></wbr>_list<wbr></wbr>_item</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_option_string" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_option_string">depart<wbr></wbr>_option<wbr></wbr>_string</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_organization" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_organization">depart<wbr></wbr>_organization</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_paragraph" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_paragraph">depart<wbr></wbr>_paragraph</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_problematic" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_problematic">depart<wbr></wbr>_problematic</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_raw" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_raw">depart<wbr></wbr>_raw</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_reference" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_reference">depart<wbr></wbr>_reference</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_revision" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_revision">depart<wbr></wbr>_revision</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_row" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_row">depart<wbr></wbr>_row</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_rubric" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_rubric">depart<wbr></wbr>_rubric</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_section" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_section">depart<wbr></wbr>_section</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_sidebar" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_sidebar">depart<wbr></wbr>_sidebar</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_status" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_status">depart<wbr></wbr>_status</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_strong" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_strong">depart<wbr></wbr>_strong</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_subscript" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_subscript">depart<wbr></wbr>_subscript</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_subtitle" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_subtitle">depart<wbr></wbr>_subtitle</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_superscript" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_superscript">depart<wbr></wbr>_superscript</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_system_message" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_system_message">depart<wbr></wbr>_system<wbr></wbr>_message</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_table" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_table">depart<wbr></wbr>_table</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_target" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_target">depart<wbr></wbr>_target</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_tbody" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_tbody">depart<wbr></wbr>_tbody</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_term" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_term">depart<wbr></wbr>_term</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_Text" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_Text">depart_<wbr></wbr>Text</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_tgroup" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_tgroup">depart<wbr></wbr>_tgroup</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_thead" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_thead">depart<wbr></wbr>_thead</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_title" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_title">depart<wbr></wbr>_title</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_title_reference" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_title_reference">depart<wbr></wbr>_title<wbr></wbr>_reference</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_topic" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_topic">depart<wbr></wbr>_topic</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_transition" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_transition">depart<wbr></wbr>_transition</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#depart_version" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.depart_version">depart<wbr></wbr>_version</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#duclass_close" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.duclass_close">duclass<wbr></wbr>_close</a></code></td>
+    <td>Close a group of class declarations.</td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#duclass_open" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.duclass_open">duclass<wbr></wbr>_open</a></code></td>
+    <td>Open a group and insert declarations for class values.</td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#encode" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.encode">encode</a></code></td>
+    <td>Return text with 'problematic' characters escaped.</td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#has_unbalanced_braces" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.has_unbalanced_braces">has<wbr></wbr>_unbalanced<wbr></wbr>_braces</a></code></td>
+    <td>Test whether there are unmatched '{' or '}' characters.</td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#ids_to_labels" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.ids_to_labels">ids<wbr></wbr>_to<wbr></wbr>_labels</a></code></td>
+    <td>Return list of label definitions for all ids of `node`</td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#insert_additional_table_colum_delimiters" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.insert_additional_table_colum_delimiters">insert<wbr></wbr>_additional<wbr></wbr>_table<wbr></wbr>_colum<wbr></wbr>_delimiters</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#insert_align_declaration" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.insert_align_declaration">insert<wbr></wbr>_align<wbr></wbr>_declaration</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#is_inline" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.is_inline">is<wbr></wbr>_inline</a></code></td>
+    <td>Check whether a node represents an inline or block-level element</td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#is_plaintext" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.is_plaintext">is<wbr></wbr>_plaintext</a></code></td>
+    <td>Check whether a node can be typeset verbatim</td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#label_delim" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.label_delim">label<wbr></wbr>_delim</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#language_label" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.language_label">language<wbr></wbr>_label</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#pop_output_collector" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.pop_output_collector">pop<wbr></wbr>_output<wbr></wbr>_collector</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#push_output_collector" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.push_output_collector">push<wbr></wbr>_output<wbr></wbr>_collector</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#set_align_from_classes" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.set_align_from_classes">set<wbr></wbr>_align<wbr></wbr>_from<wbr></wbr>_classes</a></code></td>
+    <td>Convert ``align-*`` class arguments into alignment args.</td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#stylesheet_call" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.stylesheet_call">stylesheet<wbr></wbr>_call</a></code></td>
+    <td>Return code to reference or embed stylesheet file `path`</td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#term_postfix" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.term_postfix">term<wbr></wbr>_postfix</a></code></td>
+    <td>Return LaTeX code required between term or field name and content.</td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#thead_depth" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.thead_depth">thead<wbr></wbr>_depth</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#to_latex_encoding" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.to_latex_encoding">to<wbr></wbr>_latex<wbr></wbr>_encoding</a></code></td>
+    <td>Translate docutils encoding name into LaTeX's.</td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#to_latex_length" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.to_latex_length">to<wbr></wbr>_latex<wbr></wbr>_length</a></code></td>
+    <td>Convert `length_str` with rst length to LaTeX length         </td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#unimplemented_visit" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.unimplemented_visit">unimplemented<wbr></wbr>_visit</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_abbreviation" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_abbreviation">visit<wbr></wbr>_abbreviation</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_acronym" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_acronym">visit<wbr></wbr>_acronym</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_address" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_address">visit<wbr></wbr>_address</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_admonition" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_admonition">visit<wbr></wbr>_admonition</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_attribution" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_attribution">visit<wbr></wbr>_attribution</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_author" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_author">visit<wbr></wbr>_author</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_authors" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_authors">visit<wbr></wbr>_authors</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_block_quote" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_block_quote">visit<wbr></wbr>_block<wbr></wbr>_quote</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_bullet_list" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_bullet_list">visit<wbr></wbr>_bullet<wbr></wbr>_list</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_caption" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_caption">visit<wbr></wbr>_caption</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_citation" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_citation">visit<wbr></wbr>_citation</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_citation_reference" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_citation_reference">visit<wbr></wbr>_citation<wbr></wbr>_reference</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_classifier" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_classifier">visit<wbr></wbr>_classifier</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_colspec" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_colspec">visit<wbr></wbr>_colspec</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_comment" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_comment">visit<wbr></wbr>_comment</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_compound" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_compound">visit<wbr></wbr>_compound</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_contact" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_contact">visit<wbr></wbr>_contact</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_container" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_container">visit<wbr></wbr>_container</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_contents" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_contents">visit<wbr></wbr>_contents</a></code></td>
+    <td>Write the table of contents.</td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_copyright" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_copyright">visit<wbr></wbr>_copyright</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_date" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_date">visit<wbr></wbr>_date</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_decoration" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_decoration">visit<wbr></wbr>_decoration</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_definition" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_definition">visit<wbr></wbr>_definition</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_definition_list" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_definition_list">visit<wbr></wbr>_definition<wbr></wbr>_list</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_definition_list_item" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_definition_list_item">visit<wbr></wbr>_definition<wbr></wbr>_list<wbr></wbr>_item</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_description" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_description">visit<wbr></wbr>_description</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_docinfo" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_docinfo">visit<wbr></wbr>_docinfo</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_docinfo_item" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_docinfo_item">visit<wbr></wbr>_docinfo<wbr></wbr>_item</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_doctest_block" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_doctest_block">visit<wbr></wbr>_doctest<wbr></wbr>_block</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_document" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_document">visit<wbr></wbr>_document</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_emphasis" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_emphasis">visit<wbr></wbr>_emphasis</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_entry" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_entry">visit<wbr></wbr>_entry</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_enumerated_list" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_enumerated_list">visit<wbr></wbr>_enumerated<wbr></wbr>_list</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_field" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_field">visit<wbr></wbr>_field</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_field_body" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_field_body">visit<wbr></wbr>_field<wbr></wbr>_body</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_field_list" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_field_list">visit<wbr></wbr>_field<wbr></wbr>_list</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_field_name" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_field_name">visit<wbr></wbr>_field<wbr></wbr>_name</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_figure" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_figure">visit<wbr></wbr>_figure</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_footer" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_footer">visit<wbr></wbr>_footer</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_footnote" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_footnote">visit<wbr></wbr>_footnote</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_footnote_reference" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_footnote_reference">visit<wbr></wbr>_footnote<wbr></wbr>_reference</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_generated" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_generated">visit<wbr></wbr>_generated</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_header" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_header">visit<wbr></wbr>_header</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_image" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_image">visit<wbr></wbr>_image</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_inline" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_inline">visit<wbr></wbr>_inline</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_label" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_label">visit<wbr></wbr>_label</a></code></td>
+    <td>footnote or citation label: in brackets or as superscript</td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_legend" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_legend">visit<wbr></wbr>_legend</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_line" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_line">visit<wbr></wbr>_line</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_line_block" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_line_block">visit<wbr></wbr>_line<wbr></wbr>_block</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_list_item" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_list_item">visit<wbr></wbr>_list<wbr></wbr>_item</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_literal" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_literal">visit<wbr></wbr>_literal</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_literal_block" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_literal_block">visit<wbr></wbr>_literal<wbr></wbr>_block</a></code></td>
+    <td>Render a literal block.</td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_math" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_math">visit<wbr></wbr>_math</a></code></td>
+    <td>math role</td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_math_block" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_math_block">visit<wbr></wbr>_math<wbr></wbr>_block</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_meta" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_meta">visit<wbr></wbr>_meta</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_option" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_option">visit<wbr></wbr>_option</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_option_argument" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_option_argument">visit<wbr></wbr>_option<wbr></wbr>_argument</a></code></td>
+    <td>Append the delimiter between an option and its argument to body.</td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_option_group" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_option_group">visit<wbr></wbr>_option<wbr></wbr>_group</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_option_list" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_option_list">visit<wbr></wbr>_option<wbr></wbr>_list</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_option_list_item" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_option_list_item">visit<wbr></wbr>_option<wbr></wbr>_list<wbr></wbr>_item</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_option_string" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_option_string">visit<wbr></wbr>_option<wbr></wbr>_string</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_organization" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_organization">visit<wbr></wbr>_organization</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_paragraph" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_paragraph">visit<wbr></wbr>_paragraph</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_problematic" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_problematic">visit<wbr></wbr>_problematic</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_raw" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_raw">visit<wbr></wbr>_raw</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_reference" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_reference">visit<wbr></wbr>_reference</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_revision" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_revision">visit<wbr></wbr>_revision</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_row" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_row">visit<wbr></wbr>_row</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_rubric" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_rubric">visit<wbr></wbr>_rubric</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_section" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_section">visit<wbr></wbr>_section</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_sidebar" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_sidebar">visit<wbr></wbr>_sidebar</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_status" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_status">visit<wbr></wbr>_status</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_strong" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_strong">visit<wbr></wbr>_strong</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_subscript" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_subscript">visit<wbr></wbr>_subscript</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_substitution_definition" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_substitution_definition">visit<wbr></wbr>_substitution<wbr></wbr>_definition</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_substitution_reference" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_substitution_reference">visit<wbr></wbr>_substitution<wbr></wbr>_reference</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_subtitle" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_subtitle">visit<wbr></wbr>_subtitle</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_superscript" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_superscript">visit<wbr></wbr>_superscript</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_system_message" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_system_message">visit<wbr></wbr>_system<wbr></wbr>_message</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_table" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_table">visit<wbr></wbr>_table</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_target" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_target">visit<wbr></wbr>_target</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_tbody" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_tbody">visit<wbr></wbr>_tbody</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_term" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_term">visit<wbr></wbr>_term</a></code></td>
+    <td>definition list term</td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_Text" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_Text">visit_<wbr></wbr>Text</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_tgroup" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_tgroup">visit<wbr></wbr>_tgroup</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_thead" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_thead">visit<wbr></wbr>_thead</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_title" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_title">visit<wbr></wbr>_title</a></code></td>
+    <td>Append section and other titles.</td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_title_reference" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_title_reference">visit<wbr></wbr>_title<wbr></wbr>_reference</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_topic" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_topic">visit<wbr></wbr>_topic</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_transition" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_transition">visit<wbr></wbr>_transition</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#visit_version" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.visit_version">visit<wbr></wbr>_version</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="baseclassvariable">
+    
+    <td>Class Variable</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#attribution_formats" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.attribution_formats">attribution<wbr></wbr>_formats</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="baseclassvariable">
+    
+    <td>Class Variable</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#has_latex_toc" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.has_latex_toc">has<wbr></wbr>_latex<wbr></wbr>_toc</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="baseclassvariable">
+    
+    <td>Class Variable</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#section_level" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.section_level">section<wbr></wbr>_level</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="baseinstancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#abstract" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.abstract">abstract</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="baseinstancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#active_table" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.active_table">active<wbr></wbr>_table</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="baseinstancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#alltt" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.alltt">alltt</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="baseinstancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#author_separator" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.author_separator">author<wbr></wbr>_separator</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="baseinstancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#author_stack" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.author_stack">author<wbr></wbr>_stack</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="baseinstancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#babel" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.babel">babel</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="baseinstancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#bibtex" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.bibtex">bibtex</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="baseinstancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#body" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.body">body</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="baseinstancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#body_pre_docinfo" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.body_pre_docinfo">body<wbr></wbr>_pre<wbr></wbr>_docinfo</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="baseinstancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#compound_enumerators" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.compound_enumerators">compound<wbr></wbr>_enumerators</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="baseinstancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#context" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.context">context</a></code></td>
+    <td>Heterogeneous stack.</td>
+  </tr><tr class="baseinstancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#d_class" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.d_class">d<wbr></wbr>_class</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="baseinstancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#date" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.date">date</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="baseinstancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#dedication" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.dedication">dedication</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="baseinstancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#docinfo" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.docinfo">docinfo</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="baseinstancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#documentoptions" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.documentoptions">documentoptions</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="baseinstancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#docutils_footnotes" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.docutils_footnotes">docutils<wbr></wbr>_footnotes</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="baseinstancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#error" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.error">error</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="baseinstancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#fallback_stylesheet" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.fallback_stylesheet">fallback<wbr></wbr>_stylesheet</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="baseinstancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#fallbacks" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.fallbacks">fallbacks</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="baseinstancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#font_encoding" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.font_encoding">font<wbr></wbr>_encoding</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="baseinstancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#graphicx_package" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.graphicx_package">graphicx<wbr></wbr>_package</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="baseinstancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#head_prefix" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.head_prefix">head<wbr></wbr>_prefix</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="baseinstancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#hyperlink_color" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.hyperlink_color">hyperlink<wbr></wbr>_color</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="baseinstancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#hyperref_options" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.hyperref_options">hyperref<wbr></wbr>_options</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="baseinstancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#insert_newline" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.insert_newline">insert<wbr></wbr>_newline</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="baseinstancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#insert_non_breaking_blanks" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.insert_non_breaking_blanks">insert<wbr></wbr>_non<wbr></wbr>_breaking<wbr></wbr>_blanks</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="baseinstancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#inside_citation_reference_label" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.inside_citation_reference_label">inside<wbr></wbr>_citation<wbr></wbr>_reference<wbr></wbr>_label</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="baseinstancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#language_module" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.language_module">language<wbr></wbr>_module</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="baseinstancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#latex_encoding" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.latex_encoding">latex<wbr></wbr>_encoding</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="baseinstancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#latex_preamble" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.latex_preamble">latex<wbr></wbr>_preamble</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="baseinstancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#literal" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.literal">literal</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="baseinstancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#literal_block_env" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.literal_block_env">literal<wbr></wbr>_block<wbr></wbr>_env</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="baseinstancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#literal_block_options" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.literal_block_options">literal<wbr></wbr>_block<wbr></wbr>_options</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="baseinstancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#out" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.out">out</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="baseinstancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#out_stack" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.out_stack">out<wbr></wbr>_stack</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="baseinstancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#pdfauthor" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.pdfauthor">pdfauthor</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="baseinstancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#pdfinfo" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.pdfinfo">pdfinfo</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="baseinstancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#pdfsetup" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.pdfsetup">pdfsetup</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="baseinstancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#requirements" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.requirements">requirements</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="baseinstancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#section_enumerator_separator" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.section_enumerator_separator">section<wbr></wbr>_enumerator<wbr></wbr>_separator</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="baseinstancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#section_prefix_for_enumerators" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.section_prefix_for_enumerators">section<wbr></wbr>_prefix<wbr></wbr>_for<wbr></wbr>_enumerators</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="baseinstancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#settings" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.settings">settings</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="baseinstancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#stylesheet" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.stylesheet">stylesheet</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="baseinstancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#subtitle" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.subtitle">subtitle</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="baseinstancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#subtitle_labels" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.subtitle_labels">subtitle<wbr></wbr>_labels</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="baseinstancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#table_stack" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.table_stack">table<wbr></wbr>_stack</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="baseinstancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#title" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.title">title</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="baseinstancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#title_labels" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.title_labels">title<wbr></wbr>_labels</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="baseinstancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#titledata" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.titledata">titledata</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="baseinstancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#use_latex_citations" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.use_latex_citations">use<wbr></wbr>_latex<wbr></wbr>_citations</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="baseinstancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#use_latex_docinfo" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.use_latex_docinfo">use<wbr></wbr>_latex<wbr></wbr>_docinfo</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="baseinstancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#use_latex_toc" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.use_latex_toc">use<wbr></wbr>_latex<wbr></wbr>_toc</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="baseinstancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#verbatim" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.verbatim">verbatim</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="baseinstancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#warn" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator.warn">warn</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="baseclassvariable private">
+    
+    <td>Class Variable</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#_thead_depth" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator._thead_depth">_thead<wbr></wbr>_depth</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="baseinstancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#_bibitems" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator._bibitems">_bibitems</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="baseinstancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#_enumeration_counters" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator._enumeration_counters">_enumeration<wbr></wbr>_counters</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="baseinstancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#_max_enumeration_counters" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator._max_enumeration_counters">_max<wbr></wbr>_enumeration<wbr></wbr>_counters</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="baseinstancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#_reference_label" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator._reference_label">_reference<wbr></wbr>_label</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="baseinstancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="docutils.writers.latex2e.LaTeXTranslator.html#_section_number" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator._section_number">_section<wbr></wbr>_number</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+            
+            <p class="inheritedFrom">
+              Inherited from <code><a href="docutils.nodes.NodeVisitor.html" class="internal-link" title="docutils.nodes.NodeVisitor">NodeVisitor</a></code> (via <code><a href="docutils.writers.latex2e.LaTeXTranslator.html" class="internal-link" title="docutils.writers.latex2e.LaTeXTranslator">LaTeXTranslator</a></code>):
+            </p>
+            <table class="children sortable" id="id8755">
+  
+  
+  <tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.nodes.NodeVisitor.html#dispatch_departure" class="internal-link" title="docutils.nodes.NodeVisitor.dispatch_departure">dispatch<wbr></wbr>_departure</a></code></td>
+    <td>Call self."``depart_`` + node class name" with `node` as parameter.  If the ``depart_...`` method does not exist, call self.unknown_departure.</td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.nodes.NodeVisitor.html#dispatch_visit" class="internal-link" title="docutils.nodes.NodeVisitor.dispatch_visit">dispatch<wbr></wbr>_visit</a></code></td>
+    <td>Call self."``visit_`` + node class name" with `node` as parameter.  If the ``visit_...`` method does not exist, call self.unknown_visit.</td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.nodes.NodeVisitor.html#unknown_departure" class="internal-link" title="docutils.nodes.NodeVisitor.unknown_departure">unknown<wbr></wbr>_departure</a></code></td>
+    <td>Called before exiting unknown `Node` types.</td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="docutils.nodes.NodeVisitor.html#unknown_visit" class="internal-link" title="docutils.nodes.NodeVisitor.unknown_visit">unknown<wbr></wbr>_visit</a></code></td>
+    <td>Called when entering unknown `Node` types.</td>
+  </tr><tr class="baseclassvariable">
+    
+    <td>Class Variable</td>
+    <td><code><a href="docutils.nodes.NodeVisitor.html#optional" class="internal-link" title="docutils.nodes.NodeVisitor.optional">optional</a></code></td>
+    <td>Tuple containing node class names (as strings).</td>
+  </tr><tr class="baseinstancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="docutils.nodes.NodeVisitor.html#document" class="internal-link" title="docutils.nodes.NodeVisitor.document">document</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+            
+
+            
+        </div>
+
+        <div id="childList">
+          <div class="basemethod">
+  
+  
+  <a name="docutils.writers.xetex.XeLaTeXTranslator.__init__">
+    
+  </a>
+  <a name="__init__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__init__</span>(self, document):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/docutils-0.19//docutils/writers/xetex/__init__.py#L142">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overrides <code><a href="docutils.writers.latex2e.LaTeXTranslator.html#__init__" class="internal-link">docutils.writers.latex2e.LaTeXTranslator.__init__</a></code></div>
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="docutils.writers.xetex.XeLaTeXTranslator.is_xetex">
+    
+  </a>
+  <a name="is_xetex">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">is_xetex</span>: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/docutils-0.19//docutils/writers/xetex/__init__.py#L143">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">overrides <code><a href="docutils.writers.latex2e.LaTeXTranslator.html#is_xetex" class="internal-link">docutils.writers.latex2e.LaTeXTranslator.is_xetex</a></code></div>
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div>
+        </div>
+      
+      </div>
+    </div>
+
+    <footer class="navbar navbar-default">
+
+  
+  <div class="container">
+    <a href="index.html">API Documentation</a> for docutils,
+  generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
+    22.5.1 at 2022-07-13 18:33:46.
+  </div>
+
+  <!-- Search related scripts needs to be loaded at the end of HTML 
+    parsing not to introduce overhead and display HTML data asap -->
+  <script src="ajax.js" type="text/javascript"></script>
+  <script src="searchlib.js" type="text/javascript"></script>
+  <script src="search.js" type="text/javascript"></script>
+
+</footer>
+  
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+  </body>
+</html>
