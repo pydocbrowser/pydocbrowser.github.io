@@ -1,0 +1,34 @@
+[tool.poetry]
+name = "docspec"
+version = "2.0.2"
+description = "Docspec is a JSON object specification for representing API documentation of programming languages."
+authors = ["Niklas Rosenstein <rosensteinniklas@gmail.com>"]
+license = "MIT"
+readme = "readme.md"
+homepage = "https://github.com/NiklasRosenstein/docspec/"
+packages = [{include="docspec", from="src"}]
+
+[tool.poetry.dependencies]
+python = "^3.7"
+"databind" = "^1.5.0"
+Deprecated = "^1.2.12"
+
+[tool.poetry.dev-dependencies]
+mypy = "*"
+pytest = "*"
+types-Deprecated = "*"
+types-termcolor = "*"
+
+[tool.poetry.scripts]
+docspec = "docspec.__main__:main"
+
+[tool.slap]
+typed = true
+
+[tool.slap.test]
+pytest = "pytest test/ -vv"
+mypy = "mypy src/ test/ --check-untyped-defs"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
