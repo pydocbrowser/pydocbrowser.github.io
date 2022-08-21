@@ -1,0 +1,73 @@
+[tool.poetry]
+name = "klara"
+version = "0.6.3"
+description = "Automatic test case generation and static analysis library"
+authors = ["Ho Guo Xian <hogouxian@gmail.com>"]
+documentation = "https://klara-py.readthedocs.io"
+keywords = [
+    "unit test",
+    "test generation",
+    "static analysis"
+]
+repository = "https://github.com/usagitoneko97/klara"
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Education",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: GNU Lesser General Public License v3 or later (LGPLv3+)",
+    "Operating System :: MacOS :: MacOS X",
+    "Operating System :: Microsoft :: Windows",
+    "Operating System :: POSIX :: Linux",
+    "Programming Language :: Python :: 3.8",
+    "Topic :: Education :: Testing",
+    "Topic :: Software Development :: Testing",
+    "Topic :: Software Development :: Testing :: Unit",
+    "Typing :: Typed",
+]
+
+license = "LGPL-3.0-or-later"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = ">=3.6.2,<4.0"
+typed-ast = "^1.4.3"
+ConfigArgParse = "^1.5.2"
+z3-solver = "^4.8.12"
+astor = "^0.8.1"
+
+[tool.poetry.dev-dependencies]
+pytest = "^6.2.5"
+coverage = "^5.5"
+Sphinx = "^4.1.2"
+flake8 = "^3.9.2"
+sphinx-autodoc-typehints = "^1.12.0"
+isort = "^5.9.3"
+black = "^21.8b0"
+icontract = "^2.5.4"
+
+[tool.poetry.scripts]
+klara = "klara.contract.__main__:main"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.black]
+line-length = 120
+exclude = '''
+/(
+ \.eggs
+  | \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | _build
+  | buck-out
+  | build
+  | dist
+  | .*venv.*
+  | tools/typeshed/)
+'''
