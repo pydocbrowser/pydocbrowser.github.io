@@ -1,0 +1,1601 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  
+
+  <head>
+    
+    <title>mypy.server.astmerge.TypeReplaceVisitor</title>
+    <meta name="generator" content="pydoctor 22.9.1"> 
+        
+    </meta>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1 maximum-scale=1" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+    <link rel="stylesheet" type="text/css" href="extra.css" />
+</head>
+
+  <body>
+
+    <div id="banner">    
+    <div>
+        <a href="/">Home</a>
+        &gt; mypy-0.982 <!-- This is a placeholder -->
+        
+        <!-- (<a href=""&gt;show all versions</a&gt;) -->
+    </div>
+</div>
+
+    <nav class="navbar navbar-default mainnavbar">
+      
+  
+  <div class="container-fluid">
+
+
+    <div class="navbar-header">
+      
+      <div class="navlinks">
+        <span class="navbar-brand">
+          mypy <a href="index.html">API Documentation</a>
+        </span>
+
+        <a href="moduleIndex.html">
+          Modules
+        </a>
+
+        <a href="classIndex.html">
+          Classes
+        </a>
+
+        <a href="nameIndex.html">
+          Names
+        </a>
+
+        <div id="search-box-container">
+          <div class="input-group">
+            <input id="search-box" type="search" name="search-query" placeholder="Search..." aria-label="Search" minlength="2" class="form-control" autocomplete="off" />
+            
+            <span class="input-group-btn">
+              <a style="display: none;" class="btn btn-default" id="search-clear-button" title="Clear" onclick="clearSearch()"><img src="fonts/x-circle.svg" alt="Clear" /></a>
+              <a class="btn btn-default" id="search-help-button" title="Help" onclick="toggleSearchHelpText()"><img src="fonts/info.svg" alt="Help" /></a>
+            </span>
+          </div>
+        </div>
+
+      </div>
+
+      <div id="search-results-container" style="display: none;">
+        
+        <div id="search-buttons">
+          <span class="label label-default" id="search-docstrings-button">
+          <label class="checkbox-inline">
+            <input type="checkbox" id="toggle-search-in-docstrings-checkbox" value="false" onclick="toggleSearchInDocstrings()">
+              search in docstrings
+            </input>
+          </label>
+          </span>
+          
+        </div>
+        
+        <noscript>
+            <h1>Cannot search: JavaScript is not supported/enabled in your browser.</h1>
+        </noscript>
+
+        <div class="hint" id="search-help-box">
+          <p class="rst-last">
+      
+            Search bar offers the following options:
+            <ul>   
+                <li>
+                  <strong>Term presence.</strong> The below example searches for documents that 
+                    must contain “foo”, might contain “bar” and must not contain “baz”: <code>+foo bar -baz</code>
+                </li> 
+
+                <li>
+                  <strong>Wildcards.</strong> The below example searches for documents with words beginning with “foo”: <code>foo*</code>
+                </li> 
+
+                <li>
+                  <strong>Search in specific fields.</strong> The following search matches all objects 
+                  in "twisted.mail" that matches “search”: <code>+qname:twisted.mail.* +search</code>
+
+                  <p>
+                    Possible fields: 'name', 'qname' (fully qualified name), 'docstring', and 'kind'.
+                    Last two fields are only applicable if "search in docstrings" is enabled.
+                  </p>
+                </li>
+
+                <li>
+                  <strong>Fuzzy matches.</strong> The following search matches all documents 
+                  that have a word within 1 edit distance of “foo”: <code>foo~1</code>
+                </li>
+            </ul>
+
+          </p>
+        </div>
+
+        <div id="search-status"> </div>
+
+        <div class="warning" id="search-warn-box" style="display: none;">
+          <p class="rst-last"><span id="search-warn"></span></p>
+        </div>
+
+        <table id="search-results">
+          <!-- Filled dynamically by JS -->
+        </table>
+        
+        <div style="margin-top: 8px;">
+          <p>Results provided by <a href="https://lunrjs.com">Lunr.js</a></p>
+        </div>
+      </div>
+
+    </div>
+
+
+  </div>
+</nav>
+    
+    <div class="container-fluid">
+
+      <!-- Side navigation -->
+      <div class="sidebarcontainer" style="display: none;">
+        
+        <div class="sidebar"><nav class="sidebar">
+  
+
+  <div>
+
+      <div class="thingTitle">
+        <span>Class</span>
+        <code class="thisobject"><a href="mypy.server.astmerge.TypeReplaceVisitor.html" class="internal-link" title="This class"><wbr></wbr>Type<wbr></wbr>Replace<wbr></wbr>Visitor</a></code> 
+      </div>
+      
+      <div>
+        
+
+        
+         
+
+        
+        
+
+        <div class="childrenKindTitle">Methods</div>
+        <ul>
+    
+    <li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#__init__" class="internal-link" title="mypy.server.astmerge.TypeReplaceVisitor.__init__">__init__</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#fixup" class="internal-link" title="mypy.server.astmerge.TypeReplaceVisitor.fixup">fixup</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#visit_any" class="internal-link" title="mypy.server.astmerge.TypeReplaceVisitor.visit_any">visit<wbr></wbr>_any</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#visit_callable_argument" class="internal-link" title="mypy.server.astmerge.TypeReplaceVisitor.visit_callable_argument">visit<wbr></wbr>_callable<wbr></wbr>_argument</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#visit_callable_type" class="internal-link" title="mypy.server.astmerge.TypeReplaceVisitor.visit_callable_type">visit<wbr></wbr>_callable<wbr></wbr>_type</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#visit_deleted_type" class="internal-link" title="mypy.server.astmerge.TypeReplaceVisitor.visit_deleted_type">visit<wbr></wbr>_deleted<wbr></wbr>_type</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#visit_ellipsis_type" class="internal-link" title="mypy.server.astmerge.TypeReplaceVisitor.visit_ellipsis_type">visit<wbr></wbr>_ellipsis<wbr></wbr>_type</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#visit_erased_type" class="internal-link" title="mypy.server.astmerge.TypeReplaceVisitor.visit_erased_type">visit<wbr></wbr>_erased<wbr></wbr>_type</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#visit_instance" class="internal-link" title="mypy.server.astmerge.TypeReplaceVisitor.visit_instance">visit<wbr></wbr>_instance</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#visit_literal_type" class="internal-link" title="mypy.server.astmerge.TypeReplaceVisitor.visit_literal_type">visit<wbr></wbr>_literal<wbr></wbr>_type</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#visit_none_type" class="internal-link" title="mypy.server.astmerge.TypeReplaceVisitor.visit_none_type">visit<wbr></wbr>_none<wbr></wbr>_type</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#visit_overloaded" class="internal-link" title="mypy.server.astmerge.TypeReplaceVisitor.visit_overloaded">visit<wbr></wbr>_overloaded</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#visit_param_spec" class="internal-link" title="mypy.server.astmerge.TypeReplaceVisitor.visit_param_spec">visit<wbr></wbr>_param<wbr></wbr>_spec</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#visit_parameters" class="internal-link" title="mypy.server.astmerge.TypeReplaceVisitor.visit_parameters">visit<wbr></wbr>_parameters</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#visit_partial_type" class="internal-link" title="mypy.server.astmerge.TypeReplaceVisitor.visit_partial_type">visit<wbr></wbr>_partial<wbr></wbr>_type</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#visit_placeholder_type" class="internal-link" title="mypy.server.astmerge.TypeReplaceVisitor.visit_placeholder_type">visit<wbr></wbr>_placeholder<wbr></wbr>_type</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#visit_raw_expression_type" class="internal-link" title="mypy.server.astmerge.TypeReplaceVisitor.visit_raw_expression_type">visit<wbr></wbr>_raw<wbr></wbr>_expression<wbr></wbr>_type</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#visit_star_type" class="internal-link" title="mypy.server.astmerge.TypeReplaceVisitor.visit_star_type">visit<wbr></wbr>_star<wbr></wbr>_type</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#visit_tuple_type" class="internal-link" title="mypy.server.astmerge.TypeReplaceVisitor.visit_tuple_type">visit<wbr></wbr>_tuple<wbr></wbr>_type</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#visit_type_alias_type" class="internal-link" title="mypy.server.astmerge.TypeReplaceVisitor.visit_type_alias_type">visit<wbr></wbr>_type<wbr></wbr>_alias<wbr></wbr>_type</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#visit_type_list" class="internal-link" title="mypy.server.astmerge.TypeReplaceVisitor.visit_type_list">visit<wbr></wbr>_type<wbr></wbr>_list</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#visit_type_type" class="internal-link" title="mypy.server.astmerge.TypeReplaceVisitor.visit_type_type">visit<wbr></wbr>_type<wbr></wbr>_type</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#visit_type_var" class="internal-link" title="mypy.server.astmerge.TypeReplaceVisitor.visit_type_var">visit<wbr></wbr>_type<wbr></wbr>_var</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#visit_type_var_tuple" class="internal-link" title="mypy.server.astmerge.TypeReplaceVisitor.visit_type_var_tuple">visit<wbr></wbr>_type<wbr></wbr>_var<wbr></wbr>_tuple</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#visit_typeddict_type" class="internal-link" title="mypy.server.astmerge.TypeReplaceVisitor.visit_typeddict_type">visit<wbr></wbr>_typeddict<wbr></wbr>_type</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#visit_unbound_type" class="internal-link" title="mypy.server.astmerge.TypeReplaceVisitor.visit_unbound_type">visit<wbr></wbr>_unbound<wbr></wbr>_type</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#visit_uninhabited_type" class="internal-link" title="mypy.server.astmerge.TypeReplaceVisitor.visit_uninhabited_type">visit<wbr></wbr>_uninhabited<wbr></wbr>_type</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#visit_union_type" class="internal-link" title="mypy.server.astmerge.TypeReplaceVisitor.visit_union_type">visit<wbr></wbr>_union<wbr></wbr>_type</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#visit_unpack_type" class="internal-link" title="mypy.server.astmerge.TypeReplaceVisitor.visit_unpack_type">visit<wbr></wbr>_unpack<wbr></wbr>_type</a></code>
+            </div>
+        
+
+    </li>
+</ul> 
+
+        
+         
+
+        <div class="childrenKindTitle">Attributes</div>
+        <ul>
+    
+    <li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#replacements" class="internal-link" title="mypy.server.astmerge.TypeReplaceVisitor.replacements">replacements</a></code>
+            </div>
+        
+
+    </li>
+</ul> 
+
+        
+         
+        
+      </div>
+  </div><div>
+
+      <div class="thingTitle">
+        <span>Module</span>
+        <code><a href="mypy.server.astmerge.html" class="internal-link" title="The parent of this class">astmerge</a></code> 
+      </div>
+      
+      <div>
+        
+
+        
+         
+
+        <div class="childrenKindTitle">Classes</div>
+        <ul>
+    
+    <li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="mypy.server.astmerge.NodeReplaceVisitor.html" class="internal-link" title="mypy.server.astmerge.NodeReplaceVisitor"><wbr></wbr>Node<wbr></wbr>Replace<wbr></wbr>Visitor</a></code>
+            </div>
+        
+
+    </li><li class=" thisobject">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="mypy.server.astmerge.TypeReplaceVisitor.html" class="internal-link" title="mypy.server.astmerge.TypeReplaceVisitor"><wbr></wbr>Type<wbr></wbr>Replace<wbr></wbr>Visitor</a></code>
+            </div>
+        
+
+    </li>
+</ul>
+
+        <div class="childrenKindTitle">Functions</div>
+        <ul>
+    
+    <li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="mypy.server.astmerge.html#merge_asts" class="internal-link" title="mypy.server.astmerge.merge_asts">merge<wbr></wbr>_asts</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="mypy.server.astmerge.html#replace_nodes_in_ast" class="internal-link" title="mypy.server.astmerge.replace_nodes_in_ast">replace<wbr></wbr>_nodes<wbr></wbr>_in<wbr></wbr>_ast</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="mypy.server.astmerge.html#replace_nodes_in_symbol_table" class="internal-link" title="mypy.server.astmerge.replace_nodes_in_symbol_table">replace<wbr></wbr>_nodes<wbr></wbr>_in<wbr></wbr>_symbol<wbr></wbr>_table</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="mypy.server.astmerge.html#replacement_map_from_symbol_table" class="internal-link" title="mypy.server.astmerge.replacement_map_from_symbol_table">replacement<wbr></wbr>_map<wbr></wbr>_from<wbr></wbr>_symbol<wbr></wbr>_table</a></code>
+            </div>
+        
+
+    </li>
+</ul> 
+
+        
+         
+
+        <div class="childrenKindTitle">Variables</div>
+        <ul>
+    
+    <li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="mypy.server.astmerge.html#SN" class="internal-link" title="mypy.server.astmerge.SN">SN</a></code>
+            </div>
+        
+
+    </li>
+</ul> 
+
+        
+         
+        
+      </div>
+  </div>
+
+</nav>
+        </div>
+        <div id="collapseSideBar">
+          <a class="btn btn-link" onclick="toggleSideBarCollapse()" title="Toggle Sidebar Collapse">
+          </a>
+        </div> 
+        <script src="sidebartoggle.js" type="text/javascript"></script>
+       
+      </div>
+
+      <div id="main" class="">
+        
+
+        
+
+        <div class="page-header">
+          <h1 class="class"><code><code><a href="index.html" class="internal-link">mypy</a></code><wbr></wbr>.<code><a href="mypy.server.html" class="internal-link" title="mypy.server">server</a></code><wbr></wbr>.<code><a href="mypy.server.astmerge.html" class="internal-link" title="mypy.server.astmerge">astmerge</a></code><wbr></wbr>.<code><a href="mypy.server.astmerge.TypeReplaceVisitor.html" class="internal-link" title="mypy.server.astmerge.TypeReplaceVisitor">TypeReplaceVisitor</a></code></code></h1>
+          <div id="showPrivate">
+            <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+          </div>
+        </div>
+
+        <div class="categoryHeader">
+          class documentation
+        </div>
+
+        <div class="extrasDocstring">
+          <p><code><span class="py-keyword">class</span> <span class="py-defname">TypeReplaceVisitor</span>(SyntheticTypeVisitor[<wbr></wbr><a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>]): <a href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.982//mypy/server/astmerge.py#L404" class="sourceLink">(source)</a></code></p>
+          <p><a href="classIndex.html#mypy.server.astmerge.TypeReplaceVisitor">View In Hierarchy</a></p>
+        </div>
+
+        <div class="moduleDocstring">
+          <div><p class="pre">Similar to NodeReplaceVisitor, but for type objects.
+
+Note: this visitor may sometimes visit unanalyzed types
+such as 'UnboundType' and 'RawExpressionType' For example, see
+NodeReplaceVisitor.process_base_func.</p></div>
+        </div>
+
+        <div id="splitTables">
+          <table class="children sortable" id="id621">
+  
+  
+  <tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#__init__" class="internal-link" title="mypy.server.astmerge.TypeReplaceVisitor.__init__">__init__</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#fixup" class="internal-link" title="mypy.server.astmerge.TypeReplaceVisitor.fixup">fixup</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#visit_any" class="internal-link" title="mypy.server.astmerge.TypeReplaceVisitor.visit_any">visit<wbr></wbr>_any</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#visit_callable_argument" class="internal-link" title="mypy.server.astmerge.TypeReplaceVisitor.visit_callable_argument">visit<wbr></wbr>_callable<wbr></wbr>_argument</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#visit_callable_type" class="internal-link" title="mypy.server.astmerge.TypeReplaceVisitor.visit_callable_type">visit<wbr></wbr>_callable<wbr></wbr>_type</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#visit_deleted_type" class="internal-link" title="mypy.server.astmerge.TypeReplaceVisitor.visit_deleted_type">visit<wbr></wbr>_deleted<wbr></wbr>_type</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#visit_ellipsis_type" class="internal-link" title="mypy.server.astmerge.TypeReplaceVisitor.visit_ellipsis_type">visit<wbr></wbr>_ellipsis<wbr></wbr>_type</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#visit_erased_type" class="internal-link" title="mypy.server.astmerge.TypeReplaceVisitor.visit_erased_type">visit<wbr></wbr>_erased<wbr></wbr>_type</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#visit_instance" class="internal-link" title="mypy.server.astmerge.TypeReplaceVisitor.visit_instance">visit<wbr></wbr>_instance</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#visit_literal_type" class="internal-link" title="mypy.server.astmerge.TypeReplaceVisitor.visit_literal_type">visit<wbr></wbr>_literal<wbr></wbr>_type</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#visit_none_type" class="internal-link" title="mypy.server.astmerge.TypeReplaceVisitor.visit_none_type">visit<wbr></wbr>_none<wbr></wbr>_type</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#visit_overloaded" class="internal-link" title="mypy.server.astmerge.TypeReplaceVisitor.visit_overloaded">visit<wbr></wbr>_overloaded</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#visit_param_spec" class="internal-link" title="mypy.server.astmerge.TypeReplaceVisitor.visit_param_spec">visit<wbr></wbr>_param<wbr></wbr>_spec</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#visit_parameters" class="internal-link" title="mypy.server.astmerge.TypeReplaceVisitor.visit_parameters">visit<wbr></wbr>_parameters</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#visit_partial_type" class="internal-link" title="mypy.server.astmerge.TypeReplaceVisitor.visit_partial_type">visit<wbr></wbr>_partial<wbr></wbr>_type</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#visit_placeholder_type" class="internal-link" title="mypy.server.astmerge.TypeReplaceVisitor.visit_placeholder_type">visit<wbr></wbr>_placeholder<wbr></wbr>_type</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#visit_raw_expression_type" class="internal-link" title="mypy.server.astmerge.TypeReplaceVisitor.visit_raw_expression_type">visit<wbr></wbr>_raw<wbr></wbr>_expression<wbr></wbr>_type</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#visit_star_type" class="internal-link" title="mypy.server.astmerge.TypeReplaceVisitor.visit_star_type">visit<wbr></wbr>_star<wbr></wbr>_type</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#visit_tuple_type" class="internal-link" title="mypy.server.astmerge.TypeReplaceVisitor.visit_tuple_type">visit<wbr></wbr>_tuple<wbr></wbr>_type</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#visit_type_alias_type" class="internal-link" title="mypy.server.astmerge.TypeReplaceVisitor.visit_type_alias_type">visit<wbr></wbr>_type<wbr></wbr>_alias<wbr></wbr>_type</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#visit_type_list" class="internal-link" title="mypy.server.astmerge.TypeReplaceVisitor.visit_type_list">visit<wbr></wbr>_type<wbr></wbr>_list</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#visit_type_type" class="internal-link" title="mypy.server.astmerge.TypeReplaceVisitor.visit_type_type">visit<wbr></wbr>_type<wbr></wbr>_type</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#visit_type_var" class="internal-link" title="mypy.server.astmerge.TypeReplaceVisitor.visit_type_var">visit<wbr></wbr>_type<wbr></wbr>_var</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#visit_type_var_tuple" class="internal-link" title="mypy.server.astmerge.TypeReplaceVisitor.visit_type_var_tuple">visit<wbr></wbr>_type<wbr></wbr>_var<wbr></wbr>_tuple</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#visit_typeddict_type" class="internal-link" title="mypy.server.astmerge.TypeReplaceVisitor.visit_typeddict_type">visit<wbr></wbr>_typeddict<wbr></wbr>_type</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#visit_unbound_type" class="internal-link" title="mypy.server.astmerge.TypeReplaceVisitor.visit_unbound_type">visit<wbr></wbr>_unbound<wbr></wbr>_type</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#visit_uninhabited_type" class="internal-link" title="mypy.server.astmerge.TypeReplaceVisitor.visit_uninhabited_type">visit<wbr></wbr>_uninhabited<wbr></wbr>_type</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#visit_union_type" class="internal-link" title="mypy.server.astmerge.TypeReplaceVisitor.visit_union_type">visit<wbr></wbr>_union<wbr></wbr>_type</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#visit_unpack_type" class="internal-link" title="mypy.server.astmerge.TypeReplaceVisitor.visit_unpack_type">visit<wbr></wbr>_unpack<wbr></wbr>_type</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><code><a href="#replacements" class="internal-link" title="mypy.server.astmerge.TypeReplaceVisitor.replacements">replacements</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+          
+
+            
+        </div>
+
+        <div id="childList">
+          <div class="basemethod">
+  
+  
+  <a name="mypy.server.astmerge.TypeReplaceVisitor.__init__">
+    
+  </a>
+  <a name="__init__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">__init__</span>(self, replacements):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.982//mypy/server/astmerge.py#L412">
+      
+      (source)
+    </a>
+    <a class="headerLink" href="#__init__" title="mypy.server.astmerge.TypeReplaceVisitor.__init__">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">replacements:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#dict" class="intersphinx-link">dict</a>[<wbr></wbr><a href="mypy.nodes.SymbolNode.html" class="internal-link" title="mypy.nodes.SymbolNode">SymbolNode</a>, <wbr></wbr><a href="mypy.nodes.SymbolNode.html" class="internal-link" title="mypy.nodes.SymbolNode">SymbolNode</a>]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="mypy.server.astmerge.TypeReplaceVisitor.fixup">
+    
+  </a>
+  <a name="fixup">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">fixup</span>(self, node):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.982//mypy/server/astmerge.py#L536">
+      
+      (source)
+    </a>
+    <a class="headerLink" href="#fixup" title="mypy.server.astmerge.TypeReplaceVisitor.fixup">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">node:</span><code><a href="mypy.server.astmerge.html#SN" class="internal-link" title="mypy.server.astmerge.SN">SN</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="mypy.server.astmerge.html#SN" class="internal-link" title="mypy.server.astmerge.SN">SN</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="mypy.server.astmerge.TypeReplaceVisitor.visit_any">
+    
+  </a>
+  <a name="visit_any">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">visit_any</span>(self, typ):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.982//mypy/server/astmerge.py#L428">
+      
+      (source)
+    </a>
+    <a class="headerLink" href="#visit_any" title="mypy.server.astmerge.TypeReplaceVisitor.visit_any">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">typ:</span><code><a href="mypy.types.AnyType.html" class="internal-link" title="mypy.types.AnyType">AnyType</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="mypy.server.astmerge.TypeReplaceVisitor.visit_callable_argument">
+    
+  </a>
+  <a name="visit_callable_argument">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">visit_callable_argument</span>(self, typ):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.982//mypy/server/astmerge.py#L514">
+      
+      (source)
+    </a>
+    <a class="headerLink" href="#visit_callable_argument" title="mypy.server.astmerge.TypeReplaceVisitor.visit_callable_argument">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">typ:</span><code><a href="mypy.types.CallableArgument.html" class="internal-link" title="mypy.types.CallableArgument">CallableArgument</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="mypy.server.astmerge.TypeReplaceVisitor.visit_callable_type">
+    
+  </a>
+  <a name="visit_callable_type">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">visit_callable_type</span>(self, typ):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.982//mypy/server/astmerge.py#L434">
+      
+      (source)
+    </a>
+    <a class="headerLink" href="#visit_callable_type" title="mypy.server.astmerge.TypeReplaceVisitor.visit_callable_type">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">typ:</span><code><a href="mypy.types.CallableType.html" class="internal-link" title="mypy.types.CallableType">CallableType</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="mypy.server.astmerge.TypeReplaceVisitor.visit_deleted_type">
+    
+  </a>
+  <a name="visit_deleted_type">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">visit_deleted_type</span>(self, typ):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.982//mypy/server/astmerge.py#L461">
+      
+      (source)
+    </a>
+    <a class="headerLink" href="#visit_deleted_type" title="mypy.server.astmerge.TypeReplaceVisitor.visit_deleted_type">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">typ:</span><code><a href="mypy.types.DeletedType.html" class="internal-link" title="mypy.types.DeletedType">DeletedType</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="mypy.server.astmerge.TypeReplaceVisitor.visit_ellipsis_type">
+    
+  </a>
+  <a name="visit_ellipsis_type">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">visit_ellipsis_type</span>(self, typ):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.982//mypy/server/astmerge.py#L517">
+      
+      (source)
+    </a>
+    <a class="headerLink" href="#visit_ellipsis_type" title="mypy.server.astmerge.TypeReplaceVisitor.visit_ellipsis_type">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">typ:</span><code><a href="mypy.types.EllipsisType.html" class="internal-link" title="mypy.types.EllipsisType">EllipsisType</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="mypy.server.astmerge.TypeReplaceVisitor.visit_erased_type">
+    
+  </a>
+  <a name="visit_erased_type">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">visit_erased_type</span>(self, t):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.982//mypy/server/astmerge.py#L457">
+      
+      (source)
+    </a>
+    <a class="headerLink" href="#visit_erased_type" title="mypy.server.astmerge.TypeReplaceVisitor.visit_erased_type">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">t:</span><code><a href="mypy.types.ErasedType.html" class="internal-link" title="mypy.types.ErasedType">ErasedType</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="mypy.server.astmerge.TypeReplaceVisitor.visit_instance">
+    
+  </a>
+  <a name="visit_instance">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">visit_instance</span>(self, typ):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.982//mypy/server/astmerge.py#L415">
+      
+      (source)
+    </a>
+    <a class="headerLink" href="#visit_instance" title="mypy.server.astmerge.TypeReplaceVisitor.visit_instance">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">typ:</span><code><a href="mypy.types.Instance.html" class="internal-link" title="mypy.types.Instance">Instance</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="mypy.server.astmerge.TypeReplaceVisitor.visit_literal_type">
+    
+  </a>
+  <a name="visit_literal_type">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">visit_literal_type</span>(self, typ):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.982//mypy/server/astmerge.py#L503">
+      
+      (source)
+    </a>
+    <a class="headerLink" href="#visit_literal_type" title="mypy.server.astmerge.TypeReplaceVisitor.visit_literal_type">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">typ:</span><code><a href="mypy.types.LiteralType.html" class="internal-link" title="mypy.types.LiteralType">LiteralType</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="mypy.server.astmerge.TypeReplaceVisitor.visit_none_type">
+    
+  </a>
+  <a name="visit_none_type">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">visit_none_type</span>(self, typ):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.982//mypy/server/astmerge.py#L431">
+      
+      (source)
+    </a>
+    <a class="headerLink" href="#visit_none_type" title="mypy.server.astmerge.TypeReplaceVisitor.visit_none_type">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">typ:</span><code><a href="mypy.types.NoneType.html" class="internal-link" title="mypy.types.NoneType">NoneType</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="mypy.server.astmerge.TypeReplaceVisitor.visit_overloaded">
+    
+  </a>
+  <a name="visit_overloaded">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">visit_overloaded</span>(self, t):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.982//mypy/server/astmerge.py#L450">
+      
+      (source)
+    </a>
+    <a class="headerLink" href="#visit_overloaded" title="mypy.server.astmerge.TypeReplaceVisitor.visit_overloaded">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">t:</span><code><a href="mypy.types.Overloaded.html" class="internal-link" title="mypy.types.Overloaded">Overloaded</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="mypy.server.astmerge.TypeReplaceVisitor.visit_param_spec">
+    
+  </a>
+  <a name="visit_param_spec">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">visit_param_spec</span>(self, typ):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.982//mypy/server/astmerge.py#L482">
+      
+      (source)
+    </a>
+    <a class="headerLink" href="#visit_param_spec" title="mypy.server.astmerge.TypeReplaceVisitor.visit_param_spec">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">typ:</span><code><a href="mypy.types.ParamSpecType.html" class="internal-link" title="mypy.types.ParamSpecType">ParamSpecType</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="mypy.server.astmerge.TypeReplaceVisitor.visit_parameters">
+    
+  </a>
+  <a name="visit_parameters">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">visit_parameters</span>(self, typ):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.982//mypy/server/astmerge.py#L491">
+      
+      (source)
+    </a>
+    <a class="headerLink" href="#visit_parameters" title="mypy.server.astmerge.TypeReplaceVisitor.visit_parameters">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">typ:</span><code><a href="mypy.types.Parameters.html" class="internal-link" title="mypy.types.Parameters">Parameters</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="mypy.server.astmerge.TypeReplaceVisitor.visit_partial_type">
+    
+  </a>
+  <a name="visit_partial_type">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">visit_partial_type</span>(self, typ):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.982//mypy/server/astmerge.py#L464">
+      
+      (source)
+    </a>
+    <a class="headerLink" href="#visit_partial_type" title="mypy.server.astmerge.TypeReplaceVisitor.visit_partial_type">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">typ:</span><code><a href="mypy.types.PartialType.html" class="internal-link" title="mypy.types.PartialType">PartialType</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="mypy.server.astmerge.TypeReplaceVisitor.visit_placeholder_type">
+    
+  </a>
+  <a name="visit_placeholder_type">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">visit_placeholder_type</span>(self, t):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.982//mypy/server/astmerge.py#L530">
+      
+      (source)
+    </a>
+    <a class="headerLink" href="#visit_placeholder_type" title="mypy.server.astmerge.TypeReplaceVisitor.visit_placeholder_type">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">t:</span><code><a href="mypy.types.PlaceholderType.html" class="internal-link" title="mypy.types.PlaceholderType">PlaceholderType</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="mypy.server.astmerge.TypeReplaceVisitor.visit_raw_expression_type">
+    
+  </a>
+  <a name="visit_raw_expression_type">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">visit_raw_expression_type</span>(self, t):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.982//mypy/server/astmerge.py#L500">
+      
+      (source)
+    </a>
+    <a class="headerLink" href="#visit_raw_expression_type" title="mypy.server.astmerge.TypeReplaceVisitor.visit_raw_expression_type">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">t:</span><code><a href="mypy.types.RawExpressionType.html" class="internal-link" title="mypy.types.RawExpressionType">RawExpressionType</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="mypy.server.astmerge.TypeReplaceVisitor.visit_star_type">
+    
+  </a>
+  <a name="visit_star_type">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">visit_star_type</span>(self, typ):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.982//mypy/server/astmerge.py#L520">
+      
+      (source)
+    </a>
+    <a class="headerLink" href="#visit_star_type" title="mypy.server.astmerge.TypeReplaceVisitor.visit_star_type">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">typ:</span><code><a href="mypy.types.StarType.html" class="internal-link" title="mypy.types.StarType">StarType</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="mypy.server.astmerge.TypeReplaceVisitor.visit_tuple_type">
+    
+  </a>
+  <a name="visit_tuple_type">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">visit_tuple_type</span>(self, typ):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.982//mypy/server/astmerge.py#L467">
+      
+      (source)
+    </a>
+    <a class="headerLink" href="#visit_tuple_type" title="mypy.server.astmerge.TypeReplaceVisitor.visit_tuple_type">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">typ:</span><code><a href="mypy.types.TupleType.html" class="internal-link" title="mypy.types.TupleType">TupleType</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="mypy.server.astmerge.TypeReplaceVisitor.visit_type_alias_type">
+    
+  </a>
+  <a name="visit_type_alias_type">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">visit_type_alias_type</span>(self, typ):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.982//mypy/server/astmerge.py#L422">
+      
+      (source)
+    </a>
+    <a class="headerLink" href="#visit_type_alias_type" title="mypy.server.astmerge.TypeReplaceVisitor.visit_type_alias_type">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">typ:</span><code><a href="mypy.types.TypeAliasType.html" class="internal-link" title="mypy.types.TypeAliasType">TypeAliasType</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="mypy.server.astmerge.TypeReplaceVisitor.visit_type_list">
+    
+  </a>
+  <a name="visit_type_list">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">visit_type_list</span>(self, typ):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.982//mypy/server/astmerge.py#L510">
+      
+      (source)
+    </a>
+    <a class="headerLink" href="#visit_type_list" title="mypy.server.astmerge.TypeReplaceVisitor.visit_type_list">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">typ:</span><code><a href="mypy.types.TypeList.html" class="internal-link" title="mypy.types.TypeList">TypeList</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="mypy.server.astmerge.TypeReplaceVisitor.visit_type_type">
+    
+  </a>
+  <a name="visit_type_type">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">visit_type_type</span>(self, typ):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.982//mypy/server/astmerge.py#L474">
+      
+      (source)
+    </a>
+    <a class="headerLink" href="#visit_type_type" title="mypy.server.astmerge.TypeReplaceVisitor.visit_type_type">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">typ:</span><code><a href="mypy.types.TypeType.html" class="internal-link" title="mypy.types.TypeType">TypeType</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="mypy.server.astmerge.TypeReplaceVisitor.visit_type_var">
+    
+  </a>
+  <a name="visit_type_var">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">visit_type_var</span>(self, typ):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.982//mypy/server/astmerge.py#L477">
+      
+      (source)
+    </a>
+    <a class="headerLink" href="#visit_type_var" title="mypy.server.astmerge.TypeReplaceVisitor.visit_type_var">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">typ:</span><code><a href="mypy.types.TypeVarType.html" class="internal-link" title="mypy.types.TypeVarType">TypeVarType</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="mypy.server.astmerge.TypeReplaceVisitor.visit_type_var_tuple">
+    
+  </a>
+  <a name="visit_type_var_tuple">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">visit_type_var_tuple</span>(self, typ):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.982//mypy/server/astmerge.py#L485">
+      
+      (source)
+    </a>
+    <a class="headerLink" href="#visit_type_var_tuple" title="mypy.server.astmerge.TypeReplaceVisitor.visit_type_var_tuple">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">typ:</span><code><a href="mypy.types.TypeVarTupleType.html" class="internal-link" title="mypy.types.TypeVarTupleType">TypeVarTupleType</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="mypy.server.astmerge.TypeReplaceVisitor.visit_typeddict_type">
+    
+  </a>
+  <a name="visit_typeddict_type">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">visit_typeddict_type</span>(self, typ):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.982//mypy/server/astmerge.py#L495">
+      
+      (source)
+    </a>
+    <a class="headerLink" href="#visit_typeddict_type" title="mypy.server.astmerge.TypeReplaceVisitor.visit_typeddict_type">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">typ:</span><code><a href="mypy.types.TypedDictType.html" class="internal-link" title="mypy.types.TypedDictType">TypedDictType</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="mypy.server.astmerge.TypeReplaceVisitor.visit_unbound_type">
+    
+  </a>
+  <a name="visit_unbound_type">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">visit_unbound_type</span>(self, typ):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.982//mypy/server/astmerge.py#L506">
+      
+      (source)
+    </a>
+    <a class="headerLink" href="#visit_unbound_type" title="mypy.server.astmerge.TypeReplaceVisitor.visit_unbound_type">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">typ:</span><code><a href="mypy.types.UnboundType.html" class="internal-link" title="mypy.types.UnboundType">UnboundType</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="mypy.server.astmerge.TypeReplaceVisitor.visit_uninhabited_type">
+    
+  </a>
+  <a name="visit_uninhabited_type">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">visit_uninhabited_type</span>(self, typ):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.982//mypy/server/astmerge.py#L523">
+      
+      (source)
+    </a>
+    <a class="headerLink" href="#visit_uninhabited_type" title="mypy.server.astmerge.TypeReplaceVisitor.visit_uninhabited_type">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">typ:</span><code><a href="mypy.types.UninhabitedType.html" class="internal-link" title="mypy.types.UninhabitedType">UninhabitedType</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="mypy.server.astmerge.TypeReplaceVisitor.visit_union_type">
+    
+  </a>
+  <a name="visit_union_type">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">visit_union_type</span>(self, typ):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.982//mypy/server/astmerge.py#L526">
+      
+      (source)
+    </a>
+    <a class="headerLink" href="#visit_union_type" title="mypy.server.astmerge.TypeReplaceVisitor.visit_union_type">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">typ:</span><code><a href="mypy.types.UnionType.html" class="internal-link" title="mypy.types.UnionType">UnionType</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="mypy.server.astmerge.TypeReplaceVisitor.visit_unpack_type">
+    
+  </a>
+  <a name="visit_unpack_type">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">visit_unpack_type</span>(self, typ):
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.982//mypy/server/astmerge.py#L488">
+      
+      (source)
+    </a>
+    <a class="headerLink" href="#visit_unpack_type" title="mypy.server.astmerge.TypeReplaceVisitor.visit_unpack_type">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">typ:</span><code><a href="mypy.types.UnpackType.html" class="internal-link" title="mypy.types.UnpackType">UnpackType</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="baseinstancevariable">
+  
+  
+  <a name="mypy.server.astmerge.TypeReplaceVisitor.replacements">
+    
+  </a>
+  <a name="replacements">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">replacements</span> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/mypy-0.982//mypy/server/astmerge.py#L413">
+      
+      (source)
+    </a>
+    <a class="headerLink" href="#replacements" title="mypy.server.astmerge.TypeReplaceVisitor.replacements">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div>
+        </div>
+      
+      </div>
+    </div>
+
+    <footer class="navbar navbar-default">
+
+  
+  <div class="container">
+    <a href="index.html">API Documentation</a> for mypy,
+  generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
+    22.9.1 at 2022-10-04 01:25:34.
+  </div>
+
+  <!-- Search related scripts needs to be loaded at the end of HTML 
+    parsing not to introduce overhead and display HTML data asap -->
+  <script src="ajax.js" type="text/javascript"></script>
+  <script src="searchlib.js" type="text/javascript"></script>
+  <script src="search.js" type="text/javascript"></script>
+
+</footer>
+  
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+  </body>
+</html>
