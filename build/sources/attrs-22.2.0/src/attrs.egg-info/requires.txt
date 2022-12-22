@@ -1,0 +1,47 @@
+
+[cov]
+attrs[tests]
+coverage-enable-subprocess
+coverage[toml]>=5.3
+
+[dev]
+attrs[docs,tests]
+
+[docs]
+furo
+sphinx
+myst-parser
+zope.interface
+sphinx-notfound-page
+sphinxcontrib-towncrier
+towncrier
+
+[tests]
+attrs[tests-no-zope]
+zope.interface
+
+[tests-no-zope]
+hypothesis
+pympler
+pytest>=4.3.0
+pytest-xdist[psutil]
+
+[tests-no-zope:platform_python_implementation == "CPython"]
+cloudpickle
+mypy<0.990,>=0.971
+
+[tests-no-zope:platform_python_implementation == "CPython" and python_version < "3.11"]
+pytest-mypy-plugins
+
+[tests_no_zope]
+hypothesis
+pympler
+pytest>=4.3.0
+pytest-xdist[psutil]
+
+[tests_no_zope:platform_python_implementation == "CPython"]
+cloudpickle
+mypy<0.990,>=0.971
+
+[tests_no_zope:platform_python_implementation == "CPython" and python_version < "3.11"]
+pytest-mypy-plugins
