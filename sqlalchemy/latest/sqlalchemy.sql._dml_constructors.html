@@ -1,0 +1,826 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  
+
+  <head>
+    
+    <title>sqlalchemy.sql._dml_constructors</title>
+    <meta name="generator" content="pydoctor 22.9.1.dev0"> 
+        
+    </meta>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1 maximum-scale=1" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+    <link rel="stylesheet" type="text/css" href="extra.css" />
+</head>
+
+  <body>
+
+    <div id="banner">    
+    <div>
+        <a href="/">Home</a>
+        &gt; sqlalchemy-2.0.1 <!-- This is a placeholder -->
+        
+        <!-- (<a href=""&gt;show all versions</a&gt;) -->
+    </div>
+</div>
+
+    <nav class="navbar navbar-default mainnavbar">
+      
+  
+  <div class="container-fluid">
+
+
+    <div class="navbar-header">
+      
+      <div class="navlinks">
+        <span class="navbar-brand">
+          sqlalchemy <a href="index.html">API Documentation</a>
+        </span>
+
+        <a href="moduleIndex.html">
+          Modules
+        </a>
+
+        <a href="classIndex.html">
+          Classes
+        </a>
+
+        <a href="nameIndex.html">
+          Names
+        </a>
+
+        <div id="search-box-container">
+          <div class="input-group">
+            <input id="search-box" type="search" name="search-query" placeholder="Search..." aria-label="Search" minlength="2" class="form-control" autocomplete="off" />
+            
+            <span class="input-group-btn">
+              <a style="display: none;" class="btn btn-default" id="search-clear-button" title="Clear" onclick="clearSearch()"><img src="fonts/x-circle.svg" alt="Clear" /></a>
+              <a class="btn btn-default" id="search-help-button" title="Help" onclick="toggleSearchHelpText()"><img src="fonts/info.svg" alt="Help" /></a>
+            </span>
+          </div>
+        </div>
+
+      </div>
+
+      <div id="search-results-container" style="display: none;">
+        
+        <div id="search-buttons">
+          <span class="label label-default" id="search-docstrings-button">
+          <label class="checkbox-inline">
+            <input type="checkbox" id="toggle-search-in-docstrings-checkbox" value="false" onclick="toggleSearchInDocstrings()">
+              search in docstrings
+            </input>
+          </label>
+          </span>
+          
+        </div>
+        
+        <noscript>
+            <h1>Cannot search: JavaScript is not supported/enabled in your browser.</h1>
+        </noscript>
+
+        <div class="hint" id="search-help-box">
+          <p class="rst-last">
+      
+            Search bar offers the following options:
+            <ul>   
+                <li>
+                  <strong>Term presence.</strong> The below example searches for documents that 
+                    must contain “foo”, might contain “bar” and must not contain “baz”: <code>+foo bar -baz</code>
+                </li> 
+
+                <li>
+                  <strong>Wildcards.</strong> The below example searches for documents with words beginning with “foo”: <code>foo*</code>
+                </li> 
+
+                <li>
+                  <strong>Search in specific fields.</strong> The following search matches all objects 
+                  in "twisted.mail" that matches “search”: <code>+qname:twisted.mail.* +search</code>
+
+                  <p>
+                    Possible fields: 'name', 'qname' (fully qualified name), 'docstring', and 'kind'.
+                    Last two fields are only applicable if "search in docstrings" is enabled.
+                  </p>
+                </li>
+
+                <li>
+                  <strong>Fuzzy matches.</strong> The following search matches all documents 
+                  that have a word within 1 edit distance of “foo”: <code>foo~1</code>
+                </li>
+            </ul>
+
+          </p>
+        </div>
+
+        <div id="search-status"> </div>
+
+        <div class="warning" id="search-warn-box" style="display: none;">
+          <p class="rst-last"><span id="search-warn"></span></p>
+        </div>
+
+        <table id="search-results">
+          <!-- Filled dynamically by JS -->
+        </table>
+        
+        <div style="margin-top: 8px;">
+          <p>Results provided by <a href="https://lunrjs.com">Lunr.js</a></p>
+        </div>
+      </div>
+
+    </div>
+
+
+  </div>
+</nav>
+    
+    <div class="container-fluid">
+
+      <!-- Side navigation -->
+      <div class="sidebarcontainer" style="display: none;">
+        
+        <div class="sidebar"><nav class="sidebar">
+  
+
+  <div>
+
+      <div class="thingTitle">
+        <span>Module</span>
+        <code class="thisobject"><a href="sqlalchemy.sql._dml_constructors.html" class="internal-link" title="This module">_dml<wbr></wbr>_constructors</a></code> 
+      </div>
+      
+      <div>
+        
+
+        
+         
+
+        
+        
+
+        <div class="childrenKindTitle">Functions</div>
+        <ul>
+    
+    <li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#delete" class="internal-link" title="sqlalchemy.sql._dml_constructors.delete">delete</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#insert" class="internal-link" title="sqlalchemy.sql._dml_constructors.insert">insert</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#update" class="internal-link" title="sqlalchemy.sql._dml_constructors.update">update</a></code>
+            </div>
+        
+
+    </li>
+</ul> 
+
+        
+         
+
+        
+         
+
+        
+         
+        
+      </div>
+  </div><div>
+
+      <div class="thingTitle">
+        <span>Package</span>
+        <code><a href="sqlalchemy.sql.html" class="internal-link" title="The parent of this module">sql</a></code> 
+      </div>
+      
+      <div>
+        
+
+        <div class="childrenKindTitle">Modules</div>
+        <ul>
+    
+    <li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="sqlalchemy.sql.annotation.html" class="internal-link" title="sqlalchemy.sql.annotation">annotation</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="sqlalchemy.sql.base.html" class="internal-link" title="sqlalchemy.sql.base">base</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="sqlalchemy.sql.cache_key.html" class="internal-link" title="sqlalchemy.sql.cache_key">cache<wbr></wbr>_key</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="sqlalchemy.sql.coercions.html" class="internal-link" title="sqlalchemy.sql.coercions">coercions</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="sqlalchemy.sql.compiler.html" class="internal-link" title="sqlalchemy.sql.compiler">compiler</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="sqlalchemy.sql.crud.html" class="internal-link" title="sqlalchemy.sql.crud">crud</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="sqlalchemy.sql.ddl.html" class="internal-link" title="sqlalchemy.sql.ddl">ddl</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="sqlalchemy.sql.default_comparator.html" class="internal-link" title="sqlalchemy.sql.default_comparator">default<wbr></wbr>_comparator</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="sqlalchemy.sql.dml.html" class="internal-link" title="sqlalchemy.sql.dml">dml</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="sqlalchemy.sql.elements.html" class="internal-link" title="sqlalchemy.sql.elements">elements</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="sqlalchemy.sql.events.html" class="internal-link" title="sqlalchemy.sql.events">events</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="sqlalchemy.sql.expression.html" class="internal-link" title="sqlalchemy.sql.expression">expression</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="sqlalchemy.sql.functions.html" class="internal-link" title="sqlalchemy.sql.functions">functions</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="sqlalchemy.sql.lambdas.html" class="internal-link" title="sqlalchemy.sql.lambdas">lambdas</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="sqlalchemy.sql.naming.html" class="internal-link" title="sqlalchemy.sql.naming">naming</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="sqlalchemy.sql.operators.html" class="internal-link" title="sqlalchemy.sql.operators">operators</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="sqlalchemy.sql.roles.html" class="internal-link" title="sqlalchemy.sql.roles">roles</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="sqlalchemy.sql.schema.html" class="internal-link" title="sqlalchemy.sql.schema">schema</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="sqlalchemy.sql.selectable.html" class="internal-link" title="sqlalchemy.sql.selectable">selectable</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="sqlalchemy.sql.sqltypes.html" class="internal-link" title="sqlalchemy.sql.sqltypes">sqltypes</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="sqlalchemy.sql.traversals.html" class="internal-link" title="sqlalchemy.sql.traversals">traversals</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="sqlalchemy.sql.type_api.html" class="internal-link" title="sqlalchemy.sql.type_api">type<wbr></wbr>_api</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="sqlalchemy.sql.util.html" class="internal-link" title="sqlalchemy.sql.util">util</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="sqlalchemy.sql.visitors.html" class="internal-link" title="sqlalchemy.sql.visitors">visitors</a></code>
+            </div>
+        
+
+    </li><li class="private thisobject">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="sqlalchemy.sql._dml_constructors.html" class="internal-link" title="sqlalchemy.sql._dml_constructors">_dml<wbr></wbr>_constructors</a></code>
+            </div>
+        
+
+    </li><li class="private">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="sqlalchemy.sql._elements_constructors.html" class="internal-link" title="sqlalchemy.sql._elements_constructors">_elements<wbr></wbr>_constructors</a></code>
+            </div>
+        
+
+    </li><li class="private">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="sqlalchemy.sql._orm_types.html" class="internal-link" title="sqlalchemy.sql._orm_types">_orm<wbr></wbr>_types</a></code>
+            </div>
+        
+
+    </li><li class="private">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="sqlalchemy.sql._py_util.html" class="internal-link" title="sqlalchemy.sql._py_util">_py<wbr></wbr>_util</a></code>
+            </div>
+        
+
+    </li><li class="private">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="sqlalchemy.sql._selectable_constructors.html" class="internal-link" title="sqlalchemy.sql._selectable_constructors">_selectable<wbr></wbr>_constructors</a></code>
+            </div>
+        
+
+    </li><li class="private">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="sqlalchemy.sql._typing.html" class="internal-link" title="sqlalchemy.sql._typing">_typing</a></code>
+            </div>
+        
+
+    </li>
+</ul> 
+
+        
+        
+
+        <div class="childrenKindTitle">Functions</div>
+        <ul>
+    
+    <li class="private">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="sqlalchemy.sql.html#__go" class="internal-link" title="sqlalchemy.sql.__go">__go</a></code>
+            </div>
+        
+
+    </li>
+</ul> 
+
+        
+         
+
+        
+         
+
+        
+         
+        
+      </div>
+  </div>
+
+</nav>
+        </div>
+        <div id="collapseSideBar">
+          <a class="btn btn-link" onclick="toggleSideBarCollapse()" title="Toggle Sidebar Collapse">
+          </a>
+        </div> 
+        <script src="sidebartoggle.js" type="text/javascript"></script>
+       
+      </div>
+
+      <div id="main" class="">
+        
+
+        
+
+        <div class="page-header">
+          <h1 class="module private"><code><code><a href="index.html" class="internal-link">sqlalchemy</a></code><wbr></wbr>.<code><a href="sqlalchemy.sql.html" class="internal-link" title="sqlalchemy.sql">sql</a></code><wbr></wbr>.<code><a href="sqlalchemy.sql._dml_constructors.html" class="internal-link" title="sqlalchemy.sql._dml_constructors">_dml_constructors</a></code></code></h1>
+          <div id="showPrivate">
+            <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+          </div>
+        </div>
+
+        <div class="categoryHeader">
+          module documentation
+        </div>
+
+        <div class="extrasDocstring">
+          <a href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-2.0.1//lib/sqlalchemy/sql/_dml_constructors.py" class="sourceLink">(source)</a>
+          <p></p>
+        </div>
+
+        <div class="moduleDocstring">
+          <div><p class="undocumented">Undocumented</p></div>
+        </div>
+
+        <div id="splitTables">
+          <table class="children sortable" id="id15664">
+  
+  
+  <tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#delete" class="internal-link" title="sqlalchemy.sql._dml_constructors.delete">delete</a></code></td>
+    <td>Construct :class:`_expression.Delete` object.</td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#insert" class="internal-link" title="sqlalchemy.sql._dml_constructors.insert">insert</a></code></td>
+    <td>Construct an :class:`_expression.Insert` object.</td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#update" class="internal-link" title="sqlalchemy.sql._dml_constructors.update">update</a></code></td>
+    <td>Construct an :class:`_expression.Update` object.</td>
+  </tr>
+</table>
+          
+
+            
+        </div>
+
+        <div id="childList">
+          <div class="basefunction">
+  
+  
+  <a name="sqlalchemy.sql._dml_constructors.delete">
+    
+  </a>
+  <a name="delete">
+    
+  </a>
+  <div class="functionHeader">
+    
+    
+    <span class="py-keyword">def</span> <span class="py-defname">delete</span><span class="function-signature">(table: <code><a href="sqlalchemy.sql._typing.html#_DMLTableArgument" class="internal-link" title="sqlalchemy.sql._typing._DMLTableArgument">_DMLTableArgument</a></code>) -&gt; <code><a href="sqlalchemy.sql.dml.Delete.html" class="internal-link" title="sqlalchemy.sql.dml.Delete">Delete</a></code></span>:
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-2.0.1//lib/sqlalchemy/sql/_dml_constructors.py#L116">
+      
+      (source)
+    </a>
+    <a class="headerLink" href="#delete" title="sqlalchemy.sql._dml_constructors.delete">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p class="pre">Construct :class:`_expression.Delete` object.
+
+E.g.::
+
+    from sqlalchemy import delete
+
+    stmt = (
+        delete(user_table).
+        where(user_table.c.id == 5)
+    )
+
+Similar functionality is available via the
+:meth:`_expression.TableClause.delete` method on
+:class:`_schema.Table`.
+
+:param table: The table to delete rows from.
+
+.. seealso::
+
+    :ref:`tutorial_core_update_delete` - in the :ref:`unified_tutorial`</p></div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="sqlalchemy.sql._dml_constructors.insert">
+    
+  </a>
+  <a name="insert">
+    
+  </a>
+  <div class="functionHeader">
+    
+    
+    <span class="py-keyword">def</span> <span class="py-defname">insert</span><span class="function-signature">(table: <code><a href="sqlalchemy.sql._typing.html#_DMLTableArgument" class="internal-link" title="sqlalchemy.sql._typing._DMLTableArgument">_DMLTableArgument</a></code>) -&gt; <code><a href="sqlalchemy.sql.dml.Insert.html" class="internal-link" title="sqlalchemy.sql.dml.Insert">Insert</a></code></span>:
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-2.0.1//lib/sqlalchemy/sql/_dml_constructors.py#L20">
+      
+      (source)
+    </a>
+    <a class="headerLink" href="#insert" title="sqlalchemy.sql._dml_constructors.insert">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p class="pre">Construct an :class:`_expression.Insert` object.
+
+E.g.::
+
+    from sqlalchemy import insert
+
+    stmt = (
+        insert(user_table).
+        values(name='username', fullname='Full Username')
+    )
+
+Similar functionality is available via the
+:meth:`_expression.TableClause.insert` method on
+:class:`_schema.Table`.
+
+.. seealso::
+
+    :ref:`tutorial_core_insert` - in the :ref:`unified_tutorial`
+
+
+:param table: :class:`_expression.TableClause`
+ which is the subject of the
+ insert.
+
+:param values: collection of values to be inserted; see
+ :meth:`_expression.Insert.values`
+ for a description of allowed formats here.
+ Can be omitted entirely; a :class:`_expression.Insert` construct
+ will also dynamically render the VALUES clause at execution time
+ based on the parameters passed to :meth:`_engine.Connection.execute`.
+
+:param inline: if True, no attempt will be made to retrieve the
+ SQL-generated default values to be provided within the statement;
+ in particular,
+ this allows SQL expressions to be rendered 'inline' within the
+ statement without the need to pre-execute them beforehand; for
+ backends that support "returning", this turns off the "implicit
+ returning" feature for the statement.
+
+If both :paramref:`_expression.insert.values` and compile-time bind
+parameters are present, the compile-time bind parameters override the
+information specified within :paramref:`_expression.insert.values` on a
+per-key basis.
+
+The keys within :paramref:`_expression.Insert.values` can be either
+:class:`~sqlalchemy.schema.Column` objects or their string
+identifiers. Each key may reference one of:
+
+* a literal data value (i.e. string, number, etc.);
+* a Column object;
+* a SELECT statement.
+
+If a ``SELECT`` statement is specified which references this
+``INSERT`` statement's table, the statement will be correlated
+against the ``INSERT`` statement.
+
+.. seealso::
+
+    :ref:`tutorial_core_insert` - in the :ref:`unified_tutorial`</p></div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="sqlalchemy.sql._dml_constructors.update">
+    
+  </a>
+  <a name="update">
+    
+  </a>
+  <div class="functionHeader">
+    
+    
+    <span class="py-keyword">def</span> <span class="py-defname">update</span><span class="function-signature">(table: <code><a href="sqlalchemy.sql._typing.html#_DMLTableArgument" class="internal-link" title="sqlalchemy.sql._typing._DMLTableArgument">_DMLTableArgument</a></code>) -&gt; <code><a href="sqlalchemy.sql.dml.Update.html" class="internal-link" title="sqlalchemy.sql.dml.Update">Update</a></code></span>:
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-2.0.1//lib/sqlalchemy/sql/_dml_constructors.py#L85">
+      
+      (source)
+    </a>
+    <a class="headerLink" href="#update" title="sqlalchemy.sql._dml_constructors.update">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p class="pre">Construct an :class:`_expression.Update` object.
+
+E.g.::
+
+    from sqlalchemy import update
+
+    stmt = (
+        update(user_table).
+        where(user_table.c.id == 5).
+        values(name='user #5')
+    )
+
+Similar functionality is available via the
+:meth:`_expression.TableClause.update` method on
+:class:`_schema.Table`.
+
+:param table: A :class:`_schema.Table`
+ object representing the database
+ table to be updated.
+
+
+.. seealso::
+
+    :ref:`tutorial_core_update_delete` - in the :ref:`unified_tutorial`</p></div>
+  </div>
+</div>
+        </div>
+      
+      </div>
+    </div>
+
+    <footer class="navbar navbar-default">
+
+  
+  <div class="container">
+    <a href="index.html">API Documentation</a> for sqlalchemy,
+  generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
+    22.9.1.dev0 at 2023-02-04 22:04:23.
+  </div>
+
+  <!-- Search related scripts needs to be loaded at the end of HTML 
+    parsing not to introduce overhead and display HTML data asap -->
+  <script src="ajax.js" type="text/javascript"></script>
+  <script src="searchlib.js" type="text/javascript"></script>
+  <script src="search.js" type="text/javascript"></script>
+
+</footer>
+  
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+  </body>
+</html>

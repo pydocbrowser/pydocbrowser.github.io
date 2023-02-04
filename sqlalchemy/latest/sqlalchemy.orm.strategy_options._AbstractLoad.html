@@ -1,0 +1,2967 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  
+
+  <head>
+    
+    <title>sqlalchemy.orm.strategy_options._AbstractLoad</title>
+    <meta name="generator" content="pydoctor 22.9.1.dev0"> 
+        
+    </meta>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1 maximum-scale=1" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+    <link rel="stylesheet" type="text/css" href="extra.css" />
+</head>
+
+  <body>
+
+    <div id="banner">    
+    <div>
+        <a href="/">Home</a>
+        &gt; sqlalchemy-2.0.1 <!-- This is a placeholder -->
+        
+        <!-- (<a href=""&gt;show all versions</a&gt;) -->
+    </div>
+</div>
+
+    <nav class="navbar navbar-default mainnavbar">
+      
+  
+  <div class="container-fluid">
+
+
+    <div class="navbar-header">
+      
+      <div class="navlinks">
+        <span class="navbar-brand">
+          sqlalchemy <a href="index.html">API Documentation</a>
+        </span>
+
+        <a href="moduleIndex.html">
+          Modules
+        </a>
+
+        <a href="classIndex.html">
+          Classes
+        </a>
+
+        <a href="nameIndex.html">
+          Names
+        </a>
+
+        <div id="search-box-container">
+          <div class="input-group">
+            <input id="search-box" type="search" name="search-query" placeholder="Search..." aria-label="Search" minlength="2" class="form-control" autocomplete="off" />
+            
+            <span class="input-group-btn">
+              <a style="display: none;" class="btn btn-default" id="search-clear-button" title="Clear" onclick="clearSearch()"><img src="fonts/x-circle.svg" alt="Clear" /></a>
+              <a class="btn btn-default" id="search-help-button" title="Help" onclick="toggleSearchHelpText()"><img src="fonts/info.svg" alt="Help" /></a>
+            </span>
+          </div>
+        </div>
+
+      </div>
+
+      <div id="search-results-container" style="display: none;">
+        
+        <div id="search-buttons">
+          <span class="label label-default" id="search-docstrings-button">
+          <label class="checkbox-inline">
+            <input type="checkbox" id="toggle-search-in-docstrings-checkbox" value="false" onclick="toggleSearchInDocstrings()">
+              search in docstrings
+            </input>
+          </label>
+          </span>
+          
+        </div>
+        
+        <noscript>
+            <h1>Cannot search: JavaScript is not supported/enabled in your browser.</h1>
+        </noscript>
+
+        <div class="hint" id="search-help-box">
+          <p class="rst-last">
+      
+            Search bar offers the following options:
+            <ul>   
+                <li>
+                  <strong>Term presence.</strong> The below example searches for documents that 
+                    must contain “foo”, might contain “bar” and must not contain “baz”: <code>+foo bar -baz</code>
+                </li> 
+
+                <li>
+                  <strong>Wildcards.</strong> The below example searches for documents with words beginning with “foo”: <code>foo*</code>
+                </li> 
+
+                <li>
+                  <strong>Search in specific fields.</strong> The following search matches all objects 
+                  in "twisted.mail" that matches “search”: <code>+qname:twisted.mail.* +search</code>
+
+                  <p>
+                    Possible fields: 'name', 'qname' (fully qualified name), 'docstring', and 'kind'.
+                    Last two fields are only applicable if "search in docstrings" is enabled.
+                  </p>
+                </li>
+
+                <li>
+                  <strong>Fuzzy matches.</strong> The following search matches all documents 
+                  that have a word within 1 edit distance of “foo”: <code>foo~1</code>
+                </li>
+            </ul>
+
+          </p>
+        </div>
+
+        <div id="search-status"> </div>
+
+        <div class="warning" id="search-warn-box" style="display: none;">
+          <p class="rst-last"><span id="search-warn"></span></p>
+        </div>
+
+        <table id="search-results">
+          <!-- Filled dynamically by JS -->
+        </table>
+        
+        <div style="margin-top: 8px;">
+          <p>Results provided by <a href="https://lunrjs.com">Lunr.js</a></p>
+        </div>
+      </div>
+
+    </div>
+
+
+  </div>
+</nav>
+    
+    <div class="container-fluid">
+
+      <!-- Side navigation -->
+      <div class="sidebarcontainer" style="display: none;">
+        
+        <div class="sidebar"><nav class="sidebar">
+  
+
+  <div>
+
+      <div class="thingTitle">
+        <span>Class</span>
+        <code class="thisobject"><a href="sqlalchemy.orm.strategy_options._AbstractLoad.html" class="internal-link" title="This class">_<wbr></wbr>Abstract<wbr></wbr>Load</a></code> 
+      </div>
+      
+      <div>
+        
+
+        
+         
+
+        
+        
+
+        <div class="childrenKindTitle">Methods</div>
+        <ul>
+    
+    <li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#contains_eager" class="internal-link" title="sqlalchemy.orm.strategy_options._AbstractLoad.contains_eager">contains<wbr></wbr>_eager</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#defaultload" class="internal-link" title="sqlalchemy.orm.strategy_options._AbstractLoad.defaultload">defaultload</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#defer" class="internal-link" title="sqlalchemy.orm.strategy_options._AbstractLoad.defer">defer</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#immediateload" class="internal-link" title="sqlalchemy.orm.strategy_options._AbstractLoad.immediateload">immediateload</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#joinedload" class="internal-link" title="sqlalchemy.orm.strategy_options._AbstractLoad.joinedload">joinedload</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#lazyload" class="internal-link" title="sqlalchemy.orm.strategy_options._AbstractLoad.lazyload">lazyload</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#load_only" class="internal-link" title="sqlalchemy.orm.strategy_options._AbstractLoad.load_only">load<wbr></wbr>_only</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#noload" class="internal-link" title="sqlalchemy.orm.strategy_options._AbstractLoad.noload">noload</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#options" class="internal-link" title="sqlalchemy.orm.strategy_options._AbstractLoad.options">options</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#process_compile_state" class="internal-link" title="sqlalchemy.orm.strategy_options._AbstractLoad.process_compile_state">process<wbr></wbr>_compile<wbr></wbr>_state</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#process_compile_state_replaced_entities" class="internal-link" title="sqlalchemy.orm.strategy_options._AbstractLoad.process_compile_state_replaced_entities">process<wbr></wbr>_compile<wbr></wbr>_state<wbr></wbr>_replaced<wbr></wbr>_entities</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#raiseload" class="internal-link" title="sqlalchemy.orm.strategy_options._AbstractLoad.raiseload">raiseload</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#selectin_polymorphic" class="internal-link" title="sqlalchemy.orm.strategy_options._AbstractLoad.selectin_polymorphic">selectin<wbr></wbr>_polymorphic</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#selectinload" class="internal-link" title="sqlalchemy.orm.strategy_options._AbstractLoad.selectinload">selectinload</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#subqueryload" class="internal-link" title="sqlalchemy.orm.strategy_options._AbstractLoad.subqueryload">subqueryload</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#undefer" class="internal-link" title="sqlalchemy.orm.strategy_options._AbstractLoad.undefer">undefer</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#undefer_group" class="internal-link" title="sqlalchemy.orm.strategy_options._AbstractLoad.undefer_group">undefer<wbr></wbr>_group</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#with_expression" class="internal-link" title="sqlalchemy.orm.strategy_options._AbstractLoad.with_expression">with<wbr></wbr>_expression</a></code>
+            </div>
+        
+
+    </li><li class="private">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#_chop_path" class="internal-link" title="sqlalchemy.orm.strategy_options._AbstractLoad._chop_path">_chop<wbr></wbr>_path</a></code>
+            </div>
+        
+
+    </li><li class="private">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#_apply_to_parent" class="internal-link" title="sqlalchemy.orm.strategy_options._AbstractLoad._apply_to_parent">_apply<wbr></wbr>_to<wbr></wbr>_parent</a></code>
+            </div>
+        
+
+    </li><li class="private">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#_clone_for_bind_strategy" class="internal-link" title="sqlalchemy.orm.strategy_options._AbstractLoad._clone_for_bind_strategy">_clone<wbr></wbr>_for<wbr></wbr>_bind<wbr></wbr>_strategy</a></code>
+            </div>
+        
+
+    </li><li class="private">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#_coerce_strat" class="internal-link" title="sqlalchemy.orm.strategy_options._AbstractLoad._coerce_strat">_coerce<wbr></wbr>_strat</a></code>
+            </div>
+        
+
+    </li><li class="private">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#_process" class="internal-link" title="sqlalchemy.orm.strategy_options._AbstractLoad._process">_process</a></code>
+            </div>
+        
+
+    </li><li class="private">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#_set_class_strategy" class="internal-link" title="sqlalchemy.orm.strategy_options._AbstractLoad._set_class_strategy">_set<wbr></wbr>_class<wbr></wbr>_strategy</a></code>
+            </div>
+        
+
+    </li><li class="private">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#_set_column_strategy" class="internal-link" title="sqlalchemy.orm.strategy_options._AbstractLoad._set_column_strategy">_set<wbr></wbr>_column<wbr></wbr>_strategy</a></code>
+            </div>
+        
+
+    </li><li class="private">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#_set_generic_strategy" class="internal-link" title="sqlalchemy.orm.strategy_options._AbstractLoad._set_generic_strategy">_set<wbr></wbr>_generic<wbr></wbr>_strategy</a></code>
+            </div>
+        
+
+    </li><li class="private">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#_set_relationship_strategy" class="internal-link" title="sqlalchemy.orm.strategy_options._AbstractLoad._set_relationship_strategy">_set<wbr></wbr>_relationship<wbr></wbr>_strategy</a></code>
+            </div>
+        
+
+    </li>
+</ul> 
+
+        <div class="childrenKindTitle">Inherited Methods</div>
+        <ul>
+    
+    <li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="sqlalchemy.sql.visitors.HasTraverseInternals.html#get_children" class="internal-link" title="sqlalchemy.sql.visitors.HasTraverseInternals.get_children">get<wbr></wbr>_children</a></code>
+            </div>
+        
+
+    </li><li class="private">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="sqlalchemy.sql.cache_key.HasCacheKey.html#_generate_cache_attrs" class="internal-link" title="sqlalchemy.sql.cache_key.HasCacheKey._generate_cache_attrs">_generate<wbr></wbr>_cache<wbr></wbr>_attrs</a></code>
+            </div>
+        
+
+    </li><li class="private">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="sqlalchemy.sql.cache_key.HasCacheKey.html#_generate_cache_key_for_object" class="internal-link" title="sqlalchemy.sql.cache_key.HasCacheKey._generate_cache_key_for_object">_generate<wbr></wbr>_cache<wbr></wbr>_key<wbr></wbr>_for<wbr></wbr>_object</a></code>
+            </div>
+        
+
+    </li><li class="private">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="sqlalchemy.sql.traversals.HasShallowCopy.html#_generate_shallow_copy" class="internal-link" title="sqlalchemy.sql.traversals.HasShallowCopy._generate_shallow_copy">_generate<wbr></wbr>_shallow<wbr></wbr>_copy</a></code>
+            </div>
+        
+
+    </li><li class="private">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="sqlalchemy.sql.traversals.HasShallowCopy.html#_generate_shallow_from_dict" class="internal-link" title="sqlalchemy.sql.traversals.HasShallowCopy._generate_shallow_from_dict">_generate<wbr></wbr>_shallow<wbr></wbr>_from<wbr></wbr>_dict</a></code>
+            </div>
+        
+
+    </li><li class="private">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="sqlalchemy.sql.traversals.HasShallowCopy.html#_generate_shallow_to_dict" class="internal-link" title="sqlalchemy.sql.traversals.HasShallowCopy._generate_shallow_to_dict">_generate<wbr></wbr>_shallow<wbr></wbr>_to<wbr></wbr>_dict</a></code>
+            </div>
+        
+
+    </li><li class="private">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="sqlalchemy.orm.interfaces.ORMOption.html#_adapt_cached_option_to_uncached_option" class="internal-link" title="sqlalchemy.orm.interfaces.ORMOption._adapt_cached_option_to_uncached_option">_adapt<wbr></wbr>_cached<wbr></wbr>_option<wbr></wbr>_to<wbr></wbr>_uncached<wbr></wbr>_option</a></code>
+            </div>
+        
+
+    </li><li class="private">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="sqlalchemy.sql.cache_key.HasCacheKey.html#_gen_cache_key" class="internal-link" title="sqlalchemy.sql.cache_key.HasCacheKey._gen_cache_key">_gen<wbr></wbr>_cache<wbr></wbr>_key</a></code>
+            </div>
+        
+
+    </li><li class="private">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="sqlalchemy.sql.cache_key.HasCacheKey.html#_generate_cache_key" class="internal-link" title="sqlalchemy.sql.cache_key.HasCacheKey._generate_cache_key">_generate<wbr></wbr>_cache<wbr></wbr>_key</a></code>
+            </div>
+        
+
+    </li><li class="private">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="sqlalchemy.sql.traversals.GenerativeOnTraversal.html#_generate" class="internal-link" title="sqlalchemy.sql.traversals.GenerativeOnTraversal._generate">_generate</a></code>
+            </div>
+        
+
+    </li><li class="private">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="sqlalchemy.sql.traversals.HasCopyInternals.html#_copy_internals" class="internal-link" title="sqlalchemy.sql.traversals.HasCopyInternals._copy_internals">_copy<wbr></wbr>_internals</a></code>
+            </div>
+        
+
+    </li><li class="private">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="sqlalchemy.sql.traversals.HasShallowCopy.html#_clone" class="internal-link" title="sqlalchemy.sql.traversals.HasShallowCopy._clone">_clone</a></code>
+            </div>
+        
+
+    </li><li class="private">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="sqlalchemy.sql.traversals.HasShallowCopy.html#_generated_shallow_copy_traversal" class="internal-link" title="sqlalchemy.sql.traversals.HasShallowCopy._generated_shallow_copy_traversal">_generated<wbr></wbr>_shallow<wbr></wbr>_copy<wbr></wbr>_traversal</a></code>
+            </div>
+        
+
+    </li><li class="private">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="sqlalchemy.sql.traversals.HasShallowCopy.html#_generated_shallow_from_dict_traversal" class="internal-link" title="sqlalchemy.sql.traversals.HasShallowCopy._generated_shallow_from_dict_traversal">_generated<wbr></wbr>_shallow<wbr></wbr>_from<wbr></wbr>_dict<wbr></wbr>_traversal</a></code>
+            </div>
+        
+
+    </li><li class="private">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="sqlalchemy.sql.traversals.HasShallowCopy.html#_generated_shallow_to_dict_traversal" class="internal-link" title="sqlalchemy.sql.traversals.HasShallowCopy._generated_shallow_to_dict_traversal">_generated<wbr></wbr>_shallow<wbr></wbr>_to<wbr></wbr>_dict<wbr></wbr>_traversal</a></code>
+            </div>
+        
+
+    </li><li class="private">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="sqlalchemy.sql.traversals.HasShallowCopy.html#_shallow_copy_to" class="internal-link" title="sqlalchemy.sql.traversals.HasShallowCopy._shallow_copy_to">_shallow<wbr></wbr>_copy<wbr></wbr>_to</a></code>
+            </div>
+        
+
+    </li><li class="private">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="sqlalchemy.sql.traversals.HasShallowCopy.html#_shallow_from_dict" class="internal-link" title="sqlalchemy.sql.traversals.HasShallowCopy._shallow_from_dict">_shallow<wbr></wbr>_from<wbr></wbr>_dict</a></code>
+            </div>
+        
+
+    </li><li class="private">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="sqlalchemy.sql.traversals.HasShallowCopy.html#_shallow_to_dict" class="internal-link" title="sqlalchemy.sql.traversals.HasShallowCopy._shallow_to_dict">_shallow<wbr></wbr>_to<wbr></wbr>_dict</a></code>
+            </div>
+        
+
+    </li>
+</ul> 
+
+        <div class="childrenKindTitle">Attributes</div>
+        <ul>
+    
+    <li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#__slots__" class="internal-link" title="sqlalchemy.orm.strategy_options._AbstractLoad.__slots__">__slots__</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#propagate_to_loaders" class="internal-link" title="sqlalchemy.orm.strategy_options._AbstractLoad.propagate_to_loaders">propagate<wbr></wbr>_to<wbr></wbr>_loaders</a></code>
+            </div>
+        
+
+    </li><li class="private">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#_is_strategy_option" class="internal-link" title="sqlalchemy.orm.strategy_options._AbstractLoad._is_strategy_option">_is<wbr></wbr>_strategy<wbr></wbr>_option</a></code>
+            </div>
+        
+
+    </li>
+</ul> 
+
+        <div class="childrenKindTitle">Inherited Attributes</div>
+        <ul>
+    
+    <li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="sqlalchemy.sql.base.ExecutableOption.html#__visit_name__" class="internal-link" title="sqlalchemy.sql.base.ExecutableOption.__visit_name__">__visit<wbr></wbr>_name__</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="sqlalchemy.sql.cache_key.HasCacheKey.html#inherit_cache" class="internal-link" title="sqlalchemy.sql.cache_key.HasCacheKey.inherit_cache">inherit<wbr></wbr>_cache</a></code>
+            </div>
+        
+
+    </li><li class="private">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="sqlalchemy.orm.interfaces.CompileStateOption.html#_is_compile_state" class="internal-link" title="sqlalchemy.orm.interfaces.CompileStateOption._is_compile_state">_is<wbr></wbr>_compile<wbr></wbr>_state</a></code>
+            </div>
+        
+
+    </li><li class="private">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="sqlalchemy.orm.interfaces.ORMOption.html#_is_core" class="internal-link" title="sqlalchemy.orm.interfaces.ORMOption._is_core">_is<wbr></wbr>_core</a></code>
+            </div>
+        
+
+    </li><li class="private">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="sqlalchemy.orm.interfaces.ORMOption.html#_is_criteria_option" class="internal-link" title="sqlalchemy.orm.interfaces.ORMOption._is_criteria_option">_is<wbr></wbr>_criteria<wbr></wbr>_option</a></code>
+            </div>
+        
+
+    </li><li class="private">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="sqlalchemy.orm.interfaces.ORMOption.html#_is_legacy_option" class="internal-link" title="sqlalchemy.orm.interfaces.ORMOption._is_legacy_option">_is<wbr></wbr>_legacy<wbr></wbr>_option</a></code>
+            </div>
+        
+
+    </li><li class="private">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="sqlalchemy.orm.interfaces.ORMOption.html#_is_user_defined" class="internal-link" title="sqlalchemy.orm.interfaces.ORMOption._is_user_defined">_is<wbr></wbr>_user<wbr></wbr>_defined</a></code>
+            </div>
+        
+
+    </li><li class="private">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="sqlalchemy.sql.cache_key.HasCacheKey.html#_generated_cache_key_traversal" class="internal-link" title="sqlalchemy.sql.cache_key.HasCacheKey._generated_cache_key_traversal">_generated<wbr></wbr>_cache<wbr></wbr>_key<wbr></wbr>_traversal</a></code>
+            </div>
+        
+
+    </li><li class="private">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="sqlalchemy.sql.cache_key.HasCacheKey.html#_hierarchy_supports_caching" class="internal-link" title="sqlalchemy.sql.cache_key.HasCacheKey._hierarchy_supports_caching">_hierarchy<wbr></wbr>_supports<wbr></wbr>_caching</a></code>
+            </div>
+        
+
+    </li><li class="private">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="sqlalchemy.sql.cache_key.HasCacheKey.html#_is_has_cache_key" class="internal-link" title="sqlalchemy.sql.cache_key.HasCacheKey._is_has_cache_key">_is<wbr></wbr>_has<wbr></wbr>_cache<wbr></wbr>_key</a></code>
+            </div>
+        
+
+    </li><li class="private">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="sqlalchemy.sql.visitors.HasTraverseInternals.html#_is_immutable" class="internal-link" title="sqlalchemy.sql.visitors.HasTraverseInternals._is_immutable">_is<wbr></wbr>_immutable</a></code>
+            </div>
+        
+
+    </li><li class="private">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="sqlalchemy.sql.visitors.HasTraverseInternals.html#_traverse_internals" class="internal-link" title="sqlalchemy.sql.visitors.HasTraverseInternals._traverse_internals">_traverse<wbr></wbr>_internals</a></code>
+            </div>
+        
+
+    </li>
+</ul> 
+        
+      </div>
+  </div><div>
+
+      <div class="thingTitle">
+        <span>Module</span>
+        <code><a href="sqlalchemy.orm.strategy_options.html" class="internal-link" title="The parent of this class">strategy<wbr></wbr>_options</a></code> 
+      </div>
+      
+      <div>
+        
+
+        
+         
+
+        <div class="childrenKindTitle">Classes</div>
+        <ul>
+    
+    <li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="sqlalchemy.orm.strategy_options.Load.html" class="internal-link" title="sqlalchemy.orm.strategy_options.Load"><wbr></wbr>Load</a></code>
+            </div>
+        
+
+    </li><li class="private thisobject">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="sqlalchemy.orm.strategy_options._AbstractLoad.html" class="internal-link" title="sqlalchemy.orm.strategy_options._AbstractLoad">_<wbr></wbr>Abstract<wbr></wbr>Load</a></code>
+            </div>
+        
+
+    </li><li class="private">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="sqlalchemy.orm.strategy_options._AttributeStrategyLoad.html" class="internal-link" title="sqlalchemy.orm.strategy_options._AttributeStrategyLoad">_<wbr></wbr>Attribute<wbr></wbr>Strategy<wbr></wbr>Load</a></code>
+            </div>
+        
+
+    </li><li class="private">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="sqlalchemy.orm.strategy_options._ClassStrategyLoad.html" class="internal-link" title="sqlalchemy.orm.strategy_options._ClassStrategyLoad">_<wbr></wbr>Class<wbr></wbr>Strategy<wbr></wbr>Load</a></code>
+            </div>
+        
+
+    </li><li class="private">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="sqlalchemy.orm.strategy_options._LoadElement.html" class="internal-link" title="sqlalchemy.orm.strategy_options._LoadElement">_<wbr></wbr>Load<wbr></wbr>Element</a></code>
+            </div>
+        
+
+    </li><li class="private">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="sqlalchemy.orm.strategy_options._TokenStrategyLoad.html" class="internal-link" title="sqlalchemy.orm.strategy_options._TokenStrategyLoad">_<wbr></wbr>Token<wbr></wbr>Strategy<wbr></wbr>Load</a></code>
+            </div>
+        
+
+    </li><li class="private">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="sqlalchemy.orm.strategy_options._WildcardLoad.html" class="internal-link" title="sqlalchemy.orm.strategy_options._WildcardLoad">_<wbr></wbr>Wildcard<wbr></wbr>Load</a></code>
+            </div>
+        
+
+    </li>
+</ul>
+
+        <div class="childrenKindTitle">Functions</div>
+        <ul>
+    
+    <li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="sqlalchemy.orm.strategy_options.html#contains_eager" class="internal-link" title="sqlalchemy.orm.strategy_options.contains_eager">contains<wbr></wbr>_eager</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="sqlalchemy.orm.strategy_options.html#defaultload" class="internal-link" title="sqlalchemy.orm.strategy_options.defaultload">defaultload</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="sqlalchemy.orm.strategy_options.html#defer" class="internal-link" title="sqlalchemy.orm.strategy_options.defer">defer</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="sqlalchemy.orm.strategy_options.html#immediateload" class="internal-link" title="sqlalchemy.orm.strategy_options.immediateload">immediateload</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="sqlalchemy.orm.strategy_options.html#joinedload" class="internal-link" title="sqlalchemy.orm.strategy_options.joinedload">joinedload</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="sqlalchemy.orm.strategy_options.html#lazyload" class="internal-link" title="sqlalchemy.orm.strategy_options.lazyload">lazyload</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="sqlalchemy.orm.strategy_options.html#load_only" class="internal-link" title="sqlalchemy.orm.strategy_options.load_only">load<wbr></wbr>_only</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="sqlalchemy.orm.strategy_options.html#loader_unbound_fn" class="internal-link" title="sqlalchemy.orm.strategy_options.loader_unbound_fn">loader<wbr></wbr>_unbound<wbr></wbr>_fn</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="sqlalchemy.orm.strategy_options.html#noload" class="internal-link" title="sqlalchemy.orm.strategy_options.noload">noload</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="sqlalchemy.orm.strategy_options.html#raiseload" class="internal-link" title="sqlalchemy.orm.strategy_options.raiseload">raiseload</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="sqlalchemy.orm.strategy_options.html#selectin_polymorphic" class="internal-link" title="sqlalchemy.orm.strategy_options.selectin_polymorphic">selectin<wbr></wbr>_polymorphic</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="sqlalchemy.orm.strategy_options.html#selectinload" class="internal-link" title="sqlalchemy.orm.strategy_options.selectinload">selectinload</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="sqlalchemy.orm.strategy_options.html#subqueryload" class="internal-link" title="sqlalchemy.orm.strategy_options.subqueryload">subqueryload</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="sqlalchemy.orm.strategy_options.html#undefer" class="internal-link" title="sqlalchemy.orm.strategy_options.undefer">undefer</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="sqlalchemy.orm.strategy_options.html#undefer_group" class="internal-link" title="sqlalchemy.orm.strategy_options.undefer_group">undefer<wbr></wbr>_group</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="sqlalchemy.orm.strategy_options.html#with_expression" class="internal-link" title="sqlalchemy.orm.strategy_options.with_expression">with<wbr></wbr>_expression</a></code>
+            </div>
+        
+
+    </li><li class="private">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="sqlalchemy.orm.strategy_options.html#_generate_from_keys" class="internal-link" title="sqlalchemy.orm.strategy_options._generate_from_keys">_generate<wbr></wbr>_from<wbr></wbr>_keys</a></code>
+            </div>
+        
+
+    </li><li class="private">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="sqlalchemy.orm.strategy_options.html#_parse_attr_argument" class="internal-link" title="sqlalchemy.orm.strategy_options._parse_attr_argument">_parse<wbr></wbr>_attr<wbr></wbr>_argument</a></code>
+            </div>
+        
+
+    </li><li class="private">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="sqlalchemy.orm.strategy_options.html#_raise_for_does_not_link" class="internal-link" title="sqlalchemy.orm.strategy_options._raise_for_does_not_link">_raise<wbr></wbr>_for<wbr></wbr>_does<wbr></wbr>_not<wbr></wbr>_link</a></code>
+            </div>
+        
+
+    </li>
+</ul> 
+
+        
+         
+
+        <div class="childrenKindTitle">Variables</div>
+        <ul>
+    
+    <li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="sqlalchemy.orm.strategy_options.html#Self_AbstractLoad" class="internal-link" title="sqlalchemy.orm.strategy_options.Self_AbstractLoad"><wbr></wbr>Self_<wbr></wbr>Abstract<wbr></wbr>Load</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="sqlalchemy.orm.strategy_options.html#SelfLoad" class="internal-link" title="sqlalchemy.orm.strategy_options.SelfLoad"><wbr></wbr>Self<wbr></wbr>Load</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="sqlalchemy.orm.strategy_options.html#SelfWildcardLoad" class="internal-link" title="sqlalchemy.orm.strategy_options.SelfWildcardLoad"><wbr></wbr>Self<wbr></wbr>Wildcard<wbr></wbr>Load</a></code>
+            </div>
+        
+
+    </li><li class="private">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="sqlalchemy.orm.strategy_options.html#_COLUMN_TOKEN" class="internal-link" title="sqlalchemy.orm.strategy_options._COLUMN_TOKEN">_COLUMN<wbr></wbr>_TOKEN</a></code>
+            </div>
+        
+
+    </li><li class="private">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="sqlalchemy.orm.strategy_options.html#_RELATIONSHIP_TOKEN" class="internal-link" title="sqlalchemy.orm.strategy_options._RELATIONSHIP_TOKEN">_RELATIONSHIP<wbr></wbr>_TOKEN</a></code>
+            </div>
+        
+
+    </li><li class="private">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="sqlalchemy.orm.strategy_options.html#_FN" class="internal-link" title="sqlalchemy.orm.strategy_options._FN">_FN</a></code>
+            </div>
+        
+
+    </li><li class="private">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="sqlalchemy.orm.strategy_options.html#_AttrGroupType" class="internal-link" title="sqlalchemy.orm.strategy_options._AttrGroupType">_<wbr></wbr>Attr<wbr></wbr>Group<wbr></wbr>Type</a></code>
+            </div>
+        
+
+    </li><li class="private">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="sqlalchemy.orm.strategy_options.html#_AttrType" class="internal-link" title="sqlalchemy.orm.strategy_options._AttrType">_<wbr></wbr>Attr<wbr></wbr>Type</a></code>
+            </div>
+        
+
+    </li><li class="private">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="sqlalchemy.orm.strategy_options.html#_OptsType" class="internal-link" title="sqlalchemy.orm.strategy_options._OptsType">_<wbr></wbr>Opts<wbr></wbr>Type</a></code>
+            </div>
+        
+
+    </li><li class="private">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="sqlalchemy.orm.strategy_options.html#_StrategySpec" class="internal-link" title="sqlalchemy.orm.strategy_options._StrategySpec">_<wbr></wbr>Strategy<wbr></wbr>Spec</a></code>
+            </div>
+        
+
+    </li><li class="private">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="sqlalchemy.orm.strategy_options.html#_WildcardKeyType" class="internal-link" title="sqlalchemy.orm.strategy_options._WildcardKeyType">_<wbr></wbr>Wildcard<wbr></wbr>Key<wbr></wbr>Type</a></code>
+            </div>
+        
+
+    </li>
+</ul> 
+
+        
+         
+        
+      </div>
+  </div>
+
+</nav>
+        </div>
+        <div id="collapseSideBar">
+          <a class="btn btn-link" onclick="toggleSideBarCollapse()" title="Toggle Sidebar Collapse">
+          </a>
+        </div> 
+        <script src="sidebartoggle.js" type="text/javascript"></script>
+       
+      </div>
+
+      <div id="main" class="">
+        
+
+        
+
+        <div class="page-header">
+          <h1 class="class private"><code><code><a href="index.html" class="internal-link">sqlalchemy</a></code><wbr></wbr>.<code><a href="sqlalchemy.orm.html" class="internal-link" title="sqlalchemy.orm">orm</a></code><wbr></wbr>.<code><a href="sqlalchemy.orm.strategy_options.html" class="internal-link" title="sqlalchemy.orm.strategy_options">strategy_options</a></code><wbr></wbr>.<code><a href="sqlalchemy.orm.strategy_options._AbstractLoad.html" class="internal-link" title="sqlalchemy.orm.strategy_options._AbstractLoad">_AbstractLoad</a></code></code></h1>
+          <div id="showPrivate">
+            <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+          </div>
+        </div>
+
+        <div class="categoryHeader">
+          class documentation
+        </div>
+
+        <div class="extrasDocstring">
+          <p class="class-signature"><code><span class="py-keyword">class</span> <span class="py-defname">_AbstractLoad</span>(<a href="sqlalchemy.sql.traversals.GenerativeOnTraversal.html" class="internal-link" title="sqlalchemy.sql.traversals.GenerativeOnTraversal">traversals.GenerativeOnTraversal</a>, <a href="sqlalchemy.orm.interfaces.LoaderOption.html" class="internal-link" title="sqlalchemy.orm.interfaces.LoaderOption">LoaderOption</a>): <a href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-2.0.1//lib/sqlalchemy/orm/strategy_options.py#L88" class="sourceLink">(source)</a></code></p><p>Known subclasses: <code><a href="sqlalchemy.orm.strategy_options.Load.html" class="internal-link">sqlalchemy.orm.strategy_options.Load</a></code>, <code><a href="sqlalchemy.orm.strategy_options._WildcardLoad.html" class="internal-link">sqlalchemy.orm.strategy_options._WildcardLoad</a></code></p>
+          <p><a href="classIndex.html#sqlalchemy.orm.strategy_options._AbstractLoad">View In Hierarchy</a></p>
+        </div>
+
+        <div class="moduleDocstring">
+          <div><p class="undocumented">Undocumented</p></div>
+        </div>
+
+        <div id="splitTables">
+          <table class="children sortable" id="id15456">
+  
+  
+  <tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#contains_eager" class="internal-link" title="sqlalchemy.orm.strategy_options._AbstractLoad.contains_eager">contains<wbr></wbr>_eager</a></code></td>
+    <td>Indicate that the given attribute should be eagerly loaded from columns stated manually in the query.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#defaultload" class="internal-link" title="sqlalchemy.orm.strategy_options._AbstractLoad.defaultload">defaultload</a></code></td>
+    <td>Indicate an attribute should load using its default loader style.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#defer" class="internal-link" title="sqlalchemy.orm.strategy_options._AbstractLoad.defer">defer</a></code></td>
+    <td>Indicate that the given column-oriented attribute should be deferred, e.g. not loaded until accessed.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#immediateload" class="internal-link" title="sqlalchemy.orm.strategy_options._AbstractLoad.immediateload">immediateload</a></code></td>
+    <td>Indicate that the given attribute should be loaded using an immediate load with a per-attribute SELECT statement.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#joinedload" class="internal-link" title="sqlalchemy.orm.strategy_options._AbstractLoad.joinedload">joinedload</a></code></td>
+    <td>Indicate that the given attribute should be loaded using joined eager loading.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#lazyload" class="internal-link" title="sqlalchemy.orm.strategy_options._AbstractLoad.lazyload">lazyload</a></code></td>
+    <td>Indicate that the given attribute should be loaded using "lazy" loading.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#load_only" class="internal-link" title="sqlalchemy.orm.strategy_options._AbstractLoad.load_only">load<wbr></wbr>_only</a></code></td>
+    <td>Indicate that for a particular entity, only the given list of column-based attribute names should be loaded; all others will be deferred.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#noload" class="internal-link" title="sqlalchemy.orm.strategy_options._AbstractLoad.noload">noload</a></code></td>
+    <td>Indicate that the given relationship attribute should remain unloaded.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#options" class="internal-link" title="sqlalchemy.orm.strategy_options._AbstractLoad.options">options</a></code></td>
+    <td>Apply a series of options as sub-options to this :class:`_orm._AbstractLoad` object.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#process_compile_state" class="internal-link" title="sqlalchemy.orm.strategy_options._AbstractLoad.process_compile_state">process<wbr></wbr>_compile<wbr></wbr>_state</a></code></td>
+    <td>Apply a modification to a given :class:`.ORMCompileState`.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#process_compile_state_replaced_entities" class="internal-link" title="sqlalchemy.orm.strategy_options._AbstractLoad.process_compile_state_replaced_entities">process<wbr></wbr>_compile<wbr></wbr>_state<wbr></wbr>_replaced<wbr></wbr>_entities</a></code></td>
+    <td>Apply a modification to a given :class:`.ORMCompileState`, given entities that were replaced by with_only_columns() or with_entities().</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#raiseload" class="internal-link" title="sqlalchemy.orm.strategy_options._AbstractLoad.raiseload">raiseload</a></code></td>
+    <td>Indicate that the given attribute should raise an error if accessed.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#selectin_polymorphic" class="internal-link" title="sqlalchemy.orm.strategy_options._AbstractLoad.selectin_polymorphic">selectin<wbr></wbr>_polymorphic</a></code></td>
+    <td>Indicate an eager load should take place for all attributes specific to a subclass.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#selectinload" class="internal-link" title="sqlalchemy.orm.strategy_options._AbstractLoad.selectinload">selectinload</a></code></td>
+    <td>Indicate that the given attribute should be loaded using SELECT IN eager loading.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#subqueryload" class="internal-link" title="sqlalchemy.orm.strategy_options._AbstractLoad.subqueryload">subqueryload</a></code></td>
+    <td>Indicate that the given attribute should be loaded using subquery eager loading.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#undefer" class="internal-link" title="sqlalchemy.orm.strategy_options._AbstractLoad.undefer">undefer</a></code></td>
+    <td>Indicate that the given column-oriented attribute should be undeferred, e.g. specified within the SELECT statement of the entity as a whole.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#undefer_group" class="internal-link" title="sqlalchemy.orm.strategy_options._AbstractLoad.undefer_group">undefer<wbr></wbr>_group</a></code></td>
+    <td>Indicate that columns within the given deferred group name should be undeferred.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><code><a href="#with_expression" class="internal-link" title="sqlalchemy.orm.strategy_options._AbstractLoad.with_expression">with<wbr></wbr>_expression</a></code></td>
+    <td>Apply an ad-hoc SQL expression to a "deferred expression" attribute.</td>
+  </tr><tr class="classvariable">
+    
+    <td>Class Variable</td>
+    <td><code><a href="#__slots__" class="internal-link" title="sqlalchemy.orm.strategy_options._AbstractLoad.__slots__">__slots__</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="classvariable">
+    
+    <td>Class Variable</td>
+    <td><code><a href="#propagate_to_loaders" class="internal-link" title="sqlalchemy.orm.strategy_options._AbstractLoad.propagate_to_loaders">propagate<wbr></wbr>_to<wbr></wbr>_loaders</a></code></td>
+    <td>if True, indicate this option should be carried along to "secondary" SELECT statements that occur for relationship lazy loaders as well as attribute load / refresh operations.</td>
+  </tr><tr class="classmethod private">
+    
+    <td>Class Method</td>
+    <td><code><a href="#_chop_path" class="internal-link" title="sqlalchemy.orm.strategy_options._AbstractLoad._chop_path">_chop<wbr></wbr>_path</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_apply_to_parent" class="internal-link" title="sqlalchemy.orm.strategy_options._AbstractLoad._apply_to_parent">_apply<wbr></wbr>_to<wbr></wbr>_parent</a></code></td>
+    <td>apply this :class:`_orm._AbstractLoad` object as a sub-option o a :class:`_orm.Load` object.</td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_clone_for_bind_strategy" class="internal-link" title="sqlalchemy.orm.strategy_options._AbstractLoad._clone_for_bind_strategy">_clone<wbr></wbr>_for<wbr></wbr>_bind<wbr></wbr>_strategy</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_coerce_strat" class="internal-link" title="sqlalchemy.orm.strategy_options._AbstractLoad._coerce_strat">_coerce<wbr></wbr>_strat</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_process" class="internal-link" title="sqlalchemy.orm.strategy_options._AbstractLoad._process">_process</a></code></td>
+    <td>implemented by subclasses</td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_set_class_strategy" class="internal-link" title="sqlalchemy.orm.strategy_options._AbstractLoad._set_class_strategy">_set<wbr></wbr>_class<wbr></wbr>_strategy</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_set_column_strategy" class="internal-link" title="sqlalchemy.orm.strategy_options._AbstractLoad._set_column_strategy">_set<wbr></wbr>_column<wbr></wbr>_strategy</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_set_generic_strategy" class="internal-link" title="sqlalchemy.orm.strategy_options._AbstractLoad._set_generic_strategy">_set<wbr></wbr>_generic<wbr></wbr>_strategy</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_set_relationship_strategy" class="internal-link" title="sqlalchemy.orm.strategy_options._AbstractLoad._set_relationship_strategy">_set<wbr></wbr>_relationship<wbr></wbr>_strategy</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="classvariable private">
+    
+    <td>Class Variable</td>
+    <td><code><a href="#_is_strategy_option" class="internal-link" title="sqlalchemy.orm.strategy_options._AbstractLoad._is_strategy_option">_is<wbr></wbr>_strategy<wbr></wbr>_option</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+          
+            <p class="inheritedFrom">
+              Inherited from <code><a href="sqlalchemy.sql.traversals.GenerativeOnTraversal.html" class="internal-link" title="sqlalchemy.sql.traversals.GenerativeOnTraversal">GenerativeOnTraversal</a></code>:
+            </p>
+            <table class="children sortable" id="id15457">
+  
+  
+  <tr class="basemethod private">
+    
+    <td>Method</td>
+    <td><code><a href="sqlalchemy.sql.traversals.GenerativeOnTraversal.html#_generate" class="internal-link" title="sqlalchemy.sql.traversals.GenerativeOnTraversal._generate">_generate</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+            
+            <p class="inheritedFrom">
+              Inherited from <code><a href="sqlalchemy.sql.traversals.HasShallowCopy.html" class="internal-link" title="sqlalchemy.sql.traversals.HasShallowCopy">HasShallowCopy</a></code> (via <code><a href="sqlalchemy.sql.traversals.GenerativeOnTraversal.html" class="internal-link" title="sqlalchemy.sql.traversals.GenerativeOnTraversal">GenerativeOnTraversal</a></code>):
+            </p>
+            <table class="children sortable" id="id15458">
+  
+  
+  <tr class="baseclassmethod private">
+    
+    <td>Class Method</td>
+    <td><code><a href="sqlalchemy.sql.traversals.HasShallowCopy.html#_generate_shallow_copy" class="internal-link" title="sqlalchemy.sql.traversals.HasShallowCopy._generate_shallow_copy">_generate<wbr></wbr>_shallow<wbr></wbr>_copy</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="baseclassmethod private">
+    
+    <td>Class Method</td>
+    <td><code><a href="sqlalchemy.sql.traversals.HasShallowCopy.html#_generate_shallow_from_dict" class="internal-link" title="sqlalchemy.sql.traversals.HasShallowCopy._generate_shallow_from_dict">_generate<wbr></wbr>_shallow<wbr></wbr>_from<wbr></wbr>_dict</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="baseclassmethod private">
+    
+    <td>Class Method</td>
+    <td><code><a href="sqlalchemy.sql.traversals.HasShallowCopy.html#_generate_shallow_to_dict" class="internal-link" title="sqlalchemy.sql.traversals.HasShallowCopy._generate_shallow_to_dict">_generate<wbr></wbr>_shallow<wbr></wbr>_to<wbr></wbr>_dict</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod private">
+    
+    <td>Method</td>
+    <td><code><a href="sqlalchemy.sql.traversals.HasShallowCopy.html#_clone" class="internal-link" title="sqlalchemy.sql.traversals.HasShallowCopy._clone">_clone</a></code></td>
+    <td>Create a shallow copy</td>
+  </tr><tr class="basemethod private">
+    
+    <td>Method</td>
+    <td><code><a href="sqlalchemy.sql.traversals.HasShallowCopy.html#_generated_shallow_copy_traversal" class="internal-link" title="sqlalchemy.sql.traversals.HasShallowCopy._generated_shallow_copy_traversal">_generated<wbr></wbr>_shallow<wbr></wbr>_copy<wbr></wbr>_traversal</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod private">
+    
+    <td>Method</td>
+    <td><code><a href="sqlalchemy.sql.traversals.HasShallowCopy.html#_generated_shallow_from_dict_traversal" class="internal-link" title="sqlalchemy.sql.traversals.HasShallowCopy._generated_shallow_from_dict_traversal">_generated<wbr></wbr>_shallow<wbr></wbr>_from<wbr></wbr>_dict<wbr></wbr>_traversal</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod private">
+    
+    <td>Method</td>
+    <td><code><a href="sqlalchemy.sql.traversals.HasShallowCopy.html#_generated_shallow_to_dict_traversal" class="internal-link" title="sqlalchemy.sql.traversals.HasShallowCopy._generated_shallow_to_dict_traversal">_generated<wbr></wbr>_shallow<wbr></wbr>_to<wbr></wbr>_dict<wbr></wbr>_traversal</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod private">
+    
+    <td>Method</td>
+    <td><code><a href="sqlalchemy.sql.traversals.HasShallowCopy.html#_shallow_copy_to" class="internal-link" title="sqlalchemy.sql.traversals.HasShallowCopy._shallow_copy_to">_shallow<wbr></wbr>_copy<wbr></wbr>_to</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod private">
+    
+    <td>Method</td>
+    <td><code><a href="sqlalchemy.sql.traversals.HasShallowCopy.html#_shallow_from_dict" class="internal-link" title="sqlalchemy.sql.traversals.HasShallowCopy._shallow_from_dict">_shallow<wbr></wbr>_from<wbr></wbr>_dict</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod private">
+    
+    <td>Method</td>
+    <td><code><a href="sqlalchemy.sql.traversals.HasShallowCopy.html#_shallow_to_dict" class="internal-link" title="sqlalchemy.sql.traversals.HasShallowCopy._shallow_to_dict">_shallow<wbr></wbr>_to<wbr></wbr>_dict</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+            
+            <p class="inheritedFrom">
+              Inherited from <code><a href="sqlalchemy.orm.interfaces.CompileStateOption.html" class="internal-link" title="sqlalchemy.orm.interfaces.CompileStateOption">CompileStateOption</a></code> (via <code><a href="sqlalchemy.sql.traversals.GenerativeOnTraversal.html" class="internal-link" title="sqlalchemy.sql.traversals.GenerativeOnTraversal">GenerativeOnTraversal</a></code>, <code><a href="sqlalchemy.sql.traversals.HasShallowCopy.html" class="internal-link" title="sqlalchemy.sql.traversals.HasShallowCopy">HasShallowCopy</a></code>, <code><a href="sqlalchemy.orm.interfaces.LoaderOption.html" class="internal-link" title="sqlalchemy.orm.interfaces.LoaderOption">LoaderOption</a></code>):
+            </p>
+            <table class="children sortable" id="id15459">
+  
+  
+  <tr class="baseclassvariable private">
+    
+    <td>Class Variable</td>
+    <td><code><a href="sqlalchemy.orm.interfaces.CompileStateOption.html#_is_compile_state" class="internal-link" title="sqlalchemy.orm.interfaces.CompileStateOption._is_compile_state">_is<wbr></wbr>_compile<wbr></wbr>_state</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+            
+            <p class="inheritedFrom">
+              Inherited from <code><a href="sqlalchemy.sql.cache_key.HasCacheKey.html" class="internal-link" title="sqlalchemy.sql.cache_key.HasCacheKey">HasCacheKey</a></code> (via <code><a href="sqlalchemy.sql.traversals.GenerativeOnTraversal.html" class="internal-link" title="sqlalchemy.sql.traversals.GenerativeOnTraversal">GenerativeOnTraversal</a></code>, <code><a href="sqlalchemy.sql.traversals.HasShallowCopy.html" class="internal-link" title="sqlalchemy.sql.traversals.HasShallowCopy">HasShallowCopy</a></code>, <code><a href="sqlalchemy.orm.interfaces.LoaderOption.html" class="internal-link" title="sqlalchemy.orm.interfaces.LoaderOption">LoaderOption</a></code>, <code><a href="sqlalchemy.orm.interfaces.CompileStateOption.html" class="internal-link" title="sqlalchemy.orm.interfaces.CompileStateOption">CompileStateOption</a></code>):
+            </p>
+            <table class="children sortable" id="id15460">
+  
+  
+  <tr class="baseclassvariable">
+    
+    <td>Class Variable</td>
+    <td><code><a href="sqlalchemy.sql.cache_key.HasCacheKey.html#inherit_cache" class="internal-link" title="sqlalchemy.sql.cache_key.HasCacheKey.inherit_cache">inherit<wbr></wbr>_cache</a></code></td>
+    <td>Indicate if this :class:`.HasCacheKey` instance should make use of the cache key generation scheme used by its immediate superclass.</td>
+  </tr><tr class="baseclassmethod private">
+    
+    <td>Class Method</td>
+    <td><code><a href="sqlalchemy.sql.cache_key.HasCacheKey.html#_generate_cache_attrs" class="internal-link" title="sqlalchemy.sql.cache_key.HasCacheKey._generate_cache_attrs">_generate<wbr></wbr>_cache<wbr></wbr>_attrs</a></code></td>
+    <td>generate cache key dispatcher for a new class.</td>
+  </tr><tr class="baseclassmethod private">
+    
+    <td>Class Method</td>
+    <td><code><a href="sqlalchemy.sql.cache_key.HasCacheKey.html#_generate_cache_key_for_object" class="internal-link" title="sqlalchemy.sql.cache_key.HasCacheKey._generate_cache_key_for_object">_generate<wbr></wbr>_cache<wbr></wbr>_key<wbr></wbr>_for<wbr></wbr>_object</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod private">
+    
+    <td>Method</td>
+    <td><code><a href="sqlalchemy.sql.cache_key.HasCacheKey.html#_gen_cache_key" class="internal-link" title="sqlalchemy.sql.cache_key.HasCacheKey._gen_cache_key">_gen<wbr></wbr>_cache<wbr></wbr>_key</a></code></td>
+    <td>return an optional cache key.</td>
+  </tr><tr class="basemethod private">
+    
+    <td>Method</td>
+    <td><code><a href="sqlalchemy.sql.cache_key.HasCacheKey.html#_generate_cache_key" class="internal-link" title="sqlalchemy.sql.cache_key.HasCacheKey._generate_cache_key">_generate<wbr></wbr>_cache<wbr></wbr>_key</a></code></td>
+    <td>return a cache key.</td>
+  </tr><tr class="baseclassvariable private">
+    
+    <td>Class Variable</td>
+    <td><code><a href="sqlalchemy.sql.cache_key.HasCacheKey.html#_generated_cache_key_traversal" class="internal-link" title="sqlalchemy.sql.cache_key.HasCacheKey._generated_cache_key_traversal">_generated<wbr></wbr>_cache<wbr></wbr>_key<wbr></wbr>_traversal</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="baseclassvariable private">
+    
+    <td>Class Variable</td>
+    <td><code><a href="sqlalchemy.sql.cache_key.HasCacheKey.html#_hierarchy_supports_caching" class="internal-link" title="sqlalchemy.sql.cache_key.HasCacheKey._hierarchy_supports_caching">_hierarchy<wbr></wbr>_supports<wbr></wbr>_caching</a></code></td>
+    <td>private attribute which may be set to False to prevent the inherit_cache warning from being emitted for a hierarchy of subclasses.</td>
+  </tr><tr class="baseclassvariable private">
+    
+    <td>Class Variable</td>
+    <td><code><a href="sqlalchemy.sql.cache_key.HasCacheKey.html#_is_has_cache_key" class="internal-link" title="sqlalchemy.sql.cache_key.HasCacheKey._is_has_cache_key">_is<wbr></wbr>_has<wbr></wbr>_cache<wbr></wbr>_key</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+            
+            <p class="inheritedFrom">
+              Inherited from <code><a href="sqlalchemy.orm.interfaces.ORMOption.html" class="internal-link" title="sqlalchemy.orm.interfaces.ORMOption">ORMOption</a></code> (via <code><a href="sqlalchemy.sql.traversals.GenerativeOnTraversal.html" class="internal-link" title="sqlalchemy.sql.traversals.GenerativeOnTraversal">GenerativeOnTraversal</a></code>, <code><a href="sqlalchemy.sql.traversals.HasShallowCopy.html" class="internal-link" title="sqlalchemy.sql.traversals.HasShallowCopy">HasShallowCopy</a></code>, <code><a href="sqlalchemy.orm.interfaces.LoaderOption.html" class="internal-link" title="sqlalchemy.orm.interfaces.LoaderOption">LoaderOption</a></code>, <code><a href="sqlalchemy.orm.interfaces.CompileStateOption.html" class="internal-link" title="sqlalchemy.orm.interfaces.CompileStateOption">CompileStateOption</a></code>, <code><a href="sqlalchemy.sql.cache_key.HasCacheKey.html" class="internal-link" title="sqlalchemy.sql.cache_key.HasCacheKey">HasCacheKey</a></code>):
+            </p>
+            <table class="children sortable" id="id15461">
+  
+  
+  <tr class="basemethod private">
+    
+    <td>Method</td>
+    <td><code><a href="sqlalchemy.orm.interfaces.ORMOption.html#_adapt_cached_option_to_uncached_option" class="internal-link" title="sqlalchemy.orm.interfaces.ORMOption._adapt_cached_option_to_uncached_option">_adapt<wbr></wbr>_cached<wbr></wbr>_option<wbr></wbr>_to<wbr></wbr>_uncached<wbr></wbr>_option</a></code></td>
+    <td>adapt this option to the "uncached" version of itself in a loader strategy context.</td>
+  </tr><tr class="baseclassvariable private">
+    
+    <td>Class Variable</td>
+    <td><code><a href="sqlalchemy.orm.interfaces.ORMOption.html#_is_core" class="internal-link" title="sqlalchemy.orm.interfaces.ORMOption._is_core">_is<wbr></wbr>_core</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="baseclassvariable private">
+    
+    <td>Class Variable</td>
+    <td><code><a href="sqlalchemy.orm.interfaces.ORMOption.html#_is_criteria_option" class="internal-link" title="sqlalchemy.orm.interfaces.ORMOption._is_criteria_option">_is<wbr></wbr>_criteria<wbr></wbr>_option</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="baseclassvariable private">
+    
+    <td>Class Variable</td>
+    <td><code><a href="sqlalchemy.orm.interfaces.ORMOption.html#_is_legacy_option" class="internal-link" title="sqlalchemy.orm.interfaces.ORMOption._is_legacy_option">_is<wbr></wbr>_legacy<wbr></wbr>_option</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="baseclassvariable private">
+    
+    <td>Class Variable</td>
+    <td><code><a href="sqlalchemy.orm.interfaces.ORMOption.html#_is_user_defined" class="internal-link" title="sqlalchemy.orm.interfaces.ORMOption._is_user_defined">_is<wbr></wbr>_user<wbr></wbr>_defined</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+            
+            <p class="inheritedFrom">
+              Inherited from <code><a href="sqlalchemy.sql.base.ExecutableOption.html" class="internal-link" title="sqlalchemy.sql.base.ExecutableOption">ExecutableOption</a></code> (via <code><a href="sqlalchemy.sql.traversals.GenerativeOnTraversal.html" class="internal-link" title="sqlalchemy.sql.traversals.GenerativeOnTraversal">GenerativeOnTraversal</a></code>, <code><a href="sqlalchemy.sql.traversals.HasShallowCopy.html" class="internal-link" title="sqlalchemy.sql.traversals.HasShallowCopy">HasShallowCopy</a></code>, <code><a href="sqlalchemy.orm.interfaces.LoaderOption.html" class="internal-link" title="sqlalchemy.orm.interfaces.LoaderOption">LoaderOption</a></code>, <code><a href="sqlalchemy.orm.interfaces.CompileStateOption.html" class="internal-link" title="sqlalchemy.orm.interfaces.CompileStateOption">CompileStateOption</a></code>, <code><a href="sqlalchemy.sql.cache_key.HasCacheKey.html" class="internal-link" title="sqlalchemy.sql.cache_key.HasCacheKey">HasCacheKey</a></code>, <code><a href="sqlalchemy.orm.interfaces.ORMOption.html" class="internal-link" title="sqlalchemy.orm.interfaces.ORMOption">ORMOption</a></code>):
+            </p>
+            <table class="children sortable" id="id15462">
+  
+  
+  <tr class="baseclassvariable">
+    
+    <td>Class Variable</td>
+    <td><code><a href="sqlalchemy.sql.base.ExecutableOption.html#__visit_name__" class="internal-link" title="sqlalchemy.sql.base.ExecutableOption.__visit_name__">__visit<wbr></wbr>_name__</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+            
+            <p class="inheritedFrom">
+              Inherited from <code><a href="sqlalchemy.sql.traversals.HasCopyInternals.html" class="internal-link" title="sqlalchemy.sql.traversals.HasCopyInternals">HasCopyInternals</a></code> (via <code><a href="sqlalchemy.sql.traversals.GenerativeOnTraversal.html" class="internal-link" title="sqlalchemy.sql.traversals.GenerativeOnTraversal">GenerativeOnTraversal</a></code>, <code><a href="sqlalchemy.sql.traversals.HasShallowCopy.html" class="internal-link" title="sqlalchemy.sql.traversals.HasShallowCopy">HasShallowCopy</a></code>, <code><a href="sqlalchemy.orm.interfaces.LoaderOption.html" class="internal-link" title="sqlalchemy.orm.interfaces.LoaderOption">LoaderOption</a></code>, <code><a href="sqlalchemy.orm.interfaces.CompileStateOption.html" class="internal-link" title="sqlalchemy.orm.interfaces.CompileStateOption">CompileStateOption</a></code>, <code><a href="sqlalchemy.sql.cache_key.HasCacheKey.html" class="internal-link" title="sqlalchemy.sql.cache_key.HasCacheKey">HasCacheKey</a></code>, <code><a href="sqlalchemy.orm.interfaces.ORMOption.html" class="internal-link" title="sqlalchemy.orm.interfaces.ORMOption">ORMOption</a></code>, <code><a href="sqlalchemy.sql.base.ExecutableOption.html" class="internal-link" title="sqlalchemy.sql.base.ExecutableOption">ExecutableOption</a></code>):
+            </p>
+            <table class="children sortable" id="id15463">
+  
+  
+  <tr class="basemethod private">
+    
+    <td>Method</td>
+    <td><code><a href="sqlalchemy.sql.traversals.HasCopyInternals.html#_copy_internals" class="internal-link" title="sqlalchemy.sql.traversals.HasCopyInternals._copy_internals">_copy<wbr></wbr>_internals</a></code></td>
+    <td>Reassign internal elements to be clones of themselves.</td>
+  </tr>
+</table>
+            
+            <p class="inheritedFrom">
+              Inherited from <code><a href="sqlalchemy.sql.visitors.HasTraverseInternals.html" class="internal-link" title="sqlalchemy.sql.visitors.HasTraverseInternals">HasTraverseInternals</a></code> (via <code><a href="sqlalchemy.sql.traversals.GenerativeOnTraversal.html" class="internal-link" title="sqlalchemy.sql.traversals.GenerativeOnTraversal">GenerativeOnTraversal</a></code>, <code><a href="sqlalchemy.sql.traversals.HasShallowCopy.html" class="internal-link" title="sqlalchemy.sql.traversals.HasShallowCopy">HasShallowCopy</a></code>, <code><a href="sqlalchemy.orm.interfaces.LoaderOption.html" class="internal-link" title="sqlalchemy.orm.interfaces.LoaderOption">LoaderOption</a></code>, <code><a href="sqlalchemy.orm.interfaces.CompileStateOption.html" class="internal-link" title="sqlalchemy.orm.interfaces.CompileStateOption">CompileStateOption</a></code>, <code><a href="sqlalchemy.sql.cache_key.HasCacheKey.html" class="internal-link" title="sqlalchemy.sql.cache_key.HasCacheKey">HasCacheKey</a></code>, <code><a href="sqlalchemy.orm.interfaces.ORMOption.html" class="internal-link" title="sqlalchemy.orm.interfaces.ORMOption">ORMOption</a></code>, <code><a href="sqlalchemy.sql.base.ExecutableOption.html" class="internal-link" title="sqlalchemy.sql.base.ExecutableOption">ExecutableOption</a></code>, <code><a href="sqlalchemy.sql.traversals.HasCopyInternals.html" class="internal-link" title="sqlalchemy.sql.traversals.HasCopyInternals">HasCopyInternals</a></code>):
+            </p>
+            <table class="children sortable" id="id15464">
+  
+  
+  <tr class="basemethod">
+    
+    <td>Method</td>
+    <td><code><a href="sqlalchemy.sql.visitors.HasTraverseInternals.html#get_children" class="internal-link" title="sqlalchemy.sql.visitors.HasTraverseInternals.get_children">get<wbr></wbr>_children</a></code></td>
+    <td>Return immediate child :class:`.visitors.HasTraverseInternals` elements of this :class:`.visitors.HasTraverseInternals`.</td>
+  </tr><tr class="baseclassvariable private">
+    
+    <td>Class Variable</td>
+    <td><code><a href="sqlalchemy.sql.visitors.HasTraverseInternals.html#_is_immutable" class="internal-link" title="sqlalchemy.sql.visitors.HasTraverseInternals._is_immutable">_is<wbr></wbr>_immutable</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="baseclassvariable private">
+    
+    <td>Class Variable</td>
+    <td><code><a href="sqlalchemy.sql.visitors.HasTraverseInternals.html#_traverse_internals" class="internal-link" title="sqlalchemy.sql.visitors.HasTraverseInternals._traverse_internals">_traverse<wbr></wbr>_internals</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+            
+
+            
+        </div>
+
+        <div id="childList">
+          <div class="basemethod">
+  
+  
+  <a name="sqlalchemy.orm.strategy_options._AbstractLoad.contains_eager">
+    
+  </a>
+  <a name="contains_eager">
+    
+  </a>
+  <div class="functionHeader">
+    
+    
+    <span class="py-keyword">def</span> <span class="py-defname">contains_eager</span><span class="function-signature">(self: <code><a href="sqlalchemy.orm.strategy_options.html#Self_AbstractLoad" class="internal-link" title="sqlalchemy.orm.strategy_options.Self_AbstractLoad">Self_AbstractLoad</a></code>, attr: <code><a href="sqlalchemy.orm.strategy_options.html#_AttrType" class="internal-link" title="sqlalchemy.orm.strategy_options._AttrType">_AttrType</a></code>, alias: <code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">Optional</a>[<wbr></wbr><a href="sqlalchemy.sql._typing.html#_FromClauseArgument" class="internal-link" title="sqlalchemy.sql._typing._FromClauseArgument">_FromClauseArgument</a>]</code> = <a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, _is_chain: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code> = <a href="https://docs.python.org/3/library/constants.html#False" class="intersphinx-link">False</a>) -&gt; <code><a href="sqlalchemy.orm.strategy_options.html#Self_AbstractLoad" class="internal-link" title="sqlalchemy.orm.strategy_options.Self_AbstractLoad">Self_AbstractLoad</a></code></span>:
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-2.0.1//lib/sqlalchemy/orm/strategy_options.py#L94">
+      
+      (source)
+    </a>
+    <a class="headerLink" href="#contains_eager" title="sqlalchemy.orm.strategy_options._AbstractLoad.contains_eager">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p class="pre">Indicate that the given attribute should be eagerly loaded from
+columns stated manually in the query.
+
+This function is part of the :class:`_orm.Load` interface and supports
+both method-chained and standalone operation.
+
+The option is used in conjunction with an explicit join that loads
+the desired rows, i.e.::
+
+    sess.query(Order).\
+            join(Order.user).\
+            options(contains_eager(Order.user))
+
+The above query would join from the ``Order`` entity to its related
+``User`` entity, and the returned ``Order`` objects would have the
+``Order.user`` attribute pre-populated.
+
+It may also be used for customizing the entries in an eagerly loaded
+collection; queries will normally want to use the
+:ref:`orm_queryguide_populate_existing` execution option assuming the
+primary collection of parent objects may already have been loaded::
+
+    sess.query(User).\
+        join(User.addresses).\
+        filter(Address.email_address.like('%@aol.com')).\
+        options(contains_eager(User.addresses)).\
+        populate_existing()
+
+See the section :ref:`contains_eager` for complete usage details.
+
+.. seealso::
+
+    :ref:`loading_toplevel`
+
+    :ref:`contains_eager`</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.orm.strategy_options._AbstractLoad.defaultload">
+    
+  </a>
+  <a name="defaultload">
+    
+  </a>
+  <div class="functionHeader">
+    
+    
+    <span class="py-keyword">def</span> <span class="py-defname">defaultload</span><span class="function-signature">(self: <code><a href="sqlalchemy.orm.strategy_options.html#Self_AbstractLoad" class="internal-link" title="sqlalchemy.orm.strategy_options.Self_AbstractLoad">Self_AbstractLoad</a></code>, attr: <code><a href="sqlalchemy.orm.strategy_options.html#_AttrType" class="internal-link" title="sqlalchemy.orm.strategy_options._AttrType">_AttrType</a></code>) -&gt; <code><a href="sqlalchemy.orm.strategy_options.html#Self_AbstractLoad" class="internal-link" title="sqlalchemy.orm.strategy_options.Self_AbstractLoad">Self_AbstractLoad</a></code></span>:
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-2.0.1//lib/sqlalchemy/orm/strategy_options.py#L560">
+      
+      (source)
+    </a>
+    <a class="headerLink" href="#defaultload" title="sqlalchemy.orm.strategy_options._AbstractLoad.defaultload">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p class="pre">Indicate an attribute should load using its default loader style.
+
+This method is used to link to other loader options further into
+a chain of attributes without altering the loader style of the links
+along the chain.  For example, to set joined eager loading for an
+element of an element::
+
+    session.query(MyClass).options(
+        defaultload(MyClass.someattribute).
+        joinedload(MyOtherClass.someotherattribute)
+    )
+
+:func:`.defaultload` is also useful for setting column-level options on
+a related class, namely that of :func:`.defer` and :func:`.undefer`::
+
+    session.query(MyClass).options(
+        defaultload(MyClass.someattribute).
+        defer("some_column").
+        undefer("some_other_column")
+    )
+
+.. seealso::
+
+    :ref:`orm_queryguide_relationship_sub_options`
+
+    :meth:`_orm.Load.options`</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.orm.strategy_options._AbstractLoad.defer">
+    
+  </a>
+  <a name="defer">
+    
+  </a>
+  <div class="functionHeader">
+    
+    
+    <span class="py-keyword">def</span> <span class="py-defname">defer</span><span class="function-signature">(self: <code><a href="sqlalchemy.orm.strategy_options.html#Self_AbstractLoad" class="internal-link" title="sqlalchemy.orm.strategy_options.Self_AbstractLoad">Self_AbstractLoad</a></code>, key: <code><a href="sqlalchemy.orm.strategy_options.html#_AttrType" class="internal-link" title="sqlalchemy.orm.strategy_options._AttrType">_AttrType</a></code>, raiseload: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code> = <a href="https://docs.python.org/3/library/constants.html#False" class="intersphinx-link">False</a>) -&gt; <code><a href="sqlalchemy.orm.strategy_options.html#Self_AbstractLoad" class="internal-link" title="sqlalchemy.orm.strategy_options.Self_AbstractLoad">Self_AbstractLoad</a></code></span>:
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-2.0.1//lib/sqlalchemy/orm/strategy_options.py#L593">
+      
+      (source)
+    </a>
+    <a class="headerLink" href="#defer" title="sqlalchemy.orm.strategy_options._AbstractLoad.defer">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p class="pre">Indicate that the given column-oriented attribute should be
+deferred, e.g. not loaded until accessed.
+
+This function is part of the :class:`_orm.Load` interface and supports
+both method-chained and standalone operation.
+
+e.g.::
+
+    from sqlalchemy.orm import defer
+
+    session.query(MyClass).options(
+        defer(MyClass.attribute_one),
+        defer(MyClass.attribute_two)
+    )
+
+To specify a deferred load of an attribute on a related class,
+the path can be specified one token at a time, specifying the loading
+style for each link along the chain.  To leave the loading style
+for a link unchanged, use :func:`_orm.defaultload`::
+
+    session.query(MyClass).options(
+        defaultload(MyClass.someattr).defer(RelatedClass.some_column)
+    )
+
+Multiple deferral options related to a relationship can be bundled
+at once using :meth:`_orm.Load.options`::
+
+
+    session.query(MyClass).options(
+        defaultload(MyClass.someattr).options(
+            defer(RelatedClass.some_column),
+            defer(RelatedClass.some_other_column),
+            defer(RelatedClass.another_column)
+        )
+    )
+
+:param key: Attribute to be deferred.
+
+:param raiseload: raise :class:`.InvalidRequestError` rather than
+ lazy loading a value when the deferred attribute is accessed. Used
+ to prevent unwanted SQL from being emitted.
+
+.. versionadded:: 1.4
+
+.. seealso::
+
+    :ref:`orm_queryguide_column_deferral` - in the
+    :ref:`queryguide_toplevel`
+
+    :func:`_orm.load_only`
+
+    :func:`_orm.undefer`</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.orm.strategy_options._AbstractLoad.immediateload">
+    
+  </a>
+  <a name="immediateload">
+    
+  </a>
+  <div class="functionHeader">
+    
+    
+    <span class="py-keyword">def</span> <span class="py-defname">immediateload</span><span class="function-signature">(self: <code><a href="sqlalchemy.orm.strategy_options.html#Self_AbstractLoad" class="internal-link" title="sqlalchemy.orm.strategy_options.Self_AbstractLoad">Self_AbstractLoad</a></code>, attr: <code><a href="sqlalchemy.orm.strategy_options.html#_AttrType" class="internal-link" title="sqlalchemy.orm.strategy_options._AttrType">_AttrType</a></code>, recursion_depth: <code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/functions.html#int" class="intersphinx-link">int</a>]</code> = <a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>) -&gt; <code><a href="sqlalchemy.orm.strategy_options.html#Self_AbstractLoad" class="internal-link" title="sqlalchemy.orm.strategy_options.Self_AbstractLoad">Self_AbstractLoad</a></code></span>:
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-2.0.1//lib/sqlalchemy/orm/strategy_options.py#L442">
+      
+      (source)
+    </a>
+    <a class="headerLink" href="#immediateload" title="sqlalchemy.orm.strategy_options._AbstractLoad.immediateload">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p class="pre">Indicate that the given attribute should be loaded using
+an immediate load with a per-attribute SELECT statement.
+
+The load is achieved using the "lazyloader" strategy and does not
+fire off any additional eager loaders.
+
+The :func:`.immediateload` option is superseded in general
+by the :func:`.selectinload` option, which performs the same task
+more efficiently by emitting a SELECT for all loaded objects.
+
+This function is part of the :class:`_orm.Load` interface and supports
+both method-chained and standalone operation.
+
+:param recursion_depth: optional int; when set to a positive integer
+ in conjunction with a self-referential relationship,
+ indicates "selectin" loading will continue that many levels deep
+ automatically until no items are found.
+
+ .. note:: The :paramref:`_orm.immediateload.recursion_depth` option
+    currently supports only self-referential relationships.  There
+    is not yet an option to automatically traverse recursive structures
+    with more than one relationship involved.
+
+ .. warning:: This parameter is new and experimental and should be
+    treated as "alpha" status
+
+ .. versionadded:: 2.0 added
+    :paramref:`_orm.immediateload.recursion_depth`
+
+
+.. seealso::
+
+    :ref:`loading_toplevel`
+
+    :ref:`selectin_eager_loading`</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.orm.strategy_options._AbstractLoad.joinedload">
+    
+  </a>
+  <a name="joinedload">
+    
+  </a>
+  <div class="functionHeader">
+    
+    
+    <span class="py-keyword">def</span> <span class="py-defname">joinedload</span><span class="function-signature">(self: <code><a href="sqlalchemy.orm.strategy_options.html#Self_AbstractLoad" class="internal-link" title="sqlalchemy.orm.strategy_options.Self_AbstractLoad">Self_AbstractLoad</a></code>, attr: <code><a href="sqlalchemy.orm.strategy_options.html#_AttrType" class="internal-link" title="sqlalchemy.orm.strategy_options._AttrType">_AttrType</a></code>, innerjoin: <code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a>]</code> = <a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>) -&gt; <code><a href="sqlalchemy.orm.strategy_options.html#Self_AbstractLoad" class="internal-link" title="sqlalchemy.orm.strategy_options.Self_AbstractLoad">Self_AbstractLoad</a></code></span>:
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-2.0.1//lib/sqlalchemy/orm/strategy_options.py#L236">
+      
+      (source)
+    </a>
+    <a class="headerLink" href="#joinedload" title="sqlalchemy.orm.strategy_options._AbstractLoad.joinedload">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p class="pre">Indicate that the given attribute should be loaded using joined
+eager loading.
+
+This function is part of the :class:`_orm.Load` interface and supports
+both method-chained and standalone operation.
+
+examples::
+
+    # joined-load the "orders" collection on "User"
+    query(User).options(joinedload(User.orders))
+
+    # joined-load Order.items and then Item.keywords
+    query(Order).options(
+        joinedload(Order.items).joinedload(Item.keywords))
+
+    # lazily load Order.items, but when Items are loaded,
+    # joined-load the keywords collection
+    query(Order).options(
+        lazyload(Order.items).joinedload(Item.keywords))
+
+:param innerjoin: if ``True``, indicates that the joined eager load
+ should use an inner join instead of the default of left outer join::
+
+    query(Order).options(joinedload(Order.user, innerjoin=True))
+
+In order to chain multiple eager joins together where some may be
+OUTER and others INNER, right-nested joins are used to link them::
+
+    query(A).options(
+        joinedload(A.bs, innerjoin=False).
+            joinedload(B.cs, innerjoin=True)
+    )
+
+The above query, linking A.bs via "outer" join and B.cs via "inner"
+join would render the joins as "a LEFT OUTER JOIN (b JOIN c)". When
+using older versions of SQLite (&lt; 3.7.16), this form of JOIN is
+translated to use full subqueries as this syntax is otherwise not
+directly supported.
+
+The ``innerjoin`` flag can also be stated with the term ``"unnested"``.
+This indicates that an INNER JOIN should be used, *unless* the join
+is linked to a LEFT OUTER JOIN to the left, in which case it
+will render as LEFT OUTER JOIN.  For example, supposing ``A.bs``
+is an outerjoin::
+
+    query(A).options(
+        joinedload(A.bs).
+            joinedload(B.cs, innerjoin="unnested")
+    )
+
+The above join will render as "a LEFT OUTER JOIN b LEFT OUTER JOIN c",
+rather than as "a LEFT OUTER JOIN (b JOIN c)".
+
+.. note:: The "unnested" flag does **not** affect the JOIN rendered
+    from a many-to-many association table, e.g. a table configured as
+    :paramref:`_orm.relationship.secondary`, to the target table; for
+    correctness of results, these joins are always INNER and are
+    therefore right-nested if linked to an OUTER join.
+
+.. versionchanged:: 1.0.0 ``innerjoin=True`` now implies
+    ``innerjoin="nested"``, whereas in 0.9 it implied
+    ``innerjoin="unnested"``. In order to achieve the pre-1.0
+    "unnested" inner join behavior, use the value
+    ``innerjoin="unnested"``. See :ref:`migration_3008`.
+
+.. note::
+
+    The joins produced by :func:`_orm.joinedload` are **anonymously
+    aliased**. The criteria by which the join proceeds cannot be
+    modified, nor can the ORM-enabled :class:`_sql.Select` or legacy
+    :class:`_query.Query` refer to these joins in any way, including
+    ordering. See :ref:`zen_of_eager_loading` for further detail.
+
+    To produce a specific SQL JOIN which is explicitly available, use
+    :meth:`_sql.Select.join` and :meth:`_query.Query.join`. To combine
+    explicit JOINs with eager loading of collections, use
+    :func:`_orm.contains_eager`; see :ref:`contains_eager`.
+
+.. seealso::
+
+    :ref:`loading_toplevel`
+
+    :ref:`joined_eager_loading`</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.orm.strategy_options._AbstractLoad.lazyload">
+    
+  </a>
+  <a name="lazyload">
+    
+  </a>
+  <div class="functionHeader">
+    
+    
+    <span class="py-keyword">def</span> <span class="py-defname">lazyload</span><span class="function-signature">(self: <code><a href="sqlalchemy.orm.strategy_options.html#Self_AbstractLoad" class="internal-link" title="sqlalchemy.orm.strategy_options.Self_AbstractLoad">Self_AbstractLoad</a></code>, attr: <code><a href="sqlalchemy.orm.strategy_options.html#_AttrType" class="internal-link" title="sqlalchemy.orm.strategy_options._AttrType">_AttrType</a></code>) -&gt; <code><a href="sqlalchemy.orm.strategy_options.html#Self_AbstractLoad" class="internal-link" title="sqlalchemy.orm.strategy_options.Self_AbstractLoad">Self_AbstractLoad</a></code></span>:
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-2.0.1//lib/sqlalchemy/orm/strategy_options.py#L424">
+      
+      (source)
+    </a>
+    <a class="headerLink" href="#lazyload" title="sqlalchemy.orm.strategy_options._AbstractLoad.lazyload">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p class="pre">Indicate that the given attribute should be loaded using "lazy"
+loading.
+
+This function is part of the :class:`_orm.Load` interface and supports
+both method-chained and standalone operation.
+
+.. seealso::
+
+    :ref:`loading_toplevel`
+
+    :ref:`lazy_loading`</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.orm.strategy_options._AbstractLoad.load_only">
+    
+  </a>
+  <a name="load_only">
+    
+  </a>
+  <div class="functionHeader">
+    
+    
+    <span class="py-keyword">def</span> <span class="py-defname">load_only</span><span class="function-signature">(self: <code><a href="sqlalchemy.orm.strategy_options.html#Self_AbstractLoad" class="internal-link" title="sqlalchemy.orm.strategy_options.Self_AbstractLoad">Self_AbstractLoad</a></code>, *attrs: <code><a href="sqlalchemy.orm.strategy_options.html#_AttrType" class="internal-link" title="sqlalchemy.orm.strategy_options._AttrType">_AttrType</a></code>, raiseload: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code> = <a href="https://docs.python.org/3/library/constants.html#False" class="intersphinx-link">False</a>) -&gt; <code><a href="sqlalchemy.orm.strategy_options.html#Self_AbstractLoad" class="internal-link" title="sqlalchemy.orm.strategy_options.Self_AbstractLoad">Self_AbstractLoad</a></code></span>:
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-2.0.1//lib/sqlalchemy/orm/strategy_options.py#L167">
+      
+      (source)
+    </a>
+    <a class="headerLink" href="#load_only" title="sqlalchemy.orm.strategy_options._AbstractLoad.load_only">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p class="pre">Indicate that for a particular entity, only the given list
+of column-based attribute names should be loaded; all others will be
+deferred.
+
+This function is part of the :class:`_orm.Load` interface and supports
+both method-chained and standalone operation.
+
+Example - given a class ``User``, load only the ``name`` and
+``fullname`` attributes::
+
+    session.query(User).options(load_only(User.name, User.fullname))
+
+Example - given a relationship ``User.addresses -&gt; Address``, specify
+subquery loading for the ``User.addresses`` collection, but on each
+``Address`` object load only the ``email_address`` attribute::
+
+    session.query(User).options(
+        subqueryload(User.addresses).load_only(Address.email_address)
+    )
+
+For a statement that has multiple entities,
+the lead entity can be
+specifically referred to using the :class:`_orm.Load` constructor::
+
+    stmt = select(User, Address).join(User.addresses).options(
+                Load(User).load_only(User.name, User.fullname),
+                Load(Address).load_only(Address.email_address)
+            )
+
+:param \*attrs: Attributes to be loaded, all others will be deferred.
+
+:param raiseload: raise :class:`.InvalidRequestError` rather than
+ lazy loading a value when a deferred attribute is accessed. Used
+ to prevent unwanted SQL from being emitted.
+
+ .. versionadded:: 2.0
+
+.. seealso::
+
+    :ref:`orm_queryguide_column_deferral` - in the
+    :ref:`queryguide_toplevel`
+
+:param \*attrs: Attributes to be loaded, all others will be deferred.
+
+:param raiseload: raise :class:`.InvalidRequestError` rather than
+ lazy loading a value when a deferred attribute is accessed. Used
+ to prevent unwanted SQL from being emitted.
+
+ .. versionadded:: 2.0</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.orm.strategy_options._AbstractLoad.noload">
+    
+  </a>
+  <a name="noload">
+    
+  </a>
+  <div class="functionHeader">
+    
+    
+    <span class="py-keyword">def</span> <span class="py-defname">noload</span><span class="function-signature">(self: <code><a href="sqlalchemy.orm.strategy_options.html#Self_AbstractLoad" class="internal-link" title="sqlalchemy.orm.strategy_options.Self_AbstractLoad">Self_AbstractLoad</a></code>, attr: <code><a href="sqlalchemy.orm.strategy_options.html#_AttrType" class="internal-link" title="sqlalchemy.orm.strategy_options._AttrType">_AttrType</a></code>) -&gt; <code><a href="sqlalchemy.orm.strategy_options.html#Self_AbstractLoad" class="internal-link" title="sqlalchemy.orm.strategy_options.Self_AbstractLoad">Self_AbstractLoad</a></code></span>:
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-2.0.1//lib/sqlalchemy/orm/strategy_options.py#L491">
+      
+      (source)
+    </a>
+    <a class="headerLink" href="#noload" title="sqlalchemy.orm.strategy_options._AbstractLoad.noload">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p class="pre">Indicate that the given relationship attribute should remain
+unloaded.
+
+The relationship attribute will return ``None`` when accessed without
+producing any loading effect.
+
+This function is part of the :class:`_orm.Load` interface and supports
+both method-chained and standalone operation.
+
+:func:`_orm.noload` applies to :func:`_orm.relationship` attributes
+only.
+
+.. note:: Setting this loading strategy as the default strategy
+    for a relationship using the :paramref:`.orm.relationship.lazy`
+    parameter may cause issues with flushes, such if a delete operation
+    needs to load related objects and instead ``None`` was returned.
+
+.. seealso::
+
+    :ref:`loading_toplevel`</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.orm.strategy_options._AbstractLoad.options">
+    
+  </a>
+  <a name="options">
+    
+  </a>
+  <div class="functionHeader">
+    
+    
+    <span class="py-keyword">def</span> <span class="py-defname">options</span><span class="function-signature">(self: <code><a href="sqlalchemy.orm.strategy_options.html#Self_AbstractLoad" class="internal-link" title="sqlalchemy.orm.strategy_options.Self_AbstractLoad">Self_AbstractLoad</a></code>, *opts: <code><a href="sqlalchemy.orm.strategy_options._AbstractLoad.html" class="internal-link" title="sqlalchemy.orm.strategy_options._AbstractLoad">_AbstractLoad</a></code>) -&gt; <code><a href="sqlalchemy.orm.strategy_options.html#Self_AbstractLoad" class="internal-link" title="sqlalchemy.orm.strategy_options.Self_AbstractLoad">Self_AbstractLoad</a></code></span>:
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-2.0.1//lib/sqlalchemy/orm/strategy_options.py#L886">
+      
+      (source)
+    </a>
+    <a class="headerLink" href="#options" title="sqlalchemy.orm.strategy_options._AbstractLoad.options">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="sqlalchemy.orm.strategy_options.Load.html" class="internal-link">sqlalchemy.orm.strategy_options.Load</a></code>, <code><a href="sqlalchemy.orm.strategy_options._WildcardLoad.html" class="internal-link">sqlalchemy.orm.strategy_options._WildcardLoad</a></code></div>
+    <div><p class="pre">Apply a series of options as sub-options to this
+:class:`_orm._AbstractLoad` object.
+
+Implementation is provided by subclasses.</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.orm.strategy_options._AbstractLoad.process_compile_state">
+    
+  </a>
+  <a name="process_compile_state">
+    
+  </a>
+  <div class="functionHeader">
+    
+    
+    <span class="py-keyword">def</span> <span class="py-defname">process_compile_state</span><span class="function-signature">(self, compile_state: <code><a href="sqlalchemy.orm.context.ORMCompileState.html" class="internal-link" title="sqlalchemy.orm.context.ORMCompileState">ORMCompileState</a></code>)</span>:
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-2.0.1//lib/sqlalchemy/orm/strategy_options.py#L926">
+      
+      (source)
+    </a>
+    <a class="headerLink" href="#process_compile_state" title="sqlalchemy.orm.strategy_options._AbstractLoad.process_compile_state">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overrides <code><a href="sqlalchemy.orm.interfaces.CompileStateOption.html#process_compile_state" class="internal-link">sqlalchemy.orm.interfaces.CompileStateOption.process_compile_state</a></code></div>
+    <div><p class="pre">Apply a modification to a given :class:`.ORMCompileState`.
+
+This method is part of the implementation of a particular
+:class:`.CompileStateOption` and is only invoked internally
+when an ORM query is compiled.</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.orm.strategy_options._AbstractLoad.process_compile_state_replaced_entities">
+    
+  </a>
+  <a name="process_compile_state_replaced_entities">
+    
+  </a>
+  <div class="functionHeader">
+    
+    
+    <span class="py-keyword">def</span> <span class="py-defname">process_compile_state_replaced_entities</span><span class="function-signature">(self, compile_state: <code><a href="sqlalchemy.orm.context.ORMCompileState.html" class="internal-link" title="sqlalchemy.orm.context.ORMCompileState">ORMCompileState</a></code>, mapper_entities: <code><a href="https://docs.python.org/3/library/typing.html#typing.Sequence" class="intersphinx-link">Sequence</a>[<wbr></wbr><a href="sqlalchemy.orm.context._MapperEntity.html" class="internal-link" title="sqlalchemy.orm.context._MapperEntity">_MapperEntity</a>]</code>)</span>:
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-2.0.1//lib/sqlalchemy/orm/strategy_options.py#L909">
+      
+      (source)
+    </a>
+    <a class="headerLink" href="#process_compile_state_replaced_entities" title="sqlalchemy.orm.strategy_options._AbstractLoad.process_compile_state_replaced_entities">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overrides <code><a href="sqlalchemy.orm.interfaces.LoaderOption.html#process_compile_state_replaced_entities" class="internal-link">sqlalchemy.orm.interfaces.LoaderOption.process_compile_state_replaced_entities</a></code></div>
+    <div><p class="pre">Apply a modification to a given :class:`.ORMCompileState`,
+given entities that were replaced by with_only_columns() or
+with_entities().
+
+This method is part of the implementation of a particular
+:class:`.CompileStateOption` and is only invoked internally
+when an ORM query is compiled.
+
+.. versionadded:: 1.4.19</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.orm.strategy_options._AbstractLoad.raiseload">
+    
+  </a>
+  <a name="raiseload">
+    
+  </a>
+  <div class="functionHeader">
+    
+    
+    <span class="py-keyword">def</span> <span class="py-defname">raiseload</span><span class="function-signature">(self: <code><a href="sqlalchemy.orm.strategy_options.html#Self_AbstractLoad" class="internal-link" title="sqlalchemy.orm.strategy_options.Self_AbstractLoad">Self_AbstractLoad</a></code>, attr: <code><a href="sqlalchemy.orm.strategy_options.html#_AttrType" class="internal-link" title="sqlalchemy.orm.strategy_options._AttrType">_AttrType</a></code>, sql_only: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code> = <a href="https://docs.python.org/3/library/constants.html#False" class="intersphinx-link">False</a>) -&gt; <code><a href="sqlalchemy.orm.strategy_options.html#Self_AbstractLoad" class="internal-link" title="sqlalchemy.orm.strategy_options.Self_AbstractLoad">Self_AbstractLoad</a></code></span>:
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-2.0.1//lib/sqlalchemy/orm/strategy_options.py#L517">
+      
+      (source)
+    </a>
+    <a class="headerLink" href="#raiseload" title="sqlalchemy.orm.strategy_options._AbstractLoad.raiseload">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p class="pre">Indicate that the given attribute should raise an error if accessed.
+
+A relationship attribute configured with :func:`_orm.raiseload` will
+raise an :exc:`~sqlalchemy.exc.InvalidRequestError` upon access. The
+typical way this is useful is when an application is attempting to
+ensure that all relationship attributes that are accessed in a
+particular context would have been already loaded via eager loading.
+Instead of having to read through SQL logs to ensure lazy loads aren't
+occurring, this strategy will cause them to raise immediately.
+
+:func:`_orm.raiseload` applies to :func:`_orm.relationship` attributes
+only. In order to apply raise-on-SQL behavior to a column-based
+attribute, use the :paramref:`.orm.defer.raiseload` parameter on the
+:func:`.defer` loader option.
+
+:param sql_only: if True, raise only if the lazy load would emit SQL,
+ but not if it is only checking the identity map, or determining that
+ the related value should just be None due to missing keys. When False,
+ the strategy will raise for all varieties of relationship loading.
+
+This function is part of the :class:`_orm.Load` interface and supports
+both method-chained and standalone operation.
+
+
+.. versionadded:: 1.1
+
+.. seealso::
+
+    :ref:`loading_toplevel`
+
+    :ref:`prevent_lazy_with_raiseload`
+
+    :ref:`orm_queryguide_deferred_raiseload`</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.orm.strategy_options._AbstractLoad.selectin_polymorphic">
+    
+  </a>
+  <a name="selectin_polymorphic">
+    
+  </a>
+  <div class="functionHeader">
+    
+    
+    <span class="py-keyword">def</span> <span class="py-defname">selectin_polymorphic</span><span class="function-signature">(self: <code><a href="sqlalchemy.orm.strategy_options.html#Self_AbstractLoad" class="internal-link" title="sqlalchemy.orm.strategy_options.Self_AbstractLoad">Self_AbstractLoad</a></code>, classes: <code><a href="https://docs.python.org/3/library/typing.html#typing.Iterable" class="intersphinx-link">Iterable</a>[<wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Type" class="intersphinx-link">Type</a>[<wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">Any</a>]]</code>) -&gt; <code><a href="sqlalchemy.orm.strategy_options.html#Self_AbstractLoad" class="internal-link" title="sqlalchemy.orm.strategy_options.Self_AbstractLoad">Self_AbstractLoad</a></code></span>:
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-2.0.1//lib/sqlalchemy/orm/strategy_options.py#L768">
+      
+      (source)
+    </a>
+    <a class="headerLink" href="#selectin_polymorphic" title="sqlalchemy.orm.strategy_options._AbstractLoad.selectin_polymorphic">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p class="pre">Indicate an eager load should take place for all attributes
+specific to a subclass.
+
+This uses an additional SELECT with IN against all matched primary
+key values, and is the per-query analogue to the ``"selectin"``
+setting on the :paramref:`.mapper.polymorphic_load` parameter.
+
+.. versionadded:: 1.2
+
+.. seealso::
+
+    :ref:`polymorphic_selectin`</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.orm.strategy_options._AbstractLoad.selectinload">
+    
+  </a>
+  <a name="selectinload">
+    
+  </a>
+  <div class="functionHeader">
+    
+    
+    <span class="py-keyword">def</span> <span class="py-defname">selectinload</span><span class="function-signature">(self: <code><a href="sqlalchemy.orm.strategy_options.html#Self_AbstractLoad" class="internal-link" title="sqlalchemy.orm.strategy_options.Self_AbstractLoad">Self_AbstractLoad</a></code>, attr: <code><a href="sqlalchemy.orm.strategy_options.html#_AttrType" class="internal-link" title="sqlalchemy.orm.strategy_options._AttrType">_AttrType</a></code>, recursion_depth: <code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/functions.html#int" class="intersphinx-link">int</a>]</code> = <a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>) -&gt; <code><a href="sqlalchemy.orm.strategy_options.html#Self_AbstractLoad" class="internal-link" title="sqlalchemy.orm.strategy_options.Self_AbstractLoad">Self_AbstractLoad</a></code></span>:
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-2.0.1//lib/sqlalchemy/orm/strategy_options.py#L368">
+      
+      (source)
+    </a>
+    <a class="headerLink" href="#selectinload" title="sqlalchemy.orm.strategy_options._AbstractLoad.selectinload">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p class="pre">Indicate that the given attribute should be loaded using
+SELECT IN eager loading.
+
+This function is part of the :class:`_orm.Load` interface and supports
+both method-chained and standalone operation.
+
+examples::
+
+    # selectin-load the "orders" collection on "User"
+    query(User).options(selectinload(User.orders))
+
+    # selectin-load Order.items and then Item.keywords
+    query(Order).options(
+        selectinload(Order.items).selectinload(Item.keywords))
+
+    # lazily load Order.items, but when Items are loaded,
+    # selectin-load the keywords collection
+    query(Order).options(
+        lazyload(Order.items).selectinload(Item.keywords))
+
+:param recursion_depth: optional int; when set to a positive integer
+ in conjunction with a self-referential relationship,
+ indicates "selectin" loading will continue that many levels deep
+ automatically until no items are found.
+
+ .. note:: The :paramref:`_orm.selectinload.recursion_depth` option
+    currently supports only self-referential relationships.  There
+    is not yet an option to automatically traverse recursive structures
+    with more than one relationship involved.
+
+    Additionally, the :paramref:`_orm.selectinload.recursion_depth`
+    parameter is new and experimental and should be treated as "alpha"
+    status for the 2.0 series.
+
+ .. versionadded:: 2.0 added
+    :paramref:`_orm.selectinload.recursion_depth`
+
+
+.. seealso::
+
+    :ref:`loading_toplevel`
+
+    :ref:`selectin_eager_loading`</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.orm.strategy_options._AbstractLoad.subqueryload">
+    
+  </a>
+  <a name="subqueryload">
+    
+  </a>
+  <div class="functionHeader">
+    
+    
+    <span class="py-keyword">def</span> <span class="py-defname">subqueryload</span><span class="function-signature">(self: <code><a href="sqlalchemy.orm.strategy_options.html#Self_AbstractLoad" class="internal-link" title="sqlalchemy.orm.strategy_options.Self_AbstractLoad">Self_AbstractLoad</a></code>, attr: <code><a href="sqlalchemy.orm.strategy_options.html#_AttrType" class="internal-link" title="sqlalchemy.orm.strategy_options._AttrType">_AttrType</a></code>) -&gt; <code><a href="sqlalchemy.orm.strategy_options.html#Self_AbstractLoad" class="internal-link" title="sqlalchemy.orm.strategy_options.Self_AbstractLoad">Self_AbstractLoad</a></code></span>:
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-2.0.1//lib/sqlalchemy/orm/strategy_options.py#L335">
+      
+      (source)
+    </a>
+    <a class="headerLink" href="#subqueryload" title="sqlalchemy.orm.strategy_options._AbstractLoad.subqueryload">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p class="pre">Indicate that the given attribute should be loaded using
+subquery eager loading.
+
+This function is part of the :class:`_orm.Load` interface and supports
+both method-chained and standalone operation.
+
+examples::
+
+    # subquery-load the "orders" collection on "User"
+    query(User).options(subqueryload(User.orders))
+
+    # subquery-load Order.items and then Item.keywords
+    query(Order).options(
+        subqueryload(Order.items).subqueryload(Item.keywords))
+
+    # lazily load Order.items, but when Items are loaded,
+    # subquery-load the keywords collection
+    query(Order).options(
+        lazyload(Order.items).subqueryload(Item.keywords))
+
+
+.. seealso::
+
+    :ref:`loading_toplevel`
+
+    :ref:`subquery_eager_loading`</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.orm.strategy_options._AbstractLoad.undefer">
+    
+  </a>
+  <a name="undefer">
+    
+  </a>
+  <div class="functionHeader">
+    
+    
+    <span class="py-keyword">def</span> <span class="py-defname">undefer</span><span class="function-signature">(self: <code><a href="sqlalchemy.orm.strategy_options.html#Self_AbstractLoad" class="internal-link" title="sqlalchemy.orm.strategy_options.Self_AbstractLoad">Self_AbstractLoad</a></code>, key: <code><a href="sqlalchemy.orm.strategy_options.html#_AttrType" class="internal-link" title="sqlalchemy.orm.strategy_options._AttrType">_AttrType</a></code>) -&gt; <code><a href="sqlalchemy.orm.strategy_options.html#Self_AbstractLoad" class="internal-link" title="sqlalchemy.orm.strategy_options.Self_AbstractLoad">Self_AbstractLoad</a></code></span>:
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-2.0.1//lib/sqlalchemy/orm/strategy_options.py#L655">
+      
+      (source)
+    </a>
+    <a class="headerLink" href="#undefer" title="sqlalchemy.orm.strategy_options._AbstractLoad.undefer">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p class="pre">Indicate that the given column-oriented attribute should be
+undeferred, e.g. specified within the SELECT statement of the entity
+as a whole.
+
+The column being undeferred is typically set up on the mapping as a
+:func:`.deferred` attribute.
+
+This function is part of the :class:`_orm.Load` interface and supports
+both method-chained and standalone operation.
+
+Examples::
+
+    # undefer two columns
+    session.query(MyClass).options(
+        undefer(MyClass.col1), undefer(MyClass.col2)
+    )
+
+    # undefer all columns specific to a single class using Load + *
+    session.query(MyClass, MyOtherClass).options(
+        Load(MyClass).undefer("*"))
+
+    # undefer a column on a related object
+    session.query(MyClass).options(
+        defaultload(MyClass.items).undefer(MyClass.text))
+
+:param key: Attribute to be undeferred.
+
+.. seealso::
+
+    :ref:`orm_queryguide_column_deferral` - in the
+    :ref:`queryguide_toplevel`
+
+    :func:`_orm.defer`
+
+    :func:`_orm.undefer_group`</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.orm.strategy_options._AbstractLoad.undefer_group">
+    
+  </a>
+  <a name="undefer_group">
+    
+  </a>
+  <div class="functionHeader">
+    
+    
+    <span class="py-keyword">def</span> <span class="py-defname">undefer_group</span><span class="function-signature">(self: <code><a href="sqlalchemy.orm.strategy_options.html#Self_AbstractLoad" class="internal-link" title="sqlalchemy.orm.strategy_options.Self_AbstractLoad">Self_AbstractLoad</a></code>, name: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code>) -&gt; <code><a href="sqlalchemy.orm.strategy_options.html#Self_AbstractLoad" class="internal-link" title="sqlalchemy.orm.strategy_options.Self_AbstractLoad">Self_AbstractLoad</a></code></span>:
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-2.0.1//lib/sqlalchemy/orm/strategy_options.py#L697">
+      
+      (source)
+    </a>
+    <a class="headerLink" href="#undefer_group" title="sqlalchemy.orm.strategy_options._AbstractLoad.undefer_group">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p class="pre">Indicate that columns within the given deferred group name should be
+undeferred.
+
+The columns being undeferred are set up on the mapping as
+:func:`.deferred` attributes and include a "group" name.
+
+E.g::
+
+    session.query(MyClass).options(undefer_group("large_attrs"))
+
+To undefer a group of attributes on a related entity, the path can be
+spelled out using relationship loader options, such as
+:func:`_orm.defaultload`::
+
+    session.query(MyClass).options(
+        defaultload("someattr").undefer_group("large_attrs"))
+
+.. seealso::
+
+    :ref:`orm_queryguide_column_deferral` - in the
+    :ref:`queryguide_toplevel`
+
+    :func:`_orm.defer`
+
+    :func:`_orm.undefer`</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  
+  <a name="sqlalchemy.orm.strategy_options._AbstractLoad.with_expression">
+    
+  </a>
+  <a name="with_expression">
+    
+  </a>
+  <div class="functionHeader">
+    
+    
+    <span class="py-keyword">def</span> <span class="py-defname">with_expression</span><span class="function-signature">(self: <code><a href="sqlalchemy.orm.strategy_options.html#Self_AbstractLoad" class="internal-link" title="sqlalchemy.orm.strategy_options.Self_AbstractLoad">Self_AbstractLoad</a></code>, key: <code><a href="sqlalchemy.orm.strategy_options.html#_AttrType" class="internal-link" title="sqlalchemy.orm.strategy_options._AttrType">_AttrType</a></code>, expression: <code><a href="sqlalchemy.sql._typing.html#_ColumnExpressionArgument" class="internal-link" title="sqlalchemy.sql._typing._ColumnExpressionArgument">_ColumnExpressionArgument</a>[<wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Any" class="intersphinx-link">Any</a>]</code>) -&gt; <code><a href="sqlalchemy.orm.strategy_options.html#Self_AbstractLoad" class="internal-link" title="sqlalchemy.orm.strategy_options.Self_AbstractLoad">Self_AbstractLoad</a></code></span>:
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-2.0.1//lib/sqlalchemy/orm/strategy_options.py#L729">
+      
+      (source)
+    </a>
+    <a class="headerLink" href="#with_expression" title="sqlalchemy.orm.strategy_options._AbstractLoad.with_expression">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p class="pre">Apply an ad-hoc SQL expression to a "deferred expression"
+attribute.
+
+This option is used in conjunction with the
+:func:`_orm.query_expression` mapper-level construct that indicates an
+attribute which should be the target of an ad-hoc SQL expression.
+
+E.g.::
+
+    stmt = select(SomeClass).options(
+        with_expression(SomeClass.x_y_expr, SomeClass.x + SomeClass.y)
+    )
+
+.. versionadded:: 1.2
+
+:param key: Attribute to be populated
+
+:param expr: SQL expression to be applied to the attribute.
+
+.. seealso::
+
+    :ref:`orm_queryguide_with_expression` - background and usage
+    examples</p></div>
+  </div>
+</div><div class="baseclassvariable">
+  
+  
+  <a name="sqlalchemy.orm.strategy_options._AbstractLoad.__slots__">
+    
+  </a>
+  <a name="__slots__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">__slots__</span>: <code><a href="https://docs.python.org/3/library/stdtypes.html#tuple" class="intersphinx-link">tuple</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>, <wbr></wbr><span class="rst-variable-ellipsis">...</span>]</code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-2.0.1//lib/sqlalchemy/orm/strategy_options.py#L89">
+      
+      (source)
+    </a>
+    <a class="headerLink" href="#__slots__" title="sqlalchemy.orm.strategy_options._AbstractLoad.__slots__">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">overrides <code><a href="sqlalchemy.sql.traversals.GenerativeOnTraversal.html#__slots__" class="internal-link">sqlalchemy.sql.traversals.GenerativeOnTraversal.__slots__</a></code></div><div class="interfaceinfo">overridden in <code><a href="sqlalchemy.orm.strategy_options.Load.html" class="internal-link">sqlalchemy.orm.strategy_options.Load</a></code>, <code><a href="sqlalchemy.orm.strategy_options._WildcardLoad.html" class="internal-link">sqlalchemy.orm.strategy_options._WildcardLoad</a></code></div>
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="baseclassvariable">
+  
+  
+  <a name="sqlalchemy.orm.strategy_options._AbstractLoad.propagate_to_loaders">
+    
+  </a>
+  <a name="propagate_to_loaders">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">propagate_to_loaders</span>: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-2.0.1//lib/sqlalchemy/orm/strategy_options.py#L92">
+      
+      (source)
+    </a>
+    <a class="headerLink" href="#propagate_to_loaders" title="sqlalchemy.orm.strategy_options._AbstractLoad.propagate_to_loaders">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">overrides <code><a href="sqlalchemy.orm.interfaces.ORMOption.html#propagate_to_loaders" class="internal-link">sqlalchemy.orm.interfaces.ORMOption.propagate_to_loaders</a></code></div><div class="interfaceinfo">overridden in <code><a href="sqlalchemy.orm.strategy_options.Load.html" class="internal-link">sqlalchemy.orm.strategy_options.Load</a></code>, <code><a href="sqlalchemy.orm.strategy_options._WildcardLoad.html" class="internal-link">sqlalchemy.orm.strategy_options._WildcardLoad</a></code></div>
+    <div><p class="pre">if True, indicate this option should be carried along
+to "secondary" SELECT statements that occur for relationship
+lazy loaders as well as attribute load / refresh operations.</p></div>
+    
+  </div>
+</div><div class="baseclassmethod private">
+  
+  
+  <a name="sqlalchemy.orm.strategy_options._AbstractLoad._chop_path">
+    
+  </a>
+  <a name="_chop_path">
+    
+  </a>
+  <div class="functionHeader">
+    
+    @<a href="https://docs.python.org/3/library/functions.html#classmethod" class="intersphinx-link">classmethod</a><br />
+    <span class="py-keyword">def</span> <span class="py-defname">_chop_path</span><span class="function-signature">(cls, to_chop: <code><a href="sqlalchemy.orm.path_registry.html#_PathRepresentation" class="internal-link" title="sqlalchemy.orm.path_registry._PathRepresentation">_PathRepresentation</a></code>, path: <code><a href="sqlalchemy.orm.path_registry.PathRegistry.html" class="internal-link" title="sqlalchemy.orm.path_registry.PathRegistry">PathRegistry</a></code>, debug: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code> = <a href="https://docs.python.org/3/library/constants.html#False" class="intersphinx-link">False</a>) -&gt; <code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">Optional</a>[<wbr></wbr><a href="sqlalchemy.orm.path_registry.html#_PathRepresentation" class="internal-link" title="sqlalchemy.orm.path_registry._PathRepresentation">_PathRepresentation</a>]</code></span>:
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-2.0.1//lib/sqlalchemy/orm/strategy_options.py#L946">
+      
+      (source)
+    </a>
+    <a class="headerLink" href="#_chop_path" title="sqlalchemy.orm.strategy_options._AbstractLoad._chop_path">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="sqlalchemy.orm.strategy_options._AbstractLoad._apply_to_parent">
+    
+  </a>
+  <a name="_apply_to_parent">
+    
+  </a>
+  <div class="functionHeader">
+    
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_apply_to_parent</span><span class="function-signature">(self, parent: <code><a href="sqlalchemy.orm.strategy_options.Load.html" class="internal-link" title="sqlalchemy.orm.strategy_options.Load">Load</a></code>)</span>:
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-2.0.1//lib/sqlalchemy/orm/strategy_options.py#L877">
+      
+      (source)
+    </a>
+    <a class="headerLink" href="#_apply_to_parent" title="sqlalchemy.orm.strategy_options._AbstractLoad._apply_to_parent">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="sqlalchemy.orm.strategy_options.Load.html" class="internal-link">sqlalchemy.orm.strategy_options.Load</a></code>, <code><a href="sqlalchemy.orm.strategy_options._WildcardLoad.html" class="internal-link">sqlalchemy.orm.strategy_options._WildcardLoad</a></code></div>
+    <div><p class="pre">apply this :class:`_orm._AbstractLoad` object as a sub-option o
+a :class:`_orm.Load` object.
+
+Implementation is provided by subclasses.</p></div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="sqlalchemy.orm.strategy_options._AbstractLoad._clone_for_bind_strategy">
+    
+  </a>
+  <a name="_clone_for_bind_strategy">
+    
+  </a>
+  <div class="functionHeader">
+    
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_clone_for_bind_strategy</span><span class="function-signature">(self: <code><a href="sqlalchemy.orm.strategy_options.html#Self_AbstractLoad" class="internal-link" title="sqlalchemy.orm.strategy_options.Self_AbstractLoad">Self_AbstractLoad</a></code>, attrs: <code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/typing.html#typing.Tuple" class="intersphinx-link">Tuple</a>[<wbr></wbr><a href="sqlalchemy.orm.strategy_options.html#_AttrType" class="internal-link" title="sqlalchemy.orm.strategy_options._AttrType">_AttrType</a>, <wbr></wbr><span class="rst-variable-ellipsis">...</span>]]</code>, strategy: <code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">Optional</a>[<wbr></wbr><a href="sqlalchemy.orm.interfaces.html#_StrategyKey" class="internal-link" title="sqlalchemy.orm.interfaces._StrategyKey">_StrategyKey</a>]</code>, wildcard_key: <code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">Optional</a>[<wbr></wbr><a href="sqlalchemy.orm.strategy_options.html#_WildcardKeyType" class="internal-link" title="sqlalchemy.orm.strategy_options._WildcardKeyType">_WildcardKeyType</a>]</code>, opts: <code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">Optional</a>[<wbr></wbr><a href="sqlalchemy.orm.strategy_options.html#_OptsType" class="internal-link" title="sqlalchemy.orm.strategy_options._OptsType">_OptsType</a>]</code> = <a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, attr_group: <code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">Optional</a>[<wbr></wbr><a href="sqlalchemy.orm.strategy_options.html#_AttrGroupType" class="internal-link" title="sqlalchemy.orm.strategy_options._AttrGroupType">_AttrGroupType</a>]</code> = <a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, propagate_to_loaders: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code> = <a href="https://docs.python.org/3/library/constants.html#True" class="intersphinx-link">True</a>, reconcile_to_other: <code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a>]</code> = <a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>) -&gt; <code><a href="sqlalchemy.orm.strategy_options.html#Self_AbstractLoad" class="internal-link" title="sqlalchemy.orm.strategy_options.Self_AbstractLoad">Self_AbstractLoad</a></code></span>:
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-2.0.1//lib/sqlalchemy/orm/strategy_options.py#L897">
+      
+      (source)
+    </a>
+    <a class="headerLink" href="#_clone_for_bind_strategy" title="sqlalchemy.orm.strategy_options._AbstractLoad._clone_for_bind_strategy">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="sqlalchemy.orm.strategy_options.Load.html" class="internal-link">sqlalchemy.orm.strategy_options.Load</a></code>, <code><a href="sqlalchemy.orm.strategy_options._WildcardLoad.html" class="internal-link">sqlalchemy.orm.strategy_options._WildcardLoad</a></code></div>
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="sqlalchemy.orm.strategy_options._AbstractLoad._coerce_strat">
+    
+  </a>
+  <a name="_coerce_strat">
+    
+  </a>
+  <div class="functionHeader">
+    @<a href="https://docs.python.org/3/library/typing.html#typing.overload" class="intersphinx-link">overload</a><br /><div><span class="py-keyword">def</span> <span class="py-defname">_coerce_strat</span><span class="function-signature">(self, strategy: <code><a href="sqlalchemy.orm.strategy_options.html#_StrategySpec" class="internal-link" title="sqlalchemy.orm.strategy_options._StrategySpec">_StrategySpec</a></code>) -&gt; <code><a href="sqlalchemy.orm.interfaces.html#_StrategyKey" class="internal-link" title="sqlalchemy.orm.interfaces._StrategyKey">_StrategyKey</a></code></span>:</div>@<a href="https://docs.python.org/3/library/typing.html#typing.overload" class="intersphinx-link">overload</a><br /><div><span class="py-keyword">def</span> <span class="py-defname">_coerce_strat</span><span class="function-signature">(self, strategy: <code>Literal[<wbr></wbr><a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>]</code>)</span>:</div>
+    
+    
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-2.0.1//lib/sqlalchemy/orm/strategy_options.py#L795">
+      
+      (source)
+    </a>
+    <a class="headerLink" href="#_coerce_strat" title="sqlalchemy.orm.strategy_options._AbstractLoad._coerce_strat">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="sqlalchemy.orm.strategy_options._AbstractLoad._process">
+    
+  </a>
+  <a name="_process">
+    
+  </a>
+  <div class="functionHeader">
+    
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_process</span><span class="function-signature">(self, compile_state: <code><a href="sqlalchemy.orm.context.ORMCompileState.html" class="internal-link" title="sqlalchemy.orm.context.ORMCompileState">ORMCompileState</a></code>, mapper_entities: <code><a href="https://docs.python.org/3/library/typing.html#typing.Sequence" class="intersphinx-link">Sequence</a>[<wbr></wbr><a href="sqlalchemy.orm.context._MapperEntity.html" class="internal-link" title="sqlalchemy.orm.context._MapperEntity">_MapperEntity</a>]</code>, raiseerr: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code>)</span>:
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-2.0.1//lib/sqlalchemy/orm/strategy_options.py#L937">
+      
+      (source)
+    </a>
+    <a class="headerLink" href="#_process" title="sqlalchemy.orm.strategy_options._AbstractLoad._process">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <code><a href="sqlalchemy.orm.strategy_options.Load.html" class="internal-link">sqlalchemy.orm.strategy_options.Load</a></code>, <code><a href="sqlalchemy.orm.strategy_options._WildcardLoad.html" class="internal-link">sqlalchemy.orm.strategy_options._WildcardLoad</a></code></div>
+    <div><p class="pre">implemented by subclasses</p></div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="sqlalchemy.orm.strategy_options._AbstractLoad._set_class_strategy">
+    
+  </a>
+  <a name="_set_class_strategy">
+    
+  </a>
+  <div class="functionHeader">
+    
+    @<a href="sqlalchemy.sql.base.html#_generative" class="internal-link" title="sqlalchemy.sql.base._generative">_generative</a><br />
+    <span class="py-keyword">def</span> <span class="py-defname">_set_class_strategy</span><span class="function-signature">(self: <code><a href="sqlalchemy.orm.strategy_options.html#Self_AbstractLoad" class="internal-link" title="sqlalchemy.orm.strategy_options.Self_AbstractLoad">Self_AbstractLoad</a></code>, strategy: <code><a href="sqlalchemy.orm.strategy_options.html#_StrategySpec" class="internal-link" title="sqlalchemy.orm.strategy_options._StrategySpec">_StrategySpec</a></code>, opts: <code><a href="sqlalchemy.orm.strategy_options.html#_OptsType" class="internal-link" title="sqlalchemy.orm.strategy_options._OptsType">_OptsType</a></code>) -&gt; <code><a href="sqlalchemy.orm.strategy_options.html#Self_AbstractLoad" class="internal-link" title="sqlalchemy.orm.strategy_options.Self_AbstractLoad">Self_AbstractLoad</a></code></span>:
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-2.0.1//lib/sqlalchemy/orm/strategy_options.py#L868">
+      
+      (source)
+    </a>
+    <a class="headerLink" href="#_set_class_strategy" title="sqlalchemy.orm.strategy_options._AbstractLoad._set_class_strategy">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="sqlalchemy.orm.strategy_options._AbstractLoad._set_column_strategy">
+    
+  </a>
+  <a name="_set_column_strategy">
+    
+  </a>
+  <div class="functionHeader">
+    
+    @<a href="sqlalchemy.sql.base.html#_generative" class="internal-link" title="sqlalchemy.sql.base._generative">_generative</a><br />
+    <span class="py-keyword">def</span> <span class="py-defname">_set_column_strategy</span><span class="function-signature">(self: <code><a href="sqlalchemy.orm.strategy_options.html#Self_AbstractLoad" class="internal-link" title="sqlalchemy.orm.strategy_options.Self_AbstractLoad">Self_AbstractLoad</a></code>, attrs: <code><a href="https://docs.python.org/3/library/typing.html#typing.Tuple" class="intersphinx-link">Tuple</a>[<wbr></wbr><a href="sqlalchemy.orm.strategy_options.html#_AttrType" class="internal-link" title="sqlalchemy.orm.strategy_options._AttrType">_AttrType</a>, <wbr></wbr><span class="rst-variable-ellipsis">...</span>]</code>, strategy: <code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">Optional</a>[<wbr></wbr><a href="sqlalchemy.orm.strategy_options.html#_StrategySpec" class="internal-link" title="sqlalchemy.orm.strategy_options._StrategySpec">_StrategySpec</a>]</code>, opts: <code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">Optional</a>[<wbr></wbr><a href="sqlalchemy.orm.strategy_options.html#_OptsType" class="internal-link" title="sqlalchemy.orm.strategy_options._OptsType">_OptsType</a>]</code> = <a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>) -&gt; <code><a href="sqlalchemy.orm.strategy_options.html#Self_AbstractLoad" class="internal-link" title="sqlalchemy.orm.strategy_options.Self_AbstractLoad">Self_AbstractLoad</a></code></span>:
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-2.0.1//lib/sqlalchemy/orm/strategy_options.py#L833">
+      
+      (source)
+    </a>
+    <a class="headerLink" href="#_set_column_strategy" title="sqlalchemy.orm.strategy_options._AbstractLoad._set_column_strategy">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="sqlalchemy.orm.strategy_options._AbstractLoad._set_generic_strategy">
+    
+  </a>
+  <a name="_set_generic_strategy">
+    
+  </a>
+  <div class="functionHeader">
+    
+    @<a href="sqlalchemy.sql.base.html#_generative" class="internal-link" title="sqlalchemy.sql.base._generative">_generative</a><br />
+    <span class="py-keyword">def</span> <span class="py-defname">_set_generic_strategy</span><span class="function-signature">(self: <code><a href="sqlalchemy.orm.strategy_options.html#Self_AbstractLoad" class="internal-link" title="sqlalchemy.orm.strategy_options.Self_AbstractLoad">Self_AbstractLoad</a></code>, attrs: <code><a href="https://docs.python.org/3/library/typing.html#typing.Tuple" class="intersphinx-link">Tuple</a>[<wbr></wbr><a href="sqlalchemy.orm.strategy_options.html#_AttrType" class="internal-link" title="sqlalchemy.orm.strategy_options._AttrType">_AttrType</a>, <wbr></wbr><span class="rst-variable-ellipsis">...</span>]</code>, strategy: <code><a href="sqlalchemy.orm.strategy_options.html#_StrategySpec" class="internal-link" title="sqlalchemy.orm.strategy_options._StrategySpec">_StrategySpec</a></code>, _reconcile_to_other: <code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a>]</code> = <a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>) -&gt; <code><a href="sqlalchemy.orm.strategy_options.html#Self_AbstractLoad" class="internal-link" title="sqlalchemy.orm.strategy_options.Self_AbstractLoad">Self_AbstractLoad</a></code></span>:
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-2.0.1//lib/sqlalchemy/orm/strategy_options.py#L851">
+      
+      (source)
+    </a>
+    <a class="headerLink" href="#_set_generic_strategy" title="sqlalchemy.orm.strategy_options._AbstractLoad._set_generic_strategy">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="sqlalchemy.orm.strategy_options._AbstractLoad._set_relationship_strategy">
+    
+  </a>
+  <a name="_set_relationship_strategy">
+    
+  </a>
+  <div class="functionHeader">
+    
+    @<a href="sqlalchemy.sql.base.html#_generative" class="internal-link" title="sqlalchemy.sql.base._generative">_generative</a><br />
+    <span class="py-keyword">def</span> <span class="py-defname">_set_relationship_strategy</span><span class="function-signature">(self: <code><a href="sqlalchemy.orm.strategy_options.html#Self_AbstractLoad" class="internal-link" title="sqlalchemy.orm.strategy_options.Self_AbstractLoad">Self_AbstractLoad</a></code>, attr: <code><a href="sqlalchemy.orm.strategy_options.html#_AttrType" class="internal-link" title="sqlalchemy.orm.strategy_options._AttrType">_AttrType</a></code>, strategy: <code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">Optional</a>[<wbr></wbr><a href="sqlalchemy.orm.strategy_options.html#_StrategySpec" class="internal-link" title="sqlalchemy.orm.strategy_options._StrategySpec">_StrategySpec</a>]</code>, propagate_to_loaders: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code> = <a href="https://docs.python.org/3/library/constants.html#True" class="intersphinx-link">True</a>, opts: <code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">Optional</a>[<wbr></wbr><a href="sqlalchemy.orm.strategy_options.html#_OptsType" class="internal-link" title="sqlalchemy.orm.strategy_options._OptsType">_OptsType</a>]</code> = <a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>, _reconcile_to_other: <code><a href="https://docs.python.org/3/library/typing.html#typing.Optional" class="intersphinx-link">Optional</a>[<wbr></wbr><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a>]</code> = <a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>) -&gt; <code><a href="sqlalchemy.orm.strategy_options.html#Self_AbstractLoad" class="internal-link" title="sqlalchemy.orm.strategy_options.Self_AbstractLoad">Self_AbstractLoad</a></code></span>:
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-2.0.1//lib/sqlalchemy/orm/strategy_options.py#L812">
+      
+      (source)
+    </a>
+    <a class="headerLink" href="#_set_relationship_strategy" title="sqlalchemy.orm.strategy_options._AbstractLoad._set_relationship_strategy">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="baseclassvariable private">
+  
+  
+  <a name="sqlalchemy.orm.strategy_options._AbstractLoad._is_strategy_option">
+    
+  </a>
+  <a name="_is_strategy_option">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_is_strategy_option</span>: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code> =
+    <a class="sourceLink" href="https://github.com/pydocbrowser/pydocbrowser.github.io/tree/main/build/sources/sqlalchemy-2.0.1//lib/sqlalchemy/orm/strategy_options.py#L91">
+      
+      (source)
+    </a>
+    <a class="headerLink" href="#_is_strategy_option" title="sqlalchemy.orm.strategy_options._AbstractLoad._is_strategy_option">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">overrides <code><a href="sqlalchemy.orm.interfaces.ORMOption.html#_is_strategy_option" class="internal-link">sqlalchemy.orm.interfaces.ORMOption._is_strategy_option</a></code></div>
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div>
+        </div>
+      
+      </div>
+    </div>
+
+    <footer class="navbar navbar-default">
+
+  
+  <div class="container">
+    <a href="index.html">API Documentation</a> for sqlalchemy,
+  generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
+    22.9.1.dev0 at 2023-02-04 22:04:23.
+  </div>
+
+  <!-- Search related scripts needs to be loaded at the end of HTML 
+    parsing not to introduce overhead and display HTML data asap -->
+  <script src="ajax.js" type="text/javascript"></script>
+  <script src="searchlib.js" type="text/javascript"></script>
+  <script src="search.js" type="text/javascript"></script>
+
+</footer>
+  
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+  </body>
+</html>
