@@ -1,0 +1,132 @@
+# PEP-518 https://peps.python.org/pep-0518/
+[build-system]
+# Minimum requirements for the build system to execute.
+requires = ["setuptools>=65.5.1", "wheel"]  # PEP 518 specifications.
+
+[tool.black]
+exclude = "/templates/|^features/steps/test_starter"
+
+[tool.isort]
+profile = "black"
+
+[tool.pylint]
+[tool.pylint.master]
+ignore = "CVS"
+ignore-patterns = "kedro/templates/*"
+load-plugins = [
+    "pylint.extensions.docparams",
+    "pylint.extensions.no_self_use"
+]
+extension-pkg-whitelist = "cv2"
+unsafe-load-any-extension = false
+[tool.pylint.messages_control]
+disable = [
+    "ungrouped-imports",
+    "duplicate-code"
+]
+enable = ["useless-suppression"]
+[tool.pylint.refactoring]
+max-nested-blocks = 5
+[tool.pylint.format]
+indent-after-paren=4
+indent-string="    "
+[tool.pylint.miscellaneous]
+notes = [
+    "FIXME",
+    "XXX"
+]
+[tool.pylint.design]
+min-public-methods = 1
+
+[tool.coverage.report]
+fail_under = 100
+show_missing = true
+omit = [
+    "kedro/templates/*",
+    "kedro/extras/logging/color_logger.py",
+    "kedro/extras/extensions/ipython.py",
+    "kedro/framework/cli/hooks/specs.py",
+    "kedro/framework/hooks/specs.py",
+    "kedro/extras/datasets/tensorflow/*",
+    "kedro/extras/datasets/holoviews/*",
+    "tests/*"
+]
+exclude_lines = ["pragma: no cover", "raise NotImplementedError"]
+
+[tool.pytest.ini_options]
+addopts="""
+--cov-config pyproject.toml \
+--cov-report xml:coverage.xml \
+--cov-report term-missing \
+--cov kedro \
+--cov tests \
+--ignore tests/template/fake_repo \
+--ignore features \
+--ignore kedro/templates \
+--no-cov-on-fail \
+-ra \
+-W ignore"""
+testpaths = [
+  "tests"
+]
+
+[tool.importlinter]
+root_package = "kedro"
+
+[[tool.importlinter.contracts]]
+name = "CLI > Context > Library, Runner > Extras > IO & Pipeline"
+type = "layers"
+containers = "kedro"
+layers = [
+    "framework.cli",
+    "framework.session",
+    "framework.context",
+    "framework.project",
+    "runner",
+    "extras.datasets",
+    "io",
+    "pipeline",
+    "config"
+]
+ignore_imports = [
+    "kedro.runner.parallel_runner -> kedro.framework.project",
+    "kedro.framework.hooks.specs -> kedro.framework.context"
+]
+
+[[tool.importlinter.contracts]]
+name = "Pipeline and IO are independent"
+type = "independence"
+modules = [
+    "kedro.pipeline",
+    "kedro.io"
+]
+
+[[tool.importlinter.contracts]]
+name = "Config cannot import Runner et al"
+type = "forbidden"
+source_modules = [
+    "kedro.config"
+]
+forbidden_modules = [
+    "kedro.runner",
+    "kedro.io",
+    "kedro.pipeline",
+    "kedro.extras.datasets"
+]
+
+[[tool.importlinter.contracts]]
+name = "Runner et al cannot import Config"
+type = "forbidden"
+source_modules = [
+    "kedro.runner",
+    "kedro.io",
+    "kedro.pipeline",
+    "kedro.extras.datasets"
+]
+forbidden_modules = [
+    "kedro.config"
+]
+ignore_imports = [
+    "kedro.framework.context.context -> kedro.config",
+    "kedro.framework.session.session -> kedro.config"
+]
