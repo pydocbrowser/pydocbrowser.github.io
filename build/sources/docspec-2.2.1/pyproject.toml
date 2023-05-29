@@ -1,0 +1,68 @@
+[tool.poetry]
+name = "docspec"
+version = "2.2.1"
+description = "Docspec is a JSON object specification for representing API documentation of programming languages."
+authors = ["Niklas Rosenstein <rosensteinniklas@gmail.com>"]
+license = "MIT"
+readme = "readme.md"
+homepage = "https://github.com/NiklasRosenstein/docspec/"
+packages = [{include="docspec", from="src"}]
+
+[tool.poetry.dependencies]
+python = "^3.7"
+"databind.core" = "^4.2.6"
+"databind.json" = "^4.2.6"
+Deprecated = "^1.2.12"
+
+[tool.poetry.dev-dependencies]
+black = "*"
+flake8 = "*"
+isort = "*"
+mypy = "*"
+pytest = "*"
+types-Deprecated = "*"
+types-termcolor = "*"
+
+[tool.poetry.scripts]
+docspec = "docspec.__main__:main"
+
+[tool.slap]
+typed = true
+
+[tool.slap.test]
+check = "slap check"
+pytest = "pytest -vv"
+mypy = "mypy src/ test/"
+black = "black --check src/ test/"
+isort = "isort --check-only src/ test/"
+flake8 = "flake8 src/ test/"
+
+[tool.slap.run]
+fmt = "black src/ test/ && isort src/ test/"
+
+[tool.mypy]
+python_version = "3.6"
+explicit_package_bases = true
+mypy_path = ["src"]
+namespace_packages = true
+pretty = true
+show_error_codes = true
+show_error_context = true
+strict = true
+warn_no_return = true
+warn_redundant_casts = true
+warn_unreachable = true
+warn_unused_ignores = true
+check_untyped_defs = true
+
+[tool.isort]
+profile = "black"
+line_length = 120
+combine_as_imports = true
+
+[tool.black]
+line-length = 120
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
